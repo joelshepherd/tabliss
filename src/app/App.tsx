@@ -1,12 +1,18 @@
 import * as React from 'react';
+import { Route } from 'react-router';
+import { Dashboard } from './Dashboard';
+import { Settings } from './Settings';
 import './App.css';
 
-export class App extends React.Component<{}, {}> {
+class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <h1>Start</h1>
+        <Dashboard />
+        <Route path="/settings" component={Settings} />
       </div>
     );
   }
 }
+
+export default App;

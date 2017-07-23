@@ -1,3 +1,5 @@
 .App {
-    text-align: center;
+    position: relative;
+    width: 100vw;
+    height: 100vh;
 }

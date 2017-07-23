@@ -1,0 +1,28 @@
+.Settings {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    background-color: rgba(0, 0, 0, 0.25);
+}
+
+.Settings__plane {
+    position: absolute;
+    height: 100%;
+    width: 25%;
+    min-width: 300px;
+
+    background: white;
+    padding: 1rem;
+}
+
+.Settings label {
+    display: block;
+}
+
+.Settings input,
+.Settings select {
+    display: block;
+}
