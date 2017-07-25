@@ -1,6 +1,1 @@
-export function version(state: number = 2, action: any) {
-  switch (action.type) {
-    default:
-      return state;
-  }
-}
+export const version = (state: number = 1, action: any) => state;

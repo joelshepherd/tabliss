@@ -5,8 +5,6 @@ interface State {
 }
 
 class Time extends React.Component<{}, State> {
-  static title = 'Time Widget';
-  static type = 'widget';
   private interval: number;
 
   constructor() {

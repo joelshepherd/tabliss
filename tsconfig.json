@@ -28,6 +28,7 @@
     "src/setupTests.ts"
   ],
   "types": [
+    "./types",
     "typePatches"
   ]
 }

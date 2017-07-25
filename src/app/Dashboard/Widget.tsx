@@ -1,17 +1,17 @@
 import * as React from 'react';
-import { Component } from 'react';
 import { connect } from 'react-redux';
 import { getSettings, getState, State } from '../../data';
 import { getPlugin, Plugin, Settings } from '../../plugins';
-import './Background.css';
+import './Widgets.css';
 
 interface Props {
+  id: string;
   plugin: Plugin;
   settings: Settings;
   state: any;
 }
 
-class Background extends Component<Props> {
+class Widgets extends React.Component<Props> {
   render() {
     return (
       <this.props.plugin.Dashboard
@@ -22,12 +22,12 @@ class Background extends Component<Props> {
   }
 }
 
-const mapStateToProps = (state: State) => {
+const mapStateToProps = (state: State, props: {id: string}) => {
   return {
-    plugin: getPlugin(state.dashboard.background),
-    settings: getSettings(state.plugins, state.dashboard.background),
-    state: getState(state.plugins, state.dashboard.background),
+    plugin: getPlugin(props.id),
+    settings: getSettings(state.plugins, props.id),
+    state: getState(state.plugins, props.id),
   };
 }
 
-export default connect(mapStateToProps, {})(Background);
+export default connect(mapStateToProps, {})(Widgets);

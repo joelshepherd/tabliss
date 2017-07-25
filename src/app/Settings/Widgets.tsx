@@ -1,39 +1,46 @@
 import * as React from 'react';
+import { Component } from 'react';
 import { connect } from 'react-redux';
-import Plugin from './Plugin';
-import { changeSettings } from '../../data/actions';
+import { changeSettings, State, toggleWidget } from '../../data';
+import { getPluginsByType, Plugin, Settings, Type } from '../../plugins';
+import Widget from './Widget';
 
 interface Props {
-  plugins: any,
-  widgets: any;
-  onChangeSettings: (component: any, settings: any) => void;
+  plugins: Plugin[];
+  settings: Settings[],
+  widgets: string[];
+  toggleWidget: (key: string) => void;
+  changeSettings: (key: string, settings: Settings) => void;
 }
 
-class Widgets extends React.Component<Props> {
+class Widgets extends Component<Props> {
   render() {
     return (
       <div>
         <h3>Widgets</h3>
 
-        {this.props.widgets.filter((widget: any) => widget.component.settings).map((widget: any, key: number) =>
-          <Plugin key={key} {...widget} onChange={(settings: any) =>this.props.onChangeSettings(widget.component, settings)} />
+        {this.props.plugins.map(plugin =>
+          <Widget
+            key={plugin.key}
+            plugin={plugin}
+            toggleWidget={() => this.props.toggleWidget(plugin.key)}
+            changeSettings={(settings: Settings) => this.props.changeSettings(plugin.key, settings)}
+           />
         )}
       </div>
     );
   }
 }
 
-const mapStateToProps = (state: any) => {
+const mapStateToProps = (state: State) => {
   return {
-    plugins: state.plugins,
-    widgets: state.widgets,
+    plugins: getPluginsByType(Type.WIDGET),
   };
 };
 
-const mapDispatchToProps = (dispatch: any, ownProps: any) => {
-  return {
-    onChangeSettings: (component: any, settings: any) => dispatch(changeSettings(component, settings))
-  };
+const mapDispatchToProps = {
+  changeSettings,
+  toggleWidget,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Widgets);

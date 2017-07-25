@@ -9,9 +9,6 @@ interface Props {
 }
 
 class Gradient extends React.Component<Props> /* implements Plugin - Not working because static */ {
-  static title = 'Gradient Background';
-  static type = 'background';
-  static settings = GradientSettings;
   static defaultProps = GradientSettings.defaultProps;
 
   render() {

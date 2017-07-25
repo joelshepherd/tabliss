@@ -1,4 +1,3 @@
-export * from './background';
+export * from './dashboard';
 export * from './plugins';
 export * from './version';
-export * from './widgets';

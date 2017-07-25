@@ -1,58 +1,53 @@
 import * as React from 'react';
-import { Plugin } from '../../plugins';
+import { Component } from 'react';
 import { connect } from 'react-redux';
-import { changeBackground, updateBackgroundSettings } from '../../data/actions';
+import { changeBackground, changeSettings, getSettings, State } from '../../data';
+import { getPlugin, getPluginsByType, Plugin, Type, Settings } from '../../plugins';
 
 interface Props {
-  plugins: Plugin[],
-  background: any;
-  onChangeBackground: (index: number) => void;
-  onChangeSettings: () => void;
+  available: Plugin[],
+  background: string,
+  plugin: Plugin;
+  settings: Settings;
+  changeBackground: (event: any) => void;
+  changeSettings: (key: string, settings: Settings) => void;
 }
 
-class Background extends React.Component<Props> {
+class Background extends Component<Props> {
   render() {
-    const backgroundOptions = this.props.plugins
-      .filter(plugin => plugin.type === 'background')
-      .map((background, key) =>
-        <option key={key} value={key}>{background.title}</option>
-      );
-
     return (
       <div>
         <h3>Background</h3>
 
         <label>
-          <select
-            value={this.props.plugins.indexOf(this.props.background.component)}
-            onChange={event => this.props.onChangeBackground(this.props.plugins[event.target.value])}
-          >
-            {backgroundOptions}
+          <select value={this.props.background} onChange={this.props.changeBackground}>
+            {this.props.available.map(plugin =>
+              <option key={plugin.key} value={plugin.key}>{plugin.title}</option>
+            )}
           </select>
         </label>
 
-        <h4>Settings</h4>
-        <this.props.background.component.settings
-          onChange={this.props.onChangeSettings}
-          {...this.props.background.settings}
+        <this.props.plugin.Settings
+          {...this.props.settings}
+          onChange={(settings: Settings) => this.props.changeSettings(this.props.plugin.key, settings)}
         />
       </div>
     );
   }
 }
 
-const mapStateToProps = (state: any) => {
+const mapStateToProps = (state: State) => {
   return {
-    plugins: state.plugins,
-    background: state.background,
+    available: getPluginsByType(Type.BACKGROUND),
+    background: state.dashboard.background,
+    plugin: getPlugin(state.dashboard.background),
+    settings: getSettings(state.plugins, state.dashboard.background),
   };
 };
 
-const mapDispatchToProps = (dispatch: any, ownProps: any) => {
-  return {
-    onChangeBackground: (background: Plugin) => dispatch(changeBackground(background)),
-    onChangeSettings: (settings: any) => dispatch(updateBackgroundSettings(settings))
-  };
+const mapDispatchToProps = {
+  changeBackground: (event: any) => changeBackground(event.target.value),
+  changeSettings: (key: string, settings: Settings) => changeSettings(key, settings),
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Background);

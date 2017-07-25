@@ -6,9 +6,6 @@ interface Props {
 }
 
 class Colour extends React.Component<Props> {
-  static title = 'Colour Background';
-  static type = 'background';
-  static settings = ColourSettings;
   static defaultProps = ColourSettings.defaultProps;
 
   render() {

@@ -6,9 +6,6 @@ interface Props {
 }
 
 class Greeting extends React.Component<Props> {
-  static title = 'Greeting';
-  static type = 'widget';
-  static settings = GreetingSettings;
   static defaultProps = GreetingSettings.defaultProps;
 
   render() {

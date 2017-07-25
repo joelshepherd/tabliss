@@ -1,4 +1,4 @@
-.Settings {
+.Settings .overlay {
     position: absolute;
     top: 0;
     left: 0;
@@ -8,7 +8,7 @@
     background-color: rgba(0, 0, 0, 0.25);
 }
 
-.Settings__plane {
+.Settings .plane {
     position: absolute;
     height: 100%;
     width: 25%;

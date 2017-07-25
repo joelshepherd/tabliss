@@ -1,8 +1,9 @@
 import * as React from 'react';
+import { Settings } from '../../constants';
 
 interface Props {
   name?: string;
-  onChange: (settings: {[name: string]: any}) => void;
+  onChange: (settings: Settings) => void;
 }
 
 class GreetingSettings extends React.Component<Props> {
