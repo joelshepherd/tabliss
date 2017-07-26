@@ -2,13 +2,13 @@ import * as React from 'react';
 import GradientSettings from './GradientSettings';
 
 interface Props {
-  angle?: number;
-  from?: string;
-  to?: string;
-  type?: string;
+  angle: number;
+  from: string;
+  to: string;
+  type: string;
 }
 
-class Gradient extends React.Component<Props> /* implements Plugin - Not working because static */ {
+class Gradient extends React.Component<Props>{
   static defaultProps = GradientSettings.defaultProps;
 
   render() {

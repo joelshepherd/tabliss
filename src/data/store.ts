@@ -14,10 +14,11 @@ const middleware = storage.createMiddleware(engine);
 const createStoreWithMiddleware = applyMiddleware(middleware)(createStore);
 export const store = createStoreWithMiddleware(reducer);
 
+// @TODO This is merging arrays instead of replacing them, for some reason.
 const load = storage.createLoader(engine);
 load(store)
   .then(
-    (newState) => console.log('Loaded state:', newState),
+    (state) => console.log('Loaded state:', state),
     () => console.log('Failed to load previous state'),
   );
 

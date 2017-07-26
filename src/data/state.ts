@@ -11,6 +11,7 @@ export interface State {
 // Dashboard slice
 export interface Dashboard {
   background: string;
+  focus: boolean;
   widgets: string[];
 }
 
