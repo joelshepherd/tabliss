@@ -1,4 +1,5 @@
 export const CHANGE_BACKGROUND = 'CHANGE_BACKGROUND';
+export const RESET_DASHBOARD = 'RESET_DASHBOARD';
 export const TOGGLE_FOCUS = 'TOGGLE_FOCUS';
 export const TOGGLE_WIDGET = 'TOGGLE_WIDGET';
 
@@ -12,6 +13,12 @@ export function changeBackground(key: string) {
   return {
     type: CHANGE_BACKGROUND,
     payload: key,
+  };
+}
+
+export function resetDashboard() {
+  return {
+    type: RESET_DASHBOARD,
   };
 }
 

@@ -4,10 +4,12 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Background from './Background';
 import Widgets from './Widgets';
-import { resetSettings } from '../../data';
+import { resetAll, resetDashboard, resetSettings } from '../../data';
 import './Settings.css';
 
 interface Props {
+  resetAll: () => void;
+  resetDashboard: () => void;
   resetSettings: () => void;
 }
 
@@ -23,7 +25,13 @@ class Settings extends Component<Props> {
           <Background />
           <Widgets />
 
-          <a href="javascript:;" onClick={this.props.resetSettings}>Reset all settings</a>
+          <p>
+            Reset&nbsp;
+            <a href="javascript:;" onClick={this.props.resetDashboard}>dashboard</a>&nbsp;
+            <a href="javascript:;" onClick={this.props.resetSettings}>settings</a>
+            &nbsp;or&nbsp;
+            <a href="javascript:;" onClick={this.props.resetAll}>everything</a>
+          </p>
         </div>
       </div>
     );
@@ -31,6 +39,8 @@ class Settings extends Component<Props> {
 }
 
 const mapDispatchToProps = {
+  resetAll,
+  resetDashboard,
   resetSettings,
 }
 

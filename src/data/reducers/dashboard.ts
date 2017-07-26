@@ -1,5 +1,5 @@
 import { Dashboard } from '../state';
-import { Action, CHANGE_BACKGROUND, TOGGLE_FOCUS, TOGGLE_WIDGET } from '../actions';
+import { Action, CHANGE_BACKGROUND, RESET_ALL, RESET_DASHBOARD, TOGGLE_FOCUS, TOGGLE_WIDGET } from '../actions';
 
 const initial = {
   background: 'core/backgrounds/colour',
@@ -17,6 +17,10 @@ export function dashboard(state: Dashboard = initial, action: Action): Dashboard
         ...state,
         background: action.payload,
       };
+
+    case RESET_ALL:
+    case RESET_DASHBOARD:
+      return initial;
 
     case TOGGLE_FOCUS:
       return {

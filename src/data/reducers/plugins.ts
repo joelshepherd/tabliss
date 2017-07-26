@@ -1,5 +1,5 @@
 import { Plugins } from '../state';
-import { Action, CHANGE_SETTINGS, RESET_SETTINGS } from '../actions';
+import { Action, CHANGE_SETTINGS, RESET_ALL, RESET_SETTINGS } from '../actions';
 
 const initial = {};
 
@@ -24,6 +24,7 @@ export function plugins(state: Plugins = initial, action: Action): Plugins {
         }
       };
 
+    case RESET_ALL:
     case RESET_SETTINGS:
       return initial;
 
