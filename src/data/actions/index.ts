@@ -1,11 +1,4 @@
 export * from './action';
+export * from './app';
 export * from './dashboard';
 export * from './plugins';
-
-export const RESET_ALL = 'RESET_ALL';
-
-export function resetAll() {
-  return {
-    type: RESET_ALL,
-  };
-}

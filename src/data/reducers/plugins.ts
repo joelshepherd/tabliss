@@ -1,5 +1,6 @@
-import { Plugins } from '../state';
-import { Action, CHANGE_SETTINGS, RESET_ALL, RESET_SETTINGS } from '../actions';
+import { Action } from '../actions';
+import { CHANGE_SETTINGS, RESET_ALL, RESET_SETTINGS } from '../constants';
+import { Plugins } from '../interfaces';
 
 const initial = {};
 

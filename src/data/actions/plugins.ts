@@ -1,7 +1,5 @@
 import { Settings } from '../../plugins';
-
-export const CHANGE_SETTINGS = 'CHANGE_SETTINGS';
-export const RESET_SETTINGS = 'RESET_SETTINGS';
+import { CHANGE_SETTINGS, RESET_SETTINGS } from '../constants';
 
 export function changeSettings(key: string, settings: Settings) {
   return {

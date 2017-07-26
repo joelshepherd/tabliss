@@ -1,7 +1,9 @@
-export const CHANGE_BACKGROUND = 'CHANGE_BACKGROUND';
-export const RESET_DASHBOARD = 'RESET_DASHBOARD';
-export const TOGGLE_FOCUS = 'TOGGLE_FOCUS';
-export const TOGGLE_WIDGET = 'TOGGLE_WIDGET';
+import {
+  CHANGE_BACKGROUND,
+  RESET_DASHBOARD,
+  TOGGLE_FOCUS,
+  TOGGLE_WIDGET,
+} from '../constants';
 
 export function toggleFocus() {
   return {

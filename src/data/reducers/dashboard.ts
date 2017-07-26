@@ -1,5 +1,6 @@
-import { Dashboard } from '../state';
-import { Action, CHANGE_BACKGROUND, RESET_ALL, RESET_DASHBOARD, TOGGLE_FOCUS, TOGGLE_WIDGET } from '../actions';
+import { Action } from '../actions';
+import { CHANGE_BACKGROUND, RESET_ALL, RESET_DASHBOARD, TOGGLE_FOCUS, TOGGLE_WIDGET } from '../constants';
+import { Dashboard } from '../interfaces';
 
 const initial = {
   background: 'core/backgrounds/colour',
