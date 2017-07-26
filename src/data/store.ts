@@ -1,27 +1,28 @@
-import { applyMiddleware, combineReducers, createStore } from 'redux';
-import * as storage from 'redux-storage';
-import createEngine from 'redux-storage-engine-localstorage';
-import * as reducers from './reducers';
+import { combineReducers, createStore } from 'redux';
+import { persistStore, autoRehydrate } from 'redux-persist';
+import * as localForage from 'localforage';
+import { dashboard, plugins, version } from './reducers';
 import { State } from './state';
 
-const reducer = storage.reducer(
-  combineReducers<State>(reducers as any)
-);
-const engine = createEngine('state');
+// Create store
+export const store = createStore<State>(
+  combineReducers({
+    dashboard,
+    plugins,
+    version,
+  }),
+  autoRehydrate()
+)
 
-const middleware = storage.createMiddleware(engine);
+// Setup localForage
+localForage.config({
+  name: 'start',
+  storeName: 'state',
+});
 
-const createStoreWithMiddleware = applyMiddleware(middleware)(createStore);
-export const store = createStoreWithMiddleware(reducer);
-
-// @TODO This is merging arrays instead of replacing them, for some reason.
-const load = storage.createLoader(engine);
-load(store)
-  .then(
-    (state) => console.log('Loaded state:', state),
-    () => console.log('Failed to load previous state'),
-  );
-
-// Dev mode = activated!
-store.subscribe(() => console.log(store.getState()));
-console.log(store.getState());
+// Begin periodically persisting the store
+persistStore(store, {
+  debounce: 500,
+  keyPrefix: '',
+  storage: localForage,
+});

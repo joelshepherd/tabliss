@@ -10,8 +10,7 @@
     "@types/react-redux": "^4.4.46",
     "@types/react-router": "^4.0.14",
     "@types/react-router-dom": "^4.0.7",
-    "@types/redux-storage": "^4.0.7",
-    "@types/uuid": "^3.4.0",
+    "localforage": "^1.5.0",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-redux": "^5.0.5",
@@ -19,9 +18,7 @@
     "react-router-dom": "^4.1.2",
     "react-scripts-ts": "2.4.0",
     "redux": "^3.7.2",
-    "redux-storage": "^4.1.2",
-    "redux-storage-engine-localstorage": "^1.1.4",
-    "uuid": "^3.1.0"
+    "redux-persist": "^4.8.2"
   },
   "devDependencies": {},
   "scripts": {
