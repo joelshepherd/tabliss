@@ -3,6 +3,7 @@ import { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Background from './Background';
+import Feedback from './Feedback';
 import Widgets from './Widgets';
 import { resetAll, resetDashboard, resetSettings } from '../../data';
 import './Settings.css';
@@ -23,8 +24,12 @@ class Settings extends Component<Props> {
           <h2>Settings</h2>
 
           <Background />
+
           <Widgets />
 
+          <Feedback />
+
+          <h3>Reset</h3>
           <p>
             Reset&nbsp;
             <a href="javascript:;" onClick={this.props.resetDashboard}>dashboard</a>&nbsp;

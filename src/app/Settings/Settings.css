@@ -21,9 +21,10 @@
 
 .Settings label {
     display: block;
+    margin: 1rem 0;
 }
 
-.Settings input,
+.Settings input:not([type=checkbox]),
 .Settings select {
     display: block;
 }
