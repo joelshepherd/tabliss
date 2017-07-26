@@ -1,11 +1,12 @@
 import * as React from 'react';
+import { Settings } from '../../interfaces';
 
 interface Props {
   angle?: number;
   from?: string;
   to?: string;
   type?: string;
-  onChange: (settings: {[name: string]: any}) => void;
+  onChange: (settings: Settings) => void;
 }
 
 class GradientSettings extends React.Component<Props> /* implements Plugin - Not working because static */ {

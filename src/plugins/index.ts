@@ -1,4 +1,4 @@
-export * from './constants';
+export * from './interfaces';
 export * from './registry';
 
 // Import plugins

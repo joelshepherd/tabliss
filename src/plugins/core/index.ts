@@ -1,4 +1,4 @@
-import { Plugin, Type } from '../constants';
+import { Plugin, Type } from '../interfaces';
 import { registerPlugin } from '../registry';
 import * as backgrounds from './Backgrounds';
 import * as widgets from './Widgets';

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Settings } from '../../constants';
+import { Settings } from '../../interfaces';
 
 interface Props {
   name?: string;

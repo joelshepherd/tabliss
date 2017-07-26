@@ -1,4 +1,4 @@
-import { Plugin, Type } from './constants';
+import { Plugin, Type } from './interfaces';
 
 const registry: Plugin[] = [];
 

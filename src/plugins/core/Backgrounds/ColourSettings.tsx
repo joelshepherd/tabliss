@@ -1,8 +1,9 @@
 import * as React from 'react';
+import { Settings } from '../../interfaces';
 
 interface Props {
   colour?: string;
-  onChange: (settings: {[name: string]: any}) => void;
+  onChange: (settings: Settings) => void;
 }
 
 class ColourSettings extends React.Component<Props> /* implements Plugin - Not working because static */ {
