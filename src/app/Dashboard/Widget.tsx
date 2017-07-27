@@ -8,13 +8,15 @@ interface Props {
   id: string;
   plugin: Plugin;
   settings: Settings;
-  state: any;
+  state: any; // tslint:disable-line no-any
 }
 
 class Widgets extends React.Component<Props> {
   render() {
+    const DashboardComponent = this.props.plugin.Dashboard;
+
     return (
-      <this.props.plugin.Dashboard
+      <DashboardComponent
         {...this.props.settings}
         state={this.props.state}
       />
@@ -28,6 +30,6 @@ const mapStateToProps = (state: State, props: {id: string}) => {
     settings: getSettings(state.plugins, props.id),
     state: getState(state.plugins, props.id),
   };
-}
+};
 
 export default connect(mapStateToProps, {})(Widgets);

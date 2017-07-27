@@ -1,4 +1,5 @@
 import { Settings } from '../../plugins';
+import { Plugins } from '../interfaces';
 import { CHANGE_SETTINGS, RESET_SETTINGS } from '../constants';
 
 export function changeSettings(key: string, settings: Settings) {
@@ -17,7 +18,7 @@ export function resetSettings() {
   };
 }
 
-export function getSettings(plugins: any, key: string): Settings {
+export function getSettings(plugins: Plugins, key: string): Settings {
   if (typeof plugins[key] === 'undefined') {
     return {};
   }
@@ -25,7 +26,7 @@ export function getSettings(plugins: any, key: string): Settings {
   return plugins[key].settings;
 }
 
-export function getState(plugins: any, key: string): Settings {
+export function getState(plugins: Plugins, key: string): Settings {
   if (typeof plugins[key] === 'undefined') {
     return {};
   }

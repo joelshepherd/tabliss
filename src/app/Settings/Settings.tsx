@@ -47,6 +47,6 @@ const mapDispatchToProps = {
   resetAll,
   resetDashboard,
   resetSettings,
-}
+};
 
 export default connect(null, mapDispatchToProps)(Settings);

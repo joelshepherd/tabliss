@@ -8,7 +8,7 @@ interface Props {
   type: string;
 }
 
-class Gradient extends React.Component<Props>{
+class Gradient extends React.Component<Props> {
   static defaultProps = GradientSettings.defaultProps;
 
   render() {

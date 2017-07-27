@@ -8,13 +8,15 @@ import './Background.css';
 interface Props {
   plugin: Plugin;
   settings: Settings;
-  state: any;
+  state: any; // tslint:disable-line no-any
 }
 
 class Background extends Component<Props> {
   render() {
+    const DashboardComponent = this.props.plugin.Dashboard;
+
     return (
-      <this.props.plugin.Dashboard
+      <DashboardComponent
         {...this.props.settings}
         state={this.props.state}
       />
@@ -28,6 +30,6 @@ const mapStateToProps = (state: State) => {
     settings: getSettings(state.plugins, state.dashboard.background),
     state: getState(state.plugins, state.dashboard.background),
   };
-}
+};
 
 export default connect(mapStateToProps, {})(Background);

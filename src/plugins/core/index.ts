@@ -1,6 +1,6 @@
 import { Plugin, Type } from '../interfaces';
 import { registerPlugin } from '../registry';
-import * as backgrounds from './Backgrounds';
+import { Colour, ColourSettings, Gradient, GradientSettings } from './Backgrounds';
 import * as widgets from './Widgets';
 
 const plugins: Plugin[] = [
@@ -8,15 +8,15 @@ const plugins: Plugin[] = [
     key: 'core/backgrounds/colour',
     type: Type.BACKGROUND,
     title: 'Colour background',
-    Dashboard: backgrounds.Colour,
-    Settings: backgrounds.ColourSettings,
+    Dashboard: Colour,
+    Settings: ColourSettings,
   },
   {
     key: 'core/backgrounds/gradient',
     type: Type.BACKGROUND,
     title: 'Gradient background',
-    Dashboard: backgrounds.Gradient,
-    Settings: backgrounds.GradientSettings,
+    Dashboard: Gradient,
+    Settings: GradientSettings,
   },
   {
     key: 'core/widgets/greeting',
@@ -31,6 +31,6 @@ const plugins: Plugin[] = [
     title: 'Time widget',
     Dashboard: widgets.Time,
   },
-]
+];
 
 plugins.map(registerPlugin);

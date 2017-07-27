@@ -30,7 +30,7 @@ const mapStateToProps = (state: State) => {
   return {
     focus: state.dashboard.focus,
   };
-}
+};
 
 const mapDispatchToProps = {
   toggleFocus,

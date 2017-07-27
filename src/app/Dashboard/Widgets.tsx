@@ -7,7 +7,7 @@ import './Widgets.css';
 interface Props {
   focus: boolean;
   toggleFocus: () => void;
-  widgets: any[];
+  widgets: string[];
 }
 
 class Widgets extends React.Component<Props> {
@@ -27,8 +27,6 @@ const mapStateToProps = (state: State) => {
     focus: state.dashboard.focus,
     widgets: state.dashboard.widgets,
   };
-}
-
-
+};
 
 export default connect(mapStateToProps, {})(Widgets);

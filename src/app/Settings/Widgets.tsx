@@ -7,7 +7,7 @@ import Widget from './Widget';
 
 interface Props {
   plugins: Plugin[];
-  settings: Settings[],
+  settings: Settings[];
   widgets: string[];
   toggleWidget: (key: string) => void;
   changeSettings: (key: string, settings: Settings) => void;
@@ -25,7 +25,7 @@ class Widgets extends Component<Props> {
             plugin={plugin}
             toggleWidget={() => this.props.toggleWidget(plugin.key)}
             changeSettings={(settings: Settings) => this.props.changeSettings(plugin.key, settings)}
-           />
+          />
         )}
       </div>
     );

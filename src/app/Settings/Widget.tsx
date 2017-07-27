@@ -14,6 +14,7 @@ interface Props {
 
 class Widget extends Component<Props> {
   render() {
+    const SettingsComponent = this.props.plugin.Settings;
     return (
       <div>
         <h4>{this.props.plugin.title}</h4>
@@ -26,16 +27,24 @@ class Widget extends Component<Props> {
           />
         </label>
 
-        {this.props.plugin.Settings && <this.props.plugin.Settings
-          {...this.props.settings}
-          onChange={this.props.changeSettings}
-        />}
+        {SettingsComponent &&
+          <SettingsComponent
+            {...this.props.settings}
+            onChange={this.props.changeSettings}
+          />
+        }
       </div>
     );
   }
 }
 
-const mapStateToProps = (state: State, props: any) => {
+interface OwnProps {
+  changeSettings: (settings: Settings) => void;
+  plugin: Plugin;
+  toggleWidget: () => void;
+}
+
+const mapStateToProps = (state: State, props: OwnProps) => {
   return {
     settings: getSettings(state.plugins, props.plugin.key),
     widgets: state.dashboard.widgets,
