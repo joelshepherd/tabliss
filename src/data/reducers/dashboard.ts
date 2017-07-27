@@ -6,8 +6,8 @@ const initial = {
   background: 'core/backgrounds/colour',
   focus: false,
   widgets: [
-    'core/widgets/greeting',
     'core/widgets/time',
+    'core/widgets/greeting',
   ],
 };
 
