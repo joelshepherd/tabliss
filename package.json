@@ -10,6 +10,7 @@
     "@types/react-redux": "^4.4.46",
     "@types/react-router": "^4.0.14",
     "@types/react-router-dom": "^4.0.7",
+    "@types/screenfull": "^3.2.0",
     "localforage": "^1.5.0",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
@@ -18,7 +19,8 @@
     "react-router-dom": "^4.1.2",
     "react-scripts-ts": "2.4.0",
     "redux": "^3.7.2",
-    "redux-persist": "^4.8.2"
+    "redux-persist": "^4.8.2",
+    "screenfull": "^3.3.1"
   },
   "devDependencies": {},
   "scripts": {

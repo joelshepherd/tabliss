@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import * as screenfull from 'screenfull';
 import { State, toggleFocus } from '../../data';
 import './Overlay.css';
 
@@ -13,11 +14,13 @@ class Overlay extends React.Component<Props> {
   render() {
     return (
       <div className="Overlay">
-        <Link to="/settings">Settings</Link>
-        &nbsp;
+        <Link to="/settings">Settings</Link>&nbsp;
         <a href="javascript:;" onClick={this.props.toggleFocus}>
           {this.props.focus ? 'Standard' : 'Focus'}
-        </a>
+        </a>&nbsp;
+        {screenfull.enabled &&
+          <a href="javascript:;" onClick={() => screenfull.toggle()}>Fullscreen</a>
+        }
       </div>
     );
   }

@@ -31,11 +31,11 @@ class Settings extends Component<Props> {
 
           <h3>Reset</h3>
           <p>
-            Reset&nbsp;
-            <a href="javascript:;" onClick={this.props.resetDashboard}>dashboard</a>&nbsp;
+            Reset your&nbsp;
+            <a href="javascript:;" onClick={this.props.resetDashboard}>dashboard</a>,&nbsp;
             <a href="javascript:;" onClick={this.props.resetSettings}>settings</a>
             &nbsp;or&nbsp;
-            <a href="javascript:;" onClick={this.props.resetAll}>everything</a>
+            <a href="javascript:;" onClick={this.props.resetAll}>everything</a>.
           </p>
         </div>
       </div>
