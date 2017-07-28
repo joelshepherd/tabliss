@@ -14,6 +14,8 @@ class Overlay extends React.Component<Props> {
   render() {
     return (
       <div className="Overlay">
+        <div style={{float: 'right'}}>I'm in beta, sorry if things break!</div>
+
         <Link to="/settings">Settings</Link>&nbsp;
         <a href="javascript:;" onClick={this.props.toggleFocus}>
           {this.props.focus ? 'Standard' : 'Focus'}
