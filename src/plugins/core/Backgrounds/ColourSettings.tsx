@@ -8,7 +8,7 @@ interface Props {
 
 class ColourSettings extends React.Component<Props> /* implements Plugin - Not working because static */ {
   static defaultProps = {
-    colour: '#8fd3f4',
+    colour: '#185a9d',
   };
 
   render() {

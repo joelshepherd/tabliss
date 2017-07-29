@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Settings } from '../../interfaces';
+import Image from './Image';
 
 interface Props {
   image: string;
@@ -7,9 +8,7 @@ interface Props {
 }
 
 class ImageSettings extends React.Component<Props> /* implements Plugin - Not working because static */ {
-  static defaultProps = {
-    image: '',
-  };
+  static defaultProps = Image.defaultProps;
 
   render() {
     return (
@@ -22,6 +21,8 @@ class ImageSettings extends React.Component<Props> /* implements Plugin - Not wo
             onChange={event => event.target.files && this.loadImage(event.target.files)}
           />
         </label>
+
+        <img src={this.props.image} style={{width: '100%', height: 'auto'}} />
       </div>
     );
   }

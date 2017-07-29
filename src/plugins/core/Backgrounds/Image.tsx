@@ -1,12 +1,12 @@
 import * as React from 'react';
-import ImageSettings from './ImageSettings';
+const image = require('./image-default.jpg');
 
 interface Props {
   image: string;
 }
 
 class Image extends React.Component<Props> {
-  static defaultProps = ImageSettings.defaultProps;
+  static defaultProps = { image };
 
   render() {
     const styles = {

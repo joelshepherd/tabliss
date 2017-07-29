@@ -13,3 +13,7 @@
 .Dashboard.preload {
     opacity: 0;
 }
+
+.Dashboard a {
+    color: white;
+}

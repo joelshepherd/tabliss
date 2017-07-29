@@ -12,8 +12,8 @@ interface Props {
 class GradientSettings extends React.Component<Props> /* implements Plugin - Not working because static */ {
   static defaultProps = {
     angle: 45,
-    from : '#84fab0',
-    to: '#8fd3f4',
+    from : '#43cea2',
+    to: '#185a9d',
     type: 'linear-gradient',
   };
 

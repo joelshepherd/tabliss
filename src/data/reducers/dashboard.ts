@@ -3,7 +3,7 @@ import { CHANGE_BACKGROUND, RESET_ALL, RESET_DASHBOARD, TOGGLE_FOCUS, TOGGLE_WID
 import { Dashboard } from '../interfaces';
 
 const initial = {
-  background: 'core/backgrounds/colour',
+  background: 'core/backgrounds/image',
   focus: false,
   widgets: [
     'core/widgets/time',

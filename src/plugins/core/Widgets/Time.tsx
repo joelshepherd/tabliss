@@ -38,9 +38,10 @@ class Time extends React.Component<{}, State> {
   }
 
   render() {
+    //
     return (
       <div className="Time">
-        <h1>{this.formattedTime()}</h1>
+        <h1 style={{fontSize: '4rem'}}>{this.formattedTime()}</h1>
       </div>
     );
   }
