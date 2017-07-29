@@ -23,7 +23,7 @@ class GradientSettings extends React.Component<Props> /* implements Plugin - Not
         <label>
           From Colour
           <input
-            type="text"
+            type="color"
             value={this.props.from}
             onChange={event => this.props.onChange({ from: event.target.value })}
           />
@@ -32,7 +32,7 @@ class GradientSettings extends React.Component<Props> /* implements Plugin - Not
         <label>
           To Colour
           <input
-            type="text"
+            type="color"
             value={this.props.to}
             onChange={event => this.props.onChange({ to: event.target.value })}
           />

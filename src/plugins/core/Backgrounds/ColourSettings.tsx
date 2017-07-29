@@ -17,7 +17,7 @@ class ColourSettings extends React.Component<Props> /* implements Plugin - Not w
         <label>
           Colour
           <input
-            type="text"
+            type="color"
             value={this.props.colour}
             onChange={event => this.props.onChange({ colour: event.target.value })}
           />
