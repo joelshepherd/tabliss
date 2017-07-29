@@ -26,10 +26,21 @@ class Time extends React.Component<{}, State> {
     window.clearInterval(this.interval);
   }
 
+  formattedTime() {
+    try {
+      return this.state.time.toLocaleTimeString(undefined, {
+        hour: '2-digit',
+        minute: '2-digit',
+      });
+    } catch (e) {
+      return this.state.time.toLocaleTimeString();
+    }
+  }
+
   render() {
     return (
       <div className="Time">
-        <h1>{this.state.time.toLocaleTimeString()}</h1>
+        <h1>{this.formattedTime()}</h1>
       </div>
     );
   }
