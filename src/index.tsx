@@ -6,6 +6,8 @@ import { createHashHistory } from 'history';
 import { App } from './app';
 import registerServiceWorker from './registerServiceWorker';
 import { store } from './data/store';
+
+import 'normalize.css';
 import './index.css';
 
 const history = createHashHistory();

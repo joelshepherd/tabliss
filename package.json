@@ -12,6 +12,7 @@
     "@types/react-router-dom": "^4.0.7",
     "@types/screenfull": "^3.2.0",
     "localforage": "^1.5.0",
+    "normalize.css": "^7.0.0",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-redux": "^5.0.5",

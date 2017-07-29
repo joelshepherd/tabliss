@@ -19,12 +19,13 @@ class Widget extends Component<Props> {
       <div>
         <h4>{this.props.plugin.title}</h4>
         <label>
-          Show
           <input
             type="checkbox"
             checked={this.props.widgets.includes(this.props.plugin.key)}
             onChange={this.props.toggleWidget}
           />
+          &nbsp;
+          Enable
         </label>
 
         {SettingsComponent &&
