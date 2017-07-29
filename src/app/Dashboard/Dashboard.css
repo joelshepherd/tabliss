@@ -6,4 +6,10 @@
     height: 100%;
 
     color: white;
+    opacity: 1;
+    transition: opacity 0.25s ease-out;
+}
+
+.Dashboard.preload {
+    opacity: 0;
 }

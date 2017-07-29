@@ -1,13 +1,19 @@
 import * as React from 'react';
+import { connect } from 'react-redux';
+import { State } from '../../data';
 import Background from './Background';
 import Overlay from './Overlay';
 import Widgets from './Widgets';
 import './Dashboard.css';
 
-class Dashboard extends React.Component {
+interface Props {
+  booted: boolean;
+}
+
+class Dashboard extends React.Component<Props> {
   render() {
     return (
-      <div className="Dashboard">
+      <div className={'Dashboard' + (this.props.booted ? '' : ' preload')}>
         <Background />
         <Overlay />
         <Widgets />
@@ -16,4 +22,10 @@ class Dashboard extends React.Component {
   }
 }
 
-export default Dashboard;
+const mapStateToProps = (state: State) => {
+  return {
+    booted: state.booted,
+  };
+};
+
+export default connect(mapStateToProps, {})(Dashboard);

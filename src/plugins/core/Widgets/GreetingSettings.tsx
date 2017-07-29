@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Settings } from '../../interfaces';
+import Greeting from './Greeting';
 
 interface Props {
   name?: string;
@@ -7,9 +8,7 @@ interface Props {
 }
 
 class GreetingSettings extends React.Component<Props> {
-  static defaultProps = {
-    name: 'Human',
-  };
+  static defaultProps = Greeting.defaultProps;
 
   render() {
     return (

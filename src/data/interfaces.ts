@@ -3,6 +3,7 @@ import { Settings } from '../plugins';
 // Root state
 export interface State {
   version: number;
+  booted: boolean;
   dashboard: Dashboard;
   plugins: Plugins;
   // providers: plugin providers

@@ -1,5 +1,4 @@
 import * as React from 'react';
-import GreetingSettings from './GreetingSettings';
 
 interface Props {
   name?: string;
@@ -10,7 +9,10 @@ interface State {
 }
 
 class Greeting extends React.Component<Props, State> {
-  static defaultProps = GreetingSettings.defaultProps;
+  static defaultProps = {
+    name: 'Human',
+  };
+
   private interval: number;
 
   constructor(props: Props) {
@@ -25,7 +27,7 @@ class Greeting extends React.Component<Props, State> {
     // Check greeting once a minute
     this.interval = window.setInterval(
       () => this.setState({ greeting: this.getGreeting() }),
-      60000
+      1000
     );
   }
 
@@ -53,7 +55,7 @@ class Greeting extends React.Component<Props, State> {
     } else if (hour < 2) {
       return 'Hello';
     } else if (hour < 18) {
-      return 'Hey';
+      return 'Good afternoon';
     } else if (hour < 21) {
       return 'Good evening';
     } else {
