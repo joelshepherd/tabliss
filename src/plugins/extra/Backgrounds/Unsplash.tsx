@@ -52,7 +52,7 @@ class Unsplash extends React.Component<{}, State> {
               {this.state.user.name}
             </a>
             {' / '}
-            <a href={'https://unsplash.com' + UNSPLASH_UTM} target="_blank" rel="noopener noreferrer">
+            <a href={'https://unsplash.com/' + UNSPLASH_UTM} target="_blank" rel="noopener noreferrer">
               Unsplash
             </a>
           </div>
