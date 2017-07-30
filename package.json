@@ -11,6 +11,7 @@
     "@types/react-router": "^4.0.14",
     "@types/react-router-dom": "^4.0.7",
     "@types/screenfull": "^3.2.0",
+    "font-awesome": "^4.7.0",
     "localforage": "^1.5.0",
     "normalize.css": "^7.0.0",
     "react": "^15.6.1",

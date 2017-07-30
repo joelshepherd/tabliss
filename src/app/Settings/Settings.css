@@ -12,7 +12,7 @@
     position: absolute;
     height: 100%;
     width: 25%;
-    min-width: 300px;
+    max-width: 400px;
     overflow-y: auto;
 
     background: white;

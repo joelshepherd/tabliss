@@ -8,6 +8,7 @@ import registerServiceWorker from './registerServiceWorker';
 import { store } from './data/store';
 
 import 'normalize.css';
+import 'font-awesome/css/font-awesome.css';
 import './index.css';
 
 ReactDOM.render(

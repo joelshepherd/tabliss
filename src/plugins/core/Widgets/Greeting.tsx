@@ -52,7 +52,7 @@ class Greeting extends React.Component<Props, State> {
       return 'Rise and shine';
     } else if (hour < 9) {
       return 'Good morning';
-    } else if (hour < 2) {
+    } else if (hour < 14) {
       return 'Hello';
     } else if (hour < 18) {
       return 'Good afternoon';
