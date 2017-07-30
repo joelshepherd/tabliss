@@ -1,6 +1,6 @@
 import { Type } from '../interfaces';
 import { registerPlugin } from '../registry';
-import { Giphy, GiphySettings } from './Backgrounds';
+import { Giphy, GiphySettings, Unsplash } from './Backgrounds';
 
 registerPlugin({
   key: 'extra/backgrounds/giphy',
@@ -8,4 +8,11 @@ registerPlugin({
   title: 'GIPHY',
   Dashboard: Giphy,
   Settings: GiphySettings,
+});
+
+registerPlugin({
+  key: 'extra/backgrounds/unsplash',
+  type: Type.BACKGROUND,
+  title: 'Unsplash',
+  Dashboard: Unsplash,
 });

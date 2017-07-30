@@ -18,11 +18,7 @@ class Giphy extends React.Component<{}, State> {
 
     fetch(`https://api.giphy.com/v1/gifs/trending?api_key=${GIPHY_API_KEY}&limit=1`)
       .then(res => res.json())
-      .then(res => {
-        this.setState({
-          video: res.data[0].images.original.mp4,
-        });
-      })
+      .then(res => this.setState({ video: res.data[0].images.original.mp4 }))
       .catch(err => this.setState({ video: giphyDefault }));
   }
 

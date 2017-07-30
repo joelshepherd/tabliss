@@ -1,0 +1,12 @@
+.Unsplash {
+    background-position: 50% 50%;
+    background-size: cover;
+    opacity: 0;
+    transition: opacity 0.25s ease-out;
+}
+
+.Unsplash .credit {
+    position: absolute;
+    left: 1rem;
+    bottom: 1rem;
+}

@@ -24,7 +24,6 @@ class Greeting extends React.Component<Props, State> {
   }
 
   componentWillMount() {
-    // Check greeting once a minute
     this.interval = window.setInterval(
       () => this.setState({ greeting: this.getGreeting() }),
       1000
