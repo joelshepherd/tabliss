@@ -1,9 +1,16 @@
 import * as React from 'react';
+import { connect } from 'react-redux';
+import { State as RootState } from '../../../data';
 import './Unsplash.css';
 
 // @TODO Extract to a environment variable
 const UNSPLASH_API_KEY = 'UNSPLASH_API_KEY';
 const UNSPLASH_UTM = '?utm_source=Start&utm_medium=referral&utm_campaign=api-credit';
+
+interface Props {
+  darken?: boolean;
+  focus: boolean;
+}
 
 interface State {
   image?: string;
@@ -13,9 +20,14 @@ interface State {
   };
 }
 
-class Unsplash extends React.Component<{}, State> {
-  constructor() {
-    super();
+class Unsplash extends React.Component<Props, State> {
+  static defaultProps = {
+    darken: true,
+    focus: false,
+  };
+
+  constructor(props: Props) {
+    super(props);
 
     this.state = {};
 
@@ -26,7 +38,7 @@ class Unsplash extends React.Component<{}, State> {
     })
       .then(res => res.json())
       .then(res => {
-        this.load(res.urls.raw + '?q=90&w=2560&fit=max&fm=jpg');
+        this.load(res.urls.raw + '?q=90&w=1920&fit=max&fm=jpg');
         this.setState({
           user: {
             name: res.user.name,
@@ -45,6 +57,10 @@ class Unsplash extends React.Component<{}, State> {
 
     return (
       <div className="Background Unsplash" style={styles}>
+        {this.props.darken && ! this.props.focus &&
+          <div className="Background darken" />
+        }
+
         {this.state.user && (
           <div className="credit">
             {'Photo by '}
@@ -70,4 +86,10 @@ class Unsplash extends React.Component<{}, State> {
   }
 }
 
-export default Unsplash;
+const mapStateToProps = (state: RootState) => {
+  return {
+    focus: state.dashboard.focus,
+  };
+};
+
+export default connect(mapStateToProps, {})(Unsplash);

@@ -5,6 +5,10 @@
     transition: opacity 0.25s ease-out;
 }
 
+.Unsplash .darken {
+    background-color: rgba(0, 0, 0, 0.15);
+}
+
 .Unsplash .credit {
     position: absolute;
     left: 1rem;

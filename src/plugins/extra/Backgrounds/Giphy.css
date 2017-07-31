@@ -1,0 +1,14 @@
+.Giphy {
+    background-color: black;
+    overflow: hidden;
+}
+
+.Giphy video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-height: 100%;
+    min-width: 100%;
+    transition: opacity 0.25s ease-out;
+}
