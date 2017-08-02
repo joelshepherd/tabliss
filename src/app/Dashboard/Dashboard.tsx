@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { State } from '../../data';
 import Background from './Background';
 import Overlay from './Overlay';
+import System from './System';
 import Widgets from './Widgets';
 import './Dashboard.css';
 
@@ -14,6 +15,7 @@ class Dashboard extends React.Component<Props> {
   render() {
     return (
       <div className={'Dashboard' + (this.props.booted ? '' : ' preload')}>
+        <System />
         <Background />
         <Overlay />
         <Widgets />

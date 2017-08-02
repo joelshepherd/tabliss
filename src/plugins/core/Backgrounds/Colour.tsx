@@ -1,12 +1,13 @@
 import * as React from 'react';
-import ColourSettings from './ColourSettings';
 
 interface Props {
   colour?: string;
 }
 
 class Colour extends React.Component<Props> {
-  static defaultProps = ColourSettings.defaultProps;
+  static defaultProps = {
+    colour: '#185a9d',
+  };
 
   render() {
     return <div className="Background Colour" style={{backgroundColor: this.props.colour}} />;

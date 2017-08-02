@@ -49,7 +49,7 @@ class Time extends React.Component<Props, State> {
   render() {
     return (
       <div className="Time">
-        <h1 style={{fontSize: '4rem'}}>{this.formattedTime()}</h1>
+        <h1 style={{fontSize: '4em'}}>{this.formattedTime()}</h1>
       </div>
     );
   }

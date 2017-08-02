@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Background from './Background';
 import Feedback from './Feedback';
+import System from './System';
 import Widgets from './Widgets';
 import { resetAll, resetDashboard, resetSettings } from '../../data';
 import './Settings.css';
@@ -26,6 +27,8 @@ class Settings extends Component<Props> {
           <Background />
 
           <Widgets />
+
+          <System />
 
           <Feedback />
 

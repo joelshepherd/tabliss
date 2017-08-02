@@ -2,6 +2,7 @@ import {
   CHANGE_BACKGROUND,
   RESET_DASHBOARD,
   TOGGLE_FOCUS,
+  TOGGLE_SYSTEM,
   TOGGLE_WIDGET,
 } from '../constants';
 
@@ -27,6 +28,13 @@ export function resetDashboard() {
 export function toggleWidget(key: string) {
   return {
     type: TOGGLE_WIDGET,
+    payload: key,
+  };
+}
+
+export function toggleSystem(key: string) {
+  return {
+    type: TOGGLE_SYSTEM,
     payload: key,
   };
 }

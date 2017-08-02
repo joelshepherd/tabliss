@@ -13,6 +13,7 @@ export interface State {
 export interface Dashboard {
   background: string;
   focus: boolean;
+  system: string[];
   widgets: string[];
 }
 

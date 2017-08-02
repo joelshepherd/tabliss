@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Settings } from '../../interfaces';
+import Colour from './Colour';
 
 interface Props {
   colour?: string;
@@ -7,9 +8,7 @@ interface Props {
 }
 
 class ColourSettings extends React.Component<Props> /* implements Plugin - Not working because static */ {
-  static defaultProps = {
-    colour: '#185a9d',
-  };
+  static defaultProps = Colour.defaultProps;
 
   render() {
     return (
