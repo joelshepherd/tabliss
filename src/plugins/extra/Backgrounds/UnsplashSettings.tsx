@@ -1,14 +1,15 @@
 import * as React from 'react';
 import { Settings } from '../../interfaces';
-import Unsplash from './Unsplash';
 
 interface Props {
-  darken?: boolean;
+  darken: boolean;
   onChange: (settings: Settings) => void;
 }
 
 class UnsplashSettings extends React.Component<Props> {
-  static defaultProps = Unsplash.defaultProps;
+  static defaultProps = {
+    darken: true,
+  };
 
   render() {
     return (
