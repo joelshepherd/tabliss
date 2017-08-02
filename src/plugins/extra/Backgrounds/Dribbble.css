@@ -1,0 +1,8 @@
+.Dribbble .shot {
+    float: left;
+    width: 25%;
+    height: 33%;
+
+    background-position: 50% 50%;
+    background-size: cover;
+}
