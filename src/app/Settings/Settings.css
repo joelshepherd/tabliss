@@ -24,7 +24,7 @@
     margin: 1rem 0;
 }
 
-.Settings input:not([type=checkbox]),
+.Settings input:not([type=checkbox]):not([type=radio]),
 .Settings select {
     display: block;
 }

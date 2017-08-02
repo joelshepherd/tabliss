@@ -1,14 +1,20 @@
 import * as React from 'react';
 
+interface Props {
+  hour12?: boolean;
+}
+
 interface State {
   time: Date;
 }
 
-class Time extends React.Component<{}, State> {
+class Time extends React.Component<Props, State> {
+  static defaultProps: Props = {};
+
   private interval: number;
 
-  constructor() {
-    super();
+  constructor(props: Props) {
+    super(props);
 
     this.state = {
       time: new Date(),
@@ -27,8 +33,11 @@ class Time extends React.Component<{}, State> {
   }
 
   formattedTime() {
+
+    // Default format
     try {
       return this.state.time.toLocaleTimeString(undefined, {
+        hour12: this.props.hour12,
         hour: '2-digit',
         minute: '2-digit',
       });

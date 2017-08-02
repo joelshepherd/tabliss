@@ -7,7 +7,7 @@ export interface State {
   dashboard: Dashboard;
   plugins: Plugins;
   // providers: plugin providers
-};
+}
 
 // Dashboard slice
 export interface Dashboard {
@@ -20,6 +20,6 @@ export interface Dashboard {
 export interface Plugins {
   [key: string]: {
     settings: Settings;
-    state?: any;
+    state?: any; // tslint:disable-line no-any
   };
 }

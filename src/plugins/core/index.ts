@@ -41,6 +41,7 @@ const plugins: Plugin[] = [
     type: Type.WIDGET,
     title: 'Time',
     Dashboard: widgets.Time,
+    Settings: widgets.TimeSettings,
   },
 ];
 

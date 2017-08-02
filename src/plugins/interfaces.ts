@@ -17,5 +17,5 @@ export enum Type {
 
 // Settings
 export interface Settings {
-  [key: string]: boolean | number | string;
+  [key: string]: boolean | null | number | string | undefined;
 }
