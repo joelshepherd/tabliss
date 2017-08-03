@@ -22,7 +22,7 @@ localForage.config({
 });
 
 // Begin periodically persisting the store
-persistStore(store, {
+export const persistor = persistStore(store, {
   blacklist: ['booted'],
   debounce: 100,
   keyPrefix: '',

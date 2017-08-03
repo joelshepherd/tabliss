@@ -2,7 +2,7 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import * as screenfull from 'screenfull';
-import { State as RootState, toggleFocus } from '../../data';
+import { persistor, State as RootState, toggleFocus } from '../../data';
 import './Overlay.css';
 
 interface Props {
@@ -30,23 +30,29 @@ class Overlay extends React.Component<Props, State> {
   render() {
     return (
       <div className="Overlay">
-        <div title="Sorry if things break!" style={{float: 'right'}}>beta</div>
+        <div style={{float: 'right'}}>
+          <a onClick={this.boom} title="You actually broke everything"><i className="fa fa-bomb" /></a>
+          <span title="Sorry if things break!">beta</span>
+        </div>
 
         <Link to="/settings" title="Personalise your dashboard">
           <i className="fa fa-cog" />
         </Link>
-        &nbsp;&nbsp;
-        <a href="javascript:;" onClick={this.props.toggleFocus} title="Toggle your widgets">
+        <a onClick={this.props.toggleFocus} title="Toggle your widgets">
           <i className={'fa ' + (this.props.focus ? 'fa-circle-o' : 'fa-circle')} />
         </a>
-        &nbsp;&nbsp;
         {screenfull.enabled &&
-          <a href="javascript:;" onClick={() => screenfull.toggle()} title="Toggle fullscreen">
+          <a onClick={() => screenfull.toggle()} title="Toggle fullscreen">
             <i className={'fa ' + (this.state.fullscreen ? 'fa-compress' : 'fa-expand')} />
           </a>
         }
       </div>
     );
+  }
+
+  private boom() {
+    persistor.purge();
+    alert('Local state is rip. Should unbork on refresh.');
   }
 }
 
@@ -56,8 +62,6 @@ const mapStateToProps = (state: RootState) => {
   };
 };
 
-const mapDispatchToProps = {
-  toggleFocus,
-};
+const mapDispatchToProps = { toggleFocus };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Overlay);

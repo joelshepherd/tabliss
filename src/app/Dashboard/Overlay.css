@@ -5,3 +5,8 @@
     width: 100%;
     padding: 1rem;
 }
+
+.Overlay a {
+    cursor: pointer;
+    margin-right: 0.5em;
+}
