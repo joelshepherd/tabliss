@@ -12,7 +12,7 @@ export const store = createStore<State>(
     plugins,
     version,
   }),
-  autoRehydrate()
+  autoRehydrate({ log: true }),
 );
 
 // Setup localForage
@@ -23,7 +23,9 @@ localForage.config({
 
 // Begin periodically persisting the store
 persistStore(store, {
-  debounce: 500,
+  blacklist: ['booted'],
+  debounce: 100,
   keyPrefix: '',
+  serialize: false,
   storage: localForage,
 });

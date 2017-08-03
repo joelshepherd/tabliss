@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { Settings } from '../../interfaces';
 import Giphy from './Giphy';
-const giphyLogo = require('./giphy-logo.png');
 
 interface Props {
   tag?: string;
@@ -33,8 +32,6 @@ class GiphySettings extends React.Component<Props> {
           {' '}
           Permit NSFW
         </label>
-
-        <p><img src={giphyLogo} /></p>
       </div>
     );
   }

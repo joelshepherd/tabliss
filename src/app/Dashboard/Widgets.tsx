@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { State } from '../../data';
-import Widget from './Widget';
+import Plugin from './Plugin';
 import './Widgets.css';
 
 interface Props {
@@ -15,7 +15,7 @@ class Widgets extends React.Component<Props> {
     return (
       <div className="Widgets">
         {! this.props.focus && this.props.widgets.map(key =>
-          <Widget key={key} id={key} />
+          <Plugin key={key} pluginKey={key} />
         )}
       </div>
     );

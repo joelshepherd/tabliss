@@ -18,5 +18,9 @@ export enum Type {
 
 // Settings
 export interface Settings {
-  [key: string]: boolean | null | number | string | undefined;
+  [key: string]: any; // tslint:disable-line no-any
+}
+
+export interface State {
+  [key: string]: any; // tslint:disable-line no-any
 }

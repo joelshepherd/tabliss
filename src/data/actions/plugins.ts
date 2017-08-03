@@ -1,6 +1,6 @@
-import { Settings } from '../../plugins';
+import { Settings, State } from '../../plugins';
 import { Plugins } from '../interfaces';
-import { CHANGE_SETTINGS, RESET_SETTINGS } from '../constants';
+import { CHANGE_SETTINGS, RESET_SETTINGS, PUSH_STATE } from '../constants';
 
 export function changeSettings(key: string, settings: Settings) {
   return {
@@ -32,4 +32,14 @@ export function getState(plugins: Plugins, key: string): Settings {
   }
 
   return plugins[key].state;
+}
+
+export function pushState(key: string, state: State) {
+  return {
+    type: PUSH_STATE,
+    payload: {
+      key,
+      state,
+    },
+  };
 }

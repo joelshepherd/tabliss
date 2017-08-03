@@ -11,3 +11,4 @@ export const TOGGLE_WIDGET = 'TOGGLE_WIDGET';
 // Plugins
 export const CHANGE_SETTINGS = 'CHANGE_SETTINGS';
 export const RESET_SETTINGS = 'RESET_SETTINGS';
+export const PUSH_STATE = 'PUSH_STATE';

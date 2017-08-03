@@ -12,3 +12,9 @@
     min-width: 100%;
     transition: opacity 0.25s ease-out;
 }
+
+.Giphy .credit {
+    position: absolute;
+    left: 1rem;
+    bottom: 1rem;
+}

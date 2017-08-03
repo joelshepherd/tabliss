@@ -10,14 +10,19 @@ const UNSPLASH_UTM = '?utm_source=Start&utm_medium=referral&utm_campaign=api-cre
 interface Props {
   darken: boolean;
   focus: boolean;
+  state: State;
+  pushState: (state: State) => void;
+}
+
+interface Image {
+  data: Blob;
+  user_name: string;
+  user_link: string;
 }
 
 interface State {
-  image?: string;
-  user?: {
-    name: string;
-    link: string;
-  };
+  current?: Image & { src: string };
+  next?: Image;
 }
 
 class Unsplash extends React.Component<Props, State> {
@@ -26,34 +31,25 @@ class Unsplash extends React.Component<Props, State> {
     focus: false,
   };
 
-  constructor(props: Props) {
-    super(props);
+  state: State = {};
 
-    this.state = {};
+  componentWillMount() {
+    // Fetch or pull from cache current image
+    if (this.props.state && this.props.state.next && this.props.state.next.data) {
+      this.setImage(this.props.state.next);
+      this.props.pushState({ next: undefined });
+    } else {
+      this.fetch().then(image => this.setImage(image));
+    }
 
-    fetch(`https://api.unsplash.com/photos/random?featured=true&orientation=landscape`, {
-      headers: {
-        Authorization: `Client-ID ${UNSPLASH_API_KEY}`,
-      },
-    })
-      .then(res => res.json())
-      .then(res => {
-        this.load(res.urls.raw + '?q=90&w=1920&fit=max&fm=jpg');
-        this.setState({
-          user: {
-            name: res.user.name,
-            link: res.user.links.html,
-          }
-        });
-      })
-      .catch(err => this.setState({ /* Default image? */ }));
+    // Fetch next image and inject into cache
+    this.fetch().then(image => this.props.pushState({ next: image }));
   }
 
   render() {
-    const styles: React.CSSProperties = {
-      backgroundImage: this.state.image ? `url(${this.state.image})` : undefined,
-      opacity: this.state.image ? 1 : 0,
-    };
+    const styles = this.state.current
+      ? { backgroundImage: `url(${this.state.current.src})` }
+      : { opacity: 0 };
 
     return (
       <div className="Background Unsplash" style={styles}>
@@ -61,11 +57,11 @@ class Unsplash extends React.Component<Props, State> {
           <div className="Background darken" />
         }
 
-        {this.state.user && (
+        {this.state.current && (
           <div className="credit">
             {'Photo by '}
-            <a href={this.state.user.link + UNSPLASH_UTM} target="_blank" rel="noopener noreferrer">
-              {this.state.user.name}
+            <a href={this.state.current.user_link + UNSPLASH_UTM} target="_blank" rel="noopener noreferrer">
+              {this.state.current.user_name}
             </a>
             {' / '}
             <a href={'https://unsplash.com/' + UNSPLASH_UTM} target="_blank" rel="noopener noreferrer">
@@ -77,12 +73,29 @@ class Unsplash extends React.Component<Props, State> {
     );
   }
 
-  private load(source: string) {
-    fetch(source)
-      .then(res => res.blob())
-      .then(res => this.setState({
-        image: window.URL.createObjectURL(res),
-      }));
+  private async fetch() {
+    const request = new Request(
+      'https://api.unsplash.com/photos/random?featured=true&orientation=landscape',
+      { headers: { Authorization: `Client-ID ${UNSPLASH_API_KEY}` } },
+    );
+
+    const res = await (await fetch(request)).json();
+    const data = await (await fetch(res.urls.raw + '?w=1920')).blob();
+
+    return {
+      data,
+      user_name: res.user.name,
+      user_link: res.user.links.html,
+    };
+  }
+
+  private setImage(image: Image) {
+    this.setState({
+      current: {
+        ...image,
+        src: URL.createObjectURL(image.data),
+      },
+    });
   }
 }
 

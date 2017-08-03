@@ -1,7 +1,6 @@
 .Unsplash {
     background-position: 50% 50%;
     background-size: cover;
-    opacity: 0;
     transition: opacity 0.25s ease-out;
 }
 
