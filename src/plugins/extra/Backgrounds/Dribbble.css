@@ -1,8 +1,16 @@
-.Dribbble .shot {
-    float: left;
-    width: 25%;
-    height: 33%;
+.Dribbble .darken {
+    background-color: rgba(0, 0, 0, 0.25);
+}
 
+.Dribbble .shots {
+    overflow-y: auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 33%;
+}
+
+.Dribbble .shot {
     background-position: 50% 50%;
     background-size: cover;
+    height: 100%;
 }

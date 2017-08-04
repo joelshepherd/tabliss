@@ -10,6 +10,7 @@ const UNSPLASH_UTM = '?utm_source=Start&utm_medium=referral&utm_campaign=api-cre
 interface Props {
   darken: boolean;
   focus: boolean;
+  search?: string;
   state: State;
   pushState: (state: State) => void;
 }
@@ -43,7 +44,16 @@ class Unsplash extends React.Component<Props, State> {
     }
 
     // Fetch next image and inject into cache
-    this.fetch().then(image => this.props.pushState({ next: image }));
+    this.fetch().then(next => this.props.pushState({ next }));
+  }
+
+  componentWillReceiveProps(props: Props) {
+    if (props.search !== this.props.search) {
+      this.fetch().then(image => this.setImage(image));
+
+      this.props.pushState({ next: undefined });
+      this.fetch().then(next => this.props.pushState({ next }));
+    }
   }
 
   render() {
@@ -75,7 +85,8 @@ class Unsplash extends React.Component<Props, State> {
 
   private async fetch() {
     const request = new Request(
-      'https://api.unsplash.com/photos/random?featured=true&orientation=landscape',
+      'https://api.unsplash.com/photos/random?featured=true&orientation=landscape'
+        + (this.props.search ? `&query=${this.props.search}` : ''),
       { headers: { Authorization: `Client-ID ${UNSPLASH_API_KEY}` } },
     );
 

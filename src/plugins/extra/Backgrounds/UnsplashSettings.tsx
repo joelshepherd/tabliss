@@ -3,6 +3,7 @@ import { Settings } from '../../interfaces';
 
 interface Props {
   darken: boolean;
+  search?: string;
   onChange: (settings: Settings) => void;
 }
 
@@ -22,6 +23,15 @@ class UnsplashSettings extends React.Component<Props> {
           />
           {' '}
           Darken slightly
+        </label>
+
+        <label>
+          Search
+          <input
+            type="text"
+            value={this.props.search}
+            onChange={event => this.props.onChange({ search: event.target.value })}
+          />
         </label>
       </div>
     );

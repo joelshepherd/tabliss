@@ -30,7 +30,7 @@ class DribbbleSettings extends React.Component<Props> {
             onChange={event => this.props.onChange({ quality: 'hidpi' })}
           />
           {' '}
-          High quality
+          I hate my CPU quality
         </label>
       </div>
     );
