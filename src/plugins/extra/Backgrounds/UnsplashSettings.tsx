@@ -3,6 +3,7 @@ import { Settings } from '../../interfaces';
 
 interface Props {
   darken: boolean;
+  featured: boolean;
   search?: string;
   onChange: (settings: Settings) => void;
 }
@@ -10,6 +11,7 @@ interface Props {
 class UnsplashSettings extends React.Component<Props> {
   static defaultProps = {
     darken: true,
+    featured: true,
   };
 
   render() {
@@ -23,6 +25,16 @@ class UnsplashSettings extends React.Component<Props> {
           />
           {' '}
           Darken slightly
+        </label>
+
+        <label>
+          <input
+            type="checkbox"
+            checked={this.props.featured}
+            onChange={event => this.props.onChange({ featured: ! this.props.featured })}
+          />
+          {' '}
+          Featured only
         </label>
 
         <label>

@@ -12,7 +12,7 @@ export const store = createStore<State>(
     plugins,
     version,
   }),
-  autoRehydrate({ log: true }),
+  autoRehydrate(),
 );
 
 // Setup localForage

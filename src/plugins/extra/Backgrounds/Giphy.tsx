@@ -1,3 +1,4 @@
+import { debounce } from 'lodash';
 import * as React from 'react';
 import './Giphy.css';
 const giphyLogo = require('./giphy-logo.png');
@@ -19,6 +20,7 @@ interface State {
 
 interface Gif {
   data: Blob;
+  link: string;
 }
 
 class Giphy extends React.Component<Props, State> {
@@ -29,26 +31,30 @@ class Giphy extends React.Component<Props, State> {
 
   state: State = {};
 
+  private debouncedRefresh = debounce(this.refresh, 500);
+
   componentWillMount() {
     // Fetch or pull from cache for current gif
     if (this.props.state && this.props.state.next && this.props.state.next.data) {
       this.set(this.props.state.next);
       this.props.pushState({ next: undefined });
     } else {
-      this.fetch().then(gif => this.set(gif));
+      this.fetch(this.props.tag, this.props.nsfw)
+        .then(gif => this.set(gif));
     }
 
     // Fetch next gif and inject into cache
-    this.fetch().then(next => this.props.pushState({ next }));
+    this.fetch(this.props.tag, this.props.nsfw)
+      .then(next => this.props.pushState({ next }));
   }
 
-  componentWillReceiveProps(props: Props) {
-    if (props.nsfw !== this.props.nsfw || props.tag !== this.props.tag) {
-      this.fetch().then(gif => this.set(gif));
+  componentWillReceiveProps(nextProps: Props) {
+    if (nextProps.nsfw !== this.props.nsfw) {
+      this.refresh(nextProps.tag, nextProps.nsfw);
+    }
 
-      // Flush and fetch new cached gif
-      this.props.pushState({ next: undefined });
-      this.fetch().then(next => this.props.pushState({ next }));
+    if (nextProps.tag !== this.props.tag) {
+      this.debouncedRefresh(nextProps.tag, nextProps.nsfw);
     }
   }
 
@@ -66,24 +72,42 @@ class Giphy extends React.Component<Props, State> {
         </div>
 
         <div className="credit">
-          <img src={giphyLogo} />
+          <a
+            href={this.state.current && this.state.current.link ? this.state.current.link : 'htts://giphy.com/'}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img src={giphyLogo} />
+          </a>
         </div>
       </div>
     );
   }
 
-  private async fetch() {
+  private refresh(tag?: string, nsfw?: boolean) {
+    // Fetch current gif
+    this.fetch(tag, nsfw).then(gif => this.set(gif));
+
+    // Clear and fetch next
+    this.props.pushState({ next: undefined });
+    this.fetch(tag, nsfw).then(next => this.props.pushState({ next }));
+  }
+
+  private async fetch(tag?: string, nsfw?: boolean) {
     const request = new Request(
       'https://api.giphy.com/v1/gifs/random'
         + `?api_key=${GIPHY_API_KEY}`
-        + '&rating=' + (this.props.nsfw ? 'r' : 'g')
-        + (this.props.tag ? `&tag=${this.props.tag}` : '')
+        + '&rating=' + (nsfw ? 'r' : 'g')
+        + (tag ? `&tag=${tag}` : '')
     );
 
     const res = await (await fetch(request)).json();
     const data = await (await fetch(res.data.image_mp4_url)).blob();
 
-    return { data };
+    return {
+      data,
+      link: res.data.url,
+    };
   }
 
   private set(gif: Gif) {

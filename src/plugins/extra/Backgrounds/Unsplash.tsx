@@ -1,3 +1,4 @@
+import { debounce } from 'lodash';
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { State as RootState } from '../../../data';
@@ -9,6 +10,7 @@ const UNSPLASH_UTM = '?utm_source=Start&utm_medium=referral&utm_campaign=api-cre
 
 interface Props {
   darken: boolean;
+  featured: boolean;
   focus: boolean;
   search?: string;
   state: State;
@@ -17,6 +19,7 @@ interface Props {
 
 interface Image {
   data: Blob;
+  image_link: string;
   user_name: string;
   user_link: string;
 }
@@ -29,30 +32,36 @@ interface State {
 class Unsplash extends React.Component<Props, State> {
   static defaultProps = {
     darken: true,
+    featured: true,
     focus: false,
   };
 
   state: State = {};
 
+  private debouncedRefresh = debounce(this.refresh, 500);
+
   componentWillMount() {
     // Fetch or pull from cache current image
     if (this.props.state && this.props.state.next && this.props.state.next.data) {
-      this.setImage(this.props.state.next);
+      this.set(this.props.state.next);
       this.props.pushState({ next: undefined });
     } else {
-      this.fetch().then(image => this.setImage(image));
+      this.fetch(this.props.search, this.props.featured)
+        .then(image => this.set(image));
     }
 
     // Fetch next image and inject into cache
-    this.fetch().then(next => this.props.pushState({ next }));
+    this.fetch(this.props.search, this.props.featured)
+      .then(next => this.props.pushState({ next }));
   }
 
-  componentWillReceiveProps(props: Props) {
-    if (props.search !== this.props.search) {
-      this.fetch().then(image => this.setImage(image));
+  componentWillReceiveProps(nextProps: Props) {
+    if (nextProps.featured !== this.props.featured) {
+      this.refresh(nextProps.search, nextProps.featured);
+    }
 
-      this.props.pushState({ next: undefined });
-      this.fetch().then(next => this.props.pushState({ next }));
+    if (nextProps.search !== this.props.search ) {
+      this.debouncedRefresh(nextProps.search, nextProps.featured);
     }
   }
 
@@ -69,7 +78,10 @@ class Unsplash extends React.Component<Props, State> {
 
         {this.state.current && (
           <div className="credit">
-            {'Photo by '}
+            <a href={this.state.current.image_link + UNSPLASH_UTM} target="_blank" rel="noopener noreferrer">
+              Photo
+            </a>
+            {' by '}
             <a href={this.state.current.user_link + UNSPLASH_UTM} target="_blank" rel="noopener noreferrer">
               {this.state.current.user_name}
             </a>
@@ -83,24 +95,37 @@ class Unsplash extends React.Component<Props, State> {
     );
   }
 
-  private async fetch() {
+  private refresh(search?: string, featured?: boolean) {
+    // Fetch current image
+    this.fetch(search, featured).then(image => this.set(image));
+
+    // Clear and fetch next
+    this.props.pushState({ next: undefined });
+    this.fetch(search, featured).then(next => this.props.pushState({ next }));
+  }
+
+  private async fetch(search?: string, featured?: boolean) {
     const request = new Request(
-      'https://api.unsplash.com/photos/random?featured=true&orientation=landscape'
-        + (this.props.search ? `&query=${this.props.search}` : ''),
+      (
+        'https://api.unsplash.com/photos/random?orientation=landscape'
+        + (featured ? '&featured=true' : '')
+        + (search ? `&query=${search}` : '')
+      ),
       { headers: { Authorization: `Client-ID ${UNSPLASH_API_KEY}` } },
     );
 
     const res = await (await fetch(request)).json();
-    const data = await (await fetch(res.urls.raw + '?w=1920')).blob();
+    const data = await (await fetch(res.urls.raw + '?q=90w=1920')).blob();
 
     return {
       data,
+      image_link: res.links.html,
       user_name: res.user.name,
       user_link: res.user.links.html,
     };
   }
 
-  private setImage(image: Image) {
+  private set(image: Image) {
     this.setState({
       current: {
         ...image,

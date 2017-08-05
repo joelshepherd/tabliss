@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@types/jest": "^20.0.4",
+    "@types/lodash": "^4.14.71",
     "@types/node": "^8.0.14",
     "@types/react": "^15.0.38",
     "@types/react-dom": "^15.5.1",
@@ -13,6 +14,7 @@
     "@types/screenfull": "^3.2.0",
     "font-awesome": "^4.7.0",
     "localforage": "^1.5.0",
+    "lodash": "^4.17.4",
     "normalize.css": "^7.0.0",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
