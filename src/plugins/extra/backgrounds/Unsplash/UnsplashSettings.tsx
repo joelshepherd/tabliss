@@ -1,14 +1,14 @@
 import * as React from 'react';
-import { Settings } from '../../interfaces';
+import { Settings } from '../../../interfaces';
 
 interface Props {
   darken: boolean;
-  featured: boolean;
+  featured?: boolean;
   search?: string;
   onChange: (settings: Settings) => void;
 }
 
-class UnsplashSettings extends React.Component<Props> {
+class UnsplashSettings extends React.PureComponent<Props> {
   static defaultProps = {
     darken: true,
     featured: true,
@@ -18,13 +18,12 @@ class UnsplashSettings extends React.Component<Props> {
     return (
       <div>
         <label>
+          Search
           <input
-            type="checkbox"
-            checked={this.props.darken}
-            onChange={event => this.props.onChange({ darken: ! this.props.darken })}
+            type="text"
+            value={this.props.search}
+            onChange={event => this.props.onChange({ search: event.target.value })}
           />
-          {' '}
-          Darken slightly
         </label>
 
         <label>
@@ -34,16 +33,17 @@ class UnsplashSettings extends React.Component<Props> {
             onChange={event => this.props.onChange({ featured: ! this.props.featured })}
           />
           {' '}
-          Featured only
+          Only featured
         </label>
 
         <label>
-          Search
           <input
-            type="text"
-            value={this.props.search}
-            onChange={event => this.props.onChange({ search: event.target.value })}
+            type="checkbox"
+            checked={this.props.darken}
+            onChange={event => this.props.onChange({ darken: ! this.props.darken })}
           />
+          {' '}
+          Darken slightly
         </label>
       </div>
     );

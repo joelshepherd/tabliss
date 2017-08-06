@@ -1,7 +1,7 @@
 import { debounce } from 'lodash';
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { State as RootState } from '../../../data';
+import { State as RootState } from '../../../../data';
 import './Unsplash.css';
 
 // @TODO Extract to a environment variable
@@ -10,7 +10,7 @@ const UNSPLASH_UTM = '?utm_source=Start&utm_medium=referral&utm_campaign=api-cre
 
 interface Props {
   darken: boolean;
-  featured: boolean;
+  featured?: boolean;
   focus: boolean;
   search?: string;
   state: State;
@@ -29,7 +29,7 @@ interface State {
   next?: Image;
 }
 
-class Unsplash extends React.Component<Props, State> {
+class Unsplash extends React.PureComponent<Props, State> {
   static defaultProps = {
     darken: true,
     featured: true,
@@ -71,9 +71,9 @@ class Unsplash extends React.Component<Props, State> {
       : { opacity: 0 };
 
     return (
-      <div className="Background Unsplash" style={styles}>
+      <div className="Unsplash fullscreen" style={styles}>
         {this.props.darken && ! this.props.focus &&
-          <div className="Background darken" />
+          <div className="darken fullscreen" />
         }
 
         {this.state.current && (

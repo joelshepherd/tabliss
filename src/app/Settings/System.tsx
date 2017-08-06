@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { Component } from 'react';
 import { connect } from 'react-redux';
 import { changeSettings, State, toggleSystem } from '../../data';
 import { getPluginsByType, Plugin as PluginInterface, Settings, Type } from '../../plugins';
@@ -12,7 +11,7 @@ interface Props {
   changeSettings: (key: string, settings: Settings) => void;
 }
 
-class System extends Component<Props> {
+class System extends React.Component<Props> {
   render() {
     return (
       <div>

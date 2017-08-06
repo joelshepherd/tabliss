@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { Component } from 'react';
 import { connect } from 'react-redux';
 import { State } from '../../data';
 import Plugin from './Plugin';
@@ -9,7 +8,7 @@ interface Props {
   pluginKey: string;
 }
 
-class Background extends Component<Props> {
+class Background extends React.Component<Props> {
   render() {
     return <Plugin pluginKey={this.props.pluginKey} />;
   }

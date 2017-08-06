@@ -4,12 +4,12 @@ import {
   Colour, ColourSettings,
   Gradient, GradientSettings,
   Image, ImageSettings,
-} from './Backgrounds';
-import { Font, FontSettings } from './System';
+} from './backgrounds';
+import { Font, FontSettings } from './system';
 import {
   Greeting, GreetingSettings,
   Time, TimeSettings,
-} from './Widgets';
+} from './widgets';
 
 // Backgrounds
 registerPlugin({

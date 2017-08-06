@@ -9,7 +9,7 @@ interface Props {
   onChange: (settings: Settings) => void;
 }
 
-class GradientSettings extends React.Component<Props> /* implements Plugin - Not working because static */ {
+class GradientSettings extends React.PureComponent<Props> {
   static defaultProps = {
     angle: 45,
     from : '#43cea2',

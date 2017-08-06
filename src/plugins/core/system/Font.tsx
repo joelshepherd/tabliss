@@ -1,12 +1,12 @@
 import * as React from 'react';
 
 interface Props {
-  colour: string;
-  family: string;
-  size: number;
+  colour?: string;
+  family?: string;
+  size?: number;
 }
 
-class Font extends React.Component<Props> {
+class Font extends React.PureComponent<Props> {
   static defaultProps = {
     colour: '#ffffff',
     family: 'serif',
@@ -22,9 +22,9 @@ class Font extends React.Component<Props> {
   }
 
   render() {
-    this.element.style.fontFamily = this.props.family;
-    this.element.style.fontSize = `${this.props.size}px`;
-    this.element.style.color = this.props.colour;
+    this.element.style.fontFamily = this.props.family || null;
+    this.element.style.fontSize = this.props.size ? `${this.props.size}px` : null;
+    this.element.style.color = this.props.colour || null;
 
     return null;
   }

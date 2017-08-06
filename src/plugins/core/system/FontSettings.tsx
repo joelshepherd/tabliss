@@ -1,16 +1,19 @@
 import * as React from 'react';
 import { Settings } from '../../interfaces';
-import Font from './Font';
 
 interface Props {
-  colour: string;
-  family: string;
-  size: number;
+  colour?: string;
+  family?: string;
+  size?: number;
   onChange: (settings: Settings) => void;
 }
 
-class FontSettings extends React.Component<Props> {
-  static defaultProps = Font.defaultProps;
+class FontSettings extends React.PureComponent<Props> {
+  static defaultProps = {
+    colour: '#ffffff',
+    family: 'serif',
+    size: 14,
+  };
 
   render() {
     return (

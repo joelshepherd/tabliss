@@ -1,14 +1,15 @@
 import * as React from 'react';
 import { Settings } from '../../interfaces';
-import Greeting from './Greeting';
 
 interface Props {
   name?: string;
   onChange: (settings: Settings) => void;
 }
 
-class GreetingSettings extends React.Component<Props> {
-  static defaultProps = Greeting.defaultProps;
+class GreetingSettings extends React.PureComponent<Props> {
+  static defaultProps = {
+    name: '',
+  };
 
   render() {
     return (

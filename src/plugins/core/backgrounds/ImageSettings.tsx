@@ -7,7 +7,7 @@ interface Props {
   onChange: (settings: Settings) => void;
 }
 
-class ImageSettings extends React.Component<Props> /* implements Plugin - Not working because static */ {
+class ImageSettings extends React.PureComponent<Props> {
   static defaultProps = Image.defaultProps;
 
   render() {

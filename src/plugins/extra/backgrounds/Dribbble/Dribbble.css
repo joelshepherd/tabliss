@@ -6,7 +6,7 @@
     overflow-y: auto;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    grid-auto-rows: 33%;
+    grid-auto-rows: 33.33%;
 }
 
 .Dribbble .shot {

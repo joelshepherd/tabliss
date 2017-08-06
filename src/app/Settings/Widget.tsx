@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { Component } from 'react';
 import { connect } from 'react-redux';
 import { getSettings, State } from '../../data';
 import { Plugin, Settings } from '../../plugins';
@@ -12,7 +11,7 @@ interface Props {
   changeSettings: (settings: Settings) => void;
 }
 
-class Widget extends Component<Props> {
+class Widget extends React.Component<Props> {
   render() {
     const SettingsComponent = this.props.plugin.Settings;
     return (

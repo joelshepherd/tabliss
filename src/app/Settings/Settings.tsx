@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Background from './Background';
@@ -15,7 +14,7 @@ interface Props {
   resetSettings: () => void;
 }
 
-class Settings extends Component<Props> {
+class Settings extends React.Component<Props> {
   render() {
     return (
       <div className="Settings">

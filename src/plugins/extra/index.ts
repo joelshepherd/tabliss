@@ -4,7 +4,7 @@ import {
   Dribbble, DribbbleSettings,
   Giphy, GiphySettings,
   Unsplash, UnsplashSettings
-} from './Backgrounds';
+} from './backgrounds';
 
 registerPlugin({
   key: 'extra/backgrounds/dribbble',

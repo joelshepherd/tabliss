@@ -1,15 +1,12 @@
 import * as React from 'react';
 import { Settings } from '../../interfaces';
-import Time from './Time';
 
 interface Props {
   hour12?: boolean;
   onChange: (settings: Settings) => void;
 }
 
-class TimeSettings extends React.Component<Props> {
-  static defaultProps = Time.defaultProps;
-
+class TimeSettings extends React.PureComponent<Props> {
   render() {
     return (
       <div>
@@ -20,7 +17,7 @@ class TimeSettings extends React.Component<Props> {
             onChange={event => this.props.onChange({ hour12: undefined })}
           />
           {' '}
-          Locale default
+          Locale specific
         </label>
 
         <label>

@@ -1,5 +1,6 @@
+import { createBrowserHistory } from 'history';
 import * as React from 'react';
-import { Route } from 'react-router';
+import { Route, Router } from 'react-router';
 import { Dashboard } from './Dashboard';
 import { Settings } from './Settings';
 import './App.css';
@@ -7,10 +8,12 @@ import './App.css';
 class App extends React.Component {
   render() {
     return (
-      <div className="App">
-        <Dashboard />
-        <Route path="/settings" component={Settings} />
-      </div>
+      <Router history={createBrowserHistory()}>
+        <div className="App">
+          <Dashboard />
+          <Route path="/settings" component={Settings} />
+        </div>
+      </Router>
     );
   }
 }

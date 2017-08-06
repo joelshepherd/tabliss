@@ -14,17 +14,17 @@ interface State {
   fullscreen: boolean;
 }
 
-class Overlay extends React.Component<Props, State> {
-  constructor(props: Props) {
-    super(props);
+class Overlay extends React.PureComponent<Props, State> {
+  state: State = {
+    fullscreen: screenfull.isFullscreen,
+  };
 
-    this.state = {
-      fullscreen: screenfull.isFullscreen,
-    };
+  componentWillMount() {
+    screenfull.onchange(() => this.setState({ fullscreen: screenfull.isFullscreen }));
+  }
 
-    screenfull.onchange(() => this.setState({
-      fullscreen: screenfull.isFullscreen,
-    }));
+  componentWillUnmount() {
+    screenfull.onchange(() => { /**/ });
   }
 
   render() {
@@ -51,8 +51,13 @@ class Overlay extends React.Component<Props, State> {
   }
 
   private boom() {
-    persistor.purge();
-    alert('Local state is rip. Should unbork on refresh.');
+    if (confirm(
+      'This button resets your local state if things get borked. \n'
+        + 'Are you sure you want to reset everything?'
+      )) {
+      persistor.purge();
+      window.location.reload();
+    }
   }
 }
 

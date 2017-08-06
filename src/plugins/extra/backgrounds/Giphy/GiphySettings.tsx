@@ -1,6 +1,5 @@
 import * as React from 'react';
-import { Settings } from '../../interfaces';
-import Giphy from './Giphy';
+import { Settings } from '../../../interfaces';
 
 interface Props {
   tag?: string;
@@ -8,8 +7,11 @@ interface Props {
   onChange: (settings: Settings) => void;
 }
 
-class GiphySettings extends React.Component<Props> {
-  static defaultProps = Giphy.defaultProps;
+class GiphySettings extends React.PureComponent<Props> {
+  static defaultProps = {
+    tag: 'cats',
+    nsfw: false,
+  };
 
   render() {
     return (
@@ -30,7 +32,7 @@ class GiphySettings extends React.Component<Props> {
             onChange={event => this.props.onChange({ nsfw: ! this.props.nsfw })}
           />
           {' '}
-          Permit NSFW
+          Allow NSFW
         </label>
       </div>
     );

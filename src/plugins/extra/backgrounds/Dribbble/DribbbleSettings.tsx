@@ -1,14 +1,15 @@
 import * as React from 'react';
-import { Settings } from '../../interfaces';
-import Dribbble from './Dribbble';
+import { Settings } from '../../../interfaces';
 
 interface Props {
-  quality: string;
+  quality?: string;
   onChange: (settings: Settings) => void;
 }
 
-class DribbbleSettings extends React.Component<Props> {
-  static defaultProps = Dribbble.defaultProps;
+class DribbbleSettings extends React.PureComponent<Props> {
+  static defaultProps = {
+    quality: 'normal',
+  };
 
   render() {
     return (

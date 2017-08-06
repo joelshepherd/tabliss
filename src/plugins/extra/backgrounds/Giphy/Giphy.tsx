@@ -23,7 +23,7 @@ interface Gif {
   link: string;
 }
 
-class Giphy extends React.Component<Props, State> {
+class Giphy extends React.PureComponent<Props, State> {
   static defaultProps = {
     tag: 'cats',
     nsfw: false,
@@ -60,7 +60,7 @@ class Giphy extends React.Component<Props, State> {
 
   render() {
     return (
-      <div className="Background Giphy">
+      <div className="Giphy fullscreen">
         <div style={{ opacity: this.state.current ? 1 : 0 }}>
           {this.state.current && this.state.current.src &&
             <video
@@ -73,7 +73,7 @@ class Giphy extends React.Component<Props, State> {
 
         <div className="credit">
           <a
-            href={this.state.current && this.state.current.link ? this.state.current.link : 'htts://giphy.com/'}
+            href={this.state.current && this.state.current.link ? this.state.current.link : 'https://giphy.com/'}
             target="_blank"
             rel="noopener noreferrer"
           >

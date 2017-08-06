@@ -8,20 +8,16 @@ interface State {
   greeting: string;
 }
 
-class Greeting extends React.Component<Props, State> {
+class Greeting extends React.PureComponent<Props, State> {
   static defaultProps = {
-    name: 'Human',
+    name: '',
+  };
+
+  state = {
+    greeting: this.getGreeting(),
   };
 
   private interval: number;
-
-  constructor(props: Props) {
-    super(props);
-
-    this.state = {
-      greeting: this.getGreeting(),
-    };
-  }
 
   componentWillMount() {
     this.interval = window.setInterval(
@@ -47,15 +43,15 @@ class Greeting extends React.Component<Props, State> {
 
     if (hour < 3) {
       return 'Sleep well';
-    } else if (hour < 5) {
+    } else if (hour < 6) {
       return 'Rise and shine';
-    } else if (hour < 9) {
+    } else if (hour < 10) {
       return 'Good morning';
     } else if (hour < 14) {
       return 'Hello';
     } else if (hour < 18) {
       return 'Good afternoon';
-    } else if (hour < 21) {
+    } else if (hour < 22) {
       return 'Good evening';
     } else {
       return 'Good night';
