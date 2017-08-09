@@ -2,7 +2,6 @@ import * as React from 'react';
 import { connect, Dispatch } from 'react-redux';
 import { Action, getSettings, getState, pushState, State } from '../../data';
 import { getPlugin, Plugin as PluginInterface, Settings, State as PluginState } from '../../plugins';
-import './Background.css';
 
 interface OwnProps {
   pluginKey: string;

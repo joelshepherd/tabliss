@@ -14,7 +14,7 @@ class Image extends React.PureComponent<Props> {
   render() {
     const backgroundImage = `url(${this.props.image})`;
 
-    return <div className="Background Image" style={{ backgroundImage }} />;
+    return <div className="Image fullscreen" style={{ backgroundImage }} />;
   }
 }
 

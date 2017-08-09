@@ -2,7 +2,6 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { State } from '../../data';
 import Plugin from './Plugin';
-import './Background.css';
 
 interface Props {
   pluginKey: string;
