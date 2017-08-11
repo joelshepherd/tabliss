@@ -1,0 +1,12 @@
+{
+  "manifest_version": 2,
+  "name": "Start",
+  "version": "0.0.0",
+  "description": "",
+  "icons": {
+    "64": "favicon.ico"
+  },
+  "chrome_url_overrides" : {
+    "newtab": "index.html"
+  }
+}
