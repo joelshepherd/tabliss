@@ -20,11 +20,11 @@ class Overlay extends React.PureComponent<Props, State> {
   };
 
   componentWillMount() {
-    screenfull.on('change', this.listenFullscreen);
+    screenfull.on('change', this.onFullscreen);
   }
 
   componentWillUnmount() {
-    screenfull.off('change', this.listenFullscreen);
+    screenfull.off('change', this.onFullscreen);
   }
 
   render() {
@@ -60,10 +60,8 @@ class Overlay extends React.PureComponent<Props, State> {
     }
   }
 
-  private listenFullscreen = () => {
-    this.setState({
-      fullscreen: screenfull.isFullscreen,
-    });
+  private onFullscreen = () => {
+    this.setState({ fullscreen: screenfull.isFullscreen });
   }
 }
 
