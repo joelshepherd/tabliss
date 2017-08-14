@@ -1,5 +1,7 @@
 import { debounce } from 'lodash';
 import * as React from 'react';
+import { connect } from 'react-redux';
+import { State as RootState } from '../../../../data';
 import './Giphy.css';
 const giphyLogo = require('./giphy-logo.png');
 
@@ -7,8 +9,9 @@ const giphyLogo = require('./giphy-logo.png');
 const GIPHY_API_KEY = 'GIPHY_API_KEY';
 
 interface Props {
-  tag?: string;
+  focus: boolean;
   nsfw?: boolean;
+  tag?: string;
   state: State;
   pushState: (state: State) => void;
 }
@@ -25,8 +28,9 @@ interface Gif {
 
 class Giphy extends React.PureComponent<Props, State> {
   static defaultProps = {
-    tag: 'cats',
+    focus: false,
     nsfw: false,
+    tag: '',
   };
 
   state: State = {};
@@ -63,13 +67,11 @@ class Giphy extends React.PureComponent<Props, State> {
       <div className="Giphy fullscreen">
         <div style={{ opacity: this.state.current ? 1 : 0 }}>
           {this.state.current && this.state.current.src &&
-            <video
-              src={this.state.current.src}
-              autoPlay={true}
-              loop={true}
-            />
+            <div className="gif fullscreen" style={{backgroundImage: `url(${this.state.current.src})`}} />
           }
         </div>
+
+        {! this.props.focus && <div className="darken fullscreen" />}
 
         <div className="credit">
           <a
@@ -102,7 +104,7 @@ class Giphy extends React.PureComponent<Props, State> {
     );
 
     const res = await (await fetch(request)).json();
-    const data = await (await fetch(res.data.image_mp4_url)).blob();
+    const data = await (await fetch(res.data.image_original_url)).blob();
 
     return {
       data,
@@ -120,4 +122,10 @@ class Giphy extends React.PureComponent<Props, State> {
   }
 }
 
-export default Giphy;
+const mapStateToProps = (state: RootState) => {
+  return {
+    focus: state.dashboard.focus,
+  };
+};
+
+export default connect(mapStateToProps, {})(Giphy);
