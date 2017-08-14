@@ -17,18 +17,15 @@ interface Props {
 class Settings extends React.Component<Props> {
   render() {
     return (
-      <div className="Settings">
+      <div className="Settings content">
         <Link to="/" className="overlay" />
 
         <div className="plane">
           <h2>Settings</h2>
 
           <Background />
-
           <Widgets />
-
           <System />
-
           <Feedback />
 
           <h3>Reset</h3>

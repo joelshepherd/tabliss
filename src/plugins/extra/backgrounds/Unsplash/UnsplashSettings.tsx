@@ -20,6 +20,7 @@ class UnsplashSettings extends React.PureComponent<Props> {
         <label>
           Search
           <input
+            placeholder="Try landscapes or animals..."
             type="text"
             value={this.props.search}
             onChange={event => this.props.onChange({ search: event.target.value })}

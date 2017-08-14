@@ -29,10 +29,12 @@ class Background extends Component<Props> {
         </label>
 
         {SettingsComponent &&
-          <SettingsComponent
-            {...this.props.settings}
-            onChange={(settings: Settings) => this.props.changeSettings(this.props.plugin.key, settings)}
-          />
+          <fieldset>
+            <SettingsComponent
+              {...this.props.settings}
+              onChange={(settings: Settings) => this.props.changeSettings(this.props.plugin.key, settings)}
+            />
+          </fieldset>
         }
       </div>
     );

@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 interface Props {
-  hour12?: boolean;
+  hour12: boolean;
 }
 
 interface State {
@@ -9,6 +9,10 @@ interface State {
 }
 
 class Time extends React.PureComponent<Props, State> {
+  static defaultProps = {
+    hour12: false,
+  };
+
   state = {
     time: new Date(),
   };

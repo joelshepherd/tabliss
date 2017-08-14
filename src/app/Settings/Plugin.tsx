@@ -1,14 +1,14 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { getSettings, State } from '../../data';
-import { Plugin as PluginInterface, Settings } from '../../plugins';
+import { Plugin as IPlugin, Settings } from '../../plugins';
 
 interface Props {
   enabled: boolean;
-  plugin: PluginInterface;
+  plugin: IPlugin;
   settings: Settings;
-  toggle: () => void;
-  changeSettings: (settings: Settings) => void;
+  onToggle: () => void;
+  onChange: (settings: Settings) => void;
 }
 
 class Plugin extends React.PureComponent<Props> {
@@ -16,14 +16,14 @@ class Plugin extends React.PureComponent<Props> {
     const SettingsComponent = this.props.plugin.Settings;
 
     return (
-      <div>
-        <h4>{this.props.plugin.title}</h4>
+      <fieldset>
+        <legend>{this.props.plugin.title}</legend>
 
         <label>
           <input
             type="checkbox"
             checked={this.props.enabled}
-            onChange={this.props.toggle}
+            onChange={this.props.onToggle}
           />
           &nbsp;
           Enable
@@ -32,19 +32,19 @@ class Plugin extends React.PureComponent<Props> {
         {SettingsComponent &&
           <SettingsComponent
             {...this.props.settings}
-            onChange={this.props.changeSettings}
+            onChange={this.props.onChange}
           />
         }
-      </div>
+      </fieldset>
     );
   }
 }
 
 interface OwnProps {
-  changeSettings: (settings: Settings) => void;
   enabled: boolean;
-  plugin: PluginInterface;
-  toggle: () => void;
+  plugin: IPlugin;
+  onChange: (settings: Settings) => void;
+  onToggle: () => void;
 }
 
 const mapStateToProps = (state: State, props: OwnProps) => {

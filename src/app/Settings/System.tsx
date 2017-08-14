@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { changeSettings, State, toggleSystem } from '../../data';
-import { getPluginsByType, Plugin as PluginInterface, Settings, Type } from '../../plugins';
+import { getPluginsByType, Plugin as IPlugin, Settings, Type } from '../../plugins';
 import Plugin from './Plugin';
 
 interface Props {
-  plugins: PluginInterface[];
+  plugins: IPlugin[];
   system: string[];
   toggleSystem: (key: string) => void;
   changeSettings: (key: string, settings: Settings) => void;
@@ -22,8 +22,8 @@ class System extends React.Component<Props> {
             key={plugin.key}
             plugin={plugin}
             enabled={this.props.system.includes(plugin.key)}
-            toggle={() => this.props.toggleSystem(plugin.key)}
-            changeSettings={(settings: Settings) => this.props.changeSettings(plugin.key, settings)}
+            onChange={(settings: Settings) => this.props.changeSettings(plugin.key, settings)}
+            onToggle={() => this.props.toggleSystem(plugin.key)}
           />
         )}
       </div>
