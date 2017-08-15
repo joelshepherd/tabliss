@@ -1,8 +1,7 @@
 import { Action } from '../actions';
 import {
   CHANGE_BACKGROUND,
-  RESET_ALL,
-  RESET_DASHBOARD,
+  RESET,
   TOGGLE_FOCUS,
   TOGGLE_SYSTEM,
   TOGGLE_WIDGET
@@ -27,8 +26,7 @@ export function dashboard(state: Dashboard = initial, action: Action): Dashboard
         background: action.payload,
       };
 
-    case RESET_ALL:
-    case RESET_DASHBOARD:
+    case RESET:
       return initial;
 
     case TOGGLE_FOCUS:

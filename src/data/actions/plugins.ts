@@ -1,6 +1,6 @@
 import { Settings, State } from '../../plugins';
 import { Plugins } from '../interfaces';
-import { CHANGE_SETTINGS, RESET_SETTINGS, PUSH_STATE } from '../constants';
+import { CHANGE_SETTINGS, PUSH_STATE } from '../constants';
 
 export function changeSettings(key: string, settings: Settings) {
   return {
@@ -9,12 +9,6 @@ export function changeSettings(key: string, settings: Settings) {
       key,
       settings,
     },
-  };
-}
-
-export function resetSettings() {
-  return {
-    type: RESET_SETTINGS,
   };
 }
 

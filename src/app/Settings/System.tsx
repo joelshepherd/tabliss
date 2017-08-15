@@ -15,8 +15,6 @@ class System extends React.Component<Props> {
   render() {
     return (
       <div>
-        <h3>System</h3>
-
         {this.props.plugins.map(plugin =>
           <Plugin
             key={plugin.key}

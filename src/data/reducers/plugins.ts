@@ -1,5 +1,5 @@
 import { Action } from '../actions';
-import { CHANGE_SETTINGS, PUSH_STATE, RESET_ALL, RESET_SETTINGS } from '../constants';
+import { CHANGE_SETTINGS, PUSH_STATE, RESET } from '../constants';
 import { Plugins } from '../interfaces';
 
 const initial = {};
@@ -41,8 +41,7 @@ export function plugins(state: Plugins = initial, action: Action): Plugins {
         }
       };
 
-    case RESET_ALL:
-    case RESET_SETTINGS:
+    case RESET:
       return initial;
 
     default:

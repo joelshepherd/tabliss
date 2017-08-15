@@ -20,7 +20,7 @@ class Background extends Component<Props> {
         <h3>Background</h3>
 
         <label>
-          Provider
+          Select a provider
           <select value={this.props.background} onChange={this.props.changeBackground}>
             {this.props.plugins.map(plugin =>
               <option key={plugin.key} value={plugin.key}>{plugin.title}</option>

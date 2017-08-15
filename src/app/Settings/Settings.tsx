@@ -5,13 +5,11 @@ import Background from './Background';
 import Feedback from './Feedback';
 import System from './System';
 import Widgets from './Widgets';
-import { resetAll, resetDashboard, resetSettings } from '../../data';
+import { reset } from '../../data';
 import './Settings.css';
 
 interface Props {
-  resetAll: () => void;
-  resetDashboard: () => void;
-  resetSettings: () => void;
+  reset: () => void;
 }
 
 class Settings extends React.Component<Props> {
@@ -28,24 +26,15 @@ class Settings extends React.Component<Props> {
           <System />
           <Feedback />
 
-          <h3>Reset</h3>
-          <p>
-            Reset your&nbsp;
-            <a href="javascript:;" onClick={this.props.resetDashboard}>dashboard</a>,&nbsp;
-            <a href="javascript:;" onClick={this.props.resetSettings}>settings</a>
-            &nbsp;or&nbsp;
-            <a href="javascript:;" onClick={this.props.resetAll}>everything</a>.
-          </p>
+          <p><button onClick={this.props.reset}>
+            Reset to default
+          </button></p>
         </div>
       </div>
     );
   }
 }
 
-const mapDispatchToProps = {
-  resetAll,
-  resetDashboard,
-  resetSettings,
-};
+const mapDispatchToProps = { reset };
 
 export default connect(null, mapDispatchToProps)(Settings);

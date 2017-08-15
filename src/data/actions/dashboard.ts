@@ -1,6 +1,5 @@
 import {
   CHANGE_BACKGROUND,
-  RESET_DASHBOARD,
   TOGGLE_FOCUS,
   TOGGLE_SYSTEM,
   TOGGLE_WIDGET,
@@ -16,12 +15,6 @@ export function changeBackground(key: string) {
   return {
     type: CHANGE_BACKGROUND,
     payload: key,
-  };
-}
-
-export function resetDashboard() {
-  return {
-    type: RESET_DASHBOARD,
   };
 }
 

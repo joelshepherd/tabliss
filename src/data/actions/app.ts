@@ -1,7 +1,7 @@
-import { RESET_ALL } from '../constants';
+import { RESET } from '../constants';
 
-export function resetAll() {
+export function reset() {
   return {
-    type: RESET_ALL,
+    type: RESET,
   };
 }

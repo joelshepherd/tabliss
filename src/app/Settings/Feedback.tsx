@@ -2,11 +2,13 @@ import * as React from 'react';
 
 interface State {
   body: string;
+  pending: boolean;
 }
 
 class Feedback extends React.PureComponent<{}, State> {
   state: State = {
     body: '',
+    pending: false,
   };
 
   send() {
@@ -22,14 +24,23 @@ class Feedback extends React.PureComponent<{}, State> {
       }
     );
 
+    this.setState({ pending: true });
+
     fetch(request)
       .then(res => {
+        const state = {
+          ...this.state,
+          pending: false,
+        };
+
         if (res.ok) {
           alert('Thank you for your feedback!');
-          this.setState({ body: '' });
+          state.body = '';
         } else {
           alert('Unable to send your feedback :( Please try again soon.');
         }
+
+        this.setState(state);
       });
   }
 
@@ -37,6 +48,7 @@ class Feedback extends React.PureComponent<{}, State> {
     return (
       <div>
         <h3>Feedback</h3>
+
         <label>
           <textarea
             rows={3}
@@ -45,7 +57,11 @@ class Feedback extends React.PureComponent<{}, State> {
             onChange={event => this.setState({ body: event.target.value })}
           />
         </label>
-        <button onClick={() => this.send()}>Send</button>
+
+        {this.state.pending
+          ? <button disabled={true}>Sending</button>
+          : <button onClick={() => this.send()}>Send feedback</button>
+        }
       </div>
     );
   }
