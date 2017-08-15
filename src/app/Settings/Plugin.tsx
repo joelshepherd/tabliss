@@ -34,7 +34,7 @@ class Plugin extends React.PureComponent<Props> {
           </label>
         }
 
-        {SettingsComponent &&
+        {SettingsComponent && this.props.enabled !== false &&
           <SettingsComponent
             {...this.props.settings}
             onChange={this.props.onChange}
