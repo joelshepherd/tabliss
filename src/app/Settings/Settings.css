@@ -4,8 +4,6 @@
     left: 0;
     width: 100%;
     height: 100%;
-
-    background-color: rgba(0, 0, 0, 0.25);
 }
 
 .Settings .plane {
@@ -19,12 +17,31 @@
     padding: 1rem;
 }
 
+.Settings fieldset {
+    border: 1px solid #ccc;
+    margin: 1em 0;
+}
+
+.Settings legend {
+    font-weight: bold;
+}
+
 .Settings label {
     display: block;
     margin: 1rem 0;
 }
 
-.Settings input:not([type=checkbox]):not([type=radio]),
+.Settings input[type=text],
+.Settings input[type=number],
+.Settings textarea,
 .Settings select {
+    border: 1px solid #ccc;
+    display: block;
+    margin: 0.25em 0;
+    padding: 0.25em;
+    width: 100%;
+}
+
+.Settings input[type=color] {
     display: block;
 }

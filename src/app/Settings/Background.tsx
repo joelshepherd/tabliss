@@ -1,40 +1,39 @@
 import * as React from 'react';
 import { Component, ChangeEvent, ChangeEventHandler } from 'react';
 import { connect } from 'react-redux';
-import { changeBackground, changeSettings, getSettings, State } from '../../data';
-import { getPlugin, getPluginsByType, Plugin, Type, Settings } from '../../plugins';
+import { changeBackground, changeSettings, State } from '../../data';
+import { getPlugin, getPluginsByType, Plugin as IPlugin, Type, Settings } from '../../plugins';
+import Plugin from './Plugin';
 
 interface Props {
-  available: Plugin[];
   background: string;
-  plugin: Plugin;
-  settings: Settings;
+  plugins: IPlugin[];
+  plugin: IPlugin;
   changeBackground: ChangeEventHandler<HTMLSelectElement>;
   changeSettings: (key: string, settings: Settings) => void;
 }
 
 class Background extends Component<Props> {
   render() {
-    const SettingsComponent = this.props.plugin.Settings;
     return (
       <div>
         <h3>Background</h3>
 
         <label>
+          Provider
           <select value={this.props.background} onChange={this.props.changeBackground}>
-            {this.props.available.map(plugin =>
+            {this.props.plugins.map(plugin =>
               <option key={plugin.key} value={plugin.key}>{plugin.title}</option>
             )}
           </select>
         </label>
 
-        {SettingsComponent &&
-          <fieldset>
-            <SettingsComponent
-              {...this.props.settings}
-              onChange={(settings: Settings) => this.props.changeSettings(this.props.plugin.key, settings)}
-            />
-          </fieldset>
+        {this.props.plugin.Settings &&
+          <Plugin
+            key={this.props.plugin.key}
+            plugin={this.props.plugin}
+            onChange={(settings: Settings) => this.props.changeSettings(this.props.plugin.key, settings)}
+          />
         }
       </div>
     );
@@ -43,16 +42,15 @@ class Background extends Component<Props> {
 
 const mapStateToProps = (state: State) => {
   return {
-    available: getPluginsByType(Type.BACKGROUND),
     background: state.dashboard.background,
     plugin: getPlugin(state.dashboard.background),
-    settings: getSettings(state.plugins, state.dashboard.background),
+    plugins: getPluginsByType(Type.BACKGROUND),
   };
 };
 
 const mapDispatchToProps = {
   changeBackground: (event: ChangeEvent<HTMLSelectElement>) => changeBackground(event.target.value),
-  changeSettings: (key: string, settings: Settings) => changeSettings(key, settings),
+  changeSettings,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Background);

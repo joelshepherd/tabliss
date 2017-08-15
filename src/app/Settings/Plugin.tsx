@@ -3,12 +3,15 @@ import { connect } from 'react-redux';
 import { getSettings, State } from '../../data';
 import { Plugin as IPlugin, Settings } from '../../plugins';
 
-interface Props {
-  enabled: boolean;
+interface OwnProps {
+  enabled?: boolean;
   plugin: IPlugin;
-  settings: Settings;
-  onToggle: () => void;
   onChange: (settings: Settings) => void;
+  onToggle?: () => void;
+}
+
+interface Props extends OwnProps {
+  settings: Settings;
 }
 
 class Plugin extends React.PureComponent<Props> {
@@ -19,15 +22,17 @@ class Plugin extends React.PureComponent<Props> {
       <fieldset>
         <legend>{this.props.plugin.title}</legend>
 
-        <label>
-          <input
-            type="checkbox"
-            checked={this.props.enabled}
-            onChange={this.props.onToggle}
-          />
-          &nbsp;
-          Enable
-        </label>
+        {typeof this.props.onToggle !== 'undefined' &&
+          <label>
+            <input
+              type="checkbox"
+              checked={this.props.enabled}
+              onChange={this.props.onToggle}
+            />
+            &nbsp;
+            Enable
+          </label>
+        }
 
         {SettingsComponent &&
           <SettingsComponent
@@ -38,13 +43,6 @@ class Plugin extends React.PureComponent<Props> {
       </fieldset>
     );
   }
-}
-
-interface OwnProps {
-  enabled: boolean;
-  plugin: IPlugin;
-  onChange: (settings: Settings) => void;
-  onToggle: () => void;
 }
 
 const mapStateToProps = (state: State, props: OwnProps) => {

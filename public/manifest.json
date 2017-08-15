@@ -3,6 +3,7 @@
   "name": "Start",
   "version": "0.0.0",
   "description": "",
+  "default_locale": "en",
   "icons": {
     "64": "favicon.ico"
   },

@@ -18,7 +18,7 @@ class UnsplashSettings extends React.PureComponent<Props> {
     return (
       <div>
         <label>
-          Search
+          Tag
           <input
             placeholder="Try landscapes or animals..."
             type="text"
@@ -34,7 +34,7 @@ class UnsplashSettings extends React.PureComponent<Props> {
             onChange={event => this.props.onChange({ featured: ! this.props.featured })}
           />
           {' '}
-          Only featured
+          Featured only
         </label>
 
         <label>
