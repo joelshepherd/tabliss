@@ -13,6 +13,14 @@ interface Props {
 }
 
 class Settings extends React.Component<Props> {
+  componentWillMount() {
+    document.addEventListener('keydown', this.onKeyDown);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('keydown', this.onKeyDown);
+  }
+
   render() {
     return (
       <div className="Settings content">
@@ -36,6 +44,12 @@ class Settings extends React.Component<Props> {
         </div>
       </div>
     );
+  }
+
+  private onKeyDown = (event: KeyboardEvent) => {
+    if (event.keyCode === 27) {
+      this.props.toggleSettings();
+    }
   }
 }
 
