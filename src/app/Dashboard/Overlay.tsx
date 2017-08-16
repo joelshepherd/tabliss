@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import * as screenfull from 'screenfull';
-import { persistor, State as RootState, toggleFocus, toggleSettings } from '../../data';
+import { State as RootState, toggleFocus, toggleSettings } from '../../data';
 import './Overlay.css';
 
 interface Props {
@@ -30,11 +30,6 @@ class Overlay extends React.PureComponent<Props, State> {
   render() {
     return (
       <div className="Overlay">
-        <div style={{float: 'right'}}>
-          <a onClick={this.boom} title="You actually broke everything"><i className="fa fa-bomb" /></a>
-          <span title="Sorry if things break!">beta</span>
-        </div>
-
         <a onClick={this.props.toggleSettings} title="Personalise your dashboard">
           <i className="fa fa-cog" />
         </a>
@@ -48,16 +43,6 @@ class Overlay extends React.PureComponent<Props, State> {
         }
       </div>
     );
-  }
-
-  private boom() {
-    if (confirm(
-      'This button resets your local state if things get borked. \n'
-        + 'Are you sure you want to reset everything?'
-      )) {
-      persistor.purge();
-      window.location.reload();
-    }
   }
 
   private onFullscreen = () => {
