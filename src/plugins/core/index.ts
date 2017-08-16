@@ -8,6 +8,7 @@ import {
 import { Font, FontSettings } from './system';
 import {
   Greeting, GreetingSettings,
+  Message, MessageSettings,
   Time, TimeSettings,
 } from './widgets';
 
@@ -51,6 +52,14 @@ registerPlugin({
   title: 'Time',
   Dashboard: Time,
   Settings: TimeSettings,
+});
+
+registerPlugin({
+  key: 'core/widgets/message',
+  type: Type.WIDGET,
+  title: 'Message',
+  Dashboard: Message,
+  Settings: MessageSettings,
 });
 
 // System

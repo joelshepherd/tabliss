@@ -2,8 +2,9 @@ import * as React from 'react';
 import { Settings } from '../../../interfaces';
 
 interface Props {
-  tag?: string;
+  expand?: boolean;
   nsfw?: boolean;
+  tag?: string;
   onChange: (settings: Settings) => void;
 }
 
@@ -32,7 +33,17 @@ class GiphySettings extends React.PureComponent<Props> {
             onChange={event => this.props.onChange({ nsfw: ! this.props.nsfw })}
           />
           {' '}
-          Allow NSFW
+          NSFW permitted
+        </label>
+
+        <label>
+          <input
+            type="checkbox"
+            checked={this.props.expand}
+            onChange={event => this.props.onChange({ expand: ! this.props.expand })}
+          />
+          {' '}
+          Expand
         </label>
       </div>
     );

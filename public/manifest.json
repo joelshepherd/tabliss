@@ -3,7 +3,12 @@
   "name": "Start",
   "version": "0.0.0",
   "description": "",
-  "default_locale": "en",
+  "applications": {
+    "gecko": {
+      "id": "start@swivid.ink",
+      "strict_min_version": "54.0"
+    }
+  },
   "icons": {
     "64": "favicon.ico"
   },

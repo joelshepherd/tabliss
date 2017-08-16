@@ -10,7 +10,7 @@ interface State {
 
 class Greeting extends React.PureComponent<Props, State> {
   static defaultProps = {
-    name: '',
+    name: 'Human',
   };
 
   state = {
@@ -33,7 +33,10 @@ class Greeting extends React.PureComponent<Props, State> {
   render() {
     return (
       <div className="Greeting">
-        <h1>{this.state.greeting} {this.props.name}</h1>
+        <h1>
+          {this.state.greeting}
+          {this.props.name ? (', ' + this.props.name) : ''}
+        </h1>
       </div>
     );
   }

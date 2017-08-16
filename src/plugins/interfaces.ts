@@ -1,12 +1,12 @@
-import { ComponentClass } from 'react';
+import { ComponentType } from 'react';
 
 // Plugin
 export interface Plugin {
   key: string;
   type: Type;
   title: string;
-  Dashboard: ComponentClass<any>; // tslint:disable-line no-any
-  Settings?: ComponentClass<any>; // tslint:disable-line no-any
+  Dashboard: ComponentType<any>; // tslint:disable-line no-any
+  Settings?: ComponentType<any>; // tslint:disable-line no-any
 }
 
 // Types

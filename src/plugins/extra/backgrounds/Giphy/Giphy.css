@@ -5,6 +5,7 @@
 
 .Giphy .gif {
     background-position: 50% 50%;
+    transition: opacity 0.25s ease-out;
 }
 
 .Giphy .darken {

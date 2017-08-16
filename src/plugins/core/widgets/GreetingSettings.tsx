@@ -8,7 +8,7 @@ interface Props {
 
 class GreetingSettings extends React.PureComponent<Props> {
   static defaultProps = {
-    name: '',
+    name: 'Human',
   };
 
   render() {

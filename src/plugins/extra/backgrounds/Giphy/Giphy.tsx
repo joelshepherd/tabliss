@@ -9,6 +9,7 @@ const giphyLogo = require('./giphy-logo.png');
 const GIPHY_API_KEY = 'GIPHY_API_KEY';
 
 interface Props {
+  expand?: boolean;
   focus: boolean;
   nsfw?: boolean;
   tag?: string;
@@ -28,6 +29,7 @@ interface Gif {
 
 class Giphy extends React.PureComponent<Props, State> {
   static defaultProps = {
+    expand: false,
     focus: false,
     nsfw: false,
     tag: '',
@@ -63,13 +65,15 @@ class Giphy extends React.PureComponent<Props, State> {
   }
 
   render() {
+    const styles = {
+      backgroundImage: this.state.current ? `url(${this.state.current.src})` : null,
+      backgroundSize: this.props.expand ? 'cover' : null,
+      opacity: this.state.current ? 1 : 0,
+    };
+
     return (
       <div className="Giphy fullscreen">
-        <div style={{ opacity: this.state.current ? 1 : 0 }}>
-          {this.state.current && this.state.current.src &&
-            <div className="gif fullscreen" style={{backgroundImage: `url(${this.state.current.src})`}} />
-          }
-        </div>
+        <div className="gif fullscreen" style={styles} />
 
         {! this.props.focus && <div className="darken fullscreen" />}
 
