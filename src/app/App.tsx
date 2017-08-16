@@ -1,21 +1,29 @@
-import { createBrowserHistory } from 'history';
 import * as React from 'react';
-import { Route, Router } from 'react-router';
+import { connect } from 'react-redux';
+import { State } from '../data';
 import { Dashboard } from './Dashboard';
 import { Settings } from './Settings';
 import './App.css';
 
-class App extends React.Component {
+interface Props {
+  settings: boolean;
+}
+
+class App extends React.Component<Props> {
   render() {
     return (
-      <Router history={createBrowserHistory()}>
         <div className="App">
           <Dashboard />
-          <Route path="/settings" component={Settings} />
+          {this.props.settings && <Settings />}
         </div>
-      </Router>
     );
   }
 }
 
-export default App;
+const mapStateToProps = (state: State) => {
+  return {
+    settings: state.ui.settings,
+  };
+};
+
+export default connect(mapStateToProps)(App);

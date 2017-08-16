@@ -6,6 +6,7 @@ export interface State {
   booted: boolean;
   dashboard: Dashboard;
   plugins: Plugins;
+  ui: Ui;
   // providers: plugin providers
 }
 
@@ -23,4 +24,8 @@ export interface Plugins {
     settings: Settings;
     state?: any; // tslint:disable-line no-any
   };
+}
+
+export interface Ui {
+  settings: boolean;
 }

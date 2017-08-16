@@ -1,5 +1,6 @@
 // App
 export const RESET = 'RESET';
+export const TOGGLE_SETTINGS = 'TOGGLE_SETTINGS';
 
 // Dashboard
 export const CHANGE_BACKGROUND = 'CHANGE_BACKGROUND';

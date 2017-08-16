@@ -7,7 +7,7 @@
   "icons": {
     "64": "favicon.ico"
   },
-  "chrome_url_overrides" : {
+  "chrome_url_overrides": {
     "newtab": "index.html"
   }
 }

@@ -9,6 +9,10 @@ body {
     color: #222;
 }
 
+a {
+    cursor: pointer;
+}
+
 .fullscreen {
     position: absolute;
     top: 0;

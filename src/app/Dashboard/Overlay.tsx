@@ -1,13 +1,13 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 import * as screenfull from 'screenfull';
-import { persistor, State as RootState, toggleFocus } from '../../data';
+import { persistor, State as RootState, toggleFocus, toggleSettings } from '../../data';
 import './Overlay.css';
 
 interface Props {
   focus: boolean;
   toggleFocus: () => void;
+  toggleSettings: () => void;
 }
 
 interface State {
@@ -35,9 +35,9 @@ class Overlay extends React.PureComponent<Props, State> {
           <span title="Sorry if things break!">beta</span>
         </div>
 
-        <Link to="/settings" title="Personalise your dashboard">
+        <a onClick={this.props.toggleSettings} title="Personalise your dashboard">
           <i className="fa fa-cog" />
-        </Link>
+        </a>
         <a onClick={this.props.toggleFocus} title="Toggle your widgets">
           <i className={'fa ' + (this.props.focus ? 'fa-circle-o' : 'fa-circle')} />
         </a>
@@ -71,6 +71,9 @@ const mapStateToProps = (state: RootState) => {
   };
 };
 
-const mapDispatchToProps = { toggleFocus };
+const mapDispatchToProps = {
+  toggleFocus,
+  toggleSettings,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Overlay);

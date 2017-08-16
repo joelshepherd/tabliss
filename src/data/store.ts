@@ -1,7 +1,7 @@
 import { combineReducers, createStore } from 'redux';
 import { persistStore, autoRehydrate } from 'redux-persist';
 import * as localForage from 'localforage';
-import { booted, dashboard, plugins, version } from './reducers';
+import { booted, dashboard, plugins, version, ui } from './reducers';
 import { State } from './interfaces';
 
 // Create store
@@ -11,6 +11,7 @@ export const store = createStore<State>(
     dashboard,
     plugins,
     version,
+    ui,
   }),
   autoRehydrate(),
 );
