@@ -45,15 +45,12 @@ class Unsplash extends React.PureComponent<Props, State> {
     // Fetch or pull from cache current image
     if (this.props.state && this.props.state.next && this.props.state.next.data) {
       this.set(this.props.state.next);
-      this.props.pushState({ next: undefined });
     } else {
-      this.fetch(this.props.search, this.props.featured)
-        .then(image => this.set(image));
+      this.fetch(this.props.search, this.props.featured).then(image => this.set(image));
     }
 
-    // Fetch next image and inject into cache
-    this.fetch(this.props.search, this.props.featured)
-      .then(next => this.props.pushState({ next }));
+    // Fetch next image and replace in cache
+    this.fetch(this.props.search, this.props.featured).then(next => this.props.pushState({ next }));
   }
 
   componentWillReceiveProps(nextProps: Props) {
@@ -120,7 +117,7 @@ class Unsplash extends React.PureComponent<Props, State> {
     );
 
     const res = await (await fetch(request)).json();
-    const data = await (await fetch(res.urls.raw + '?q=90w=1920')).blob();
+    const data = await (await fetch(res.urls.raw + '?q=85&w=1920')).blob();
 
     return {
       data,
