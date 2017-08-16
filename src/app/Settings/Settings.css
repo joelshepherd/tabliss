@@ -32,6 +32,7 @@
 }
 
 .Settings input[type=text],
+.Settings input[type=file],
 .Settings input[type=number],
 .Settings textarea,
 .Settings select {

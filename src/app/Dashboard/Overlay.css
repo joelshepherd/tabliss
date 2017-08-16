@@ -7,5 +7,6 @@
 }
 
 .Overlay a {
+    cursor: pointer;
     margin-right: 0.5em;
 }

@@ -27,9 +27,9 @@ class Settings extends React.Component<Props> {
         <a onClick={this.props.toggleSettings} className="overlay" />
 
         <div className="plane">
-          <a onClick={this.props.toggleSettings}>
+          <button onClick={this.props.toggleSettings} style={{float: 'right'}}>
             <i className="fa fa-times" />
-          </a>
+          </button>
 
           <h2>Settings</h2>
 

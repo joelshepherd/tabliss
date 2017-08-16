@@ -7,8 +7,8 @@ import Plugin from './Plugin';
 
 interface Props {
   background: string;
-  plugins: IPlugin[];
   plugin: IPlugin;
+  plugins: IPlugin[];
   changeBackground: ChangeEventHandler<HTMLSelectElement>;
   changeSettings: (key: string, settings: Settings) => void;
 }

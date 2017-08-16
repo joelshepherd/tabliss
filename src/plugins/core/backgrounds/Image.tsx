@@ -1,6 +1,6 @@
 import * as React from 'react';
 import './Image.css';
-const image = require('./image-default.jpg');
+const image = require('./image.jpg');
 
 interface Props {
   image?: string;
@@ -8,7 +8,7 @@ interface Props {
 
 class Image extends React.PureComponent<Props> {
   static defaultProps = {
-    image
+    image,
   };
 
   render() {
