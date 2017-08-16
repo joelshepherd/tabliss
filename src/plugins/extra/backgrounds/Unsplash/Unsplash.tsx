@@ -20,6 +20,7 @@ interface Props {
 interface Image {
   data: Blob;
   image_link: string;
+  location_title?: string;
   user_name: string;
   user_link: string;
 }
@@ -78,6 +79,10 @@ class Unsplash extends React.PureComponent<Props, State> {
 
         {this.state.current && (
           <div className="credit">
+            <span style={{float: 'right'}}>
+              {this.state.current.location_title}
+            </span>
+
             <a href={this.state.current.image_link + UNSPLASH_UTM} target="_blank" rel="noopener noreferrer">
               Photo
             </a>
@@ -120,6 +125,7 @@ class Unsplash extends React.PureComponent<Props, State> {
     return {
       data,
       image_link: res.links.html,
+      location_title: res.location ? res.location.title : null,
       user_name: res.user.name,
       user_link: res.user.links.html,
     };

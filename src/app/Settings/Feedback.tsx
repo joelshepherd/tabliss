@@ -52,7 +52,7 @@ class Feedback extends React.PureComponent<{}, State> {
         <label>
           <textarea
             rows={3}
-            placeholder="Give feedback or suggestions"
+            placeholder="Send your feedback, ideas or suggestions..."
             value={this.state.body}
             onChange={event => this.setState({ body: event.target.value })}
           />
