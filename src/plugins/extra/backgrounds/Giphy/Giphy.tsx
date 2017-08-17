@@ -32,7 +32,7 @@ class Giphy extends React.PureComponent<Props, State> {
     expand: false,
     focus: false,
     nsfw: false,
-    tag: '',
+    tag: 'pattern',
   };
 
   state: State = {};

@@ -10,7 +10,8 @@ interface Props {
 
 class GiphySettings extends React.PureComponent<Props> {
   static defaultProps = {
-    tag: '',
+    expand: false,
+    tag: 'pattern',
     nsfw: false,
   };
 
