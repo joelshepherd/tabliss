@@ -12,15 +12,19 @@ class Feedback extends React.PureComponent<{}, State> {
   };
 
   send() {
+    // Form data
+    const body = new FormData();
+    body.append('body', '(Start) ' + this.state.body);
+
     const request = new Request(
-      'https://formspree.io/joel@swivid.ink',
+      'https://api.question.cafe/api/feedback',
       {
+        mode: 'no-cors',
         method: 'post',
         headers: {
           Accept: 'application/json',
-          'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ body: this.state.body }),
+        body,
       }
     );
 
@@ -33,7 +37,7 @@ class Feedback extends React.PureComponent<{}, State> {
           pending: false,
         };
 
-        if (res.ok) {
+        if (res.ok || res.type === 'opaque') {
           alert('Thank you for your feedback!');
           state.body = '';
         } else {
