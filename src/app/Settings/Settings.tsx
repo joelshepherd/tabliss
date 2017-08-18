@@ -2,7 +2,6 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import Background from './Background';
 import Feedback from './Feedback';
-import System from './System';
 import Widgets from './Widgets';
 import { reset, toggleSettings } from '../../data';
 import './Settings.css';
@@ -35,7 +34,6 @@ class Settings extends React.Component<Props> {
 
           <Background />
           <Widgets />
-          <System />
           <Feedback />
 
           <p><button onClick={this.props.reset}>

@@ -19,4 +19,4 @@ const mapStateToProps = (state: State) => {
   };
 };
 
-export default connect(mapStateToProps, {})(Background);
+export default connect(mapStateToProps)(Background);

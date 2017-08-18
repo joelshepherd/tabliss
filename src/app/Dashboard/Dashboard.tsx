@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { State } from '../../data';
 import Background from './Background';
 import Overlay from './Overlay';
-import System from './System';
 import Widgets from './Widgets';
 import './Dashboard.css';
 
@@ -14,11 +13,10 @@ interface Props {
 class Dashboard extends React.Component<Props> {
   render() {
     return (
-      <div className={'Dashboard' + (this.props.booted ? '' : ' preload')}>
-        <System />
+      <div className={'Dashboard' + (this.props.booted ? ' booted' : '')}>
         <Background />
-        <Overlay />
         <Widgets />
+        <Overlay />
       </div>
     );
   }
@@ -30,4 +28,4 @@ const mapStateToProps = (state: State) => {
   };
 };
 
-export default connect(mapStateToProps, {})(Dashboard);
+export default connect(mapStateToProps)(Dashboard);

@@ -5,8 +5,8 @@ import {
   Gradient, GradientSettings,
   Image, ImageSettings,
 } from './backgrounds';
-import { Font, FontSettings } from './system';
 import {
+  Font, FontSettings,
   Greeting, GreetingSettings,
   Message, MessageSettings,
   Time, TimeSettings,
@@ -62,10 +62,9 @@ registerPlugin({
   Settings: MessageSettings,
 });
 
-// System
 registerPlugin({
-  key: 'extra/system/font',
-  type: Type.SYSTEM,
+  key: 'core/widgets/font',
+  type: Type.WIDGET,
   title: 'Font',
   Dashboard: Font,
   Settings: FontSettings,

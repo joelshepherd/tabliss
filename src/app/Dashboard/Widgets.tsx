@@ -29,4 +29,4 @@ const mapStateToProps = (state: State) => {
   };
 };
 
-export default connect(mapStateToProps, {})(Widgets);
+export default connect(mapStateToProps)(Widgets);

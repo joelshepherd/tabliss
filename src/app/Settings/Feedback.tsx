@@ -20,7 +20,7 @@ class Feedback extends React.PureComponent<{}, State> {
           Accept: 'application/json',
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ ...this.state }),
+        body: JSON.stringify({ body: this.state.body }),
       }
     );
 

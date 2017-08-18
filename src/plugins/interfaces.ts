@@ -12,7 +12,6 @@ export interface Plugin {
 // Types
 export enum Type {
   BACKGROUND = 'background',
-  SYSTEM = 'system',
   WIDGET = 'widget',
 }
 

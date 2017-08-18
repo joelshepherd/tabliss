@@ -51,4 +51,4 @@ const mapStateToProps = (state: State, props: OwnProps) => {
   };
 };
 
-export default connect(mapStateToProps, {})(Plugin);
+export default connect(mapStateToProps)(Plugin);
