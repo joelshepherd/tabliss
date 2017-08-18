@@ -39,19 +39,19 @@ registerPlugin({
 
 // Widgets
 registerPlugin({
-  key: 'core/widgets/greeting',
-  type: Type.WIDGET,
-  title: 'Greeting',
-  Dashboard: Greeting,
-  Settings: GreetingSettings,
-});
-
-registerPlugin({
   key: 'core/widgets/time',
   type: Type.WIDGET,
   title: 'Time',
   Dashboard: Time,
   Settings: TimeSettings,
+});
+
+registerPlugin({
+  key: 'core/widgets/greeting',
+  type: Type.WIDGET,
+  title: 'Greeting',
+  Dashboard: Greeting,
+  Settings: GreetingSettings,
 });
 
 registerPlugin({

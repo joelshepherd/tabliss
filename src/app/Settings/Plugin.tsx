@@ -22,23 +22,15 @@ class Plugin extends React.PureComponent<Props> {
       <fieldset>
         <legend>{this.props.plugin.title}</legend>
 
-        {typeof this.props.onToggle !== 'undefined' &&
-          <label>
-            <input
-              type="checkbox"
-              checked={this.props.enabled}
-              onChange={this.props.onToggle}
-            />
-            &nbsp;
-            Enable
-          </label>
-        }
-
         {SettingsComponent && this.props.enabled !== false &&
           <SettingsComponent
             {...this.props.settings}
             onChange={this.props.onChange}
           />
+        }
+
+        {typeof this.props.onToggle !== 'undefined' &&
+          <button onClick={this.props.onToggle}>Remove</button>
         }
       </fieldset>
     );
