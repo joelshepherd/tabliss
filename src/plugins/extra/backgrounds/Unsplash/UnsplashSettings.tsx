@@ -1,15 +1,14 @@
 import * as React from 'react';
-import { Settings } from '../../../interfaces';
+import { Settings as SettingsInterface } from '../../../interfaces';
+import { Settings } from './interfaces';
 
-interface Props {
-  darken: boolean;
-  featured?: boolean;
-  search?: string;
-  onChange: (settings: Settings) => void;
+interface Props extends Settings {
+  onChange: (settings: SettingsInterface) => void;
 }
 
 class UnsplashSettings extends React.PureComponent<Props> {
   static defaultProps = {
+    curated: true,
     darken: true,
     featured: true,
   };
@@ -35,6 +34,16 @@ class UnsplashSettings extends React.PureComponent<Props> {
           />
           {' '}
           Featured only
+        </label>
+
+        <label>
+          <input
+            type="checkbox"
+            checked={this.props.curated}
+            onChange={event => this.props.onChange({ curated: ! this.props.curated })}
+          />
+          {' '}
+          Unsplash Editorial collection only
         </label>
 
         <label>

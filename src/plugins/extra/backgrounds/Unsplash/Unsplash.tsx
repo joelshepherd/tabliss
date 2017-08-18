@@ -2,27 +2,18 @@ import { debounce } from 'lodash';
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { State as RootState } from '../../../../data';
+import { Image, Settings } from './interfaces';
 import './Unsplash.css';
 
 // @TODO Extract to a environment variable
 const UNSPLASH_API_KEY = 'UNSPLASH_API_KEY';
 const UNSPLASH_UTM = '?utm_source=Start&utm_medium=referral&utm_campaign=api-credit';
 
-interface Props {
+interface Props extends Settings {
   darken: boolean;
-  featured?: boolean;
   focus: boolean;
-  search?: string;
   state: State;
   pushState: (state: State) => void;
-}
-
-interface Image {
-  data: Blob;
-  image_link: string;
-  location_title?: string;
-  user_name: string;
-  user_link: string;
 }
 
 interface State {
@@ -32,6 +23,7 @@ interface State {
 
 class Unsplash extends React.PureComponent<Props, State> {
   static defaultProps = {
+    curated: true,
     darken: true,
     featured: true,
     focus: false,
@@ -46,20 +38,20 @@ class Unsplash extends React.PureComponent<Props, State> {
     if (this.props.state && this.props.state.next && this.props.state.next.data) {
       this.set(this.props.state.next);
     } else {
-      this.fetch(this.props.search, this.props.featured).then(image => this.set(image));
+      this.fetch(this.props.curated, this.props.search, this.props.featured).then(image => this.set(image));
     }
 
     // Fetch next image and replace in cache
-    this.fetch(this.props.search, this.props.featured).then(next => this.props.pushState({ next }));
+    this.fetch(this.props.curated, this.props.search, this.props.featured).then(next => this.props.pushState({ next }));
   }
 
   componentWillReceiveProps(nextProps: Props) {
     if (nextProps.featured !== this.props.featured) {
-      this.refresh(nextProps.search, nextProps.featured);
+      this.refresh(nextProps.curated, nextProps.search, nextProps.featured);
     }
 
     if (nextProps.search !== this.props.search ) {
-      this.debouncedRefresh(nextProps.search, nextProps.featured);
+      this.debouncedRefresh(nextProps.curated, nextProps.search, nextProps.featured);
     }
   }
 
@@ -97,19 +89,20 @@ class Unsplash extends React.PureComponent<Props, State> {
     );
   }
 
-  private refresh(search?: string, featured?: boolean) {
+  private refresh(curated?: boolean, search?: string, featured?: boolean) {
     // Fetch current image
-    this.fetch(search, featured).then(image => this.set(image));
+    this.fetch(curated, search, featured).then(image => this.set(image));
 
     // Clear and fetch next
     this.props.pushState({ next: undefined });
-    this.fetch(search, featured).then(next => this.props.pushState({ next }));
+    this.fetch(curated, search, featured).then(next => this.props.pushState({ next }));
   }
 
-  private async fetch(search?: string, featured?: boolean) {
+  private async fetch(curated?: boolean, search?: string, featured?: boolean) {
     const request = new Request(
       (
         'https://api.unsplash.com/photos/random?orientation=landscape'
+        + (curated ? '&collections=317099' : '')
         + (featured ? '&featured=true' : '')
         + (search ? `&query=${search}` : '')
       ),
