@@ -1,7 +1,6 @@
 import {
   CHANGE_BACKGROUND,
   TOGGLE_FOCUS,
-  TOGGLE_SYSTEM,
   TOGGLE_WIDGET,
 } from '../constants';
 
@@ -21,13 +20,6 @@ export function changeBackground(key: string) {
 export function toggleWidget(key: string) {
   return {
     type: TOGGLE_WIDGET,
-    payload: key,
-  };
-}
-
-export function toggleSystem(key: string) {
-  return {
-    type: TOGGLE_SYSTEM,
     payload: key,
   };
 }

@@ -5,7 +5,6 @@ export const TOGGLE_SETTINGS = 'TOGGLE_SETTINGS';
 // Dashboard
 export const CHANGE_BACKGROUND = 'CHANGE_BACKGROUND';
 export const TOGGLE_FOCUS = 'TOGGLE_FOCUS';
-export const TOGGLE_SYSTEM = 'TOGGLE_SYSTEM';
 export const TOGGLE_WIDGET = 'TOGGLE_WIDGET';
 
 // Plugins
