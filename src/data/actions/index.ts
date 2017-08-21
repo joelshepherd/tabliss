@@ -1,5 +1,5 @@
 export * from './action';
-export * from './app';
 export * from './dashboard';
-export * from './plugins';
+export * from './root';
+export * from './storage';
 export * from './ui';

@@ -3,11 +3,11 @@ import { connect } from 'react-redux';
 import Background from './Background';
 import Feedback from './Feedback';
 import Widgets from './Widgets';
-import { reset, toggleSettings } from '../../data';
+import { resetDashboard, toggleSettings } from '../../data';
 import './Settings.css';
 
 interface Props {
-  reset: () => void;
+  resetDashboard: () => void;
   toggleSettings: () => void;
 }
 
@@ -36,7 +36,7 @@ class Settings extends React.Component<Props> {
           <Widgets />
           <Feedback />
 
-          <p><button onClick={this.props.reset}>
+          <p><button onClick={this.props.resetDashboard}>
             Reset to default
           </button></p>
         </div>
@@ -51,9 +51,6 @@ class Settings extends React.Component<Props> {
   }
 }
 
-const mapDispatchToProps = {
-  reset,
-  toggleSettings,
-};
+const mapDispatchToProps = { resetDashboard, toggleSettings };
 
 export default connect(null, mapDispatchToProps)(Settings);

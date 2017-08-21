@@ -15,11 +15,10 @@ export enum Type {
   WIDGET = 'widget',
 }
 
-// Settings
-export interface Settings {
+export interface Local {
   [key: string]: any; // tslint:disable-line no-any
 }
 
-export interface State {
+export interface Settings {
   [key: string]: any; // tslint:disable-line no-any
 }

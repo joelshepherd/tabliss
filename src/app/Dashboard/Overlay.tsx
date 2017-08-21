@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import * as screenfull from 'screenfull';
-import { State as RootState, toggleFocus, toggleSettings } from '../../data';
+import { RootState, toggleFocus, toggleSettings } from '../../data';
 import './Overlay.css';
 
 interface Props {
@@ -51,14 +51,9 @@ class Overlay extends React.PureComponent<Props, State> {
 }
 
 const mapStateToProps = (state: RootState) => {
-  return {
-    focus: state.dashboard.focus,
-  };
+  return { focus: state.ui.focus };
 };
 
-const mapDispatchToProps = {
-  toggleFocus,
-  toggleSettings,
-};
+const mapDispatchToProps = { toggleFocus, toggleSettings };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Overlay);

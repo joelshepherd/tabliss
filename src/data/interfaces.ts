@@ -1,30 +1,31 @@
-import { Settings } from '../plugins';
+import { Local, Settings } from '../plugins';
 
 // Root state
-export interface State {
+export interface RootState {
   version: number;
   booted: boolean;
   dashboard: Dashboard;
-  plugins: Plugins;
+  storage: Storage;
   ui: Ui;
-  // providers: plugin providers
 }
 
 // Dashboard slice
 export interface Dashboard {
   background: string;
-  focus: boolean;
   widgets: string[];
 }
 
 // Plugins slice
-export interface Plugins {
+export interface Storage {
   [key: string]: {
+    local: Local;
     settings: Settings;
-    state?: any; // tslint:disable-line no-any
+    sync: undefined;
   };
 }
 
+// Ui slice
 export interface Ui {
+  focus: boolean;
   settings: boolean;
 }

@@ -1,7 +1,7 @@
 import { debounce } from 'lodash';
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { State as RootState } from '../../../../data';
+import { RootState } from '../../../../data';
 import './Giphy.css';
 const giphyLogo = require('./giphy-logo.png');
 
@@ -13,8 +13,8 @@ interface Props {
   focus: boolean;
   nsfw?: boolean;
   tag?: string;
-  state: State;
-  pushState: (state: State) => void;
+  local: State;
+  setLocal: (state: State) => void;
 }
 
 interface State {
@@ -41,17 +41,14 @@ class Giphy extends React.PureComponent<Props, State> {
 
   componentWillMount() {
     // Fetch or pull from cache for current gif
-    if (this.props.state && this.props.state.next && this.props.state.next.data) {
-      this.set(this.props.state.next);
-      this.props.pushState({ next: undefined });
+    if (this.props.local && this.props.local.next && this.props.local.next.data) {
+      this.set(this.props.local.next);
     } else {
-      this.fetch(this.props.tag, this.props.nsfw)
-        .then(gif => this.set(gif));
+      this.fetch(this.props.tag, this.props.nsfw).then(gif => this.set(gif));
     }
 
     // Fetch next gif and inject into cache
-    this.fetch(this.props.tag, this.props.nsfw)
-      .then(next => this.props.pushState({ next }));
+    this.fetch(this.props.tag, this.props.nsfw).then(next => this.props.setLocal({ next }));
   }
 
   componentWillReceiveProps(nextProps: Props) {
@@ -95,8 +92,8 @@ class Giphy extends React.PureComponent<Props, State> {
     this.fetch(tag, nsfw).then(gif => this.set(gif));
 
     // Clear and fetch next
-    this.props.pushState({ next: undefined });
-    this.fetch(tag, nsfw).then(next => this.props.pushState({ next }));
+    this.props.setLocal({ next: undefined });
+    this.fetch(tag, nsfw).then(next => this.props.setLocal({ next }));
   }
 
   private async fetch(tag?: string, nsfw?: boolean) {
@@ -127,9 +124,7 @@ class Giphy extends React.PureComponent<Props, State> {
 }
 
 const mapStateToProps = (state: RootState) => {
-  return {
-    focus: state.dashboard.focus,
-  };
+  return { focus: state.ui.focus };
 };
 
-export default connect(mapStateToProps, {})(Giphy);
+export default connect(mapStateToProps)(Giphy);

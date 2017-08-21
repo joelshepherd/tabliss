@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { State as RootState } from '../../../../data';
+import { RootState } from '../../../../data';
 import './Dribbble.css';
 
 // @TODO Extract to a environment variable
@@ -79,9 +79,7 @@ class Dribbble extends React.PureComponent<Props, State> {
 }
 
 const mapStateToProps = (state: RootState) => {
-  return {
-    focus: state.dashboard.focus,
-  };
+  return { focus: state.ui.focus };
 };
 
-export default connect(mapStateToProps, {})(Dribbble);
+export default connect(mapStateToProps)(Dribbble);

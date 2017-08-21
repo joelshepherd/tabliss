@@ -1,7 +1,7 @@
 import { debounce } from 'lodash';
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { State as RootState } from '../../../../data';
+import { RootState } from '../../../../data';
 import { defaultProps, UNSPLASH_API_KEY, UNSPLASH_UTM } from './constants';
 import { Image, Settings } from './interfaces';
 import './Unsplash.css';
@@ -9,8 +9,8 @@ import './Unsplash.css';
 interface Props extends Settings {
   darken: boolean;
   focus: boolean;
-  state: State;
-  pushState: (state: State) => void;
+  local: State;
+  setLocal: (state: State) => void;
 }
 
 interface State {
@@ -19,10 +19,7 @@ interface State {
 }
 
 class Unsplash extends React.PureComponent<Props, State> {
-  static defaultProps = {
-    ...defaultProps,
-    focus: false, // Here because "typings"
-  };
+  static defaultProps: Partial<Props> = defaultProps;
 
   state: State = {};
 
@@ -30,14 +27,14 @@ class Unsplash extends React.PureComponent<Props, State> {
 
   componentWillMount() {
     // Fetch or pull from cache current image
-    if (this.props.state && this.props.state.next && this.props.state.next.data) {
-      this.set(this.props.state.next);
+    if (this.props.local && this.props.local.next && this.props.local.next.data) {
+      this.set(this.props.local.next);
     } else {
       this.fetch(this.props.curated, this.props.search, this.props.featured).then(image => this.set(image));
     }
 
     // Fetch next image and replace in cache
-    this.fetch(this.props.curated, this.props.search, this.props.featured).then(next => this.props.pushState({ next }));
+    this.fetch(this.props.curated, this.props.search, this.props.featured).then(next => this.props.setLocal({ next }));
   }
 
   componentWillReceiveProps(nextProps: Props) {
@@ -89,8 +86,8 @@ class Unsplash extends React.PureComponent<Props, State> {
     this.fetch(curated, search, featured).then(image => this.set(image));
 
     // Clear and fetch next
-    this.props.pushState({ next: undefined });
-    this.fetch(curated, search, featured).then(next => this.props.pushState({ next }));
+    this.props.setLocal({ next: undefined });
+    this.fetch(curated, search, featured).then(next => this.props.setLocal({ next }));
   }
 
   private async fetch(curated?: boolean, search?: string, featured?: boolean) {
@@ -127,9 +124,7 @@ class Unsplash extends React.PureComponent<Props, State> {
 }
 
 const mapStateToProps = (state: RootState) => {
-  return {
-    focus: state.dashboard.focus,
-  };
+  return { focus: state.ui.focus };
 };
 
 export default connect(mapStateToProps)(Unsplash);

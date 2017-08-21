@@ -1,15 +1,15 @@
 import { combineReducers, createStore } from 'redux';
 import { persistStore, autoRehydrate } from 'redux-persist';
 import * as localForage from 'localforage';
-import { booted, dashboard, plugins, version, ui } from './reducers';
-import { State } from './interfaces';
+import { booted, dashboard, storage, version, ui } from './reducers';
+import { RootState } from './interfaces';
 
 // Create store
-export const store = createStore<State>(
+export const store = createStore<RootState>(
   combineReducers({
     booted,
     dashboard,
-    plugins,
+    storage,
     version,
     ui,
   }),

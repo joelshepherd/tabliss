@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { State } from '../../data';
+import { RootState } from '../../data';
 import Plugin from './Plugin';
 import './Widgets.css';
 
@@ -22,9 +22,9 @@ class Widgets extends React.Component<Props> {
   }
 }
 
-const mapStateToProps = (state: State) => {
+const mapStateToProps = (state: RootState) => {
   return {
-    focus: state.dashboard.focus,
+    focus: state.ui.focus,
     widgets: state.dashboard.widgets,
   };
 };

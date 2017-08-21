@@ -1,4 +1,10 @@
-import { TOGGLE_SETTINGS } from '../constants';
+import { TOGGLE_FOCUS, TOGGLE_SETTINGS } from '../constants';
+
+export function toggleFocus() {
+  return {
+    type: TOGGLE_FOCUS,
+  };
+}
 
 export function toggleSettings() {
   return {

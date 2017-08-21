@@ -1,14 +1,4 @@
-import {
-  CHANGE_BACKGROUND,
-  TOGGLE_FOCUS,
-  TOGGLE_WIDGET,
-} from '../constants';
-
-export function toggleFocus() {
-  return {
-    type: TOGGLE_FOCUS,
-  };
-}
+import { ADD_WIDGET, CHANGE_BACKGROUND, REMOVE_WIDGET } from '../constants';
 
 export function changeBackground(key: string) {
   return {
@@ -17,9 +7,16 @@ export function changeBackground(key: string) {
   };
 }
 
-export function toggleWidget(key: string) {
+export function addWidget(key: string) {
   return {
-    type: TOGGLE_WIDGET,
+    type: ADD_WIDGET,
+    payload: key,
+  };
+}
+
+export function removeWidget(key: string) {
+  return {
+    type: REMOVE_WIDGET,
     payload: key,
   };
 }

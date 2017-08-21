@@ -1,22 +1,21 @@
 import { Action } from '../actions';
 import {
+  ADD_WIDGET,
   CHANGE_BACKGROUND,
-  RESET,
-  TOGGLE_FOCUS,
-  TOGGLE_WIDGET
+  RESET_DASHBOARD,
+  REMOVE_WIDGET,
 } from '../constants';
 import { Dashboard } from '../interfaces';
 
-const initial = {
+const initialState = {
   background: 'core/backgrounds/image',
-  focus: false,
   widgets: [
     'core/widgets/time',
     'core/widgets/greeting',
   ],
 };
 
-export function dashboard(state: Dashboard = initial, action: Action): Dashboard {
+export function dashboard(state: Dashboard = initialState, action: Action): Dashboard {
   switch (action.type) {
     case CHANGE_BACKGROUND:
       return {
@@ -24,21 +23,19 @@ export function dashboard(state: Dashboard = initial, action: Action): Dashboard
         background: action.payload,
       };
 
-    case RESET:
-      return initial;
+    case RESET_DASHBOARD:
+      return initialState;
 
-    case TOGGLE_FOCUS:
+    case ADD_WIDGET:
       return {
         ...state,
-        focus: ! state.focus,
+        widgets: [...state.widgets, action.payload],
       };
 
-    case TOGGLE_WIDGET:
+    case REMOVE_WIDGET:
       return {
         ...state,
-        widgets: state.widgets.includes(action.payload)
-          ? state.widgets.filter(key => key !== action.payload)
-          : [...state.widgets, action.payload],
+        widgets: state.widgets.filter(key => key !== action.payload),
       };
 
     default:

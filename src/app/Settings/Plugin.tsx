@@ -1,46 +1,46 @@
 import * as React from 'react';
-import { connect } from 'react-redux';
-import { getSettings, State } from '../../data';
+import { connect, Dispatch } from 'react-redux';
+import { Action, RootState, updateSettings } from '../../data';
 import { Plugin as IPlugin, Settings } from '../../plugins';
 
 interface OwnProps {
-  enabled?: boolean;
   plugin: IPlugin;
-  onChange: (settings: Settings) => void;
-  onToggle?: () => void;
+  onRemove?: () => void;
 }
 
 interface Props extends OwnProps {
   settings: Settings;
+  updateSettings: (settings: Settings) => void;
 }
 
-class Plugin extends React.PureComponent<Props> {
-  render() {
-    const SettingsComponent = this.props.plugin.Settings;
+const Plugin: React.StatelessComponent<Props> = (props) => {
+  const Component = props.plugin.Settings;
 
-    return (
-      <fieldset>
-        <legend>{this.props.plugin.title}</legend>
+  return (
+    <fieldset>
+      <legend>{props.plugin.title}</legend>
 
-        {SettingsComponent && this.props.enabled !== false &&
-          <SettingsComponent
-            {...this.props.settings}
-            onChange={this.props.onChange}
-          />
-        }
+      {Component && <Component {...props.settings} onChange={props.updateSettings} />}
 
-        {typeof this.props.onToggle !== 'undefined' &&
-          <button onClick={this.props.onToggle}>Remove</button>
-        }
-      </fieldset>
-    );
-  }
-}
+      {typeof props.onRemove !== 'undefined' &&
+        <button onClick={props.onRemove}>Remove</button>
+      }
+    </fieldset>
+  );
+};
 
-const mapStateToProps = (state: State, props: OwnProps) => {
+const mapStateToProps = (state: RootState, props: OwnProps) => {
   return {
-    settings: getSettings(state.plugins, props.plugin.key),
+    settings: (state.storage[props.plugin.key] || {}).settings,
   };
 };
 
-export default connect(mapStateToProps)(Plugin);
+const mapDispatchToProps = (dispatch: Dispatch<Action>, props: OwnProps) => {
+  return {
+    updateSettings: (settings: Settings) => {
+      dispatch(updateSettings(props.plugin.key, settings));
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Plugin);

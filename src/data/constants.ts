@@ -1,12 +1,17 @@
 // App
-export const RESET = 'RESET';
-export const TOGGLE_SETTINGS = 'TOGGLE_SETTINGS';
+export const RESET_DASHBOARD = 'RESET_DASHBOARD';
 
 // Dashboard
 export const CHANGE_BACKGROUND = 'CHANGE_BACKGROUND';
-export const TOGGLE_FOCUS = 'TOGGLE_FOCUS';
-export const TOGGLE_WIDGET = 'TOGGLE_WIDGET';
+export const ADD_WIDGET = 'ADD_WIDGET';
+export const REMOVE_WIDGET = 'REMOVE_WIDGET';
 
-// Plugins
-export const CHANGE_SETTINGS = 'CHANGE_SETTINGS';
-export const PUSH_STATE = 'PUSH_STATE';
+// Storage
+export const SET_LOCAL_STORAGE = 'SET_LOCAL_STORAGE';
+export const UPDATE_LOCAL_STORAGE = 'UPDATE_LOCAL_STORAGE';
+export const SET_SETTINGS_STORAGE = 'SET_SETTINGS_STORAGE';
+export const UPDATE_SETTINGS_STORAGE = 'UPDATE_SETTINGS_STORAGE';
+
+// Ui
+export const TOGGLE_FOCUS = 'TOGGLE_FOCUS';
+export const TOGGLE_SETTINGS = 'TOGGLE_SETTINGS';
