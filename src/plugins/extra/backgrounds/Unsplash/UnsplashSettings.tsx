@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Settings as SettingsInterface } from '../../../interfaces';
+import { defaultProps } from './constants';
 import { Settings } from './interfaces';
 
 interface Props extends Settings {
@@ -7,11 +8,7 @@ interface Props extends Settings {
 }
 
 class UnsplashSettings extends React.PureComponent<Props> {
-  static defaultProps = {
-    curated: true,
-    darken: true,
-    featured: true,
-  };
+  static defaultProps = defaultProps;
 
   render() {
     return (

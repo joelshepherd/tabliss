@@ -2,12 +2,9 @@ import { debounce } from 'lodash';
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { State as RootState } from '../../../../data';
+import { defaultProps, UNSPLASH_API_KEY, UNSPLASH_UTM } from './constants';
 import { Image, Settings } from './interfaces';
 import './Unsplash.css';
-
-// @TODO Extract to a environment variable
-const UNSPLASH_API_KEY = 'UNSPLASH_API_KEY';
-const UNSPLASH_UTM = '?utm_source=Start&utm_medium=referral&utm_campaign=api-credit';
 
 interface Props extends Settings {
   darken: boolean;
@@ -23,10 +20,8 @@ interface State {
 
 class Unsplash extends React.PureComponent<Props, State> {
   static defaultProps = {
-    curated: true,
-    darken: true,
-    featured: true,
-    focus: false,
+    ...defaultProps,
+    focus: false, // Here because "typings"
   };
 
   state: State = {};
@@ -137,4 +132,4 @@ const mapStateToProps = (state: RootState) => {
   };
 };
 
-export default connect(mapStateToProps, {})(Unsplash);
+export default connect(mapStateToProps)(Unsplash);
