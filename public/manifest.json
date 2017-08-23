@@ -1,11 +1,11 @@
 {
   "manifest_version": 2,
-  "name": "Start",
+  "name": "Tabliss",
   "version": "0.0.0",
   "description": "",
   "applications": {
     "gecko": {
-      "id": "start@swivid.ink",
+      "id": "tabliss@swivid.ink",
       "strict_min_version": "54.0"
     }
   },

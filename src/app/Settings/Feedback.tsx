@@ -14,7 +14,7 @@ class Feedback extends React.PureComponent<{}, State> {
   send() {
     // Form data
     const body = new FormData();
-    body.append('body', '(Start) ' + this.state.body);
+    body.append('body', '(Tabliss) ' + this.state.body);
 
     const request = new Request(
       'https://api.question.cafe/api/feedback',

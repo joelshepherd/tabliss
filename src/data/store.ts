@@ -18,7 +18,7 @@ export const store = createStore<RootState>(
 
 // Setup localForage
 localForage.config({
-  name: 'start',
+  name: 'tabliss',
   storeName: 'state',
 });
 
