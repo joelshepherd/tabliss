@@ -20,17 +20,90 @@
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-redux": "^5.0.6",
-    "react-scripts-ts": "^2.6.0",
     "react-transition-group": "^2.2.0",
     "redux": "^3.7.2",
     "redux-persist": "^4.8.3",
     "screenfull": "^3.3.1"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "app-root-path": "^2.0.1",
+    "autoprefixer": "7.1.1",
+    "case-sensitive-paths-webpack-plugin": "2.1.1",
+    "chalk": "1.1.3",
+    "cli-highlight": "1.1.4",
+    "css-loader": "0.28.4",
+    "dotenv": "4.0.0",
+    "extract-text-webpack-plugin": "2.1.2",
+    "file-loader": "0.11.2",
+    "fs-extra": "3.0.1",
+    "html-webpack-plugin": "2.28.0",
+    "jest": "20.0.3",
+    "object-assign": "4.1.1",
+    "postcss-flexbugs-fixes": "3.0.0",
+    "postcss-loader": "2.0.5",
+    "promise": "7.1.1",
+    "react-dev-utils": "^3.0.1",
+    "react-error-overlay": "^1.0.8",
+    "source-map-loader": "^0.2.1",
+    "style-loader": "0.18.2",
+    "sw-precache-webpack-plugin": "0.11.3",
+    "ts-jest": "^20.0.7",
+    "ts-loader": "^2.2.1",
+    "tslint": "^5.2.0",
+    "tslint-loader": "^3.5.3",
+    "tslint-react": "^3.0.0",
+    "typescript": "~2.4.0",
+    "url-loader": "0.5.8",
+    "webpack": "2.6.1",
+    "webpack-dev-server": "2.5.0",
+    "webpack-manifest-plugin": "1.1.0",
+    "whatwg-fetch": "2.0.3"
+  },
   "scripts": {
-    "start": "react-scripts-ts start",
-    "build": "react-scripts-ts build",
-    "test": "react-scripts-ts test --env=jsdom",
-    "eject": "react-scripts-ts eject"
+    "start": "node scripts/start.js",
+    "build": "node scripts/build.js",
+    "test": "node scripts/test.js --env=jsdom"
+  },
+  "jest": {
+    "mapCoverage": true,
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx,ts,tsx}"
+    ],
+    "setupFiles": [
+      "<rootDir>/config/polyfills.js"
+    ],
+    "moduleFileExtensions": [
+      "web.ts",
+      "ts",
+      "web.tsx",
+      "tsx",
+      "web.js",
+      "js",
+      "web.jsx",
+      "jsx",
+      "json"
+    ],
+    "testMatch": [
+      "<rootDir>/src/**/__tests__/**/*.ts?(x)",
+      "<rootDir>/src/**/?(*.)(spec|test).ts?(x)"
+    ],
+    "testEnvironment": "node",
+    "testURL": "http://localhost",
+    "transform": {
+      "^.+\\.css$": "<rootDir>/config/jest/cssTransform.js",
+      "^.+\\.tsx?$": "<rootDir>/config/jest/typescriptTransform.js",
+      "^(?!.*\\.(css|json)$)": "<rootDir>/config/jest/fileTransform.js"
+    },
+    "transformIgnorePatterns": [
+      "[/\\\\]node_modules[/\\\\].+\\.(js|jsx|ts|tsx)$"
+    ],
+    "moduleNameMapper": {
+      "^react-native$": "react-native-web"
+    },
+    "globals": {
+      "ts-jest": {
+        "tsConfigFile": "/mnt/d/develop/joelshepherd/tabliss/tsconfig.test.json"
+      }
+    }
   }
 }
