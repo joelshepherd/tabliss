@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
+import * as parseLinkHeader from 'parse-link-header';
 import { RootState } from '../../../../data';
+import { Shot } from './interfaces';
 import './Dribbble.css';
 
 // @TODO Extract to a environment variable
@@ -8,51 +10,48 @@ const DRIBBBLE_API_KEY = 'DRIBBBLE_API_KEY';
 
 interface Props {
   focus: boolean;
-  quality: string; // TypeScript doesn't understand this -> undefined -> defaultProps
+  quality: string;
 }
 
 interface State {
   shots: Shot[];
-}
-
-interface Shot {
-  id: number;
-  title: string;
-  html_url: string;
-  images: {
-    normal: string;
-    hidpi?: string;
-  };
-  user: {
-    name: string;
-  };
+  nextLink?: string;
 }
 
 class Dribbble extends React.PureComponent<Props, State> {
-  static defaultProps: Props = {
-    focus: false,
+  static defaultProps: Partial<Props> = {
     quality: 'normal',
   };
 
+  shotsRef: HTMLDivElement | null;
+
   state: State = {
     shots: [],
+    nextLink: 'https://api.dribbble.com/v1/shots?per_page=12',
   };
 
   componentWillMount() {
-    const request = new Request(
-      'https://api.dribbble.com/v1/shots?per_page=12',
-      {headers: {Authorization: `Bearer ${DRIBBBLE_API_KEY}`}},
-    );
+    const promise = this.load();
 
-    fetch(request)
-      .then(res => res.json())
-      .then(res => this.setState({ shots: res }));
+    if (promise && this.props.focus) {
+      promise.then(() => this.load());
+    }
+  }
+
+  componentWillReceiveProps(props: Props) {
+    if (props.focus) {
+      this.onScroll();
+    }
   }
 
   render() {
     return (
       <div className="Dribbble">
-        <div className="shots fullscreen">
+        <div
+          className="shots fullscreen"
+          onScroll={() => this.onScroll()}
+          ref={ref => this.shotsRef = ref}
+        >
           {this.state.shots.map(shot => this.renderShot(shot))}
         </div>
 
@@ -68,13 +67,49 @@ class Dribbble extends React.PureComponent<Props, State> {
       <a
         key={shot.id}
         href={shot.html_url}
-        title={shot.title + ' by ' + shot.user.name}
+        title={`${shot.title} by ${shot.user.name}`}
         target="_blank"
         rel="noopener noreferrer"
       >
         <div className="shot" style={{ backgroundImage }} />
       </a>
     );
+  }
+
+  private load() {
+    if (! this.state.nextLink) {
+      return;
+    }
+
+    const request = new Request(
+      this.state.nextLink,
+      { headers: { Authorization: `Bearer ${DRIBBBLE_API_KEY}` } },
+    );
+
+    this.setState({ nextLink: undefined });
+
+    return fetch(request)
+      .then(res => {
+        // Find next link
+        const links = parseLinkHeader(res.headers.get('Link') || '');
+        const nextLink = (links && links.next) ? links.next.url : undefined;
+        this.setState({ nextLink });
+
+        return res.json();
+      })
+      .then(shots => this.setState({
+        shots: [...this.state.shots, ...shots],
+      }));
+  }
+
+  private onScroll() {
+    if (! this.shotsRef) {
+      return;
+    }
+
+    if (this.shotsRef.scrollHeight - this.shotsRef.scrollTop === this.shotsRef.clientHeight) {
+      this.load();
+    }
   }
 }
 

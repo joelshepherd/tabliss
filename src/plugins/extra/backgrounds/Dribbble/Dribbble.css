@@ -3,10 +3,10 @@
 }
 
 .Dribbble .shots {
-    overflow-y: auto;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-auto-rows: 33.33%;
+    overflow-y: auto;
 }
 
 .Dribbble .shot {
