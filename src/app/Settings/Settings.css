@@ -1,11 +1,3 @@
-.Settings .overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-}
-
 .Settings .plane {
     position: absolute;
     height: 100%;
@@ -15,6 +7,16 @@
 
     background: white;
     padding: 1rem;
+    transition: transform 0.25s ease-out;
+}
+
+.Settings.slide-enter .plane,
+.Settings.slide-exit.slide-exit-active .plane {
+    transform: translateX(-100%);
+}
+.Settings.slide-enter.slide-enter-active .plane,
+.Settings.slide-exit .plane {
+    transform: translateX(0);
 }
 
 .Settings fieldset {

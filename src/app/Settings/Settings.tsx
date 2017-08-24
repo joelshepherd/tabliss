@@ -22,8 +22,8 @@ class Settings extends React.Component<Props> {
 
   render() {
     return (
-      <div className="Settings content">
-        <a onClick={this.props.toggleSettings} className="overlay" />
+      <div className="Settings">
+        <a onClick={this.props.toggleSettings} className="fullscreen" />
 
         <div className="plane">
           <button onClick={this.props.toggleSettings} style={{float: 'right'}}>
