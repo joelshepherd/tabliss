@@ -6,7 +6,7 @@
     padding: 0.5rem;
     border-radius: 0.5rem;
     opacity: 0.5;
-    transition: background-color,opacity 0.25s ease-out;
+    transition: background-color 0.25s ease-out, opacity 0.25s ease-out;
 }
 
 .Overlay:hover {
