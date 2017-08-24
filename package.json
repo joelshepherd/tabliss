@@ -57,7 +57,6 @@
     "url-loader": "0.5.8",
     "webpack": "2.6.1",
     "webpack-dev-server": "2.5.0",
-    "webpack-manifest-plugin": "1.1.0",
     "whatwg-fetch": "2.0.3"
   }
 }
