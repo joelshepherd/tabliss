@@ -12,22 +12,22 @@ interface Props {
 }
 
 class Widgets extends React.Component<Props> {
-  private selected: HTMLSelectElement | null;
-
   render() {
     return (
       <div>
         <h3>Widgets</h3>
 
-        <label>
-          Add a widget
-          <select ref={ref => this.selected = ref}>
-            {this.props.plugins.map(plugin =>
-              <option key={plugin.key} value={plugin.key}>{plugin.title}</option>
-            )}
-          </select>
-        </label>
-        <button onClick={() => this.add()}>Add</button>
+        <div className="box">
+          <label>
+            Add a new widget
+            <select onChange={event => this.add(event.target.value)}>
+              <option value={''} selected={true}>Select to add</option>
+              {this.props.plugins.map(plugin =>
+                <option key={plugin.key} value={plugin.key}>{plugin.title}</option>
+              )}
+            </select>
+          </label>
+        </div>
 
         {this.props.widgets.map(plugin =>
           <Plugin
@@ -40,9 +40,9 @@ class Widgets extends React.Component<Props> {
     );
   }
 
-  private add() {
-    if (this.selected && this.selected.value) {
-      this.props.addWidget(this.selected.value);
+  private add(key: string) {
+    if (key !== '') {
+      this.props.addWidget(key);
     }
   }
 }

@@ -55,7 +55,7 @@ class Feedback extends React.PureComponent<{}, State> {
 
         <label>
           <textarea
-            rows={3}
+            rows={2}
             placeholder="Send your feedback, ideas or suggestions..."
             value={this.state.body}
             onChange={event => this.setState({ body: event.target.value })}
@@ -63,8 +63,8 @@ class Feedback extends React.PureComponent<{}, State> {
         </label>
 
         {this.state.pending
-          ? <button disabled={true}>Sending</button>
-          : <button onClick={() => this.send()}>Send feedback</button>
+          ? <button className="button--primary" disabled={true}>Sending</button>
+          : <button className="button--primary" onClick={() => this.send()}>Send feedback</button>
         }
       </div>
     );

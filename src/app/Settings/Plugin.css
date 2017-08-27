@@ -1,0 +1,9 @@
+.Plugin {
+    border: none;
+    padding: 0;
+    margin: 2em 0;
+}
+
+.Plugin h4 {
+    margin: 0;
+}

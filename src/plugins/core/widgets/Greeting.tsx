@@ -33,10 +33,10 @@ class Greeting extends React.PureComponent<Props, State> {
   render() {
     return (
       <div className="Greeting">
-        <h1>
+        <h2>
           {this.state.greeting}
           {this.props.name ? (', ' + this.props.name) : ''}
-        </h1>
+        </h2>
       </div>
     );
   }

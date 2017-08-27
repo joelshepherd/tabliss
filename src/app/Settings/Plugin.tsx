@@ -2,6 +2,7 @@ import * as React from 'react';
 import { connect, Dispatch } from 'react-redux';
 import { Action, RootState, updateSettings } from '../../data';
 import { Plugin as IPlugin, Settings } from '../../plugins';
+import './Plugin.css';
 
 interface OwnProps {
   plugin: IPlugin;
@@ -17,14 +18,16 @@ const Plugin: React.StatelessComponent<Props> = (props) => {
   const Component = props.plugin.Settings;
 
   return (
-    <fieldset>
-      <legend>{props.plugin.title}</legend>
+    <fieldset className="Plugin">
+      {typeof props.onRemove !== 'undefined' &&
+        <button className="button--icon" onClick={props.onRemove} style={{ float: 'right' }}>
+          <i className="fa fa-trash" />
+        </button>
+      }
+
+      <h4>{props.plugin.title} settings</h4>
 
       {Component && <Component {...props.settings} onChange={props.updateSettings} />}
-
-      {typeof props.onRemove !== 'undefined' &&
-        <button onClick={props.onRemove}>Remove</button>
-      }
     </fieldset>
   );
 };

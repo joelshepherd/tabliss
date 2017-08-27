@@ -17,14 +17,16 @@ class Background extends Component<Props> {
       <div>
         <h3>Background</h3>
 
-        <label>
-          Select a provider
-          <select value={this.props.plugin.key} onChange={this.props.changeBackground}>
-            {this.props.plugins.map(plugin =>
-              <option key={plugin.key} value={plugin.key}>{plugin.title}</option>
-            )}
-          </select>
-        </label>
+        <div className="box">
+          <label>
+            Select a background provider
+            <select value={this.props.plugin.key} onChange={this.props.changeBackground}>
+              {this.props.plugins.map(plugin =>
+                <option key={plugin.key} value={plugin.key}>{plugin.title}</option>
+              )}
+            </select>
+          </label>
+        </div>
 
         {this.props.plugin.Settings &&
           <Plugin key={this.props.plugin.key} plugin={this.props.plugin} />

@@ -26,19 +26,19 @@ class Settings extends React.Component<Props> {
         <a onClick={this.props.toggleSettings} className="fullscreen" />
 
         <div className="plane">
-          <button onClick={this.props.toggleSettings} style={{float: 'right'}}>
+          <button onClick={this.props.toggleSettings} className="button--icon" style={{float: 'right'}}>
             <i className="fa fa-times" />
           </button>
 
-          <h2>Settings</h2>
+          <h1>tabliss</h1>
 
           <Background />
           <Widgets />
           <Feedback />
 
-          <p><button onClick={this.props.resetDashboard}>
+          <p><a href="javascript:;" onClick={this.props.resetDashboard}>
             Reset to default
-          </button></p>
+          </a></p>
         </div>
       </div>
     );

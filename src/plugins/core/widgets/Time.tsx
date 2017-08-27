@@ -30,7 +30,7 @@ class Time extends React.PureComponent<Props, State> {
   render() {
     return (
       <div className="Time">
-        <h1 style={{fontSize: '4em'}}>{this.formattedTime()}</h1>
+        <h1>{this.formattedTime()}</h1>
       </div>
     );
   }
