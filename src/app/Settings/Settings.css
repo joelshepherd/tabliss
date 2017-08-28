@@ -22,7 +22,7 @@
 
 .Settings h1 {
     color: #3498db;
-    margin: 2rem 0;
+    margin: 0;
 }
 
 .Settings h2,
@@ -91,6 +91,10 @@
     color: black;
     cursor: pointer;
     transition: background-color 0.25s ease-out;
+}
+
+.Settings .button--icon .fa {
+    vertical-align: top;
 }
 
 .Settings .button--icon:hover {
