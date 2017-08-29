@@ -14,34 +14,48 @@ class UnsplashSettings extends React.PureComponent<Props> {
     return (
       <div>
         <label>
-          Tag
           <input
-            placeholder="Try landscapes or animals..."
-            type="text"
-            value={this.props.search}
-            onChange={event => this.props.onChange({ search: event.target.value })}
+            type="radio"
+            checked={this.props.curated === true}
+            onChange={event => this.props.onChange({ curated: true })}
           />
+          {' '}
+          Official collection
         </label>
 
         <label>
           <input
-            type="checkbox"
-            checked={this.props.featured}
-            onChange={event => this.props.onChange({ featured: ! this.props.featured })}
+            type="radio"
+            checked={this.props.curated === false}
+            onChange={event => this.props.onChange({ curated: false })}
           />
           {' '}
-          Featured only
+          Custom search
         </label>
 
-        <label>
-          <input
-            type="checkbox"
-            checked={this.props.curated}
-            onChange={event => this.props.onChange({ curated: ! this.props.curated })}
-          />
-          {' '}
-          Unsplash Editorial collection only
-        </label>
+        {! this.props.curated &&
+          <div>
+            <label>
+              Tag
+              <input
+                placeholder="Try landscapes or animals..."
+                type="text"
+                value={this.props.search}
+                onChange={event => this.props.onChange({ search: event.target.value })}
+              />
+            </label>
+
+            <label>
+              <input
+                type="checkbox"
+                checked={this.props.featured}
+                onChange={event => this.props.onChange({ featured: ! this.props.featured })}
+              />
+              {' '}
+              Only featured images
+            </label>
+          </div>
+        }
 
         <label>
           <input
@@ -50,7 +64,7 @@ class UnsplashSettings extends React.PureComponent<Props> {
             onChange={event => this.props.onChange({ darken: ! this.props.darken })}
           />
           {' '}
-          Darken slightly
+          Slightly darken background
         </label>
       </div>
     );

@@ -2,7 +2,7 @@ import { debounce } from 'lodash';
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { RootState } from '../../../../data';
-import { defaultProps, UNSPLASH_API_KEY, UNSPLASH_UTM } from './constants';
+import { defaultProps, officialCollection, UNSPLASH_API_KEY, UNSPLASH_UTM } from './constants';
 import { Image, Settings } from './interfaces';
 import './Unsplash.css';
 
@@ -38,7 +38,7 @@ class Unsplash extends React.PureComponent<Props, State> {
   }
 
   componentWillReceiveProps(nextProps: Props) {
-    if (nextProps.featured !== this.props.featured) {
+    if (nextProps.featured !== this.props.featured || nextProps.curated !== this.props.curated) {
       this.refresh(nextProps.curated, nextProps.search, nextProps.featured);
     }
 
@@ -92,11 +92,10 @@ class Unsplash extends React.PureComponent<Props, State> {
 
   private async fetch(curated?: boolean, search?: string, featured?: boolean) {
     const request = new Request(
-      (
-        'https://api.unsplash.com/photos/random?orientation=landscape'
-        + (curated ? '&collections=317099' : '')
-        + (featured ? '&featured=true' : '')
-        + (search ? `&query=${search}` : '')
+      'https://api.unsplash.com/photos/random?orientation=landscape' +
+      (curated
+        ? `&collections=${officialCollection}`
+        : ((featured ? '&featured=true' : '') + (search ? `&query=${search}` : ''))
       ),
       { headers: { Authorization: `Client-ID ${UNSPLASH_API_KEY}` } },
     );

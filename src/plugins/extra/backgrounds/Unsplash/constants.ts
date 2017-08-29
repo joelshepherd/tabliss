@@ -6,3 +6,6 @@ export const defaultProps = {
   darken: true,
   featured: false,
 };
+
+// Currently Official Unsplash curated
+export const officialCollection = 317099;
