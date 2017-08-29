@@ -29,13 +29,16 @@ class Widgets extends React.Component<Props> {
           </label>
         </div>
 
-        {this.props.widgets.map(plugin =>
-          <Plugin
-            key={plugin.key}
-            plugin={plugin}
-            onRemove={() => this.props.removeWidget(plugin.key)}
-          />
-        )}
+        {this.props.widgets.length === 0
+          ? <p>No widgets selected.</p>
+          : this.props.widgets.map(plugin =>
+            <Plugin
+              key={plugin.key}
+              plugin={plugin}
+              onRemove={() => this.props.removeWidget(plugin.key)}
+            />
+          )
+        }
       </div>
     );
   }
