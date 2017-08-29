@@ -11,7 +11,7 @@ interface Props {
   toggleSettings: () => void;
 }
 
-class Settings extends React.Component<Props> {
+class Settings extends React.PureComponent<Props> {
   componentWillMount() {
     document.addEventListener('keydown', this.onKeyDown);
   }

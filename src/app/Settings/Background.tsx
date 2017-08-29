@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { Component, ChangeEvent, ChangeEventHandler } from 'react';
 import { connect } from 'react-redux';
 import { changeBackground, RootState } from '../../data';
 import { getPlugin, getPluginsByType, Plugin as IPlugin, Type } from '../../plugins';
@@ -8,33 +7,29 @@ import Plugin from './Plugin';
 interface Props {
   plugin: IPlugin;
   plugins: IPlugin[];
-  changeBackground: ChangeEventHandler<HTMLSelectElement>;
+  changeBackground: React.ChangeEventHandler<HTMLSelectElement>;
 }
 
-class Background extends Component<Props> {
-  render() {
-    return (
-      <div>
-        <h3>Background</h3>
+const Background: React.StatelessComponent<Props> = (props) => {
+  return (
+    <div>
+      <h3>Background</h3>
 
-        <div className="box">
-          <label>
-            Select a background provider
-            <select value={this.props.plugin.key} onChange={this.props.changeBackground}>
-              {this.props.plugins.map(plugin =>
-                <option key={plugin.key} value={plugin.key}>{plugin.title}</option>
-              )}
-            </select>
-          </label>
-        </div>
-
-        {this.props.plugin.Settings &&
-          <Plugin key={this.props.plugin.key} plugin={this.props.plugin} />
-        }
+      <div className="box">
+        <label>
+          Select a background provider
+          <select value={props.plugin.key} onChange={props.changeBackground}>
+            {props.plugins.map(plugin =>
+              <option key={plugin.key} value={plugin.key}>{plugin.title}</option>
+            )}
+          </select>
+        </label>
       </div>
-    );
-  }
-}
+
+      {props.plugin.Settings && <Plugin key={props.plugin.key} plugin={props.plugin} />}
+    </div>
+  );
+};
 
 const mapStateToProps = (state: RootState) => {
   return {
@@ -44,7 +39,7 @@ const mapStateToProps = (state: RootState) => {
 };
 
 const mapDispatchToProps = {
-  changeBackground: (event: ChangeEvent<HTMLSelectElement>) => changeBackground(event.target.value),
+  changeBackground: (event: React.ChangeEvent<HTMLSelectElement>) => changeBackground(event.target.value),
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Background);

@@ -11,7 +11,7 @@ interface Props {
   removeWidget: (key: string) => void;
 }
 
-class Widgets extends React.Component<Props> {
+class Widgets extends React.PureComponent<Props> {
   render() {
     return (
       <div>
