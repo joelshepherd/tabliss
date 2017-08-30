@@ -10,25 +10,23 @@ interface Props {
   settings: boolean;
 }
 
-class App extends React.Component<Props> {
-  render() {
-    return (
-        <div className="App">
-          <Dashboard />
+const App: React.StatelessComponent<Props> = (props) => {
+  return (
+    <div className="App">
+      <Dashboard />
 
-          <CSSTransition
-            classNames="slide"
-            in={this.props.settings}
-            mountOnEnter={true}
-            unmountOnExit={true}
-            timeout={250}
-          >
-            <Settings />
-          </CSSTransition>
-        </div>
-    );
-  }
-}
+      <CSSTransition
+        classNames="slide"
+        in={props.settings}
+        mountOnEnter={true}
+        unmountOnExit={true}
+        timeout={250}
+      >
+        <Settings />
+      </CSSTransition>
+    </div>
+  );
+};
 
 const mapStateToProps = (state: RootState) => {
   return { settings: state.ui.settings };
