@@ -14,9 +14,7 @@ class Widgets extends React.Component<Props> {
   render() {
     return (
       <div className="Widgets">
-        {! this.props.focus && this.props.widgets.map(key =>
-          <Plugin key={key} pluginKey={key} />
-        )}
+        {! this.props.focus && this.props.widgets.map(key => <Plugin key={key} pluginKey={key} />)}
       </div>
     );
   }

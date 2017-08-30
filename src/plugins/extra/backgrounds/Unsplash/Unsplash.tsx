@@ -54,9 +54,7 @@ class Unsplash extends React.PureComponent<Props, State> {
 
     return (
       <div className="Unsplash fullscreen" style={styles}>
-        {this.props.darken && ! this.props.focus &&
-          <div className="darken fullscreen" />
-        }
+        {this.props.darken && ! this.props.focus && <div className="darken fullscreen" />}
 
         {this.state.current && (
           <div className="credit">
