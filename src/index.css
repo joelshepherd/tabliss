@@ -44,3 +44,7 @@ h1 + h4 {
 a {
     color: #3498db;
 }
+
+svg {
+    height: 1em;
+}

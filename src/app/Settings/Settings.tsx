@@ -1,11 +1,12 @@
 import * as React from 'react';
-import { X } from 'react-feather';
 import { connect } from 'react-redux';
 import Background from './Background';
 import Feedback from './Feedback';
 import Widgets from './Widgets';
 import { resetDashboard, toggleSettings } from '../../data';
 import './Settings.css';
+
+const logo = require('../../logo.svg');
 
 interface Props {
   resetDashboard: () => void;
@@ -27,11 +28,7 @@ class Settings extends React.PureComponent<Props> {
         <a onClick={this.props.toggleSettings} className="fullscreen" />
 
         <div className="plane">
-          <button onClick={this.props.toggleSettings} className="button--icon" style={{float: 'right'}}>
-            <X />
-          </button>
-
-          <h1>tabliss</h1>
+          <h1 dangerouslySetInnerHTML={{__html: logo}} />
 
           <Background />
           <Widgets />
@@ -40,6 +37,8 @@ class Settings extends React.PureComponent<Props> {
           <p><a href="javascript:;" onClick={this.props.resetDashboard}>
             Reset to default
           </a></p>
+
+          <p><a href="https://tabliss.io/" target="_blank">tabliss.io</a></p>
         </div>
       </div>
     );

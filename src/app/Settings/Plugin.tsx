@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Minus } from 'react-feather';
+import { X } from 'react-feather';
 import { connect, Dispatch } from 'react-redux';
 import { Action, RootState, updateSettings } from '../../data';
 import { Plugin as IPlugin, Settings } from '../../plugins';
@@ -27,7 +27,7 @@ const Plugin: React.StatelessComponent<Props> = (props) => {
           style={{ float: 'right' }}
           title="Remove this widget"
         >
-          <Minus />
+          <X />
         </button>
       }
 

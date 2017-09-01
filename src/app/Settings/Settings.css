@@ -21,8 +21,10 @@
 }
 
 .Settings h1 {
-    color: #3498db;
-    margin: 0;
+    margin: 1rem 0;
+}
+.Settings h1 svg {
+    fill: #3498db;
 }
 
 .Settings h2,
@@ -59,27 +61,6 @@
     display: block;
 }
 
-.Settings .button--primary {
-    border: none;
-    border-bottom: 0.25em solid rgba(0, 0, 0, 0);
-    border-radius: 0.25em;
-    background-color: #3498db;
-    color: white;
-    cursor: pointer;
-    display: inline-block;
-    padding: 0.5em 1em 0.25em;
-    transition: border-color 0.25s ease-out;
-}
-
-.Settings .button--primary:hover {
-    border-color: rgba(0, 0, 0, 0.25);
-}
-
-.Settings .button--primary:disabled {
-    background-color: #bdc3c7;
-    border-color: rgba(0, 0, 0, 0);
-}
-
 .Settings .button--icon {
     background-color: #ecf0f1;
     border: none;
@@ -94,7 +75,6 @@
 }
 
 .Settings .button--icon svg {
-    height: 1rem;
     width: 1rem;
 }
 
