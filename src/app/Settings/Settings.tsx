@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { X } from 'react-feather';
 import { connect } from 'react-redux';
 import Background from './Background';
 import Feedback from './Feedback';
@@ -27,7 +28,7 @@ class Settings extends React.PureComponent<Props> {
 
         <div className="plane">
           <button onClick={this.props.toggleSettings} className="button--icon" style={{float: 'right'}}>
-            <i className="fa fa-times" />
+            <X />
           </button>
 
           <h1>tabliss</h1>

@@ -93,8 +93,9 @@
     transition: background-color 0.25s ease-out;
 }
 
-.Settings .button--icon .fa {
-    vertical-align: top;
+.Settings .button--icon svg {
+    height: 1rem;
+    width: 1rem;
 }
 
 .Settings .button--icon:hover {

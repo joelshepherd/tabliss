@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Minus } from 'react-feather';
 import { connect, Dispatch } from 'react-redux';
 import { Action, RootState, updateSettings } from '../../data';
 import { Plugin as IPlugin, Settings } from '../../plugins';
@@ -20,8 +21,13 @@ const Plugin: React.StatelessComponent<Props> = (props) => {
   return (
     <fieldset className="Plugin">
       {typeof props.onRemove !== 'undefined' &&
-        <button className="button--icon" onClick={props.onRemove} style={{ float: 'right' }}>
-          <i className="fa fa-trash" />
+        <button
+          className="button--icon"
+          onClick={props.onRemove}
+          style={{ float: 'right' }}
+          title="Remove this widget"
+        >
+          <Minus />
         </button>
       }
 

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Circle, Maximize, Minimize, PlusCircle, Settings } from 'react-feather';
 import { connect } from 'react-redux';
 import * as screenfull from 'screenfull';
 import { RootState, toggleFocus, toggleSettings } from '../../data';
@@ -31,14 +32,14 @@ class Overlay extends React.PureComponent<Props, State> {
     return (
       <div className="Overlay">
         <a onClick={this.props.toggleSettings} title="Personalise your dashboard">
-          <i className="fa fa-cog" />
+          <Settings />
         </a>
         <a onClick={this.props.toggleFocus} title="Toggle your widgets">
-          <i className={'fa ' + (this.props.focus ? 'fa-circle-o' : 'fa-circle')} />
+          {this.props.focus ? <PlusCircle /> : <Circle />}
         </a>
         {screenfull.enabled &&
           <a onClick={() => screenfull.toggle()} title="Toggle fullscreen">
-            <i className={'fa ' + (this.state.fullscreen ? 'fa-compress' : 'fa-expand')} />
+            {this.state.fullscreen ? <Minimize /> : <Maximize />}
           </a>
         }
       </div>
