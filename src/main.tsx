@@ -5,12 +5,11 @@ import { App } from './app';
 import { store } from './data/store';
 import registerServiceWorker from './registerServiceWorker';
 
-import 'normalize.css';
-import './index.css';
-
 render(
   <Provider store={store}><App /></Provider>,
   document.getElementById('root'),
 );
 
-registerServiceWorker();
+if (process.env.BUILD_TARGET !== 'ext') {
+  registerServiceWorker();
+}

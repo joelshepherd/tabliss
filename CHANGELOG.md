@@ -1,12 +1,13 @@
 # Changelog
 
-All notable changes to this project will be documented in this file. The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
+All notable changes to this project will be documented in this file.
+The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 ### Added
-- Dashboard component
-- Settings component
+- Dashboard module
+- Settings module
 - Plugin repository
-- (core) New backgrounds: colour, gradient and image.
-- (core) New widgets: time, greeting and message.
-- (extra) New backgrounds: Dribbble, GIPHY and Unsplash.
+- New backgrounds (core): colour, gradient and image.
+- New backgrounds (extra): Dribbble, GIPHY and Unsplash.
+- New widgets (core): time, greeting, message and font.

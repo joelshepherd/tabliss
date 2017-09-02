@@ -1,10 +1,10 @@
-import { debounce } from 'lodash';
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { RootState } from '../../../../data';
 import { defaultProps, officialCollection, UNSPLASH_API_KEY, UNSPLASH_UTM } from './constants';
 import { Image, Settings } from './interfaces';
 import './Unsplash.css';
+const debounce = require('lodash/debounce');
 
 interface Props extends Settings {
   darken: boolean;

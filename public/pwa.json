@@ -3,13 +3,13 @@
   "name": "Tabliss",
   "icons": [
     {
-      "src": "favicon.ico",
-      "sizes": "192x192",
+      "src": "icons/icon-128.png",
+      "sizes": "128x128",
       "type": "image/png"
     }
   ],
   "start_url": "./index.html",
   "display": "standalone",
-  "theme_color": "#000000",
+  "theme_color": "#3498db",
   "background_color": "#ffffff"
 }

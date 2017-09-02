@@ -1,9 +1,10 @@
 import * as React from 'react';
-import { X } from 'react-feather';
 import { connect, Dispatch } from 'react-redux';
 import { Action, RootState, updateSettings } from '../../data';
 import { Plugin as IPlugin, Settings } from '../../plugins';
 import './Plugin.css';
+
+const closeIcon = require('feather-icons/dist/icons/x.svg');
 
 interface OwnProps {
   plugin: IPlugin;
@@ -27,7 +28,7 @@ const Plugin: React.StatelessComponent<Props> = (props) => {
           style={{ float: 'right' }}
           title="Remove this widget"
         >
-          <X />
+          <i dangerouslySetInnerHTML={{ __html: closeIcon }} />
         </button>
       }
 

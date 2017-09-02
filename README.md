@@ -1,6 +1,14 @@
 # Tabliss
 
-A pluggable, customisable newtab web extension written in TypeScript and React.
+A pluggable, customisable new tab web extension written in TypeScript and React.
+
+## Usage
+
+Install dependencies with `npm install` before running the following scripts.
+
+- `npm start` Start webpack dev server for local development at `http://localhost:8080`
+- `npm run build` Production build for web
+- `npm run build:ext` Production build for web extension
 
 ## Why source available?
 

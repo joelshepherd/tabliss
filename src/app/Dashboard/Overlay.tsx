@@ -1,9 +1,14 @@
 import * as React from 'react';
-import { Circle, Maximize, Minimize, PlusCircle, Settings } from 'react-feather';
 import { connect } from 'react-redux';
 import * as screenfull from 'screenfull';
 import { RootState, toggleFocus, toggleSettings } from '../../data';
 import './Overlay.css';
+
+const circleIcon = require('feather-icons/dist/icons/circle.svg');
+const maximiseIcon = require('feather-icons/dist/icons/maximize.svg');
+const minimiseIcon = require('feather-icons/dist/icons/minimize.svg');
+const plusCircleIcon = require('feather-icons/dist/icons/plus-circle.svg');
+const settingsIcon = require('feather-icons/dist/icons/settings.svg');
 
 interface Props {
   focus: boolean;
@@ -32,14 +37,14 @@ class Overlay extends React.PureComponent<Props, State> {
     return (
       <div className="Overlay">
         <a onClick={this.props.toggleSettings} title="Personalise your dashboard">
-          <Settings />
+          <i dangerouslySetInnerHTML={{ __html: settingsIcon }} />
         </a>
         <a onClick={this.props.toggleFocus} title="Toggle your widgets">
-          {this.props.focus ? <PlusCircle /> : <Circle />}
+          <i dangerouslySetInnerHTML={{ __html: this.props.focus ? circleIcon : plusCircleIcon }} />
         </a>
         {screenfull.enabled &&
           <a onClick={() => screenfull.toggle()} title="Toggle fullscreen">
-            {this.state.fullscreen ? <Minimize /> : <Maximize />}
+            <i dangerouslySetInnerHTML={{ __html: this.state.fullscreen ? minimiseIcon : maximiseIcon }} />
           </a>
         }
       </div>

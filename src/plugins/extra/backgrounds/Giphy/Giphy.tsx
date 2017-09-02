@@ -1,9 +1,9 @@
-import { debounce } from 'lodash';
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { RootState } from '../../../../data';
 import './Giphy.css';
 const giphyLogo = require('./giphy-logo.png');
+const debounce = require('lodash/debounce');
 
 // @TODO Extract to a environment variable
 const GIPHY_API_KEY = 'GIPHY_API_KEY';
