@@ -1,16 +1,16 @@
 import * as React from 'react';
-import { connect } from 'react-redux';
+import { ActionCreator, connect } from 'react-redux';
 import Background from './Background';
 import Feedback from './Feedback';
 import Widgets from './Widgets';
-import { resetDashboard, toggleSettings } from '../../data';
+import { Action, resetDashboard, toggleSettings } from '../../data';
 import './Settings.css';
 
 const logo = require('../../logo.svg');
 
 interface Props {
-  resetDashboard: () => void;
-  toggleSettings: () => void;
+  resetDashboard: ActionCreator<Action>;
+  toggleSettings: ActionCreator<Action>;
 }
 
 class Settings extends React.PureComponent<Props> {

@@ -1,13 +1,13 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { changeBackground, RootState } from '../../data';
+import { Action, changeBackground, RootState } from '../../data';
 import { getPlugin, getPluginsByType, Plugin as IPlugin, Type } from '../../plugins';
 import Plugin from './Plugin';
 
 interface Props {
   plugin: IPlugin;
   plugins: IPlugin[];
-  changeBackground: React.ChangeEventHandler<HTMLSelectElement>;
+  changeBackground: (event: React.ChangeEvent<HTMLSelectElement>) => Action;
 }
 
 const Background: React.StatelessComponent<Props> = (props) => {

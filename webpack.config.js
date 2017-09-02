@@ -9,7 +9,10 @@ const webpack = require('webpack');
 
 const config = {
   entry: {
-    main: './src/main.tsx',
+    main: [
+      './src/styles.css',
+      './src/main.tsx',
+    ],
   },
   output: {
     path: path.resolve('./dist'),
@@ -28,6 +31,10 @@ const config = {
         loader: 'tslint-loader',
       },
       {
+        test: /\.css$/,
+        use: ExtractTextPlugin.extract('css-loader'),
+      },
+      {
         test: /\.(gif|jpe?g|png)$/,
         loader: 'url-loader',
         options: {
@@ -36,11 +43,8 @@ const config = {
         },
       },
       {
-        test: /\.(sass|css)$/,
-        use: ExtractTextPlugin.extract([
-          'css-loader',
-          'sass-loader',
-        ]),
+        test: /\.sass$/,
+        use: ExtractTextPlugin.extract(['css-loader', 'sass-loader']),
       },
       {
         test: /\.svg$/,
@@ -60,18 +64,6 @@ const config = {
     ]),
     new ExtractTextPlugin('[name].[chunkhash:12].css'),
     new HtmlWebpackPlugin({
-      minify: {
-        removeComments: true,
-        collapseWhitespace: true,
-        removeRedundantAttributes: true,
-        useShortDoctype: true,
-        removeEmptyAttributes: true,
-        removeStyleLinkTypeAttributes: true,
-        keepClosingSlash: true,
-        minifyJS: true,
-        minifyCSS: true,
-        minifyURLs: true,
-      },
       template: './public/index.html',
     }),
     new SWPrecacheWebpackPlugin({

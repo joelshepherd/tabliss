@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { connect } from 'react-redux';
+import { ActionCreator, connect } from 'react-redux';
 import * as screenfull from 'screenfull';
-import { RootState, toggleFocus, toggleSettings } from '../../data';
+import { Action, RootState, toggleFocus, toggleSettings } from '../../data';
 import './Overlay.css';
 
 const circleIcon = require('feather-icons/dist/icons/circle.svg');
@@ -12,8 +12,8 @@ const settingsIcon = require('feather-icons/dist/icons/settings.svg');
 
 interface Props {
   focus: boolean;
-  toggleFocus: () => void;
-  toggleSettings: () => void;
+  toggleFocus: ActionCreator<Action>;
+  toggleSettings: ActionCreator<Action>;
 }
 
 interface State {

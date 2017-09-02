@@ -1,14 +1,14 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { addWidget, removeWidget, RootState } from '../../data';
+import { Action, addWidget, removeWidget, RootState } from '../../data';
 import { getPlugin, getPluginsByType, Plugin as IPlugin, Type } from '../../plugins';
 import Plugin from './Plugin';
 
 interface Props {
   plugins: IPlugin[];
   widgets: IPlugin[];
-  addWidget: (key: string) => void;
-  removeWidget: (key: string) => void;
+  addWidget: (key: string) => Action;
+  removeWidget: (key: string) => Action;
 }
 
 class Widgets extends React.PureComponent<Props> {

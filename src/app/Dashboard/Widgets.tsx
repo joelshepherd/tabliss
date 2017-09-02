@@ -6,19 +6,16 @@ import './Widgets.css';
 
 interface Props {
   focus: boolean;
-  toggleFocus: () => void;
   widgets: string[];
 }
 
-class Widgets extends React.Component<Props> {
-  render() {
-    return (
-      <div className="Widgets">
-        {! this.props.focus && this.props.widgets.map(key => <Plugin key={key} pluginKey={key} />)}
-      </div>
-    );
-  }
-}
+const Widgets: React.StatelessComponent<Props> = (props) => {
+  return (
+    <div className="Widgets">
+      {! props.focus && props.widgets.map(key => <Plugin key={key} pluginKey={key} />)}
+    </div>
+  );
+};
 
 const mapStateToProps = (state: RootState) => {
   return {
