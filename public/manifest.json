@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "Tabliss",
   "version": "1.0.0",
-  "description": "Beautiful new tab page with many customisable backgrounds and widgets.",
+  "description": "A beautiful new tab page with many customisable backgrounds and widgets.",
   "applications": {
     "gecko": {
       "id": "extension@tabliss.io",
@@ -10,11 +10,11 @@
     }
   },
   "icons": {
-    "16": "icons/icon-16.png",
-    "32": "icons/icon-32.png",
-    "48": "icons/icon-48.png",
-    "64": "icons/icon-64.png",
-    "128": "icons/icon-128.png"
+    "16": "icons/16.png",
+    "32": "icons/32.png",
+    "48": "icons/48.png",
+    "96": "icons/96.png",
+    "128": "icons/128.png"
   },
   "chrome_url_overrides": {
     "newtab": "index.html"
