@@ -7,5 +7,4 @@ export const defaultProps = {
   featured: false,
 };
 
-// Currently Official Unsplash curated
-export const officialCollection = 317099;
+export const officialCollection = 1053828;
