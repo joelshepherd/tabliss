@@ -26,11 +26,15 @@ class Overlay extends React.PureComponent<Props, State> {
   };
 
   componentWillMount() {
-    screenfull.on('change', this.onFullscreen);
+    if (screenfull.enabled) {
+      screenfull.on('change', this.onFullscreen);
+    }
   }
 
   componentWillUnmount() {
-    screenfull.off('change', this.onFullscreen);
+    if (screenfull.enabled) {
+      screenfull.off('change', this.onFullscreen);
+    }
   }
 
   render() {
