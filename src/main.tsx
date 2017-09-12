@@ -10,6 +10,6 @@ render(
   document.getElementById('root'),
 );
 
-if (process.env.BUILD_TARGET !== 'ext') {
+if (process.env.BUILD_TARGET === 'web') {
   registerServiceWorker();
 }
