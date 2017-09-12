@@ -8,7 +8,7 @@ interface Props extends Settings {
 }
 
 class UnsplashSettings extends React.PureComponent<Props> {
-  static defaultProps = defaultProps;
+  static defaultProps: Partial<Props> = defaultProps;
 
   render() {
     return (

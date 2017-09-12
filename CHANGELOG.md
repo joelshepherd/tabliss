@@ -6,6 +6,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 ## [Unreleased]
 ### Fixed
 - Issue with fullscreen functionality that breaks mobile clients.
+- Unsplash settings and fetched image sometimes getting out of sync.
 
 ## [1.0.1] - 2017-09-06
 ### Changed

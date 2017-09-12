@@ -5,6 +5,7 @@ export const defaultProps = {
   curated: true,
   darken: true,
   featured: false,
+  search: '',
 };
 
 export const officialCollection = 1053828;
