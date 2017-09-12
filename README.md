@@ -1,6 +1,6 @@
 # Tabliss
 
-A pluggable, customisable new tab web extension written in TypeScript and React.
+A pluggable new tab web extension written in TypeScript, React and Redux.
 
 ## Usage
 
