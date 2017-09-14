@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const path = require('path');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
@@ -77,6 +79,9 @@ const config = {
     new webpack.EnvironmentPlugin({
       BUILD_TARGET: 'web',
       NODE_ENV: 'development',
+      DRIBBBLE_API_KEY: 'DRIBBBLE_API_KEY',
+      GIPHY_API_KEY: 'GIPHY_API_KEY',
+      UNSPLASH_API_KEY: 'UNSPLASH_API_KEY',
     }),
     new webpack.NoEmitOnErrorsPlugin(),
   ],

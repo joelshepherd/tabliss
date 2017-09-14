@@ -4,9 +4,7 @@ import * as parseLinkHeader from 'parse-link-header';
 import { RootState } from '../../../../data';
 import { Shot } from './interfaces';
 import './Dribbble.css';
-
-// @TODO Extract to a environment variable
-const DRIBBBLE_API_KEY = 'DRIBBBLE_API_KEY';
+const DRIBBBLE_API_KEY = process.env.DRIBBBLE_API_KEY;
 
 interface Props {
   focus: boolean;
