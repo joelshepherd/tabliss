@@ -27,7 +27,7 @@ class Unsplash extends React.PureComponent<Props, State> {
 
   componentWillMount() {
     // Fetch or pull from cache current image
-    if (this.props.local.next && this.props.local.next.data) {
+    if (this.props.local && this.props.local.next && this.props.local.next.data) {
       this.setImage(this.props.local.next);
     } else {
       this.fetchImage().then(image => this.setImage(image));
