@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { connect } from 'react-redux';
-import { RootState } from '../../../../data';
+import { ActionCreator, connect } from 'react-redux';
+import { Action, popPending, pushPending, RootState } from '../../../../data';
 import './Giphy.css';
 const GIPHY_API_KEY = process.env.GIPHY_API_KEY;
 const giphyLogo = require('./giphy-logo.png');
@@ -9,9 +9,11 @@ const debounce = require('lodash/debounce');
 interface Props {
   expand?: boolean;
   focus: boolean;
-  nsfw?: boolean;
-  tag?: string;
   local: State;
+  nsfw?: boolean;
+  popPending: ActionCreator<Action>;
+  pushPending: ActionCreator<Action>;
+  tag?: string;
   setLocal: (state: State) => void;
 }
 
@@ -102,8 +104,10 @@ class Giphy extends React.PureComponent<Props, State> {
         + (tag ? `&tag=${tag}` : '')
     );
 
+    this.props.pushPending();
     const res = await (await fetch(request)).json();
     const data = await (await fetch(res.data.image_original_url)).blob();
+    this.props.popPending();
 
     return {
       data,
@@ -125,4 +129,6 @@ const mapStateToProps = (state: RootState) => {
   return { focus: state.ui.focus };
 };
 
-export default connect(mapStateToProps)(Giphy);
+const mapDispatchToProps = { popPending, pushPending };
+
+export default connect(mapStateToProps, mapDispatchToProps)(Giphy);

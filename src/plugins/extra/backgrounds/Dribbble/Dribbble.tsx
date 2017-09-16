@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { connect } from 'react-redux';
+import { ActionCreator, connect } from 'react-redux';
 import * as parseLinkHeader from 'parse-link-header';
-import { RootState } from '../../../../data';
+import { Action, popPending, pushPending, RootState } from '../../../../data';
 import { Shot } from './interfaces';
 import './Dribbble.css';
 const DRIBBBLE_API_KEY = process.env.DRIBBBLE_API_KEY;
@@ -9,6 +9,8 @@ const DRIBBBLE_API_KEY = process.env.DRIBBBLE_API_KEY;
 interface Props {
   focus: boolean;
   quality: string;
+  popPending: ActionCreator<Action>;
+  pushPending: ActionCreator<Action>;
 }
 
 interface State {
@@ -85,6 +87,7 @@ class Dribbble extends React.PureComponent<Props, State> {
     );
 
     this.setState({ nextLink: undefined });
+    this.props.pushPending();
 
     return fetch(request)
       .then(res => {
@@ -95,9 +98,12 @@ class Dribbble extends React.PureComponent<Props, State> {
 
         return res.json();
       })
-      .then(shots => this.setState({
-        shots: [...this.state.shots, ...shots],
-      }));
+      .then(shots => {
+        this.setState({
+          shots: [...this.state.shots, ...shots],
+        });
+        this.props.popPending();
+      });
   }
 
   private onScroll() {
@@ -115,4 +121,6 @@ const mapStateToProps = (state: RootState) => {
   return { focus: state.ui.focus };
 };
 
-export default connect(mapStateToProps)(Dribbble);
+const mapDispatchToProps = { popPending, pushPending };
+
+export default connect(mapStateToProps, mapDispatchToProps)(Dribbble);

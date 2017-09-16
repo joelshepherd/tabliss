@@ -27,5 +27,6 @@ export interface Storage {
 // Ui slice
 export interface Ui {
   focus: boolean;
+  pending: number;
   settings: boolean;
 }

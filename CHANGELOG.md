@@ -4,8 +4,9 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
-### Changed
-- Feedback is now an inline form rather than a mailto link.
+### Added
+- Loading icon that indicates when a plugin is fetching data.
+- Inline form for feedback and suggestions.
 
 ### Fixed
 - Issue with fullscreen functionality that breaks mobile clients.

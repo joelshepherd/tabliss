@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { connect } from 'react-redux';
-import { RootState } from '../../../../data';
+import { ActionCreator, connect } from 'react-redux';
+import { Action, popPending, pushPending, RootState } from '../../../../data';
 import { defaultProps, officialCollection, UNSPLASH_API_KEY, UNSPLASH_UTM } from './constants';
 import { Image, Settings } from './interfaces';
 import './Unsplash.css';
@@ -10,6 +10,8 @@ interface Props extends Settings {
   darken: boolean;
   focus: boolean;
   local: State;
+  popPending: ActionCreator<Action>;
+  pushPending: ActionCreator<Action>;
   setLocal: (state: Partial<State>) => void;
 }
 
@@ -90,8 +92,10 @@ class Unsplash extends React.PureComponent<Props, State> {
       : 'orientation=landscape' + (featured ? '&featured=true' : '') + (search ? `&query=${search}` : '')
     );
 
+    this.props.pushPending();
     const res = await (await fetch(url, { headers })).json();
     const data = await (await fetch(res.urls.raw + '?q=85&w=1920')).blob();
+    this.props.popPending();
 
     return {
       data,
@@ -116,4 +120,6 @@ const mapStateToProps = (state: RootState) => {
   return { focus: state.ui.focus };
 };
 
-export default connect(mapStateToProps)(Unsplash);
+const mapDispatchToProps = { popPending, pushPending };
+
+export default connect(mapStateToProps, mapDispatchToProps)(Unsplash);
