@@ -6,6 +6,7 @@ import Widgets from './Widgets';
 import { Action, resetDashboard, toggleSettings } from '../../data';
 import './Settings.css';
 
+const ESCAPE_KEY = 27;
 const logo = require('../../logo.svg');
 
 interface Props {
@@ -32,12 +33,11 @@ class Settings extends React.PureComponent<Props> {
 
           <Background />
           <Widgets />
-          <Feedback />
 
           <p><a href="javascript:;" onClick={this.props.resetDashboard}>
             Reset to default
           </a></p>
-
+          <Feedback />
           <p><a href="https://tabliss.io/" target="_blank">tabliss.io</a></p>
         </div>
       </div>
@@ -45,7 +45,7 @@ class Settings extends React.PureComponent<Props> {
   }
 
   private onKeyDown = (event: KeyboardEvent) => {
-    if (event.keyCode === 27) {
+    if (event.keyCode === ESCAPE_KEY) {
       this.props.toggleSettings();
     }
   }

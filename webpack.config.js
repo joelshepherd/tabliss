@@ -79,9 +79,10 @@ const config = {
     new webpack.EnvironmentPlugin({
       BUILD_TARGET: 'web',
       NODE_ENV: 'development',
-      DRIBBBLE_API_KEY: 'DRIBBBLE_API_KEY',
-      GIPHY_API_KEY: 'GIPHY_API_KEY',
-      UNSPLASH_API_KEY: 'UNSPLASH_API_KEY',
+      API_ENDPOINT: 'https://api.tabliss.io',
+      DRIBBBLE_API_KEY: null,
+      GIPHY_API_KEY: null,
+      UNSPLASH_API_KEY: null,
     }),
     new webpack.NoEmitOnErrorsPlugin(),
   ],

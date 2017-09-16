@@ -61,6 +61,31 @@
     display: block;
 }
 
+
+.Settings .button--primary {
+    border: 1px solid rgba(0, 0, 0, 0);
+    border-bottom-width: 3px;
+    border-radius: 0.2em;
+    background-color: #3498db;
+    color: white;
+    cursor: pointer;
+    display: inline-block;
+    margin: 1px 0;
+    padding: 0.5em 1em;
+    text-decoration: none;
+    transition: border-color 0.25s ease-out;
+}
+
+.Settings .button--primary:hover {
+    border-color: rgba(0, 0, 0, 0.25)
+}
+
+.Settings .button--primary:disabled {
+    background-color: #bdc3c7;
+    border-color: rgba(0, 0, 0, 0);
+    cursor: default;
+}
+
 .Settings .button--icon {
     background-color: #ecf0f1;
     border: none;
