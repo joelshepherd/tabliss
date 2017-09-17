@@ -21,7 +21,7 @@ class Widgets extends React.PureComponent<Props> {
           <label>
             Add a new widget
             <select value={''} onChange={event => this.add(event.target.value)}>
-              <option value={''}>Select to add</option>
+              <option value={''}>Select widget</option>
               {this.props.plugins.map(plugin =>
                 <option key={plugin.key} value={plugin.key}>{plugin.title}</option>
               )}

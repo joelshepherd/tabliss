@@ -4,7 +4,7 @@ import Background from './Background';
 import Feedback from './Feedback';
 import Widgets from './Widgets';
 import { Action, resetDashboard, toggleSettings } from '../../data';
-import './Settings.css';
+import './Settings.sass';
 
 const ESCAPE_KEY = 27;
 const logo = require('../../logo.svg');

@@ -10,5 +10,5 @@ trim_trailing_whitespace = true
 [*.{jsx?,tsx?}]
 indent_size = 2
 
-[*.{html,css,svg}]
+[*.{html,css,sass,svg}]
 indent_size = 4
