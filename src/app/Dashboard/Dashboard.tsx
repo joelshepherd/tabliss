@@ -4,15 +4,19 @@ import { RootState } from '../../data';
 import Background from './Background';
 import Overlay from './Overlay';
 import Widgets from './Widgets';
-import './Dashboard.css';
+import './Dashboard.sass';
 
 interface Props {
   booted: boolean;
 }
 
 const Dashboard: React.StatelessComponent<Props> = (props) => {
+  if (! props.booted) {
+    return <div className="Dashboard" />;
+  }
+
   return (
-    <div className={'Dashboard' + (props.booted ? ' booted' : '')}>
+    <div className="Dashboard booted">
       <Background />
       <Widgets />
       <Overlay />

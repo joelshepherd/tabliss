@@ -1,5 +1,5 @@
 import * as React from 'react';
-import './Image.css';
+import './Image.sass';
 const image = require('./image.jpg');
 
 interface Props {

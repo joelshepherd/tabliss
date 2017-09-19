@@ -2,7 +2,7 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { RootState } from '../../data';
 import Plugin from './Plugin';
-import './Widgets.css';
+import './Widgets.sass';
 
 interface Props {
   focus: boolean;

@@ -2,9 +2,10 @@ import * as React from 'react';
 import { connect, Dispatch } from 'react-redux';
 import { Action, RootState, updateSettings } from '../../data';
 import { Plugin as IPlugin, Settings } from '../../plugins';
-import './Plugin.css';
-
+import './Plugin.sass';
 const closeIcon = require('feather-icons/dist/icons/x.svg');
+const expandIcon = require('feather-icons/dist/icons/chevron-down.svg');
+const collapseIcon = require('feather-icons/dist/icons/chevron-up.svg');
 
 interface OwnProps {
   plugin: IPlugin;
@@ -16,28 +17,51 @@ interface Props extends OwnProps {
   updateSettings: (settings: Settings) => void;
 }
 
-const Plugin: React.StatelessComponent<Props> = (props) => {
-  const Component = props.plugin.Settings;
+interface State {
+  open: boolean;
+}
 
-  return (
-    <fieldset className="Plugin">
-      {typeof props.onRemove !== 'undefined' &&
-        <button
-          className="button--icon"
-          onClick={props.onRemove}
-          style={{ float: 'right' }}
-          title="Remove this widget"
-        >
-          <i dangerouslySetInnerHTML={{ __html: closeIcon }} />
-        </button>
-      }
+class Plugin extends React.PureComponent<Props, State> {
+  state: State = {
+    open: typeof this.props.onRemove === 'undefined',
+  };
 
-      <h4>{props.plugin.title} settings</h4>
+  render() {
+    const Component = this.props.plugin.Settings;
 
-      {Component && <Component {...props.settings} onChange={props.updateSettings} />}
-    </fieldset>
-  );
-};
+    return (
+      <fieldset className="Plugin">
+        {typeof this.props.onRemove !== 'undefined' &&
+          <div>
+            <button
+              className="button--icon"
+              onClick={this.props.onRemove}
+              style={{ float: 'right' }}
+              title="Remove this widget"
+            >
+              <i dangerouslySetInnerHTML={{ __html: closeIcon }} />
+            </button>
+
+            <button
+              className="button--icon"
+              onClick={this.toggle}
+              style={{ float: 'right', marginRight: '0.5rem' }}
+              title="Remove this widget"
+            >
+              <i dangerouslySetInnerHTML={{ __html: this.state.open ? collapseIcon : expandIcon }} />
+            </button>
+          </div>
+        }
+
+        <h4>{this.props.plugin.title}</h4>
+
+        {this.state.open && Component && <Component {...this.props.settings} onChange={this.props.updateSettings} />}
+      </fieldset>
+    );
+  }
+
+  private toggle = () => this.setState({ open: ! this.state.open });
+}
 
 const mapStateToProps = (state: RootState, props: OwnProps) => {
   return {

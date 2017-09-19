@@ -8,10 +8,11 @@ import {
 import { Dashboard } from '../interfaces';
 
 const initialState = {
-  background: 'core/backgrounds/image',
+  background: 'extra/backgrounds/unsplash',
   widgets: [
     'core/widgets/time',
     'core/widgets/greeting',
+    'core/widgets/font',
   ],
 };
 

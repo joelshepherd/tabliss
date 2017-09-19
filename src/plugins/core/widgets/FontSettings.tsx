@@ -5,14 +5,16 @@ interface Props {
   colour?: string;
   family?: string;
   size?: number;
+  weight?: number;
   onChange: (settings: Settings) => void;
 }
 
 class FontSettings extends React.PureComponent<Props> {
   static defaultProps = {
     colour: '#ffffff',
-    family: 'serif',
-    size: 14,
+    family: '',
+    size: 28,
+    weight: 400,
   };
 
   render() {
@@ -34,6 +36,19 @@ class FontSettings extends React.PureComponent<Props> {
             value={this.props.size}
             onChange={event => this.props.onChange({ size: event.target.value })}
           />
+        </label>
+
+        <label>
+          Weight override
+          <select value={this.props.weight} onChange={event => this.props.onChange({ weight: event.target.value})}>
+            <option value={undefined}>None</option>
+            <option value={100}>Thin</option>
+            <option value={300}>Light</option>
+            <option value={400}>Regular</option>
+            <option value={500}>Medium</option>
+            <option value={700}>Bold</option>
+            <option value={900}>Black</option>
+          </select>
         </label>
 
         <label>

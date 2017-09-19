@@ -14,7 +14,6 @@ class ImageSettings extends React.PureComponent<Props> {
     return (
       <div>
         <label>
-          Select image
           <input
             accept="image/*"
             type="file"

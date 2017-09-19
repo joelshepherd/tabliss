@@ -4,7 +4,7 @@ import * as CSSTransition from 'react-transition-group/CSSTransition';
 import { RootState } from '../data';
 import { Dashboard } from './Dashboard';
 import { Settings } from './Settings';
-import './App.css';
+import './App.sass';
 
 interface Props {
   settings: boolean;

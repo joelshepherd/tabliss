@@ -8,14 +8,6 @@
     "build:ext": "NODE_ENV=production BUILD_TARGET=extension webpack"
   },
   "dependencies": {
-    "@types/lodash": "^4.14.73",
-    "@types/node": "^8.0.26",
-    "@types/parse-link-header": "^1.0.0",
-    "@types/react": "^16.0.5",
-    "@types/react-dom": "^15.5.3",
-    "@types/react-redux": "^5.0.6",
-    "@types/react-transition-group": "^2.0.4",
-    "@types/screenfull": "^3.3.0",
     "feather-icons": "^3.2.2",
     "localforage": "^1.5.0",
     "lodash": "^4.17.4",
@@ -31,6 +23,14 @@
     "screenfull": "^3.3.1"
   },
   "devDependencies": {
+    "@types/lodash": "^4.14.73",
+    "@types/node": "^8.0.28",
+    "@types/parse-link-header": "^1.0.0",
+    "@types/react": "^16.0.5",
+    "@types/react-dom": "^15.5.3",
+    "@types/react-redux": "^5.0.8",
+    "@types/react-transition-group": "^2.0.4",
+    "@types/screenfull": "^3.3.0",
     "babel-minify-webpack-plugin": "^0.2.0",
     "clean-webpack-plugin": "^0.1.16",
     "copy-webpack-plugin": "^4.0.1",
@@ -44,13 +44,13 @@
     "sass-loader": "^6.0.6",
     "source-map-loader": "^0.2.1",
     "sw-precache-webpack-plugin": "^0.11.4",
-    "ts-loader": "^2.3.4",
+    "ts-loader": "^2.3.7",
     "tslint": "^5.7.0",
     "tslint-loader": "^3.5.3",
     "tslint-react": "^3.0.0",
     "typescript": "^2.5.0",
     "url-loader": "^0.5.9",
-    "webpack": "^3.5.5",
-    "webpack-dev-server": "^2.7.1"
+    "webpack": "^3.6.0",
+    "webpack-dev-server": "^2.8.2"
   }
 }

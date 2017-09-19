@@ -16,7 +16,7 @@ import {
 registerPlugin({
   key: 'core/backgrounds/colour',
   type: Type.BACKGROUND,
-  title: 'Colour',
+  title: 'Solid Colour',
   Dashboard: Colour,
   Settings: ColourSettings,
 });
@@ -24,7 +24,7 @@ registerPlugin({
 registerPlugin({
   key: 'core/backgrounds/gradient',
   type: Type.BACKGROUND,
-  title: 'Gradient',
+  title: 'Colour Gradient',
   Dashboard: Gradient,
   Settings: GradientSettings,
 });
@@ -32,7 +32,7 @@ registerPlugin({
 registerPlugin({
   key: 'core/backgrounds/image',
   type: Type.BACKGROUND,
-  title: 'Image',
+  title: 'Upload Image',
   Dashboard: Image,
   Settings: ImageSettings,
 });
@@ -65,7 +65,7 @@ registerPlugin({
 registerPlugin({
   key: 'core/widgets/font',
   type: Type.WIDGET,
-  title: 'Font',
+  title: 'Font Settings',
   Dashboard: Font,
   Settings: FontSettings,
 });

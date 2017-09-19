@@ -64,7 +64,7 @@ class UnsplashSettings extends React.PureComponent<Props> {
             onChange={event => this.props.onChange({ darken: ! this.props.darken })}
           />
           {' '}
-          Slightly darken background
+          Slightly darken
         </label>
       </div>
     );

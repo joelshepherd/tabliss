@@ -2,14 +2,14 @@ import * as React from 'react';
 import { ActionCreator, connect } from 'react-redux';
 import * as screenfull from 'screenfull';
 import { Action, RootState, toggleFocus, toggleSettings } from '../../data';
-import './Overlay.css';
+import './Overlay.sass';
 
 const maximiseIcon = require('feather-icons/dist/icons/maximize-2.svg');
 const minimiseIcon = require('feather-icons/dist/icons/minimize-2.svg');
 const settingsIcon = require('feather-icons/dist/icons/settings.svg');
 const eyeIcon = require('feather-icons/dist/icons/eye.svg');
 const eyeOffIcon = require('feather-icons/dist/icons/eye-off.svg');
-const pendingIcon = require('feather-icons/dist/icons/download-cloud.svg');
+const pendingIcon = require('feather-icons/dist/icons/zap.svg');
 
 interface Props {
   focus: boolean;
@@ -51,7 +51,9 @@ class Overlay extends React.PureComponent<Props, State> {
             <i dangerouslySetInnerHTML={{ __html: this.state.fullscreen ? minimiseIcon : maximiseIcon }} />
           </a>
         }
-      {this.props.pending && <span><i dangerouslySetInnerHTML={{ __html: pendingIcon }} /></span>}
+      {this.props.pending && <span title="Loading next background">
+        <i dangerouslySetInnerHTML={{ __html: pendingIcon }} />
+      </span>}
       </div>
     );
   }

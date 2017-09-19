@@ -6,7 +6,7 @@ interface Props {
   onChange: (settings: Settings) => void;
 }
 
-const MessageSettings: React.StatelessComponent<Props> = ({ message = 'Something witty', onChange }) => {
+const MessageSettings: React.StatelessComponent<Props> = ({ message = 'Write something witty', onChange }) => {
   return (
     <div>
       <label>

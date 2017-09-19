@@ -3,7 +3,7 @@ import { ActionCreator, connect } from 'react-redux';
 import { Action, popPending, pushPending, RootState } from '../../../../data';
 import { defaultProps, officialCollection, UNSPLASH_API_KEY, UNSPLASH_UTM } from './constants';
 import { Image, Settings } from './interfaces';
-import './Unsplash.css';
+import './Unsplash.sass';
 const debounce = require('lodash/debounce');
 
 interface Props extends Settings {

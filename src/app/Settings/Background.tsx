@@ -15,16 +15,13 @@ const Background: React.StatelessComponent<Props> = (props) => {
     <div>
       <h3>Background</h3>
 
-      <div className="box">
-        <label>
-          Select a background provider
-          <select value={props.plugin.key} onChange={props.changeBackground}>
-            {props.plugins.map(plugin =>
-              <option key={plugin.key} value={plugin.key}>{plugin.title}</option>
-            )}
-          </select>
-        </label>
-      </div>
+      <label>
+        <select value={props.plugin.key} onChange={props.changeBackground} className="primary">
+          {props.plugins.map(plugin =>
+            <option key={plugin.key} value={plugin.key}>{plugin.title}</option>
+          )}
+        </select>
+      </label>
 
       {props.plugin.Settings && <Plugin key={props.plugin.key} plugin={props.plugin} />}
     </div>

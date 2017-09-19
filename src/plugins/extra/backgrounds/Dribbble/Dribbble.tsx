@@ -3,7 +3,7 @@ import { ActionCreator, connect } from 'react-redux';
 import * as parseLinkHeader from 'parse-link-header';
 import { Action, popPending, pushPending, RootState } from '../../../../data';
 import { Shot } from './interfaces';
-import './Dribbble.css';
+import './Dribbble.sass';
 const DRIBBBLE_API_KEY = process.env.DRIBBBLE_API_KEY;
 
 interface Props {

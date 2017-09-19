@@ -8,7 +8,7 @@ interface Props {
 
 class ColourSettings extends React.PureComponent<Props> {
   static defaultProps = {
-    colour: '#185a9d',
+    colour: '#3498db',
   };
 
   render() {

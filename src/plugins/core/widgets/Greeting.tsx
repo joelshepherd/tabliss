@@ -10,7 +10,7 @@ interface State {
 
 class Greeting extends React.PureComponent<Props, State> {
   static defaultProps = {
-    name: 'Human',
+    name: '',
   };
 
   state = {

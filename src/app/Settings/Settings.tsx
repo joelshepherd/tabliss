@@ -5,9 +5,8 @@ import Feedback from './Feedback';
 import Widgets from './Widgets';
 import { Action, resetDashboard, toggleSettings } from '../../data';
 import './Settings.sass';
-
-const ESCAPE_KEY = 27;
 const logo = require('../../logo.svg');
+const ESCAPE_KEY = 27;
 
 interface Props {
   resetDashboard: ActionCreator<Action>;
@@ -34,10 +33,10 @@ class Settings extends React.PureComponent<Props> {
           <Background />
           <Widgets />
 
+          <Feedback />
           <p><a href="javascript:;" onClick={this.props.resetDashboard}>
             Reset to default
           </a></p>
-          <Feedback />
           <p><a href="https://tabliss.io/" target="_blank">tabliss.io</a></p>
         </div>
       </div>

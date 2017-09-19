@@ -9,9 +9,9 @@ interface Props {
 
 class Gradient extends React.PureComponent<Props> {
   static defaultProps: Props = {
-    angle: 45,
-    from : '#43cea2',
-    to: '#185a9d',
+    angle: 0,
+    from : '#3498db',
+    to: '#9b59b6',
     type: 'linear-gradient',
   };
 
