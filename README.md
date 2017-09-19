@@ -2,6 +2,8 @@
 
 A pluggable new tab web extension written in TypeScript, React and Redux.
 
+[https://tabliss.io](https://tabliss.io)
+
 ## Usage
 
 Install dependencies with `npm install` before running the following scripts.
