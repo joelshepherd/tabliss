@@ -108,10 +108,14 @@ if (process.env.NODE_ENV === 'production') {
   }));
 }
 
-// Extension build target
-if (process.env.BUILD_TARGET === 'extension') {
+// Extension build targets
+if (process.env.BUILD_TARGET === 'chrome' || process.env.BUILD_TARGET === 'firefox') {
   config.devtool = false;
   config.plugins = config.plugins.filter(plugin => ! (plugin instanceof SWPrecacheWebpackPlugin));
+  config.plugins.push(new CopyWebpackPlugin([{
+    from: `src/manifest_${process.env.BUILD_TARGET}.json`,
+    to: 'manifest.json',
+  }]));
 }
 
 module.exports = config;

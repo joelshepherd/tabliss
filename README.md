@@ -10,7 +10,8 @@ Install dependencies with `npm install` before running the following scripts.
 
 - `npm start` Start webpack dev server for local development at `http://localhost:8080`
 - `npm run build` Production build for web
-- `npm run build:ext` Production build for web extension
+- `npm run build:chrome` Production build for Chrome web extension
+- `npm run build:firefox` Production build for Firefox web extension
 
 ## Why source available?
 

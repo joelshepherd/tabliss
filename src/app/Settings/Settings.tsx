@@ -5,7 +5,7 @@ import Feedback from './Feedback';
 import Widgets from './Widgets';
 import { Action, resetDashboard, toggleSettings } from '../../data';
 import './Settings.sass';
-const logo = require('../../logo.svg');
+const logo = require('./logo.svg');
 const ESCAPE_KEY = 27;
 
 interface Props {

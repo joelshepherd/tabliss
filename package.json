@@ -5,7 +5,8 @@
   "scripts": {
     "start": "webpack-dev-server",
     "build": "NODE_ENV=production webpack",
-    "build:ext": "NODE_ENV=production BUILD_TARGET=extension webpack"
+    "build:chrome": "NODE_ENV=production BUILD_TARGET=chrome webpack",
+    "build:firefox": "NODE_ENV=production BUILD_TARGET=firefox webpack"
   },
   "dependencies": {
     "feather-icons": "^3.2.2",
@@ -23,6 +24,7 @@
     "screenfull": "^3.3.1"
   },
   "devDependencies": {
+    "@types/chrome": "0.0.48",
     "@types/lodash": "^4.14.73",
     "@types/node": "^8.0.28",
     "@types/parse-link-header": "^1.0.0",

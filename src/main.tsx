@@ -3,7 +3,6 @@ import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { App } from './app';
 import { store } from './data/store';
-import registerServiceWorker from './registerServiceWorker';
 
 render(
   <Provider store={store}><App /></Provider>,
@@ -11,5 +10,5 @@ render(
 );
 
 if (process.env.BUILD_TARGET === 'web') {
-  registerServiceWorker();
+  require('./registerServiceWorker')();
 }
