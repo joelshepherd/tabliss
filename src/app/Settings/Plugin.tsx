@@ -3,9 +3,9 @@ import { connect, Dispatch } from 'react-redux';
 import { Action, RootState, updateSettings } from '../../data';
 import { Plugin as IPlugin, Settings } from '../../plugins';
 import './Plugin.sass';
-const closeIcon = require('feather-icons/dist/icons/x.svg');
-const expandIcon = require('feather-icons/dist/icons/chevron-down.svg');
-const collapseIcon = require('feather-icons/dist/icons/chevron-up.svg');
+const removeIcon = require('feather-icons/dist/icons/trash.svg');
+const expandIcon = require('feather-icons/dist/icons/settings.svg');
+const collapseIcon = require('feather-icons/dist/icons/chevrons-up.svg');
 
 interface OwnProps {
   plugin: IPlugin;
@@ -23,37 +23,31 @@ interface State {
 
 class Plugin extends React.PureComponent<Props, State> {
   state: State = {
-    open: typeof this.props.onRemove === 'undefined',
+    open: this.props.onRemove === undefined,
   };
 
   render() {
+    const togglable = this.props.onRemove !== undefined;
     const Component = this.props.plugin.Settings;
 
     return (
       <fieldset className="Plugin">
-        {typeof this.props.onRemove !== 'undefined' &&
-          <div>
-            <button
-              className="button--icon"
-              onClick={this.props.onRemove}
-              style={{ float: 'right' }}
-              title="Remove this widget"
-            >
-              <i dangerouslySetInnerHTML={{ __html: closeIcon }} />
-            </button>
+        {togglable
+          ? <div className="title--buttons">
+              <button className="button--icon" onClick={this.toggle} title="Edit widget settings">
+                <i dangerouslySetInnerHTML={{ __html: this.state.open ? collapseIcon : expandIcon }} />
+              </button>
 
-            <button
-              className="button--icon"
-              onClick={this.toggle}
-              style={{ float: 'right', marginRight: '0.5rem' }}
-              title="Remove this widget"
-            >
-              <i dangerouslySetInnerHTML={{ __html: this.state.open ? collapseIcon : expandIcon }} />
-            </button>
-          </div>
+              {this.state.open &&
+                <button className="button--icon" onClick={this.props.onRemove} title="Remove widget">
+                  <i dangerouslySetInnerHTML={{ __html: removeIcon }} />
+                </button>
+              }
+
+              <h4 onClick={this.toggle}>{this.props.plugin.title}</h4>
+            </div>
+          : <h4>{this.props.plugin.title}</h4>
         }
-
-        <h4>{this.props.plugin.title}</h4>
 
         {this.state.open && Component && <Component {...this.props.settings} onChange={this.props.updateSettings} />}
       </fieldset>

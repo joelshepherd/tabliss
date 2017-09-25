@@ -7,6 +7,9 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 ### Added
 - Open newtab page in Chrome on extension install and browser action button clicked.
 
+## Changed
+- Improved widget settings to be more intuitive.
+
 ## [1.1.0] - 2017-09-19
 ### Changed
 - The great styles update

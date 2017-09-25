@@ -17,14 +17,16 @@ class Widgets extends React.PureComponent<Props> {
       <div>
         <h3>Widgets</h3>
 
-        <label>
-          <select value={''} onChange={event => this.add(event.target.value)} className="primary">
-            <option value={''}>Add a new widget</option>
-            {this.props.plugins.map(plugin =>
-              <option key={plugin.key} value={plugin.key}>{plugin.title}</option>
-            )}
-          </select>
-        </label>
+        {this.props.plugins.length > 0 &&
+          <label>
+            <select value={''} onChange={event => this.add(event.target.value)} className="primary">
+              <option value={''}>Add a new widget</option>
+              {this.props.plugins.map(plugin =>
+                <option key={plugin.key} value={plugin.key}>{plugin.title}</option>
+              )}
+            </select>
+          </label>
+        }
 
         {this.props.widgets.length === 0
           ? <p>No widgets selected.</p>
