@@ -3,9 +3,9 @@ import { connect, Dispatch } from 'react-redux';
 import { Action, RootState, updateSettings } from '../../data';
 import { Plugin as IPlugin, Settings } from '../../plugins';
 import './Plugin.sass';
-const removeIcon = require('feather-icons/dist/icons/trash.svg');
+const removeIcon = require('feather-icons/dist/icons/trash-2.svg');
 const expandIcon = require('feather-icons/dist/icons/settings.svg');
-const collapseIcon = require('feather-icons/dist/icons/chevrons-up.svg');
+const collapseIcon = require('feather-icons/dist/icons/x.svg');
 
 interface OwnProps {
   plugin: IPlugin;
@@ -34,7 +34,11 @@ class Plugin extends React.PureComponent<Props, State> {
       <fieldset className="Plugin">
         {togglable
           ? <div className="title--buttons">
-              <button className="button--icon" onClick={this.toggle} title="Edit widget settings">
+              <button
+                className="button--icon"
+                onClick={this.toggle}
+                title={`${this.state.open ? 'Close' : 'Edit'} widget settings`}
+              >
                 <i dangerouslySetInnerHTML={{ __html: this.state.open ? collapseIcon : expandIcon }} />
               </button>
 

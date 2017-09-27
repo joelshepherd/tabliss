@@ -3,6 +3,7 @@ const closeIcon = require('feather-icons/dist/icons/x.svg');
 
 interface State {
   body: string;
+  email: string;
   open: boolean;
   pending: boolean;
 }
@@ -10,6 +11,7 @@ interface State {
 class Feedback extends React.PureComponent<{}, State> {
   state: State = {
     body: '',
+    email: '',
     open: false,
     pending: false,
   };
@@ -23,11 +25,18 @@ class Feedback extends React.PureComponent<{}, State> {
 
         {this.state.open &&
           <div>
+            <input
+              type="email"
+              value={this.state.email}
+              onChange={event => this.setState({ email: event.target.value })}
+              placeholder="Your email (optional)"
+            />
+
             <textarea
               value={this.state.body}
               rows={3}
               onChange={event => this.setState({ body: event.target.value })}
-              placeholder="Add your feedback or suggestion..."
+              placeholder="Your feedback or suggestion"
             />
 
             <button className="button--icon" onClick={this.toggle} style={{ float: 'right' }}>
@@ -50,7 +59,7 @@ class Feedback extends React.PureComponent<{}, State> {
     const request = new Request(`${process.env.API_ENDPOINT}/v1/feedback`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ feedback: this.state.body }),
+      body: JSON.stringify({ email: this.state.email || undefined, feedback: this.state.body }),
     });
 
     fetch(request)
