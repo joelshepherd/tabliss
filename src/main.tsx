@@ -10,5 +10,5 @@ render(
 );
 
 if (process.env.BUILD_TARGET === 'web') {
-  require('./registerServiceWorker')();
+  require('./serviceWorker').register();
 }

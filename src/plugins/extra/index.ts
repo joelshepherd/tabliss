@@ -5,6 +5,7 @@ import {
   Giphy, GiphySettings,
   Unsplash, UnsplashSettings
 } from './backgrounds';
+import { Search, SearchSettings } from './widgets';
 
 registerPlugin({
   key: 'extra/backgrounds/dribbble',
@@ -28,4 +29,12 @@ registerPlugin({
   title: 'Unsplash',
   Dashboard: Unsplash,
   Settings: UnsplashSettings,
+});
+
+registerPlugin({
+  key: 'extra/widgets/search',
+  type: Type.WIDGET,
+  title: 'Search Box',
+  Dashboard: Search,
+  Settings: SearchSettings,
 });

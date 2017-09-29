@@ -5,8 +5,9 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 ### Added
+- New widget (core): search box.
 - Open newtab page in Chrome on extension install and browser action button clicked.
-- New optional email field for the feedback form
+- Optional email field for the feedback form.
 
 ## Changed
 - Improved widget settings to be more intuitive.
