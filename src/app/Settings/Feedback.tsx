@@ -56,7 +56,7 @@ class Feedback extends React.PureComponent<{}, State> {
 
     this.setState({ pending: true });
 
-    const request = new Request(`${process.env.API_ENDPOINT}/v1/feedback`, {
+    const request = new Request(`${process.env.API_ENDPOINT}/feedback`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email: this.state.email || undefined, feedback: this.state.body }),

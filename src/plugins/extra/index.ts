@@ -3,9 +3,12 @@ import { registerPlugin } from '../registry';
 import {
   Dribbble, DribbbleSettings,
   Giphy, GiphySettings,
-  Unsplash, UnsplashSettings
+  Unsplash, UnsplashSettings,
 } from './backgrounds';
-import { Search, SearchSettings } from './widgets';
+import {
+  Search, SearchSettings,
+  Weather, WeatherSettings,
+} from './widgets';
 
 registerPlugin({
   key: 'extra/backgrounds/dribbble',
@@ -37,4 +40,12 @@ registerPlugin({
   title: 'Search Box',
   Dashboard: Search,
   Settings: SearchSettings,
+});
+
+registerPlugin({
+  key: 'extra/widgets/weather',
+  type: Type.WIDGET,
+  title: 'Weather',
+  Dashboard: Weather,
+  Settings: WeatherSettings,
 });
