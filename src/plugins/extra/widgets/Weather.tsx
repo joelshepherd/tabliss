@@ -8,6 +8,7 @@ interface Props {
   latitude: number;
   longitude: number;
   local: Conditions;
+  mode: string;
   popPending: ActionCreator<Action>;
   pushPending: ActionCreator<Action>;
   setLocal: (state: Conditions) => void;
@@ -24,6 +25,7 @@ class Weather extends React.PureComponent<Props> {
   static defaultProps = {
     latitude: 0,
     longitude: 0,
+    mode: 'corner',
   };
 
   componentWillMount() {
@@ -44,15 +46,14 @@ class Weather extends React.PureComponent<Props> {
     }
 
     return (
-      <div className="Weather">
+      <div className={`Weather ${this.props.mode}`}>
         <i
           dangerouslySetInnerHTML={{ __html: weatherIcons[this.props.local.icon] }}
           title={this.props.local.icon}
         />
-
-        <div>
+        <span className="temperature">
           {this.props.local.temperature}˚
-        </div>
+        </span>
       </div>
     );
   }

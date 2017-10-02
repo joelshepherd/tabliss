@@ -11,8 +11,10 @@ interface Props {
 
 const Widgets: React.StatelessComponent<Props> = (props) => {
   return (
-    <div className="Widgets">
-      {! props.focus && props.widgets.map(key => <Plugin key={key} pluginKey={key} />)}
+    <div className="Widgets fullscreen">
+      <div className="container">
+        {! props.focus && props.widgets.map(key => <Plugin key={key} pluginKey={key} />)}
+      </div>
     </div>
   );
 };

@@ -22,7 +22,7 @@ class Search extends React.PureComponent<Props, State> {
           type="search"
           value={this.state.query}
           onChange={event => this.setState({ query: event.target.value })}
-          placeholder="Search or url"
+          placeholder="Type to search"
         />
       </form>
     );

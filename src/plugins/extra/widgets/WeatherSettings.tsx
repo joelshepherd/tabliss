@@ -4,6 +4,7 @@ import { Settings as SettingsInterface } from '../../interfaces';
 interface Props {
   latitude: number;
   longitude: number;
+  mode: string;
   onChange: (settings: SettingsInterface) => void;
 }
 
@@ -11,14 +12,22 @@ class WeatherSettings extends React.PureComponent<Props> {
   static defaultProps = {
     latitude: 0,
     longitude: 0,
+    mode: 'corner',
   };
 
   render() {
     return (
       <div>
-        <p>
-          <button className="button--primary" onClick={this.currentLocation}>Use My Current Location</button>
-        </p>
+        <label>
+          <input
+            type="checkbox"
+            checked={this.props.mode === 'corner'}
+            onChange={event => this.props.onChange({
+              mode: event.target.checked ? 'corner' : 'centre'
+            })}
+          />
+          Display on screen edge
+        </label>
 
         <label>
           Latitude
@@ -37,6 +46,10 @@ class WeatherSettings extends React.PureComponent<Props> {
             onChange={event => this.props.onChange({ longitude: event.target.value })}
           />
         </label>
+
+        <p><button className="button--primary" onClick={this.currentLocation}>
+          Use My Current Location
+        </button></p>
 
         <p><a href="https://darksky.net/poweredby/"  target="_blank" rel="noopener noreferrer">
           Powered by Dark Sky

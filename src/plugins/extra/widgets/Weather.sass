@@ -1,6 +1,21 @@
 .Weather
-    padding: 1rem 0
 
-    i svg
-        height: 3em
-        width: auto
+    &.centre
+        padding: 1rem 0
+
+        i svg
+            height: 2em
+            width: auto
+
+        .temperature
+            display: block
+
+    &.corner
+        margin: 0 !important
+        position: absolute
+        top: 1rem
+        right: 1rem
+
+        i
+            margin-right: 0.25em
+            vertical-align: middle
