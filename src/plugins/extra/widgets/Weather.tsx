@@ -69,14 +69,15 @@ class Weather extends React.PureComponent<Props> {
   private async getForecast({ latitude, longitude }: Props = this.props) {
     this.props.pushPending();
 
-    await fetch(`${process.env.API_ENDPOINT}/forecast?latitude=${latitude}&longitude=${longitude}`)
-      .then(res => res.json())
-      .then(res => this.props.setLocal({
-        icon: res.currently.icon,
-        temperature: Math.round(res.currently.temperature),
-        timestamp: Date.now(),
-        units: res.flags.units,
-      }));
+    const req = new Request(`${process.env.API_ENDPOINT}/forecast?latitude=${latitude}&longitude=${longitude}`);
+    const res = await (await fetch(req)).json();
+
+    this.props.setLocal({
+      icon: res.data.icon,
+      temperature: Math.round(res.data.temperature),
+      timestamp: Date.now(),
+      units: res.data.units,
+    });
 
     this.props.popPending();
   }
