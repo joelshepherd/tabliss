@@ -3,14 +3,14 @@
 All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
-## [Unreleased]
+## [1.2.0] - 2017-10-03
 ### Added
 - New widgets (core): search box and weather.
 - Open newtab page in Chrome on extension install and browser action button clicked.
 - Optional email field for the feedback form.
 
 ## Changed
-- Improved widget settings to be more intuitive.
+- Improved widget settings user experience to be more intuitive.
 
 ## [1.1.0] - 2017-09-19
 ### Changed
