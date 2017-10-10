@@ -4,9 +4,10 @@
   "private": true,
   "scripts": {
     "start": "webpack-dev-server",
-    "build": "NODE_ENV=production webpack",
+    "build": "npm run-script build:web",
     "build:chrome": "NODE_ENV=production BUILD_TARGET=chrome webpack",
-    "build:firefox": "NODE_ENV=production BUILD_TARGET=firefox webpack"
+    "build:firefox": "NODE_ENV=production BUILD_TARGET=firefox webpack",
+    "build:web": "NODE_ENV=production BUILD_TARGET=web webpack"
   },
   "dependencies": {
     "feather-icons": "^3.2.2",

@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
+## [Unreleased]
+### Added
+- New detailed weather panel for corner mode.
+
+### Changed
+- Unsplash darken overlay is now more subtle.
+
 ## [1.2.1] - 2017-10-04
 ### Fixed
 - Interactions with background plugins being blocked by widgets container.
