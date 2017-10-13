@@ -70,11 +70,11 @@ class Weather extends React.PureComponent<Props> {
         {this.props.mode === 'corner' && this.props.local.details &&
           <div className="details">
             <dl>
-              <dt>{this.props.local.conditions.humidity * 100}%</dt>
+              <dt>{this.props.local.conditions.humidity}%</dt>
               <dd>Humidity</dd>
             </dl>
             <dl>
-              <dt>{this.props.local.conditions.precipProbability * 100}%</dt>
+              <dt>{this.props.local.conditions.precipProbability}%</dt>
               <dd>Chance of {this.props.local.conditions.precipType || 'rain'}</dd>
             </dl>
             <dl>
@@ -112,6 +112,8 @@ class Weather extends React.PureComponent<Props> {
       conditions: {
         ...res.data,
         apparentTemperature: Math.round(res.data.apparentTemperature),
+        humidity: Math.round(res.data.humidity * 100),
+        precipProbability: Math.round(res.data.precipProbability),
         temperature: Math.round(res.data.temperature),
         timestamp: Date.now(),
       }
