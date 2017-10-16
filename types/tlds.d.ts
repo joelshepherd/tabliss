@@ -1,5 +1,5 @@
 declare module 'tlds' {
-  const tlds: Array<string>;
+  const tlds: string[];
 
   export default tlds;
 }

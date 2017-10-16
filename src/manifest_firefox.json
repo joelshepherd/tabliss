@@ -2,13 +2,16 @@
   "manifest_version": 2,
   "name": "Tabliss",
   "short_name": "Tabliss",
-  "version": "1.2.1",
+  "version": "1.3.0",
   "description": "A beautiful new tab page with many customisable backgrounds and widgets. See stunning new landscapes and photos in every new tab.",
   "applications": {
     "gecko": {
       "id": "extension@tabliss.io",
       "strict_min_version": "54.0"
     }
+  },
+  "chrome_settings_overrides": {
+    "homepage": "index.html"
   },
   "chrome_url_overrides": {
     "newtab": "index.html"

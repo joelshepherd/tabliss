@@ -3,18 +3,19 @@
 All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
-## [Unreleased]
+## [1.3.0] - 2017-10-16
 ### Added
 - Search images in Unsplash by custom collections.
 - New detailed weather panel for corner mode.
 
 ### Changed
 - Unsplash darken overlay is now more subtle.
+- Tabliss now displays as your homepage in Firefox.
 
 ### Removed
 - The weather plugin from the selectable plugins. Sorry to bear the bad news!
   However weather APIs are not cheap and I do not currently have the means to afford them at scale.
-  I hope to bring the weather widget back in the future, until then,
+  I hope to bring the weather widget back in the future. But until then,
   existing users/early adopters of the weather widget can keep it activated (just don't remove it!).
 
 ## [1.2.1] - 2017-10-04

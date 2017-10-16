@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
-    "outDir": "build/dist",
-    "target": "es6",
+    "outDir": "dist",
+    "target": "es5",
     "module": "es6",
     "moduleResolution": "node",
     "experimentalDecorators": true,
