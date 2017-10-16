@@ -10,6 +10,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 ### Changed
 - Unsplash darken overlay is now more subtle.
 
+### Removed
+- The weather plugin from the selectable plugins. Sorry to bear the bad news!
+  However weather APIs are not cheap and I do not currently have the means to afford them at scale.
+  I hope to bring the weather widget back in the future, until then,
+  existing users/early adopters of the weather widget can keep it activated (just don't remove it!).
+
 ## [1.2.1] - 2017-10-04
 ### Fixed
 - Interactions with background plugins being blocked by widgets container.
