@@ -5,6 +5,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 ### Added
+- Search images in Unsplash by custom collections.
 - New detailed weather panel for corner mode.
 
 ### Changed

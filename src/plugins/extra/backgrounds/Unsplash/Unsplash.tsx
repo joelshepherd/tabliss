@@ -2,7 +2,7 @@ import * as React from 'react';
 import { ActionCreator, connect } from 'react-redux';
 import { Action, popPending, pushPending, RootState } from '../../../../data';
 import { defaultProps, officialCollection, UNSPLASH_API_KEY, UNSPLASH_UTM } from './constants';
-import { Image, Settings } from './interfaces';
+import { By, Image, Settings } from './interfaces';
 import './Unsplash.sass';
 const debounce = require('lodash/debounce');
 
@@ -23,7 +23,7 @@ interface State {
 class Unsplash extends React.PureComponent<Props, State> {
   static defaultProps: Partial<Props> = defaultProps;
   state: State = {};
-  private refreshDebounced = debounce(this.refresh, 500);
+  private refreshDebounced = debounce(this.refresh, 250);
 
   componentWillMount() {
     // Fetch or pull from cache current image
@@ -38,12 +38,12 @@ class Unsplash extends React.PureComponent<Props, State> {
   }
 
   componentWillReceiveProps(nextProps: Props) {
-    if (nextProps.featured !== this.props.featured || nextProps.curated !== this.props.curated) {
+    if (nextProps.by !== this.props.by || nextProps.featured !== this.props.featured) {
       this.refreshDebounced.cancel();
       this.refresh(nextProps);
     }
 
-    if (nextProps.search !== this.props.search ) {
+    if (nextProps.search !== this.props.search || nextProps.collections !== this.props.collections) {
       this.refreshDebounced(nextProps);
     }
   }
@@ -85,12 +85,25 @@ class Unsplash extends React.PureComponent<Props, State> {
     this.fetchImage(props).then(next => this.props.setLocal({ next }));
   }
 
-  private async fetchImage({ curated, featured, search }: Props = this.props): Promise<Image> {
+  private async fetchImage({ by, collections, featured, search }: Props = this.props): Promise<Image> {
     const headers = { Authorization: `Client-ID ${UNSPLASH_API_KEY}` };
-    const url = 'https://api.unsplash.com/photos/random?' + (curated
-      ? `collections=${officialCollection}`
-      : 'orientation=landscape' + (featured ? '&featured=true' : '') + (search ? `&query=${search}` : '')
-    );
+    let url = 'https://api.unsplash.com/photos/random?';
+
+    // Add search query
+    switch (by) {
+      case By.COLLECTIONS:
+        url += `collections=${collections}`;
+        break;
+
+      case By.SEARCH:
+        url += 'orientation=landscape'
+          + (featured ? '&featured=true' : '')
+          + (search ? `&query=${search}` : '');
+        break;
+
+      default:
+        url += `collections=${officialCollection}`;
+    }
 
     this.props.pushPending();
     const res = await (await fetch(url, { headers })).json();

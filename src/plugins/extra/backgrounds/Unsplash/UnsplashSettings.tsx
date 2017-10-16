@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Settings as SettingsInterface } from '../../../interfaces';
 import { defaultProps } from './constants';
-import { Settings } from './interfaces';
+import { By, Settings } from './interfaces';
 
 interface Props extends Settings {
   onChange: (settings: SettingsInterface) => void;
@@ -16,8 +16,8 @@ class UnsplashSettings extends React.PureComponent<Props> {
         <label>
           <input
             type="radio"
-            checked={this.props.curated === true}
-            onChange={event => this.props.onChange({ curated: true })}
+            checked={this.props.by === By.OFFICIAL}
+            onChange={event => this.props.onChange({ by: By.OFFICIAL })}
           />
           {' '}
           Official collection
@@ -26,17 +26,39 @@ class UnsplashSettings extends React.PureComponent<Props> {
         <label>
           <input
             type="radio"
-            checked={this.props.curated === false}
-            onChange={event => this.props.onChange({ curated: false })}
+            checked={this.props.by === By.COLLECTIONS}
+            onChange={event => this.props.onChange({ by: By.COLLECTIONS })}
+          />
+          {' '}
+          Custom collection
+        </label>
+
+        {this.props.by === By.COLLECTIONS &&
+          <label>
+            Collection
+            <input
+              placeholder="Collection ID number"
+              type="text"
+              value={this.props.collections}
+              onChange={event => this.props.onChange({ collections: event.target.value })}
+            />
+          </label>
+        }
+
+        <label>
+          <input
+            type="radio"
+            checked={this.props.by === By.SEARCH}
+            onChange={event => this.props.onChange({ by: By.SEARCH })}
           />
           {' '}
           Custom search
         </label>
 
-        {! this.props.curated &&
+        {this.props.by === By.SEARCH &&
           <div>
             <label>
-              Tag
+              Tags
               <input
                 placeholder="Try landscapes or animals..."
                 type="text"

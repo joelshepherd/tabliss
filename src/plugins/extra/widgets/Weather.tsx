@@ -113,7 +113,7 @@ class Weather extends React.PureComponent<Props> {
         ...res.data,
         apparentTemperature: Math.round(res.data.apparentTemperature),
         humidity: Math.round(res.data.humidity * 100),
-        precipProbability: Math.round(res.data.precipProbability),
+        precipProbability: Math.round(res.data.precipProbability * 100),
         temperature: Math.round(res.data.temperature),
         timestamp: Date.now(),
       }
