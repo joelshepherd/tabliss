@@ -7,8 +7,8 @@ indent_style = space
 insert_final_newline = true
 trim_trailing_whitespace = true
 
-[*.{jsx?,tsx?}]
+[*.{js,tsx?}]
 indent_size = 2
 
-[*.{html,css,sass,svg}]
+[*.{html,sass,svg}]
 indent_size = 4

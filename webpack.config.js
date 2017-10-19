@@ -12,7 +12,7 @@ const webpack = require('webpack');
 const config = {
   entry: {
     main: [
-      './src/styles.css',
+      './src/styles.sass',
       './src/main.tsx',
     ],
   },

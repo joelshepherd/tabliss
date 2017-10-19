@@ -1,7 +1,8 @@
 export * from './interfaces';
 export * from './registry';
 
-// Import plugins
-// To be extracted in phase 2
+// Import core plugins
 import './core';
+
+// Import extra plugins with external integrations
 import './extra';
