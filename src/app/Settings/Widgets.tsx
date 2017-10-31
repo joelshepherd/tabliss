@@ -51,10 +51,7 @@ class Widgets extends React.PureComponent<Props> {
 
 const mapStateToProps = (state: RootState) => {
   return {
-    plugins: getPluginsByType(Type.WIDGET)
-      .filter(plugin => ! state.dashboard.widgets.includes(plugin.key))
-      .filter(plugin => plugin.key !== 'extra/widgets/weather'),
-      // Disabling weather for new installs for now (see CHANGELOG for details)
+    plugins: getPluginsByType(Type.WIDGET).filter(plugin => ! state.dashboard.widgets.includes(plugin.key)),
     widgets: state.dashboard.widgets.map(getPlugin),
   };
 };

@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
+## [Unreleased]
+### Added
+- The weather widget returns! However the "detailed" weather view may be removed in future versions.
+
 ## [1.3.0] - 2017-10-16
 ### Added
 - Search images in Unsplash by custom collections.
