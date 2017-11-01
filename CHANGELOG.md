@@ -10,6 +10,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
 ### Changed
 - Message widget now accepts multi-line input and respects your spacing.
+- Improved the favicon to a high resolution Tabliss logo.
 
 ## [1.3.0] - 2017-10-16
 ### Added
