@@ -6,6 +6,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 ## [Unreleased]
 ### Added
 - The weather widget returns! However the "detailed" weather view may be removed in future versions.
+- New pause button in Unsplash to keep the same image for a while!
 
 ### Changed
 - Message widget now accepts multi-line input and respects your spacing.

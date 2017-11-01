@@ -5,6 +5,8 @@ import { defaultProps, officialCollection, UNSPLASH_API_KEY, UNSPLASH_UTM } from
 import { By, Image, Settings } from './interfaces';
 import './Unsplash.sass';
 const debounce = require('lodash/debounce');
+const playIcon = require('feather-icons/dist/icons/play.svg');
+const pauseIcon = require('feather-icons/dist/icons/pause.svg');
 
 interface Props extends Settings {
   darken: boolean;
@@ -12,12 +14,13 @@ interface Props extends Settings {
   local: State;
   popPending: ActionCreator<Action>;
   pushPending: ActionCreator<Action>;
-  setLocal: (state: Partial<State>) => void;
+  updateLocal: (state: Partial<State>) => void;
 }
 
 interface State {
-  current?: Image & { src: string };
+  current?: Image & { src?: string };
   next?: Image;
+  paused?: boolean;
 }
 
 class Unsplash extends React.PureComponent<Props, State> {
@@ -33,8 +36,15 @@ class Unsplash extends React.PureComponent<Props, State> {
       this.fetchImage().then(image => this.setImage(image));
     }
 
-    // Fetch next image and replace in cache
-    this.fetchImage().then(next => this.props.setLocal({ next }));
+    if (! this.props.local.paused) {
+      // Fetch next image and replace in cache
+      this.fetchImage().then(next => {
+        // Check we haven't paused since firing this request
+        if (! this.props.local.paused) {
+          this.props.updateLocal({ next });
+        }
+      });
+    }
   }
 
   componentWillReceiveProps(nextProps: Props) {
@@ -61,6 +71,15 @@ class Unsplash extends React.PureComponent<Props, State> {
           <div className="credit">
             <span style={{float: 'right'}}>
               {this.state.current.location_title}
+              &emsp;
+              {this.props.local.paused
+                ? <a onClick={this.play} title="Resume new images">
+                    <i dangerouslySetInnerHTML={{ __html: playIcon }} />
+                  </a>
+                : <a onClick={this.pause} title="Pause on this image">
+                    <i dangerouslySetInnerHTML={{ __html: pauseIcon }} />
+                  </a>
+              }
             </span>
 
             <a href={this.state.current.image_link + UNSPLASH_UTM} target="_blank" rel="noopener noreferrer">
@@ -80,9 +99,21 @@ class Unsplash extends React.PureComponent<Props, State> {
     );
   }
 
+  private pause = () => {
+    this.props.updateLocal({
+      paused: true,
+      next: this.state.current,
+    });
+  }
+
+  private play = () => {
+    this.props.updateLocal({ paused: false });
+    this.fetchImage().then(next => this.props.updateLocal({ next }));
+  }
+
   private refresh(props: Props) {
     this.fetchImage(props).then(image => this.setImage(image));
-    this.fetchImage(props).then(next => this.props.setLocal({ next }));
+    this.fetchImage(props).then(next => this.props.updateLocal({ next }));
   }
 
   private async fetchImage({ by, collections, featured, search }: Props = this.props): Promise<Image> {
