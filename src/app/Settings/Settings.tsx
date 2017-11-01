@@ -28,7 +28,7 @@ class Settings extends React.PureComponent<Props> {
         <a onClick={this.props.toggleSettings} className="fullscreen" />
 
         <div className="plane">
-          <h1 dangerouslySetInnerHTML={{__html: logo}} />
+          <h1><i dangerouslySetInnerHTML={{__html: logo}} /></h1>
 
           <Background />
           <Widgets />
