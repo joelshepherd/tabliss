@@ -36,11 +36,11 @@ class Unsplash extends React.PureComponent<Props, State> {
       this.fetchImage().then(image => this.setImage(image));
     }
 
-    if (! this.props.local.paused) {
+    if (! (this.props.local && this.props.local.paused)) {
       // Fetch next image and replace in cache
       this.fetchImage().then(next => {
         // Check we haven't paused since firing this request
-        if (! this.props.local.paused) {
+        if (! (this.props.local && this.props.local.paused)) {
           this.props.updateLocal({ next });
         }
       });
@@ -72,7 +72,7 @@ class Unsplash extends React.PureComponent<Props, State> {
             <span style={{float: 'right'}}>
               {this.state.current.location_title}
               &emsp;
-              {this.props.local.paused
+              {this.props.local && this.props.local.paused
                 ? <a onClick={this.play} title="Resume new images">
                     <i dangerouslySetInnerHTML={{ __html: playIcon }} />
                   </a>
