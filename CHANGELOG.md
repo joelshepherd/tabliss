@@ -7,6 +7,9 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 ### Added
 - The weather widget returns! However the "detailed" weather view may be removed in future versions.
 
+### Changed
+- Message widget now accepts multi-line input and respects your spacing.
+
 ## [1.3.0] - 2017-10-16
 ### Added
 - Search images in Unsplash by custom collections.

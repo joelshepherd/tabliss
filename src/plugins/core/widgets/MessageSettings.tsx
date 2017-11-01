@@ -11,8 +11,8 @@ const MessageSettings: React.StatelessComponent<Props> = ({ message = 'Add somet
     <div>
       <label>
         Message
-        <input
-          type="text"
+        <textarea
+          rows={3}
           value={message}
           onChange={event => onChange({ message: event.target.value })}
         />
