@@ -1,3 +1,5 @@
+import debounce from 'lodash-es/debounce';
+import get from 'lodash-es/get';
 import * as React from 'react';
 import { ActionCreator, connect } from 'react-redux';
 import { Action, popPending, pushPending, RootState } from '../../../../data';
@@ -5,8 +7,6 @@ import { getImage } from './api';
 import { defaultProps, UNSPLASH_UTM } from './constants';
 import { Image, Settings } from './interfaces';
 import './Unsplash.sass';
-const get = require('lodash/get');
-const debounce = require('lodash/debounce');
 const playIcon = require('feather-icons/dist/icons/play.svg');
 const pauseIcon = require('feather-icons/dist/icons/pause.svg');
 

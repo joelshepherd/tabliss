@@ -1,10 +1,10 @@
+import debounce from 'lodash-es/debounce';
 import * as React from 'react';
 import { ActionCreator, connect } from 'react-redux';
 import { Action, popPending, pushPending, RootState } from '../../../../data';
 import './Giphy.sass';
 const GIPHY_API_KEY = process.env.GIPHY_API_KEY;
 const giphyLogo = require('./giphy-logo.png');
-const debounce = require('lodash/debounce');
 
 interface Props {
   expand?: boolean;

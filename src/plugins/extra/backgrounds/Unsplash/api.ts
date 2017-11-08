@@ -4,7 +4,8 @@ import { By, Image, Settings } from './interfaces';
 export const getImage = async (settings: Settings, pushCallback: Function, popCallback: Function): Promise<Image> => {
   // Setup
   const { by, collections, featured, search } = settings;
-  const headers = { Authorization: `Client-ID ${UNSPLASH_API_KEY}` };
+  const headers = new Headers();
+  headers.append('Authorization', `Client-ID ${UNSPLASH_API_KEY}`);
 
   // Build search url
   let url = 'https://api.unsplash.com/photos/random?';
