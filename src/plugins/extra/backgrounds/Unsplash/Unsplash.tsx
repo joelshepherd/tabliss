@@ -1,9 +1,11 @@
 import * as React from 'react';
 import { ActionCreator, connect } from 'react-redux';
 import { Action, popPending, pushPending, RootState } from '../../../../data';
-import { defaultProps, officialCollection, UNSPLASH_API_KEY, UNSPLASH_UTM } from './constants';
-import { By, Image, Settings } from './interfaces';
+import { getImage } from './api';
+import { defaultProps, UNSPLASH_UTM } from './constants';
+import { Image, Settings } from './interfaces';
 import './Unsplash.sass';
+const get = require('lodash/get');
 const debounce = require('lodash/debounce');
 const playIcon = require('feather-icons/dist/icons/play.svg');
 const pauseIcon = require('feather-icons/dist/icons/pause.svg');
@@ -29,19 +31,20 @@ class Unsplash extends React.PureComponent<Props, State> {
   private refreshDebounced = debounce(this.refresh, 250);
 
   componentWillMount() {
-    // Fetch or pull from cache current image
-    if (this.props.local && this.props.local.next && this.props.local.next.data) {
-      this.setImage(this.props.local.next);
+    // Get image from local cache
+    const image = get(this.props, 'local.next');
+
+    if (image && image.data instanceof Blob) {
+      this.setCurrentImage(image);
     } else {
-      this.fetchImage().then(image => this.setImage(image));
+      this.fetchImage().then(this.setCurrentImage);
     }
 
-    if (! (this.props.local && this.props.local.paused)) {
-      // Fetch next image and replace in cache
+    // Fetch the next image and load into cache (if not paused)
+    if (! get(this.props, 'local.paused')) {
       this.fetchImage().then(next => {
-        // Check we haven't paused since firing this request
-        if (! (this.props.local && this.props.local.paused)) {
-          this.props.updateLocal({ next });
+        if (! get(this.props, 'local.paused')) {
+          this.setNextImage(next);
         }
       });
     }
@@ -72,7 +75,7 @@ class Unsplash extends React.PureComponent<Props, State> {
             <span style={{float: 'right'}}>
               {this.state.current.location_title}
               &emsp;
-              {this.props.local && this.props.local.paused
+              {get(this.props, 'local.paused')
                 ? <a onClick={this.play} title="Resume new images">
                     <i dangerouslySetInnerHTML={{ __html: playIcon }} />
                   </a>
@@ -82,15 +85,27 @@ class Unsplash extends React.PureComponent<Props, State> {
               }
             </span>
 
-            <a href={this.state.current.image_link + UNSPLASH_UTM} target="_blank" rel="noopener noreferrer">
+            <a
+              href={this.state.current.image_link + UNSPLASH_UTM}
+              rel="noopener noreferrer"
+              target="_blank"
+            >
               Photo
             </a>
             {' by '}
-            <a href={this.state.current.user_link + UNSPLASH_UTM} target="_blank" rel="noopener noreferrer">
+            <a
+              href={this.state.current.user_link + UNSPLASH_UTM}
+              rel="noopener noreferrer"
+              target="_blank"
+            >
               {this.state.current.user_name}
             </a>
             {' / '}
-            <a href={'https://unsplash.com/' + UNSPLASH_UTM} target="_blank" rel="noopener noreferrer">
+            <a
+              href={'https://unsplash.com/' + UNSPLASH_UTM}
+              rel="noopener noreferrer"
+              target="_blank"
+            >
               Unsplash
             </a>
           </div>
@@ -99,64 +114,69 @@ class Unsplash extends React.PureComponent<Props, State> {
     );
   }
 
+  /**
+   * Pause on current image.
+   *
+   * @type {void}
+   */
   private pause = () => {
-    this.props.updateLocal({
-      paused: true,
-      next: this.state.current,
-    });
+    this.props.updateLocal({ paused: true });
+    this.setNextImage(this.state.current as Image);
   }
 
+  /**
+   * Resume image rotation.
+   *
+   * @type {void}
+   */
   private play = () => {
     this.props.updateLocal({ paused: false });
-    this.fetchImage().then(next => this.props.updateLocal({ next }));
+    this.fetchImage().then(this.setNextImage);
   }
 
-  private refresh(props: Props) {
-    this.fetchImage(props).then(image => this.setImage(image));
-    this.fetchImage(props).then(next => this.props.updateLocal({ next }));
-  }
-
-  private async fetchImage({ by, collections, featured, search }: Props = this.props): Promise<Image> {
-    const headers = { Authorization: `Client-ID ${UNSPLASH_API_KEY}` };
-    let url = 'https://api.unsplash.com/photos/random?';
-
-    // Add search query
-    switch (by) {
-      case By.COLLECTIONS:
-        url += `collections=${collections}`;
-        break;
-
-      case By.SEARCH:
-        url += 'orientation=landscape'
-          + (featured ? '&featured=true' : '')
-          + (search ? `&query=${search}` : '');
-        break;
-
-      default:
-        url += `collections=${officialCollection}`;
-    }
-
-    this.props.pushPending();
-    const res = await (await fetch(url, { headers })).json();
-    const data = await (await fetch(res.urls.raw + '?q=85&w=1920')).blob();
-    this.props.popPending();
-
-    return {
-      data,
-      image_link: res.links.html,
-      location_title: res.location ? res.location.title : null,
-      user_name: res.user.name,
-      user_link: res.user.links.html,
-    };
-  }
-
-  private setImage(image: Image) {
-    const current = {
-      ...image,
-      src: URL.createObjectURL(image.data),
-    };
+  /**
+   * Set the current image.
+   *
+   * @type {void}
+   */
+  private setCurrentImage = (image: Image) => {
+    const src = URL.createObjectURL(image.data);
+    const current = { ...image, src };
 
     this.setState({ current });
+  }
+
+  /**
+   * Set the next image.
+   *
+   * @type {void}
+   */
+  private setNextImage = (next: Image) => {
+    this.props.updateLocal({ next });
+  }
+
+  /**
+   * Refresh current and next images.
+   * (when settings update, for instance)
+   *
+   * @type {void}
+   */
+  private refresh(props: Props) {
+    this.fetchImage(props).then(this.setCurrentImage);
+    this.fetchImage(props).then(this.setNextImage);
+  }
+
+  /**
+   * Fetch an image from the Unsplash API.
+   *
+   * @type {Promise<Image>}
+   */
+  private fetchImage(props: Props = this.props) {
+    return getImage(
+      props,
+      this.props.pushPending,
+      this.props.popPending,
+    );
   }
 }
 
