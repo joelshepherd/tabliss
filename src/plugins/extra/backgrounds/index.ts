@@ -1,3 +1,3 @@
-export * from './Dribbble';
-export * from './Giphy';
-export * from './Unsplash';
+export * from './dribbble';
+export * from './giphy';
+export * from './unsplash';

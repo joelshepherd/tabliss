@@ -2,8 +2,8 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import * as CSSTransition from 'react-transition-group/CSSTransition';
 import { RootState } from '../data';
-import { Dashboard } from './Dashboard';
-import { Settings } from './Settings';
+import { Dashboard } from './dashboard';
+import { Settings } from './settings';
 import './App.sass';
 
 interface Props {
