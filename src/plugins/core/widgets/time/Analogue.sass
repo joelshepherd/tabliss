@@ -1,0 +1,23 @@
+.Time.Analogue
+    text-align: center
+
+    svg
+        max-width: 10em
+        width: 100%
+        height: auto
+
+        circle
+            fill: transparent
+            stroke: white
+
+        line
+            stroke: white
+            stroke-linecap: round
+            transform-origin: 50% 50%
+            transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275)
+
+            &.hours
+                stroke-width: 2
+
+            &.minutes
+                stroke-width: 1

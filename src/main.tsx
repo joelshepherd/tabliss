@@ -5,7 +5,9 @@ import { App } from './app';
 import { store } from './data';
 
 render(
-  <Provider store={store}><App /></Provider>,
+  <Provider store={store}>
+    <App />
+  </Provider>,
   document.getElementById('root'),
 );
 
