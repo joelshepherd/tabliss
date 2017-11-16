@@ -1,5 +1,5 @@
 export const weatherIcons = {
-  'clear-day': require('feather-icons/dist/icons/sun.svg'),
+  'clear-day': require('feather-icons/dist/icons/moon.svg'),
   'clear-night': require('feather-icons/dist/icons/moon.svg'),
   'rain': require('feather-icons/dist/icons/cloud-rain.svg'),
   'snow': require('feather-icons/dist/icons/cloud-snow.svg'),

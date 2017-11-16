@@ -1,7 +1,9 @@
+import get from 'lodash-es/get';
 import * as React from 'react';
 import { ActionCreator, connect } from 'react-redux';
-import { Action, popPending, pushPending } from '../../../data';
-import { weatherIcons } from './weatherIcons';
+import { Action, popPending, pushPending } from '../../../../data';
+import { weatherIcons } from './icons';
+import { Conditions } from './interfaces';
 import './Weather.sass';
 
 interface Props {
@@ -17,21 +19,6 @@ interface Props {
 interface Local {
   conditions: Conditions;
   details: boolean;
-}
-
-interface Conditions {
-  alerts: {
-    title: string;
-    description: string;
-  }[];
-  apparentTemperature: number;
-  humidity: number;
-  icon: string;
-  precipProbability: number;
-  temperature: number;
-  precipType?: number;
-  timestamp: number;
-  units: string;
 }
 
 class Weather extends React.PureComponent<Props> {
@@ -54,7 +41,7 @@ class Weather extends React.PureComponent<Props> {
   }
 
   render() {
-    if (! this.props.local || ! this.props.local.conditions) {
+    if (! get(this.props, 'local.conditions')) {
       return <div className={`Weather ${this.props.mode}`}>-</div>;
     }
 
@@ -94,12 +81,7 @@ class Weather extends React.PureComponent<Props> {
   }
 
   private shouldRefresh() {
-    return ! (
-      this.props.local &&
-      this.props.local.conditions &&
-      this.props.local.conditions.timestamp &&
-      (this.props.local.conditions.timestamp + 900000) > Date.now() // Refreshed in last 15 minutes
-    );
+    return get(this.props, 'local.conditions.timestamp', 0) + 900000 < Date.now();
   }
 
   private async getForecast({ latitude, longitude }: Props = this.props) {

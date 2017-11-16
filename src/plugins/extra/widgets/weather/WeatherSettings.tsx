@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Settings as SettingsInterface } from '../../interfaces';
+import { Settings as SettingsInterface } from '../../../interfaces';
 
 interface Props {
   latitude: number;
