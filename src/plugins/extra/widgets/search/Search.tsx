@@ -1,6 +1,8 @@
 import * as React from 'react';
 import tlds from 'tlds';
+import { Engine } from './interfaces';
 import './Search.sass';
+const engines: Engine[] = require('./engines.json');
 
 interface Props {
   engine: string;
@@ -36,6 +38,11 @@ class Search extends React.PureComponent<Props, State> {
     );
   }
 
+  /**
+   * Build a navigatable URL from a query.
+   *
+   * @type {string}
+   */
   private buildUrl(query: string) {
     // See if they have started with a web scheme
     if (query.startsWith('http://') || query.startsWith('https://')) {
@@ -48,7 +55,11 @@ class Search extends React.PureComponent<Props, State> {
     }
 
     // Probably searching then
-    return `https://www.${this.props.engine}.com/search?q=${query}`;
+    const searchEngine = engines
+      .find(engine => engine.key === this.props.engine)
+      || engines[0];
+
+    return searchEngine.search_url.replace('{searchTerms}', query);
   }
 }
 

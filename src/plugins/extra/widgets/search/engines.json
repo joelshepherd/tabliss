@@ -1,0 +1,32 @@
+[
+  {
+    "key": "google",
+    "name": "Google",
+    "search_url": "https://www.google.com/search?q={searchTerms}"
+  },
+  {
+    "key": "bing",
+    "name": "Bing",
+    "search_url": "https://www.bing.com/search?q={searchTerms}"
+  },
+  {
+    "key": "baidu",
+    "name": "Baidu 百度",
+    "search_url": "https://www.baidu.com/s?wd={searchTerms}"
+  },
+  {
+    "key": "duckduckgo",
+    "name": "DuckDuckGo",
+    "search_url": "https://duckduckgo.com/?q={searchTerms}"
+  },
+  {
+    "key": "qwant",
+    "name": "Qwant",
+    "search_url": "https://www.qwant.com/?q={searchTerms}"
+  },
+  {
+    "key": "ecosia",
+    "name": "Ecosia",
+    "search_url": "https://www.ecosia.org/search?q={searchTerms}"
+  }
+]

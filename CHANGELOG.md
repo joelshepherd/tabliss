@@ -5,7 +5,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 ### Added
-- New analogue mode for the time widget.
+- New analogue clock mode for the time widget.
+- New search engines (Baidu, DuckDuckGo, Qwant and Ecosia) for the search box.
 
 ### Fixed
 - Black screens experienced in Firefox private windows on second (and subsequent) new tabs.

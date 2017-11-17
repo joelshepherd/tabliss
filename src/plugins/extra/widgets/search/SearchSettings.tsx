@@ -1,5 +1,7 @@
 import * as React from 'react';
 import { Settings as SettingsInterface } from '../../../interfaces';
+import { Engine } from './interfaces';
+const engines: Engine[] = require('./engines.json');
 
 interface Props {
   engine: string;
@@ -12,27 +14,23 @@ class SearchSettings extends React.PureComponent<Props> {
   render() {
     return (
       <div>
-        <label>
-          <input
-            type="radio"
-            checked={this.props.engine === 'google'}
-            onChange={event => this.props.onChange({ engine: 'google' })}
-          />
-          {' '}
-          Google
-        </label>
-
-        <label>
-          <input
-            type="radio"
-            checked={this.props.engine === 'bing'}
-            onChange={event => this.props.onChange({ engine: 'bing' })}
-          />
-          {' '}
-          Bing
-        </label>
+        {engines.map(engine =>
+          <label key={engine.key}>
+            <input
+              type="radio"
+              checked={this.props.engine === engine.key}
+              onChange={() => this.selectEngine(engine.key)}
+            />
+            {' '}
+            {engine.name}
+          </label>
+        )}
       </div>
     );
+  }
+
+  private selectEngine(engine: string) {
+    this.props.onChange({ engine });
   }
 }
 
