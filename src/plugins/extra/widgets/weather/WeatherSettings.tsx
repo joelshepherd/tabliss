@@ -21,17 +21,6 @@ class WeatherSettings extends React.PureComponent<Props> {
     return (
       <div>
         <label>
-          <input
-            type="checkbox"
-            checked={this.props.mode === 'corner'}
-            onChange={event => this.props.onChange({
-              mode: event.target.checked ? 'corner' : 'centre'
-            })}
-          />
-          Display on screen edge
-        </label>
-
-        <label>
           Latitude
           <input
             type="text"
@@ -83,7 +72,18 @@ class WeatherSettings extends React.PureComponent<Props> {
           Imperial units
         </label>
 
-        <p><a href="https://darksky.net/poweredby/"  target="_blank" rel="noopener noreferrer">
+        <label>
+          <input
+            type="checkbox"
+            checked={this.props.mode === 'corner'}
+            onChange={event => this.props.onChange({
+              mode: event.target.checked ? 'corner' : 'centre'
+            })}
+          />
+          Display on screen edge
+        </label>
+
+        <p style={{ marginTop: '2em' }}><a href="https://darksky.net/poweredby/"  target="_blank" rel="noopener noreferrer">
           Powered by Dark Sky
         </a></p>
       </div>
