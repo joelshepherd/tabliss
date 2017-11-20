@@ -4,6 +4,9 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
 ## [1.5.1] - 2017-11-20
+### Added
+- Weather units settings to switch between auto (based on weather location), metric or imperial.
+
 ### Fixed
 - Whoops, changed "clear day" weather icon from moon, back to sun.
 

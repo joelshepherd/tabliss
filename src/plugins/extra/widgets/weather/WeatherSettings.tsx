@@ -5,6 +5,7 @@ interface Props {
   latitude: number;
   longitude: number;
   mode: string;
+  units: string;
   onChange: (settings: SettingsInterface) => void;
 }
 
@@ -13,6 +14,7 @@ class WeatherSettings extends React.PureComponent<Props> {
     latitude: 0,
     longitude: 0,
     mode: 'corner',
+    units: 'auto',
   };
 
   render() {
@@ -50,6 +52,36 @@ class WeatherSettings extends React.PureComponent<Props> {
         <p><button className="button--primary" onClick={this.currentLocation}>
           Use My Current Location
         </button></p>
+
+        <label>
+          <input
+            type="radio"
+            checked={this.props.units === 'auto'}
+            onChange={event => this.props.onChange({ units: 'auto' })}
+          />
+          {' '}
+          Automatic units (based on location)
+        </label>
+
+        <label>
+          <input
+            type="radio"
+            checked={this.props.units === 'si'}
+            onChange={event => this.props.onChange({ units: 'si' })}
+          />
+          {' '}
+          Metric units
+        </label>
+
+        <label>
+          <input
+            type="radio"
+            checked={this.props.units === 'us'}
+            onChange={event => this.props.onChange({ units: 'us' })}
+          />
+          {' '}
+          Imperial units
+        </label>
 
         <p><a href="https://darksky.net/poweredby/"  target="_blank" rel="noopener noreferrer">
           Powered by Dark Sky

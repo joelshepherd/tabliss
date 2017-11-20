@@ -11,6 +11,7 @@ interface Props {
   longitude: number;
   local: Local;
   mode: string;
+  units: string;
   popPending: ActionCreator<Action>;
   pushPending: ActionCreator<Action>;
   updateLocal: (state: Partial<Local>) => void;
@@ -26,6 +27,7 @@ class Weather extends React.PureComponent<Props> {
     latitude: 0,
     longitude: 0,
     mode: 'corner',
+    units: 'auto',
   };
 
   componentWillMount() {
@@ -35,7 +37,11 @@ class Weather extends React.PureComponent<Props> {
   }
 
   componentWillReceiveProps(props: Props) {
-    if (props.latitude !== this.props.latitude || props.longitude !== this.props.longitude) {
+    if (
+      props.latitude !== this.props.latitude ||
+      props.longitude !== this.props.longitude ||
+      props.units !== this.props.units
+    ) {
       this.getForecast(props);
     }
   }
@@ -84,10 +90,12 @@ class Weather extends React.PureComponent<Props> {
     return get(this.props, 'local.conditions.timestamp', 0) + 900000 < Date.now();
   }
 
-  private async getForecast({ latitude, longitude }: Props = this.props) {
+  private async getForecast({ latitude, longitude, units }: Props = this.props) {
     this.props.pushPending();
 
-    const req = new Request(`${process.env.API_ENDPOINT}/forecast?latitude=${latitude}&longitude=${longitude}`);
+    const req = new Request(
+      `${process.env.API_ENDPOINT}/forecast?latitude=${latitude}&longitude=${longitude}&units=${units}`
+    );
     const res = await (await fetch(req)).json();
 
     this.props.updateLocal({
