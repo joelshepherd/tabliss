@@ -83,7 +83,7 @@ class WeatherSettings extends React.PureComponent<Props> {
           Display on screen edge
         </label>
 
-        <p style={{ marginTop: '2em' }}><a href="https://darksky.net/poweredby/"  target="_blank" rel="noopener noreferrer">
+        <p><a href="https://darksky.net/poweredby/"  target="_blank" rel="noopener noreferrer">
           Powered by Dark Sky
         </a></p>
       </div>

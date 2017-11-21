@@ -34,13 +34,19 @@ class Settings extends React.PureComponent<Props> {
           <Widgets />
 
           <Feedback />
-          <p><a href="javascript:;" onClick={this.props.resetDashboard}>
+          <p><a href="javascript:;" onClick={this.reset}>
             Reset to default
           </a></p>
           <p><a href="https://tabliss.io/" target="_blank">tabliss.io</a></p>
         </div>
       </div>
     );
+  }
+
+  private reset = () => {
+    if (confirm('Are you sure you want to earse all your settings and reset to default?')) {
+      this.props.resetDashboard();
+    }
   }
 
   private onKeyDown = (event: KeyboardEvent) => {
