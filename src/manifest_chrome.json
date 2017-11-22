@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "Tabliss - Your New Tab",
   "short_name": "Tabliss",
-  "version": "1.5.1",
+  "version": "1.6.0",
   "description": "A beautiful new tab page with many customisable backgrounds and widgets. See stunning new landscapes and photos in every new tab.",
   "background": {
      "persistent": false,

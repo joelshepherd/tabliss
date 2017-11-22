@@ -3,7 +3,7 @@
 All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
-## [Unreleased]
+## [1.6.0] - 2017-11-22
 ### Added
 - Specify an amount of time before Unsplash shows you a new photo.
 - Setting to change the placeholder text in the search box.
