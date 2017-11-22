@@ -6,6 +6,7 @@ const engines: Engine[] = require('./engines.json');
 
 interface Props {
   engine: string;
+  placeholder: string;
 }
 
 interface State {
@@ -13,7 +14,10 @@ interface State {
 }
 
 class Search extends React.PureComponent<Props, State> {
-  static defaultProps = { engine: 'google' };
+  static defaultProps = {
+    engine: 'google',
+    placeholder: 'Type to search',
+  };
   state = { query: '' };
 
   render() {
@@ -24,7 +28,7 @@ class Search extends React.PureComponent<Props, State> {
           type="search"
           value={this.state.query}
           onChange={event => this.setState({ query: event.target.value })}
-          placeholder="Type to search"
+          placeholder={this.props.placeholder}
         />
       </form>
     );

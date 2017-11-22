@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
+## [Unreleased]
+### Added
+- Setting to change the placeholder text in the search box.
+
+### Changed
+- Tabliss now fades in from black instead of white - saving you 0.25 seconds of being blinded!
+
 ## [1.5.1] - 2017-11-20
 ### Added
 - Weather units settings to switch between auto (based on weather location), metric or imperial.

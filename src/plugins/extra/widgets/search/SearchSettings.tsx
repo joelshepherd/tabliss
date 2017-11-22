@@ -5,15 +5,30 @@ const engines: Engine[] = require('./engines.json');
 
 interface Props {
   engine: string;
+  placeholder: string;
   onChange: (settings: SettingsInterface) => void;
 }
 
 class SearchSettings extends React.PureComponent<Props> {
-  static defaultProps = { engine: 'google' };
+  static defaultProps = {
+    engine: 'google',
+    placeholder: 'Type to search',
+  };
 
   render() {
     return (
       <div>
+        <p>
+          <label>
+            Placeholder
+            <input
+              type="text"
+              value={this.props.placeholder}
+              onChange={event => this.props.onChange({ placeholder: event.target.value })}
+            />
+          </label>
+        </p>
+
         {engines.map(engine =>
           <label key={engine.key}>
             <input
