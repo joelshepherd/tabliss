@@ -4,6 +4,7 @@ export interface Settings {
   darken: boolean;
   featured: boolean;
   search: string;
+  timeout: number;
 }
 
 export interface Image {

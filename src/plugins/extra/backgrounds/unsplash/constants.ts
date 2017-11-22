@@ -9,6 +9,7 @@ export const defaultProps = {
   darken: true,
   featured: false,
   search: '',
+  timeout: 0,
 };
 
 export const officialCollection = 1053828;

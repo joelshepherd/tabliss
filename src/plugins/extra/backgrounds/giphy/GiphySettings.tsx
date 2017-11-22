@@ -34,7 +34,7 @@ class GiphySettings extends React.PureComponent<Props> {
             onChange={event => this.props.onChange({ nsfw: ! this.props.nsfw })}
           />
           {' '}
-          NSFW permitted
+          Allow NSFW
         </label>
 
         <label>
@@ -44,7 +44,7 @@ class GiphySettings extends React.PureComponent<Props> {
             onChange={event => this.props.onChange({ expand: ! this.props.expand })}
           />
           {' '}
-          Expand
+          Scretch to fill screen
         </label>
       </div>
     );

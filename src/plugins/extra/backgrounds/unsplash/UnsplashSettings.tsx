@@ -1,18 +1,30 @@
 import * as React from 'react';
-import { Settings as SettingsInterface } from '../../../interfaces';
 import { defaultProps } from './constants';
 import { By, Settings } from './interfaces';
 
 interface Props extends Settings {
-  onChange: (settings: SettingsInterface) => void;
+  onChange: (settings: Partial<Settings>) => void;
 }
 
 class UnsplashSettings extends React.PureComponent<Props> {
-  static defaultProps: Partial<Props> = defaultProps;
+  static defaultProps = defaultProps;
 
   render() {
     return (
       <div>
+        <label>
+          Show a new photo
+          <select
+            value={this.props.timeout}
+            onChange={event => this.props.onChange({ timeout: parseInt(event.target.value, 10) })}
+          >
+            <option value="0">Every new tab</option>
+            <option value="900">Every 15 minutes</option>
+            <option value="3600">Every hour</option>
+            <option value="86400">Every day</option>
+          </select>
+        </label>
+
         <label>
           <input
             type="radio"

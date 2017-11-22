@@ -12,16 +12,24 @@ import './Unsplash.sass';
 interface Props extends Settings {
   darken: boolean;
   focus: boolean;
-  local: State;
+  local: Local;
   popPending: ActionCreator<Action>;
   pushPending: ActionCreator<Action>;
-  updateLocal: (state: Partial<State>) => void;
+  updateLocal: (state: Partial<Local>) => void;
+}
+
+interface Local {
+  current?: Image & {
+    timestamp: number;
+  };
+  next?: Image;
+  paused?: boolean;
 }
 
 interface State {
-  current?: Image & { src?: string };
-  next?: Image;
-  paused?: boolean;
+  current?: Image & {
+    src: string;
+  };
 }
 
 class Unsplash extends React.PureComponent<Props, State> {
@@ -30,18 +38,10 @@ class Unsplash extends React.PureComponent<Props, State> {
   private refreshDebounced = debounce(this.refresh, 250);
 
   componentWillMount() {
-    // Get image from local cache
-    const image = get(this.props, 'local.next');
+    this.getImage().then(this.setCurrentImage);
 
-    if (image && image.data instanceof Blob) {
-      this.setCurrentImage(image);
-    } else {
-      this.fetchImage().then(this.setCurrentImage);
-    }
-
-    // Fetch the next image and load into cache (if not paused)
     if (this.shouldRotate()) {
-      this.fetchImage().then(next => this.shouldRotate() && this.setNextImage(next));
+      this.fetchImage().then(this.setNextImage);
     }
   }
 
@@ -98,15 +98,37 @@ class Unsplash extends React.PureComponent<Props, State> {
   }
 
   /**
+   * Get image to display.
+   *
+   * @type {Promise<Image>}
+   */
+  private async getImage() {
+    if (this.shouldRotate()) {
+      return get(this.props, 'local.next.data') instanceof Blob
+        ? get(this.props, 'local.next')
+        : await this.fetchImage();
+    } else {
+      return get(this.props, 'local.current.data') instanceof Blob
+        ? get(this.props, 'local.current')
+        : await this.fetchImage();
+    }
+  }
+
+  /**
    * Set the current image.
    *
    * @type {void}
    */
-  private setCurrentImage = (image: Image) => {
+  private setCurrentImage = (image: Image & { timestamp?: number }) => {
     const src = URL.createObjectURL(image.data);
-    const current = { ...image, src };
+    const timestamp = image.timestamp || Date.now();
 
-    this.setState({ current });
+    this.setState({ current: {
+      ...image as Image, src,
+    }});
+    this.props.updateLocal({ current: {
+      ...image, timestamp,
+    }});
   }
 
   /**
@@ -114,8 +136,8 @@ class Unsplash extends React.PureComponent<Props, State> {
    *
    * @type {void}
    */
-  private setNextImage = (next: Image) => {
-    this.props.updateLocal({ next });
+  private setNextImage = (image: Image) => {
+    this.props.updateLocal({ next: image });
   }
 
   /**
@@ -124,7 +146,8 @@ class Unsplash extends React.PureComponent<Props, State> {
    * @type {boolean}
    */
   private shouldRotate(props: Props = this.props) {
-    return ! get(props, 'local.paused');
+    return ! get(props, 'local.paused', false)
+      && get(props, 'local.current.timestamp', 0) + (this.props.timeout * 1000) < Date.now();
   }
 
   /**

@@ -5,6 +5,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 ### Added
+- Specify an amount of time before Unsplash shows you a new photo.
 - Setting to change the placeholder text in the search box.
 
 ### Changed
