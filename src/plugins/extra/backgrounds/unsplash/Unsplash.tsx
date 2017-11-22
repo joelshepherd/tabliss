@@ -84,7 +84,6 @@ class Unsplash extends React.PureComponent<Props, State> {
    */
   private pause = () => {
     this.props.updateLocal({ paused: true });
-    this.setNextImage(this.state.current as Image);
   }
 
   /**
@@ -94,7 +93,6 @@ class Unsplash extends React.PureComponent<Props, State> {
    */
   private play = () => {
     this.props.updateLocal({ paused: false });
-    this.fetchImage().then(this.setNextImage);
   }
 
   /**
