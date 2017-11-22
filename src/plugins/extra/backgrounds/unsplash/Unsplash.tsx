@@ -4,11 +4,10 @@ import * as React from 'react';
 import { ActionCreator, connect } from 'react-redux';
 import { Action, popPending, pushPending, RootState } from '../../../../data';
 import { getImage } from './api';
-import { defaultProps, UNSPLASH_UTM } from './constants';
+import { defaultProps } from './constants';
 import { Image, Settings } from './interfaces';
+import UnsplashCredit from './UnsplashCredit';
 import './Unsplash.sass';
-const playIcon = require('feather-icons/dist/icons/play.svg');
-const pauseIcon = require('feather-icons/dist/icons/pause.svg');
 
 interface Props extends Settings {
   darken: boolean;
@@ -41,12 +40,8 @@ class Unsplash extends React.PureComponent<Props, State> {
     }
 
     // Fetch the next image and load into cache (if not paused)
-    if (! get(this.props, 'local.paused')) {
-      this.fetchImage().then(next => {
-        if (! get(this.props, 'local.paused')) {
-          this.setNextImage(next);
-        }
-      });
+    if (this.shouldRotate()) {
+      this.fetchImage().then(next => this.shouldRotate() && this.setNextImage(next));
     }
   }
 
@@ -71,44 +66,12 @@ class Unsplash extends React.PureComponent<Props, State> {
         {this.props.darken && ! this.props.focus && <div className="darken fullscreen" />}
 
         {this.state.current && (
-          <div className="credit">
-            <span style={{float: 'right'}}>
-              {this.state.current.location_title}
-              &emsp;
-              {get(this.props, 'local.paused')
-                ? <a onClick={this.play} title="Resume new images">
-                    <i dangerouslySetInnerHTML={{ __html: playIcon }} />
-                  </a>
-                : <a onClick={this.pause} title="Pause on this image">
-                    <i dangerouslySetInnerHTML={{ __html: pauseIcon }} />
-                  </a>
-              }
-            </span>
-
-            <a
-              href={this.state.current.image_link + UNSPLASH_UTM}
-              rel="noopener noreferrer"
-              target="_blank"
-            >
-              Photo
-            </a>
-            {' by '}
-            <a
-              href={this.state.current.user_link + UNSPLASH_UTM}
-              rel="noopener noreferrer"
-              target="_blank"
-            >
-              {this.state.current.user_name}
-            </a>
-            {' / '}
-            <a
-              href={'https://unsplash.com/' + UNSPLASH_UTM}
-              rel="noopener noreferrer"
-              target="_blank"
-            >
-              Unsplash
-            </a>
-          </div>
+          <UnsplashCredit
+            image={this.state.current}
+            paused={get(this.props, 'local.paused')}
+            pause={this.pause}
+            play={this.play}
+          />
         )}
       </div>
     );
@@ -153,6 +116,15 @@ class Unsplash extends React.PureComponent<Props, State> {
    */
   private setNextImage = (next: Image) => {
     this.props.updateLocal({ next });
+  }
+
+  /**
+   * Should we rotate the currennt image.
+   *
+   * @type {boolean}
+   */
+  private shouldRotate(props: Props = this.props) {
+    return ! get(props, 'local.paused');
   }
 
   /**
