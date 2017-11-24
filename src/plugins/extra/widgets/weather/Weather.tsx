@@ -3,15 +3,11 @@ import * as React from 'react';
 import { ActionCreator, connect } from 'react-redux';
 import { Action, popPending, pushPending } from '../../../../data';
 import { weatherIcons } from './icons';
-import { Conditions } from './interfaces';
+import { Conditions, Settings } from './interfaces';
 import './Weather.sass';
 
-interface Props {
-  latitude?: number;
-  longitude?: number;
+interface Props extends Settings {
   local: Local;
-  mode: string;
-  units: string;
   popPending: ActionCreator<Action>;
   pushPending: ActionCreator<Action>;
   updateLocal: (state: Partial<Local>) => void;

@@ -4,9 +4,9 @@ const navigationIcon = require('feather-icons/dist/icons/navigation.svg');
 const searchIcon = require('feather-icons/dist/icons/search.svg');
 
 interface Props {
-  latitude: number;
-  longitude: number;
-  onChange: (location: { latitude?: number, longitude?: number }) => void;
+  latitude: number|string;
+  longitude: number|string;
+  onChange: (location: { latitude?: number|string, longitude?: number|string }) => void;
 }
 
 interface State {
@@ -72,14 +72,14 @@ class LocationInput extends React.PureComponent<Props, State> {
             id="LocationInput__latitude"
             type="text"
             value={this.props.latitude}
-            onChange={event => this.props.onChange({ latitude: parseFloat(event.target.value) })}
+            onChange={event => this.props.onChange({ latitude: event.target.value })}
           />
 
           <input
             id="LocationInput__longitude"
             type="text"
             value={this.props.longitude}
-            onChange={event => this.props.onChange({ longitude: parseFloat(event.target.value) })}
+            onChange={event => this.props.onChange({ longitude: event.target.value })}
           />
 
           <button className="button--primary button--icon" onClick={this.getCurrentLocation}>

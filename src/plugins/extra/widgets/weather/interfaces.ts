@@ -1,6 +1,6 @@
 export interface Settings {
-  latitude: number;
-  longitude: number;
+  latitude: number|string;
+  longitude: number|string;
   mode: string;
   units: string;
 }

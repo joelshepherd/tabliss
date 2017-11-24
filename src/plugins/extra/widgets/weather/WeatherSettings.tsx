@@ -2,11 +2,7 @@ import * as React from 'react';
 import { Settings } from './interfaces';
 import LocationInput from './LocationInput';
 
-interface Props {
-  latitude: number;
-  longitude: number;
-  mode: string;
-  units: string;
+interface Props extends Settings {
   onChange: (settings: Partial<Settings>) => void;
 }
 
