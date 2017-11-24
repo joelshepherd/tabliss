@@ -1,18 +1,19 @@
 import * as React from 'react';
-import { Settings as SettingsInterface } from '../../../interfaces';
+import { Settings } from './interfaces';
+import LocationInput from './LocationInput';
 
 interface Props {
   latitude: number;
   longitude: number;
   mode: string;
   units: string;
-  onChange: (settings: SettingsInterface) => void;
+  onChange: (settings: Partial<Settings>) => void;
 }
 
 class WeatherSettings extends React.PureComponent<Props> {
   static defaultProps = {
-    latitude: 0,
-    longitude: 0,
+    latitude: '',
+    longitude: '',
     mode: 'corner',
     units: 'auto',
   };
@@ -20,27 +21,13 @@ class WeatherSettings extends React.PureComponent<Props> {
   render() {
     return (
       <div>
-        <label>
-          Latitude
-          <input
-            type="text"
-            value={this.props.latitude}
-            onChange={event => this.props.onChange({ latitude: event.target.value })}
-          />
-        </label>
+        <LocationInput
+          latitude={this.props.latitude}
+          longitude={this.props.longitude}
+          onChange={location => this.props.onChange(location)}
+        />
 
-        <label>
-          Longitude
-          <input
-            type="text"
-            value={this.props.longitude}
-            onChange={event => this.props.onChange({ longitude: event.target.value })}
-          />
-        </label>
-
-        <p><button className="button--primary" onClick={this.currentLocation}>
-          Use My Current Location
-        </button></p>
+        <hr />
 
         <label>
           <input
@@ -82,21 +69,12 @@ class WeatherSettings extends React.PureComponent<Props> {
           />
           Display on screen edge
         </label>
-
+        <hr />
         <p><a href="https://darksky.net/poweredby/"  target="_blank" rel="noopener noreferrer">
           Powered by Dark Sky
         </a></p>
       </div>
     );
-  }
-
-  private currentLocation = () => {
-    navigator.geolocation.getCurrentPosition(positon => {
-      this.props.onChange({
-        latitude: positon.coords.latitude,
-        longitude: positon.coords.longitude,
-      });
-    });
   }
 }
 

@@ -4,6 +4,9 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
+### Added
+- Weather input geocoding to get weather location coordinates from city search.
+
 ### Changed
 - Pausing for Unsplash is now integrated into the "Show new photo" setting. This keeps all image rotation settings together saving confusion.
 

@@ -12,7 +12,7 @@
     .plane
         border-top: 4px solid #3498db
         box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.25)
-        background-color: rgba(255, 255, 255, 0.96)
+        background-color: rgba(255, 255, 255, 0.98)
         height: 100%
         max-width: 100%
         overflow-y: auto
@@ -100,3 +100,14 @@
 
         &:hover
             background-color: #bdc3c7
+
+        &.button--primary
+            background-color: #3498db
+            color: white
+
+            &:hover
+                background-color: darken(#3498db, 20%)
+
+    hr
+        border: 1px solid #ecf0f1
+        margin: 1rem 0

@@ -1,3 +1,10 @@
+export interface Settings {
+  latitude: number;
+  longitude: number;
+  mode: string;
+  units: string;
+}
+
 export interface Conditions {
   alerts: Alert[];
   apparentTemperature: number;

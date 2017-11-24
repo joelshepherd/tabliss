@@ -7,8 +7,8 @@ import { Conditions } from './interfaces';
 import './Weather.sass';
 
 interface Props {
-  latitude: number;
-  longitude: number;
+  latitude?: number;
+  longitude?: number;
   local: Local;
   mode: string;
   units: string;
@@ -24,8 +24,6 @@ interface Local {
 
 class Weather extends React.PureComponent<Props> {
   static defaultProps = {
-    latitude: 0,
-    longitude: 0,
     mode: 'corner',
     units: 'auto',
   };
@@ -91,6 +89,11 @@ class Weather extends React.PureComponent<Props> {
   }
 
   private async getForecast({ latitude, longitude, units }: Props = this.props) {
+    // Validate we have all required settings
+    if (! (latitude && longitude && units)) {
+      return;
+    }
+
     this.props.pushPending();
 
     const req = new Request(
