@@ -23,7 +23,6 @@ interface Local {
     timestamp: number;
   };
   next?: Image;
-  paused?: boolean;
 }
 
 interface State {
@@ -64,35 +63,9 @@ class Unsplash extends React.PureComponent<Props, State> {
     return (
       <div className="Unsplash fullscreen" style={styles}>
         {this.props.darken && ! this.props.focus && <div className="darken fullscreen" />}
-
-        {this.state.current && (
-          <UnsplashCredit
-            image={this.state.current}
-            paused={get(this.props, 'local.paused')}
-            pause={this.pause}
-            play={this.play}
-          />
-        )}
+        {this.state.current && <UnsplashCredit image={this.state.current} />}
       </div>
     );
-  }
-
-  /**
-   * Pause on current image.
-   *
-   * @type {void}
-   */
-  private pause = () => {
-    this.props.updateLocal({ paused: true });
-  }
-
-  /**
-   * Resume image rotation.
-   *
-   * @type {void}
-   */
-  private play = () => {
-    this.props.updateLocal({ paused: false });
   }
 
   /**
@@ -144,8 +117,7 @@ class Unsplash extends React.PureComponent<Props, State> {
    * @type {boolean}
    */
   private shouldRotate(props: Props = this.props) {
-    return ! get(props, 'local.paused', false)
-      && get(props, 'local.current.timestamp', 0) + (this.props.timeout * 1000) < Date.now();
+    return get(props, 'local.current.timestamp', 0) + (this.props.timeout * 1000) < Date.now();
   }
 
   /**

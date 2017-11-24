@@ -22,6 +22,7 @@ class UnsplashSettings extends React.PureComponent<Props> {
             <option value="900">Every 15 minutes</option>
             <option value="3600">Every hour</option>
             <option value="86400">Every day</option>
+            <option value={Number.MAX_SAFE_INTEGER}>Pause</option>
           </select>
         </label>
 
