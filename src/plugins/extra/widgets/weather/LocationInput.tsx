@@ -55,10 +55,12 @@ class LocationInput extends React.PureComponent<Props, State> {
     }
 
     // Coordinates mode
+    const geolocationAvailable = 'geolocation' in navigator;
+
     return (
       <div className="LocationInput">
-        <div className="grid" style={{ gridTemplateColumns: '1fr 1fr auto' }}>
-        <label htmlFor="LocationInput__latitude">
+        <div className="grid" style={{ gridTemplateColumns: geolocationAvailable ? '1fr 1fr auto' : '1fr 1fr' }}>
+          <label htmlFor="LocationInput__latitude">
             Latitude
           </label>
 
@@ -66,7 +68,7 @@ class LocationInput extends React.PureComponent<Props, State> {
             Longitude
           </label>
 
-          <div />
+          {geolocationAvailable && <div />}
 
           <input
             id="LocationInput__latitude"
@@ -82,9 +84,11 @@ class LocationInput extends React.PureComponent<Props, State> {
             onChange={event => this.props.onChange({ longitude: event.target.value })}
           />
 
-          <button className="button--primary button--icon" onClick={this.getCurrentLocation}>
-            <i dangerouslySetInnerHTML={{ __html: navigationIcon }} />
-          </button>
+          {geolocationAvailable &&
+            <button className="button--primary button--icon" onClick={this.getCurrentLocation}>
+              <i dangerouslySetInnerHTML={{ __html: navigationIcon }} />
+            </button>
+          }
         </div>
 
         <a href="javascript:;" onClick={() => this.setState({ lookup: true })}>
