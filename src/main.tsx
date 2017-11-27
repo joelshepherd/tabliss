@@ -7,7 +7,7 @@ import { store } from './data';
 // Setup error logging
 if (process.env.NODE_ENV === 'production' && process.env.SENTRY_PUBLIC_DSN) {
   require('raven-js').config(process.env.SENTRY_PUBLIC_DSN, {
-    release: '1.6.0',
+    release: '1.6.1',
   }).install();
 }
 
