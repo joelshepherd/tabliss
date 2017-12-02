@@ -49,7 +49,7 @@ class Search extends React.PureComponent<Props, State> {
    */
   private buildUrl(query: string) {
     // See if they have started with a web scheme
-    if (query.startsWith('http://') || query.startsWith('https://')) {
+    if (/^https?:\/\/\w+/.test(query)) {
       return query;
     }
 

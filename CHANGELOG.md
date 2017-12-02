@@ -11,6 +11,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 - Snappier setting menu open animation ;)
 
 ### Fixed
+- Tabliss getting confused when you search for exactly `http://` or `https://`.
 - An error when cancelling an image upload.
 
 ## [1.6.1] - 2017-11-27
