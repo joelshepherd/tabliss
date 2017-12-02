@@ -27,8 +27,15 @@ const formattedTime = ({ time, hour12 }: Props) => {
     //
   }
 
-  // Otherwise basic support
-  return time.toLocaleTimeString();
+  try {
+    // Try basic support
+    return time.toLocaleTimeString();
+  } catch (e) {
+    //
+  }
+
+  // Can't find a locale
+  return time.toLocaleTimeString('en-GB');
 };
 
 export default Digital;
