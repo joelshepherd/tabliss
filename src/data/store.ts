@@ -31,6 +31,6 @@ export const persistor = persistStore(store, {
   storage: localForage,
   transforms: [
     createBlacklistFilter('booted'),
-    createBlacklistFilter('ui', ['pending']),
+    createBlacklistFilter('ui', ['pending', 'settings']),
   ],
 });

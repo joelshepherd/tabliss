@@ -8,6 +8,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 - New Quick Links plugin for your favourite websites. Try using the keyboard shortcut!
 
 ## Changed
+- Settings menu no longer opens on load if you left it open last time.
 - Snappier setting menu open animation ;)
 
 ### Fixed
