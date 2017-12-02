@@ -8,6 +8,7 @@ import {
 import {
   Font, FontSettings,
   Greeting, GreetingSettings,
+  Links, LinksSettings,
   Message, MessageSettings,
   Time, TimeSettings,
 } from './widgets';
@@ -60,6 +61,14 @@ registerPlugin({
   title: 'Message',
   Dashboard: Message,
   Settings: MessageSettings,
+});
+
+registerPlugin({
+  key: 'core/widgets/links',
+  type: Type.WIDGET,
+  title: 'Quick Links',
+  Dashboard: Links,
+  Settings: LinksSettings,
 });
 
 registerPlugin({

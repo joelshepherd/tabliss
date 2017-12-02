@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
+## [Unreleased]
+### Added
+- New Quick Links plugin for your favourite websites. Try using the keyboard shortcut to access!
+
 ## [1.6.1] - 2017-11-27
 ### Added
 - Weather input geocoding to get weather location coordinates from city search.
