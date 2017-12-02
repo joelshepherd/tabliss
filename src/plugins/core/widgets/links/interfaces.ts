@@ -4,4 +4,5 @@ export interface Link {
 
 export interface Settings {
   links: Link[];
+  visible: boolean;
 }

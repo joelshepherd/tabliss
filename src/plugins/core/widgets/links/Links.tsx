@@ -2,12 +2,21 @@ import * as React from 'react';
 import { Settings } from './interfaces';
 import LinkDisplay from './LinkDisplay';
 import './Links.sass';
+const linkIcon = require('feather-icons/dist/icons/link-2.svg');
 
-class Links extends React.PureComponent<Settings> {
+interface State {
+  visible: boolean;
+}
+
+class Links extends React.PureComponent<Settings, State> {
   static defaultProps = {
     links: [{
       url: 'https://tabliss.io'
     }],
+    visible: true,
+  };
+  state = {
+    visible: false,
   };
 
   componentWillMount() {
@@ -21,7 +30,18 @@ class Links extends React.PureComponent<Settings> {
   render() {
     return (
       <div className="Links">
-        {this.props.links.map((link, index) => <LinkDisplay key={index} number={index + 1} {...link} />)}
+        {! this.props.visible && ! this.state.visible && (
+          <a
+            href="javascript:;"
+            onClick={() => this.setState({ visible: true })}
+            title="Show links"
+          >
+            <i dangerouslySetInnerHTML={{ __html: linkIcon }} />
+          </a>
+        )}
+        {(this.props.visible || this.state.visible) && this.props.links.map((link, index) => (
+          <LinkDisplay key={index} number={index + 1} {...link} />
+        ))}
       </div>
     );
   }

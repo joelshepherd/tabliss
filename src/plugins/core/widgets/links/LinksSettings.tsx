@@ -11,11 +11,21 @@ class LinksSettings extends React.PureComponent<Props> {
     links: [{
       url: 'https://tabliss.io'
     }],
+    visible: true,
   };
 
   render() {
     return (
       <div>
+        <label>
+          <input
+            type="checkbox"
+            checked={this.props.visible}
+            onChange={event => this.props.onChange({ visible: ! this.props.visible })}
+          />
+          Links are always visible
+        </label>
+
         {this.props.links.map((link, index) => (
           <LinkInput
             {...link}
