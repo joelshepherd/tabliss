@@ -12,6 +12,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
 ### Fixed
 - Tabliss getting confused when you search for exactly `http://` or `https://`.
+- Possible issue trying to display incomplete/corrupt gifs.
 - An error when cancelling an image upload.
 
 ## [1.6.1] - 2017-11-27

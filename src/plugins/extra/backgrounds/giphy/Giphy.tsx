@@ -1,4 +1,5 @@
 import debounce from 'lodash-es/debounce';
+import get from 'lodash-es/get';
 import * as React from 'react';
 import { ActionCreator, connect } from 'react-redux';
 import { Action, popPending, pushPending, RootState } from '../../../../data';
@@ -41,8 +42,8 @@ class Giphy extends React.PureComponent<Props, State> {
 
   componentWillMount() {
     // Fetch or pull from cache for current gif
-    if (this.props.local && this.props.local.next && this.props.local.next.data) {
-      this.set(this.props.local.next);
+    if (get(this.props, 'local.next.data') instanceof Blob) {
+      this.set(get(this.props, 'local.next'));
     } else {
       this.fetch(this.props.tag, this.props.nsfw).then(gif => this.set(gif));
     }
