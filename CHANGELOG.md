@@ -5,7 +5,13 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 ### Added
-- New Quick Links plugin for your favourite websites. Try using the keyboard shortcut to access!
+- New Quick Links plugin for your favourite websites. Try using the keyboard shortcut!
+
+## Changed
+- Snappier setting menu open animation ;)
+
+### Fixed
+- An error when cancelling an image upload.
 
 ## [1.6.1] - 2017-11-27
 ### Added

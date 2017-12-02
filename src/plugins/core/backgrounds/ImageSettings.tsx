@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Settings } from '../../interfaces';
+import { readAsDataUrl } from '../../../utils';
 import Image from './Image';
 
 interface Props {
@@ -34,19 +35,14 @@ class ImageSettings extends React.PureComponent<Props, State> {
   }
 
   private loadImage(files: FileList) {
-    // Check for oversized
-    this.setState({ oversized: files[0].size > 2097152 }); // Larger than 2mb
+    const file = files[0];
+    if (file) {
+      // Warn for oversized images
+      this.setState({ oversized: files[0].size > 2097152 }); // Larger than 2mb
 
-    // Setup file reader
-    const reader = new FileReader();
-
-    reader.addEventListener('load', () => {
-      this.props.onChange({
-        image: reader.result,
-      });
-    });
-
-    reader.readAsDataURL(files[0]);
+      // Store data URL
+      readAsDataUrl(files[0]).then(image => this.props.onChange({ image }));
+    }
   }
 }
 

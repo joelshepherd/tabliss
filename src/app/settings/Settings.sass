@@ -19,7 +19,7 @@
         padding: 2rem
         position: absolute
         width: 330px
-        transition: transform 0.25s ease-out
+        transition: transform 0.15s ease-out
 
     &.slide-enter .plane,
     &.slide-exit.slide-exit-active .plane
@@ -44,19 +44,27 @@
     input[type=file],
     input[type=number],
     input[type=text],
+    input[type=url],
     textarea,
     select
         border: 1px solid #bdc3c7
         border-radius: 0.2em
+        color: inherit
         display: block
         margin: 0.5em 0
         padding: 0.5em
         width: 100%
-        color: inherit
+        overflow: hidden
 
         &.primary
             background-color: #ecf0f1
             border: 0.25em solid #ecf0f1
+
+        & + .input--error
+            display: none
+
+        &:invalid + .input--error
+            display: block
 
     input[type=radio],
     input[type=checkbox]
@@ -90,8 +98,9 @@
         background-color: #ecf0f1
         border: none
         border-radius: 1em
-        display: block
+        display: inline-block
         padding: 0.5em
+        line-height: 1
         height: 2em
         width: 2em
         color: black
