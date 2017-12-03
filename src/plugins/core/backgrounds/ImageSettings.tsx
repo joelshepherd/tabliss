@@ -38,10 +38,10 @@ class ImageSettings extends React.PureComponent<Props, State> {
     const file = files[0];
     if (file) {
       // Warn for oversized images
-      this.setState({ oversized: files[0].size > 2097152 }); // Larger than 2mb
+      this.setState({ oversized: file.size > 2097152 }); // Larger than 2mb
 
       // Store data URL
-      readAsDataUrl(files[0]).then(image => this.props.onChange({ image }));
+      readAsDataUrl(file).then(image => this.props.onChange({ image }));
     }
   }
 }
