@@ -1,6 +1,6 @@
 {
   "name": "tabliss",
-  "version": "1.6.1",
+  "version": "1.7.0",
   "private": true,
   "scripts": {
     "start": "webpack-dev-server",

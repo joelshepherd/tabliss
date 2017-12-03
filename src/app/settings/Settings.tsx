@@ -34,7 +34,7 @@ class Settings extends React.PureComponent<Props> {
           <Widgets />
 
           <Feedback />
-          <p><a href="javascript:;" onClick={this.reset}>
+          <p><a onClick={this.reset}>
             Reset to default
           </a></p>
           <p><a href="https://tabliss.io/" target="_blank">tabliss.io</a></p>

@@ -20,7 +20,7 @@ class Feedback extends React.PureComponent<{}, State> {
     return (
       <div className="Feedback">
         {! this.state.open &&
-          <p><a href="javascript:;" onClick={this.toggle}>Send feedback or suggestions</a></p>
+          <p><a onClick={this.toggle}>Send feedback or suggestions</a></p>
         }
 
         {this.state.open &&

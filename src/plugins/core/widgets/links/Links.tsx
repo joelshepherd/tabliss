@@ -31,11 +31,7 @@ class Links extends React.PureComponent<Settings, State> {
     return (
       <div className="Links">
         {! this.props.visible && ! this.state.visible && (
-          <a
-            href="javascript:;"
-            onClick={() => this.setState({ visible: true })}
-            title="Show quick links"
-          >
+          <a onClick={() => this.setState({ visible: true })} title="Show quick links">
             <i dangerouslySetInnerHTML={{ __html: linkIcon }} />
           </a>
         )}

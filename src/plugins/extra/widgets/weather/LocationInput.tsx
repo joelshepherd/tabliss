@@ -47,7 +47,7 @@ class LocationInput extends React.PureComponent<Props, State> {
               </div>
             </form>
 
-            <a href="javascript:;" onClick={() => this.setState({ lookup: false })}>
+            <a onClick={() => this.setState({ lookup: false })}>
               Enter coordinates
             </a>
         </div>
@@ -91,7 +91,7 @@ class LocationInput extends React.PureComponent<Props, State> {
           }
         </div>
 
-        <a href="javascript:;" onClick={() => this.setState({ lookup: true })}>
+        <a onClick={() => this.setState({ lookup: true })}>
           Search for city
         </a>
       </div>
