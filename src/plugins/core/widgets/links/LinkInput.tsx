@@ -12,8 +12,9 @@ interface Props extends LinkProps {
 const LinkInput: React.StatelessComponent<Props> = (props) => (
   <div className="LinkInput">
     <label>
-      {props.number < 10 ? `${props.number}. ` : ''}
       URL
+      {props.number < 10 ? ` (Keyboard shortcut: ${props.number})` : ''}
+
       <div className="grid">
         <input
           type="url"

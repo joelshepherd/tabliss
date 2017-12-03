@@ -11,7 +11,7 @@ class LinksSettings extends React.PureComponent<Props> {
     links: [{
       url: 'https://tabliss.io'
     }],
-    visible: true,
+    visible: false,
   };
 
   render() {

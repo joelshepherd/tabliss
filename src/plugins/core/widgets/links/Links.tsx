@@ -13,7 +13,7 @@ class Links extends React.PureComponent<Settings, State> {
     links: [{
       url: 'https://tabliss.io'
     }],
-    visible: true,
+    visible: false,
   };
   state = {
     visible: false,
@@ -34,7 +34,7 @@ class Links extends React.PureComponent<Settings, State> {
           <a
             href="javascript:;"
             onClick={() => this.setState({ visible: true })}
-            title="Show links"
+            title="Show quick links"
           >
             <i dangerouslySetInnerHTML={{ __html: linkIcon }} />
           </a>
