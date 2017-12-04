@@ -13,7 +13,7 @@ class DribbbleSettings extends React.PureComponent<Props> {
 
   render() {
     return (
-      <div>
+      <div className="DribbbleSettings">
         <label>
           <input
             type="radio"

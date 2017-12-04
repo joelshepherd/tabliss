@@ -17,7 +17,7 @@ class SearchSettings extends React.PureComponent<Props> {
 
   render() {
     return (
-      <div>
+      <div className="SearchSettings">
         <p>
           <label>
             Placeholder

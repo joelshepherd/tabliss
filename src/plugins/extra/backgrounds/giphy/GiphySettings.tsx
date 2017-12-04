@@ -17,7 +17,7 @@ class GiphySettings extends React.PureComponent<Props> {
 
   render() {
     return (
-      <div>
+      <div className="GiphySettings">
         <label>
           Tag
           <input

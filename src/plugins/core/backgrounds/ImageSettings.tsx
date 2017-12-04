@@ -18,7 +18,7 @@ class ImageSettings extends React.PureComponent<Props, State> {
 
   render() {
     return (
-      <div>
+      <div className="ImageSettings">
         <label>
           <input
             accept="image/*"

@@ -8,7 +8,7 @@ interface Props {
 
 const MessageSettings: React.StatelessComponent<Props> = ({ message = 'Add something witty', onChange }) => {
   return (
-    <div>
+    <div className="MessageSettings">
       <label>
         Message
         <textarea

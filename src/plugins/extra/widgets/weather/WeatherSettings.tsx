@@ -16,7 +16,7 @@ class WeatherSettings extends React.PureComponent<Props> {
 
   render() {
     return (
-      <div>
+      <div className="WeatherSettings">
         <LocationInput
           latitude={this.props.latitude}
           longitude={this.props.longitude}

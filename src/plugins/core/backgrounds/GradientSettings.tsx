@@ -19,7 +19,7 @@ class GradientSettings extends React.PureComponent<Props> {
 
   render() {
     return (
-      <div>
+      <div className="GradientSettings">
         <label>
           From Colour
           <input

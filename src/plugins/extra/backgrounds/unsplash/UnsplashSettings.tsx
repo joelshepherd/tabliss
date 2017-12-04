@@ -11,7 +11,7 @@ class UnsplashSettings extends React.PureComponent<Props> {
 
   render() {
     return (
-      <div>
+      <div className="UnsplashSettings">
         <label>
           Show a new photo
           <select

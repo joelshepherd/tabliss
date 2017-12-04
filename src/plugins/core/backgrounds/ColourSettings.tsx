@@ -13,7 +13,7 @@ class ColourSettings extends React.PureComponent<Props> {
 
   render() {
     return (
-      <div>
+      <div className="ColourSettings">
         <label>
           Colour
           <input

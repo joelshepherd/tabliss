@@ -16,7 +16,7 @@ class LinksSettings extends React.PureComponent<Props> {
 
   render() {
     return (
-      <div>
+      <div className="LinksSettings">
         <label>
           <input
             type="checkbox"
@@ -25,6 +25,8 @@ class LinksSettings extends React.PureComponent<Props> {
           />
           Links are always visible
         </label>
+
+        <hr />
 
         {this.props.links.map((link, index) => (
           <LinkInput
@@ -36,8 +38,8 @@ class LinksSettings extends React.PureComponent<Props> {
           />
         ))}
 
-        <p><button className="button--primary" onClick={this.addLink}>
-          Add new link
+        <p style={{ marginTop: '0.5rem' }}><button className="button--primary" onClick={this.addLink}>
+          Add link
         </button></p>
       </div>
     );

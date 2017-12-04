@@ -13,7 +13,7 @@ const LinkInput: React.StatelessComponent<Props> = (props) => (
   <div className="LinkInput">
     <label>
       URL
-      {props.number < 10 ? ` (Keyboard shortcut: ${props.number})` : ''}
+      {props.number < 10 && <span className="text--grey"> Keyboard shortcut: {props.number}</span>}
 
       <div className="grid">
         <input
@@ -27,6 +27,7 @@ const LinkInput: React.StatelessComponent<Props> = (props) => (
         </button>
       </div>
     </label>
+
   </div>
 );
 

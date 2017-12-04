@@ -15,16 +15,16 @@ class TimeSettings extends React.PureComponent<Props> {
 
   render() {
     return (
-      <div>
-      <label>
-        <input
-          type="radio"
-          checked={this.props.mode === 'analogue'}
-          onChange={() => this.props.onChange({ mode: 'analogue' })}
-        />
-        {' '}
-        Analogue
-      </label>
+      <div className="TimeSettings">
+        <label>
+          <input
+            type="radio"
+            checked={this.props.mode === 'analogue'}
+            onChange={() => this.props.onChange({ mode: 'analogue' })}
+          />
+          {' '}
+          Analogue
+        </label>
 
         <label>
           <input

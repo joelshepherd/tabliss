@@ -13,7 +13,7 @@ class GreetingSettings extends React.PureComponent<Props> {
 
   render() {
     return (
-      <div>
+      <div className="GreetingSettings">
         <label>
           Name
           <input

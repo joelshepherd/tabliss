@@ -19,7 +19,7 @@ class FontSettings extends React.PureComponent<Props> {
 
   render() {
     return (
-      <div>
+      <div className="FontSettings">
         <label>
           Family
           <input
