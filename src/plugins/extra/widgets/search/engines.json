@@ -28,5 +28,10 @@
     "key": "ecosia",
     "name": "Ecosia",
     "search_url": "https://www.ecosia.org/search?q={searchTerms}"
+  },
+  {
+    "key": "lilo",
+    "name": "Lilo",
+    "search_url": "https://search.lilo.org/results.php?q={searchTerms}"
   }
 ]
