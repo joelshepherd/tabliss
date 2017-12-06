@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
+## [Unreleased]
+### Fixed
+- Dashboard links not respecting chosen font colour.
+
 ## [1.7.1] - 2017-12-04
 ### Added
 - Lilo is now an available engine for the search box.
