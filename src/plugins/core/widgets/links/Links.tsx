@@ -43,9 +43,13 @@ class Links extends React.PureComponent<Settings, State> {
   }
 
   private onKeyDown = (event: KeyboardEvent) => {
-    const key = event.keyCode - 49; // Starting at 1
+    // Check for input focus
+    if (event.target instanceof HTMLInputElement || event.target instanceof HTMLTextAreaElement) {
+      return;
+    }
 
-    if (this.props.links[key] && ! (event.target instanceof HTMLInputElement)) {
+    const key = event.keyCode - 49; // Starting at 1
+    if (this.props.links[key]) {
       window.location.assign(this.props.links[key].url);
     }
   }

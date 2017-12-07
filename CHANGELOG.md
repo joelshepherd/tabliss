@@ -6,6 +6,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 ## [Unreleased]
 ### Fixed
 - Dashboard links not respecting chosen font colour.
+- Quick links activating when typing into a text area. :|
 
 ## [1.7.1] - 2017-12-04
 ### Added
