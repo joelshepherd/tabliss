@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { Link as LinkProps } from './interfaces';
-import './LinkInput.sass';
 const xIcon = require('feather-icons/dist/icons/x.svg');
 
 interface Props extends LinkProps {
@@ -22,7 +21,7 @@ const LinkInput: React.StatelessComponent<Props> = (props) => (
     </h5>
 
     <label>
-      URL*
+      URL
       <input
         type="url"
         value={props.url}
