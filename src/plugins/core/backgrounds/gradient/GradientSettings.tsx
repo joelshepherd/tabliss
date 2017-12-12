@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Settings } from '../../interfaces';
+import { Settings } from '../../../interfaces';
 
 interface Props {
   angle?: number;

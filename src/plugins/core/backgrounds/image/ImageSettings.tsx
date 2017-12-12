@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { Settings } from '../../interfaces';
-import { readAsDataUrl } from '../../../utils';
+import { Settings } from '../../../interfaces';
+import { readAsDataUrl } from '../../../../utils';
 import Image from './Image';
 
 interface Props {
