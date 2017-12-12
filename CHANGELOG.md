@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
+## [Unreleased]
+### Added
+- Giving names to your Quick Links is now possible.
+
 ## [1.7.2] - 2017-12-09
 ### Fixed
 - Dashboard links not respecting chosen font colour.

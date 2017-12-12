@@ -9,10 +9,9 @@ const LinkDisplay: React.StatelessComponent<Props> = (props) => (
   <a
     href={props.url}
     rel="noopener noreferrer"
-    title={props.number < 10 ? 'Press ' + props.number + ' for keyboard shortcut' : 'Visit link'}
+    title={props.number < 10 ? 'Press ' + props.number + ' to visit' : 'Visit link'}
   >
-    {props.number < 10 ? `${props.number}. ` : ''}
-    {displayUrl(props.url)}
+    {props.name || displayUrl(props.url)}
   </a>
 );
 
