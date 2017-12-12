@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { Settings } from '../../../interfaces';
-import { readAsDataUrl } from '../../../../utils';
 import Image from './Image';
 
 interface Props {
@@ -22,27 +21,26 @@ class ImageSettings extends React.PureComponent<Props, State> {
         <label>
           <input
             accept="image/*"
-            type="file"
+            multiple={true}
             onChange={event => event.target.files && this.loadImage(event.target.files)}
+            type="file"
           />
         </label>
 
         {this.state.oversized && <p className="info">Large images may affect performance</p>}
-
-        <img src={this.props.image} style={{width: '100%', height: 'auto'}} />
       </div>
     );
+
+    // Grid of these?
+    // <img src={this.props.image} style={{width: '100%', height: 'auto'}} />
   }
 
   private loadImage(files: FileList) {
-    const file = files[0];
-    if (file) {
-      // Warn for oversized images
-      this.setState({ oversized: file.size > 2097152 }); // Larger than 2mb
+    const images = Array.from(files);
 
-      // Store data URL
-      readAsDataUrl(file).then(image => this.props.onChange({ image }));
-    }
+    this.props.onChange({ images });
+
+    this.setState({ oversized: images.some(image => image.size > 2097152) });
   }
 }
 
