@@ -5,7 +5,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 ### Added
-- Giving names to your Quick Links is now possible.
+- Naming for Quick Links (instead of showing the URL).
 
 ## [1.7.2] - 2017-12-09
 ### Fixed
