@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Settings } from '../../../interfaces';
 import './ImageSettings.sass';
+const xIcon = require('feather-icons/dist/icons/x.svg');
 
 interface Props {
   image?: string;
@@ -8,15 +9,10 @@ interface Props {
   onChange: (settings: Settings) => void;
 }
 
-interface State {
-  oversized?: boolean;
-}
-
-class ImageSettings extends React.PureComponent<Props, State> {
+class ImageSettings extends React.PureComponent<Props> {
   static defaultProps = {
     images: [],
   };
-  state: State = {};
   currentUrls: string[] = [];
 
   render() {
@@ -41,14 +37,18 @@ class ImageSettings extends React.PureComponent<Props, State> {
           />
         </label>
 
-        {this.state.oversized && <p className="info">Large images may affect performance</p>}
-
         <div className="grid">
           {this.props.images.map(image => (
-            // @TODO Add remove button
-            <img src={this.createURL(image)} />
+            <div className="preview">
+              <img src={this.createURL(image)} />
+              <a className="button--icon" onClick={() => this.removeImage(image)}>
+                <i dangerouslySetInnerHTML={{ __html: xIcon }} />
+              </a>
+            </div>
           ))}
         </div>
+
+        {this.oversized && <p className="info">Large images may affect performance</p>}
       </div>
     );
   }
@@ -57,12 +57,26 @@ class ImageSettings extends React.PureComponent<Props, State> {
     const images = Array.from(files);
 
     this.props.onChange({
-      images,
+      images: [
+        ...this.props.images,
+        ...images,
+      ],
       image: undefined,
     });
 
     // Show warning for oversized images.
     this.setState({ oversized: images.some(image => image.size > 2097152) });
+  }
+
+  private removeImage(remove: File) {
+    this.props.onChange({
+      images: this.props.images.filter(image => image !== remove),
+    });
+  }
+
+  private get oversized() {
+    // Are any images over 2 mb?
+    return this.props.images.some(image => image.size > 2097152);
   }
 
   private createURL(blob: Blob) {

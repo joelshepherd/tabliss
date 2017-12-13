@@ -14,10 +14,7 @@ class Image extends React.PureComponent<Props> {
   private current: string;
 
   render() {
-    const styles = { backgroundImage: `url(${this.url})` };
-
-    // @TODO Have this as an actual image with an `onLoad` callback to fade out?
-    return <div className="Image fullscreen" style={styles} />;
+    return <div className="Image fullscreen" style={{ backgroundImage: `url(${this.url})` }} />;
   }
 
   private get url() {
@@ -30,7 +27,8 @@ class Image extends React.PureComponent<Props> {
     }
 
     return this.current = URL.createObjectURL(
-      // @TODO Should this actually be truely random? Rotating or peusdo-random might be better.
+      // @TODO Should this actually be truely random?
+      // Rotating or peusdo-random might be better.
       sample(this.props.images)
     );
   }
