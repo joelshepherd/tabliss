@@ -33,7 +33,7 @@ registerPlugin({
 registerPlugin({
   key: 'core/backgrounds/image',
   type: Type.BACKGROUND,
-  title: 'Upload Image',
+  title: 'Upload Images',
   Dashboard: Image,
   Settings: ImageSettings,
 });

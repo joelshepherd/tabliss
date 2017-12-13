@@ -1,20 +1,36 @@
+import sample from 'lodash-es/sample';
 import * as React from 'react';
 import './Image.sass';
-const image = require('./image.jpg');
+const defaultImage = require('./default-image.jpg');
 
 interface Props {
-  image?: string;
+  images: File[];
 }
 
 class Image extends React.PureComponent<Props> {
   static defaultProps = {
-    image,
+    images: [],
   };
+  private current: string;
 
   render() {
-    const backgroundImage = `url(${this.props.image})`;
+    return <div className="Image fullscreen" style={{ backgroundImage: `url(${this.url})` }} />;
+  }
 
-    return <div className="Image fullscreen" style={{ backgroundImage }} />;
+  private get url() {
+    if (this.current) {
+      URL.revokeObjectURL(this.current);
+    }
+
+    if (! this.props.images.length) {
+      return defaultImage;
+    }
+
+    return this.current = URL.createObjectURL(
+      // @TODO Should this actually be truely random?
+      // Rotating or peusdo-random might be better.
+      sample(this.props.images)
+    );
   }
 }
 

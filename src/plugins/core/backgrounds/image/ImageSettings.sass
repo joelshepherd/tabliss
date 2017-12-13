@@ -1,0 +1,27 @@
+.ImageSettings
+    .grid
+        display: grid
+        grid-template-columns: 1fr 1fr
+        grid-gap: 0.5em
+
+        .preview
+            background-color: #bdc3c7
+            border-radius: 0.25em
+            position: relative
+            overflow: hidden
+
+            img
+                display: block
+                max-width: 100%
+                height: auto
+
+            a
+                position: absolute
+                top: 50%
+                left: 50%
+                transform: translate(-50%, -50%)
+                opacity: 0
+                transition: opacity 0.15s ease-out
+
+            &:hover a
+                opacity: 1
