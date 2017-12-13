@@ -5,6 +5,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 ### Added
+- Upload multiple images to alternate between for your background.
 - Naming for Quick Links (instead of showing the URL).
 
 ## [1.7.2] - 2017-12-09

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Settings } from '../../../interfaces';
 import './ImageSettings.sass';
-const xIcon = require('feather-icons/dist/icons/x.svg');
+const trashIcon = require('feather-icons/dist/icons/trash-2.svg');
 
 interface Props {
   image?: string;
@@ -42,7 +42,7 @@ class ImageSettings extends React.PureComponent<Props> {
             <div className="preview">
               <img src={this.createURL(image)} />
               <a className="button--icon" onClick={() => this.removeImage(image)}>
-                <i dangerouslySetInnerHTML={{ __html: xIcon }} />
+                <i dangerouslySetInnerHTML={{ __html: trashIcon }} />
               </a>
             </div>
           ))}
@@ -57,11 +57,8 @@ class ImageSettings extends React.PureComponent<Props> {
     const images = Array.from(files);
 
     this.props.onChange({
-      images: [
-        ...this.props.images,
-        ...images,
-      ],
-      image: undefined,
+      images: this.props.images.concat(images),
+      image: undefined, // Clean legacy settings
     });
 
     // Show warning for oversized images.

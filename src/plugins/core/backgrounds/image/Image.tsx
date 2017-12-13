@@ -1,7 +1,7 @@
 import * as React from 'react';
 import sample from 'lodash-es/sample';
 import './Image.sass';
-const defaultImage = require('./image.jpg');
+const defaultImage = require('./default-image.jpg');
 
 interface Props {
   images: File[];
