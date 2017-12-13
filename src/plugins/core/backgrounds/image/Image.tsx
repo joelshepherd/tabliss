@@ -1,5 +1,5 @@
-import * as React from 'react';
 import sample from 'lodash-es/sample';
+import * as React from 'react';
 import './Image.sass';
 const defaultImage = require('./default-image.jpg');
 
