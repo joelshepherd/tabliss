@@ -4,9 +4,8 @@ import Background from './Background';
 import Feedback from './Feedback';
 import Widgets from './Widgets';
 import { Action, resetDashboard, toggleSettings } from '../../data';
+import { globeIcon, twitterIcon } from '../ui';
 import './Settings.sass';
-const globeIcon = require('feather-icons/dist/icons/globe.svg');
-const twitterIcon = require('feather-icons/dist/icons/twitter.svg');
 const logo = require('./logo.svg');
 const ESCAPE_KEY = 27;
 
@@ -38,18 +37,12 @@ class Settings extends React.PureComponent<Props> {
 
           <Feedback />
 
-          <p><a onClick={this.reset}>
-            Reset to default
-          </a></p>
+          <p><a onClick={this.reset}>Reset to default</a></p>
 
           <p>
-            <a href="https://tabliss.io/" target="_blank">
-              <i dangerouslySetInnerHTML={{ __html: globeIcon }} />
-            </a>
+            <a href="https://tabliss.io/" target="_blank">{globeIcon}</a>
             &nbsp;&nbsp;
-            <a href="https://twitter.com/tabliss" target="_blank" rel="noopener noreferrer">
-              <i dangerouslySetInnerHTML={{ __html: twitterIcon }} />
-            </a>
+            <a href="https://twitter.com/tabliss" target="_blank" rel="noopener noreferrer">{twitterIcon}</a>
           </p>
         </div>
       </div>

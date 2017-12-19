@@ -1,7 +1,7 @@
 import * as React from 'react';
+import { IconButton, removeIcon } from '../../../../app/ui';
 import { Settings } from '../../../interfaces';
 import './ImageSettings.sass';
-const trashIcon = require('feather-icons/dist/icons/trash-2.svg');
 
 interface Props {
   image?: string;
@@ -41,9 +41,7 @@ class ImageSettings extends React.PureComponent<Props> {
           {this.props.images.map(image => (
             <div className="preview">
               <img src={this.createURL(image)} />
-              <a className="button--icon" onClick={() => this.removeImage(image)}>
-                <i dangerouslySetInnerHTML={{ __html: trashIcon }} />
-              </a>
+              <IconButton onClick={() => this.removeImage(image)} title="Remove image">{removeIcon}</IconButton>
             </div>
           ))}
         </div>

@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
+## [Unreleased]
+### Changed
+- Button iconography has been updated to be more consistent and make more sense.
+
 ## [1.8.0] - 2017-12-13
 ### Added
 - Upload multiple images to alternate between for your background.

@@ -1,6 +1,6 @@
 import * as React from 'react';
+import { IconButton, removeIcon } from '../../../../app/ui';
 import { Link as LinkProps } from './interfaces';
-const xIcon = require('feather-icons/dist/icons/x.svg');
 
 interface Props extends LinkProps {
   number: number;
@@ -12,9 +12,7 @@ const LinkInput: React.StatelessComponent<Props> = (props) => (
   <div className="LinkInput">
     <h5>
       <div className="title--buttons">
-        <button className="button--icon" onClick={props.onRemove}>
-          <i dangerouslySetInnerHTML={{ __html: xIcon }} />
-        </button>
+        <IconButton onClick={props.onRemove} title="Remove link">{removeIcon}</IconButton>
       </div>
 
       {props.number <= 9 ? `Keyboard shortcut ${props.number}` : 'Shortcut'}

@@ -1,5 +1,5 @@
 import * as React from 'react';
-const closeIcon = require('feather-icons/dist/icons/x.svg');
+import { IconButton, collapseIcon } from '../ui/index';
 
 interface State {
   body: string;
@@ -39,9 +39,9 @@ class Feedback extends React.PureComponent<{}, State> {
               placeholder="Your feedback or suggestion"
             />
 
-            <button className="button--icon" onClick={this.toggle} style={{ float: 'right' }}>
-              <i dangerouslySetInnerHTML={{ __html: closeIcon }} />
-            </button>
+            <div style={{ float: 'right' }}>
+              <IconButton onClick={this.toggle} title="Close feedback form">{collapseIcon}</IconButton>
+            </div>
             <button className="button--primary" disabled={this.state.pending} onClick={this.send}>Send</button>
           </div>
         }
