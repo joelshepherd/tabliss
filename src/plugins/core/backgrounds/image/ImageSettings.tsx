@@ -58,9 +58,6 @@ class ImageSettings extends React.PureComponent<Props> {
       images: this.props.images.concat(images),
       image: undefined, // Clean legacy settings
     });
-
-    // Show warning for oversized images.
-    this.setState({ oversized: images.some(image => image.size > 2097152) });
   }
 
   private removeImage(remove: File) {
