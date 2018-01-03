@@ -12,7 +12,6 @@ interface Props {
 class SearchSettings extends React.PureComponent<Props> {
   static defaultProps = {
     engine: 'google',
-    placeholder: 'Type to search',
   };
 
   render() {
@@ -25,6 +24,7 @@ class SearchSettings extends React.PureComponent<Props> {
               type="text"
               value={this.props.placeholder}
               onChange={event => this.props.onChange({ placeholder: event.target.value })}
+              placeholder="Type to search"
             />
           </label>
         </p>

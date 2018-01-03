@@ -7,12 +7,12 @@ interface Props {
   pluginKey: string;
 }
 
-const Background: React.StatelessComponent<Props> = (props) => {
-  return <Plugin pluginKey={props.pluginKey} />;
-};
+const Background: React.StatelessComponent<Props> = (props) => (
+  <Plugin pluginKey={props.pluginKey} />
+);
 
-const mapStateToProps = (state: RootState) => {
-  return { pluginKey: state.dashboard.background };
-};
+const mapStateToProps = (state: RootState) => ({
+  pluginKey: state.dashboard.background,
+});
 
 export default connect(mapStateToProps)(Background);

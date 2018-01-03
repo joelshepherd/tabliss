@@ -26,24 +26,20 @@ const Plugin: React.StatelessComponent<Props> = (props) => {
   );
 };
 
-const mapStateToProps = (state: RootState, ownProps: OwnProps) => {
-  return {
-    plugin: getPlugin(ownProps.pluginKey),
-    settings: (state.storage[ownProps.pluginKey] || {}).settings,
-    local: (state.storage[ownProps.pluginKey] || {}).local,
-  };
-};
+const mapStateToProps = (state: RootState, ownProps: OwnProps) => ({
+  plugin: getPlugin(ownProps.pluginKey),
+  settings: (state.storage[ownProps.pluginKey] || {}).settings,
+  local: (state.storage[ownProps.pluginKey] || {}).local,
+});
 
 // Launching updates off-thread to prevent issues pushing state at hydration
-const mapDispatchToProps = (dispatch: Dispatch<Action>, ownProps: OwnProps) => {
-  return {
-    setLocal: (state: Local) => {
-      setImmediate(() => dispatch(setLocal(ownProps.pluginKey, state)));
-    },
-    updateLocal: (state: Local) => {
-      setImmediate(() => dispatch(updateLocal(ownProps.pluginKey, state)));
-    },
-  };
-};
+const mapDispatchToProps = (dispatch: Dispatch<Action>, ownProps: OwnProps) => ({
+  setLocal: (state: Local) => {
+    setImmediate(() => dispatch(setLocal(ownProps.pluginKey, state)));
+  },
+  updateLocal: (state: Local) => {
+    setImmediate(() => dispatch(updateLocal(ownProps.pluginKey, state)));
+  },
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Plugin);

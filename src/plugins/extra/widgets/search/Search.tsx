@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { defineMessages, injectIntl, InjectedIntlProps } from 'react-intl';
 import tlds from 'tlds';
 import { Engine } from './interfaces';
 import './Search.sass';
@@ -13,10 +14,18 @@ interface State {
   query: string;
 }
 
-class Search extends React.PureComponent<Props, State> {
+const messages = defineMessages({
+  placeholder: {
+    id: 'plugins.search.placeholder',
+    description: 'Placeholder text to show in the search box before typing',
+    defaultMessage: 'Type to search',
+  },
+});
+
+class Search extends React.PureComponent<Props & InjectedIntlProps, State> {
   static defaultProps = {
     engine: 'google',
-    placeholder: 'Type to search',
+    placeholder: '',
   };
   state = { query: '' };
 
@@ -28,7 +37,7 @@ class Search extends React.PureComponent<Props, State> {
           type="search"
           value={this.state.query}
           onChange={event => this.setState({ query: event.target.value })}
-          placeholder={this.props.placeholder}
+          placeholder={this.props.placeholder || this.props.intl.formatMessage(messages.placeholder)}
         />
       </form>
     );
@@ -67,4 +76,4 @@ class Search extends React.PureComponent<Props, State> {
   }
 }
 
-export default Search;
+export default injectIntl(Search);

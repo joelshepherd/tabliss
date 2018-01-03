@@ -12,11 +12,11 @@ interface Props {
 
 const Dashboard: React.StatelessComponent<Props> = (props) => {
   if (! props.booted) {
-    return <div className="Dashboard" />;
+    return <div className="Dashboard fullscreen" />;
   }
 
   return (
-    <div className="Dashboard booted">
+    <div className="Dashboard fullscreen booted">
       <Background />
       <Widgets />
       <Overlay />
