@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { render } from 'react-dom';
-import {  IntlProvider } from 'react-intl';
+import { IntlProvider } from 'react-intl';
 import { Provider as StoreProvider } from 'react-redux';
 import { App } from './app';
 import { store } from './data';

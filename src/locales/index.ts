@@ -9,6 +9,7 @@ addLocaleData([
 ]);
 
 const translations = {
+  en: {},
   fr: require('./lang/fr.json'),
   ko: require('./lang/ko.json'),
 };

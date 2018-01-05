@@ -43,8 +43,6 @@ class App extends React.PureComponent<Props & InjectedIntlProps> {
   }
 }
 
-const mapStateToProps = (state: RootState) => {
-  return { settings: state.ui.settings };
-};
+const mapStateToProps = (state: RootState) => ({ settings: state.ui.settings });
 
 export default connect(mapStateToProps)(injectIntl<Props>(App));

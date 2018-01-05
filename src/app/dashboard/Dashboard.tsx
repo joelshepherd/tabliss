@@ -10,8 +10,8 @@ interface Props {
   booted: boolean;
 }
 
-const Dashboard: React.StatelessComponent<Props> = (props) => {
-  if (! props.booted) {
+const Dashboard: React.StatelessComponent<Props> = ({ booted }) => {
+  if (! booted) {
     return <div className="Dashboard fullscreen" />;
   }
 
@@ -24,8 +24,6 @@ const Dashboard: React.StatelessComponent<Props> = (props) => {
   );
 };
 
-const mapStateToProps = (state: RootState) => {
-  return { booted: state.booted };
-};
+const mapStateToProps = (state: RootState) => ({ booted: state.booted });
 
 export default connect(mapStateToProps)(Dashboard);
