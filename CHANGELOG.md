@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
+### Added
+- The first greeting translations in French and Korean! (and a few other dashboard items)
+- Change the order of your widgets with up and down arrows.
+
 ### Changed
 - Button iconography has been updated to be more consistent and make more sense.
 

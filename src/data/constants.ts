@@ -5,6 +5,7 @@ export const RESET_DASHBOARD = 'RESET_DASHBOARD';
 export const CHANGE_BACKGROUND = 'CHANGE_BACKGROUND';
 export const ADD_WIDGET = 'ADD_WIDGET';
 export const REMOVE_WIDGET = 'REMOVE_WIDGET';
+export const REORDER_WIDGET = 'REORDER_WIDGET';
 
 // Storage
 export const SET_LOCAL_STORAGE = 'SET_LOCAL_STORAGE';

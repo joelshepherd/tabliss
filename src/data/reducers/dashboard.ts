@@ -4,6 +4,7 @@ import {
   CHANGE_BACKGROUND,
   RESET_DASHBOARD,
   REMOVE_WIDGET,
+  REORDER_WIDGET,
 } from '../constants';
 import { Dashboard } from '../interfaces';
 
@@ -37,6 +38,18 @@ export function dashboard(state: Dashboard = initialState, action: Action): Dash
       return {
         ...state,
         widgets: state.widgets.filter(key => key !== action.payload),
+      };
+
+    case REORDER_WIDGET:
+      const widgets = [...state.widgets];
+      widgets.splice(
+        action.payload.to, 0,
+        widgets.splice(widgets.indexOf(action.payload.key), 1)[0]
+      );
+
+      return {
+        ...state,
+        widgets,
       };
 
     default:

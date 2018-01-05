@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { Action, addWidget, removeWidget, RootState } from '../../data';
+import { Action, addWidget, removeWidget, reorderWidget, RootState } from '../../data';
 import { getPlugin, getPluginsByType, Plugin as IPlugin, Type } from '../../plugins';
 import Plugin from './Plugin';
 
@@ -9,6 +9,7 @@ interface Props {
   widgets: IPlugin[];
   addWidget: (key: string) => Action;
   removeWidget: (key: string) => Action;
+  reorderWidget: (key: string, to: number) => Action;
 }
 
 class Widgets extends React.PureComponent<Props> {
@@ -30,10 +31,16 @@ class Widgets extends React.PureComponent<Props> {
 
         {this.props.widgets.length === 0
           ? <p>No widgets selected.</p>
-          : this.props.widgets.map(plugin =>
+          : this.props.widgets.map((plugin, index) =>
             <Plugin
               key={plugin.key}
               plugin={plugin}
+              onMoveUp={index !== 0
+                ? () => this.props.reorderWidget(plugin.key, index - 1)
+                : undefined}
+              onMoveDown={index !== this.props.widgets.length - 1
+                ? () => this.props.reorderWidget(plugin.key, index + 1)
+                : undefined}
               onRemove={() => this.props.removeWidget(plugin.key)}
             />
           )
@@ -56,6 +63,6 @@ const mapStateToProps = (state: RootState) => {
   };
 };
 
-const mapDispatchToProps = { addWidget, removeWidget };
+const mapDispatchToProps = { addWidget, removeWidget, reorderWidget };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Widgets);

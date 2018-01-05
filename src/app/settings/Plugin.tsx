@@ -2,11 +2,13 @@ import * as React from 'react';
 import { connect, Dispatch } from 'react-redux';
 import { Action, RootState, updateSettings } from '../../data';
 import { Plugin as IPlugin, Settings } from '../../plugins';
-import { collapseIcon, expandIcon, IconButton, removeIcon } from '../ui';
+import { arrowDownIcon, arrowUpIcon, collapseIcon, expandIcon, IconButton, removeIcon } from '../ui';
 import './Plugin.sass';
 
 interface OwnProps {
   plugin: IPlugin;
+  onMoveUp?: () => void;
+  onMoveDown?: () => void;
   onRemove?: () => void;
 }
 
@@ -39,8 +41,20 @@ class Plugin extends React.PureComponent<Props, State> {
               </IconButton>
 
               {this.state.open && this.props.onRemove !== undefined &&
-                <IconButton onClick={this.props.onRemove} title="Remove widget">
+                <IconButton key="remove" onClick={this.props.onRemove} title="Remove widget">
                   {removeIcon}
+                </IconButton>
+              }
+
+              {this.state.open && this.props.onMoveDown !== undefined &&
+                <IconButton key="down" onClick={this.props.onMoveDown} title="Move widget down">
+                  {arrowDownIcon}
+                </IconButton>
+              }
+
+              {this.state.open && this.props.onMoveUp !== undefined &&
+                <IconButton key="up" onClick={this.props.onMoveUp} title="Move widget up">
+                  {arrowUpIcon}
                 </IconButton>
               }
 

@@ -1,4 +1,4 @@
-import { ADD_WIDGET, CHANGE_BACKGROUND, REMOVE_WIDGET } from '../constants';
+import { ADD_WIDGET, CHANGE_BACKGROUND, REMOVE_WIDGET, REORDER_WIDGET } from '../constants';
 
 export function changeBackground(key: string) {
   return {
@@ -18,5 +18,15 @@ export function removeWidget(key: string) {
   return {
     type: REMOVE_WIDGET,
     payload: key,
+  };
+}
+
+export function reorderWidget(key: string, to: number) {
+  return {
+    type: REORDER_WIDGET,
+    payload: {
+      key,
+      to,
+    },
   };
 }
