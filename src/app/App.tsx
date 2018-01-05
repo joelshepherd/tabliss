@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { defineMessages, injectIntl, InjectedIntlProps } from 'react-intl';
 import { connect } from 'react-redux';
 import * as CSSTransition from 'react-transition-group/CSSTransition';
 import { RootState } from '../data';
@@ -10,26 +11,38 @@ interface Props {
   settings: boolean;
 }
 
-const App: React.StatelessComponent<Props> = (props) => {
-  return (
-    <div className="App">
-      <Dashboard />
+const messages = defineMessages({
+  pageTitle: {
+    id: 'app.pageTitle',
+    description: 'Page title that Tabliss displays in the title bar.',
+    defaultMessage: 'New Tab',
+  },
+});
 
-      <CSSTransition
-        classNames="slide"
-        in={props.settings}
-        mountOnEnter={true}
-        unmountOnExit={true}
-        timeout={250}
-      >
-        <Settings />
-      </CSSTransition>
-    </div>
-  );
-};
+class App extends React.PureComponent<Props & InjectedIntlProps> {
+  componentWillMount() {
+    document.title = this.props.intl.formatMessage(messages.pageTitle);
+  }
 
-const mapStateToProps = (state: RootState) => {
-  return { settings: state.ui.settings };
-};
+  render() {
+    return (
+      <div className="App">
+        <Dashboard />
 
-export default connect(mapStateToProps)(App);
+        <CSSTransition
+          classNames="slide"
+          in={this.props.settings}
+          mountOnEnter={true}
+          unmountOnExit={true}
+          timeout={250}
+        >
+          <Settings />
+        </CSSTransition>
+      </div>
+    );
+  }
+}
+
+const mapStateToProps = (state: RootState) => ({ settings: state.ui.settings });
+
+export default connect(mapStateToProps)(injectIntl<Props>(App));

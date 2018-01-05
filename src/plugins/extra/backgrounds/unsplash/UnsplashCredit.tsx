@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { FormattedMessage } from 'react-intl';
 import { UNSPLASH_UTM } from './constants';
 import { Image } from './interfaces';
 
@@ -17,9 +18,13 @@ const UnsplashCredit: React.StatelessComponent<Props> = (props) => (
       rel="noopener noreferrer"
       target="_blank"
     >
-      Photo
+      <FormattedMessage
+        id="plugins.unsplash.photoLink"
+        description="Photo link text"
+        defaultMessage="Photo"
+      />
     </a>
-    {' by '}
+    {' / '}
     <a
       href={props.image.user_link + UNSPLASH_UTM}
       rel="noopener noreferrer"

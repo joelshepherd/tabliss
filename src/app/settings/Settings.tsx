@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { FormattedMessage } from 'react-intl';
 import { ActionCreator, connect } from 'react-redux';
 import Background from './Background';
 import Feedback from './Feedback';
@@ -44,6 +45,13 @@ class Settings extends React.PureComponent<Props> {
             &nbsp;&nbsp;
             <a href="https://twitter.com/tabliss" target="_blank" rel="noopener noreferrer">{twitterIcon}</a>
           </p>
+
+          <FormattedMessage
+            id="settings.translationCredits"
+            description="Give yourself some credit :)"
+            defaultMessage=" "
+            tagName="p"
+          />
         </div>
       </div>
     );

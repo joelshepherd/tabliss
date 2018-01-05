@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { defineMessages, injectIntl, InjectedIntlProps } from 'react-intl';
 import { ActionCreator, connect } from 'react-redux';
 import * as screenfull from 'screenfull';
 import { Action, RootState, toggleFocus, toggleSettings } from '../../data';
@@ -22,7 +23,30 @@ interface State {
   fullscreen: boolean;
 }
 
-class Overlay extends React.PureComponent<Props, State> {
+const messages = defineMessages({
+  settingsHint: {
+    id: 'dashboard.settingsHint',
+    defaultMessage: 'Customise Tabliss',
+    description: 'Hover hint text for the settings icon'
+  },
+  focusHint: {
+    id: 'dashboard.focusHint',
+    defaultMessage: 'Toggle widgets',
+    description: 'Hover hint text for the widgets toggle'
+  },
+  fullscreenHint: {
+    id: 'dashboard.fullscreenHint',
+    defaultMessage: 'Toggle fullscreen',
+    description: 'Hover hint text for the fullscreen toggle'
+  },
+  loadingHint: {
+    id: 'dashboard.loadingHint',
+    defaultMessage: 'Loading new content',
+    description: 'Hover hint text for the loading icon (the lightning bolt)'
+  }
+});
+
+class Overlay extends React.PureComponent<Props & InjectedIntlProps, State> {
   state: State = { fullscreen: screenfull.isFullscreen };
 
   componentWillMount() {
@@ -40,18 +64,18 @@ class Overlay extends React.PureComponent<Props, State> {
   render() {
     return (
       <div className="Overlay">
-        <a onClick={this.props.toggleSettings} title="Personalise your dashboard">
+        <a onClick={this.props.toggleSettings} title={this.props.intl.formatMessage(messages.settingsHint)}>
           <i dangerouslySetInnerHTML={{ __html: settingsIcon }} />
         </a>
-        <a onClick={this.props.toggleFocus} title="Toggle your widgets">
+        <a onClick={this.props.toggleFocus} title={this.props.intl.formatMessage(messages.focusHint)}>
           <i dangerouslySetInnerHTML={{ __html: this.props.focus ? eyeOffIcon : eyeIcon }} />
         </a>
         {screenfull.enabled &&
-          <a onClick={() => screenfull.toggle()} title="Toggle fullscreen">
+          <a onClick={() => screenfull.toggle()} title={this.props.intl.formatMessage(messages.fullscreenHint)}>
             <i dangerouslySetInnerHTML={{ __html: this.state.fullscreen ? minimiseIcon : maximiseIcon }} />
           </a>
         }
-      {this.props.pending && <span title="Loading next background">
+      {this.props.pending && <span title={this.props.intl.formatMessage(messages.loadingHint)}>
         <i dangerouslySetInnerHTML={{ __html: pendingIcon }} />
       </span>}
       </div>
@@ -72,4 +96,4 @@ const mapStateToProps = (state: RootState) => {
 
 const mapDispatchToProps = { toggleFocus, toggleSettings };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Overlay);
+export default injectIntl<{}>(connect(mapStateToProps, mapDispatchToProps)(Overlay));

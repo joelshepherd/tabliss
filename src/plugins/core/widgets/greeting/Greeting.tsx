@@ -1,27 +1,25 @@
 import * as React from 'react';
+import { injectIntl, InjectedIntlProps } from 'react-intl';
+import { messages } from './messages';
 
 interface Props {
   name?: string;
 }
 
 interface State {
-  greeting: string;
+  hour: number;
 }
 
-class Greeting extends React.PureComponent<Props, State> {
-  static defaultProps = {
-    name: '',
-  };
-
+class Greeting extends React.PureComponent<Props & InjectedIntlProps, State> {
   state = {
-    greeting: this.getGreeting(),
+    hour: new Date().getHours(),
   };
 
   private interval: number;
 
   componentWillMount() {
     this.interval = window.setInterval(
-      () => this.setState({ greeting: this.getGreeting() }),
+      () => this.setState({ hour: new Date().getHours() }),
       1000
     );
   }
@@ -33,33 +31,16 @@ class Greeting extends React.PureComponent<Props, State> {
   render() {
     return (
       <div className="Greeting">
-        <h2>
-          {this.state.greeting}
-          {this.props.name ? (', ' + this.props.name) : ''}
-        </h2>
+        <h2>{this.greeting}</h2>
       </div>
     );
   }
 
-  private getGreeting() {
-    const hour = new Date().getHours();
-
-    if (hour < 3) {
-      return 'Sleep well';
-    } else if (hour < 6) {
-      return 'Rise and shine';
-    } else if (hour < 10) {
-      return 'Good morning';
-    } else if (hour < 14) {
-      return 'Hello';
-    } else if (hour < 18) {
-      return 'Good afternoon';
-    } else if (hour < 22) {
-      return 'Good evening';
-    } else {
-      return 'Good night';
-    }
+  get greeting() {
+    return this.props.name
+    ? this.props.intl.formatMessage(messages.greetingWithName, { hour: this.state.hour, name: this.props.name })
+    : this.props.intl.formatMessage(messages.greeting, { hour: this.state.hour });
   }
 }
 
-export default Greeting;
+export default injectIntl(Greeting);

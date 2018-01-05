@@ -126,10 +126,7 @@ class Giphy extends React.PureComponent<Props, State> {
   }
 }
 
-const mapStateToProps = (state: RootState) => {
-  return { focus: state.ui.focus };
-};
-
+const mapStateToProps = (state: RootState) => ({ focus: state.ui.focus });
 const mapDispatchToProps = { popPending, pushPending };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Giphy);
