@@ -7,6 +7,9 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 ### Added
 - New Daily Quotes plugin to get your inspired (or laughing) each day.
 
+### Fixed
+- Possible fixes to the Unsplash background sometimes going black.
+
 ## [1.9.0] - 2018-01-06
 ### Added
 - The first greeting translations in French and Korean! (and a few other dashboard items)

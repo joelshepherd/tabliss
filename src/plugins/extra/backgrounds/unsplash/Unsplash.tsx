@@ -37,11 +37,16 @@ class Unsplash extends React.PureComponent<Props, State> {
   private refreshDebounced = debounce(this.refresh, 250);
 
   componentWillMount() {
-    this.getImage().then(this.setCurrentImage);
+    const shouldRotate = this.shouldRotate();
 
-    if (this.shouldRotate()) {
-      this.fetchImage().then(this.setNextImage);
-    }
+    this.getImage()
+      .then(this.setCurrentImage)
+      .then(() => {
+        if (shouldRotate) {
+          this.fetchImage().then(this.setNextImage);
+        }
+      })
+      .catch(() => this.refresh(this.props));
   }
 
   componentWillReceiveProps(nextProps: Props) {
@@ -126,7 +131,7 @@ class Unsplash extends React.PureComponent<Props, State> {
    *
    * @type {void}
    */
-  private refresh(props: Props) {
+  private refresh(props: Props = this.props) {
     this.fetchImage(props).then(this.setCurrentImage);
     this.fetchImage(props).then(this.setNextImage);
   }
