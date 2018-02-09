@@ -1,41 +1,22 @@
+import { DateTime } from 'luxon';
 import * as React from 'react';
 
 interface Props {
   hour12: boolean;
-  time: Date;
+  time: DateTime;
 }
 
-const Digital: React.StatelessComponent<Props> = (props) => {
+const Digital: React.StatelessComponent<Props> = ({ time, hour12 }) => {
   return (
     <div className="Time Digital">
       <h1>
-        {formattedTime(props)}
+        {time.toLocaleString(hour12
+          ? DateTime.TIME_SIMPLE
+          : DateTime.TIME_24_SIMPLE
+        )}
       </h1>
     </div>
   );
-};
-
-const formattedTime = ({ time, hour12 }: Props) => {
-  // Try full browser support
-  try {
-    return time.toLocaleTimeString(undefined, {
-      hour12: hour12,
-      hour: 'numeric',
-      minute: 'numeric',
-    });
-  } catch (e) {
-    //
-  }
-
-  try {
-    // Try basic support
-    return time.toLocaleTimeString();
-  } catch (e) {
-    //
-  }
-
-  // Can't find a locale
-  return time.toLocaleTimeString('en-GB');
 };
 
 export default Digital;

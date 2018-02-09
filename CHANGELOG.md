@@ -6,6 +6,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 ## [Unreleased]
 ### Added
 - New Daily Quotes plugin to get your inspired (or laughing) each day.
+- Option to manually change your timezone.
 
 ### Fixed
 - Possible fixes to the Unsplash background sometimes going black.

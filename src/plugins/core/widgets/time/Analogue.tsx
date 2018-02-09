@@ -1,13 +1,14 @@
+import { DateTime } from 'luxon';
 import * as React from 'react';
 import './Analogue.sass';
 
 interface Props {
-  time: Date;
+  time: DateTime;
 }
 
 const Analogue: React.StatelessComponent<Props> = (props) => {
-  const hourAngle = (props.time.getHours() * 30) + (props.time.getMinutes() * 0.5);
-  const minuteAngle = props.time.getMinutes() * 6;
+  const hourAngle = (props.time.hour * 30) + (props.time.minute * 0.5);
+  const minuteAngle = props.time.minute * 6;
 
   return (
     <div className="Time Analogue">
