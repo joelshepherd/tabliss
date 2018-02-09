@@ -6,6 +6,7 @@ import {
   Unsplash, UnsplashSettings,
 } from './backgrounds';
 import {
+  Quote, QuoteSettings,
   Search, SearchSettings,
   Weather, WeatherSettings,
 } from './widgets';
@@ -32,6 +33,14 @@ registerPlugin({
   title: 'Unsplash',
   Dashboard: Unsplash,
   Settings: UnsplashSettings,
+});
+
+registerPlugin({
+  key: 'extra/widgets/quote',
+  type: Type.WIDGET,
+  title: 'Daily Quotes',
+  Dashboard: Quote,
+  Settings: QuoteSettings,
 });
 
 registerPlugin({
