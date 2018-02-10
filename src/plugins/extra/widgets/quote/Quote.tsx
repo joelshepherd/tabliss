@@ -2,6 +2,7 @@ import get from 'lodash-es/get';
 import * as React from 'react';
 import { ActionCreator, connect } from 'react-redux';
 import { Action, popPending, pushPending } from '../../../../data';
+require('./Quote.sass');
 
 interface Props {
   category?: string;
@@ -41,8 +42,12 @@ class Quote extends React.PureComponent<Props> {
   }
 
   private async getQuote({ category }: Props): Promise<Data> {
+    this.props.pushPending();
+
     const res = await fetch('https://quotes.rest/qod.json' + (category ? `?category=${category}` : ''));
     const body = await res.json();
+
+    this.props.popPending();
 
     if (res.status === 429) {
       return {
