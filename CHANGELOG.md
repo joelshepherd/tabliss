@@ -3,7 +3,7 @@
 All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
-## [Unreleased]
+## [1.10.0] - 2018-02-10
 ### Added
 - New Daily Quotes plugin to get your inspired (or laughing) each day.
 - Option to manually change your timezone.
