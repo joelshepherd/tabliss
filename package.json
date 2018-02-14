@@ -33,7 +33,7 @@
   "devDependencies": {
     "@types/chrome": "0.0.54",
     "@types/lodash-es": "^4.17.0",
-    "@types/luxon": "^0.2.4",
+    "@types/luxon": "^0.2.5",
     "@types/node": "^8.0.53",
     "@types/parse-link-header": "^1.0.0",
     "@types/react": "^16.0.24",

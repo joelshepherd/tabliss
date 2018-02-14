@@ -55,7 +55,7 @@ class TimeSettings extends React.PureComponent<Props> {
           24-hour digital
         </label>
 
-        {(Info.features() as any).zones && ( // PR waiting to fix this type
+        {Info.features().zones && (
           <label>
             Timezone
 
