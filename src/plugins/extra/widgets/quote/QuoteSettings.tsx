@@ -38,7 +38,15 @@ class QuoteSettings extends React.PureComponent<Props> {
           </label>
         )}
 
-        <p>Powered by <a href="https://theysaidso.com" target="_blank" rel="noopener noreferrer">They Said So</a>.</p>
+        <p>
+          Powered by
+          {' '}
+          <a href="https://theysaidso.com" target="_blank" rel="noopener noreferrer">They Said So</a>
+          {' '}
+          and
+          {' '}
+          <a href="http://www.developerexcuses.com" target="_blank" rel="noopener noreferrer">Developer Excuses</a>.
+        </p>
       </div>
     );
   }

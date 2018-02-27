@@ -1,4 +1,5 @@
 import get from 'lodash-es/get';
+import has from 'lodash-es/has';
 import * as React from 'react';
 import { ActionCreator, connect } from 'react-redux';
 import { Action, popPending, pushPending } from '../../../../data';
@@ -13,7 +14,7 @@ interface Props {
 }
 
 interface Data {
-  author: string;
+  author?: string;
   date: number;
   quote: string;
 }
@@ -35,19 +36,46 @@ class Quote extends React.PureComponent<Props> {
     return (
       <h4 className="Quote">
         {get(this.props, 'local.quote')}
-        <br />
-        <sub>&mdash; {get(this.props, 'local.author')}</sub>
+        {has(this.props, 'local.author') && <sub><br />&mdash; {get(this.props, 'local.author')}</sub>}
       </h4>
     );
   }
 
+  // Get a quote
   private async getQuote({ category }: Props): Promise<Data> {
     this.props.pushPending();
 
-    const res = await fetch('https://quotes.rest/qod.json' + (category ? `?category=${category}` : ''));
-    const body = await res.json();
+    const quote = category === 'developerexcuses'
+      ? await this.getDeveloperExcuse()
+      : await this.getQuoteOfTheDay(category);
 
     this.props.popPending();
+
+    return quote;
+  }
+
+  // Get developer excuse
+  private async getDeveloperExcuse(): Promise<Data> {
+    try {
+      const res = await fetch(`${process.env.API_ENDPOINT}/developer-excuses`);
+      const body = await res.json();
+
+      return {
+        date: new Date().getDate(),
+        quote: body.data,
+      };
+    } catch (err) {
+      return {
+        date: 0,
+        quote: 'Unable to get a new developer excuse.',
+      };
+    }
+  }
+
+  // Get quote of the day
+  private async getQuoteOfTheDay(category?: string): Promise<Data> {
+    const res = await fetch('https://quotes.rest/qod.json' + (category ? `?category=${category}` : ''));
+    const body = await res.json();
 
     if (res.status === 429) {
       return {
