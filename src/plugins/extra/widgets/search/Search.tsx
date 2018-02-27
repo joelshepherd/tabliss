@@ -34,6 +34,7 @@ class Search extends React.PureComponent<Props & InjectedIntlProps, State> {
       <form className="Search" onSubmit={this.search}>
         <input
           autoFocus={true}
+          tabIndex={1}
           type="search"
           value={this.state.query}
           onChange={event => this.setState({ query: event.target.value })}
