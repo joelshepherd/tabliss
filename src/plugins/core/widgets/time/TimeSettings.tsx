@@ -6,6 +6,7 @@ const timezones: string[] = require('./timezones.json');
 interface Props {
   mode: string;
   hour12: boolean;
+  showDate: boolean;
   timezone?: string;
   onChange: (settings: Settings) => void;
 }
@@ -14,6 +15,7 @@ class TimeSettings extends React.PureComponent<Props> {
   static defaultProps = {
     mode: 'digital',
     hour12: false,
+    showDate: false,
   };
 
   render() {
@@ -53,6 +55,16 @@ class TimeSettings extends React.PureComponent<Props> {
           />
           {' '}
           24-hour digital
+        </label>
+
+        <label>
+          <input
+            type="checkbox"
+            checked={this.props.showDate}
+            onChange={() => this.props.onChange({ showDate: ! this.props.showDate })}
+          />
+          {' '}
+          Display the date
         </label>
 
         {Info.features().zones && (

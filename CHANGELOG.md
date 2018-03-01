@@ -5,8 +5,9 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 ### Added
+- Display the date in the time widget.
+- Ability to reorder Quick Links.
 - Simplified Chinese translations!
-- Ability to reorder Quick Links
 
 ## [1.10.1] - 2018-02-10
 ### Fixed

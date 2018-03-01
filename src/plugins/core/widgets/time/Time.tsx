@@ -2,10 +2,12 @@ import { DateTime } from 'luxon';
 import * as React from 'react';
 import Analogue from './Analogue';
 import Digital from './Digital';
+import './Time.sass';
 
 interface Props {
   hour12: boolean;
   mode: string;
+  showDate: boolean;
   timezone?: string;
 }
 
@@ -17,6 +19,7 @@ class Time extends React.PureComponent<Props, State> {
   static defaultProps = {
     mode: 'digital',
     hour12: false,
+    showDate: false,
   };
   state: State = { time: this.getDateTime() };
   private interval: number;
@@ -34,11 +37,22 @@ class Time extends React.PureComponent<Props, State> {
   }
 
   render() {
-    if (this.props.mode === 'analogue') {
-      return <Analogue time={this.state.time} />;
-    }
+    const { hour12, mode, showDate } = this.props;
+    const { time } = this.state;
 
-    return <Digital time={this.state.time} hour12={this.props.hour12} />;
+    return (
+      <div className="Time">
+        {mode === 'analogue'
+          ? <Analogue time={time} />
+          : <Digital time={time} hour12={hour12} />
+        }
+
+        {showDate && [
+          <hr key="0" />,
+          <h4 key="1" >{time.toLocaleString({ day: 'numeric', month: 'long', weekday: 'long' })}</h4>,
+        ]}
+      </div>
+    );
   }
 
   private tick = (props: Props = this.props) => {
