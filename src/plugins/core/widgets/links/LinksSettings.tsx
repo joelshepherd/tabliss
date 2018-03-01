@@ -34,6 +34,12 @@ class LinksSettings extends React.PureComponent<Props> {
             key={index}
             number={index + 1}
             onChange={(values) => this.changeLink(index, values)}
+            onMoveUp={index !== 0
+              ? () => this.reorderLink(link, index - 1)
+              : undefined}
+            onMoveDown={index !== this.props.links.length - 1
+              ? () => this.reorderLink(link, index + 1)
+              : undefined}
             onRemove={() => this.removeLink(index)}
           />
         ))}
@@ -71,6 +77,16 @@ class LinksSettings extends React.PureComponent<Props> {
     this.props.onChange({
       links: this.props.links.filter((link, i) => i !== index),
     });
+  }
+
+  private reorderLink = (link: LinkProps, to: number) => {
+    const links = [...this.props.links];
+    links.splice(
+      to, 0,
+      links.splice(links.indexOf(link), 1)[0],
+    );
+
+    this.props.onChange({ links });
   }
 }
 
