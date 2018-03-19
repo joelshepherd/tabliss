@@ -20,6 +20,5 @@ When submitting an issue, try to be as detailed as possible.
 
 ### Submitting a Pull Request
 
-Tabliss has not (presently) been open source licensed. If you would like to
-contribute, you will need to sign our CLA (Contributors License Agreement).
-The CLA grants us a license to be able to use your code in Tabliss.
+If you are planning on making large changes, you may be asked to sign a CLA (Contributors License Agreement).
+The CLA grants us permission to use and relicense your code in Tabliss.

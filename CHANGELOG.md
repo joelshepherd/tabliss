@@ -12,6 +12,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
 ### Changed
 - Timezone option moved to top level and now effects both the time and greeting widgets.
+- Tabliss is now licensed under the GNU General Public License v3!
 
 ## [1.10.1] - 2018-02-10
 ### Fixed

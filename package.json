@@ -1,6 +1,7 @@
 {
   "name": "tabliss",
   "version": "1.10.1",
+  "license": "GPL-3.0",
   "private": true,
   "scripts": {
     "start": "webpack-dev-server",

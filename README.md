@@ -16,11 +16,3 @@ Install dependencies with `npm install` before running the following scripts.
 
 To develop with external services you will additionally need to signup for your own API keys
 and enter them into your `.env` file. Get started by copying the example provided `cp .env.example .env`.
-
-## Why source available?
-
-Tabliss has its source freely available for education and transparency.
-
-## Copyright
-
-Copyright (c) 2017 Joel Shepherd. All rights reserved.
