@@ -1,3 +1,4 @@
+import { Settings as LuxonSettings } from 'luxon';
 import * as React from 'react';
 import { defineMessages, injectIntl, InjectedIntlProps } from 'react-intl';
 import { connect } from 'react-redux';
@@ -9,6 +10,7 @@ import './App.sass';
 
 interface Props {
   settings: boolean;
+  timezone: string;
 }
 
 const messages = defineMessages({
@@ -19,12 +21,16 @@ const messages = defineMessages({
   },
 });
 
+const originalTimezone = LuxonSettings.defaultZoneName;
+
 class App extends React.PureComponent<Props & InjectedIntlProps> {
   componentWillMount() {
     document.title = this.props.intl.formatMessage(messages.pageTitle);
   }
 
   render() {
+    LuxonSettings.defaultZoneName = this.props.timezone;
+
     return (
       <div className="App">
         <Dashboard />
@@ -43,6 +49,9 @@ class App extends React.PureComponent<Props & InjectedIntlProps> {
   }
 }
 
-const mapStateToProps = (state: RootState) => ({ settings: state.ui.settings });
+const mapStateToProps = (state: RootState) => ({
+  settings: state.ui.settings,
+  timezone: state.settings.timezone || originalTimezone,
+});
 
 export default connect(mapStateToProps)(injectIntl<Props>(App));

@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { injectIntl, InjectedIntlProps } from 'react-intl';
+import { getConvertedDate } from '../../../../utils';
 import { messages } from './messages';
 
 interface Props {
@@ -12,14 +13,14 @@ interface State {
 
 class Greeting extends React.PureComponent<Props & InjectedIntlProps, State> {
   state = {
-    hour: new Date().getHours(),
+    hour: getConvertedDate().getHours(),
   };
 
   private interval: number;
 
   componentWillMount() {
     this.interval = window.setInterval(
-      () => this.setState({ hour: new Date().getHours() }),
+      () => this.setState({ hour: getConvertedDate().getHours() }),
       1000
     );
   }
@@ -38,8 +39,8 @@ class Greeting extends React.PureComponent<Props & InjectedIntlProps, State> {
 
   get greeting() {
     return this.props.name
-    ? this.props.intl.formatMessage(messages.greetingWithName, { hour: this.state.hour, name: this.props.name })
-    : this.props.intl.formatMessage(messages.greeting, { hour: this.state.hour });
+      ? this.props.intl.formatMessage(messages.greetingWithName, { hour: this.state.hour, name: this.props.name })
+      : this.props.intl.formatMessage(messages.greeting, { hour: this.state.hour });
   }
 }
 

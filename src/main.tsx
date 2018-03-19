@@ -1,10 +1,9 @@
 import * as React from 'react';
 import { render } from 'react-dom';
-import { IntlProvider } from 'react-intl';
 import { Provider as StoreProvider } from 'react-redux';
 import { App } from './app';
 import { store } from './data';
-import { locale, messages } from './locales';
+import { IntlProvider } from './locales';
 import { register as registerErrorHandler } from './errorHandler';
 import { register as registerServiceWorker } from './serviceWorker';
 
@@ -16,7 +15,7 @@ if (process.env.NODE_ENV === 'production') {
 // Render app into root element
 render(
   <StoreProvider store={store}>
-    <IntlProvider locale={locale} messages={messages}>
+    <IntlProvider>
       <App />
     </IntlProvider>
   </StoreProvider>,

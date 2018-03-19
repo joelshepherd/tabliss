@@ -7,6 +7,10 @@ export const ADD_WIDGET = 'ADD_WIDGET';
 export const REMOVE_WIDGET = 'REMOVE_WIDGET';
 export const REORDER_WIDGET = 'REORDER_WIDGET';
 
+// Settings
+export const CHANGE_LOCALE = 'CHANGE_LOCALE';
+export const CHANGE_TIMEZONE = 'CHANGE_TIMEZONE';
+
 // Storage
 export const SET_LOCAL_STORAGE = 'SET_LOCAL_STORAGE';
 export const UPDATE_LOCAL_STORAGE = 'UPDATE_LOCAL_STORAGE';

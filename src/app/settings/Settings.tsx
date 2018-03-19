@@ -3,6 +3,7 @@ import { FormattedMessage } from 'react-intl';
 import { ActionCreator, connect } from 'react-redux';
 import Background from './Background';
 import Feedback from './Feedback';
+import System from './System';
 import Widgets from './Widgets';
 import { Action, resetDashboard, toggleSettings } from '../../data';
 import { githubIcon, globeIcon, twitterIcon } from '../ui';
@@ -36,16 +37,24 @@ class Settings extends React.PureComponent<Props> {
 
           <Widgets />
 
+          <System />
+
           <Feedback />
 
           <p><a onClick={this.reset}>Reset to default</a></p>
 
           <p>
-            <a href="https://tabliss.io/" target="_blank">{globeIcon}</a>
+            <a href="https://tabliss.io/" target="_blank">
+              {globeIcon}
+            </a>
             &nbsp;&nbsp;
-            <a href="https://twitter.com/tabliss" target="_blank" rel="noopener noreferrer">{twitterIcon}</a>
+            <a href="https://twitter.com/tabliss" target="_blank" rel="noopener noreferrer">
+              {twitterIcon}
+            </a>
             &nbsp;&nbsp;
-            <a href="https://github.com/joelshepherd/tabliss" target="_blank" rel="noopener noreferrer">{githubIcon}</a>
+            <a href="https://github.com/joelshepherd/tabliss" target="_blank" rel="noopener noreferrer">
+              {githubIcon}
+            </a>
           </p>
 
           <FormattedMessage

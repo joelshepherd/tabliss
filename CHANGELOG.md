@@ -8,6 +8,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 - Display the date in the time widget.
 - Ability to reorder Quick Links.
 - Simplified Chinese translations!
+- Language option added to override to default language detector.
+
+### Changed
+- Timezone option moved to top level and now effects both the time and greeting widgets.
 
 ## [1.10.1] - 2018-02-10
 ### Fixed

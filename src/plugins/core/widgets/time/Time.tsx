@@ -1,5 +1,6 @@
-import { DateTime } from 'luxon';
 import * as React from 'react';
+import { FormattedDate } from 'react-intl';
+import { getConvertedDate } from '../../../../utils';
 import Analogue from './Analogue';
 import Digital from './Digital';
 import './Time.sass';
@@ -12,7 +13,7 @@ interface Props {
 }
 
 interface State {
-  time: DateTime;
+  time: Date;
 }
 
 class Time extends React.PureComponent<Props, State> {
@@ -21,7 +22,7 @@ class Time extends React.PureComponent<Props, State> {
     hour12: false,
     showDate: false,
   };
-  state: State = { time: this.getDateTime() };
+  state: State = { time: getConvertedDate() };
   private interval: number;
 
   componentWillMount() {
@@ -30,10 +31,6 @@ class Time extends React.PureComponent<Props, State> {
 
   componentWillUnmount() {
     window.clearInterval(this.interval);
-  }
-
-  componentWillReceiveProps(props: Props) {
-    this.tick(props);
   }
 
   render() {
@@ -49,20 +46,16 @@ class Time extends React.PureComponent<Props, State> {
 
         {showDate && [
           <hr key="0" />,
-          <h4 key="1" >{time.toLocaleString({ day: 'numeric', month: 'long', weekday: 'long' })}</h4>,
+          <h3 key="1" >
+            <FormattedDate value={time} day="numeric" month="long" weekday="long" />
+          </h3>,
         ]}
       </div>
     );
   }
 
-  private tick = (props: Props = this.props) => {
-    this.setState({ time: this.getDateTime(props) });
-  }
-
-  private getDateTime({ timezone }: Props = this.props) {
-    return timezone
-      ? DateTime.local().setZone(timezone)
-      : DateTime.local();
+  private tick = () => {
+    this.setState({ time: getConvertedDate() });
   }
 }
 

@@ -2,7 +2,7 @@ import { combineReducers, createStore } from 'redux';
 import { persistStore, autoRehydrate } from 'redux-persist';
 import { createBlacklistFilter } from 'redux-persist-transform-filter';
 import * as localForage from 'localforage';
-import { booted, dashboard, storage, version, ui } from './reducers';
+import { booted, dashboard, settings, storage, version, ui } from './reducers';
 import { RootState } from './interfaces';
 
 // Create store
@@ -10,6 +10,7 @@ export const store = createStore<RootState>(
   combineReducers({
     booted,
     dashboard,
+    settings,
     storage,
     version,
     ui,

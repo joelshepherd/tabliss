@@ -1,4 +1,4 @@
-import { Local, Settings } from '../plugins';
+import { Local, Settings as PluginSettings } from '../plugins';
 
 // Root state
 export interface RootState {
@@ -6,25 +6,32 @@ export interface RootState {
   booted: boolean;
   dashboard: Dashboard;
   storage: Storage;
+  settings: Settings;
   ui: Ui;
 }
 
-// Dashboard slice
+// Dashboard
 export interface Dashboard {
   background: string;
   widgets: string[];
 }
 
-// Plugins slice
+// Settings
+export interface Settings {
+  locale?: string;
+  timezone?: string;
+}
+
+// Plugins
 export interface Storage {
   [key: string]: {
     local: Local;
-    settings: Settings;
+    settings: PluginSettings;
     sync: undefined;
   };
 }
 
-// Ui slice
+// Ui
 export interface Ui {
   focus: boolean;
   pending: number;

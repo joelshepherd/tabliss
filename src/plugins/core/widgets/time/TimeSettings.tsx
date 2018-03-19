@@ -1,7 +1,5 @@
-import { Info } from 'luxon';
 import * as React from 'react';
 import { Settings } from '../../../interfaces';
-const timezones: string[] = require('./timezones.json');
 
 interface Props {
   mode: string;
@@ -66,22 +64,6 @@ class TimeSettings extends React.PureComponent<Props> {
           {' '}
           Display the date
         </label>
-
-        {Info.features().zones && (
-          <label>
-            Timezone
-
-            <select
-              value={this.props.timezone}
-              onChange={event => this.props.onChange({ timezone: event.target.value})}
-            >
-              <option value={''}>Browser default</option>
-              {timezones.map(timezone =>
-                <option key={timezone} value={timezone}>{timezone.replace('_', ' ')}</option>
-              )}
-            </select>
-          </label>
-        )}
       </div>
     );
   }

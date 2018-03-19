@@ -10,30 +10,26 @@ interface Props {
   changeBackground: (event: React.ChangeEvent<HTMLSelectElement>) => Action;
 }
 
-const Background: React.StatelessComponent<Props> = (props) => {
-  return (
-    <div>
-      <h3>Background</h3>
+const Background: React.StatelessComponent<Props> = (props) => (
+  <div>
+    <h3>Background</h3>
 
-      <label>
-        <select value={props.plugin.key} onChange={props.changeBackground} className="primary">
-          {props.plugins.map(plugin =>
-            <option key={plugin.key} value={plugin.key}>{plugin.title}</option>
-          )}
-        </select>
-      </label>
+    <label>
+      <select value={props.plugin.key} onChange={props.changeBackground} className="primary">
+        {props.plugins.map(plugin =>
+          <option key={plugin.key} value={plugin.key}>{plugin.title}</option>
+        )}
+      </select>
+    </label>
 
-      {props.plugin.Settings && <Plugin key={props.plugin.key} plugin={props.plugin} />}
-    </div>
-  );
-};
+    {props.plugin.Settings && <Plugin key={props.plugin.key} plugin={props.plugin} />}
+  </div>
+);
 
-const mapStateToProps = (state: RootState) => {
-  return {
-    plugin: getPlugin(state.dashboard.background),
-    plugins: getPluginsByType(Type.BACKGROUND),
-  };
-};
+const mapStateToProps = (state: RootState) => ({
+  plugin: getPlugin(state.dashboard.background),
+  plugins: getPluginsByType(Type.BACKGROUND),
+});
 
 const mapDispatchToProps = {
   changeBackground: (event: React.ChangeEvent<HTMLSelectElement>) => changeBackground(event.target.value),
