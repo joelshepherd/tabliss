@@ -3,11 +3,11 @@
 All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
-## [Unreleased]
+## [1.11.0]
 ### Added
+- Translations for Simplified Chinese and German!
 - Display the date in the time widget.
 - Ability to reorder Quick Links.
-- Simplified Chinese translations!
 - Language option added to override to default language detector.
 
 ### Changed
