@@ -5,7 +5,7 @@ export function getConvertedDate() {
 
   return new Date(
     localDate.year,
-    localDate.month,
+    (localDate.month - 1), // JS Date objects number months from 0, luxon from 1
     localDate.day,
     localDate.hour,
     localDate.minute,
