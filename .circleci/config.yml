@@ -1,0 +1,50 @@
+defaults: &defaults
+  docker:
+    - image: node:9
+  working_directory: ~/build
+
+version: 2
+jobs:
+  test:
+    <<: *defaults
+    steps:
+      - checkout
+      - run:
+          name: Install dependencies
+          command: |
+            npm i -g npm
+            npm ci
+      - run:
+          name: Run tests
+          command: npm test
+
+  deploy_beta:
+    <<: *defaults
+    steps:
+      - checkout
+      - run:
+          name: Install dependencies
+          command: |
+            npm i -g npm
+            npm ci
+      - run:
+          name: Build for web
+          command: npm run build
+      - deploy:
+          name: Deploy to AWS S3
+          command: |
+            npx s3-deploy './dist/**' \
+              --cwd './dist/' \
+              --bucket tabliss-beta \
+              --region us-west-2 \
+              --cache "public, must-revalidate" \
+              --deleteRemoved
+
+workflows:
+  version: 2
+  test_deploy_beta:
+    jobs:
+      - test
+      - deploy_beta:
+          requires:
+            - test
