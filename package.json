@@ -4,12 +4,13 @@
   "license": "GPL-3.0",
   "private": true,
   "scripts": {
-    "start": "webpack-dev-server",
     "build": "npm run-script build:web",
     "build:chrome": "NODE_ENV=production BUILD_TARGET=chrome webpack",
     "build:firefox": "NODE_ENV=production BUILD_TARGET=firefox webpack",
     "build:web": "NODE_ENV=production BUILD_TARGET=web webpack",
-    "lint": "tslint --project tsconfig.json",
+    "lint": "tslint --project=tsconfig.json",
+    "start": "webpack-dev-server",
+    "test": "jest --config=jest.json",
     "translations": "node ./scripts/translationRunner.js"
   },
   "dependencies": {
@@ -34,6 +35,7 @@
   },
   "devDependencies": {
     "@types/chrome": "0.0.54",
+    "@types/jest": "^22.2.2",
     "@types/lodash-es": "^4.17.0",
     "@types/luxon": "^0.2.6",
     "@types/node": "^8.9.5",
@@ -52,12 +54,14 @@
     "extract-text-webpack-plugin": "^3.0.2",
     "file-loader": "^1.1.11",
     "html-webpack-plugin": "^2.30.1",
+    "jest": "^22.4.3",
     "node-sass": "^4.8.3",
     "raw-loader": "^0.5.1",
     "react-intl-translations-manager": "^5.0.1",
     "sass-loader": "^6.0.7",
     "source-map-loader": "^0.2.3",
     "sw-precache-webpack-plugin": "^0.11.5",
+    "ts-jest": "^22.4.2",
     "ts-loader": "^3.5.0",
     "tslint": "^5.9.1",
     "tslint-loader": "^3.6.0",

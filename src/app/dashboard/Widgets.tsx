@@ -19,11 +19,9 @@ const Widgets: React.StatelessComponent<Props> = (props) => {
   );
 };
 
-const mapStateToProps = (state: RootState) => {
-  return {
-    focus: state.ui.focus,
-    widgets: state.dashboard.widgets,
-  };
-};
+const mapStateToProps = (state: RootState) => ({
+  focus: state.ui.focus,
+  widgets: state.dashboard.widgets,
+});
 
 export default connect(mapStateToProps)(Widgets);
