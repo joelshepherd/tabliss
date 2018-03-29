@@ -9,6 +9,7 @@
     "build:chrome": "NODE_ENV=production BUILD_TARGET=chrome webpack",
     "build:firefox": "NODE_ENV=production BUILD_TARGET=firefox webpack",
     "build:web": "NODE_ENV=production BUILD_TARGET=web webpack",
+    "lint": "tslint --project tsconfig.json",
     "translations": "node ./scripts/translationRunner.js"
   },
   "dependencies": {
