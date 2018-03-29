@@ -1,10 +1,12 @@
 import * as Raven from 'raven-js';
 
 export function register() {
-  if (process.env.SENTRY_PUBLIC_DSN) {
-    Raven.config(<string> process.env.SENTRY_PUBLIC_DSN, {
+  const sentryPublicDsn = process.env.SENTRY_PUBLIC_DSN;
+
+  if (sentryPublicDsn) {
+    Raven.config(sentryPublicDsn, {
       environment: process.env.NODE_ENV,
-      release: '1.11.1',
+      release: '1.11.2',
       serverName: process.env.BUILD_TARGET,
     }).install();
   }
