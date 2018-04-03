@@ -27,7 +27,7 @@ class Dribbble extends React.PureComponent<Props, State> {
 
   state: State = {
     shots: [],
-    nextLink: 'https://api.dribbble.com/v1/shots?per_page=12',
+    // nextLink: 'https://api.dribbble.com/v1/shots?per_page=12',
   };
 
   componentWillMount() {
@@ -47,6 +47,15 @@ class Dribbble extends React.PureComponent<Props, State> {
   render() {
     return (
       <div className="Dribbble">
+        <div style={{ padding: '1em', textAlign: 'center' }}>
+          <h3>Sorry, the Dribbble shots API has been deprecated and this background no longer works.</h3>
+          <p>
+            I have written to Dribbble requesting access for Tabliss to their new API endpoint.
+            If they accept my request, this background will resume working again.
+            If not, the Dribbble background plugin will be removed shortly :(
+          </p>
+        </div>
+
         <div
           className="shots fullscreen"
           onScroll={() => this.onScroll()}
