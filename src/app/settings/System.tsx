@@ -39,6 +39,7 @@ const System: React.StatelessComponent<Props> = (props) => {
           <option value="de" title="German">Deutsch</option>
           <option value="fr" title="French">Français</option>
           <option value="ko" title="Korean">한국어</option>
+          <option value="pl" title="Polish">Polski</option>
           <option value="zh" title="Simplified Chinese">中文(简体)</option>
         </select>
       </label>

@@ -1,0 +1,14 @@
+{
+  "app.pageTitle": "Nowa karta",
+  "dashboard.focusHint": "Przełącz widżety",
+  "dashboard.fullscreenHint": "Przełącz tryb pełnoekranowy",
+  "dashboard.loadingHint": "Ładowanie nowej zawartości",
+  "dashboard.settingsHint": "Dostosuj Tabliss",
+  "plugin.greeting.withName": "{hour, plural, =0 {Śpij dobrze, {name}} =1 {Śpij dobrze, {name}} =2 {Śpij dobrze, {name}} =3 {Pora wstać, {name}} =4 {Pora wstać, {name}} =5 {Pora wstać, {name}} =6 {Dzień dobry, {name}} =7 {Dzień dobry, {name}} =8 {Dzień dobry, {name}} =9 {Dzień dobry, {name}} =10 {Cześć {name}} =11 {Cześć {name}} =12 {Cześć {name}} =13 {Cześć {name}} =14 {Dzień dobry, {name}} =15 {Dzień dobry, {name}} =16 {Dzień dobry, {name}} =17 {Dzień dobry, {name}} =18 {Dobry wieczór, {name}} =19 {Dobry wieczór, {name}} =20 {Dobry wieczór, {name}} =21 {Dobry wieczór, {name}} =22 {Dobranoc, {name}} =23 {Dobranoc, {name}}}",
+  "plugin.greeting.withoutName": "{hour, plural, =0 {Śpij dobrze} =1 {Śpij dobrze} =2 {Śpij dobrze} =3 {Pora wstać} =4 {Pora wstać} =5 {Pora wstać} =6 {Dzień dobry} =7 {Dzień dobry} =8 {Dzień dobry} =9 {Dzień dobry} =10 {Cześć} =11 {Cześć} =12 {Cześć} =13 {Cześć} =14 {Dzień dobry} =15 {Dzień dobry} =16 {Dzień dobry} =17 {Dzień dobry} =18 {Dobry wieczór} =19 {Dobry wieczór} =20 {Dobry wieczór} =21 {Dobry wieczór} =22 {Dobranoc} =23 {Dobranoc}}",
+  "plugins.links.shortcutHint": "Naciśnij {number} lub kliknij, aby odwiedzić witrynę",
+  "plugins.links.standardHint": "Kliknij, aby odwiedzić witrynę",
+  "plugins.search.placeholder": "Wpisz, aby wyszkukać",
+  "plugins.unsplash.photoLink": "Zdjęcie",
+  "settings.translationCredits": "Polish translation by achook"
+}
