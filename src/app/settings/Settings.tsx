@@ -69,7 +69,7 @@ class Settings extends React.PureComponent<Props> {
   }
 
   private reset = () => {
-    if (confirm('Are you sure you want to earse all your settings and reset to default?')) {
+    if (confirm('Are you sure you want to erase all your settings and reset to default?')) {
       this.props.resetDashboard();
     }
   }
