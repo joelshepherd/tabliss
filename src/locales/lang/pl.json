@@ -8,7 +8,7 @@
   "plugin.greeting.withoutName": "{hour, plural, =0 {Śpij dobrze} =1 {Śpij dobrze} =2 {Śpij dobrze} =3 {Pora wstać} =4 {Pora wstać} =5 {Pora wstać} =6 {Dzień dobry} =7 {Dzień dobry} =8 {Dzień dobry} =9 {Dzień dobry} =10 {Cześć} =11 {Cześć} =12 {Cześć} =13 {Cześć} =14 {Dzień dobry} =15 {Dzień dobry} =16 {Dzień dobry} =17 {Dzień dobry} =18 {Dobry wieczór} =19 {Dobry wieczór} =20 {Dobry wieczór} =21 {Dobry wieczór} =22 {Dobranoc} =23 {Dobranoc}}",
   "plugins.links.shortcutHint": "Naciśnij {number} lub kliknij, aby odwiedzić witrynę",
   "plugins.links.standardHint": "Kliknij, aby odwiedzić witrynę",
-  "plugins.search.placeholder": "Wpisz, aby wyszkukać",
+  "plugins.search.placeholder": "Wpisz, aby wyszukać",
   "plugins.unsplash.photoLink": "Zdjęcie",
   "settings.translationCredits": "Polish translation by achook"
 }
