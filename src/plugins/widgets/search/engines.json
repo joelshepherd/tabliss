@@ -33,5 +33,10 @@
     "key": "lilo",
     "name": "Lilo",
     "search_url": "https://search.lilo.org/results.php?q={searchTerms}"
+  },
+  {
+    "key": "startpage",
+    "name": "Startpage",
+    "search_url": "https://www.startpage.com/do/search?q={searchTerms}"
   }
 ]
