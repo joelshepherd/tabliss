@@ -31,8 +31,8 @@ class SearchSettings extends React.PureComponent<Props> {
         </p>
 
         <select onChange={(ev) => this.selectEngine(ev)} value={this.props.engine}>
-          {engines.map((engine) => 
-            <option value={engine.key}>{engine.name}</option>
+          {engines.map((engine) =>
+            <option key={engine.key} value={engine.key}>{engine.name}</option>
           )}
         </select>
       </div>
@@ -41,9 +41,9 @@ class SearchSettings extends React.PureComponent<Props> {
 
     private selectEngine(event: ChangeEvent<HTMLSelectElement>) {
         const engine = engines.filter((eng) => {
-            return eng.key == event.currentTarget.value;
+            return eng.key === event.currentTarget.value;
         })[0].key;
-      this.props.onChange({ engine });
+        this.props.onChange({ engine });
   }
 }
 
