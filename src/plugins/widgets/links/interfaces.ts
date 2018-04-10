@@ -1,5 +1,6 @@
 export interface Link {
   name?: string;
+  faIcon?: string;
   url: string;
 }
 
