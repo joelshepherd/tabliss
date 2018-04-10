@@ -35,10 +35,11 @@ const System: React.StatelessComponent<Props> = (props) => {
       >
         <span>Language</span>
         <select value={props.locale} onChange={onChangeLocale} style={{ padding: '0.25rem' }}>
-          <option value="en" title="English">English</option>
           <option value="de" title="German">Deutsch</option>
+          <option value="en" title="English">English</option>
           <option value="fr" title="French">Français</option>
           <option value="ko" title="Korean">한국어</option>
+          <option value="it" title="Italian">Italiano</option>
           <option value="pl" title="Polish">Polski</option>
           <option value="zh" title="Simplified Chinese">中文(简体)</option>
         </select>

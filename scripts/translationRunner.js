@@ -26,7 +26,18 @@ runner(res => {
 
   // Manage translations
   manageTranslations({
-    languages: ['pl', 'de', 'fr', 'ko'],
+    languages: [
+      'de',
+      'fr',
+      'ko',
+      'it',
+      'pl',
+      'zh',
+    ],
+    jsonOptions: {
+      space: 2,
+      trailingNewline: true,
+    },
     messagesDirectory: 'src/locales/extractedMessages',
     translationsDirectory: 'src/locales/lang/',
   });
