@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Settings as SettingsInterface } from '../../interfaces';
 import { Engine } from './interfaces';
+import { ChangeEvent } from 'react';
 const engines: Engine[] = require('./engines.json');
 
 interface Props {
@@ -29,23 +30,20 @@ class SearchSettings extends React.PureComponent<Props> {
           </label>
         </p>
 
-        {engines.map(engine =>
-          <label key={engine.key}>
-            <input
-              type="radio"
-              checked={this.props.engine === engine.key}
-              onChange={() => this.selectEngine(engine.key)}
-            />
-            {' '}
-            {engine.name}
-          </label>
-        )}
+        <select onChange={(ev) => this.selectEngine(ev)} value={this.props.engine}>
+          {engines.map((engine) => 
+            <option value={engine.key}>{engine.name}</option>
+          )}
+        </select>
       </div>
     );
   }
 
-  private selectEngine(engine: string) {
-    this.props.onChange({ engine });
+    private selectEngine(event: ChangeEvent<HTMLSelectElement>) {
+        const engine = engines.filter((eng) => {
+            return eng.key == event.currentTarget.value;
+        })[0].key;
+      this.props.onChange({ engine });
   }
 }
 
