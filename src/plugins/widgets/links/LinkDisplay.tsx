@@ -28,37 +28,19 @@ const messages = defineMessages({
   },
 });
 
-const LinkDisplay: React.StatelessComponent<Props & InjectedIntlProps> = (props) => {
-    let link = [];
-
-    if (props.faIcon) {
-        link.push(<i className={props.faIcon} />);
+const LinkDisplay: React.StatelessComponent<Props & InjectedIntlProps> = (props) => (
+  <a
+    href={props.url}
+    rel="noopener noreferrer"
+    title={props.number < 10
+      ? props.intl.formatMessage(messages.shortcutHint, { number: props.number })
+      : props.intl.formatMessage(messages.standardHint)
     }
-
-    if (props.name) {
-        if (link.length === 1) {
-            link.push(' ');
-        }
-
-        link.push(props.name);
-    }
-
-    if (link.length === 0) {
-        link.push(displayUrl(props.url));
-    }
-
-    return (
-        <a
-            href={props.url}
-            rel="noopener noreferrer"
-            title={props.number < 10
-                ? props.intl.formatMessage(messages.shortcutHint, { number: props.number })
-                : props.intl.formatMessage(messages.standardHint)
-            }
-        >
-            {link}
-        </a>
-    )
-};
+  >
+    {props.faIcon && <i className={`fas ${props.faIcon}`} />}
+    {props.name}
+    {! props.faIcon && ! props.name && displayUrl(props.url)}
+  </a>
+);
 
 export default injectIntl(LinkDisplay);

@@ -42,16 +42,16 @@ const LinkInput: React.StatelessComponent<Props> = (props) => (
         value={props.name}
         onChange={event => props.onChange({ name: event.target.value })}
       />
-        </label>
+    </label>
 
-        <label>
-            Font Awesome Icon <span className="text--grey">(optional)</span>
-            <input
-                type="text"
-                value={props.faIcon}
-                onChange={event => props.onChange({ faIcon: event.target.value })}
-            />
-        </label>
+    <label>
+      Font Awesome icon <span className="text--grey">(optional)</span>
+      <input
+        type="text"
+        value={props.faIcon}
+        onChange={event => props.onChange({ faIcon: event.target.value })}
+      />
+    </label>
 
     <hr />
   </div>
