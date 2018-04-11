@@ -8,7 +8,6 @@ interface Category {
 
 interface Props {
   category?: string;
-  placeholder: string;
   onChange: (settings: { [key: string]: string|undefined }) => void;
 }
 

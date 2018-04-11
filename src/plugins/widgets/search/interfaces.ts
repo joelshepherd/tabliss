@@ -3,3 +3,8 @@ export interface Engine {
   name: string;
   search_url: string;
 }
+
+export interface Settings {
+  engine?: string;
+  placeholder?: string;
+}

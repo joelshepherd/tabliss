@@ -1,14 +1,11 @@
 import * as React from 'react';
 import { defineMessages, injectIntl, InjectedIntlProps } from 'react-intl';
 import tlds from 'tlds';
-import { Engine } from './interfaces';
+import { Engine, Settings } from './interfaces';
 import './Search.sass';
 const engines: Engine[] = require('./engines.json');
 
-interface Props {
-  engine: string;
-  placeholder: string;
-}
+interface Props extends Settings {}
 
 interface State {
   query: string;
