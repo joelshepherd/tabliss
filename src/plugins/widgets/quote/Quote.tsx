@@ -46,7 +46,7 @@ class Quote extends React.PureComponent<Props> {
             {get(this.props, 'local.quote')}
             {has(this.props, 'local.author') && <sub><br />&mdash; {get(this.props, 'local.author')}</sub>}
                 <br />
-                <a href={href}>
+                <a href={href} target="_blank" rel="noopener noreferrer">
               <img src="https://img.shields.io/twitter/url/http/shields.io.svg?style=social" />
             </a>
           </h4>
