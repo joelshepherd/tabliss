@@ -58,7 +58,7 @@ const LinkDisplay: React.StatelessComponent<Props & InjectedIntlProps> = (props)
         >
             {link}
         </a>
-    )
+    );
 };
 
 export default injectIntl(LinkDisplay);
