@@ -29,9 +29,10 @@ runner(res => {
     languages: [
       'de',
       'fr',
-      'ko',
       'it',
+      'ko',
       'pl',
+      'tr',
       'zh',
     ],
     jsonOptions: {
