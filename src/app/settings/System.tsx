@@ -17,8 +17,17 @@ const System: React.StatelessComponent<Props> = (props) => {
   const onChangeLocale = (event: React.ChangeEvent<HTMLSelectElement>) => {
     props.changeLocale(event.target.value);
   };
+
   const onChangeTimezone = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    props.changeTimezone(event.target.value || undefined);
+    let zone = event.target.value || undefined;
+
+    // Check for a valid zone in this browser
+    if (zone && ! Info.isValidIANAZone(zone)) {
+      alert(`Sorry, the timezone ${zone} is not supported in your browser.`);
+      zone = undefined;
+    }
+
+    props.changeTimezone(zone);
   };
 
   return (
@@ -60,13 +69,13 @@ const System: React.StatelessComponent<Props> = (props) => {
           Timezone
 
           <select
-            value={props.timezone}
+            value={props.timezone || ''}
             onChange={onChangeTimezone}
             style={{ padding: '0.25rem', fontSize: '1em' }}
           >
             <option value="">Automatic</option>
             {timezones.map(timezone =>
-              <option key={timezone} value={timezone}>{timezone.replace('_', ' ')}</option>
+              <option key={timezone} value={timezone}>{timezone.replace(/_/g, ' ')}</option>
             )}
           </select>
         </label>
