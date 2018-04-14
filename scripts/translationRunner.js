@@ -28,11 +28,11 @@ runner(res => {
   manageTranslations({
     languages: [
       'de',
+      'es',
       'fr',
       'it',
       'ko',
       'pl',
-      'sp',
       'tr',
       'zh',
     ],

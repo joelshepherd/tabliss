@@ -5,7 +5,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 ### Added
-- Translations for Polish, Italian and Turkish!
+- Translations for Polish, Italian, Turkish and Spanish!
 
 ## [1.11.3]
 ### Fixed
