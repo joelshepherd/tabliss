@@ -15,6 +15,8 @@ class Css extends React.PureComponent<Props> {
   }
 
   componentDidUpdate() {
+    // Need to remove the existing style element before inserting an updated one.
+    this.detach();
     this.attach();
   }
 
