@@ -64,8 +64,8 @@ class Giphy extends React.PureComponent<Props, State> {
 
   render() {
     const styles = {
-      backgroundImage: this.state.current ? `url(${this.state.current.src})` : null,
-      backgroundSize: this.props.expand ? 'cover' : null,
+      backgroundImage: this.state.current ? `url(${this.state.current.src})` : undefined,
+      backgroundSize: this.props.expand ? 'cover' : undefined,
       opacity: this.state.current ? 1 : 0,
     };
 
