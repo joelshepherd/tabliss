@@ -1,15 +1,10 @@
 import * as React from 'react';
-import './Css.sass';
 
 interface Props {
   input?: string;
 }
 
 class Css extends React.PureComponent<Props> {
-  static defaultProps = {
-    input: '',
-  };
-
   componentDidMount() {
     this.attach();
   }

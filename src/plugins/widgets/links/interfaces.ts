@@ -1,6 +1,6 @@
 export interface Link {
   name?: string;
-  faIcon?: string;
+  icon?: string;
   url: string;
 }
 

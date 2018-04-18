@@ -1,3 +1,4 @@
+import featherIcons from 'feather-icons';
 import * as React from 'react';
 import { arrowUpIcon, arrowDownIcon, IconButton, removeIcon } from '../../../app/ui';
 import { Link as LinkProps } from './interfaces';
@@ -45,12 +46,11 @@ const LinkInput: React.StatelessComponent<Props> = (props) => (
     </label>
 
     <label>
-      Font Awesome icon <span className="text--grey">(optional)</span>
-      <input
-        type="text"
-        value={props.faIcon}
-        onChange={event => props.onChange({ faIcon: event.target.value })}
-      />
+      Icon <span className="text--grey">(optional)</span>
+      <select value={props.icon} onChange={event => props.onChange({ icon: event.target.value })}>
+        <option value={''}>None</option>
+        {Object.keys(featherIcons.icons).map(key => <option key={key}>{key}</option>)}
+      </select>
     </label>
 
     <hr />

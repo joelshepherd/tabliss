@@ -1,3 +1,4 @@
+import featherIcons from 'feather-icons';
 import * as React from 'react';
 import { defineMessages, injectIntl, InjectedIntlProps } from 'react-intl';
 import { Link as LinkProps } from './interfaces';
@@ -37,9 +38,13 @@ const LinkDisplay: React.StatelessComponent<Props & InjectedIntlProps> = (props)
       : props.intl.formatMessage(messages.standardHint)
     }
   >
-    {props.faIcon && <i className={`fas ${props.faIcon}`} />}
+    {props.icon && featherIcons.icons[props.icon] &&
+      <i dangerouslySetInnerHTML={{ __html: featherIcons.icons[props.icon].toSvg() }} />
+    }
     {props.name}
-    {! props.faIcon && ! props.name && displayUrl(props.url)}
+    {! props.name && ! props.icon &&
+      displayUrl(props.url)
+    }
   </a>
 );
 

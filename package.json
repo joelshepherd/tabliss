@@ -14,7 +14,7 @@
     "translations": "node ./scripts/translationRunner.js"
   },
   "dependencies": {
-    "feather-icons": "^3.3.0",
+    "feather-icons": "^4.0.0",
     "in-browser-language": "^1.0.2",
     "localforage": "^1.6.0",
     "lodash-es": "^4.17.7",
