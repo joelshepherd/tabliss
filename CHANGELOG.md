@@ -3,14 +3,18 @@
 All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
-## [Unreleased]
+## [1.12.0]
 ### Added
 - Translations for Polish, Italian, Turkish and Spanish!
+- Selectable icons for Quick Links.
+- Custom CSS widget for advanced users to further customise the look of Tabliss.
+- Startpage as a search engine provider.
+- Filled in missing timezones and a message alerting of timezones unsupported if selected.
 
 ## [1.11.3]
 ### Fixed
-- Deprecation message for the Dribbble API
-- Fixed typo
+- Deprecation message for the Dribbble API.
+- Fixed a typo.
 
 ## [1.11.2]
 ### Fixed
