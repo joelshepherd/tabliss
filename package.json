@@ -24,6 +24,7 @@
     "raven-js": "^3.23.3",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
+    "react-error-boundary": "^1.2.2",
     "react-intl": "^2.4.0",
     "react-redux": "^5.0.7",
     "react-transition-group": "^2.2.1",
