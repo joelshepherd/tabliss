@@ -22,3 +22,9 @@ export interface Local {
 export interface Settings {
   [key: string]: any; // tslint:disable-line no-any
 }
+
+export interface PluginAPI extends Settings {
+  local?: Local;
+  setLocal: (state: Local) => void;
+  updateLocal: (state: Local) => void;
+}

@@ -54,6 +54,10 @@ class Feedback extends React.PureComponent<{}, State> {
       return;
     }
 
+    if (! this.state.body) {
+      this.setState({ open: false });
+    }
+
     this.setState({ pending: true });
 
     const request = new Request(`${process.env.API_ENDPOINT}/feedback`, {

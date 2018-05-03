@@ -9,6 +9,7 @@ import { Message, MessageSettings } from './message';
 import { Quote, QuoteSettings } from './quote';
 import { Search, SearchSettings } from './search';
 import { Time, TimeSettings } from './time';
+import { Todo } from './todo';
 import { Weather, WeatherSettings } from './weather';
 
 registerPlugin({
@@ -73,6 +74,13 @@ registerPlugin({
   title: 'Time',
   Dashboard: Time,
   Settings: TimeSettings,
+});
+
+registerPlugin({
+  key: 'widgets/todo',
+  type: Type.WIDGET,
+  title: 'Todos',
+  Dashboard: Todo,
 });
 
 registerPlugin({

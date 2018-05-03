@@ -8,6 +8,8 @@ const plus = require('feather-icons/dist/icons/plus.svg');
 const trash2 = require('feather-icons/dist/icons/trash-2.svg');
 const twitter = require('feather-icons/dist/icons/twitter.svg');
 const github = require('feather-icons/dist/icons/github.svg');
+const checked = require('feather-icons/dist/icons/check-circle.svg');
+const unchecked = require('feather-icons/dist/icons/circle.svg');
 
 export const arrowDownIcon = <i dangerouslySetInnerHTML={{ __html: arrowDown }} />;
 export const arrowUpIcon = <i dangerouslySetInnerHTML={{ __html: arrowUp }} />;
@@ -17,3 +19,5 @@ export const expandIcon = <i dangerouslySetInnerHTML={{ __html: plus }} />;
 export const removeIcon = <i dangerouslySetInnerHTML={{ __html: trash2 }} />;
 export const twitterIcon = <i dangerouslySetInnerHTML={{ __html: twitter }} />;
 export const githubIcon = <i dangerouslySetInnerHTML={{ __html: github }} />;
+export const checkedIcon = <i dangerouslySetInnerHTML={{ __html: checked }} />;
+export const uncheckedIcon = <i dangerouslySetInnerHTML={{ __html: unchecked }} />;
