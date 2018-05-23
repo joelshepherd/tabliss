@@ -20,11 +20,11 @@ class TodoInput extends React.PureComponent<Props & InjectedOnClickOutProps, Sta
 
   render() {
     return (
-      <div className="TodoInput">
+      <span className="TodoInput">
         {this.state.open && (
           <form onSubmit={this.onSubmit}>
             <label>
-              <input type="text" autoFocus value={this.state.contents} onChange={this.onChange} />
+              <input type="text" autoFocus={true} value={this.state.contents} onChange={this.onChange} />
             </label>
           </form>
         )}
@@ -32,7 +32,7 @@ class TodoInput extends React.PureComponent<Props & InjectedOnClickOutProps, Sta
         {! this.state.open && (
           <a onClick={this.onOpen}>{expandIcon}</a>
         )}
-      </div>
+      </span>
     );
   }
 

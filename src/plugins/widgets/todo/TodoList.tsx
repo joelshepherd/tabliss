@@ -4,14 +4,17 @@ import TodoItem from './TodoItem';
 
 interface Props {
   items: Todo[];
+  show?: number;
   onToggle(id: string): void;
 }
 
-const TodoList: React.StatelessComponent<Props> = ({ items, onToggle }) => (
+const TodoList: React.StatelessComponent<Props> = ({ items, onToggle, show }) => (
   <div className="TodoList">
     {items
-      .filter(item => ! item.completed)
-      .map(item => <TodoItem key={item.id} item={item} onToggle={onToggle} />)
+      .slice(0, show)
+      .map(item => (
+        <TodoItem key={item.id} item={item} onToggle={onToggle} />
+      ))
     }
   </div>
 );

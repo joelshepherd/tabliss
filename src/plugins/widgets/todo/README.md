@@ -7,7 +7,6 @@
 - contents
 - completed
 - due?
-- order?
 
 ## structure
 
@@ -18,4 +17,4 @@
 
 ## settings
 
-- show all or just the top item?
+- `show` - Number of todos to show by default
