@@ -17,11 +17,12 @@ interface State {
 }
 
 class Todo extends React.PureComponent<Props & PluginAPI, State> {
-  static defaultProps = {
+  static defaultProps: Props = {
     local: {
       items: [],
     },
     show: 3,
+    textAlign: 'inherit',
   };
 
   state: State = {
