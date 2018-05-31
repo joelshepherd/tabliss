@@ -33,8 +33,8 @@ class Todo extends React.PureComponent<Props & PluginAPI, State> {
     const show = ! this.state.more ? this.props.show : undefined;
 
     return (
-      <div className="Todo">
-        <TodoList items={items} onToggle={this.onToggle} show={show} />
+      <div className="Todo" style={{ textAlign: this.props.textAlign }}>
+        <TodoList items={items} onToggle={this.onToggle} onUpdate={this.onUpdate} show={show} />
         <TodoInput onCreate={this.onCreate} />
         {items.length > this.props.show && (
           <a onClick={this.onMore}>{this.state.more ? arrowUpIcon : arrowDownIcon}</a>
@@ -74,6 +74,24 @@ class Todo extends React.PureComponent<Props & PluginAPI, State> {
           return {
             ...item,
             completed: ! item.completed,
+          };
+        }
+
+        return item;
+      }),
+    });
+  }
+
+  /**
+   * Handle update todo events.
+   */
+  private onUpdate = (id: string, contents: string) => {
+    this.props.setLocal({
+      items: this.props.local.items.map(item => {
+        if (item.id === id) {
+          return {
+            ...item,
+            contents,
           };
         }
 

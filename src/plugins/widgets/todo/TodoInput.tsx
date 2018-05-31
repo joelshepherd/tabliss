@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { default as onClickOutside, InjectedOnClickOutProps } from 'react-onclickoutside';
 import { expandIcon } from '../../../app/ui';
 import './TodoInput.sass';
 
@@ -12,7 +11,7 @@ interface State {
   open: boolean;
 }
 
-class TodoInput extends React.PureComponent<Props & InjectedOnClickOutProps, State> {
+class TodoInput extends React.PureComponent<Props, State> {
   state: State = {
     contents: '',
     open: false,
@@ -24,7 +23,13 @@ class TodoInput extends React.PureComponent<Props & InjectedOnClickOutProps, Sta
         {this.state.open && (
           <form onSubmit={this.onSubmit}>
             <label>
-              <input type="text" autoFocus={true} value={this.state.contents} onChange={this.onChange} />
+              <input
+                type="text"
+                autoFocus={true}
+                value={this.state.contents}
+                onBlur={this.onClose}
+                onChange={this.onChange}
+              />
             </label>
           </form>
         )}
@@ -59,13 +64,11 @@ class TodoInput extends React.PureComponent<Props & InjectedOnClickOutProps, Sta
 
   private onOpen = () => {
     this.setState({ open: true });
-    this.props.enableOnClickOutside();
   }
 
   private onClose = () => {
     this.setState({ open: false });
-    this.props.disableOnClickOutside();
   }
 }
 
-export default onClickOutside(TodoInput);
+export default TodoInput;

@@ -1,5 +1,6 @@
 export interface Settings {
   show: number;
+  textAlign: 'inherit' | 'left';
 }
 
 export interface Todo {
