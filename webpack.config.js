@@ -3,7 +3,7 @@ require('dotenv').config();
 const path = require('path');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MinifyPlugin = require('babel-minify-webpack-plugin');
 const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
@@ -21,6 +21,7 @@ const config = {
     publicPath: '/',
     filename: '[name].[chunkhash:12].js',
   },
+  mode: 'development',
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx'],
   },
@@ -34,7 +35,10 @@ const config = {
       },
       {
         test: /\.css$/,
-        use: ExtractTextPlugin.extract('css-loader'),
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+        ],
       },
       {
         test: /\.(gif|jpe?g|png)$/,
@@ -46,7 +50,11 @@ const config = {
       },
       {
         test: /\.sass$/,
-        use: ExtractTextPlugin.extract(['css-loader', 'sass-loader']),
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+          'sass-loader',
+        ],
       },
       {
         test: /\.svg$/,
@@ -64,7 +72,9 @@ const config = {
     new CopyWebpackPlugin([
       { from: 'public' },
     ]),
-    new ExtractTextPlugin('[name].[chunkhash:12].css'),
+    new MiniCssExtractPlugin({
+      filename: '[name].[chunkhash:12].css',
+    }),
     new HtmlWebpackPlugin({
       template: './public/index.html',
     }),
@@ -87,7 +97,6 @@ const config = {
     }),
     new webpack.NoEmitOnErrorsPlugin(),
   ],
-  devtool: 'source-map',
   devServer: {
     historyApiFallback: true,
     overlay: true,
@@ -102,6 +111,7 @@ const config = {
 
 // Production build
 if (process.env.NODE_ENV === 'production') {
+  config.mode = 'production';
   config.plugins.push(new MinifyPlugin());
   config.plugins.push(new webpack.LoaderOptionsPlugin({
     minimize: true,
