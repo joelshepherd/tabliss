@@ -41,10 +41,6 @@ class TodoInput extends React.PureComponent<Props, State> {
     );
   }
 
-  handleClickOutside() {
-    this.onClose();
-  }
-
   private onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     this.setState({ contents: event.target.value });
   }

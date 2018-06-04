@@ -2,6 +2,7 @@ import * as React from 'react';
 import { withErrorBoundary } from 'react-error-boundary';
 import { connect, Dispatch } from 'react-redux';
 import { Action, RootState, setLocal, updateLocal } from '../../data';
+import { capture as captureException } from '../../errorHandler';
 import { getPlugin, Plugin as IPlugin, Settings, Local } from '../../plugins';
 import Crashed from './Crashed';
 
@@ -47,4 +48,5 @@ const mapDispatchToProps = (dispatch: Dispatch<Action>, ownProps: OwnProps) => (
 export default withErrorBoundary(
   connect(mapStateToProps, mapDispatchToProps)(Plugin),
   Crashed,
+  captureException,
 );

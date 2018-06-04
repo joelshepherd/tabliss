@@ -3,7 +3,15 @@
 All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
-## [1.12.0]
+## [1.13.0] - 2018-06-04
+### Added
+- New Todos widget! Now your new tab page too can tell you how lazy you are!
+- Better crash protection for individual backgrounds and widgets.
+
+### Fixed
+- Spanish translation tweaks.
+
+## [1.12.0] - 2018-04-18
 ### Added
 - Translations for Polish, Italian, Turkish and Spanish!
 - Selectable icons for Quick Links.
@@ -11,20 +19,20 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 - Startpage as a search engine provider.
 - Filled in missing timezones and a message alerting of timezones unsupported if selected.
 
-## [1.11.3]
+## [1.11.3] - 2018-04-03
 ### Fixed
 - Deprecation message for the Dribbble API.
 - Fixed a typo.
 
-## [1.11.2]
+## [1.11.2] - 2018-03-29
 ### Fixed
 - A quirk that made the date off by one month.
 
-## [1.11.1]
+## [1.11.1] - 2018-03-28
 ### Fixed
 - Date being invalid in browsers for other languages.
 
-## [1.11.0]
+## [1.11.0] - 2018-03-27
 ### Added
 - Translations for Simplified Chinese and German!
 - Display the date in the time widget.

@@ -5,13 +5,15 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const MinifyPlugin = require('babel-minify-webpack-plugin');
 const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
 const webpack = require('webpack');
+
+const version = require('./package.json').version;
 
 const config = {
   entry: {
     main: [
+      'normalize.css',
       './src/styles.sass',
       './src/main.tsx',
     ],
@@ -88,19 +90,19 @@ const config = {
     }),
     new webpack.EnvironmentPlugin({
       BUILD_TARGET: 'web',
-      NODE_ENV: 'development',
       API_ENDPOINT: 'https://api.tabliss.io/v1',
       SENTRY_PUBLIC_DSN: null,
       DRIBBBLE_API_KEY: null,
       GIPHY_API_KEY: null,
       UNSPLASH_API_KEY: null,
+      VERSION: version,
     }),
-    new webpack.NoEmitOnErrorsPlugin(),
   ],
   devServer: {
     historyApiFallback: true,
     overlay: true,
   },
+  devtool: 'source-map',
   node: {
     dgram: 'empty',
     fs: 'empty',
@@ -112,7 +114,6 @@ const config = {
 // Production build
 if (process.env.NODE_ENV === 'production') {
   config.mode = 'production';
-  config.plugins.push(new MinifyPlugin());
   config.plugins.push(new webpack.LoaderOptionsPlugin({
     minimize: true,
     debug: false,
@@ -121,7 +122,7 @@ if (process.env.NODE_ENV === 'production') {
 
 // Extension build targets
 if (process.env.BUILD_TARGET === 'chrome' || process.env.BUILD_TARGET === 'firefox') {
-  config.devtool = false;
+  config.devtool = 'inline-source-map';
   config.plugins = config.plugins.filter(plugin => ! (plugin instanceof SWPrecacheWebpackPlugin));
   config.plugins.push(new CopyWebpackPlugin([{
     from: `src/manifest_${process.env.BUILD_TARGET}.json`,

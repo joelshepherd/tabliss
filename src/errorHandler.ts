@@ -1,13 +1,34 @@
 import * as Raven from 'raven-js';
 
-export function register() {
-  const sentryPublicDsn = process.env.SENTRY_PUBLIC_DSN;
+const sentryPublicDsn = process.env.SENTRY_PUBLIC_DSN;
 
+export function register() {
   if (sentryPublicDsn) {
     Raven.config(sentryPublicDsn, {
       environment: process.env.NODE_ENV,
-      release: '1.12.0',
+      release: process.env.VERSION,
       serverName: process.env.BUILD_TARGET,
     }).install();
+  }
+}
+
+// tslint:disable-next-line no-any
+export function capture(error: Error, extra: any) {
+  if (sentryPublicDsn) {
+    if (error.stack) {
+      // Replace firefox extension URLs
+      error.stack = error.stack.replace(
+        /moz-extension:\/\/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/g,
+        'resource://tabliss-extension',
+      );
+
+      // Replace chrome extension URLs
+      error.stack = error.stack.replace(
+        /chrome-extension:\/\/hipekcciheckooncpjeljhnekcoolahp/g,
+        'resource://tabliss-extension',
+      );
+    }
+
+    Raven.captureException(error, { extra });
   }
 }
