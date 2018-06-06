@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
+## [1.13.1] - 2018-06-07
+### Fixed
+- Firefox review compliance
+
 ## [1.13.0] - 2018-06-04
 ### Added
 - New Todos widget! Now your new tab page too can tell you how lazy you are!
