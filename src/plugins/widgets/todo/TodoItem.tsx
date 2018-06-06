@@ -34,8 +34,10 @@ class TodoItem extends React.Component<Props> {
           contentEditable={true}
           onBlur={event => onUpdate(item.id, event.currentTarget.innerText)}
           onInput={event => onUpdate(item.id, event.currentTarget.innerText)}
-          dangerouslySetInnerHTML={{ __html: item.contents }}
-        />
+          suppressContentEditableWarning={true}
+        >
+          {item.contents}
+        </span>
       </div>
     );
   }
