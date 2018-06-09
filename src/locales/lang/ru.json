@@ -1,0 +1,12 @@
+{
+  "app.pageTitle": "Новая вкладка",
+  "dashboard.focusHint": "Фокус",
+  "dashboard.fullscreenHint": "Развернуть на весь экран",
+  "dashboard.loadingHint": "Загрузка...",
+  "dashboard.settingsHint": "Настройки",
+  "plugins.links.shortcutHint": "Нажмите {number} или кликните ",
+  "plugins.links.standardHint": "Кликните, для перехода",
+  "plugins.search.placeholder": "Поиск...",
+  "plugins.unsplash.photoLink": "Фото",
+  "settings.translationCredits": "Русский перевод Петр Слоня"
+}
