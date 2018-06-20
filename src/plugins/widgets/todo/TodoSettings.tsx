@@ -7,7 +7,7 @@ interface Props extends Settings {
 
 const TodoSettings: React.StatelessComponent<Props> = ({
   show = 3,
-  textAlign = 'inherit',
+  textAlign = 'left',
   onChange,
 }) => (
   <div className="SearchSettings">

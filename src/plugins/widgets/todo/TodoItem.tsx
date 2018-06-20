@@ -34,12 +34,21 @@ class TodoItem extends React.Component<Props> {
           contentEditable={true}
           onBlur={event => onUpdate(item.id, event.currentTarget.innerText)}
           onInput={event => onUpdate(item.id, event.currentTarget.innerText)}
+          onKeyDownCapture={this.onKeyDown}
           suppressContentEditableWarning={true}
         >
           {item.contents}
         </span>
       </div>
     );
+  }
+
+  private onKeyDown = (event: React.KeyboardEvent<HTMLSpanElement>) => {
+    // Did we press enter while editing?
+    if (event.keyCode === 13 && this.ref) {
+      event.preventDefault();
+      this.ref.blur();
+    }
   }
 }
 

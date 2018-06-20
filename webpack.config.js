@@ -21,7 +21,7 @@ const config = {
   output: {
     path: path.resolve('./dist'),
     publicPath: '/',
-    filename: `[name].${version}.js`,
+    filename: process.env.BUILD_TARGET === 'web' ? '[name].[hash:12].js' : '[name].js',
   },
   mode: 'development',
   resolve: {
@@ -47,7 +47,7 @@ const config = {
         loader: 'url-loader',
         options: {
           limit: 10000,
-          name: '[name].[hash:12].[ext]',
+          name: process.env.BUILD_TARGET === 'web' ? '[name].[hash:12].[ext]' : '[name].[ext]',
         },
       },
       {
@@ -75,7 +75,7 @@ const config = {
       { from: 'public' },
     ]),
     new MiniCssExtractPlugin({
-      filename: `[name].${version}.css`,
+      filename: process.env.BUILD_TARGET === 'web' ? '[name].[hash:12].js' : '[name].css',
     }),
     new HtmlWebpackPlugin({
       template: './public/index.html',
@@ -109,6 +109,9 @@ const config = {
     net: 'empty',
     tls: 'empty',
   },
+  stats: {
+    warnings: false,
+  }
 };
 
 // Production build

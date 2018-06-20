@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { v4 as uuid } from 'uuid';
-import { arrowDownIcon, arrowUpIcon } from '../../../app/ui';
+import { arrowDownIcon, arrowUpIcon, checkedIcon, uncheckedIcon } from '../../../app/ui';
 import { PluginAPI } from '../../interfaces';
 import { Settings, Todo as TodoModel } from './interfaces';
 import TodoInput from './TodoInput';
@@ -13,7 +13,8 @@ interface Props extends Settings {
 }
 
 interface State {
-  more: boolean;
+  showCompleted: boolean;
+  showMore: boolean;
 }
 
 class Todo extends React.PureComponent<Props & PluginAPI, State> {
@@ -22,25 +23,30 @@ class Todo extends React.PureComponent<Props & PluginAPI, State> {
       items: [],
     },
     show: 3,
-    textAlign: 'inherit',
+    textAlign: 'left',
   };
 
   state: State = {
-    more: false,
+    showCompleted: false,
+    showMore: false,
   };
 
   render() {
-    const items = this.props.local.items.filter(item => ! item.completed);
-    const show = ! this.state.more ? this.props.show : undefined;
+    const items = this.props.local.items.filter(item => ! item.completed || this.state.showCompleted);
+    const show = ! this.state.showMore ? this.props.show : undefined;
 
     return (
-      <div className="Todo" style={{ textAlign: this.props.textAlign }}>
+      <div className={`Todo align-${this.props.textAlign}`}>
         <TodoList items={items} onToggle={this.onToggle} onUpdate={this.onUpdate} show={show} />
+
         <TodoInput onCreate={this.onCreate} />
+        {' '}
+        <a onClick={this.onShowCompleted}>{this.state.showCompleted ? checkedIcon : uncheckedIcon}</a>
+        {' '}
         {items.length > this.props.show && (
-          <a onClick={this.onMore}>{this.state.more ? arrowUpIcon : arrowDownIcon}</a>
+          <a onClick={this.onShowMore}>{this.state.showMore ? arrowUpIcon : arrowDownIcon}</a>
         )}
-      </div>
+    </div>
     );
   }
 
@@ -61,9 +67,14 @@ class Todo extends React.PureComponent<Props & PluginAPI, State> {
   }
 
   /**
-   * Handle on more events.
+   * Handle on show more events.
    */
-  private onMore = () => this.setState({ more: ! this.state.more });
+  private onShowMore = () => this.setState({ showMore: ! this.state.showMore });
+
+  /**
+   * Handle on show completed events.
+   */
+  private onShowCompleted = () => this.setState({ showCompleted: ! this.state.showCompleted });
 
   /**
    * Handle on toggle events.

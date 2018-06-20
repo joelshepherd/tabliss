@@ -3,13 +3,12 @@ import { defineMessages, injectIntl, InjectedIntlProps } from 'react-intl';
 import { ActionCreator, connect } from 'react-redux';
 import * as screenfull from 'screenfull';
 import { Action, RootState, toggleFocus, toggleSettings } from '../../data';
+import { eyeIcon, eyeOffIcon } from '../ui';
 import './Overlay.sass';
 
 const maximiseIcon = require('feather-icons/dist/icons/maximize-2.svg');
 const minimiseIcon = require('feather-icons/dist/icons/minimize-2.svg');
 const settingsIcon = require('feather-icons/dist/icons/settings.svg');
-const eyeIcon = require('feather-icons/dist/icons/eye.svg');
-const eyeOffIcon = require('feather-icons/dist/icons/eye-off.svg');
 const pendingIcon = require('feather-icons/dist/icons/zap.svg');
 
 interface Props {
@@ -68,7 +67,7 @@ class Overlay extends React.PureComponent<Props & InjectedIntlProps, State> {
           <i dangerouslySetInnerHTML={{ __html: settingsIcon }} />
         </a>
         <a onClick={this.props.toggleFocus} title={this.props.intl.formatMessage(messages.focusHint)}>
-          <i dangerouslySetInnerHTML={{ __html: this.props.focus ? eyeOffIcon : eyeIcon }} />
+          {this.props.focus ? eyeOffIcon : eyeIcon}
         </a>
         {screenfull.enabled &&
           <a onClick={() => screenfull.toggle()} title={this.props.intl.formatMessage(messages.fullscreenHint)}>

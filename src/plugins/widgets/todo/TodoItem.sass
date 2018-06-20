@@ -1,5 +1,10 @@
 .TodoItem
+    // Some weird element size bug
+    margin: 2px
+    white-space: nowrap
+
     a
+        display: inline-block
         font-size: 0.75em
         margin-right: 0.5em
 
@@ -10,3 +15,6 @@
         &:active
             svg
                 fill: white
+
+    span
+        display: inline-block

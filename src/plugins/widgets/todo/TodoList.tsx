@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Todo } from './interfaces';
 import TodoItem from './TodoItem';
+import './TodoList.sass';
 
 interface Props {
   items: Todo[];
