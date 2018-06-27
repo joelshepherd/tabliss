@@ -38,5 +38,15 @@
     "key": "startpage",
     "name": "Startpage",
     "search_url": "https://www.startpage.com/do/search?q={searchTerms}"
+  },
+  {
+    "key": "yandex",
+    "name": "Яндекс",
+    "search_url": "https://yandex.ru/search/?text={searchTerms}"
+  },
+  {
+    "key": "mail.ru",
+    "name": "Поиск Mail.Ru",
+    "search_url": "https://go.mail.ru/search?q={searchTerms}"
   }
 ]
