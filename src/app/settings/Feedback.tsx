@@ -56,6 +56,7 @@ class Feedback extends React.PureComponent<{}, State> {
 
     if (! this.state.body) {
       this.setState({ open: false });
+      return;
     }
 
     this.setState({ pending: true });
@@ -67,7 +68,11 @@ class Feedback extends React.PureComponent<{}, State> {
     });
 
     fetch(request)
-      .then(() => {
+      .then(res => {
+        if (! res.ok) {
+          throw new Error('Feedback API request was not successful');
+        }
+
         alert('Thank you for your feedback!');
         this.setState({
           body: '',
@@ -75,7 +80,7 @@ class Feedback extends React.PureComponent<{}, State> {
         });
       })
       .catch(() => {
-        alert('Sorry, we were unable to send your feedback. Please try emailing feedback@tabliss instead.');
+        alert('Sorry, we were unable to send your feedback :( Please email your feedback to feedback@tabliss instead.');
         this.setState({ pending: false });
       });
   }
