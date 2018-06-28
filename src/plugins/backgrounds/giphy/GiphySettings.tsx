@@ -44,7 +44,7 @@ class GiphySettings extends React.PureComponent<Props> {
             onChange={event => this.props.onChange({ expand: ! this.props.expand })}
           />
           {' '}
-          Scretch to fill screen
+          Stretch to fill screen
         </label>
       </div>
     );
