@@ -32,6 +32,7 @@ runner(res => {
       'fr',
       'it',
       'ko',
+      'ru',
       'pl',
       'tr',
       'zh',
