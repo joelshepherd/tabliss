@@ -11,7 +11,7 @@
     "lint": "tslint --project=tsconfig.json",
     "start": "webpack-dev-server",
     "test": "jest --config=jest.json",
-    "translations": "node ./scripts/translationRunner.js"
+    "translations": "node ./scripts/translations.js"
   },
   "dependencies": {
     "feather-icons": "^4.7.3",
@@ -26,7 +26,6 @@
     "react-dom": "^16.4.0",
     "react-error-boundary": "^1.2.3",
     "react-intl": "^2.4.0",
-    "react-onclickoutside": "^6.7.1",
     "react-redux": "^5.0.7",
     "react-transition-group": "^2.3.1",
     "redux": "^3.7.2",
@@ -71,7 +70,7 @@
     "tslint-loader": "^3.6.0",
     "tslint-react": "^3.6.0",
     "typescript": "^2.8.4",
-    "typescript-react-intl": "^0.2.3",
+    "typescript-react-intl": "^0.2.1",
     "url-loader": "^1.0.0",
     "webpack": "^4.0.0",
     "webpack-cli": "^2.1.4",
