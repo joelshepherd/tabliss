@@ -1,12 +1,13 @@
 import * as React from 'react';
-import { checkedIcon, uncheckedIcon } from '../../../app/ui';
+import { checkedIcon, uncheckedIcon, removeIcon } from '../../../app/ui';
 import { Todo } from './interfaces';
 import './TodoItem.sass';
 
 interface Props {
   item: Todo;
-  onToggle(id: string): void;
-  onUpdate(id: string, contents: string): void;
+  onToggle(): void;
+  onUpdate(contents: string): void;
+  onDelete(): void;
 }
 
 class TodoItem extends React.Component<Props> {
@@ -17,28 +18,34 @@ class TodoItem extends React.Component<Props> {
       return true;
     }
 
-    return nextProps.item.contents !== this.ref.innerText;
+    return (
+      nextProps.item.id !== this.props.item.id ||
+      nextProps.item.completed !== this.props.item.completed ||
+      nextProps.item.contents !== this.ref.innerText
+    );
   }
 
   render() {
-    const { item, onUpdate, onToggle } = this.props;
+    const { item, onDelete, onUpdate, onToggle } = this.props;
 
     return (
       <div className="TodoItem">
-        <a onClick={() => onToggle(item.id)}>
+        <a onClick={onToggle}>
           {item.completed ? checkedIcon : uncheckedIcon}
         </a>
 
         <span
           ref={ref => this.ref = ref}
           contentEditable={true}
-          onBlur={event => onUpdate(item.id, event.currentTarget.innerText)}
-          onInput={event => onUpdate(item.id, event.currentTarget.innerText)}
+          onBlur={event => onUpdate(event.currentTarget.innerText)}
+          onInput={event => onUpdate(event.currentTarget.innerText)}
           onKeyDownCapture={this.onKeyDown}
           suppressContentEditableWarning={true}
         >
           {item.contents}
         </span>
+
+        <a onClick={onDelete} className="delete">{removeIcon}</a>
       </div>
     );
   }

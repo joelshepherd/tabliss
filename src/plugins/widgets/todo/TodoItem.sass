@@ -6,7 +6,8 @@
     a
         display: inline-block
         font-size: 0.75em
-        margin-right: 0.5em
+        margin: 0 0.5em
+        transition: fill 0.25s ease-out
 
         &:hover
             svg
@@ -16,5 +17,14 @@
             svg
                 fill: white
 
+        &.delete
+            opacity: 0
+            transition: opacity 0.15s ease-out
+
     span
         display: inline-block
+
+    &:hover
+        a.delete
+            opacity: 1
+            transition: opacity 0.15s 0.5s ease-out

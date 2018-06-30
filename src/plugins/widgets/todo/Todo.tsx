@@ -37,16 +37,24 @@ class Todo extends React.PureComponent<Props & PluginAPI, State> {
 
     return (
       <div className={`Todo align-${this.props.textAlign}`}>
-        <TodoList items={items} onToggle={this.onToggle} onUpdate={this.onUpdate} show={show} />
+        <TodoList
+          items={items}
+          onToggle={this.onToggle}
+          onUpdate={this.onUpdate}
+          onDelete={this.onDelete}
+          show={show}
+        />
 
-        <TodoInput onCreate={this.onCreate} />
-        {' '}
-        <a onClick={this.onShowCompleted}>{this.state.showCompleted ? checkedIcon : uncheckedIcon}</a>
-        {' '}
-        {items.length > this.props.show && (
-          <a onClick={this.onShowMore}>{this.state.showMore ? arrowUpIcon : arrowDownIcon}</a>
-        )}
-    </div>
+        <div>
+          <TodoInput onCreate={this.onCreate} />
+          {' '}
+          <a onClick={this.onShowCompleted}>{this.state.showCompleted ? checkedIcon : uncheckedIcon}</a>
+          {' '}
+          {items.length > this.props.show && (
+            <a onClick={this.onShowMore}>{this.state.showMore ? arrowUpIcon : arrowDownIcon}</a>
+          )}
+        </div>
+      </div>
     );
   }
 
@@ -109,6 +117,15 @@ class Todo extends React.PureComponent<Props & PluginAPI, State> {
 
         return item;
       }),
+    });
+  }
+
+  /**
+   * Handle delete todo events.
+   */
+  private onDelete = (id: string) => {
+    this.props.setLocal({
+      items: this.props.local.items.filter(item => item.id !== id),
     });
   }
 }
