@@ -37,13 +37,15 @@ class Todo extends React.PureComponent<Props & PluginAPI, State> {
 
     return (
       <div className={`Todo align-${this.props.textAlign}`}>
-        <TodoList
-          items={items}
-          onToggle={this.onToggle}
-          onUpdate={this.onUpdate}
-          onDelete={this.onDelete}
-          show={show}
-        />
+        {items.length > 0 && (
+          <TodoList
+            items={items}
+            onToggle={this.onToggle}
+            onUpdate={this.onUpdate}
+            onDelete={this.onDelete}
+            show={show}
+          />
+        )}
 
         <div>
           <TodoInput onCreate={this.onCreate} />
