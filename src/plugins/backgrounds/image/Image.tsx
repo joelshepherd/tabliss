@@ -1,7 +1,6 @@
 import sample from 'lodash-es/sample';
 import * as React from 'react';
 import './Image.sass';
-const defaultImage = require('./default-image.jpg');
 
 interface Props {
   images: File[];
@@ -14,16 +13,16 @@ class Image extends React.PureComponent<Props> {
   private current: string;
 
   render() {
+    if (! this.props.images.length) {
+      return <div className="Image fullscreen" style={{ backgroundColor: '#212121' }} />;
+    }
+
     return <div className="Image fullscreen" style={{ backgroundImage: `url(${this.url})` }} />;
   }
 
   private get url() {
     if (this.current) {
       URL.revokeObjectURL(this.current);
-    }
-
-    if (! this.props.images.length) {
-      return defaultImage;
     }
 
     return this.current = URL.createObjectURL(

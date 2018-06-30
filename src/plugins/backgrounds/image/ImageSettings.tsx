@@ -38,8 +38,8 @@ class ImageSettings extends React.PureComponent<Props> {
         </label>
 
         <div className="grid">
-          {this.props.images.map(image => (
-            <div className="preview">
+          {this.props.images.map((image, index) => (
+            <div className="preview" key={index}>
               <img src={this.createURL(image)} />
               <IconButton onClick={() => this.removeImage(image)} title="Remove image">{removeIcon}</IconButton>
             </div>
