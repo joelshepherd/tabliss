@@ -75,7 +75,7 @@ const config = {
       { from: 'public' },
     ]),
     new MiniCssExtractPlugin({
-      filename: process.env.BUILD_TARGET === 'web' ? '[name].[hash:12].js' : '[name].css',
+      filename: process.env.BUILD_TARGET === 'web' ? '[name].[hash:12].css' : '[name].css',
     }),
     new HtmlWebpackPlugin({
       template: './public/index.html',
