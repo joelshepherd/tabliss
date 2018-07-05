@@ -27,6 +27,8 @@ addLocaleData([
 export const messages = {
   de: require('./lang/de.json'),
   en: {}, // Uses default messages
+  'en-AU': require('./lang/en-AU.json'),
+  'en-GB': require('./lang/en-GB.json'),
   es: require('./lang/es.json'),
   fr: require('./lang/fr.json'),
   it: require('./lang/it.json'),

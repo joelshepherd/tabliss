@@ -1,7 +1,11 @@
 import { officialCollection, UNSPLASH_API_KEY } from './constants';
 import { By, Image, Settings } from './interfaces';
 
-export const getImage = async (settings: Settings, pushCallback: Function, popCallback: Function): Promise<Image> => {
+export const getImage = async function (
+  settings: Settings,
+  pushCallback: Function,
+  popCallback: Function,
+): Promise<Image> {
   // Setup
   const { by, collections, featured, search } = settings;
   const headers = new Headers();
@@ -24,6 +28,7 @@ export const getImage = async (settings: Settings, pushCallback: Function, popCa
       url += `collections=${officialCollection}`;
   }
 
+  // Fetch from API
   pushCallback();
   const res = await (await fetch(url, { headers })).json();
   const data = await (await fetch(res.urls.raw + '?q=85&w=1920')).blob();
