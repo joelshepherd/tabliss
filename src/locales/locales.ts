@@ -3,6 +3,7 @@ import { addLocaleData } from 'react-intl';
 import * as deLocaleData from 'react-intl/locale-data/de';
 import * as esLocaleData from 'react-intl/locale-data/es';
 import * as frLocaleData from 'react-intl/locale-data/fr';
+import * as huLocaleData from 'react-intl/locale-data/hu';
 import * as itLocaleData from 'react-intl/locale-data/it';
 import * as koLocaleData from 'react-intl/locale-data/ko';
 import * as plLocaleData from 'react-intl/locale-data/pl';
@@ -15,6 +16,7 @@ addLocaleData([
   ...deLocaleData,
   ...esLocaleData,
   ...frLocaleData,
+  ...huLocaleData,
   ...itLocaleData,
   ...koLocaleData,
   ...plLocaleData,
@@ -31,6 +33,7 @@ export const messages = {
   'en-GB': require('./lang/en-GB.json'),
   es: require('./lang/es.json'),
   fr: require('./lang/fr.json'),
+  hu: require('./lang/hu.json'),
   it: require('./lang/it.json'),
   ko: require('./lang/ko.json'),
   ru: require('./lang/ru.json'),

@@ -1,0 +1,15 @@
+{
+  "app.pageTitle": "Új Lap",
+  "dashboard.focusHint": "Widget kapcsolás",
+  "dashboard.fullscreenHint": "Teljes képernyő kapcsolás",
+  "dashboard.loadingHint": "Új tartalom töltődik",
+  "dashboard.settingsHint": "Tabliss módosítása",
+  "plugin.greeting.withName": "{hour, plural, =0 {Szép álmokat, {name}} =1 {Szép álmokat, {name}} =2 {Szép álmokat, {name}} =3 {Jó reggelt, {name}} =4 {Jó reggelt, {name}} =5 {Jó reggelt, {name}} =6 {Jó reggelt, {name}} =7 {Jó reggelt, {name}} =8 {Jó reggelt, {name}} =9 {Jó reggelt, {name}} =10 {Szia, {name}!} =11 {Szia, {name}!} =12 {Szia, {name}!} =13 {Szia, {name}!} =14 {Szép napot, {name}} =15 {Szép napot, {name}} =16 {Szép napot, {name}} =17 {Szép napot, {name}} =18 {Jó estét, {name}} =19 {Jó estét, {name}} =20 {Jó estét, {name}} =21 {Jó estét, {name}} =22 {Jó éjszakát, {name}} =23 {Jó éjszakát, {name}}}",
+  "plugin.greeting.withoutName": "{hour, plural, =0 {Szép álmokat} =1 {Szép álmokat} =2 {Szép álmokat} =3 {Jó reggelt} =4 {Jó reggelt} =5 {Jó reggelt} =6 {Jó reggelt} =7 {Jó reggelt} =8 {Jó reggelt} =9 {Jó reggelt} =10 {Hallo} =11 {Szia} =12 {Szia} =13 {Szia} =14 {Szép napot} =15 {Szép napot} =16 {Szép napot} =17 {Szép napot} =18 {Jó estét} =19 {Jó estét} =20 {Jó estét} =21 {Jó estét} =22 {Jó éjszakát} =23 {Jó éjszakát}}",
+  "plugins.links.shortcutHint": "Nyomd a {number} billentyűt, vagy kattintson ide",
+  "plugins.links.standardHint": "Kattintson ide megtekintéséhez",
+  "plugins.search.placeholder": "Gépeld be a keresést",
+  "plugins.unsplash.photoLink": "Foto",
+  "settings.translationCredits": ""
+}
+
