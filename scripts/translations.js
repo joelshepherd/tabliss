@@ -17,6 +17,7 @@ const languages = [
   'it',
   'ko',
   'pl',
+  'pt',
   'ru',
   'tr',
   'zh',
@@ -48,4 +49,5 @@ async function main() {
 }
 
 // Go go go!
+// https://www.youtube.com/watch?v=H9dzpBa73_8
 main();
