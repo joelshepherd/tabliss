@@ -25,7 +25,6 @@ class TodoInput extends React.PureComponent<Props, State> {
             <label>
               <input
                 autoFocus={true}
-                placeholder="Add a task"
                 type="text"
                 value={this.state.contents}
                 onBlur={this.onClose}

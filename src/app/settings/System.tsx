@@ -50,6 +50,7 @@ const System: React.StatelessComponent<Props> = (props) => {
           <option value="en" title="English (American)">English (US)</option>
           <option value="es" title="Spanish">Español</option>
           <option value="fr" title="French">Français</option>
+          <option value="hu" title="Hungarian">Magyar</option>
           <option value="it" title="Italian">Italiano</option>
           <option value="ko" title="Korean">한국어</option>
           <option value="pl" title="Polish">Polski</option>
