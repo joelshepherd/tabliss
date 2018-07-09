@@ -1,9 +1,9 @@
 {
   "manifest_version": 2,
-  "name": "Tabliss - Your New Tab",
+  "name": "Tabliss - A Beautiful New Tab",
   "short_name": "Tabliss",
-  "version": "1.13.1",
-  "description": "A beautiful new tab page with many customisable backgrounds and widgets. See stunning new landscapes and photos in every new tab.",
+  "version": "1.14.0",
+  "description": "A beautiful New Tab page with many customisable backgrounds and widgets that does not require any permissions.",
   "background": {
      "persistent": false,
      "scripts": ["background.js"]
