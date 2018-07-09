@@ -6,14 +6,15 @@ interface Props {
   onChange: (settings: Settings) => void;
 }
 
-const CssSettings: React.StatelessComponent<Props> = ({ input, onChange }) => {
+const CssSettings: React.StatelessComponent<Props> = ({ input = '', onChange }) => {
   return (
     <div className="CssSettings">
       <label>
         CSS Snippet
         <textarea
           rows={3}
-          value={input || ''}
+          style={{ fontFamily: 'monospace' }}
+          value={input}
           onChange={event => onChange({ input: event.target.value })}
         />
       </label>

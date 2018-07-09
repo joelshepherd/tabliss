@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
+## [1.14.0] - 2018-07-09
+### Added
+- View and delete completed todo items
+- Translations for Hungarian, Portuguese and Russian!
+- Localisations for Australian and British English
+- Yandex.ru and Mail.ru search engines
+
+### Changed
+- Tabliss no longer controls the homepage in Firefox
+- Feedback widget validation (so I stop getting spammed empty suggestions!)
+- Upload image background no longer has a default image
+
 ## [1.13.1] - 2018-06-07
 ### Fixed
 - Firefox review compliance
