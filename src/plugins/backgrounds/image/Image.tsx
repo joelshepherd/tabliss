@@ -1,4 +1,5 @@
 import sample from 'lodash-es/sample';
+import * as Raven from 'raven-js';
 import * as React from 'react';
 import './Image.sass';
 
@@ -14,7 +15,7 @@ class Image extends React.PureComponent<Props> {
 
   render() {
     if (! this.props.images.length) {
-      return <div className="Image fullscreen" style={{ backgroundColor: '#212121' }} />;
+      return <div className="Image default fullscreen" />;
     }
 
     return <div className="Image fullscreen" style={{ backgroundImage: `url(${this.url})` }} />;
@@ -25,11 +26,23 @@ class Image extends React.PureComponent<Props> {
       URL.revokeObjectURL(this.current);
     }
 
-    return this.current = URL.createObjectURL(
-      // @TODO Should this actually be truely random?
-      // Rotating or peusdo-random might be better.
-      sample(this.props.images)
-    );
+    // @TODO Should this actually be truely random?
+    // Rotating or peusdo-random might be better.
+    const image = sample(this.props.images);
+
+    try {
+      return this.current = URL.createObjectURL(image);
+    } catch (err) {
+      // Y u no give less vague messages so I can fix you!
+      // ლ(ಠ益ಠლ)
+      Raven.setExtraContext({
+        size: image && image.size,
+        type: image && image.type,
+        typeof: typeof image,
+      });
+
+      throw new Error('Unable to display image.');
+    }
   }
 }
 
