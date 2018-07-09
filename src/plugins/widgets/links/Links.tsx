@@ -10,9 +10,7 @@ interface State {
 
 class Links extends React.PureComponent<Settings, State> {
   static defaultProps = {
-    links: [{
-      url: 'https://tabliss.io'
-    }],
+    links: [{ url: 'https://tabliss.io' }],
     visible: false,
   };
   state = {
@@ -44,7 +42,11 @@ class Links extends React.PureComponent<Settings, State> {
 
   private onKeyDown = (event: KeyboardEvent) => {
     // Check for input focus
-    if (event.target instanceof HTMLInputElement || event.target instanceof HTMLTextAreaElement) {
+    if (
+      event.target instanceof HTMLInputElement ||
+      event.target instanceof HTMLTextAreaElement ||
+      (event.target instanceof HTMLSpanElement && event.target.contentEditable)
+    ) {
       return;
     }
 
