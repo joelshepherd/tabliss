@@ -1,6 +1,6 @@
 export * from './interfaces';
 export * from './registry';
 
-// Registery plugins
+// Register plugins
 import './backgrounds/register';
 import './widgets/register';

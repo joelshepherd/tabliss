@@ -3,6 +3,7 @@ import { FormattedMessage } from 'react-intl';
 import { ActionCreator, connect } from 'react-redux';
 import Background from './Background';
 import Feedback from './Feedback';
+import Homepage from './Homepage';
 import System from './System';
 import Widgets from './Widgets';
 import { Action, resetDashboard, toggleSettings } from '../../data';
@@ -38,6 +39,8 @@ class Settings extends React.PureComponent<Props> {
           <Widgets />
 
           <System />
+
+          {process.env.BUILD_TARGET === 'firefox' && <Homepage />}
 
           <Feedback />
 
