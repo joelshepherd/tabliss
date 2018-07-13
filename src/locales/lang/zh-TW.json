@@ -1,0 +1,14 @@
+{
+  "app.pageTitle": "新分頁",
+  "dashboard.focusHint": "切換顯示小工具",
+  "dashboard.fullscreenHint": "切換顯示全螢幕",
+  "dashboard.loadingHint": "正在載入新內容…",
+  "dashboard.settingsHint": "自訂 Tabliss",
+  "plugin.greeting.withName": "{hour, plural, =0 {{name}，晚安} =1 {{name}，晚安} =2 {{name}，晚安} =3 {{name}，晚安} =4 {{name}，晚安} =5 {{name}，晚安} =6 {{name}，早安} =7 {{name}，早安} =8 {{name}，早安} =9 {{name}，早安} =10 {哈囉，{name}} =11 {哈囉，{name}} =12 {{name}，午安} =13 {{name}，午安} =14 {{name}，午安} =15 {哈囉，{name}} =16 {哈囉，{name}} =17 {哈囉，{name}} =18 {{name}，晚安} =19 {{name}，晚安} =20 {{name}，晚安} =21 {{name}，晚安} =22 {{name}，晚安} =23 {{name}，晚安}}",
+  "plugin.greeting.withoutName": "{hour, plural, =0 {晚安} =1 {晚安} =2 {晚安} =3 {晚安} =4 {晚安} =5 {晚安} =6 {早安} =7 {早安} =8 {早安} =9 {早安} =10 {哈囉} =11 {哈囉} =12 {午安} =13 {午安} =14 {午安} =15 {哈囉} =16 {哈囉} =17 {哈囉} =18 {晚安} =19 {晚安} =20 {晚安} =21 {晚安} =22 {晚安} =23 {晚安}}",
+  "plugins.links.shortcutHint": "按下或點擊 {number} 即可開啟",
+  "plugins.links.standardHint": "點擊開啟",
+  "plugins.search.placeholder": "輸入關鍵字進行搜尋",
+  "plugins.unsplash.photoLink": "圖片來源",
+  "settings.translationCredits": "Traditional Chinese by Peter Chen (petercpg)"
+}

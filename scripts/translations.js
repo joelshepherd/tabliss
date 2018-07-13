@@ -20,7 +20,8 @@ const languages = [
   'pt',
   'ru',
   'tr',
-  'zh',
+  'zh-CN',
+  'zh-TW',
 ];
 
 async function main() {

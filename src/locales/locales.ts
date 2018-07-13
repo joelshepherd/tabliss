@@ -42,7 +42,9 @@ export const messages = {
   pl: require('./lang/pl.json'),
   pt: require('./lang/pt.json'),
   tr: require('./lang/tr.json'),
-  zh: require('./lang/zh.json'),
+  zh: {},
+  'zh-CN': require('./lang/zh-CN.json'),
+  'zh-TW': require('./lang/zh-TW.json'),
 };
 
 export const locales = Object.keys(messages);
