@@ -1,5 +1,6 @@
 import * as browserLanguage from 'in-browser-language';
 import { addLocaleData } from 'react-intl';
+import * as csLocaleData from 'react-intl/locale-data/cs';
 import * as deLocaleData from 'react-intl/locale-data/de';
 import * as esLocaleData from 'react-intl/locale-data/es';
 import * as frLocaleData from 'react-intl/locale-data/fr';
@@ -14,6 +15,7 @@ import * as zhLocaleData from 'react-intl/locale-data/zh';
 
 // Add locale data
 addLocaleData([
+  ...csLocaleData,
   ...deLocaleData,
   ...esLocaleData,
   ...frLocaleData,
@@ -29,6 +31,7 @@ addLocaleData([
 
 // Add translation data
 export const messages = {
+  cs: require('./lang/cs.json'),
   de: require('./lang/de.json'),
   en: {},
   'en-AU': require('./lang/en-AU.json'),
