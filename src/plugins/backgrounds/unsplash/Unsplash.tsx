@@ -65,8 +65,8 @@ class Unsplash extends React.PureComponent<Props, State> {
     const styles = this.state.current 
       ? { backgroundImage: `url(${this.state.current.src})` } 
       : { opacity: 0 };
-      
-    const classes = `Unsplash fullscreen ${this.props.blur ? 'blur' : ''}`;
+
+    const classes = `Unsplash fullscreen${this.props.blur ? ' blur' : ''}`;
  
     return (
       <div className={classes} style={styles}>
