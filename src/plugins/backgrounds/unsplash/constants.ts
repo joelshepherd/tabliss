@@ -7,6 +7,7 @@ export const defaultProps = {
   by: By.OFFICIAL,
   collections: '',
   darken: true,
+  blur: false,
   featured: false,
   search: '',
   timeout: 0,

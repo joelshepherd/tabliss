@@ -2,6 +2,7 @@ export interface Settings {
   by: By;
   collections: string;
   darken: boolean;
+  blur: boolean;
   featured: boolean;
   search: string;
   timeout: number;
