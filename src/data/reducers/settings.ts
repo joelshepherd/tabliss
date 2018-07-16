@@ -9,6 +9,14 @@ import { Settings } from '../interfaces';
 const initialState: Settings = {};
 
 export function settings(state: Settings = initialState, action: Action): Settings {
+  // Quick dirty migration, until I implement them officially
+  if (state.locale === 'zh') {
+    state = {
+      ...state,
+      locale: 'zh-CN',
+    };
+  }
+
   switch (action.type) {
     case RESET_DASHBOARD:
       return initialState;
