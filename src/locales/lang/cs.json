@@ -1,7 +1,7 @@
 {
-  "app.pageTitle": "Nová karta",
-  "dashboard.focusHint": "Zapnout/vypnout widgety",
-  "dashboard.fullscreenHint": "Zapnout/vypnout zobrazení na celou obrazovku",
+  "app.pageTitle": "Nový panel",
+  "dashboard.focusHint": "Přepnout widgety",
+  "dashboard.fullscreenHint": "Přepnout zobrazení na celou obrazovku",
   "dashboard.loadingHint": "Načítání nového obsahu",
   "dashboard.settingsHint": "Přizpůsobit Tabliss",
   "plugin.greeting.withName": "{hour, plural,\n      =0 {Dobrou noc, {name}}\n      =1 {Dobrou noc, {name}}\n      =2 {Dobrou noc, {name}}\n      =3 {Krásné ráno, {name}}\n      =4 {Krásné ráno, {name}}\n      =5 {Krásné ráno, {name}}\n      =6 {Dobré ráno, {name}}\n      =7 {Dobré ráno, {name}}\n      =8 {Dobré ráno, {name}}\n      =9 {Dobré ráno, {name}}\n      =10 {Dobré dopoledne, {name}}\n      =11 {Dobré dopoledne, {name}}\n      =12 {Dobrý den, {name}}\n      =13 {Dobrý den, {name}}\n      =14 {Dobré odpoledne, {name}}\n      =15 {Dobré odpoledne, {name}}\n      =16 {Dobré odpoledne, {name}}\n      =17 {Dobré odpoledne, {name}}\n      =18 {Dobrý večer, {name}}\n      =19 {Dobrý večer, {name}}\n      =20 {Dobrý večer, {name}}\n      =21 {Dobrý večer, {name}}\n      =22 {Dobrou noc, {name}}\n      =23 {Dobrou noc, {name}}\n    }",
