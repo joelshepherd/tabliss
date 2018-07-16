@@ -5,15 +5,19 @@ interface Props {
   mode: string;
   hour12: boolean;
   showDate: boolean;
+  showMinutes: boolean;
+  showSeconds: boolean;
   timezone?: string;
   onChange: (settings: Settings) => void;
 }
 
 class TimeSettings extends React.PureComponent<Props> {
-  static defaultProps = {
+  static defaultProps: Partial<Props> = {
     mode: 'digital',
     hour12: false,
     showDate: false,
+    showMinutes: true,
+    showSeconds: false,
   };
 
   render() {
@@ -53,6 +57,26 @@ class TimeSettings extends React.PureComponent<Props> {
           />
           {' '}
           24-hour digital
+        </label>
+
+        <label>
+          <input
+            type="checkbox"
+            checked={this.props.showSeconds}
+            onChange={() => this.props.onChange({ showSeconds: ! this.props.showSeconds })}
+          />
+          {' '}
+          Display seconds
+        </label>
+
+        <label>
+          <input
+            type="checkbox"
+            checked={this.props.showMinutes}
+            onChange={() => this.props.onChange({ showMinutes: ! this.props.showMinutes })}
+          />
+          {' '}
+          Display minutes
         </label>
 
         <label>

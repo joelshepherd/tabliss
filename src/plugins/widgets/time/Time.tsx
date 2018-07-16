@@ -9,6 +9,8 @@ interface Props {
   hour12: boolean;
   mode: string;
   showDate: boolean;
+  showMinutes: boolean;
+  showSeconds: boolean;
   timezone?: string;
 }
 
@@ -17,10 +19,12 @@ interface State {
 }
 
 class Time extends React.PureComponent<Props, State> {
-  static defaultProps = {
+  static defaultProps: Partial<Props> = {
     mode: 'digital',
     hour12: false,
     showDate: false,
+    showMinutes: true,
+    showSeconds: false,
   };
   state: State = { time: getConvertedDate() };
   private interval: number;
@@ -34,14 +38,14 @@ class Time extends React.PureComponent<Props, State> {
   }
 
   render() {
-    const { hour12, mode, showDate } = this.props;
+    const { hour12, mode, showDate, showMinutes, showSeconds } = this.props;
     const { time } = this.state;
 
     return (
       <div className="Time">
         {mode === 'analogue'
-          ? <Analogue time={time} />
-          : <Digital time={time} hour12={hour12} />
+          ? <Analogue time={time} showMinutes={showMinutes} showSeconds={showSeconds} />
+          : <Digital time={time} hour12={hour12} showMinutes={showMinutes} showSeconds={showSeconds} />
         }
 
         {showDate && [
