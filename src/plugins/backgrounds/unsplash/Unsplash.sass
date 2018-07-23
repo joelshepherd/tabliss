@@ -2,12 +2,22 @@
     background-position: 50% 50%
     background-size: cover
     transition: opacity 0.25s ease-out
+    transition: filter ease-out 0.25s
+    transition: transform ease-out 0.25s
 
-    .darken
-        background-color: rgba(0, 0, 0, 0.1)
+.credit
+    position: absolute
+    bottom: 1rem
+    left: 1rem
+    right: 1rem
 
-    .credit
-        position: absolute
-        bottom: 1rem
-        left: 1rem
-        right: 1rem
+.darken
+    background-color: rgba(0, 0, 0, 0.1)
+
+.blur
+    filter: blur(5px)
+    transform: scale(1.1)
+    transition: filter ease-in 0.25s
+    transition: transform ease-in 0.25s
+
+
