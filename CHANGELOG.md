@@ -4,27 +4,33 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
+### Added
+- Translations for Czech, Dutch and Traditional Chinese!
+- Toggles for minutes and seconds in the time widget.
+- An option to slightly blur an Unsplash background.
+- Shortcut keys to open setting, toggle widgets and toggle fullscreen.
+
 ### Fixed
-- Portuguese greeting translations for sleep well
+- Portuguese greeting translations for sleep well.
 
 ## [1.14.0] - 2018-07-10
 ### Added
-- View and delete completed todo items
+- View and delete completed todo items.
 - Translations for Hungarian, Portuguese and Russian!
-- Localisations for Australian and British English
-- Yandex.ru and Mail.ru search engines
+- Localisations for Australian and British English.
+- Yandex.ru and Mail.ru search engines.
 
 ### Changed
-- Tabliss no longer controls the homepage in Firefox
-- Feedback widget validation (so I stop getting spammed empty suggestions!)
-- Upload image background no longer has a default image
+- Tabliss no longer controls the homepage in Firefox.
+- Feedback widget validation (so I stop getting spammed empty suggestions!).
+- Upload image background no longer has a default image.
 
 ### Fixed
-- Quick Links activating when editing todos
+- Quick Links activating when editing todos.
 
 ## [1.13.1] - 2018-06-07
 ### Fixed
-- Firefox review compliance
+- Firefox review compliance.
 
 ## [1.13.0] - 2018-06-04
 ### Added

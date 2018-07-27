@@ -12,8 +12,7 @@ export function register() {
   }
 }
 
-// tslint:disable-next-line no-any
-export function capture(error: Error, extra: any) {
+export function capture(error: Error) {
   if (sentryPublicDsn) {
     if (error.stack) {
       // Replace firefox extension URLs
@@ -29,6 +28,6 @@ export function capture(error: Error, extra: any) {
       );
     }
 
-    Raven.captureException(error, { extra });
+    Raven.captureException(error);
   }
 }

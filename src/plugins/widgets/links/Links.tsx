@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { isInputEvent } from '../../../utils';
 import { Settings } from './interfaces';
 import LinkDisplay from './LinkDisplay';
 import './Links.sass';
@@ -42,11 +43,7 @@ class Links extends React.PureComponent<Settings, State> {
 
   private onKeyDown = (event: KeyboardEvent) => {
     // Check for input focus
-    if (
-      event.target instanceof HTMLInputElement ||
-      event.target instanceof HTMLTextAreaElement ||
-      (event.target instanceof HTMLSpanElement && event.target.contentEditable)
-    ) {
+    if (isInputEvent(event)) {
       return;
     }
 
