@@ -1,3 +1,4 @@
+import * as localForage from 'localforage';
 import sample from 'lodash-es/sample';
 import * as Raven from 'raven-js';
 import * as React from 'react';
@@ -36,7 +37,9 @@ class Image extends React.PureComponent<Props> {
       // Y u no give less vague messages so I can fix you!
       // ლ(ಠ益ಠლ)
       Raven.setExtraContext({
+        driver: localForage.driver(),
         size: image && image.size,
+        string: image && image.toString(),
         type: image && image.type,
         typeof: typeof image,
       });
