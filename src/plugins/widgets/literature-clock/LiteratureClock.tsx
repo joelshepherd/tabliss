@@ -1,4 +1,5 @@
 import get from 'lodash-es/get';
+import has from 'lodash-es/has';
 import * as React from 'react';
 import { getConvertedDate } from '../../../utils';
 import { ActionCreator, connect } from 'react-redux';
@@ -58,6 +59,8 @@ class LiteratureClock extends React.PureComponent<Props, State> {
           </span>
         </blockquote>
         {this.props.showBookAndAuthor &&
+          has(this.props, 'local.title') &&
+          has(this.props, 'local.author') &&
           <cite>
             - <span id="book">
                 {get(this.props, 'local.title')}
@@ -82,8 +85,9 @@ class LiteratureClock extends React.PureComponent<Props, State> {
 
   // Get quote by time code
   private async getQuoteByTime(): Promise<Data> {
+    let apiEndpoint = 'https://raw.githubusercontent.com/lbngoc/literature-clock/master/docs/times';
     let timeCode = this.getTimeCode();
-    const res = await fetch(`https://github.com/lbngoc/literature-clock/raw/master/docs/times/${timeCode}.json`);
+    const res = await fetch(`${apiEndpoint}/${timeCode}.json`, { mode: 'cors' });
     const body = await res.json();
     let timeQuote: Data = {
       title: 'Too many requests at this time'
@@ -92,14 +96,13 @@ class LiteratureClock extends React.PureComponent<Props, State> {
       return timeQuote;
     }
     timeQuote = body[Math.floor(Math.random() * body.length)];
-    window.console.log(timeQuote);
     return timeQuote;
   }
 
   private tick = () => {
     this.setState({ time: getConvertedDate() });
     let timeCode = this.getTimeCode();
-    if (this.props.local && timeCode !== this.props.local.time) {
+    if (!this.props.local || timeCode !== this.props.local.time) {
       this.getQuoteByTime().then(quote => quote && this.props.setLocal(quote));
     }
   }
