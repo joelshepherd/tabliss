@@ -6,6 +6,7 @@ import { Font, FontSettings } from './font';
 import { Greeting, GreetingSettings } from './greeting';
 import { Links, LinksSettings } from './links';
 import { Message, MessageSettings } from './message';
+import { LiteratureClock, LiteratureClockSettings } from './literature-clock';
 import { Quote, QuoteSettings } from './quote';
 import { Search, SearchSettings } from './search';
 import { Time, TimeSettings } from './time';
@@ -74,6 +75,14 @@ registerPlugin({
   title: 'Time',
   Dashboard: Time,
   Settings: TimeSettings,
+});
+
+registerPlugin({
+  key: 'extra/widgets/literature-clock',
+  type: Type.WIDGET,
+  title: 'Literature Clock',
+  Dashboard: LiteratureClock,
+  Settings: LiteratureClockSettings,
 });
 
 registerPlugin({
