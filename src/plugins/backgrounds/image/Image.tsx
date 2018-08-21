@@ -5,7 +5,7 @@ import * as React from 'react';
 import './Image.sass';
 
 interface Props {
-  images: File[];
+  images: Blob[];
 }
 
 class Image extends React.PureComponent<Props> {

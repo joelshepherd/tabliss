@@ -5,7 +5,7 @@ import './ImageSettings.sass';
 
 interface Props {
   image?: string;
-  images: File[];
+  images: Blob[];
   onChange: (settings: Settings) => void;
 }
 
@@ -52,7 +52,11 @@ class ImageSettings extends React.PureComponent<Props> {
   }
 
   private loadImages(files: FileList) {
-    const images = Array.from(files);
+    // Strip File to Blob so localForage doesn't get confused about its storage in localstorage.
+    // Still need to sort localstorage only accept top-level keys for blobs though.
+    const images = Array
+      .from(files)
+      .map(image => new Blob([image], { type: image.type }));
 
     this.props.onChange({
       images: this.props.images.concat(images),
@@ -60,7 +64,7 @@ class ImageSettings extends React.PureComponent<Props> {
     });
   }
 
-  private removeImage(remove: File) {
+  private removeImage(remove: Blob) {
     this.props.onChange({
       images: this.props.images.filter(image => image !== remove),
     });
