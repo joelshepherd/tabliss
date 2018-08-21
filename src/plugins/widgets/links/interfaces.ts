@@ -5,6 +5,7 @@ export interface Link {
 }
 
 export interface Settings {
+  columns: number;
   links: Link[];
   visible: boolean;
 }

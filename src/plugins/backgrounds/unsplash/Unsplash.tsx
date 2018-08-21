@@ -79,8 +79,6 @@ class Unsplash extends React.PureComponent<Props, State> {
 
   /**
    * Get image to display.
-   *
-   * @type {Promise<Image>}
    */
   private async getImage() {
     if (this.shouldRotate()) {
@@ -96,8 +94,6 @@ class Unsplash extends React.PureComponent<Props, State> {
 
   /**
    * Set the current image.
-   *
-   * @type {void}
    */
   private setCurrentImage = (image: Image & { timestamp?: number }) => {
     const src = URL.createObjectURL(image.data);
@@ -113,8 +109,6 @@ class Unsplash extends React.PureComponent<Props, State> {
 
   /**
    * Set the next image.
-   *
-   * @type {void}
    */
   private setNextImage = (image: Image) => {
     this.props.updateLocal({ next: image });
@@ -122,8 +116,6 @@ class Unsplash extends React.PureComponent<Props, State> {
 
   /**
    * Should we rotate the currennt image.
-   *
-   * @type {boolean}
    */
   private shouldRotate(props: Props = this.props) {
     return get(props, 'local.current.timestamp', 0) + (this.props.timeout * 1000) < Date.now();
@@ -132,8 +124,6 @@ class Unsplash extends React.PureComponent<Props, State> {
   /**
    * Refresh current and next images.
    * (when settings update, for instance)
-   *
-   * @type {void}
    */
   private refresh(props: Props = this.props) {
     this.fetchImage(props).then(this.setCurrentImage);
@@ -142,8 +132,6 @@ class Unsplash extends React.PureComponent<Props, State> {
 
   /**
    * Fetch an image from the Unsplash API.
-   *
-   * @type {Promise<Image>}
    */
   private fetchImage(props: Props = this.props) {
     return getImage(

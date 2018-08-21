@@ -8,6 +8,7 @@ interface Props extends Settings {
 
 class LinksSettings extends React.PureComponent<Props> {
   static defaultProps = {
+    columns: 1,
     links: [{
       url: 'https://tabliss.io'
     }],
@@ -17,6 +18,17 @@ class LinksSettings extends React.PureComponent<Props> {
   render() {
     return (
       <div className="LinksSettings">
+        <label>
+          Number of columns
+
+          <input
+            type="number"
+            value={this.props.columns}
+            onChange={event => this.props.onChange({ columns: Number(event.target.value) })}
+            min={1}
+          />
+        </label>
+
         <label>
           <input
             type="checkbox"

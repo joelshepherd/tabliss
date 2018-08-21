@@ -11,6 +11,7 @@ interface State {
 
 class Links extends React.PureComponent<Settings, State> {
   static defaultProps = {
+    columns: 1,
     links: [{ url: 'https://tabliss.io' }],
     visible: false,
   };
@@ -28,7 +29,7 @@ class Links extends React.PureComponent<Settings, State> {
 
   render() {
     return (
-      <div className="Links">
+      <div className="Links" style={{ gridTemplateColumns: '1fr '.repeat(this.props.columns) }}>
         {! this.props.visible && ! this.state.visible && (
           <a onClick={() => this.setState({ visible: true })} title="Show quick links">
             <i dangerouslySetInnerHTML={{ __html: linkIcon }} />
