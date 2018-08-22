@@ -5,6 +5,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 ### Added
+- New Literature Clock! Thanks @lbngoc
 - Columns for Quick Links! (finally, I know)
 
 ## [1.15.0] - 2018-08-03
