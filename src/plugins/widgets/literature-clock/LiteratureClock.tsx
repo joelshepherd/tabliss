@@ -31,7 +31,7 @@ interface Data {
 class LiteratureClock extends React.PureComponent<Props, State> {
   static defaultProps: Partial<Props> = {
     showBookAndAuthor: true,
-    centerText: false
+    centerText: false,
   };
   state: State = { time: getConvertedDate() };
   private interval: number;
@@ -51,20 +51,24 @@ class LiteratureClock extends React.PureComponent<Props, State> {
           <span className="quote_first">
             {get(this.props, 'local.quote_first')}
           </span>
+
           <strong className="quote_time_case">
             {get(this.props, 'local.quote_time_case')}
           </strong>
+
           <span className="quote_last">
             {get(this.props, 'local.quote_last')}
           </span>
         </blockquote>
+
         {this.props.showBookAndAuthor &&
           has(this.props, 'local.title') &&
           has(this.props, 'local.author') &&
           <cite>
-            - <span id="book">
+            &mdash; <span id="book">
                 {get(this.props, 'local.title')}
               </span>
+
             , <span id="author">
                 {get(this.props, 'local.author')}
               </span>

@@ -10,7 +10,7 @@ interface Props {
 class LiteratureClockSettings extends React.PureComponent<Props> {
   static defaultProps: Partial<Props> = {
     showBookAndAuthor: true,
-    centerText: false
+    centerText: false,
   };
 
   render() {
