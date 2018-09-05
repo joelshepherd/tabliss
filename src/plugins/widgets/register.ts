@@ -4,6 +4,7 @@ import { registerPlugin } from '../registry';
 import { Css, CssSettings } from './css';
 import { Font, FontSettings } from './font';
 import { Greeting, GreetingSettings } from './greeting';
+import { Js, JsSettings } from './js';
 import { Links, LinksSettings } from './links';
 import { Message, MessageSettings } from './message';
 import { LiteratureClock, LiteratureClockSettings } from './literature-clock';
@@ -35,6 +36,14 @@ registerPlugin({
   title: 'Greeting',
   Dashboard: Greeting,
   Settings: GreetingSettings,
+});
+
+registerPlugin({
+  key: 'core/widgets/js',
+  type: Type.WIDGET,
+  title: 'Custom JS',
+  Dashboard: Js,
+  Settings: JsSettings,
 });
 
 registerPlugin({
