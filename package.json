@@ -1,6 +1,6 @@
 {
   "name": "tabliss",
-  "version": "1.15.0",
+  "version": "1.16.0",
   "license": "GPL-3.0",
   "private": true,
   "scripts": {
@@ -8,9 +8,9 @@
     "build:chrome": "NODE_ENV=production BUILD_TARGET=chrome webpack",
     "build:firefox": "NODE_ENV=production BUILD_TARGET=firefox webpack",
     "build:web": "NODE_ENV=production BUILD_TARGET=web webpack",
-    "lint": "tslint --project=tsconfig.json",
+    "lint": "tslint --project tsconfig.json",
     "start": "webpack-dev-server",
-    "test": "jest --config=jest.json",
+    "test": "jest --config jest.json",
     "translations": "node ./scripts/translations.js"
   },
   "dependencies": {
@@ -45,7 +45,6 @@
     "@types/react": "^16.3.14",
     "@types/react-dom": "^16.0.5",
     "@types/react-intl": "^2.3.8",
-    "@types/react-onclickoutside": "^6.0.3",
     "@types/react-redux": "^5.0.20",
     "@types/react-transition-group": "^2.0.9",
     "@types/screenfull": "^3.3.0",
@@ -58,7 +57,7 @@
     "html-webpack-plugin": "^3.0.0",
     "jest": "^23.0.0",
     "mini-css-extract-plugin": "^0.4.0",
-    "node-sass": "^4.9.0",
+    "node-sass": "^4.9.3",
     "raw-loader": "^0.5.1",
     "react-intl-translations-manager": "^5.0.3",
     "sass-loader": "^7.0.0",
