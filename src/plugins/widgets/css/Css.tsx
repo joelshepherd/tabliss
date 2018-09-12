@@ -24,21 +24,21 @@ class Css extends React.PureComponent<Props> {
   }
 
   private detach() {
-    const head = document.head as HTMLElement;
-    var style = document.getElementById('CustomCss') as HTMLElement;
+    const style = document.getElementById('CustomCss');
 
-    head.removeChild(style);
+    if (style) {
+      document.head.removeChild(style);
+    }
   }
 
   private attach() {
-    const head = document.head as HTMLElement;
-    var style = document.createElement('style');
+    const style = document.createElement('style');
 
     style.id = 'CustomCss';
     style.type = 'text/css';
     style.appendChild(document.createTextNode(this.props.input || ''));
 
-    head.appendChild(style);
+    document.head.appendChild(style);
   }
 }
 
