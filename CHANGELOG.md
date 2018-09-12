@@ -6,7 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 ## [Unreleased]
 ### Added
 - New Literature Clock! Thanks @lbngoc
+- New Custom JavaScript widget! Thanks @nralbrecht
 - Columns for Quick Links! (finally, I know)
+- Translations for Romanian!
+
+### Fixed
+- Improved Dutch and Spanish translations
 
 ## [1.15.0] - 2018-08-03
 ### Added
