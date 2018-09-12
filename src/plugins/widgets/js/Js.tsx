@@ -1,17 +1,20 @@
 import * as React from 'react';
+import debounce from 'lodash-es/debounce';
 
 interface Props {
   input?: string;
 }
 
 class Js extends React.PureComponent<Props> {
+  private debouncedAttach = debounce(this.attach, 500);
+
   componentDidMount() {
     this.attach();
   }
 
   componentDidUpdate() {
     this.detach();
-    this.attach();
+    this.debouncedAttach();
   }
 
   componentWillUnmount() {
@@ -23,21 +26,21 @@ class Js extends React.PureComponent<Props> {
   }
 
   private detach() {
-    const head = document.head as HTMLElement;
-    var script = document.getElementById('CustomJs') as HTMLElement;
+    const script = document.getElementById('CustomJs');
 
-    head.removeChild(script);
+    if (script) {
+      document.head.removeChild(script);
+    }
   }
 
   private attach() {
-    const head = document.head as HTMLElement;
-    var script = document.createElement('script');
+    const script = document.createElement('script');
 
     script.id = 'CustomJs';
     script.type = 'text/javascript';
     script.appendChild(document.createTextNode(this.props.input || ''));
 
-    head.appendChild(script);
+    document.head.appendChild(script);
   }
 }
 

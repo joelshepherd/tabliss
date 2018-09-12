@@ -21,7 +21,8 @@ const JsSettings: React.StatelessComponent<Props> = ({ input = '', onChange }) =
 
       <p className="info">
         Warning: this functionality is intended for advanced users. Custom scripts may break at any time.
-        The script will be run once. Event listener will stay registered even after rerunning(editing) the code.
+        The snippet will run once after the dashboard has loaded.
+        Be careful of persisting event listeners when editing the snippet.
       </p>
     </div>
   );

@@ -39,7 +39,7 @@ registerPlugin({
 });
 
 registerPlugin({
-  key: 'core/widgets/js',
+  key: 'widgets/js',
   type: Type.WIDGET,
   title: 'Custom JS',
   Dashboard: Js,
@@ -87,7 +87,7 @@ registerPlugin({
 });
 
 registerPlugin({
-  key: 'extra/widgets/literature-clock',
+  key: 'widgets/literature-clock',
   type: Type.WIDGET,
   title: 'Literature Clock',
   Dashboard: LiteratureClock,
