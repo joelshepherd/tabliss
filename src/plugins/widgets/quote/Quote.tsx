@@ -35,7 +35,7 @@ class Quote extends React.PureComponent<Props> {
   render() {
     return (
       <h4 className="Quote">
-        {get(this.props, 'local.quote')}
+        "{get(this.props, 'local.quote')}"
         {has(this.props, 'local.author') && <sub><br />&mdash; {get(this.props, 'local.author')}</sub>}
       </h4>
     );
