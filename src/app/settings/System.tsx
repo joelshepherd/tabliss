@@ -22,7 +22,7 @@ const System: React.StatelessComponent<Props> = (props) => {
     let zone = event.target.value || undefined;
 
     // Check for a valid zone in this browser
-    if (zone && !Info.isValidIANAZone(zone)) {
+    if (zone && ! Info.isValidIANAZone(zone)) {
       alert(`Sorry, the timezone ${zone} is not supported in your browser.`);
       zone = undefined;
     }
@@ -55,7 +55,7 @@ const System: React.StatelessComponent<Props> = (props) => {
           <option value="it" title="Italian">Italiano</option>
           <option value="ko" title="Korean">한국어</option>
           <option value="nl" title="Dutch">Nederlands</option>
-          <option value="no" title="Norwegian">Norwegian</option>
+          <option value="no" title="Norwegian">Norsk</option>
           <option value="pl" title="Polish">Polski</option>
           <option value="pt" title="Portuguese">Português</option>
           <option value="ro" title="Romanian">Română</option>
