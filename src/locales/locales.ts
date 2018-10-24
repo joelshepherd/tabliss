@@ -8,6 +8,7 @@ import * as huLocaleData from 'react-intl/locale-data/hu';
 import * as itLocaleData from 'react-intl/locale-data/it';
 import * as koLocaleData from 'react-intl/locale-data/ko';
 import * as nlLocaleData from 'react-intl/locale-data/nl';
+import * as noLocaleData from 'react-intl/locale-data/no';
 import * as plLocaleData from 'react-intl/locale-data/pl';
 import * as ptLocaleData from 'react-intl/locale-data/pt';
 import * as roLocaleData from 'react-intl/locale-data/ro';
@@ -25,6 +26,7 @@ addLocaleData([
   ...itLocaleData,
   ...koLocaleData,
   ...nlLocaleData,
+  ...noLocaleData,
   ...plLocaleData,
   ...ptLocaleData,
   ...roLocaleData,
@@ -46,6 +48,7 @@ export const messages = {
   it: require('./lang/it.json'),
   ko: require('./lang/ko.json'),
   nl: require('./lang/nl.json'),
+  no: require('./lang/no.json'),
   ro: require('./lang/ro.json'),
   ru: require('./lang/ru.json'),
   pl: require('./lang/pl.json'),
