@@ -14,10 +14,11 @@ export interface Image {
   location_title?: string;
   user_name: string;
   user_link: string;
+  download: string;
 }
 
 export enum By {
-  OFFICIAL = 'official',
-  COLLECTIONS = 'collections',
-  SEARCH = 'search',
+  OFFICIAL = "official",
+  COLLECTIONS = "collections",
+  SEARCH = "search"
 }
