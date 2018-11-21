@@ -9,6 +9,7 @@ interface Props extends Settings {
 const SearchSettings: React.StatelessComponent<Props> = ({
   engine = 'google',
   placeholder = '',
+  suggestions = false,
   onChange,
 }) => (
   <div className="SearchSettings">
@@ -31,6 +32,16 @@ const SearchSettings: React.StatelessComponent<Props> = ({
           <option key={key} value={key}>{name}</option>
         )}
       </select>
+    </label>
+
+    <label>
+      <input
+        type="checkbox"
+        checked={suggestions}
+        onChange={() => onChange({ suggestions: !suggestions })}
+      />
+      {' '}
+      Suggestions
     </label>
   </div>
 );
