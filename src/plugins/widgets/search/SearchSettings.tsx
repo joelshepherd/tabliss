@@ -9,21 +9,22 @@ interface Props extends Settings {
 const SearchSettings: React.StatelessComponent<Props> = ({
   engine = 'google',
   placeholder = '',
-  suggestions = false,
+  suggestions = {
+    active: false,
+    quantity: 4,
+  },
   onChange,
 }) => (
   <div className="SearchSettings">
-    <p>
-      <label>
-        Placeholder
-        <input
-          type="text"
-          value={placeholder}
-          onChange={event => onChange({ placeholder: event.target.value })}
-          placeholder="Type to search"
-        />
-      </label>
-    </p>
+    <label>
+      Placeholder
+      <input
+        type="text"
+        value={placeholder}
+        onChange={event => onChange({ placeholder: event.target.value })}
+        placeholder="Type to search"
+      />
+    </label>
 
     <label>
       Provider
@@ -37,12 +38,36 @@ const SearchSettings: React.StatelessComponent<Props> = ({
     <label>
       <input
         type="checkbox"
-        checked={suggestions}
-        onChange={() => onChange({ suggestions: !suggestions })}
+        checked={suggestions.active}
+        onChange={() => {
+            suggestions.active = !suggestions.active;
+
+            return onChange({ suggestions });
+          }
+        }
       />
       {' '}
       Suggestions
     </label>
+
+    {
+      suggestions.active ?
+        <label>
+          Quantity
+          <input
+            type="number"
+            value={suggestions.quantity}
+            onChange={event => {
+                suggestions.quantity = Number(event.target.value);
+
+                return onChange({ suggestions });
+              }
+            }
+          />
+        </label>
+      :
+        null
+    }
   </div>
 );
 
