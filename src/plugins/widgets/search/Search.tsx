@@ -2,6 +2,7 @@ import * as React from 'react';
 import { defineMessages, injectIntl, InjectedIntlProps } from 'react-intl';
 import tlds from 'tlds';
 import { Engine, Settings } from './interfaces';
+import Suggestions from './Suggestions';
 import './Search.sass';
 const engines: Engine[] = require('./engines.json');
 
@@ -23,6 +24,10 @@ class Search extends React.PureComponent<Props & InjectedIntlProps, State> {
   static defaultProps = {
     engine: 'google',
     placeholder: '',
+    suggestions: {
+      active: false,
+      quantity: 4,
+    },
   };
   state = { query: '' };
 
@@ -37,6 +42,8 @@ class Search extends React.PureComponent<Props & InjectedIntlProps, State> {
           onChange={event => this.setState({ query: event.target.value })}
           placeholder={this.props.placeholder || this.props.intl.formatMessage(messages.placeholder)}
         />
+
+        {this.props.active ? <Suggestions query={this.state.query} /> : null}
       </form>
     );
   }

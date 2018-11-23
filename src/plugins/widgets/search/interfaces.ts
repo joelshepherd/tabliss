@@ -7,8 +7,13 @@ export interface Engine {
 export interface Settings {
   engine?: string;
   placeholder?: string;
-  suggestions?: {
-    active?: boolean;
-    quantity?: number;
-  }
+  active?: boolean; // suggestions active, i would have created and object put it doesn't really update (only on page reload)
+  quantity?: number; // suggestions quantity
+}
+
+export interface SuggestionsResult {
+  [0]: string;
+  [1]: {
+    [index: number]: string;
+  };
 }

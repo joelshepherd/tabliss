@@ -2,6 +2,9 @@ import * as React from 'react';
 import { Engine, Settings } from './interfaces';
 const engines: Engine[] = require('./engines.json');
 
+const MIN_QUANTITY = 1;
+const MAX_QUANTITY = 20;
+
 interface Props extends Settings {
   onChange: (settings: Settings) => void;
 }
@@ -9,10 +12,8 @@ interface Props extends Settings {
 const SearchSettings: React.StatelessComponent<Props> = ({
   engine = 'google',
   placeholder = '',
-  suggestions = {
-    active: false,
-    quantity: 4,
-  },
+  active = false,
+  quantity = 4,
   onChange,
 }) => (
   <div className="SearchSettings">
@@ -38,29 +39,32 @@ const SearchSettings: React.StatelessComponent<Props> = ({
     <label>
       <input
         type="checkbox"
-        checked={suggestions.active}
-        onChange={() => {
-            suggestions.active = !suggestions.active;
-
-            return onChange({ suggestions });
-          }
-        }
+        checked={active}
+        onChange={() => onChange({ active: !active })}
       />
       {' '}
       Suggestions
     </label>
 
     {
-      suggestions.active ?
+      active ?
         <label>
           Quantity
           <input
             type="number"
-            value={suggestions.quantity}
+            value={quantity}
             onChange={event => {
-                suggestions.quantity = Number(event.target.value);
+                let newQuantity = Number(event.target.value);
 
-                return onChange({ suggestions });
+                if (newQuantity < MIN_QUANTITY) {
+                  newQuantity = MIN_QUANTITY;
+                }
+
+                if (newQuantity > MAX_QUANTITY) {
+                  newQuantity = MAX_QUANTITY;
+                }
+
+                onChange({ quantity: newQuantity });
               }
             }
           />
