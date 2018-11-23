@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { SuggestionsResult } from './interfaces';
+import { SuggestionsResult } from './../interfaces';
 import getSuggestions from './getSuggestions';
 
 interface Props {
