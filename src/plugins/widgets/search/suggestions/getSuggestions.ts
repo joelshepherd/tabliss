@@ -1,4 +1,4 @@
-import { SuggestionsResult } from './../interfaces';
+import { SuggestionsResult } from './interfaces';
 
 // For mounting the result
 declare global {

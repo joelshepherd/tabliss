@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { SuggestionsResult } from './../interfaces';
+import { SuggestionsResult } from './interfaces';
 import getSuggestions from './getSuggestions';
 
 interface Props {
@@ -47,8 +47,8 @@ class Suggestions extends React.Component<Props, State> {
     }
 
     return (
-      <div>
-        {suggestions[0]}
+      <div className="Suggestions">
+        {suggestions[1].map((element: string, key: number) => <div key={key}>{element} {key}</div>)}
       </div>
     );
   }
