@@ -1,9 +1,15 @@
 import * as React from 'react';
 import { SuggestionsResult } from './interfaces';
 import getSuggestions from './getSuggestions';
+import './Suggestions.sass';
 
 interface Props {
   query?: string;
+  selected?: number;
+  quantity?: number;
+  onMouseOver?: (event: React.MouseEvent<HTMLInputElement>, key: number) => void;
+  onMouseOut?: (event: React.MouseEvent<HTMLInputElement>, key: number) => void;
+  onMouseClick?: (event: React.MouseEvent<HTMLInputElement>, key: number) => void;
 }
 
 interface State {
@@ -13,6 +19,11 @@ interface State {
 class Suggestions extends React.Component<Props, State> {
   static defaultProps: Partial<Props> = {
     query: '',
+    selected: -1,
+    quantity: 4,
+    onMouseOver: undefined,
+    onMouseOut: undefined,
+    onMouseClick: undefined,
   };
   state = { suggestions: undefined };
 
@@ -46,9 +57,33 @@ class Suggestions extends React.Component<Props, State> {
       return null;
     }
 
+    let suggestionsList = suggestions[1].map((element: string, key: number) => {
+      let className = '';
+
+      if (key >= this.props.quantity!) {
+        return;
+      }
+
+      if (key === this.props.selected!) {
+        className = 'active';
+      }
+
+      return (
+        <input
+          type="button"
+          key={key}
+          className={className}
+          value={element}
+          onMouseOver={event => this.props.onMouseOver!(event, key)}
+          onMouseOut={event => this.props.onMouseOut!(event, key)}
+          onClick={event => this.props.onMouseClick!(event, key)}
+        />
+      );
+    });
+
     return (
       <div className="Suggestions">
-        {suggestions[1].map((element: string, key: number) => <div key={key}>{element} {key}</div>)}
+        {suggestionsList}
       </div>
     );
   }

@@ -10,6 +10,7 @@ interface Props extends Settings {}
 
 interface State {
   query: string;
+  selected: number;
 }
 
 const messages = defineMessages({
@@ -29,7 +30,10 @@ class Search extends React.PureComponent<Props & InjectedIntlProps, State> {
       quantity: 4,
     },
   };
-  state = { query: '' };
+  state = {
+    query: '',
+    selected: -1,
+  };
 
   render() {
     return (
@@ -39,13 +43,56 @@ class Search extends React.PureComponent<Props & InjectedIntlProps, State> {
           tabIndex={1}
           type="search"
           value={this.state.query}
-          onChange={event => this.setState({ query: event.target.value })}
+          onKeyUp={this.keyUp}
           placeholder={this.props.placeholder || this.props.intl.formatMessage(messages.placeholder)}
         />
 
-        {this.props.active ? <Suggestions query={this.state.query} /> : null}
+        {
+          this.props.active ?
+            <Suggestions
+              query={this.state.query}
+              selected={this.state.selected}
+              quantity={this.props.quantity}
+              onMouseOver={(event, key) => this.setState({ selected: key })}
+              onMouseOut={(event, key) => this.setState({ selected: -1 })}
+              onMouseClick={(event) => this.setState({ query: event.currentTarget.value })}
+            />
+          :
+            null
+        }
       </form>
     );
+  }
+
+  private keyUp = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    let selected = this.state.selected;
+
+    // 38 - Up arrow
+    if (event.keyCode === 38) {
+      selected--;
+
+      // Select last when nothing is selected
+      if (selected < -1) {
+        selected = this.props.quantity! - 1;
+      }
+    }
+
+    // 40 - Down arrow
+    if (event.keyCode === 40) {
+      selected++;
+
+      // Reset when nothing is selected
+      if (selected >= this.props.quantity!) {
+        selected = -1;
+      }
+    }
+
+    console.log(event.currentTarget);
+
+    this.setState({
+      query: event.currentTarget.value,
+      selected,
+    });
   }
 
   private search = (event: React.FormEvent<HTMLFormElement>) => {

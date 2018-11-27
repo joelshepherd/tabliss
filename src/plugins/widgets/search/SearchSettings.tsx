@@ -2,7 +2,6 @@ import * as React from 'react';
 import { Engine, Settings } from './interfaces';
 const engines: Engine[] = require('./engines.json');
 
-const MIN_QUANTITY = 1;
 const MAX_QUANTITY = 20;
 
 interface Props extends Settings {
@@ -56,8 +55,8 @@ const SearchSettings: React.StatelessComponent<Props> = ({
             onChange={event => {
                 let newQuantity = Number(event.target.value);
 
-                if (newQuantity < MIN_QUANTITY) {
-                  newQuantity = MIN_QUANTITY;
+                if (newQuantity < 1) {
+                  newQuantity = 1;
                 }
 
                 if (newQuantity > MAX_QUANTITY) {
