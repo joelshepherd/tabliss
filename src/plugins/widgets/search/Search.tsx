@@ -1,16 +1,19 @@
 import * as React from 'react';
 import { defineMessages, injectIntl, InjectedIntlProps } from 'react-intl';
 import tlds from 'tlds';
+import getSuggestions from './suggestions/getSuggestions';
+import { SuggestionsResult, SuggestionsData } from './suggestions/interfaces';
 import { Engine, Settings } from './interfaces';
 import { Suggestions } from './suggestions';
 import './Search.sass';
 const engines: Engine[] = require('./engines.json');
 
-interface Props extends Settings {}
+interface Props extends Settings { }
 
 interface State {
   query: string;
-  selected: number;
+  getSuggestionData: boolean;
+  suggestions: SuggestionsData;
 }
 
 const messages = defineMessages({
@@ -32,30 +35,60 @@ class Search extends React.PureComponent<Props & InjectedIntlProps, State> {
   };
   state = {
     query: '',
-    selected: -1,
+    getSuggestionData: false,
+    suggestions: {
+      active: -1,
+      values: [],
+    },
   };
+
+  private searchInput: React.RefObject<HTMLInputElement>;
+  private currentExecutionTime = 0;
+  private oldQuery: string = '';
+
+  constructor(props: Props & InjectedIntlProps) {
+    super(props);
+
+    this.searchInput = React.createRef();
+  }
+
+  componentDidUpdate() {
+    this.getSuggestionData();
+  }
 
   render() {
     return (
-      <form className="Search" onSubmit={this.search}>
+      <form className="Search" onKeyUp={this.keyUp} onSubmit={this.search}>
         <input
+          ref={this.searchInput}
           autoFocus={true}
           tabIndex={1}
           type="search"
           value={this.state.query}
-          onKeyUp={this.keyUp}
+          onChange={event => {
+            this.oldQuery = event.target.value;
+            this.setState({ query: event.target.value, getSuggestionData: true });
+          }}
           placeholder={this.props.placeholder || this.props.intl.formatMessage(messages.placeholder)}
         />
 
         {
           this.props.active ?
             <Suggestions
-              query={this.state.query}
-              selected={this.state.selected}
-              quantity={this.props.quantity}
-              onMouseOver={(event, key) => this.setState({ selected: key })}
-              onMouseOut={(event, key) => this.setState({ selected: -1 })}
-              onMouseClick={(event) => this.setState({ query: event.currentTarget.value })}
+              data={this.state.suggestions}
+              onMouseOver={(event, key) => this.setState({ suggestions: { ...this.state.suggestions, active: key } })}
+              onMouseOut={() => this.setState({ suggestions: { ...this.state.suggestions, active: -1 } })}
+              onMouseClick={event => {
+                const target = event.currentTarget;
+
+                target.blur();
+                this.searchInput.current!.focus();
+
+                this.setState({
+                  query: target.value,
+                  getSuggestionData: true,
+                });
+              }}
             />
           :
             null
@@ -64,34 +97,54 @@ class Search extends React.PureComponent<Props & InjectedIntlProps, State> {
     );
   }
 
-  private keyUp = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    let selected = this.state.selected;
+  /**
+   * Sets active suggestion on keyup and keydown
+   */
+  private keyUp = (event: React.KeyboardEvent<HTMLFormElement>) => {
+    const { keyCode } = event;
+
+    if (this.state.query === '' || (keyCode !== 38 && keyCode !== 40) || !this.props.active) {
+      return;
+    }
+
+    let quantity = this.state.suggestions.values.length;
+    let { active } = this.state.suggestions;
 
     // 38 - Up arrow
-    if (event.keyCode === 38) {
-      selected--;
+    if (keyCode === 38) {
+      active--;
 
       // Select last when nothing is selected
-      if (selected < -1) {
-        selected = this.props.quantity! - 1;
+      if (active < -1) {
+        active = quantity - 1;
       }
     }
 
     // 40 - Down arrow
-    if (event.keyCode === 40) {
-      selected++;
+    if (keyCode === 40) {
+      active++;
 
       // Reset when nothing is selected
-      if (selected >= this.props.quantity!) {
-        selected = -1;
+      if (active >= quantity) {
+        active = -1;
       }
     }
 
-    console.log(event.currentTarget);
+    let query: string;
+
+    // Show old query if nothing is selected
+    if (active === -1) {
+      query = this.oldQuery;
+    } else {
+      query = this.state.suggestions.values[active];
+    }
 
     this.setState({
-      query: event.currentTarget.value,
-      selected,
+      query,
+      suggestions: {
+        ...this.state.suggestions,
+        active,
+      },
     });
   }
 
@@ -125,6 +178,60 @@ class Search extends React.PureComponent<Props & InjectedIntlProps, State> {
       || engines[0];
 
     return searchEngine.search_url.replace('{searchTerms}', query);
+  }
+
+  /**
+   * Retrieves suggestiondata from google
+   */
+  private getSuggestionData() {
+    const { query, getSuggestionData } = this.state;
+
+    if (!getSuggestionData || !this.props.active) {
+      return;
+    }
+
+    // To get the most recent result
+    const executionTime = window.performance.now();
+
+    if (!query) {
+      this.setSuggestions(executionTime, undefined);
+      return;
+    }
+
+    getSuggestions(query, suggestions => {
+      this.setSuggestions(executionTime, suggestions);
+    });
+  }
+
+  /**
+   * Sets suggestiondata in state
+   */
+  private setSuggestions(executionTime: number, suggestions?: SuggestionsResult) {
+    // Only update with latest data
+    if (executionTime < this.currentExecutionTime) {
+      return;
+    }
+
+    this.currentExecutionTime = executionTime;
+
+    let data: SuggestionsData;
+
+    if (!suggestions) {
+      data = {
+        active: -1,
+        values: [],
+      };
+    } else {
+      data = {
+        active: -1,
+        values: suggestions[1].slice(0, this.props.quantity),
+      };
+    }
+
+    this.setState({
+      getSuggestionData: false,
+      suggestions: data,
+    });
   }
 }
 

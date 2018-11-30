@@ -1,70 +1,35 @@
 import * as React from 'react';
-import { SuggestionsResult } from './interfaces';
-import getSuggestions from './getSuggestions';
+import { SuggestionsData } from './interfaces';
 import './Suggestions.sass';
 
 interface Props {
-  query?: string;
-  selected?: number;
-  quantity?: number;
+  data?: SuggestionsData;
   onMouseOver?: (event: React.MouseEvent<HTMLInputElement>, key: number) => void;
   onMouseOut?: (event: React.MouseEvent<HTMLInputElement>, key: number) => void;
   onMouseClick?: (event: React.MouseEvent<HTMLInputElement>, key: number) => void;
 }
 
-interface State {
-  suggestions?: SuggestionsResult;
-}
+interface State { }
 
 class Suggestions extends React.Component<Props, State> {
   static defaultProps: Partial<Props> = {
-    query: '',
-    selected: -1,
-    quantity: 4,
+    data: undefined,
     onMouseOver: undefined,
     onMouseOut: undefined,
     onMouseClick: undefined,
   };
-  state = { suggestions: undefined };
-
-  private currentExecutionTime = 0;
-
-  componentDidUpdate(prevProps: Props) {
-    const { query } = this.props;
-
-    // Don't fetch meaningless
-    if (query === prevProps.query) {
-      return;
-    }
-
-    // To get most recent result
-    const executionTime = window.performance.now();
-
-    if (!query) {
-      this.setSuggestions(executionTime, undefined);
-      return;
-    }
-
-    getSuggestions(query, suggestions => {
-      this.setSuggestions(executionTime, suggestions);
-    });
-  }
 
   render() {
-    const { suggestions } = this.state;
+    const { data } = this.props;
 
-    if (!suggestions) {
+    if (!data) {
       return null;
     }
 
-    let suggestionsList = suggestions[1].map((element: string, key: number) => {
+    let suggestions = data.values.map((element, key) => {
       let className = '';
 
-      if (key >= this.props.quantity!) {
-        return;
-      }
-
-      if (key === this.props.selected!) {
+      if (key === data.active) {
         className = 'active';
       }
 
@@ -83,19 +48,9 @@ class Suggestions extends React.Component<Props, State> {
 
     return (
       <div className="Suggestions">
-        {suggestionsList}
+        {suggestions}
       </div>
     );
-  }
-
-  private setSuggestions(executionTime: number, suggestions?: SuggestionsResult) {
-    if (executionTime < this.currentExecutionTime) {
-      return;
-    }
-
-    this.currentExecutionTime = executionTime;
-
-    this.setState({ suggestions });
   }
 }
 
