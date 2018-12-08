@@ -18,7 +18,7 @@ const UnsplashCredit: React.StatelessComponent<Props> = props => (
     >
       Download
     </a>
-    {" / "}
+    {' / '}
     <a
       href={props.image.image_link + UNSPLASH_UTM}
       rel="noopener noreferrer"
@@ -30,7 +30,7 @@ const UnsplashCredit: React.StatelessComponent<Props> = props => (
         defaultMessage="Photo"
       />
     </a>
-    {" / "}
+    {' / '}
     <a
       href={props.image.user_link + UNSPLASH_UTM}
       rel="noopener noreferrer"
@@ -38,9 +38,9 @@ const UnsplashCredit: React.StatelessComponent<Props> = props => (
     >
       {props.image.user_name}
     </a>
-    {" / "}
+    {' / '}
     <a
-      href={"https://unsplash.com/" + UNSPLASH_UTM}
+      href={'https://unsplash.com/' + UNSPLASH_UTM}
       rel="noopener noreferrer"
       target="_blank"
     >
