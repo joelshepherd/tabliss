@@ -1,7 +1,7 @@
-import * as React from "react";
-import { FormattedMessage } from "react-intl";
-import { UNSPLASH_UTM } from "./constants";
-import { Image } from "./interfaces";
+import * as React from 'react';
+import { FormattedMessage } from 'react-intl';
+import { UNSPLASH_UTM } from './constants';
+import { Image } from './interfaces';
 
 interface Props {
   image: Image;

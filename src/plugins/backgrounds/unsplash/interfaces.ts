@@ -18,7 +18,7 @@ export interface Image {
 }
 
 export enum By {
-  OFFICIAL = "official",
-  COLLECTIONS = "collections",
-  SEARCH = "search"
+  OFFICIAL = 'official',
+  COLLECTIONS = 'collections',
+  SEARCH = 'search'
 }
