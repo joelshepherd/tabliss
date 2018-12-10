@@ -11,8 +11,8 @@ interface Props extends Settings {
 const SearchSettings: React.StatelessComponent<Props> = ({
   engine = 'google',
   placeholder = '',
-  active = false,
-  quantity = 4,
+  suggestionsActive = false,
+  suggestionsQuantity = 4,
   onChange,
 }) => (
   <div className="SearchSettings">
@@ -38,34 +38,23 @@ const SearchSettings: React.StatelessComponent<Props> = ({
     <label>
       <input
         type="checkbox"
-        checked={active}
-        onChange={() => onChange({ active: !active })}
+        checked={suggestionsActive}
+        onChange={() => onChange({ suggestionsActive: !suggestionsActive })}
       />
       {' '}
       Suggestions
     </label>
 
     {
-      active ?
+      suggestionsActive ?
         <label>
           Quantity
           <input
             type="number"
-            value={quantity}
-            onChange={event => {
-                let newQuantity = Number(event.target.value);
-
-                if (newQuantity < 1) {
-                  newQuantity = 1;
-                }
-
-                if (newQuantity > MAX_QUANTITY) {
-                  newQuantity = MAX_QUANTITY;
-                }
-
-                onChange({ quantity: newQuantity });
-              }
-            }
+            min="1"
+            max={MAX_QUANTITY}
+            value={suggestionsQuantity}
+            onChange={event =>  onChange({ suggestionsQuantity: Number(event.target.value) })}
           />
         </label>
       :

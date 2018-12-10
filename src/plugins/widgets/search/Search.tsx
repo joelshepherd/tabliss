@@ -28,10 +28,8 @@ class Search extends React.PureComponent<Props & InjectedIntlProps, State> {
   static defaultProps = {
     engine: 'google',
     placeholder: '',
-    suggestions: {
-      active: false,
-      quantity: 4,
-    },
+    suggestionsActive: false,
+    suggestionsQuantity: 4,
   };
   state = {
     query: '',
@@ -73,7 +71,7 @@ class Search extends React.PureComponent<Props & InjectedIntlProps, State> {
         />
 
         {
-          this.props.active ?
+          this.props.suggestionsActive ?
             <Suggestions
               data={this.state.suggestions}
               onMouseOver={(event, key) => this.setState({ suggestions: { ...this.state.suggestions, active: key } })}
@@ -103,7 +101,7 @@ class Search extends React.PureComponent<Props & InjectedIntlProps, State> {
   private keyUp = (event: React.KeyboardEvent<HTMLFormElement>) => {
     const { keyCode } = event;
 
-    if (this.state.query === '' || (keyCode !== 38 && keyCode !== 40) || !this.props.active) {
+    if (this.state.query === '' || (keyCode !== 38 && keyCode !== 40) || !this.props.suggestionsActive) {
       return;
     }
 
@@ -186,7 +184,7 @@ class Search extends React.PureComponent<Props & InjectedIntlProps, State> {
   private getSuggestionData() {
     const { query, getSuggestionData } = this.state;
 
-    if (!getSuggestionData || !this.props.active) {
+    if (!getSuggestionData || !this.props.suggestionsActive) {
       return;
     }
 
@@ -224,7 +222,7 @@ class Search extends React.PureComponent<Props & InjectedIntlProps, State> {
     } else {
       data = {
         active: -1,
-        values: suggestions[1].slice(0, this.props.quantity),
+        values: suggestions[1].slice(0, this.props.suggestionsQuantity),
       };
     }
 
