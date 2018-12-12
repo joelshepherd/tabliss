@@ -5,8 +5,8 @@ export interface Engine {
 }
 
 export interface Settings {
-  engine?: string;
+  searchEngine?: string;
   placeholder?: string;
-  active?: boolean; // suggestions active, i would have created and object but it doesn't really update (only on page reload)
+  suggestionsEngine?: boolean; // suggestions active, i would have created and object but it doesn't really update (only on page reload)
   quantity?: number; // suggestions quantity
 }

@@ -9,7 +9,7 @@ interface Props extends Settings {
 }
 
 const SearchSettings: React.StatelessComponent<Props> = ({
-  engine = 'google',
+  searchEngine = 'google',
   placeholder = '',
   active = false,
   quantity = 4,
@@ -27,8 +27,17 @@ const SearchSettings: React.StatelessComponent<Props> = ({
     </label>
 
     <label>
-      Provider
-      <select onChange={event => onChange({ engine: event.target.value })} value={engine}>
+      Search Provider
+      <select onChange={event => onChange({ searchEngine: event.target.value })} value={searchEngine}>
+        {engines.map(({ key, name }) =>
+          <option key={key} value={key}>{name}</option>
+        )}
+      </select>
+    </label>
+
+    <label>
+      Suggestions Provider
+      <select onChange={event => onChange({ searchEngine: event.target.value })} value={searchEngine}>
         {engines.map(({ key, name }) =>
           <option key={key} value={key}>{name}</option>
         )}

@@ -26,7 +26,7 @@ const messages = defineMessages({
 
 class Search extends React.PureComponent<Props & InjectedIntlProps, State> {
   static defaultProps = {
-    engine: 'google',
+    searchEngine: 'google',
     placeholder: '',
     suggestions: {
       active: false,
@@ -174,7 +174,7 @@ class Search extends React.PureComponent<Props & InjectedIntlProps, State> {
 
     // Probably searching then
     const searchEngine = engines
-      .find(engine => engine.key === this.props.engine)
+      .find(engine => engine.key === this.props.searchEngine)
       || engines[0];
 
     return searchEngine.search_url.replace('{searchTerms}', query);
