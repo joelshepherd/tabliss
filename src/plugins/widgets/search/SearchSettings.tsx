@@ -11,8 +11,8 @@ interface Props extends Settings {
 const SearchSettings: React.StatelessComponent<Props> = ({
   searchEngine = 'google',
   placeholder = '',
-  active = false,
-  quantity = 4,
+  suggestionsEngine = 'off',
+  suggestionsQuantity = 4,
   onChange,
 }) => (
   <div className="SearchSettings">
@@ -37,44 +37,29 @@ const SearchSettings: React.StatelessComponent<Props> = ({
 
     <label>
       Suggestions Provider
-      <select onChange={event => onChange({ searchEngine: event.target.value })} value={searchEngine}>
-        {engines.map(({ key, name }) =>
-          <option key={key} value={key}>{name}</option>
-        )}
+      <select onChange={event => onChange({ suggestionsEngine: event.target.value })} value={suggestionsEngine}>
+        <option key='off' value='off'>Off</option>
+
+        {engines.map(({ key, name, suggestions_url }) => {
+          if (!suggestions_url) {
+            return;
+          }
+
+          return <option key={key} value={key}>{name}</option>;
+        })}
       </select>
     </label>
 
-    <label>
-      <input
-        type="checkbox"
-        checked={active}
-        onChange={() => onChange({ active: !active })}
-      />
-      {' '}
-      Suggestions
-    </label>
-
     {
-      active ?
+      suggestionsEngine !== 'off' ?
         <label>
           Quantity
           <input
             type="number"
-            value={quantity}
-            onChange={event => {
-                let newQuantity = Number(event.target.value);
-
-                if (newQuantity < 1) {
-                  newQuantity = 1;
-                }
-
-                if (newQuantity > MAX_QUANTITY) {
-                  newQuantity = MAX_QUANTITY;
-                }
-
-                onChange({ quantity: newQuantity });
-              }
-            }
+            min="1"
+            max={MAX_QUANTITY}
+            value={suggestionsQuantity}
+            onChange={event =>  onChange({ suggestionsQuantity: Number(event.target.value) })}
           />
         </label>
       :
