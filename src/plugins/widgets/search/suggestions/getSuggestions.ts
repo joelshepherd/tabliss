@@ -7,7 +7,7 @@ declare global {
     }
 }
 
-export default (value: string, callback: (data: SuggestionsResult) => void) => {
+export default (url: string, callback: (data: SuggestionsResult) => void) => {
   const id = 'i' + Math.random().toString(36).slice(2); // Create unique id to return to correct result
   const mountResult = { };
 
@@ -27,8 +27,7 @@ export default (value: string, callback: (data: SuggestionsResult) => void) => {
 
   const s = document.createElement('script');
 
-  s.src = 'https://clients1.google.com/complete/search?client=chrome&q=' + encodeURIComponent(value) +
-    '&callback=mountResult.' + id;
+  s.src = url + '&callback=mountResult.' + id;
   s.id = 'suggestionsQuery' + id;
 
   document.head.appendChild(s);

@@ -38,7 +38,7 @@ const SearchSettings: React.StatelessComponent<Props> = ({
     <label>
       Suggestions Provider
       <select onChange={event => onChange({ suggestionsEngine: event.target.value })} value={suggestionsEngine}>
-        <option key='off' value='off'>Off</option>
+        <option key="off" value="off">Off</option>
 
         {engines.map(({ key, name, suggestions_url }) => {
           if (!suggestions_url) {

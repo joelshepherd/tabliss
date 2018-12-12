@@ -196,7 +196,13 @@ class Search extends React.PureComponent<Props & InjectedIntlProps, State> {
       return;
     }
 
-    getSuggestions(query, suggestions => {
+    const suggestionEngine = engines
+      .find(engine => engine.key === this.props.suggestionsEngine)
+      || engines[0];
+
+    const suggestionUrl = suggestionEngine.suggestions_url!.replace('{searchTerms}', query);
+
+    getSuggestions(suggestionUrl, suggestions => {
       this.setSuggestions(executionTime, suggestions);
     });
   }
