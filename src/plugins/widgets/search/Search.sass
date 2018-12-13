@@ -1,18 +1,21 @@
 .Search
     display: block
+    position: relative
 
     input
         background-color: transparent
         border: 0
-        border-bottom: 3px solid rgba(255, 255, 255, 0.85)
-        color: white
         font-family: inherit
         font-size: 1.1em
-        margin: 1rem 0
         outline: none
         padding: 0.15em 0
         text-align: center
         text-shadow: inherit
+
+    > input
+        color: white
+        border-bottom: 3px solid rgba(255, 255, 255, 0.85)
+        margin: 1rem 0
 
         &::placeholder
             color: white

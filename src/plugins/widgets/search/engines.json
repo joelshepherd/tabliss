@@ -2,7 +2,8 @@
   {
     "key": "google",
     "name": "Google",
-    "search_url": "https://www.google.com/search?q={searchTerms}"
+    "search_url": "https://www.google.com/search?q={searchTerms}",
+    "suggestions_url": "https://clients1.google.com/complete/search?client=chrome&q={searchTerms}"
   },
   {
     "key": "bing",
