@@ -71,7 +71,7 @@ class Search extends React.PureComponent<Props & InjectedIntlProps, State> {
         />
 
         {
-          this.props.suggestionsEngine !== 'off' ?
+          this.props.suggestionsEngine !== 'off' &&
             <Suggestions
               data={this.state.suggestions}
               onMouseOver={(event, key) => this.setState({ suggestions: { ...this.state.suggestions, active: key } })}
@@ -88,8 +88,6 @@ class Search extends React.PureComponent<Props & InjectedIntlProps, State> {
                 });
               }}
             />
-          :
-            null
         }
       </form>
     );

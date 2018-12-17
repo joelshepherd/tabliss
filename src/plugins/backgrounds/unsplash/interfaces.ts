@@ -1,8 +1,8 @@
 export interface Settings {
-  blur: boolean;
+  blur: number;
+  darken: number;
   by: By;
   collections: string;
-  darken: boolean;
   featured: boolean;
   search: string;
   timeout: number;

@@ -51,7 +51,7 @@ const SearchSettings: React.StatelessComponent<Props> = ({
     </label>
 
     {
-      suggestionsEngine !== 'off' ?
+      suggestionsEngine !== 'off' &&
         <label>
           Quantity
           <input
@@ -62,8 +62,6 @@ const SearchSettings: React.StatelessComponent<Props> = ({
             onChange={event =>  onChange({ suggestionsQuantity: Number(event.target.value) })}
           />
         </label>
-      :
-        null
     }
   </div>
 );

@@ -10,8 +10,8 @@ import UnsplashCredit from './UnsplashCredit';
 import './Unsplash.sass';
 
 interface Props extends Settings {
-  darken: boolean;
-  blur: boolean;
+  blur: number;
+  darken: number;
   focus: boolean;
   local: Local;
   popPending: ActionCreator<Action>;
@@ -62,16 +62,28 @@ class Unsplash extends React.PureComponent<Props, State> {
   }
 
   render() {
-    const styles = this.state.current
+    let styles: any = this.state.current
       ? { backgroundImage: `url(${this.state.current.src})` }
       : { opacity: 0 };
 
-    const classes = `image fullscreen${this.props.blur && ! this.props.focus ? ' blur' : ''}`;
+    if (this.props.blur !== 0 && !this.props.focus) {
+      styles = {
+        ...styles,
+        filter: `blur(${this.props.blur}px)`,
+        transform: `scale(${(this.props.blur / 500) + 1})`,
+      };
+    }
 
     return (
       <div className="Unsplash fullscreen">
-        <div className={classes} style={styles} />
-        {this.props.darken && ! this.props.focus && <div className="darken fullscreen" />}
+        <div className="image fullscreen" style={styles} />
+        {
+          this.props.darken && !this.props.focus &&
+            <div
+              className="fullscreen"
+              style={{ backgroundColor: `rgba(0, 0, 0, ${this.props.darken * 0.01})` }}
+            />
+        }
         {this.state.current && <UnsplashCredit image={this.state.current} />}
       </div>
     );
