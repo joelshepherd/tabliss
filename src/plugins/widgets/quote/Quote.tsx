@@ -1,7 +1,8 @@
 import get from 'lodash-es/get';
 import has from 'lodash-es/has';
 import * as React from 'react';
-import { ActionCreator, connect } from 'react-redux';
+import { ActionCreator } from 'redux';
+import { connect } from 'react-redux';
 import { Action, popPending, pushPending } from '../../../data';
 require('./Quote.sass');
 

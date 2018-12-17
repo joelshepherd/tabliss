@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { FormattedMessage } from 'react-intl';
-import { ActionCreator, connect } from 'react-redux';
+import { ActionCreator } from 'redux';
+import { connect } from 'react-redux';
 import Background from './Background';
 import Feedback from './Feedback';
 import Homepage from './Homepage';

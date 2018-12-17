@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { connect, Dispatch } from 'react-redux';
+import { Dispatch } from 'redux';
+import { connect } from 'react-redux';
 import { Action, RootState, updateSettings } from '../../data';
 import { Plugin as IPlugin, Settings } from '../../plugins';
 import { arrowDownIcon, arrowUpIcon, collapseIcon, expandIcon, IconButton, removeIcon } from '../ui';

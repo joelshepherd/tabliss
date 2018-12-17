@@ -1,7 +1,8 @@
 import debounce from 'lodash-es/debounce';
 import get from 'lodash-es/get';
 import * as React from 'react';
-import { ActionCreator, connect } from 'react-redux';
+import { ActionCreator } from 'redux';
+import { connect } from 'react-redux';
 import { Action, popPending, pushPending, RootState } from '../../../data';
 import './Giphy.sass';
 const GIPHY_API_KEY = process.env.GIPHY_API_KEY;

@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { defineMessages, injectIntl, InjectedIntlProps } from 'react-intl';
-import { ActionCreator, connect } from 'react-redux';
+import { ActionCreator } from 'redux';
+import { connect } from 'react-redux';
 import * as screenfull from 'screenfull';
 import { Action, RootState, toggleFocus, toggleSettings } from '../../data';
 import { isInputEvent } from '../../utils';
@@ -47,12 +48,12 @@ const messages = defineMessages({
 });
 
 class Overlay extends React.PureComponent<Props & InjectedIntlProps, State> {
-  state: State = { fullscreen: screenfull.isFullscreen };
+  state: State = { fullscreen: screenfull && screenfull.isFullscreen };
 
   componentWillMount() {
     document.addEventListener('keydown', this.onKeyDown);
 
-    if (screenfull.enabled) {
+    if (screenfull && screenfull.enabled) {
       screenfull.on('change', this.onFullscreen);
     }
   }
@@ -60,7 +61,7 @@ class Overlay extends React.PureComponent<Props & InjectedIntlProps, State> {
   componentWillUnmount() {
     document.removeEventListener('keydown', this.onKeyDown);
 
-    if (screenfull.enabled) {
+    if (screenfull && screenfull.enabled) {
       screenfull.off('change', this.onFullscreen);
     }
   }
@@ -82,8 +83,8 @@ class Overlay extends React.PureComponent<Props & InjectedIntlProps, State> {
           {focus ? eyeOffIcon : eyeIcon}
         </a>
 
-        {screenfull.enabled && (
-          <a onClick={() => screenfull.toggle()} title={`${fullscreenHint} (F)`}>
+        {screenfull && screenfull.enabled && (
+          <a onClick={() => screenfull && screenfull.toggle()} title={`${fullscreenHint} (F)`}>
             <i dangerouslySetInnerHTML={{ __html: this.state.fullscreen ? minimiseIcon : maximiseIcon }} />
           </a>
         )}
@@ -98,7 +99,7 @@ class Overlay extends React.PureComponent<Props & InjectedIntlProps, State> {
   }
 
   private onFullscreen = () => {
-    this.setState({ fullscreen: screenfull.isFullscreen });
+    this.setState({ fullscreen: screenfull && screenfull.isFullscreen });
   }
 
   private onKeyDown = (event: KeyboardEvent) => {
@@ -109,7 +110,7 @@ class Overlay extends React.PureComponent<Props & InjectedIntlProps, State> {
 
     switch (event.keyCode) {
       case 70: // F
-        screenfull.toggle();
+        screenfull && screenfull.toggle();
         break;
 
       case 83: // S

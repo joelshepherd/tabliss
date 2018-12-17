@@ -1,32 +1,21 @@
 import { combineReducers, createStore } from 'redux';
-import { persistStore, autoRehydrate } from 'redux-persist';
+import { persistStore, persistReducer } from 'redux-persist';
 import { createBlacklistFilter } from 'redux-persist-transform-filter';
 import * as localForage from 'localforage';
 import { booted, dashboard, settings, storage, version, ui } from './reducers';
 import { RootState } from './interfaces';
 
-// Create store
-export const store = createStore<RootState>(
-  combineReducers({
-    booted,
-    dashboard,
-    settings,
-    storage,
-    version,
-    ui,
-  }),
-  autoRehydrate(),
-);
-
-// Setup localForage
-localForage.config({
-  name: 'tabliss',
-  storeName: 'state',
+const combinedReducers = combineReducers<RootState>({
+  booted,
+  dashboard,
+  settings,
+  storage,
+  version,
+  ui,
 });
 
-// Begin periodically persisting the store
-export const persistor = persistStore(store, {
-  debounce: 100,
+const persistedReducer = persistReducer({
+  key: 'root',
   keyPrefix: '',
   serialize: false,
   storage: localForage,
@@ -34,4 +23,15 @@ export const persistor = persistStore(store, {
     createBlacklistFilter('booted'),
     createBlacklistFilter('ui', ['pending', 'settings']),
   ],
+}, combinedReducers);
+
+const store = createStore(persistedReducer);
+const persistor = persistStore(store);
+
+// Setup localForage
+localForage.config({
+  name: 'tabliss',
+  storeName: 'state',
 });
+
+export { store, persistor };
