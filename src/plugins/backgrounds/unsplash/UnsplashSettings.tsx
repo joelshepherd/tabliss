@@ -93,7 +93,6 @@ class UnsplashSettings extends React.PureComponent<Props> {
         }
 
         <label>
-          Blur
           <input
             type="range"
             min="0"
@@ -101,10 +100,11 @@ class UnsplashSettings extends React.PureComponent<Props> {
             value={this.props.blur}
             onChange={event => this.props.onChange({ blur: Number(event.target.value) })}
           />
+          {' '}
+          Blur
         </label>
 
         <label>
-          Darken
           <input
             type="range"
             min="0"
@@ -112,6 +112,8 @@ class UnsplashSettings extends React.PureComponent<Props> {
             value={this.props.darken}
             onChange={event => this.props.onChange({ darken: Number(event.target.value) })}
           />
+          {' '}
+          Darken
         </label>
       </div>
     );
