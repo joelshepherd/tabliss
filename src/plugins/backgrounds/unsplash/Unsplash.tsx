@@ -63,16 +63,20 @@ class Unsplash extends React.PureComponent<Props, State> {
   }
 
   render() {
-    let styles: any = this.state.current
+    let imageUrl = this.state.current
       ? { backgroundImage: `url(${this.state.current.src})` }
       : { opacity: 0 };
 
+    let styles;
+
     if (this.props.blur !== 0 && !this.props.focus) {
       styles = {
-        ...styles,
+        ...imageUrl,
         filter: `blur(${this.props.blur}px)`,
         transform: `scale(${(this.props.blur / 500) + 1})`,
       };
+    } else {
+      styles = { ...imageUrl };
     }
 
     return (

@@ -110,7 +110,9 @@ class Overlay extends React.PureComponent<Props & InjectedIntlProps, State> {
 
     switch (event.keyCode) {
       case 70: // F
-        screenfull && screenfull.toggle();
+        if (screenfull) {
+          screenfull.toggle();
+        }
         break;
 
       case 83: // S

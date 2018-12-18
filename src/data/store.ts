@@ -14,16 +14,19 @@ const combinedReducers = combineReducers<RootState>({
   ui,
 });
 
-const persistedReducer = persistReducer({
-  key: 'root',
-  keyPrefix: '',
-  serialize: false,
-  storage: localForage,
-  transforms: [
-    createBlacklistFilter('booted'),
-    createBlacklistFilter('ui', ['pending', 'settings']),
-  ],
-}, combinedReducers);
+const persistedReducer = persistReducer(
+  {
+    key: 'root',
+    keyPrefix: '',
+    serialize: false,
+    storage: localForage,
+    transforms: [
+      createBlacklistFilter('booted'),
+      createBlacklistFilter('ui', ['pending', 'settings']),
+    ],
+  },
+  combinedReducers
+);
 
 const store = createStore(persistedReducer);
 const persistor = persistStore(store);
