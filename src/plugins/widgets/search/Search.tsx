@@ -6,6 +6,7 @@ import { SuggestionsResult, SuggestionsData } from './suggestions/interfaces';
 import { Engine, Settings } from './interfaces';
 import { Suggestions } from './suggestions';
 import './Search.sass';
+
 const engines: Engine[] = require('./engines.json');
 
 interface Props extends Settings { }
@@ -28,9 +29,10 @@ class Search extends React.PureComponent<Props & InjectedIntlProps, State> {
   static defaultProps = {
     searchEngine: 'google',
     placeholder: '',
-    suggestionsEngine: 'off',
+    suggestionEngine: '',
     suggestionsQuantity: 4,
   };
+
   state = {
     query: '',
     getSuggestionData: false,
@@ -40,15 +42,9 @@ class Search extends React.PureComponent<Props & InjectedIntlProps, State> {
     },
   };
 
-  private searchInput: React.RefObject<HTMLInputElement>;
+  private searchInput: React.RefObject<HTMLInputElement> = React.createRef();
   private currentExecutionTime = 0;
   private oldQuery: string = '';
-
-  constructor(props: Props & InjectedIntlProps) {
-    super(props);
-
-    this.searchInput = React.createRef();
-  }
 
   componentDidUpdate() {
     this.getSuggestionData();
@@ -70,27 +66,24 @@ class Search extends React.PureComponent<Props & InjectedIntlProps, State> {
           placeholder={this.props.placeholder || this.props.intl.formatMessage(messages.placeholder)}
         />
 
-        {
-          this.props.suggestionsEngine !== 'off' ?
-            <Suggestions
-              data={this.state.suggestions}
-              onMouseOver={(event, key) => this.setState({ suggestions: { ...this.state.suggestions, active: key } })}
-              onMouseOut={() => this.setState({ suggestions: { ...this.state.suggestions, active: -1 } })}
-              onMouseClick={event => {
-                const target = event.currentTarget;
+        {this.props.suggestionsEngine && (
+          <Suggestions
+            data={this.state.suggestions}
+            onMouseOver={(event, key) => this.setState({ suggestions: { ...this.state.suggestions, active: key } })}
+            onMouseOut={() => this.setState({ suggestions: { ...this.state.suggestions, active: -1 } })}
+            onMouseClick={event => {
+              const target = event.currentTarget;
 
-                target.blur();
-                this.searchInput.current!.focus();
+              target.blur();
+              this.searchInput.current!.focus();
 
-                this.setState({
-                  query: target.value,
-                  getSuggestionData: true,
-                });
-              }}
-            />
-          :
-            null
-        }
+              this.setState({
+                query: target.value,
+                getSuggestionData: true,
+              });
+            }}
+          />
+        )}
       </form>
     );
   }
@@ -101,7 +94,7 @@ class Search extends React.PureComponent<Props & InjectedIntlProps, State> {
   private keyUp = (event: React.KeyboardEvent<HTMLFormElement>) => {
     const { keyCode } = event;
 
-    if (this.state.query === '' || (keyCode !== 38 && keyCode !== 40) || this.props.suggestionsEngine === 'off') {
+    if (this.state.query === '' || (keyCode !== 38 && keyCode !== 40) || ! this.props.suggestionsEngine) {
       return;
     }
 
@@ -184,7 +177,7 @@ class Search extends React.PureComponent<Props & InjectedIntlProps, State> {
   private getSuggestionData() {
     const { query, getSuggestionData } = this.state;
 
-    if (!getSuggestionData || this.props.suggestionsEngine === 'off') {
+    if (! getSuggestionData || ! this.props.suggestionsEngine) {
       return;
     }
 

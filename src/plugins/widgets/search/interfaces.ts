@@ -8,6 +8,6 @@ export interface Engine {
 export interface Settings {
   searchEngine?: string;
   placeholder?: string;
-  suggestionsEngine?: string; // I would have created an object but it doesn't really update (only on page reload)
+  suggestionsEngine?: string;
   suggestionsQuantity?: number;
 }

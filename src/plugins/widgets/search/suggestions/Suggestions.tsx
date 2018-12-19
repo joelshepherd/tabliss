@@ -22,35 +22,23 @@ class Suggestions extends React.Component<Props, State> {
   render() {
     const { data } = this.props;
 
-    if (!data) {
+    if (! data) {
       return null;
     }
 
-    let suggestions = data.values.map((element, key) => {
-      let className = '';
+    const suggestions = data.values.map((element, key) => (
+      <input
+        type="button"
+        key={key}
+        className={key === data.active ? 'active' : ''}
+        value={element}
+        onMouseOver={event => this.props.onMouseOver!(event, key)}
+        onMouseOut={event => this.props.onMouseOut!(event, key)}
+        onClick={event => this.props.onMouseClick!(event, key)}
+      />
+    ));
 
-      if (key === data.active) {
-        className = 'active';
-      }
-
-      return (
-        <input
-          type="button"
-          key={key}
-          className={className}
-          value={element}
-          onMouseOver={event => this.props.onMouseOver!(event, key)}
-          onMouseOut={event => this.props.onMouseOut!(event, key)}
-          onClick={event => this.props.onMouseClick!(event, key)}
-        />
-      );
-    });
-
-    return (
-      <div className="Suggestions">
-        {suggestions}
-      </div>
-    );
+    return <div className="Suggestions">{suggestions}</div>;
   }
 }
 
