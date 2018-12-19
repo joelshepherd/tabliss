@@ -3,12 +3,13 @@
     "key": "google",
     "name": "Google",
     "search_url": "https://www.google.com/search?q={searchTerms}",
-    "suggestions_url": "https://clients1.google.com/complete/search?client=chrome&q={searchTerms}"
+    "suggest_url": "https://www.google.com/complete/search?client=chrome&q={searchTerms}&callback={callback}"
   },
   {
     "key": "bing",
     "name": "Bing",
-    "search_url": "https://www.bing.com/search?q={searchTerms}"
+    "search_url": "https://www.bing.com/search?q={searchTerms}",
+    "suggest_url": "https://api.bing.com/osjson.aspx?query={searchTerms}&JsonType=callback&JsonCallback={callback}"
   },
   {
     "key": "baidu",

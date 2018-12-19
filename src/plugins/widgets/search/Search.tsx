@@ -29,7 +29,7 @@ class Search extends React.PureComponent<Props & InjectedIntlProps, State> {
   static defaultProps = {
     searchEngine: 'google',
     placeholder: '',
-    suggestionEngine: '',
+    suggestionsEngine: 'google',
     suggestionsQuantity: 4,
   };
 
@@ -51,6 +51,8 @@ class Search extends React.PureComponent<Props & InjectedIntlProps, State> {
   }
 
   render() {
+    const { intl, placeholder, suggestionsEngine } = this.props;
+
     return (
       <form className="Search" onKeyUp={this.keyUp} onSubmit={this.search}>
         <input
@@ -63,10 +65,10 @@ class Search extends React.PureComponent<Props & InjectedIntlProps, State> {
             this.oldQuery = event.target.value;
             this.setState({ query: event.target.value, getSuggestionData: true });
           }}
-          placeholder={this.props.placeholder || this.props.intl.formatMessage(messages.placeholder)}
+          placeholder={placeholder || intl.formatMessage(messages.placeholder)}
         />
 
-        {this.props.suggestionsEngine && (
+        {suggestionsEngine && (
           <Suggestions
             data={this.state.suggestions}
             onMouseOver={(event, key) => this.setState({ suggestions: { ...this.state.suggestions, active: key } })}
@@ -193,7 +195,7 @@ class Search extends React.PureComponent<Props & InjectedIntlProps, State> {
       .find(engine => engine.key === this.props.suggestionsEngine)
       || engines[0];
 
-    const suggestionUrl = suggestionEngine.suggestions_url!.replace('{searchTerms}', query);
+    const suggestionUrl = suggestionEngine.suggest_url!.replace('{searchTerms}', query);
 
     getSuggestions(suggestionUrl, suggestions => {
       this.setSuggestions(executionTime, suggestions);

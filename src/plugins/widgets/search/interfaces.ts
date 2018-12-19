@@ -2,7 +2,7 @@ export interface Engine {
   key: string;
   name: string;
   search_url: string;
-  suggestions_url?: string;
+  suggest_url?: string;
 }
 
 export interface Settings {
