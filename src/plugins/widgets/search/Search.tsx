@@ -9,7 +9,7 @@ import './Search.sass';
 
 const engines: Engine[] = require('./engines.json');
 
-interface Props extends Settings { }
+interface Props extends Settings {}
 
 interface State {
   query: string;
