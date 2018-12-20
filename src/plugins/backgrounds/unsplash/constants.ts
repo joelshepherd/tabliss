@@ -5,7 +5,7 @@ export const UNSPLASH_UTM = '?utm_source=Start&utm_medium=referral&utm_campaign=
 
 export const defaultProps = {
   blur: 0,
-  darken: 0,
+  darken: 10,
   by: By.OFFICIAL,
   collections: '',
   featured: false,
