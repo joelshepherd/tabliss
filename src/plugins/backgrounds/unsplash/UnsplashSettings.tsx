@@ -93,7 +93,7 @@ class UnsplashSettings extends React.PureComponent<Props> {
         }
 
         <label>
-          Blur: <br />
+          Blur <br />
           <input
             type="range"
             min="0"
@@ -104,7 +104,7 @@ class UnsplashSettings extends React.PureComponent<Props> {
         </label>
 
         <label>
-          Darken: <br />
+          Darken <br />
           <input
             type="range"
             min="0"
