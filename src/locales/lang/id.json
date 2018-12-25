@@ -1,0 +1,14 @@
+{
+  "app.pageTitle": "Tab Baru",
+  "dashboard.focusHint": "Muncul/Hilangkan widget",
+  "dashboard.fullscreenHint": "Beralih ke layar penuh",
+  "dashboard.loadingHint": "Memuat konten baru",
+  "dashboard.settingsHint": "Sesuaikan Tabliss",
+  "plugin.greeting.withName": "{hour, plural,\n      =0 {Tidur nyenyak, {name}}\n      =1 {Tidur nyenyak, {name}}\n      =2 {Tidur nyenyak, {name}}\n      =3 {Bangkit dan bersinar, {name}}\n      =4 {Bangkit dan bersinar, {name}}\n      =5 {Bangkit dan bersinar, {name}}\n      =6 {Selamat pagi, {name}}\n      =7 {Selamat pagi, {name}}\n      =8 {Selamat pagi, {name}}\n      =9 {Selamat pagi, {name}}\n      =10 {Halo, {name}}\n      =11 {Halo, {name}}\n      =12 {Halo, {name}}\n      =13 {Halo, {name}}\n      =14 {Selamat siang, {name}}\n      =15 {Selamat sore, {name}}\n      =16 {Selamat sore, {name}}\n      =17 {Selamat sore, {name}}\n      =18 {Selamat sore, {name}}\n      =19 {Selamat malam, {name}}\n      =20 {Selamat malam, {name}}\n      =21 {Selamat malam, {name}}\n      =22 {Selamat tidur, {name}}\n      =23 {Selamat tidur, {name}}\n    }",
+  "plugin.greeting.withoutName": "{hour, plural,\n      =0 {Tidur nyenyak}\n      =1 {Tidur nyenyak}\n      =2 {Tidur nyenyak}\n      =3 {Bangkit dan bersinar}\n      =4 {Bangkit dan bersinar}\n      =5 {Bangkit dan bersinar}\n      =6 {Selamat pagi}\n      =7 {Selamat pagi}\n      =8 {Selamat pagi}\n      =9 {Selamat pagi}\n      =10 {Halo}\n      =11 {Halo}\n      =12 {Halo}\n      =13 {Halo}\n      =14 {Selamat siang}\n      =15 {Selamat sore}\n      =16 {Selamat sore}\n      =17 {Selamat sore}\n      =18 {Selamat sore}\n      =19 {Selamat malam}\n      =20 {Selamat malam}\n      =21 {Selamat malam}\n      =22 {Selamat tidur}\n      =23 {Selamat tidur}\n    }",
+  "plugins.links.shortcutHint": "Tekan {number} atau klik untuk mengunjungi",
+  "plugins.links.standardHint": "Klik untuk mengunjungi",
+  "plugins.search.placeholder": "Ketik untuk cari",
+  "plugins.unsplash.photoLink": "Foto",
+  "settings.translationCredits": "Diterjemahkan oleh masbossun"
+}
