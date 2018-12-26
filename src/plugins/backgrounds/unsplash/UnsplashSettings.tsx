@@ -93,23 +93,25 @@ class UnsplashSettings extends React.PureComponent<Props> {
         }
 
         <label>
+          Blur <br />
           <input
-            type="checkbox"
-            checked={this.props.blur}
-            onChange={event => this.props.onChange({ blur: ! this.props.blur })}
+            type="range"
+            min="0"
+            max="50"
+            value={this.props.blur}
+            onChange={event => this.props.onChange({ blur: Number(event.target.value) })}
           />
-          {' '}
-          Slightly blur
         </label>
 
         <label>
+          Darken <br />
           <input
-            type="checkbox"
-            checked={this.props.darken}
-            onChange={event => this.props.onChange({ darken: ! this.props.darken })}
+            type="range"
+            min="0"
+            max="100"
+            value={this.props.darken}
+            onChange={event => this.props.onChange({ darken: Number(event.target.value) })}
           />
-          {' '}
-          Slightly darken
         </label>
       </div>
     );
