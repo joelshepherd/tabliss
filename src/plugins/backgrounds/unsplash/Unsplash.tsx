@@ -81,8 +81,6 @@ class Unsplash extends React.PureComponent<Props, State> {
         filter: `blur(${blur}px)`,
         transform: `scale(${(blur / 500) + 1})`,
       };
-    } else {
-      styles = { ...imageUrl };
     }
 
     return (
