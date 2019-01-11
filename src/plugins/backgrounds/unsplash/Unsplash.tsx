@@ -10,8 +10,6 @@ import UnsplashCredit from './UnsplashCredit';
 import './Unsplash.sass';
 
 interface Props extends Settings {
-  blur: number;
-  darken: number;
   focus: boolean;
   local: Local;
   popPending: ActionCreator<Action>;
@@ -62,7 +60,15 @@ class Unsplash extends React.PureComponent<Props, State> {
   }
 
   render() {
-    const { blur, darken, focus } = this.props;
+    let { blur, darken, focus } = this.props;
+
+    // Migrate some legacy values
+    if (blur === true) {
+      blur = 5;
+    }
+    if (darken === true) {
+      darken = 10;
+    }
 
     let styles: React.CSSProperties = this.state.current
       ? { backgroundImage: `url(${this.state.current.src})` }

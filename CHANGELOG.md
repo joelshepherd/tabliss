@@ -7,6 +7,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 ### Added
 - New search suggestions for the search box! Thanks @Wavum
 - Translations for Norwegian! Thanks @Bendreas
+- Translations for Indonesian!  Thanks @masbossun
 
 ### Changed
 - Improved quotes aesthetic
