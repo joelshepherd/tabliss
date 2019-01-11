@@ -62,28 +62,26 @@ class Unsplash extends React.PureComponent<Props, State> {
   }
 
   render() {
-    let styles: any = this.state.current
+    const { blur, darken, focus } = this.props;
+
+    let styles: React.CSSProperties = this.state.current
       ? { backgroundImage: `url(${this.state.current.src})` }
       : { opacity: 0 };
 
-    if (this.props.blur !== 0 && !this.props.focus) {
+    if (blur && ! focus) {
       styles = {
         ...styles,
-        filter: `blur(${this.props.blur}px)`,
-        transform: `scale(${(this.props.blur / 500) + 1})`,
+        filter: `blur(${blur}px)`,
+        transform: `scale(${(blur / 500) + 1})`,
       };
     }
 
     return (
       <div className="Unsplash fullscreen">
         <div className="image fullscreen" style={styles} />
-        {
-          this.props.darken && !this.props.focus &&
-            <div
-              className="fullscreen"
-              style={{ backgroundColor: `rgba(0, 0, 0, ${this.props.darken * 0.01})` }}
-            />
-        }
+        {darken && ! focus && (
+          <div className="fullscreen" style={{ backgroundColor: `rgba(0, 0, 0, ${darken * 0.01})` }} />
+        )}
         {this.state.current && <UnsplashCredit image={this.state.current} />}
       </div>
     );
