@@ -45,13 +45,13 @@ class Settings extends React.PureComponent<Props> {
 
           <Feedback />
 
-          <p><a onClick={this.reset}>Reset to default</a></p>
-
           <p>
             <a href="https://www.paypal.me/tabliss" target="_blank" rel="noopener noreferrer">
               Love Tabliss? Donate 😍
             </a>
           </p>
+
+          <p><a onClick={this.reset}>Reset to default</a></p>
 
           <p>
             <a href="https://tabliss.io/" target="_blank">

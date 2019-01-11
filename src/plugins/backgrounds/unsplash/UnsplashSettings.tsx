@@ -98,7 +98,8 @@ class UnsplashSettings extends React.PureComponent<Props> {
             type="range"
             min="0"
             max="50"
-            value={this.props.blur}
+            step="5"
+            value={typeof this.props.blur === 'boolean' ? 0 : this.props.blur}
             onChange={event => this.props.onChange({ blur: Number(event.target.value) })}
           />
         </label>
@@ -109,7 +110,8 @@ class UnsplashSettings extends React.PureComponent<Props> {
             type="range"
             min="0"
             max="100"
-            value={this.props.darken}
+            step="10"
+            value={typeof this.props.darken === 'boolean' ? 0 : this.props.darken}
             onChange={event => this.props.onChange({ darken: Number(event.target.value) })}
           />
         </label>

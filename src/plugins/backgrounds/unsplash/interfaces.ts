@@ -1,6 +1,6 @@
 export interface Settings {
-  blur: number;
-  darken: number;
+  blur: boolean | number; // Migrating from boolean -> number
+  darken: boolean | number; // Migrating from boolean -> number
   by: By;
   collections: string;
   featured: boolean;
