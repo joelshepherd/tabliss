@@ -1,0 +1,14 @@
+{
+  "app.pageTitle": "Tab mới",
+  "dashboard.focusHint": "Bật/Tắt widget",
+  "dashboard.fullscreenHint": "Bật/Tắt fullscreen",
+  "dashboard.loadingHint": "Đang tải nội dung mới",
+  "dashboard.settingsHint": "Tùy chỉnh Tabliss",
+  "plugin.greeting.withName": "{hour, plural,\n      =0 {Chúc ngủ ngon, {name}}\n      =1 {Chúc ngủ ngon, {name}}\n      =2 {Chúc ngủ ngon, {name}}\n      =3 {Thức dậy đi nào, {name}}\n      =4 {Thức dậy đi nào, {name}}\n      =5 {Thức dậy đi nào, {name}}\n      =6 {Chào buổi sáng, {name}}\n      =7 {Chào buổi sáng, {name}}\n      =8 {Chào buổi sáng, {name}}\n      =9 {Chào buổi sáng, {name}}\n      =10 {Xin chào, {name}}\n      =11 {Xin chào, {name}}\n      =12 {Xin chào, {name}}\n      =13 {Xin chào, {name}}\n      =14 {Chào buổi chiều, {name}}\n      =15 {Chào buổi chiều, {name}}\n      =16 {Chào buổi chiều, {name}}\n      =17 {Chào buổi chiều, {name}}\n      =18 {Chào buổi tối, {name}}\n      =19 {Chào buổi tối, {name}}\n      =20 {Chào buổi tối, {name}}\n      =21 {Chào buổi tối, {name}}\n      =22 {Chúc ngủ ngon, {name}}\n      =23 {Chúc ngủ ngon, {name}}\n    }",
+  "plugin.greeting.withoutName": "{hour, plural,\n      =0 {Chúc ngủ ngon}\n      =1 {Chúc ngủ ngon}\n      =2 {Chúc ngủ ngon}\n      =3 {Thức dậy đi nào}\n      =4 {Thức dậy đi nào}\n      =5 {Thức dậy đi nào}\n      =6 {Chào buổi sáng}\n      =7 {Chào buổi sáng}\n      =8 {Chào buổi sáng}\n      =9 {Chào buổi sáng}\n      =10 {Xin chào}\n      =11 {Xin chào}\n      =12 {Xin chào}\n      =13 {Xin chào}\n      =14 {Chào buổi chiều}\n      =15 {Chào buổi chiều}\n      =16 {Chào buổi chiều}\n      =17 {Chào buổi chiều}\n      =18 {Chào buổi tối}\n      =19 {Chào buổi tối}\n      =20 {Chào buổi tối}\n      =21 {Chào buổi tối}\n      =22 {Chúc ngủ ngon}\n      =23 {Chúc ngủ ngon}\n    }",
+  "plugins.links.shortcutHint": "Nhấn {number} hoặc click để mở",
+  "plugins.links.standardHint": "Click để mở",
+  "plugins.search.placeholder": "Gõ để tìm kiếm",
+  "plugins.unsplash.photoLink": "Ảnh",
+  "settings.translationCredits": "Bản dịch tiếng Việt của Phạm Ngọc Thạch"
+}
