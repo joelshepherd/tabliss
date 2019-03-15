@@ -3,14 +3,19 @@
 All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
-## [Unreleased]
+## [1.17.0] - 2019-03-15
 ### Added
 - New search suggestions for the search box! Thanks @Wavum
+- Sliders to control darken and blur for Unsplash! Thanks Roman
 - Translations for Norwegian! Thanks @Bendreas
-- Translations for Indonesian!  Thanks @masbossun
+- Translations for Indonesian! Thanks @masbossun
+- Translations for Vietnamese! Thanks @pnthach95
 
 ### Changed
 - Improved quotes aesthetic
+
+### Fixed
+- Fullscreen mode in Chrome
 
 ## [1.16.0] - 2018-09-12
 ### Added

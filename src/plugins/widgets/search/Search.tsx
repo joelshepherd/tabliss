@@ -59,7 +59,7 @@ class Search extends React.PureComponent<Props & InjectedIntlProps, State> {
           ref={this.searchInput}
           autoFocus={true}
           tabIndex={1}
-          type="search"
+          type="text"
           value={this.state.query}
           onChange={event => {
             this.oldQuery = event.target.value;
