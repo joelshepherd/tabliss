@@ -33,18 +33,18 @@ Items that may still be required:
 - A way to specify which "style" the user has selected for this widget
 
 ```ts
-interface PluginProps {
+interface PluginProps<LocalState = {}, SyncState = {}> {
   // State the is only kept in this browser.
   // Used for large items and caches (like storage a cached image to display on next load)
-  local: Store;
+  local: Store<LocalState>;
 
   // State that is synced between the users browsers.
   // Used for settings and small text items (like the user's todos for example)
-  sync: Store;
+  sync: Store<SyncState>;
 }
 
-interface Store<T = unknown> {
-  state: T;
-  setState: (state: T): void;
+interface Store<State = unknown> {
+  state: State;
+  setState: (state: State): void;
 }
 ```
