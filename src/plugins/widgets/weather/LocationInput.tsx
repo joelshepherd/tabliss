@@ -109,11 +109,11 @@ class LocationInput extends React.PureComponent<Props, State> {
   }
 
   private geocodeLocation = () => {
-    fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${this.state.query}`)
+    fetch(`https://nominatim.openstreetmap.org/search.php?format=json&q=${this.state.query}`)
       .then(res => res.json())
       .then(data => this.props.onChange({
-        latitude: data.results[0].geometry.location.lat.toFixed(4),
-        longitude: data.results[0].geometry.location.lng.toFixed(4),
+        latitude: Number(data[0].lat).toFixed(4),
+        longitude: Number(data[0].lon).toFixed(4),
       }))
       .then(() => this.setState({ lookup: false, query: '' }))
       .catch(() => {
