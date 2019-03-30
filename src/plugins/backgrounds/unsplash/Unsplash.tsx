@@ -121,6 +121,12 @@ class Unsplash extends React.PureComponent<Props, State> {
     this.props.updateLocal({ current: {
       ...image, timestamp,
     }});
+    
+    let img = new Image();
+    img.onerror = () => {
+        this.refresh(this.props);
+    };
+    img.src = src;
   }
 
   /**
