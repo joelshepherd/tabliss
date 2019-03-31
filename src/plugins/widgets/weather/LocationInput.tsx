@@ -1,7 +1,7 @@
 import * as React from 'react';
 import './LocationInput.sass';
-const navigationIcon = require('feather-icons/dist/icons/navigation.svg');
-const searchIcon = require('feather-icons/dist/icons/search.svg');
+const navigationIcon = require('feather-icons/dist/icons/navigation.svg').default;
+const searchIcon = require('feather-icons/dist/icons/search.svg').default;
 
 interface Props {
   latitude: number|string;

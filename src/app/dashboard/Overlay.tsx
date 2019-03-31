@@ -2,16 +2,16 @@ import * as React from 'react';
 import { defineMessages, injectIntl, InjectedIntlProps } from 'react-intl';
 import { ActionCreator } from 'redux';
 import { connect } from 'react-redux';
-import * as screenfull from 'screenfull';
+import screenfull from 'screenfull';
 import { Action, RootState, toggleFocus, toggleSettings } from '../../data';
 import { isInputEvent } from '../../utils';
 import { eyeIcon, eyeOffIcon } from '../ui';
 import './Overlay.sass';
 
-const maximiseIcon = require('feather-icons/dist/icons/maximize-2.svg');
-const minimiseIcon = require('feather-icons/dist/icons/minimize-2.svg');
-const settingsIcon = require('feather-icons/dist/icons/settings.svg');
-const pendingIcon = require('feather-icons/dist/icons/zap.svg');
+const maximiseIcon = require('feather-icons/dist/icons/maximize-2.svg').default;
+const minimiseIcon = require('feather-icons/dist/icons/minimize-2.svg').default;
+const settingsIcon = require('feather-icons/dist/icons/settings.svg').default;
+const pendingIcon = require('feather-icons/dist/icons/zap.svg').default;
 
 interface Props {
   focus: boolean;

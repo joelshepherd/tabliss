@@ -3,7 +3,7 @@ import { isInputEvent } from '../../../utils';
 import { Settings } from './interfaces';
 import LinkDisplay from './LinkDisplay';
 import './Links.sass';
-const linkIcon = require('feather-icons/dist/icons/link-2.svg');
+const linkIcon = require('feather-icons/dist/icons/link-2.svg').default;
 
 interface State {
   visible: boolean;

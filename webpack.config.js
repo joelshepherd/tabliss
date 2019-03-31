@@ -70,7 +70,7 @@ const config = {
     ],
   },
   plugins: [
-    new CleanWebpackPlugin('dist'),
+    new CleanWebpackPlugin(),
     new CopyWebpackPlugin([
       { from: 'public' },
     ]),

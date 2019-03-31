@@ -14,12 +14,14 @@ if (process.env.NODE_ENV === 'production') {
 
 // Render app into root element
 render(
-  <StoreProvider store={store}>
-    <IntlProvider>
-      <App />
-    </IntlProvider>
-  </StoreProvider>,
-  document.getElementById('root'),
+  (
+    <StoreProvider store={store}>
+      <IntlProvider>
+        <App />
+      </IntlProvider>
+    </StoreProvider>
+  ),
+  document.getElementById('root')
 );
 
 // Register service worker on web

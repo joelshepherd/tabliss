@@ -10,7 +10,7 @@ import Widgets from './Widgets';
 import { Action, resetDashboard, toggleSettings } from '../../data';
 import { githubIcon, globeIcon, twitterIcon } from '../ui';
 import './Settings.sass';
-const logo = require('./logo.svg');
+const logo = require('./logo.svg').default;
 const ESCAPE_KEY = 27;
 
 interface Props {

@@ -46,7 +46,7 @@ const mapDispatchToProps = (dispatch: Dispatch<Action>, ownProps: OwnProps) => (
   },
 });
 
-export default withErrorBoundary(
+export default withErrorBoundary<OwnProps>(
   connect(mapStateToProps, mapDispatchToProps)(Plugin),
   Crashed,
   captureException,
