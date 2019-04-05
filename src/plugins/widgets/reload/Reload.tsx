@@ -5,7 +5,7 @@ interface Props {
 }
 
 class Reload extends React.PureComponent<Props> {
-  timeOut: any;
+  timeOut: ReturnType<typeof setTimeout>;
 
   componentDidMount() {
     this.attach();
@@ -32,10 +32,13 @@ class Reload extends React.PureComponent<Props> {
   }
 
   private attach() {
-    if(this.props.input) {
-      this.timeOut = setTimeout(() => {
-        location.reload();
-      }, this.props.input * 60000);
+    if (this.props.input) {
+      this.timeOut = setTimeout(
+        () => {
+          location.reload();
+        },
+        this.props.input * 60000
+      );
     }
   }
 }
