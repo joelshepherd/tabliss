@@ -85,9 +85,7 @@ class Unsplash extends React.PureComponent<Props, State> {
     return (
       <div className="Unsplash fullscreen">
         <div className="image fullscreen" style={styles} />
-        {darken && ! focus && (
-          <div className="fullscreen" style={{ backgroundColor: `rgba(0, 0, 0, ${darken * 0.01})` }} />
-        )}
+        {darken && !focus ? <div className="fullscreen" style={{ backgroundColor: `rgba(0, 0, 0, ${darken * 0.01})` }} /> : ''}
         {this.state.current && <UnsplashCredit image={this.state.current} />}
       </div>
     );
