@@ -20,7 +20,7 @@ const CssSettings: React.StatelessComponent<Props> = ({ input = '', onChange }) 
       </label>
 
       <p className="info">
-        Warning: this functionality is intended for advanced users.
+        <b>Warning:</b> this functionality is intended for advanced users.
         Custom styles may break at any time.
       </p>
     </div>
