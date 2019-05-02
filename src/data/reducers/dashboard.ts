@@ -18,18 +18,6 @@ const initialState = {
 };
 
 export function dashboard(state: Dashboard = initialState, action: Action): Dashboard {
-  // Quick dirty migration, until I implement them officially
-  if (process.env.BUILD_TARGET !== 'web') {
-    const widgetToRemove = 'widgets/js';
-
-    if (state.widgets.includes(widgetToRemove)) {
-      state = {
-        ...state,
-        widgets: state.widgets.filter(widget => widget !== widgetToRemove),
-      };
-    }
-  }
-
   switch (action.type) {
     case CHANGE_BACKGROUND:
       return {

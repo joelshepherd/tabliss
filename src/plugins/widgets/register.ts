@@ -39,16 +39,13 @@ registerPlugin({
   Settings: GreetingSettings,
 });
 
-// Only available on the web version due to extension's CSP
-if (process.env.BUILD_TARGET === 'web') {
-  registerPlugin({
-    key: 'widgets/js',
-    type: Type.WIDGET,
-    title: 'Custom JS',
-    Dashboard: Js,
-    Settings: JsSettings,
-  });
-}
+registerPlugin({
+  key: 'widgets/js',
+  type: Type.WIDGET,
+  title: 'Custom JS',
+  Dashboard: Js,
+  Settings: JsSettings,
+});
 
 registerPlugin({
   key: 'core/widgets/links',

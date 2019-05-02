@@ -1,46 +1,62 @@
 import * as React from 'react';
-import debounce from 'lodash-es/debounce';
 
 interface Props {
   input?: string;
 }
 
-class Js extends React.PureComponent<Props> {
-  private debouncedAttach = debounce(this.attach, 500);
+declare const browser: any; // tslint:disable-line no-any
+declare const chrome: any; // tslint:disable-line no-any
 
+class Js extends React.PureComponent<Props> {
   componentDidMount() {
-    this.attach();
+    this.runScript();
   }
 
   componentDidUpdate() {
-    this.detach();
-    this.debouncedAttach();
+    this.cleanup();
+    this.runScript();
   }
 
   componentWillUnmount() {
-    this.detach();
+    this.cleanup();
   }
 
   render() {
     return null;
   }
 
-  private detach() {
-    const script = document.getElementById('CustomJs');
+  private cleanup() {
+    if (process.env.BUILD_TARGET === 'web') {
+      const script = document.getElementById('CustomJs');
 
-    if (script) {
-      document.head.removeChild(script);
+      if (script) {
+        document.head.removeChild(script);
+      }
     }
   }
 
-  private attach() {
-    const script = document.createElement('script');
+  private runScript() {
+    if (this.props.input) {
+      if (process.env.BUILD_TARGET === 'web') {
+        const script = document.createElement('script');
 
-    script.id = 'CustomJs';
-    script.type = 'text/javascript';
-    script.appendChild(document.createTextNode(this.props.input || ''));
+        script.id = 'CustomJs';
+        script.type = 'text/javascript';
+        script.appendChild(document.createTextNode(this.props.input || ''));
 
-    document.head.appendChild(script);
+        document.head.appendChild(script);
+      } else if (process.env.BUILD_TARGET === 'firefox') {
+        browser.tabs.executeScript({
+          allFrames: false,
+          code: '(function() {' + this.props.input + '})();'
+        });
+      } else if (process.env.BUILD_TARGET === 'chrome') {
+        chrome.tabs.executeScript({
+          allFrames: false,
+          code: '(function() {' + this.props.input + '})();'
+        });
+      }
+    }
   }
 }
 
