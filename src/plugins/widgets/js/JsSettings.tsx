@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Settings } from '../../interfaces';
+import './Js.sass';
 
 interface State {
   input: string;
