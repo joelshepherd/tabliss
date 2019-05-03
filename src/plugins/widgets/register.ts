@@ -39,13 +39,16 @@ registerPlugin({
   Settings: GreetingSettings,
 });
 
-registerPlugin({
-  key: 'widgets/js',
-  type: Type.WIDGET,
-  title: 'Custom JS',
-  Dashboard: Js,
-  Settings: JsSettings,
-});
+// Not available on chrome due to extension's CSP
+if (process.env.BUILD_TARGET !== 'chrome') {
+  registerPlugin({
+    key: 'widgets/js',
+    type: Type.WIDGET,
+    title: 'Custom JS',
+    Dashboard: Js,
+    Settings: JsSettings,
+  });
+}
 
 registerPlugin({
   key: 'core/widgets/links',

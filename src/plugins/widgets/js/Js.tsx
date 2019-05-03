@@ -5,7 +5,6 @@ interface Props {
 }
 
 declare const browser: any; // tslint:disable-line no-any
-declare const chrome: any; // tslint:disable-line no-any
 
 class Js extends React.PureComponent<Props> {
   componentDidMount() {
@@ -40,18 +39,13 @@ class Js extends React.PureComponent<Props> {
       if (process.env.BUILD_TARGET === 'web') {
         const script = document.createElement('script');
 
-        script.id = 'CustomJs';
-        script.type = 'text/javascript';
+        script.setAttribute('id', 'CustomJs');
+        script.setAttribute('type', 'text/javascript');
         script.appendChild(document.createTextNode(this.props.input || ''));
 
         document.head.appendChild(script);
       } else if (process.env.BUILD_TARGET === 'firefox') {
         browser.tabs.executeScript({
-          allFrames: false,
-          code: '(function() {' + this.props.input + '})();'
-        });
-      } else if (process.env.BUILD_TARGET === 'chrome') {
-        chrome.tabs.executeScript({
           allFrames: false,
           code: '(function() {' + this.props.input + '})();'
         });
