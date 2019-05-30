@@ -8,7 +8,6 @@
     "build:chrome": "NODE_ENV=production BUILD_TARGET=chrome webpack",
     "build:firefox": "NODE_ENV=production BUILD_TARGET=firefox webpack",
     "build:web": "NODE_ENV=production BUILD_TARGET=web webpack",
-    "lint": "tslint --project tsconfig.json",
     "start": "webpack-dev-server",
     "test": "jest --config jest.json",
     "translations": "node ./scripts/translations.js"
@@ -66,9 +65,6 @@
     "sw-precache-webpack-plugin": "^0.11.5",
     "ts-jest": "^22.4.6",
     "ts-loader": "^4.0.0",
-    "tslint": "^5.10.0",
-    "tslint-loader": "^3.6.0",
-    "tslint-react": "^3.6.0",
     "typescript": "^2.8.4",
     "typescript-react-intl": "^0.2.5",
     "url-loader": "^1.0.0",

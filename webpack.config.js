@@ -27,12 +27,6 @@ const config = {
   module: {
     rules: [
       {
-        test: /\.(ts|tsx)$/,
-        enforce: 'pre',
-        include: path.resolve('./src'),
-        loader: 'tslint-loader',
-      },
-      {
         test: /\.css$/,
         use: [MiniCssExtractPlugin.loader, 'css-loader'],
       },
