@@ -15,11 +15,16 @@ class Image extends React.PureComponent<Props> {
   private current: string;
 
   render() {
-    if (! this.props.images.length) {
+    if (!this.props.images.length) {
       return <div className="Image default fullscreen" />;
     }
 
-    return <div className="Image fullscreen" style={{ backgroundImage: `url(${this.url})` }} />;
+    return (
+      <div
+        className="Image fullscreen"
+        style={{ backgroundImage: `url(${this.url})` }}
+      />
+    );
   }
 
   private get url() {
@@ -32,7 +37,7 @@ class Image extends React.PureComponent<Props> {
     const image = sample(this.props.images);
 
     try {
-      return this.current = URL.createObjectURL(image);
+      return (this.current = URL.createObjectURL(image));
     } catch (err) {
       // Y u no give less vague messages so I can fix you!
       // ლ(ಠ益ಠლ)

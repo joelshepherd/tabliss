@@ -41,20 +41,28 @@ class Weather extends React.PureComponent<Props> {
   }
 
   render() {
-    if (! get(this.props, 'local.conditions')) {
+    if (!get(this.props, 'local.conditions')) {
       return <div className={`Weather ${this.props.mode}`}>-</div>;
     }
 
     return (
       <div className={`Weather ${this.props.mode}`}>
-        <div className="summary" onClick={this.toggleExpand} title="Toggle weather details">
-          <i dangerouslySetInnerHTML={{ __html: weatherIcons[this.props.local.conditions.icon] }} />
+        <div
+          className="summary"
+          onClick={this.toggleExpand}
+          title="Toggle weather details"
+        >
+          <i
+            dangerouslySetInnerHTML={{
+              __html: weatherIcons[this.props.local.conditions.icon],
+            }}
+          />
           <span className="temperature">
             {this.props.local.conditions.temperature}˚
           </span>
         </div>
 
-        {this.props.mode === 'corner' && this.props.local.details &&
+        {this.props.mode === 'corner' && this.props.local.details && (
           <div className="details">
             <dl>
               <dt>{this.props.local.conditions.humidity}%</dt>
@@ -62,38 +70,46 @@ class Weather extends React.PureComponent<Props> {
             </dl>
             <dl>
               <dt>{this.props.local.conditions.precipProbability}%</dt>
-              <dd>Chance of {this.props.local.conditions.precipType || 'rain'}</dd>
+              <dd>
+                Chance of {this.props.local.conditions.precipType || 'rain'}
+              </dd>
             </dl>
             <dl>
               <dt>{this.props.local.conditions.apparentTemperature}˚</dt>
               <dd>Feels like</dd>
             </dl>
-        </div>
-        }
+          </div>
+        )}
       </div>
     );
   }
 
   private toggleExpand = () => {
     if (this.props.mode === 'corner') {
-      this.props.updateLocal({ details: ! this.props.local.details });
+      this.props.updateLocal({ details: !this.props.local.details });
     }
-  }
+  };
 
   private shouldRefresh() {
-    return get(this.props, 'local.conditions.timestamp', 0) + 900000 < Date.now();
+    return (
+      get(this.props, 'local.conditions.timestamp', 0) + 900000 < Date.now()
+    );
   }
 
-  private async getForecast({ latitude, longitude, units }: Props = this.props) {
+  private async getForecast(
+    { latitude, longitude, units }: Props = this.props,
+  ) {
     // Validate we have all required settings
-    if (! (latitude && longitude && units)) {
+    if (!(latitude && longitude && units)) {
       return;
     }
 
     this.props.pushPending();
 
     const req = new Request(
-      `${process.env.API_ENDPOINT}/forecast?latitude=${latitude}&longitude=${longitude}&units=${units}`
+      `${
+        process.env.API_ENDPOINT
+      }/forecast?latitude=${latitude}&longitude=${longitude}&units=${units}`,
     );
     const res = await (await fetch(req)).json();
 
@@ -105,7 +121,7 @@ class Weather extends React.PureComponent<Props> {
         precipProbability: Math.round(res.data.precipProbability * 100),
         temperature: Math.round(res.data.temperature),
         timestamp: Date.now(),
-      }
+      },
     });
 
     this.props.popPending();
@@ -114,4 +130,7 @@ class Weather extends React.PureComponent<Props> {
 
 const mapDispatchToProps = { popPending, pushPending };
 
-export default connect(null, mapDispatchToProps)(Weather);
+export default connect(
+  null,
+  mapDispatchToProps,
+)(Weather);

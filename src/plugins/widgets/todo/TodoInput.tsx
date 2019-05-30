@@ -34,16 +34,14 @@ class TodoInput extends React.PureComponent<Props, State> {
           </form>
         )}
 
-        {! this.state.open && (
-          <a onClick={this.onOpen}>{expandIcon}</a>
-        )}
+        {!this.state.open && <a onClick={this.onOpen}>{expandIcon}</a>}
       </span>
     );
   }
 
   private onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     this.setState({ contents: event.target.value });
-  }
+  };
 
   private onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -56,15 +54,15 @@ class TodoInput extends React.PureComponent<Props, State> {
       contents: '',
       open: false,
     });
-  }
+  };
 
   private onOpen = () => {
     this.setState({ open: true });
-  }
+  };
 
   private onClose = () => {
     this.setState({ open: false });
-  }
+  };
 }
 
 export default TodoInput;

@@ -36,7 +36,12 @@ class Quote extends React.PureComponent<Props> {
     return (
       <h4 className="Quote">
         "{get(this.props, 'local.quote')}"
-        {has(this.props, 'local.author') && <sub><br />&mdash; {get(this.props, 'local.author')}</sub>}
+        {has(this.props, 'local.author') && (
+          <sub>
+            <br />
+            &mdash; {get(this.props, 'local.author')}
+          </sub>
+        )}
       </h4>
     );
   }
@@ -45,9 +50,10 @@ class Quote extends React.PureComponent<Props> {
   private async getQuote({ category }: Props): Promise<Data> {
     this.props.pushPending();
 
-    const quote = category === 'developerexcuses'
-      ? await this.getDeveloperExcuse()
-      : await this.getQuoteOfTheDay(category);
+    const quote =
+      category === 'developerexcuses'
+        ? await this.getDeveloperExcuse()
+        : await this.getQuoteOfTheDay(category);
 
     this.props.popPending();
 
@@ -74,7 +80,10 @@ class Quote extends React.PureComponent<Props> {
 
   // Get quote of the day
   private async getQuoteOfTheDay(category?: string): Promise<Data> {
-    const res = await fetch('https://quotes.rest/qod.json' + (category ? `?category=${category}` : ''));
+    const res = await fetch(
+      'https://quotes.rest/qod.json' +
+        (category ? `?category=${category}` : ''),
+    );
     const body = await res.json();
 
     if (res.status === 429) {
@@ -95,4 +104,7 @@ class Quote extends React.PureComponent<Props> {
 
 const mapDispatchToProps = { popPending, pushPending };
 
-export default connect(null, mapDispatchToProps)(Quote);
+export default connect(
+  null,
+  mapDispatchToProps,
+)(Quote);

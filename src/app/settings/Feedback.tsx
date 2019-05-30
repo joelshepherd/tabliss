@@ -19,11 +19,13 @@ class Feedback extends React.PureComponent<{}, State> {
   render() {
     return (
       <div className="Feedback">
-        {! this.state.open &&
-          <p><a onClick={this.toggle}>Send feedback or suggestions</a></p>
-        }
+        {!this.state.open && (
+          <p>
+            <a onClick={this.toggle}>Send feedback or suggestions</a>
+          </p>
+        )}
 
-        {this.state.open &&
+        {this.state.open && (
           <div>
             <input
               type="email"
@@ -40,11 +42,19 @@ class Feedback extends React.PureComponent<{}, State> {
             />
 
             <div style={{ float: 'right' }}>
-              <IconButton onClick={this.toggle} title="Close feedback form">{collapseIcon}</IconButton>
+              <IconButton onClick={this.toggle} title="Close feedback form">
+                {collapseIcon}
+              </IconButton>
             </div>
-            <button className="button--primary" disabled={this.state.pending} onClick={this.send}>Send</button>
+            <button
+              className="button--primary"
+              disabled={this.state.pending}
+              onClick={this.send}
+            >
+              Send
+            </button>
           </div>
-        }
+        )}
       </div>
     );
   }
@@ -54,7 +64,7 @@ class Feedback extends React.PureComponent<{}, State> {
       return;
     }
 
-    if (! this.state.body) {
+    if (!this.state.body) {
       this.setState({ open: false });
       return;
     }
@@ -64,28 +74,33 @@ class Feedback extends React.PureComponent<{}, State> {
     const request = new Request(`${process.env.API_ENDPOINT}/feedback`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email: this.state.email || undefined, feedback: this.state.body }),
+      body: JSON.stringify({
+        email: this.state.email || undefined,
+        feedback: this.state.body,
+      }),
     });
 
     fetch(request)
       .then(res => {
-        if (! res.ok) {
+        if (!res.ok) {
           throw new Error('Feedback API request was not successful');
         }
 
         alert('Thank you for your feedback!');
         this.setState({
           body: '',
-          pending: false
+          pending: false,
         });
       })
       .catch(() => {
-        alert('Sorry, we were unable to send your feedback :( Please email your feedback to feedback@tabliss instead.');
+        alert(
+          'Sorry, we were unable to send your feedback :( Please email your feedback to feedback@tabliss instead.',
+        );
         this.setState({ pending: false });
       });
-  }
+  };
 
-  private toggle = () => this.setState({ open: ! this.state.open });
+  private toggle = () => this.setState({ open: !this.state.open });
 }
 
 export default Feedback;

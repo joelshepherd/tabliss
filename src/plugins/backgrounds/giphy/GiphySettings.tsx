@@ -31,9 +31,8 @@ class GiphySettings extends React.PureComponent<Props> {
           <input
             type="checkbox"
             checked={this.props.nsfw}
-            onChange={event => this.props.onChange({ nsfw: ! this.props.nsfw })}
-          />
-          {' '}
+            onChange={event => this.props.onChange({ nsfw: !this.props.nsfw })}
+          />{' '}
           Allow NSFW
         </label>
 
@@ -41,9 +40,10 @@ class GiphySettings extends React.PureComponent<Props> {
           <input
             type="checkbox"
             checked={this.props.expand}
-            onChange={event => this.props.onChange({ expand: ! this.props.expand })}
-          />
-          {' '}
+            onChange={event =>
+              this.props.onChange({ expand: !this.props.expand })
+            }
+          />{' '}
           Stretch to fill screen
         </label>
       </div>

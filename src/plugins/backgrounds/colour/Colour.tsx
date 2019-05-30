@@ -10,7 +10,12 @@ class Colour extends React.PureComponent<Props> {
   };
 
   render() {
-    return <div className="Colour fullscreen" style={{backgroundColor: this.props.colour}} />;
+    return (
+      <div
+        className="Colour fullscreen"
+        style={{ backgroundColor: this.props.colour }}
+      />
+    );
   }
 }
 

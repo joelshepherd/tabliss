@@ -7,7 +7,7 @@ interface Props {
   pluginKey: string;
 }
 
-const Background: React.StatelessComponent<Props> = (props) => (
+const Background: React.StatelessComponent<Props> = props => (
   <Plugin pluginKey={props.pluginKey} />
 );
 

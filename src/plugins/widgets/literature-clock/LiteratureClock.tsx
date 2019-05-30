@@ -46,7 +46,9 @@ class LiteratureClock extends React.PureComponent<Props, State> {
 
   render() {
     return (
-      <div className={`LiteratureClock ${this.props.centerText ? 'center' : ''}`}>
+      <div
+        className={`LiteratureClock ${this.props.centerText ? 'center' : ''}`}
+      >
         <blockquote>
           <span className="quote_first">
             {get(this.props, 'local.quote_first')}
@@ -63,17 +65,12 @@ class LiteratureClock extends React.PureComponent<Props, State> {
 
         {this.props.showBookAndAuthor &&
           has(this.props, 'local.title') &&
-          has(this.props, 'local.author') &&
-          <cite>
-            &mdash; <span id="book">
-                {get(this.props, 'local.title')}
-              </span>
-
-            , <span id="author">
-                {get(this.props, 'local.author')}
-              </span>
-          </cite>
-        }
+          has(this.props, 'local.author') && (
+            <cite>
+              &mdash; <span id="book">{get(this.props, 'local.title')}</span>,{' '}
+              <span id="author">{get(this.props, 'local.author')}</span>
+            </cite>
+          )}
       </div>
     );
   }
@@ -89,12 +86,15 @@ class LiteratureClock extends React.PureComponent<Props, State> {
 
   // Get quote by time code
   private async getQuoteByTime(): Promise<Data> {
-    let apiEndpoint = 'https://raw.githubusercontent.com/lbngoc/literature-clock/master/docs/times';
+    let apiEndpoint =
+      'https://raw.githubusercontent.com/lbngoc/literature-clock/master/docs/times';
     let timeCode = this.getTimeCode();
-    const res = await fetch(`${apiEndpoint}/${timeCode}.json`, { mode: 'cors' });
+    const res = await fetch(`${apiEndpoint}/${timeCode}.json`, {
+      mode: 'cors',
+    });
     const body = await res.json();
     let timeQuote: Data = {
-      title: 'Too many requests at this time'
+      title: 'Too many requests at this time',
     };
     if (res.status === 429) {
       return timeQuote;
@@ -109,9 +109,12 @@ class LiteratureClock extends React.PureComponent<Props, State> {
     if (!this.props.local || timeCode !== this.props.local.time) {
       this.getQuoteByTime().then(quote => quote && this.props.setLocal(quote));
     }
-  }
+  };
 }
 
 const mapDispatchToProps = { popPending, pushPending };
 
-export default connect(null, mapDispatchToProps)(LiteratureClock);
+export default connect(
+  null,
+  mapDispatchToProps,
+)(LiteratureClock);

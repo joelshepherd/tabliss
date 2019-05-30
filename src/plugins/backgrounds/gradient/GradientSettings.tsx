@@ -12,7 +12,7 @@ interface Props {
 class GradientSettings extends React.PureComponent<Props> {
   static defaultProps = {
     angle: 0,
-    from : '#3498db',
+    from: '#3498db',
     to: '#9b59b6',
     type: 'linear-gradient',
   };
@@ -25,7 +25,9 @@ class GradientSettings extends React.PureComponent<Props> {
           <input
             type="color"
             value={this.props.from}
-            onChange={event => this.props.onChange({ from: event.target.value })}
+            onChange={event =>
+              this.props.onChange({ from: event.target.value })
+            }
           />
         </label>
 
@@ -43,7 +45,9 @@ class GradientSettings extends React.PureComponent<Props> {
           <input
             type="number"
             value={this.props.angle}
-            onChange={event => this.props.onChange({ angle: event.target.value })}
+            onChange={event =>
+              this.props.onChange({ angle: event.target.value })
+            }
           />
         </label>
       </div>

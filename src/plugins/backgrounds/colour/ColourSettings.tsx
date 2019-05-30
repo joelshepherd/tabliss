@@ -19,7 +19,9 @@ class ColourSettings extends React.PureComponent<Props> {
           <input
             type="color"
             value={this.props.colour}
-            onChange={event => this.props.onChange({ colour: event.target.value })}
+            onChange={event =>
+              this.props.onChange({ colour: event.target.value })
+            }
           />
         </label>
       </div>

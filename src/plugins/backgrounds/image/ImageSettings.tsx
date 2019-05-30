@@ -21,18 +21,20 @@ class ImageSettings extends React.PureComponent<Props> {
 
     return (
       <div className="ImageSettings">
-        {this.props.image &&
+        {this.props.image && (
           <p className="info">
-            Sorry for making you have to upload your image again.
-            But you can have multiple images now! So yay?
+            Sorry for making you have to upload your image again. But you can
+            have multiple images now! So yay?
           </p>
-        }
+        )}
 
         <label>
           <input
             accept="image/*"
             multiple={true}
-            onChange={event => event.target.files && this.loadImages(event.target.files)}
+            onChange={event =>
+              event.target.files && this.loadImages(event.target.files)
+            }
             type="file"
           />
         </label>
@@ -41,12 +43,19 @@ class ImageSettings extends React.PureComponent<Props> {
           {this.props.images.map((image, index) => (
             <div className="preview" key={index}>
               <img src={this.createURL(image)} />
-              <IconButton onClick={() => this.removeImage(image)} title="Remove image">{removeIcon}</IconButton>
+              <IconButton
+                onClick={() => this.removeImage(image)}
+                title="Remove image"
+              >
+                {removeIcon}
+              </IconButton>
             </div>
           ))}
         </div>
 
-        {this.oversized && <p className="info">Large images may affect performance</p>}
+        {this.oversized && (
+          <p className="info">Large images may affect performance</p>
+        )}
       </div>
     );
   }
@@ -54,9 +63,9 @@ class ImageSettings extends React.PureComponent<Props> {
   private loadImages(files: FileList) {
     // Strip File to Blob so localForage doesn't get confused about its storage in localstorage.
     // Still need to sort localstorage only accept top-level keys for blobs though.
-    const images = Array
-      .from(files)
-      .map(image => new Blob([image], { type: image.type }));
+    const images = Array.from(files).map(
+      image => new Blob([image], { type: image.type }),
+    );
 
     this.props.onChange({
       images: this.props.images.concat(images),

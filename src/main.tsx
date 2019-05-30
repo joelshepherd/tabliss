@@ -23,6 +23,9 @@ render(
 );
 
 // Register service worker on web
-if (process.env.NODE_ENV === 'production' && process.env.BUILD_TARGET === 'web') {
+if (
+  process.env.NODE_ENV === 'production' &&
+  process.env.BUILD_TARGET === 'web'
+) {
   registerServiceWorker();
 }

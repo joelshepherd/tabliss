@@ -49,10 +49,9 @@ class Search extends React.PureComponent<Props & InjectedIntlProps, State> {
   componentDidUpdate() {
     this.getSuggestionData();
   }
-  
+
   componentDidMount() {
-    if (this.searchInput.current)
-      this.searchInput.current.focus();
+    if (this.searchInput.current) this.searchInput.current.focus();
   }
 
   render() {
@@ -68,7 +67,10 @@ class Search extends React.PureComponent<Props & InjectedIntlProps, State> {
           value={this.state.query}
           onChange={event => {
             this.oldQuery = event.target.value;
-            this.setState({ query: event.target.value, getSuggestionData: true });
+            this.setState({
+              query: event.target.value,
+              getSuggestionData: true,
+            });
           }}
           placeholder={placeholder || intl.formatMessage(messages.placeholder)}
         />
@@ -76,8 +78,16 @@ class Search extends React.PureComponent<Props & InjectedIntlProps, State> {
         {suggestionsEngine && (
           <Suggestions
             data={this.state.suggestions}
-            onMouseOver={(event, key) => this.setState({ suggestions: { ...this.state.suggestions, active: key } })}
-            onMouseOut={() => this.setState({ suggestions: { ...this.state.suggestions, active: -1 } })}
+            onMouseOver={(event, key) =>
+              this.setState({
+                suggestions: { ...this.state.suggestions, active: key },
+              })
+            }
+            onMouseOut={() =>
+              this.setState({
+                suggestions: { ...this.state.suggestions, active: -1 },
+              })
+            }
             onMouseClick={event => {
               const target = event.currentTarget;
 
@@ -101,7 +111,11 @@ class Search extends React.PureComponent<Props & InjectedIntlProps, State> {
   private keyUp = (event: React.KeyboardEvent<HTMLFormElement>) => {
     const { keyCode } = event;
 
-    if (this.state.query === '' || (keyCode !== 38 && keyCode !== 40) || ! this.props.suggestionsEngine) {
+    if (
+      this.state.query === '' ||
+      (keyCode !== 38 && keyCode !== 40) ||
+      !this.props.suggestionsEngine
+    ) {
       return;
     }
 
@@ -144,15 +158,13 @@ class Search extends React.PureComponent<Props & InjectedIntlProps, State> {
         active,
       },
     });
-  }
+  };
 
   private search = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    document.location.assign(
-      this.buildUrl(this.state.query)
-    );
-  }
+    document.location.assign(this.buildUrl(this.state.query));
+  };
 
   /**
    * Build a navigatable URL from a query.
@@ -171,9 +183,9 @@ class Search extends React.PureComponent<Props & InjectedIntlProps, State> {
     }
 
     // Probably searching then
-    const searchEngine = engines
-      .find(engine => engine.key === this.props.searchEngine)
-      || engines[0];
+    const searchEngine =
+      engines.find(engine => engine.key === this.props.searchEngine) ||
+      engines[0];
 
     return searchEngine.search_url.replace('{searchTerms}', query);
   }
@@ -184,7 +196,7 @@ class Search extends React.PureComponent<Props & InjectedIntlProps, State> {
   private getSuggestionData() {
     const { query, getSuggestionData } = this.state;
 
-    if (! getSuggestionData || ! this.props.suggestionsEngine) {
+    if (!getSuggestionData || !this.props.suggestionsEngine) {
       return;
     }
 
@@ -196,11 +208,14 @@ class Search extends React.PureComponent<Props & InjectedIntlProps, State> {
       return;
     }
 
-    const suggestionEngine = engines
-      .find(engine => engine.key === this.props.suggestionsEngine)
-      || engines[0];
+    const suggestionEngine =
+      engines.find(engine => engine.key === this.props.suggestionsEngine) ||
+      engines[0];
 
-    const suggestionUrl = suggestionEngine.suggest_url!.replace('{searchTerms}', query);
+    const suggestionUrl = suggestionEngine.suggest_url!.replace(
+      '{searchTerms}',
+      query,
+    );
 
     getSuggestions(suggestionUrl, suggestions => {
       this.setSuggestions(executionTime, suggestions);
@@ -210,7 +225,10 @@ class Search extends React.PureComponent<Props & InjectedIntlProps, State> {
   /**
    * Sets suggestiondata in state
    */
-  private setSuggestions(executionTime: number, suggestions?: SuggestionsResult) {
+  private setSuggestions(
+    executionTime: number,
+    suggestions?: SuggestionsResult,
+  ) {
     // Only update with latest data
     if (executionTime < this.currentExecutionTime) {
       return;

@@ -58,6 +58,7 @@
     "jest": "^23.0.0",
     "mini-css-extract-plugin": "^0.4.0",
     "node-sass": "^4.9.3",
+    "prettier": "1.17.1",
     "raw-loader": "^0.5.1",
     "react-intl-translations-manager": "^5.0.3",
     "sass-loader": "^7.0.0",

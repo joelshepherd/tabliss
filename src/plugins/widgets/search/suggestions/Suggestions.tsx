@@ -4,12 +4,18 @@ import './Suggestions.sass';
 
 interface Props {
   data?: SuggestionsData;
-  onMouseOver?: (event: React.MouseEvent<HTMLInputElement>, key: number) => void;
+  onMouseOver?: (
+    event: React.MouseEvent<HTMLInputElement>,
+    key: number,
+  ) => void;
   onMouseOut?: (event: React.MouseEvent<HTMLInputElement>, key: number) => void;
-  onMouseClick?: (event: React.MouseEvent<HTMLInputElement>, key: number) => void;
+  onMouseClick?: (
+    event: React.MouseEvent<HTMLInputElement>,
+    key: number,
+  ) => void;
 }
 
-interface State { }
+interface State {}
 
 class Suggestions extends React.Component<Props, State> {
   static defaultProps: Partial<Props> = {
@@ -22,7 +28,7 @@ class Suggestions extends React.Component<Props, State> {
   render() {
     const { data } = this.props;
 
-    if (! data) {
+    if (!data) {
       return null;
     }
 

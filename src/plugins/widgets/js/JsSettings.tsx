@@ -6,7 +6,10 @@ interface Props {
   onChange: (settings: Settings) => void;
 }
 
-const JsSettings: React.StatelessComponent<Props> = ({ input = '', onChange }) => {
+const JsSettings: React.StatelessComponent<Props> = ({
+  input = '',
+  onChange,
+}) => {
   return (
     <div className="JsSettings">
       <label>
@@ -20,9 +23,10 @@ const JsSettings: React.StatelessComponent<Props> = ({ input = '', onChange }) =
       </label>
 
       <p className="info">
-        Warning: this functionality is intended for advanced users. Custom scripts may break at any time.
-        The snippet will run once after the dashboard has loaded.
-        Be careful of persisting event listeners when editing the snippet.
+        Warning: this functionality is intended for advanced users. Custom
+        scripts may break at any time. The snippet will run once after the
+        dashboard has loaded. Be careful of persisting event listeners when
+        editing the snippet.
       </p>
     </div>
   );

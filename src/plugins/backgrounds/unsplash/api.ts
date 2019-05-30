@@ -1,7 +1,7 @@
 import { officialCollection, UNSPLASH_API_KEY } from './constants';
 import { By, Image, Settings } from './interfaces';
 
-export const getImage = async function (
+export const getImage = async function(
   settings: Settings,
   pushCallback: Function,
   popCallback: Function,
@@ -19,9 +19,10 @@ export const getImage = async function (
       break;
 
     case By.SEARCH:
-      url += 'orientation=landscape'
-        + (featured ? '&featured=true' : '')
-        + (search ? `&query=${search}` : '');
+      url +=
+        'orientation=landscape' +
+        (featured ? '&featured=true' : '') +
+        (search ? `&query=${search}` : '');
       break;
 
     default:

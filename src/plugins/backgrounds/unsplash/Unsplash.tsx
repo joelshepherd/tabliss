@@ -49,12 +49,18 @@ class Unsplash extends React.PureComponent<Props, State> {
   }
 
   componentWillReceiveProps(nextProps: Props) {
-    if (nextProps.by !== this.props.by || nextProps.featured !== this.props.featured) {
+    if (
+      nextProps.by !== this.props.by ||
+      nextProps.featured !== this.props.featured
+    ) {
       this.refreshDebounced.cancel();
       this.refresh(nextProps);
     }
 
-    if (nextProps.search !== this.props.search || nextProps.collections !== this.props.collections) {
+    if (
+      nextProps.search !== this.props.search ||
+      nextProps.collections !== this.props.collections
+    ) {
       this.refreshDebounced(nextProps);
     }
   }
@@ -74,18 +80,25 @@ class Unsplash extends React.PureComponent<Props, State> {
       ? { backgroundImage: `url(${this.state.current.src})` }
       : { opacity: 0 };
 
-    if (blur && ! focus) {
+    if (blur && !focus) {
       styles = {
         ...styles,
         filter: `blur(${blur}px)`,
-        transform: `scale(${(blur / 500) + 1})`,
+        transform: `scale(${blur / 500 + 1})`,
       };
     }
 
     return (
       <div className="Unsplash fullscreen">
         <div className="image fullscreen" style={styles} />
-        {darken && !focus ? <div className="fullscreen" style={{ backgroundColor: `rgba(0, 0, 0, ${darken * 0.01})` }} /> : ''}
+        {darken && !focus ? (
+          <div
+            className="fullscreen"
+            style={{ backgroundColor: `rgba(0, 0, 0, ${darken * 0.01})` }}
+          />
+        ) : (
+          ''
+        )}
         {this.state.current && <UnsplashCredit image={this.state.current} />}
       </div>
     );
@@ -113,32 +126,41 @@ class Unsplash extends React.PureComponent<Props, State> {
     const src = URL.createObjectURL(image.data);
     const timestamp = image.timestamp || Date.now();
 
-    this.setState({ current: {
-      ...image as Image, src,
-    }});
-    this.props.updateLocal({ current: {
-      ...image, timestamp,
-    }});
-    
+    this.setState({
+      current: {
+        ...(image as Image),
+        src,
+      },
+    });
+    this.props.updateLocal({
+      current: {
+        ...image,
+        timestamp,
+      },
+    });
+
     let img = new Image();
     img.onerror = () => {
-        this.refresh(this.props);
+      this.refresh(this.props);
     };
     img.src = src;
-  }
+  };
 
   /**
    * Set the next image.
    */
   private setNextImage = (image: Image) => {
     this.props.updateLocal({ next: image });
-  }
+  };
 
   /**
    * Should we rotate the currennt image.
    */
   private shouldRotate(props: Props = this.props) {
-    return get(props, 'local.current.timestamp', 0) + (this.props.timeout * 1000) < Date.now();
+    return (
+      get(props, 'local.current.timestamp', 0) + this.props.timeout * 1000 <
+      Date.now()
+    );
   }
 
   /**
@@ -154,11 +176,7 @@ class Unsplash extends React.PureComponent<Props, State> {
    * Fetch an image from the Unsplash API.
    */
   private fetchImage(props: Props = this.props) {
-    return getImage(
-      props,
-      this.props.pushPending,
-      this.props.popPending,
-    );
+    return getImage(props, this.props.pushPending, this.props.popPending);
   }
 }
 
@@ -166,4 +184,7 @@ const mapStateToProps = (state: RootState) => ({ focus: state.ui.focus });
 
 const mapDispatchToProps = { popPending, pushPending };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Unsplash);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Unsplash);

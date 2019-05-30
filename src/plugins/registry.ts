@@ -21,7 +21,7 @@ export function registerPlugin(plugin: Plugin): void {
 export function getPlugin(key: string): Plugin {
   const plugin = registry.find(p => p.key === key);
 
-  if (! plugin) {
+  if (!plugin) {
     throw new Error(`Could not find plugin '${key}'.`);
   }
 

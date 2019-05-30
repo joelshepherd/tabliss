@@ -43,15 +43,30 @@ class Time extends React.PureComponent<Props, State> {
 
     return (
       <div className="Time">
-        {mode === 'analogue'
-          ? <Analogue time={time} showMinutes={showMinutes} showSeconds={showSeconds} />
-          : <Digital time={time} hour12={hour12} showMinutes={showMinutes} showSeconds={showSeconds} />
-        }
+        {mode === 'analogue' ? (
+          <Analogue
+            time={time}
+            showMinutes={showMinutes}
+            showSeconds={showSeconds}
+          />
+        ) : (
+          <Digital
+            time={time}
+            hour12={hour12}
+            showMinutes={showMinutes}
+            showSeconds={showSeconds}
+          />
+        )}
 
         {showDate && [
           <hr key="0" />,
-          <h3 key="1" >
-            <FormattedDate value={time} day="numeric" month="long" weekday="long" />
+          <h3 key="1">
+            <FormattedDate
+              value={time}
+              day="numeric"
+              month="long"
+              weekday="long"
+            />
           </h3>,
         ]}
       </div>
@@ -60,7 +75,7 @@ class Time extends React.PureComponent<Props, State> {
 
   private tick = () => {
     this.setState({ time: getConvertedDate() });
-  }
+  };
 }
 
 export default Time;

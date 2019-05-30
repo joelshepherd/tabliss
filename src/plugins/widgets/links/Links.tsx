@@ -29,15 +29,22 @@ class Links extends React.PureComponent<Settings, State> {
 
   render() {
     return (
-      <div className="Links" style={{ gridTemplateColumns: '1fr '.repeat(this.props.columns) }}>
-        {! this.props.visible && ! this.state.visible && (
-          <a onClick={() => this.setState({ visible: true })} title="Show quick links">
+      <div
+        className="Links"
+        style={{ gridTemplateColumns: '1fr '.repeat(this.props.columns) }}
+      >
+        {!this.props.visible && !this.state.visible && (
+          <a
+            onClick={() => this.setState({ visible: true })}
+            title="Show quick links"
+          >
             <i dangerouslySetInnerHTML={{ __html: linkIcon }} />
           </a>
         )}
-        {(this.props.visible || this.state.visible) && this.props.links.map((link, index) => (
-          <LinkDisplay key={index} number={index + 1} {...link} />
-        ))}
+        {(this.props.visible || this.state.visible) &&
+          this.props.links.map((link, index) => (
+            <LinkDisplay key={index} number={index + 1} {...link} />
+          ))}
       </div>
     );
   }
@@ -52,7 +59,7 @@ class Links extends React.PureComponent<Settings, State> {
     if (this.props.links[key]) {
       window.location.assign(this.props.links[key].url);
     }
-  }
+  };
 }
 
 export default Links;

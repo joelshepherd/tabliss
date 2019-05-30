@@ -9,9 +9,11 @@ interface Props extends Settings {
 class LinksSettings extends React.PureComponent<Props> {
   static defaultProps = {
     columns: 1,
-    links: [{
-      url: 'https://tabliss.io'
-    }],
+    links: [
+      {
+        url: 'https://tabliss.io',
+      },
+    ],
     visible: false,
   };
 
@@ -20,11 +22,12 @@ class LinksSettings extends React.PureComponent<Props> {
       <div className="LinksSettings">
         <label>
           Number of columns
-
           <input
             type="number"
             value={this.props.columns}
-            onChange={event => this.props.onChange({ columns: Number(event.target.value) })}
+            onChange={event =>
+              this.props.onChange({ columns: Number(event.target.value) })
+            }
             min={1}
           />
         </label>
@@ -33,7 +36,9 @@ class LinksSettings extends React.PureComponent<Props> {
           <input
             type="checkbox"
             checked={this.props.visible}
-            onChange={event => this.props.onChange({ visible: ! this.props.visible })}
+            onChange={event =>
+              this.props.onChange({ visible: !this.props.visible })
+            }
           />
           Links are always visible
         </label>
@@ -45,32 +50,33 @@ class LinksSettings extends React.PureComponent<Props> {
             {...link}
             key={index}
             number={index + 1}
-            onChange={(values) => this.changeLink(index, values)}
-            onMoveUp={index !== 0
-              ? () => this.reorderLink(link, index - 1)
-              : undefined}
-            onMoveDown={index !== this.props.links.length - 1
-              ? () => this.reorderLink(link, index + 1)
-              : undefined}
+            onChange={values => this.changeLink(index, values)}
+            onMoveUp={
+              index !== 0 ? () => this.reorderLink(link, index - 1) : undefined
+            }
+            onMoveDown={
+              index !== this.props.links.length - 1
+                ? () => this.reorderLink(link, index + 1)
+                : undefined
+            }
             onRemove={() => this.removeLink(index)}
           />
         ))}
 
-        <p style={{ marginTop: '0.5rem' }}><button className="button--primary" onClick={this.addLink}>
-          Add link
-        </button></p>
+        <p style={{ marginTop: '0.5rem' }}>
+          <button className="button--primary" onClick={this.addLink}>
+            Add link
+          </button>
+        </p>
       </div>
     );
   }
 
   private addLink = () => {
     this.props.onChange({
-      links: [
-        ...this.props.links,
-        { url: 'https://' },
-      ]
+      links: [...this.props.links, { url: 'https://' }],
     });
-  }
+  };
 
   private changeLink = (index: number, values: Partial<LinkProps>) => {
     this.props.onChange({
@@ -81,25 +87,22 @@ class LinksSettings extends React.PureComponent<Props> {
           ...values,
         },
         ...this.props.links.slice(index + 1),
-      ]
+      ],
     });
-  }
+  };
 
   private removeLink = (index: number) => {
     this.props.onChange({
       links: this.props.links.filter((link, i) => i !== index),
     });
-  }
+  };
 
   private reorderLink = (link: LinkProps, to: number) => {
     const links = [...this.props.links];
-    links.splice(
-      to, 0,
-      links.splice(links.indexOf(link), 1)[0],
-    );
+    links.splice(to, 0, links.splice(links.indexOf(link), 1)[0]);
 
     this.props.onChange({ links });
-  }
+  };
 }
 
 export default LinksSettings;

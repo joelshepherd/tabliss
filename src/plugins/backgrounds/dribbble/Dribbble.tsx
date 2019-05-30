@@ -48,29 +48,34 @@ class Dribbble extends React.PureComponent<Props, State> {
     return (
       <div className="Dribbble">
         <div style={{ padding: '1em', textAlign: 'center' }}>
-          <h3>Sorry, the Dribbble shots API has been deprecated and this background no longer works.</h3>
+          <h3>
+            Sorry, the Dribbble shots API has been deprecated and this
+            background no longer works.
+          </h3>
           <p>
-            I have written to Dribbble requesting access for Tabliss to their new API endpoint.
-            If they accept my request, this background will resume working again.
-            If not, the Dribbble background plugin will be removed shortly :(
+            I have written to Dribbble requesting access for Tabliss to their
+            new API endpoint. If they accept my request, this background will
+            resume working again. If not, the Dribbble background plugin will be
+            removed shortly :(
           </p>
         </div>
 
         <div
           className="shots fullscreen"
           onScroll={() => this.onScroll()}
-          ref={ref => this.shotsRef = ref}
+          ref={ref => (this.shotsRef = ref)}
         >
           {this.state.shots.map(shot => this.renderShot(shot))}
         </div>
 
-        {! this.props.focus && <div className="darken fullscreen" />}
+        {!this.props.focus && <div className="darken fullscreen" />}
       </div>
     );
   }
 
   private renderShot(shot: Shot) {
-    const backgroundImage = `url(${shot.images[this.props.quality] || shot.images.normal})`;
+    const backgroundImage = `url(${shot.images[this.props.quality] ||
+      shot.images.normal})`;
 
     return (
       <a
@@ -86,14 +91,13 @@ class Dribbble extends React.PureComponent<Props, State> {
   }
 
   private load() {
-    if (! this.state.nextLink) {
+    if (!this.state.nextLink) {
       return;
     }
 
-    const request = new Request(
-      this.state.nextLink,
-      { headers: { Authorization: `Bearer ${DRIBBBLE_API_KEY}` } },
-    );
+    const request = new Request(this.state.nextLink, {
+      headers: { Authorization: `Bearer ${DRIBBBLE_API_KEY}` },
+    });
 
     this.setState({ nextLink: undefined });
     this.props.pushPending();
@@ -102,7 +106,7 @@ class Dribbble extends React.PureComponent<Props, State> {
       .then(res => {
         // Find next link
         const links = parseLinkHeader(res.headers.get('Link') || '');
-        const nextLink = (links && links.next) ? links.next.url : undefined;
+        const nextLink = links && links.next ? links.next.url : undefined;
         this.setState({ nextLink });
 
         return res.json();
@@ -116,11 +120,14 @@ class Dribbble extends React.PureComponent<Props, State> {
   }
 
   private onScroll() {
-    if (! this.shotsRef) {
+    if (!this.shotsRef) {
       return;
     }
 
-    if (this.shotsRef.scrollHeight - this.shotsRef.scrollTop === this.shotsRef.clientHeight) {
+    if (
+      this.shotsRef.scrollHeight - this.shotsRef.scrollTop ===
+      this.shotsRef.clientHeight
+    ) {
       this.load();
     }
   }
@@ -132,4 +139,7 @@ const mapStateToProps = (state: RootState) => {
 
 const mapDispatchToProps = { popPending, pushPending };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Dribbble);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Dribbble);

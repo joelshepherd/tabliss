@@ -12,16 +12,13 @@ const version = require('./package.json').version;
 
 const config = {
   entry: {
-    main: [
-      'normalize.css',
-      './src/styles.sass',
-      './src/main.tsx',
-    ],
+    main: ['normalize.css', './src/styles.sass', './src/main.tsx'],
   },
   output: {
     path: path.resolve('./dist'),
     publicPath: '/',
-    filename: process.env.BUILD_TARGET === 'web' ? '[name].[hash:12].js' : '[name].js',
+    filename:
+      process.env.BUILD_TARGET === 'web' ? '[name].[hash:12].js' : '[name].js',
   },
   mode: 'development',
   resolve: {
@@ -37,26 +34,22 @@ const config = {
       },
       {
         test: /\.css$/,
-        use: [
-          MiniCssExtractPlugin.loader,
-          'css-loader',
-        ],
+        use: [MiniCssExtractPlugin.loader, 'css-loader'],
       },
       {
         test: /\.(gif|jpe?g|png)$/,
         loader: 'url-loader',
         options: {
           limit: 10000,
-          name: process.env.BUILD_TARGET === 'web' ? '[name].[hash:12].[ext]' : '[name].[ext]',
+          name:
+            process.env.BUILD_TARGET === 'web'
+              ? '[name].[hash:12].[ext]'
+              : '[name].[ext]',
         },
       },
       {
         test: /\.sass$/,
-        use: [
-          MiniCssExtractPlugin.loader,
-          'css-loader',
-          'sass-loader',
-        ],
+        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
       },
       {
         test: /\.svg$/,
@@ -71,11 +64,12 @@ const config = {
   },
   plugins: [
     new CleanWebpackPlugin('dist'),
-    new CopyWebpackPlugin([
-      { from: 'public' },
-    ]),
+    new CopyWebpackPlugin([{ from: 'public' }]),
     new MiniCssExtractPlugin({
-      filename: process.env.BUILD_TARGET === 'web' ? '[name].[hash:12].css' : '[name].css',
+      filename:
+        process.env.BUILD_TARGET === 'web'
+          ? '[name].[hash:12].css'
+          : '[name].css',
     }),
     new HtmlWebpackPlugin({
       template: './public/index.html',
@@ -111,26 +105,37 @@ const config = {
   },
   stats: {
     warnings: false,
-  }
+  },
 };
 
 // Production build
 if (process.env.NODE_ENV === 'production') {
   config.mode = 'production';
-  config.plugins.push(new webpack.LoaderOptionsPlugin({
-    minimize: true,
-    debug: false,
-  }));
+  config.plugins.push(
+    new webpack.LoaderOptionsPlugin({
+      minimize: true,
+      debug: false,
+    }),
+  );
 }
 
 // Extension build targets
-if (process.env.BUILD_TARGET === 'chrome' || process.env.BUILD_TARGET === 'firefox') {
+if (
+  process.env.BUILD_TARGET === 'chrome' ||
+  process.env.BUILD_TARGET === 'firefox'
+) {
   config.devtool = false;
-  config.plugins = config.plugins.filter(plugin => ! (plugin instanceof SWPrecacheWebpackPlugin));
-  config.plugins.push(new CopyWebpackPlugin([{
-    from: `src/manifest_${process.env.BUILD_TARGET}.json`,
-    to: 'manifest.json',
-  }]));
+  config.plugins = config.plugins.filter(
+    plugin => !(plugin instanceof SWPrecacheWebpackPlugin),
+  );
+  config.plugins.push(
+    new CopyWebpackPlugin([
+      {
+        from: `src/manifest_${process.env.BUILD_TARGET}.json`,
+        to: 'manifest.json',
+      },
+    ]),
+  );
 }
 
 module.exports = config;

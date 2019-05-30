@@ -6,7 +6,10 @@ interface Props {
   onChange: (settings: Settings) => void;
 }
 
-const CssSettings: React.StatelessComponent<Props> = ({ input = '', onChange }) => {
+const CssSettings: React.StatelessComponent<Props> = ({
+  input = '',
+  onChange,
+}) => {
   return (
     <div className="CssSettings">
       <label>
@@ -20,8 +23,8 @@ const CssSettings: React.StatelessComponent<Props> = ({ input = '', onChange }) 
       </label>
 
       <p className="info">
-        Warning: this functionality is intended for advanced users.
-        Custom styles may break at any time.
+        Warning: this functionality is intended for advanced users. Custom
+        styles may break at any time.
       </p>
     </div>
   );

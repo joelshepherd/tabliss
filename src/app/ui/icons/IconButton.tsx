@@ -5,7 +5,7 @@ interface Props {
   title: string;
 }
 
-const IconButton: React.StatelessComponent<Props> = (props) => (
+const IconButton: React.StatelessComponent<Props> = props => (
   <button className="button--icon" {...props}>
     {props.children}
   </button>

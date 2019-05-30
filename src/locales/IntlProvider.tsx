@@ -8,7 +8,10 @@ interface Props {
   locale: string;
 }
 
-const IntlProvider: React.StatelessComponent<Props> = ({ children, locale }) => (
+const IntlProvider: React.StatelessComponent<Props> = ({
+  children,
+  locale,
+}) => (
   <ReactIntlProvider locale={locale} key={locale} messages={messages[locale]}>
     {children}
   </ReactIntlProvider>

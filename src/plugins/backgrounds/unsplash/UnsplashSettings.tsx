@@ -16,7 +16,9 @@ class UnsplashSettings extends React.PureComponent<Props> {
           Show a new photo
           <select
             value={this.props.timeout}
-            onChange={event => this.props.onChange({ timeout: parseInt(event.target.value, 10) })}
+            onChange={event =>
+              this.props.onChange({ timeout: parseInt(event.target.value, 10) })
+            }
           >
             <option value="0">Every new tab</option>
             <option value="900">Every 15 minutes</option>
@@ -31,8 +33,7 @@ class UnsplashSettings extends React.PureComponent<Props> {
             type="radio"
             checked={this.props.by === By.OFFICIAL}
             onChange={event => this.props.onChange({ by: By.OFFICIAL })}
-          />
-          {' '}
+          />{' '}
           Official collection
         </label>
 
@@ -41,34 +42,34 @@ class UnsplashSettings extends React.PureComponent<Props> {
             type="radio"
             checked={this.props.by === By.COLLECTIONS}
             onChange={event => this.props.onChange({ by: By.COLLECTIONS })}
-          />
-          {' '}
+          />{' '}
           Custom collection
         </label>
 
-        {this.props.by === By.COLLECTIONS &&
+        {this.props.by === By.COLLECTIONS && (
           <label>
             Collection
             <input
               placeholder="Collection ID number"
               type="text"
               value={this.props.collections}
-              onChange={event => this.props.onChange({ collections: event.target.value })}
+              onChange={event =>
+                this.props.onChange({ collections: event.target.value })
+              }
             />
           </label>
-        }
+        )}
 
         <label>
           <input
             type="radio"
             checked={this.props.by === By.SEARCH}
             onChange={event => this.props.onChange({ by: By.SEARCH })}
-          />
-          {' '}
+          />{' '}
           Custom search
         </label>
 
-        {this.props.by === By.SEARCH &&
+        {this.props.by === By.SEARCH && (
           <div>
             <label>
               Tags
@@ -76,7 +77,9 @@ class UnsplashSettings extends React.PureComponent<Props> {
                 placeholder="Try landscapes or animals..."
                 type="text"
                 value={this.props.search}
-                onChange={event => this.props.onChange({ search: event.target.value })}
+                onChange={event =>
+                  this.props.onChange({ search: event.target.value })
+                }
               />
             </label>
 
@@ -84,13 +87,14 @@ class UnsplashSettings extends React.PureComponent<Props> {
               <input
                 type="checkbox"
                 checked={this.props.featured}
-                onChange={event => this.props.onChange({ featured: ! this.props.featured })}
-              />
-              {' '}
+                onChange={event =>
+                  this.props.onChange({ featured: !this.props.featured })
+                }
+              />{' '}
               Only featured images
             </label>
           </div>
-        }
+        )}
 
         <label>
           Blur <br />
@@ -100,7 +104,9 @@ class UnsplashSettings extends React.PureComponent<Props> {
             max="50"
             step="5"
             value={typeof this.props.blur === 'boolean' ? 0 : this.props.blur}
-            onChange={event => this.props.onChange({ blur: Number(event.target.value) })}
+            onChange={event =>
+              this.props.onChange({ blur: Number(event.target.value) })
+            }
           />
         </label>
 
@@ -111,8 +117,12 @@ class UnsplashSettings extends React.PureComponent<Props> {
             min="0"
             max="100"
             step="10"
-            value={typeof this.props.darken === 'boolean' ? 0 : this.props.darken}
-            onChange={event => this.props.onChange({ darken: Number(event.target.value) })}
+            value={
+              typeof this.props.darken === 'boolean' ? 0 : this.props.darken
+            }
+            onChange={event =>
+              this.props.onChange({ darken: Number(event.target.value) })
+            }
           />
         </label>
       </div>

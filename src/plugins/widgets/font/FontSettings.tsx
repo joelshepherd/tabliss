@@ -25,7 +25,9 @@ class FontSettings extends React.PureComponent<Props> {
           <input
             type="text"
             value={this.props.family}
-            onChange={event => this.props.onChange({ family: event.target.value })}
+            onChange={event =>
+              this.props.onChange({ family: event.target.value })
+            }
           />
         </label>
 
@@ -34,13 +36,20 @@ class FontSettings extends React.PureComponent<Props> {
           <input
             type="number"
             value={this.props.size}
-            onChange={event => this.props.onChange({ size: event.target.value })}
+            onChange={event =>
+              this.props.onChange({ size: event.target.value })
+            }
           />
         </label>
 
         <label>
           Weight override
-          <select value={this.props.weight} onChange={event => this.props.onChange({ weight: event.target.value})}>
+          <select
+            value={this.props.weight}
+            onChange={event =>
+              this.props.onChange({ weight: event.target.value })
+            }
+          >
             <option value={undefined}>None</option>
             <option value={100}>Thin</option>
             <option value={300}>Light</option>
@@ -56,7 +65,9 @@ class FontSettings extends React.PureComponent<Props> {
           <input
             type="color"
             value={this.props.colour}
-            onChange={event => this.props.onChange({ colour: event.target.value })}
+            onChange={event =>
+              this.props.onChange({ colour: event.target.value })
+            }
           />
         </label>
       </div>

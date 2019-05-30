@@ -8,7 +8,12 @@ interface Props {
   time: Date;
 }
 
-const Digital: React.StatelessComponent<Props> = ({ time, hour12, showMinutes, showSeconds }) => (
+const Digital: React.StatelessComponent<Props> = ({
+  time,
+  hour12,
+  showMinutes,
+  showSeconds,
+}) => (
   <div className="Time Digital">
     <h1>
       <FormattedTime

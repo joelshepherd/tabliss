@@ -19,8 +19,7 @@ class DribbbleSettings extends React.PureComponent<Props> {
             type="radio"
             checked={this.props.quality === 'normal'}
             onChange={event => this.props.onChange({ quality: 'normal' })}
-          />
-          {' '}
+          />{' '}
           Normal quality
         </label>
 
@@ -29,8 +28,7 @@ class DribbbleSettings extends React.PureComponent<Props> {
             type="radio"
             checked={this.props.quality === 'hidpi'}
             onChange={event => this.props.onChange({ quality: 'hidpi' })}
-          />
-          {' '}
+          />{' '}
           I hate my CPU quality
         </label>
       </div>

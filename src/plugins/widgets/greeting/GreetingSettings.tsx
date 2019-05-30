@@ -19,7 +19,9 @@ class GreetingSettings extends React.PureComponent<Props> {
           <input
             type="text"
             value={this.props.name}
-            onChange={event => this.props.onChange({ name: event.target.value })}
+            onChange={event =>
+              this.props.onChange({ name: event.target.value })
+            }
           />
         </label>
       </div>

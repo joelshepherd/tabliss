@@ -1,6 +1,11 @@
 import * as React from 'react';
 import { v4 as uuid } from 'uuid';
-import { arrowDownIcon, arrowUpIcon, checkedIcon, uncheckedIcon } from '../../../app/ui';
+import {
+  arrowDownIcon,
+  arrowUpIcon,
+  checkedIcon,
+  uncheckedIcon,
+} from '../../../app/ui';
 import { PluginAPI } from '../../interfaces';
 import { Settings, Todo as TodoModel } from './interfaces';
 import TodoInput from './TodoInput';
@@ -32,8 +37,10 @@ class Todo extends React.PureComponent<Props & PluginAPI, State> {
   };
 
   render() {
-    const items = this.props.local.items.filter(item => ! item.completed || this.state.showCompleted);
-    const show = ! this.state.showMore ? this.props.show : undefined;
+    const items = this.props.local.items.filter(
+      item => !item.completed || this.state.showCompleted,
+    );
+    const show = !this.state.showMore ? this.props.show : undefined;
 
     return (
       <div className={`Todo align-${this.props.textAlign}`}>
@@ -48,12 +55,14 @@ class Todo extends React.PureComponent<Props & PluginAPI, State> {
         )}
 
         <div>
-          <TodoInput onCreate={this.onCreate} />
-          {' '}
-          <a onClick={this.onShowCompleted}>{this.state.showCompleted ? checkedIcon : uncheckedIcon}</a>
-          {' '}
+          <TodoInput onCreate={this.onCreate} />{' '}
+          <a onClick={this.onShowCompleted}>
+            {this.state.showCompleted ? checkedIcon : uncheckedIcon}
+          </a>{' '}
           {items.length > this.props.show && (
-            <a onClick={this.onShowMore}>{this.state.showMore ? arrowUpIcon : arrowDownIcon}</a>
+            <a onClick={this.onShowMore}>
+              {this.state.showMore ? arrowUpIcon : arrowDownIcon}
+            </a>
           )}
         </div>
       </div>
@@ -74,17 +83,18 @@ class Todo extends React.PureComponent<Props & PluginAPI, State> {
         },
       ],
     });
-  }
+  };
 
   /**
    * Handle on show more events.
    */
-  private onShowMore = () => this.setState({ showMore: ! this.state.showMore });
+  private onShowMore = () => this.setState({ showMore: !this.state.showMore });
 
   /**
    * Handle on show completed events.
    */
-  private onShowCompleted = () => this.setState({ showCompleted: ! this.state.showCompleted });
+  private onShowCompleted = () =>
+    this.setState({ showCompleted: !this.state.showCompleted });
 
   /**
    * Handle on toggle events.
@@ -95,14 +105,14 @@ class Todo extends React.PureComponent<Props & PluginAPI, State> {
         if (item.id === id) {
           return {
             ...item,
-            completed: ! item.completed,
+            completed: !item.completed,
           };
         }
 
         return item;
       }),
     });
-  }
+  };
 
   /**
    * Handle update todo events.
@@ -120,7 +130,7 @@ class Todo extends React.PureComponent<Props & PluginAPI, State> {
         return item;
       }),
     });
-  }
+  };
 
   /**
    * Handle delete todo events.
@@ -129,7 +139,7 @@ class Todo extends React.PureComponent<Props & PluginAPI, State> {
     this.props.setLocal({
       items: this.props.local.items.filter(item => item.id !== id),
     });
-  }
+  };
 }
 
 export default Todo;

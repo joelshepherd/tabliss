@@ -27,23 +27,23 @@ const messages = defineMessages({
   settingsHint: {
     id: 'dashboard.settingsHint',
     defaultMessage: 'Customise Tabliss',
-    description: 'Hover hint text for the settings icon'
+    description: 'Hover hint text for the settings icon',
   },
   focusHint: {
     id: 'dashboard.focusHint',
     defaultMessage: 'Toggle widgets',
-    description: 'Hover hint text for the widgets toggle'
+    description: 'Hover hint text for the widgets toggle',
   },
   fullscreenHint: {
     id: 'dashboard.fullscreenHint',
     defaultMessage: 'Toggle fullscreen',
-    description: 'Hover hint text for the fullscreen toggle'
+    description: 'Hover hint text for the fullscreen toggle',
   },
   loadingHint: {
     id: 'dashboard.loadingHint',
     defaultMessage: 'Loading new content',
-    description: 'Hover hint text for the loading icon (the lightning bolt)'
-  }
+    description: 'Hover hint text for the loading icon (the lightning bolt)',
+  },
 });
 
 class Overlay extends React.PureComponent<Props & InjectedIntlProps, State> {
@@ -83,8 +83,15 @@ class Overlay extends React.PureComponent<Props & InjectedIntlProps, State> {
         </a>
 
         {screenfull.enabled && (
-          <a onClick={() => screenfull.toggle()} title={`${fullscreenHint} (F)`}>
-            <i dangerouslySetInnerHTML={{ __html: this.state.fullscreen ? minimiseIcon : maximiseIcon }} />
+          <a
+            onClick={() => screenfull.toggle()}
+            title={`${fullscreenHint} (F)`}
+          >
+            <i
+              dangerouslySetInnerHTML={{
+                __html: this.state.fullscreen ? minimiseIcon : maximiseIcon,
+              }}
+            />
           </a>
         )}
 
@@ -99,7 +106,7 @@ class Overlay extends React.PureComponent<Props & InjectedIntlProps, State> {
 
   private onFullscreen = () => {
     this.setState({ fullscreen: screenfull.isFullscreen });
-  }
+  };
 
   private onKeyDown = (event: KeyboardEvent) => {
     // Check for input focus
@@ -122,7 +129,7 @@ class Overlay extends React.PureComponent<Props & InjectedIntlProps, State> {
 
       default:
     }
-  }
+  };
 }
 
 const mapStateToProps = (state: RootState) => {
@@ -134,4 +141,9 @@ const mapStateToProps = (state: RootState) => {
 
 const mapDispatchToProps = { toggleFocus, toggleSettings };
 
-export default injectIntl<{}>(connect(mapStateToProps, mapDispatchToProps)(Overlay));
+export default injectIntl<{}>(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps,
+  )(Overlay),
+);

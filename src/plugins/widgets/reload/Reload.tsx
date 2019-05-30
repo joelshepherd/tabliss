@@ -33,12 +33,9 @@ class Reload extends React.PureComponent<Props> {
 
   private attach() {
     if (this.props.input) {
-      this.timeOut = setTimeout(
-        () => {
-          location.reload();
-        },
-        this.props.input * 60000
-      );
+      this.timeOut = setTimeout(() => {
+        location.reload();
+      }, this.props.input * 60000);
     }
   }
 }

@@ -11,7 +11,7 @@ interface Props {
 }
 
 const Dashboard: React.StatelessComponent<Props> = ({ booted }) => {
-  if (! booted) {
+  if (!booted) {
     return <div className="Dashboard fullscreen" />;
   }
 

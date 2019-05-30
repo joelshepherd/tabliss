@@ -18,7 +18,7 @@ interface Props extends OwnProps {
   updateLocal: (state: Local) => void;
 }
 
-const Plugin: React.StatelessComponent<Props> = (props) => {
+const Plugin: React.StatelessComponent<Props> = props => {
   return (
     <props.plugin.Dashboard
       {...props.settings}
@@ -36,7 +36,10 @@ const mapStateToProps = (state: RootState, ownProps: OwnProps) => ({
 });
 
 // Launching updates off-thread to prevent issues pushing state at hydration
-const mapDispatchToProps = (dispatch: Dispatch<Action>, ownProps: OwnProps) => ({
+const mapDispatchToProps = (
+  dispatch: Dispatch<Action>,
+  ownProps: OwnProps,
+) => ({
   setLocal: (state: Local) => {
     setImmediate(() => dispatch(setLocal(ownProps.pluginKey, state)));
   },
@@ -46,7 +49,10 @@ const mapDispatchToProps = (dispatch: Dispatch<Action>, ownProps: OwnProps) => (
 });
 
 export default withErrorBoundary(
-  connect(mapStateToProps, mapDispatchToProps)(Plugin),
+  connect(
+    mapStateToProps,
+    mapDispatchToProps,
+  )(Plugin),
   Crashed,
   captureException,
 );

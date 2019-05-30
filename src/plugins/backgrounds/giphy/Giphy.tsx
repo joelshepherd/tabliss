@@ -49,7 +49,9 @@ class Giphy extends React.PureComponent<Props, State> {
     }
 
     // Fetch next gif and inject into cache
-    this.fetch(this.props.tag, this.props.nsfw).then(next => this.props.setLocal({ next }));
+    this.fetch(this.props.tag, this.props.nsfw).then(next =>
+      this.props.setLocal({ next }),
+    );
   }
 
   componentWillReceiveProps(nextProps: Props) {
@@ -64,7 +66,9 @@ class Giphy extends React.PureComponent<Props, State> {
 
   render() {
     const styles = {
-      backgroundImage: this.state.current ? `url(${this.state.current.src})` : undefined,
+      backgroundImage: this.state.current
+        ? `url(${this.state.current.src})`
+        : undefined,
       backgroundSize: this.props.expand ? 'cover' : undefined,
       opacity: this.state.current ? 1 : 0,
     };
@@ -73,11 +77,15 @@ class Giphy extends React.PureComponent<Props, State> {
       <div className="Giphy fullscreen">
         <div className="gif fullscreen" style={styles} />
 
-        {! this.props.focus && <div className="darken fullscreen" />}
+        {!this.props.focus && <div className="darken fullscreen" />}
 
         <div className="credit">
           <a
-            href={this.state.current && this.state.current.link ? this.state.current.link : 'https://giphy.com/'}
+            href={
+              this.state.current && this.state.current.link
+                ? this.state.current.link
+                : 'https://giphy.com/'
+            }
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -99,10 +107,11 @@ class Giphy extends React.PureComponent<Props, State> {
 
   private async fetch(tag?: string, nsfw?: boolean) {
     const request = new Request(
-      'https://api.giphy.com/v1/gifs/random'
-        + `?api_key=${GIPHY_API_KEY}`
-        + '&rating=' + (nsfw ? 'r' : 'g')
-        + (tag ? `&tag=${tag}` : '')
+      'https://api.giphy.com/v1/gifs/random' +
+        `?api_key=${GIPHY_API_KEY}` +
+        '&rating=' +
+        (nsfw ? 'r' : 'g') +
+        (tag ? `&tag=${tag}` : ''),
     );
 
     this.props.pushPending();
@@ -121,7 +130,7 @@ class Giphy extends React.PureComponent<Props, State> {
       current: {
         ...gif,
         src: URL.createObjectURL(gif.data),
-      }
+      },
     });
   }
 }
@@ -129,4 +138,7 @@ class Giphy extends React.PureComponent<Props, State> {
 const mapStateToProps = (state: RootState) => ({ focus: state.ui.focus });
 const mapDispatchToProps = { popPending, pushPending };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Giphy);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Giphy);

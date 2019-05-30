@@ -3,10 +3,5 @@
   "transform": {
     "\\.tsx?$": "ts-jest"
   },
-  "moduleFileExtensions": [
-    "ts",
-    "tsx",
-    "js",
-    "json"
-  ]
+  "moduleFileExtensions": ["ts", "tsx", "js", "json"]
 }

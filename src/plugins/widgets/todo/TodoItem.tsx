@@ -14,7 +14,7 @@ class TodoItem extends React.Component<Props> {
   ref: HTMLSpanElement | null;
 
   shouldComponentUpdate(nextProps: Props) {
-    if (! this.ref) {
+    if (!this.ref) {
       return true;
     }
 
@@ -30,12 +30,10 @@ class TodoItem extends React.Component<Props> {
 
     return (
       <div className="TodoItem">
-        <a onClick={onToggle}>
-          {item.completed ? checkedIcon : uncheckedIcon}
-        </a>
+        <a onClick={onToggle}>{item.completed ? checkedIcon : uncheckedIcon}</a>
 
         <span
-          ref={ref => this.ref = ref}
+          ref={ref => (this.ref = ref)}
           contentEditable={true}
           onBlur={event => onUpdate(event.currentTarget.innerText)}
           onInput={event => onUpdate(event.currentTarget.innerText)}
@@ -45,7 +43,9 @@ class TodoItem extends React.Component<Props> {
           {item.contents}
         </span>
 
-        <a onClick={onDelete} className="delete">{removeIcon}</a>
+        <a onClick={onDelete} className="delete">
+          {removeIcon}
+        </a>
       </div>
     );
   }
@@ -56,7 +56,7 @@ class TodoItem extends React.Component<Props> {
       event.preventDefault();
       this.ref.blur();
     }
-  }
+  };
 }
 
 export default TodoItem;

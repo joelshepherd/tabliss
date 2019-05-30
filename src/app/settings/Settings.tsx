@@ -32,7 +32,9 @@ class Settings extends React.PureComponent<Props> {
         <a onClick={this.props.toggleSettings} className="fullscreen" />
 
         <div className="plane">
-          <h1><i dangerouslySetInnerHTML={{__html: logo}} /></h1>
+          <h1>
+            <i dangerouslySetInnerHTML={{ __html: logo }} />
+          </h1>
 
           <Background />
 
@@ -45,23 +47,37 @@ class Settings extends React.PureComponent<Props> {
           <Feedback />
 
           <p>
-            <a href="https://www.paypal.me/tabliss" target="_blank" rel="noopener noreferrer">
+            <a
+              href="https://www.paypal.me/tabliss"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               Love Tabliss? Donate 😍
             </a>
           </p>
 
-          <p><a onClick={this.reset}>Reset to default</a></p>
+          <p>
+            <a onClick={this.reset}>Reset to default</a>
+          </p>
 
           <p>
             <a href="https://tabliss.io/" target="_blank">
               {globeIcon}
             </a>
             &nbsp;&nbsp;
-            <a href="https://twitter.com/tabliss" target="_blank" rel="noopener noreferrer">
+            <a
+              href="https://twitter.com/tabliss"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               {twitterIcon}
             </a>
             &nbsp;&nbsp;
-            <a href="https://github.com/joelshepherd/tabliss" target="_blank" rel="noopener noreferrer">
+            <a
+              href="https://github.com/joelshepherd/tabliss"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               {githubIcon}
             </a>
           </p>
@@ -78,18 +94,25 @@ class Settings extends React.PureComponent<Props> {
   }
 
   private reset = () => {
-    if (confirm('Are you sure you want to erase all your settings and reset to default?')) {
+    if (
+      confirm(
+        'Are you sure you want to erase all your settings and reset to default?',
+      )
+    ) {
       this.props.resetDashboard();
     }
-  }
+  };
 
   private onKeyDown = (event: KeyboardEvent) => {
     if (event.keyCode === ESCAPE_KEY) {
       this.props.toggleSettings();
     }
-  }
+  };
 }
 
 const mapDispatchToProps = { resetDashboard, toggleSettings };
 
-export default connect(null, mapDispatchToProps)(Settings);
+export default connect(
+  null,
+  mapDispatchToProps,
+)(Settings);

@@ -10,7 +10,10 @@ import { Storage } from '../interfaces';
 
 const initialState: Storage = {};
 
-export function storage(state: Storage = initialState, action: Action): Storage {
+export function storage(
+  state: Storage = initialState,
+  action: Action,
+): Storage {
   switch (action.type) {
     case RESET_DASHBOARD:
       return initialState;
@@ -20,7 +23,7 @@ export function storage(state: Storage = initialState, action: Action): Storage 
         ...state,
         [action.payload.key]: {
           ...state[action.payload.key],
-          local: action.payload.data
+          local: action.payload.data,
         },
       };
 
@@ -31,7 +34,7 @@ export function storage(state: Storage = initialState, action: Action): Storage 
           ...state[action.payload.key],
           local: {
             ...(state[action.payload.key] || {}).local,
-            ...action.payload.data
+            ...action.payload.data,
           },
         },
       };
@@ -41,7 +44,7 @@ export function storage(state: Storage = initialState, action: Action): Storage 
         ...state,
         [action.payload.key]: {
           ...state[action.payload.key],
-          settings: action.payload.data
+          settings: action.payload.data,
         },
       };
 
@@ -52,7 +55,7 @@ export function storage(state: Storage = initialState, action: Action): Storage 
           ...state[action.payload.key],
           settings: {
             ...(state[action.payload.key] || {}).settings,
-            ...action.payload.data
+            ...action.payload.data,
           },
         },
       };

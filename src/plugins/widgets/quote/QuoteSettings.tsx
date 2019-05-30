@@ -8,7 +8,7 @@ interface Category {
 
 interface Props {
   category?: string;
-  onChange: (settings: { [key: string]: string|undefined }) => void;
+  onChange: (settings: { [key: string]: string | undefined }) => void;
 }
 
 class QuoteSettings extends React.PureComponent<Props> {
@@ -20,31 +20,39 @@ class QuoteSettings extends React.PureComponent<Props> {
             type="radio"
             checked={this.props.category === undefined}
             onChange={() => this.selectCategory(undefined)}
-          />
-          {' '}
+          />{' '}
           All Categories
         </label>
 
-        {categories.map(category =>
+        {categories.map(category => (
           <label key={category.key}>
             <input
               type="radio"
               checked={this.props.category === category.key}
               onChange={() => this.selectCategory(category.key)}
-            />
-            {' '}
+            />{' '}
             {category.name}
           </label>
-        )}
+        ))}
 
         <p>
-          Powered by
-          {' '}
-          <a href="https://theysaidso.com" target="_blank" rel="noopener noreferrer">They Said So</a>
-          {' '}
-          and
-          {' '}
-          <a href="http://www.developerexcuses.com" target="_blank" rel="noopener noreferrer">Developer Excuses</a>.
+          Powered by{' '}
+          <a
+            href="https://theysaidso.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            They Said So
+          </a>{' '}
+          and{' '}
+          <a
+            href="http://www.developerexcuses.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Developer Excuses
+          </a>
+          .
         </p>
       </div>
     );

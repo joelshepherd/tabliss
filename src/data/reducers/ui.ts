@@ -1,5 +1,10 @@
 import { Action } from '../actions';
-import { POP_PENDING, PUSH_PENDING, TOGGLE_FOCUS, TOGGLE_SETTINGS } from '../constants';
+import {
+  POP_PENDING,
+  PUSH_PENDING,
+  TOGGLE_FOCUS,
+  TOGGLE_SETTINGS,
+} from '../constants';
 import { Ui } from '../interfaces';
 
 const initialState: Ui = {
@@ -17,10 +22,10 @@ export function ui(state: Ui = initialState, action: Action): Ui {
       return { ...state, pending: state.pending + 1 };
 
     case TOGGLE_FOCUS:
-      return { ...state, focus: ! state.focus };
+      return { ...state, focus: !state.focus };
 
     case TOGGLE_SETTINGS:
-      return { ...state, settings: ! state.settings };
+      return { ...state, settings: !state.settings };
 
     default:
       return state;

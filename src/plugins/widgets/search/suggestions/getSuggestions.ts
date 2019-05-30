@@ -10,11 +10,15 @@ declare global {
 }
 
 export default (url: string, callback: (data: SuggestionsResult) => void) => {
-  if (! window.mountResult) {
+  if (!window.mountResult) {
     window.mountResult = {};
   }
 
-  const id = 'i' + Math.random().toString(36).slice(2); // Create unique id to return to correct result
+  const id =
+    'i' +
+    Math.random()
+      .toString(36)
+      .slice(2); // Create unique id to return to correct result
 
   window.mountResult[id] = (data: SuggestionsResult) => {
     callback(data);

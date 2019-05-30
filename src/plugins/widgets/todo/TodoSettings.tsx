@@ -31,7 +31,6 @@ const TodoSettings: React.StatelessComponent<Props> = ({
           checked={textAlign === 'inherit'}
           onChange={() => onChange({ textAlign: 'inherit' })}
         />
-
         Default text align
       </label>
 
@@ -41,7 +40,6 @@ const TodoSettings: React.StatelessComponent<Props> = ({
           checked={textAlign === 'left'}
           onChange={() => onChange({ textAlign: 'left' })}
         />
-
         Left text align
       </label>
     </p>

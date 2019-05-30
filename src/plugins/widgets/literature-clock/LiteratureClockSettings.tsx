@@ -20,18 +20,22 @@ class LiteratureClockSettings extends React.PureComponent<Props> {
           <input
             type="checkbox"
             checked={this.props.showBookAndAuthor}
-            onChange={() => this.props.onChange({showBookAndAuthor: ! this.props.showBookAndAuthor})}
-          />
-          {' '}
+            onChange={() =>
+              this.props.onChange({
+                showBookAndAuthor: !this.props.showBookAndAuthor,
+              })
+            }
+          />{' '}
           Display book and author
         </label>
         <label>
           <input
             type="checkbox"
             checked={this.props.centerText}
-            onChange={() => this.props.onChange({centerText: ! this.props.centerText})}
-          />
-          {' '}
+            onChange={() =>
+              this.props.onChange({ centerText: !this.props.centerText })
+            }
+          />{' '}
           Align text at center
         </label>
       </div>

@@ -7,11 +7,9 @@ interface Props {
   image: Image;
 }
 
-const UnsplashCredit: React.StatelessComponent<Props> = (props) => (
+const UnsplashCredit: React.StatelessComponent<Props> = props => (
   <div className="credit">
-    <span style={{float: 'right'}}>
-      {props.image.location_title}
-    </span>
+    <span style={{ float: 'right' }}>{props.image.location_title}</span>
 
     <a
       href={props.image.image_link + UNSPLASH_UTM}

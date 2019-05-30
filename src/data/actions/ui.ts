@@ -1,4 +1,9 @@
-import { POP_PENDING, PUSH_PENDING, TOGGLE_FOCUS, TOGGLE_SETTINGS } from '../constants';
+import {
+  POP_PENDING,
+  PUSH_PENDING,
+  TOGGLE_FOCUS,
+  TOGGLE_SETTINGS,
+} from '../constants';
 
 export function toggleFocus() {
   return {

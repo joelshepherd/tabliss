@@ -10,14 +10,13 @@ import { Dashboard } from '../interfaces';
 
 const initialState = {
   background: 'extra/backgrounds/unsplash',
-  widgets: [
-    'core/widgets/time',
-    'core/widgets/greeting',
-    'core/widgets/font',
-  ],
+  widgets: ['core/widgets/time', 'core/widgets/greeting', 'core/widgets/font'],
 };
 
-export function dashboard(state: Dashboard = initialState, action: Action): Dashboard {
+export function dashboard(
+  state: Dashboard = initialState,
+  action: Action,
+): Dashboard {
   // Quick dirty migration, until I implement them officially
   if (process.env.BUILD_TARGET !== 'web') {
     const widgetToRemove = 'widgets/js';
@@ -55,8 +54,9 @@ export function dashboard(state: Dashboard = initialState, action: Action): Dash
     case REORDER_WIDGET:
       const widgets = [...state.widgets];
       widgets.splice(
-        action.payload.to, 0,
-        widgets.splice(widgets.indexOf(action.payload.key), 1)[0]
+        action.payload.to,
+        0,
+        widgets.splice(widgets.indexOf(action.payload.key), 1)[0],
       );
 
       return {

@@ -21,7 +21,7 @@ class Greeting extends React.PureComponent<Props & InjectedIntlProps, State> {
   componentWillMount() {
     this.interval = window.setInterval(
       () => this.setState({ hour: getConvertedDate().getHours() }),
-      1000
+      1000,
     );
   }
 
@@ -39,8 +39,13 @@ class Greeting extends React.PureComponent<Props & InjectedIntlProps, State> {
 
   get greeting() {
     return this.props.name
-      ? this.props.intl.formatMessage(messages.greetingWithName, { hour: this.state.hour, name: this.props.name })
-      : this.props.intl.formatMessage(messages.greeting, { hour: this.state.hour });
+      ? this.props.intl.formatMessage(messages.greetingWithName, {
+          hour: this.state.hour,
+          name: this.props.name,
+        })
+      : this.props.intl.formatMessage(messages.greeting, {
+          hour: this.state.hour,
+        });
   }
 }
 

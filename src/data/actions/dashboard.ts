@@ -1,4 +1,9 @@
-import { ADD_WIDGET, CHANGE_BACKGROUND, REMOVE_WIDGET, REORDER_WIDGET } from '../constants';
+import {
+  ADD_WIDGET,
+  CHANGE_BACKGROUND,
+  REMOVE_WIDGET,
+  REORDER_WIDGET,
+} from '../constants';
 
 export function changeBackground(key: string) {
   return {

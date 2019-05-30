@@ -30,8 +30,7 @@ class WeatherSettings extends React.PureComponent<Props> {
             type="radio"
             checked={this.props.units === 'auto'}
             onChange={event => this.props.onChange({ units: 'auto' })}
-          />
-          {' '}
+          />{' '}
           Automatic units (based on location)
         </label>
 
@@ -40,8 +39,7 @@ class WeatherSettings extends React.PureComponent<Props> {
             type="radio"
             checked={this.props.units === 'si'}
             onChange={event => this.props.onChange({ units: 'si' })}
-          />
-          {' '}
+          />{' '}
           Metric units
         </label>
 
@@ -50,8 +48,7 @@ class WeatherSettings extends React.PureComponent<Props> {
             type="radio"
             checked={this.props.units === 'us'}
             onChange={event => this.props.onChange({ units: 'us' })}
-          />
-          {' '}
+          />{' '}
           Imperial units
         </label>
 
@@ -59,16 +56,24 @@ class WeatherSettings extends React.PureComponent<Props> {
           <input
             type="checkbox"
             checked={this.props.mode === 'corner'}
-            onChange={event => this.props.onChange({
-              mode: event.target.checked ? 'corner' : 'centre'
-            })}
+            onChange={event =>
+              this.props.onChange({
+                mode: event.target.checked ? 'corner' : 'centre',
+              })
+            }
           />
           Display on screen edge
         </label>
 
-        <p><a href="https://darksky.net/poweredby/" target="_blank" rel="noopener noreferrer">
-          Powered by Dark Sky
-        </a></p>
+        <p>
+          <a
+            href="https://darksky.net/poweredby/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Powered by Dark Sky
+          </a>
+        </p>
       </div>
     );
   }

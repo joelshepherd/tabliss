@@ -31,6 +31,7 @@ Here is the interface the props that will be provided to the plugin entry compon
 (like the dashboard or settings components).
 
 Items that may still be required:
+
 - A way to specify which "style" the user has selected for this widget
 
 ```ts
