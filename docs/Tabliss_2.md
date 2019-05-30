@@ -23,28 +23,34 @@ Here I am collecting ideas and goals for the next major version of Tabliss.
 - Update React to use some of the newer features
 - Rewrite most components to function components
 - Implement Prettier + eslint-typescript to manage code style
+- Change storage driver to support extension specific storage
 
-### [Draft] Plugin API
+### Plugin API
 
-Here is a draft interface of the props that will be provided to the plugin entry components
+Here is the interface the props that will be provided to the plugin entry components
 (like the dashboard or settings components).
 
 Items that may still be required:
-- A way to update the "loading" indicator
 - A way to specify which "style" the user has selected for this widget
 
 ```ts
-interface PluginProps<LocalState = {}, SyncState = {}> {
+interface PluginProps<Data = {}, Cache = {}> {
   // State the is only kept in this browser.
   // Used for large items and caches (like storage a cached image to display on next load)
-  local: Store<LocalState>;
+  cache: Store<Cache>;
 
   // State that is synced between the users browsers.
-  // Used for settings and small text items (like the user's todos for example)
-  sync: Store<SyncState>;
+  // Used for settings and text items (like the user's todos for example)
+  data: Store<Data>;
+
+  // Helpers to manipulate the loading status indicator
+  loader: {
+    add(): Loader;
+    remove(loader: Loader): void;
+  }
 }
 
-interface Store<State = unknown> {
+interface Store<State = {}> {
   state: State;
   setState: (state: State): void;
 }
