@@ -11,6 +11,7 @@ Here I am collecting ideas and goals for the next major version of Tabliss.
 
 - Switchable settings profiles
 - Synced setting profiles between multiple browsers
+- Larger plugin settings tab
 - Standardised and documented API for plugins to use
 - Flexible placement of widgets
 - Multiple widget styles
