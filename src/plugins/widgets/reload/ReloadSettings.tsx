@@ -13,7 +13,7 @@ const ReloadSettings: React.StatelessComponent<Props> = ({ input = 1, onChange }
         Time between refreshes (minutes)
         <input
           type="number"
-          min="0.1"
+          min="1"
           max="300"
           value={input}
           onChange={event => onChange({ input: event.target.value })}
