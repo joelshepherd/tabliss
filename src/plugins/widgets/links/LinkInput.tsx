@@ -1,5 +1,5 @@
 import featherIcons from 'feather-icons';
-import * as React from 'react';
+import React from 'react';
 import {
   arrowUpIcon,
   arrowDownIcon,

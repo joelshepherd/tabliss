@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { injectIntl, InjectedIntlProps } from 'react-intl';
 import { getConvertedDate } from '../../../utils';
 import { messages } from './messages';

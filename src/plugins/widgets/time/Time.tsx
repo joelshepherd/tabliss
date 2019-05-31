@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { FormattedDate } from 'react-intl';
 import { getConvertedDate } from '../../../utils';
 import Analogue from './Analogue';

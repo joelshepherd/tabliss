@@ -1,5 +1,5 @@
 import featherIcons from 'feather-icons';
-import * as React from 'react';
+import React from 'react';
 import { defineMessages, injectIntl, InjectedIntlProps } from 'react-intl';
 import { Link as LinkProps } from './interfaces';
 

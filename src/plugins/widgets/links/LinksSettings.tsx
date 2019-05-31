@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { Link as LinkProps, Settings } from './interfaces';
 import LinkInput from './LinkInput';
 

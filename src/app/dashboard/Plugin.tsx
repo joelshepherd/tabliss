@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { withErrorBoundary } from 'react-error-boundary';
 import { connect, Dispatch } from 'react-redux';
 import { Action, RootState, setLocal, updateLocal } from '../../data';

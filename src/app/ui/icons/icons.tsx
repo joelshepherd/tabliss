@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 
 const arrowDown = require('feather-icons/dist/icons/arrow-down.svg');
 const arrowUp = require('feather-icons/dist/icons/arrow-up.svg');

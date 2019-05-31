@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { FallbackProps } from 'react-error-boundary';
 import featherIcons from 'feather-icons';
 

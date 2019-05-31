@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { defineMessages, injectIntl, InjectedIntlProps } from 'react-intl';
 import tlds from 'tlds';
 import getSuggestions from './suggestions/getSuggestions';

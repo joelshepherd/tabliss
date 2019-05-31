@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { defaultProps } from './constants';
 import { By, Settings } from './interfaces';
 

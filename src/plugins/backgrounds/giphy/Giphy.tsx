@@ -1,6 +1,6 @@
 import debounce from 'lodash-es/debounce';
 import get from 'lodash-es/get';
-import * as React from 'react';
+import React from 'react';
 import { ActionCreator, connect } from 'react-redux';
 import { Action, popPending, pushPending, RootState } from '../../../data';
 import './Giphy.sass';

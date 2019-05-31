@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { IconButton, removeIcon } from '../../../app/ui';
 import { Settings } from '../../interfaces';
 import './ImageSettings.sass';

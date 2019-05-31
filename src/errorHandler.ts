@@ -1,4 +1,4 @@
-import * as Raven from 'raven-js';
+import Raven from 'raven-js';
 
 const sentryPublicDsn = process.env.SENTRY_PUBLIC_DSN;
 

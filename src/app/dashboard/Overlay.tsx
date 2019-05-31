@@ -1,7 +1,7 @@
-import * as React from 'react';
+import React from 'react';
 import { defineMessages, injectIntl, InjectedIntlProps } from 'react-intl';
 import { ActionCreator, connect } from 'react-redux';
-import * as screenfull from 'screenfull';
+import screenfull from 'screenfull';
 import { Action, RootState, toggleFocus, toggleSettings } from '../../data';
 import { isInputEvent } from '../../utils';
 import { eyeIcon, eyeOffIcon } from '../ui';

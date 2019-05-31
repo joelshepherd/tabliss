@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { isInputEvent } from '../../../utils';
 import { Settings } from './interfaces';
 import LinkDisplay from './LinkDisplay';

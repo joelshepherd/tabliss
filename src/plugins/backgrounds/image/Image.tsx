@@ -1,7 +1,7 @@
-import * as localForage from 'localforage';
+import localForage from 'localforage';
 import sample from 'lodash-es/sample';
-import * as Raven from 'raven-js';
-import * as React from 'react';
+import Raven from 'raven-js';
+import React from 'react';
 import './Image.sass';
 
 interface Props {

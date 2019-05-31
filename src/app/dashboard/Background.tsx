@@ -1,11 +1,9 @@
-import * as React from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { RootState } from '../../data';
 import Plugin from './Plugin';
 
-interface Props {
-  pluginKey: string;
-}
+type Props = { pluginKey: string };
 
 const Background: React.StatelessComponent<Props> = props => (
   <Plugin pluginKey={props.pluginKey} />

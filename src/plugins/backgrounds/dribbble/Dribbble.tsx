@@ -1,6 +1,6 @@
-import * as React from 'react';
+import React from 'react';
 import { ActionCreator, connect } from 'react-redux';
-import * as parseLinkHeader from 'parse-link-header';
+import parseLinkHeader from 'parse-link-header';
 import { Action, popPending, pushPending, RootState } from '../../../data';
 import { Shot } from './interfaces';
 import './Dribbble.sass';

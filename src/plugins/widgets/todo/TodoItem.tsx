@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { checkedIcon, uncheckedIcon, removeIcon } from '../../../app/ui';
 import { Todo } from './interfaces';
 import './TodoItem.sass';

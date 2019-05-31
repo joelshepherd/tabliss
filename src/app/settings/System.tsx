@@ -1,5 +1,5 @@
 import { Info } from 'luxon';
-import * as React from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { Action, changeLocale, changeTimezone, RootState } from '../../data';
 import { defaultLocale } from '../../locales';

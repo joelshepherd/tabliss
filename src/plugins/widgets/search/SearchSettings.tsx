@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { Engine, Settings } from './interfaces';
 const engines: Engine[] = require('./engines.json');
 
