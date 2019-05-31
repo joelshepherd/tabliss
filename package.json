@@ -21,10 +21,10 @@
     "normalize.css": "^8.0.0",
     "parse-link-header": "^1.0.1",
     "raven-js": "^3.25.2",
-    "react": "^16.4.0",
-    "react-dom": "^16.4.0",
-    "react-error-boundary": "^1.2.3",
-    "react-intl": "^2.4.0",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-error-boundary": "^1.2.5",
+    "react-intl": "^2.9.0",
     "react-redux": "^5.0.7",
     "react-transition-group": "^2.3.1",
     "redux": "^3.7.2",
@@ -56,7 +56,7 @@
     "html-webpack-plugin": "^3.0.0",
     "jest": "^23.0.0",
     "mini-css-extract-plugin": "^0.4.0",
-    "node-sass": "^4.9.3",
+    "node-sass": "^4.12.0",
     "prettier": "1.17.1",
     "raw-loader": "^0.5.1",
     "react-intl-translations-manager": "^5.0.3",
@@ -70,6 +70,6 @@
     "url-loader": "^1.0.0",
     "webpack": "^4.14.0",
     "webpack-cli": "^3.0.8",
-    "webpack-dev-server": "^3.1.4"
+    "webpack-dev-server": "^3.4.1"
   }
 }
