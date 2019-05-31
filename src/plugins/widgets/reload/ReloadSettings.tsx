@@ -6,7 +6,7 @@ interface Props {
   onChange: (settings: Settings) => void;
 }
 
-const ReloadSettings: React.StatelessComponent<Props> = ({ input = 1, onChange }) => {
+const ReloadSettings: React.StatelessComponent<Props> = ({ input = 15, onChange }) => {
   return (
     <div className="ReloadSettings">
       <label>
