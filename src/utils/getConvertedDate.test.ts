@@ -1,4 +1,4 @@
-import { getConvertedDate } from '../../src/utils';
+import { getConvertedDate } from './getConvertedDate';
 
 describe('getConvertedDate()', () => {
   test('it has the correct year', () => {

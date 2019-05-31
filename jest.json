@@ -1,5 +1,5 @@
 {
-  "testRegex": "test/.+\\.test\\.(tsx?)$",
+  "testRegex": "src/.+\\.test\\.(tsx?)$",
   "transform": {
     "\\.tsx?$": "ts-jest"
   },
