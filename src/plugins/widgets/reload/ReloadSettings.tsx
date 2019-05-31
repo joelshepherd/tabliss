@@ -7,7 +7,7 @@ interface Props {
 }
 
 const ReloadSettings: React.StatelessComponent<Props> = ({
-  input = 1,
+  input = 15,
   onChange,
 }) => {
   return (

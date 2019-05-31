@@ -5,6 +5,9 @@ interface Props {
 }
 
 class Reload extends React.PureComponent<Props> {
+  static defaultProps = {
+    input: 15,
+  };
   timeOut: ReturnType<typeof setTimeout>;
 
   componentDidMount() {
@@ -12,7 +15,6 @@ class Reload extends React.PureComponent<Props> {
   }
 
   componentDidUpdate() {
-    // Need to remove the existing style element before inserting an updated one.
     this.detach();
     this.attach();
   }
@@ -33,9 +35,10 @@ class Reload extends React.PureComponent<Props> {
 
   private attach() {
     if (this.props.input) {
-      this.timeOut = setTimeout(() => {
-        location.reload();
-      }, this.props.input * 60000);
+      this.timeOut = setTimeout(
+        () => location.reload(),
+        this.props.input * 60000
+      );
     }
   }
 }
