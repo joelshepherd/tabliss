@@ -1,20 +1,19 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { RootState } from '../../data';
-import Plugin from './Plugin';
+import Plugin from '../../containers/Plugin';
 import './Widgets.sass';
 
-interface Props {
+type Props = {
   focus: boolean;
   widgets: string[];
-}
+};
 
-const Widgets: React.StatelessComponent<Props> = props => {
+const Widgets: React.StatelessComponent<Props> = ({ focus, widgets }) => {
   return (
     <div className="Widgets fullscreen">
       <div className="container">
-        {!props.focus &&
-          props.widgets.map(key => <Plugin key={key} pluginKey={key} />)}
+        {!focus && widgets.map(type => <Plugin key={type} type={type} />)}
       </div>
     </div>
   );

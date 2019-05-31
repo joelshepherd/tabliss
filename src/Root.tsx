@@ -4,8 +4,8 @@ import { connect, Provider as StoreProvider } from 'react-redux';
 import { compose } from 'redux';
 
 import { RootState } from './data';
-import { Dashboard } from './app/dashboard';
-import { Settings } from './app/settings';
+import { Dashboard } from './views/dashboard';
+import { Settings } from './views/settings';
 import { store } from './data';
 import { IntlProvider } from './locales';
 import './Root.sass';

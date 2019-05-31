@@ -7,7 +7,7 @@ import Homepage from './Homepage';
 import System from './System';
 import Widgets from './Widgets';
 import { Action, resetDashboard, toggleSettings } from '../../data';
-import { githubIcon, globeIcon, twitterIcon } from '../ui';
+import { githubIcon, globeIcon, twitterIcon } from '../../components';
 import './Settings.sass';
 const logo = require('./logo.svg');
 const ESCAPE_KEY = 27;

@@ -1,5 +1,5 @@
 import React from 'react';
-import { IconButton, removeIcon } from '../../../app/ui';
+import { IconButton, removeIcon } from '../../../components';
 import { Settings } from '../../interfaces';
 import './ImageSettings.sass';
 

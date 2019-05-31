@@ -1,14 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
+
 import { RootState } from '../../data';
 import Background from './Background';
 import Overlay from './Overlay';
 import Widgets from './Widgets';
 import './Dashboard.sass';
 
-interface Props {
-  booted: boolean;
-}
+type Props = { booted: boolean };
 
 const Dashboard: React.StatelessComponent<Props> = ({ booted }) => {
   if (!booted) {

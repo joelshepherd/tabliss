@@ -1,5 +1,5 @@
 import React from 'react';
-import { IconButton, collapseIcon } from '../ui/index';
+import { IconButton, collapseIcon } from '../../components/index';
 
 interface State {
   body: string;

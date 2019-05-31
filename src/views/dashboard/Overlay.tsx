@@ -4,7 +4,7 @@ import { ActionCreator, connect } from 'react-redux';
 import screenfull from 'screenfull';
 import { Action, RootState, toggleFocus, toggleSettings } from '../../data';
 import { isInputEvent } from '../../utils';
-import { eyeIcon, eyeOffIcon } from '../ui';
+import { eyeIcon, eyeOffIcon } from '../../components';
 import './Overlay.sass';
 
 const maximiseIcon = require('feather-icons/dist/icons/maximize-2.svg');

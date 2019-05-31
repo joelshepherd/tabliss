@@ -9,7 +9,7 @@ import {
   expandIcon,
   IconButton,
   removeIcon,
-} from '../ui';
+} from '../../components';
 import './Plugin.sass';
 
 interface OwnProps {

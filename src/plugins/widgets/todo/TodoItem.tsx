@@ -1,5 +1,5 @@
 import React from 'react';
-import { checkedIcon, uncheckedIcon, removeIcon } from '../../../app/ui';
+import { checkedIcon, uncheckedIcon, removeIcon } from '../../../components';
 import { Todo } from './interfaces';
 import './TodoItem.sass';
 

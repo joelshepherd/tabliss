@@ -5,7 +5,7 @@ import {
   arrowDownIcon,
   IconButton,
   removeIcon,
-} from '../../../app/ui';
+} from '../../../components';
 import { Link as LinkProps } from './interfaces';
 
 interface Props extends LinkProps {

@@ -5,7 +5,7 @@ import {
   arrowUpIcon,
   checkedIcon,
   uncheckedIcon,
-} from '../../../app/ui';
+} from '../../../components';
 import { PluginAPI } from '../../interfaces';
 import { Settings, Todo as TodoModel } from './interfaces';
 import TodoInput from './TodoInput';

@@ -1,13 +1,14 @@
 import React from 'react';
 import { withErrorBoundary } from 'react-error-boundary';
 import { connect, Dispatch } from 'react-redux';
-import { Action, RootState, setLocal, updateLocal } from '../../data';
-import { capture as captureException } from '../../errorHandler';
-import { getPlugin, Plugin as IPlugin, Settings, Local } from '../../plugins';
-import Crashed from './Crashed';
+
+import { Action, RootState, setLocal, updateLocal } from '../data';
+import { capture as captureException } from '../errorHandler';
+import Crashed from '../components/crashed/Crashed';
+import { getPlugin, Plugin as IPlugin, Settings, Local } from '../plugins';
 
 interface OwnProps {
-  pluginKey: string;
+  type: string;
 }
 
 interface Props extends OwnProps {
@@ -30,9 +31,9 @@ const Plugin: React.StatelessComponent<Props> = props => {
 };
 
 const mapStateToProps = (state: RootState, ownProps: OwnProps) => ({
-  plugin: getPlugin(ownProps.pluginKey),
-  settings: (state.storage[ownProps.pluginKey] || {}).settings,
-  local: (state.storage[ownProps.pluginKey] || {}).local,
+  plugin: getPlugin(ownProps.type),
+  settings: (state.storage[ownProps.type] || {}).settings,
+  local: (state.storage[ownProps.type] || {}).local,
 });
 
 // Launching updates off-thread to prevent issues pushing state at hydration
@@ -41,10 +42,10 @@ const mapDispatchToProps = (
   ownProps: OwnProps,
 ) => ({
   setLocal: (state: Local) => {
-    setImmediate(() => dispatch(setLocal(ownProps.pluginKey, state)));
+    setImmediate(() => dispatch(setLocal(ownProps.type, state)));
   },
   updateLocal: (state: Local) => {
-    setImmediate(() => dispatch(updateLocal(ownProps.pluginKey, state)));
+    setImmediate(() => dispatch(updateLocal(ownProps.type, state)));
   },
 });
 

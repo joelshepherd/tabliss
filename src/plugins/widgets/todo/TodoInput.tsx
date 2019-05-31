@@ -1,5 +1,5 @@
 import React from 'react';
-import { expandIcon } from '../../../app/ui';
+import { expandIcon } from '../../../components';
 import './TodoInput.sass';
 
 interface Props {
