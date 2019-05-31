@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "build": "npm run-script build:web",
-    "build:chrome": "NODE_ENV=production BUILD_TARGET=chrome webpack",
+    "build:chromium": "NODE_ENV=production BUILD_TARGET=chromium webpack",
     "build:firefox": "NODE_ENV=production BUILD_TARGET=firefox webpack",
     "build:web": "NODE_ENV=production BUILD_TARGET=web webpack",
     "start": "webpack-dev-server",

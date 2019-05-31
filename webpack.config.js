@@ -8,6 +8,9 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
 const webpack = require('webpack');
 
+const buildTarget = process.env.BUILD_TARGET || 'web';
+const isProduction = process.env.NODE_ENV === 'production';
+const isWeb = buildTarget === 'web';
 const version = require('./package.json').version;
 
 const config = {
@@ -17,10 +20,9 @@ const config = {
   output: {
     path: path.resolve('./dist'),
     publicPath: '/',
-    filename:
-      process.env.BUILD_TARGET === 'web' ? '[name].[hash:12].js' : '[name].js',
+    filename: isWeb ? '[name].[hash:12].js' : '[name].js',
   },
-  mode: 'development',
+  mode: isProduction ? 'production' : 'development',
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx'],
   },
@@ -35,10 +37,7 @@ const config = {
         loader: 'url-loader',
         options: {
           limit: 10000,
-          name:
-            process.env.BUILD_TARGET === 'web'
-              ? '[name].[hash:12].[ext]'
-              : '[name].[ext]',
+          name: isWeb ? '[name].[hash:12].[ext]' : '[name].[ext]',
         },
       },
       {
@@ -58,23 +57,11 @@ const config = {
   },
   plugins: [
     new CleanWebpackPlugin('dist'),
-    new CopyWebpackPlugin([{ from: 'public' }]),
+    new CopyWebpackPlugin({ from: 'target/shared' }),
+    new CopyWebpackPlugin({ from: `target/${buildTarget}` }),
+    new HtmlWebpackPlugin({ template: './target/common/index.html' }),
     new MiniCssExtractPlugin({
-      filename:
-        process.env.BUILD_TARGET === 'web'
-          ? '[name].[hash:12].css'
-          : '[name].css',
-    }),
-    new HtmlWebpackPlugin({
-      template: './public/index.html',
-    }),
-    new SWPrecacheWebpackPlugin({
-      cacheId: 'tabliss-cache',
-      dontCacheBustUrlsMatching: /\.\w{12}\./,
-      filename: 'service-worker.js',
-      minify: true,
-      navigateFallback: '/index.html',
-      staticFileGlobsIgnorePatterns: [/\.map$/],
+      filename: isWeb ? '[name].[hash:12].css' : '[name].css',
     }),
     new webpack.EnvironmentPlugin({
       BUILD_TARGET: 'web',
@@ -90,21 +77,13 @@ const config = {
     historyApiFallback: true,
     overlay: true,
   },
-  devtool: 'source-map',
-  node: {
-    dgram: 'empty',
-    fs: 'empty',
-    net: 'empty',
-    tls: 'empty',
-  },
+  devtool: isWeb ? 'source-map' : false,
   stats: {
     warnings: false,
   },
 };
 
-// Production build
-if (process.env.NODE_ENV === 'production') {
-  config.mode = 'production';
+if (isProduction) {
   config.plugins.push(
     new webpack.LoaderOptionsPlugin({
       minimize: true,
@@ -113,22 +92,16 @@ if (process.env.NODE_ENV === 'production') {
   );
 }
 
-// Extension build targets
-if (
-  process.env.BUILD_TARGET === 'chrome' ||
-  process.env.BUILD_TARGET === 'firefox'
-) {
-  config.devtool = false;
-  config.plugins = config.plugins.filter(
-    plugin => !(plugin instanceof SWPrecacheWebpackPlugin),
-  );
+if (isWeb) {
   config.plugins.push(
-    new CopyWebpackPlugin([
-      {
-        from: `src/manifest_${process.env.BUILD_TARGET}.json`,
-        to: 'manifest.json',
-      },
-    ]),
+    new SWPrecacheWebpackPlugin({
+      cacheId: 'tabliss-cache',
+      dontCacheBustUrlsMatching: /\.\w{12}\./,
+      filename: 'service-worker.js',
+      minify: true,
+      navigateFallback: '/index.html',
+      staticFileGlobsIgnorePatterns: [/\.map$/],
+    }),
   );
 }
 
