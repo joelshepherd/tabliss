@@ -57,8 +57,10 @@ const config = {
   },
   plugins: [
     new CleanWebpackPlugin('dist'),
-    new CopyWebpackPlugin({ from: 'target/shared' }),
-    new CopyWebpackPlugin({ from: `target/${buildTarget}` }),
+    new CopyWebpackPlugin([
+      { from: 'target/shared' },
+      { from: `target/${buildTarget}` },
+    ]),
     new HtmlWebpackPlugin({ template: './target/common/index.html' }),
     new MiniCssExtractPlugin({
       filename: isWeb ? '[name].[hash:12].css' : '[name].css',

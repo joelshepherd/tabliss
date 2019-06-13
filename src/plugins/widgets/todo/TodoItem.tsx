@@ -11,7 +11,7 @@ interface Props {
 }
 
 class TodoItem extends React.Component<Props> {
-  ref: HTMLSpanElement | null;
+  ref?: HTMLSpanElement | null;
 
   shouldComponentUpdate(nextProps: Props) {
     if (!this.ref) {
