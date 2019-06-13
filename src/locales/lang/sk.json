@@ -1,0 +1,14 @@
+{
+  "app.pageTitle": "Nový panel",
+  "dashboard.focusHint": "Skryť/zobraziť widgety",
+  "dashboard.fullscreenHint": "Prepnúť zobrazenie na celú obrazovku",
+  "dashboard.loadingHint": "Načítanie nového obsahu",
+  "dashboard.settingsHint": "Prispôsobiť Tabliss",
+  "plugin.greeting.withName": "{hour, plural,\n      =0 {Pekné sny, {name}}\n      =1 {Pekné sny, {name}}\n      =2 {Pekné sny, {name}}\n      =3 {Bež už spať, {name}!}\n      =4 {Bež už spať, {name}!}\n      =5 {Príjemné skoré ráno, {name}}\n      =6 {Dobré ráno, {name}}\n      =7 {Dobré ráno, {name}}\n      =8 {Príjemné ráno, {name}}\n      =9 {Dobré ráno, {name}}\n      =10 {Dobrý deň, {name}}\n      =11 {Dobrý deň, {name}}\n      =12 {Dobrý deň, {name}}\n      =13 {Dobrý deň, {name}}\n      =14 {Príjemné popoludnie, {name}}\n      =15 {Príjemné popoludnie, {name}}\n      =16 {Príjemné popoludnie, {name}}\n      =17 {Príjemné popoludnie, {name}}\n      =18 {Dobrý večer, {name}}\n      =19 {Dobrý večer, {name}}\n      =20 {Dobrý večer, {name}}\n      =21 {Dobrý večer, {name}}\n      =22 {Dobrú noc, {name}}\n      =23 {Dobrú noc, {name}}\n    }",
+  "plugin.greeting.withoutName": "{hour, plural,\n      =0 {Pekné sny}\n      =1 {Pekné sny}\n      =2 {Pekné sny}\n      =3 {Bež už spať, {name}!}\n      =4 {Bež už spať, {name}!}\n      =5 {Príjemné skoré ráno}\n      =6 {Dobré ráno}\n      =7 {Dobré ráno}\n      =8 {Príjemné ráno}\n      =9 {Dobré ráno}\n      =10 {Dobrý deň}\n      =11 {Dobrý deň}\n      =12 {Dobrý deň}\n      =13 {Dobrý deň}\n      =14 {Príjemné popoludnie}\n      =15 {Príjemné popoludnie}\n      =16 {Príjemné popoludnie}\n      =17 {Príjemné popoludnie}\n      =18 {Dobrý večer}\n      =19 {Dobrý večer}\n      =20 {Dobrý večer}\n      =21 {Dobrý večer}\n      =22 {Dobrú noc}\n      =23 {Dobrú noc}\n    }",
+  "plugins.links.shortcutHint": "Stlačte {number} alebo kliknite pre navštívenie",
+  "plugins.links.standardHint": "Kliknite pre navštívenie",
+  "plugins.search.placeholder": "Hľadať",
+  "plugins.unsplash.photoLink": "Fotografia",
+  "settings.translationCredits": "Slovak translation by Marko Řeháček"
+}
