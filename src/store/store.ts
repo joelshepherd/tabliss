@@ -1,8 +1,8 @@
-import { ProfileState } from './reducers/profile';
+import { ProfilesState } from './reducers/profiles';
 
 export type RootState = {
   // This gets synced
-  profiles: ProfileState;
+  profiles: ProfilesState;
 
   // Settings saved in the browser
   settings: {

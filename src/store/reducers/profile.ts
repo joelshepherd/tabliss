@@ -1,77 +1,129 @@
+import { v4 as generateId } from 'uuid';
+
 import { ProfileActions } from '../actions/profile';
 
-interface Profile {
+export interface ProfileState {
   id: string;
   name: string;
-  background: string;
-  widgets: string[];
+  background: {
+    id: string;
+  };
+  widgets: {
+    id: string;
+    position: [number, number];
+  }[];
   storage: {
-    key: string;
-    position: [0 | 1 | 2, 0 | 1 | 2];
+    id: string;
+    type: string;
     data: unknown;
   }[];
 }
 
-export interface ProfileState {
-  activeProfileId: string;
-  profiles: Profile[];
-}
+const backgroundId = generateId();
+const timeId = generateId();
+const greetingId = generateId();
 
-const defaultProfileId = '00000000-0000-0000-0000-000000000000';
-const defaultProfile = {
-  id: defaultProfileId,
-  name: 'Default',
-  background: 'background/unsplash',
-  widgets: [],
-  storage: [],
+export const defaultProfile: Pick<
+  ProfileState,
+  'background' | 'storage' | 'widgets'
+> = {
+  background: { id: backgroundId },
+  widgets: [
+    {
+      id: timeId,
+      position: [1, 1],
+    },
+    {
+      id: greetingId,
+      position: [1, 1],
+    },
+  ],
+  storage: [
+    {
+      id: backgroundId,
+      type: 'background/unsplash',
+      data: {},
+    },
+    {
+      id: timeId,
+      type: 'widget/time',
+      data: {},
+    },
+    {
+      id: greetingId,
+      type: 'widget/greeting',
+      data: {},
+    },
+  ],
 };
 
 const initialState: ProfileState = {
-  activeProfileId: defaultProfileId,
-  profiles: [defaultProfile],
+  ...defaultProfile,
+  id: '00000000-0000-0000-0000-000000000000',
+  name: 'Default',
 };
 
 export function profile(
   state = initialState,
   action: ProfileActions,
 ): ProfileState {
-  // Update current profile helper function
-  const updateProfile = (fn: (profile: Profile) => Profile): ProfileState => ({
-    ...state,
-    profiles: state.profiles.map(profile =>
-      profile.id === state.activeProfileId ? fn(profile) : profile,
-    ),
-  });
-
   switch (action.type) {
-    case 'SET_PROFILE':
+    case 'SET_BACKGROUND':
       return {
         ...state,
-        activeProfileId: action.data.id,
+        background: { id: action.data.id },
       };
 
-    case 'SET_BACKGROUND':
-      return updateProfile(profile => ({
-        ...profile,
-        backgroundId: action.data.id,
-      }));
-
     case 'ADD_WIDGET':
-      return updateProfile(profile => ({
-        ...profile,
-        widgets: profile.widgets.concat(action.data.key),
-      }));
+      const [existing] = state.storage
+        .filter(storage => storage.type === action.data.type)
+        .filter(
+          storage =>
+            !state.widgets.map(widget => widget.id).includes(storage.id),
+        );
+
+      if (existing) {
+        return {
+          ...state,
+          widgets: state.widgets.concat({
+            id: existing.id,
+            position: [1, 1],
+          }),
+        };
+      }
+
+      const id = generateId();
+      return {
+        ...state,
+        storage: state.storage.concat({
+          id,
+          type: action.data.type,
+          data: {},
+        }),
+        widgets: state.widgets.concat({
+          id,
+          position: [1, 1],
+        }),
+      };
 
     case 'REMOVE_WIDGET':
-      return updateProfile(profile => ({
-        ...profile,
-        widgets: profile.widgets.filter(widget => action.data.key),
-      }));
+      // @todo Should we remove all but the last version of the storage?
+      return {
+        ...state,
+        widgets: state.widgets.filter(widget => widget.id === action.data.id),
+      };
 
-    // reorder widget
+    // @todo Reorder widget?
 
-    case 'SET_PLUGIN_STATE':
-      return updateProfile(profile => profile);
+    case 'SET_DATA':
+      return {
+        ...state,
+        storage: state.storage.map(storage =>
+          storage.id === action.data.id
+            ? { ...storage, data: action.data.data }
+            : storage,
+        ),
+      };
   }
 
   return state;
