@@ -2,7 +2,7 @@ import { Settings as LuxonSettings } from 'luxon';
 import * as React from 'react';
 import { defineMessages, injectIntl, InjectedIntlProps } from 'react-intl';
 import { connect } from 'react-redux';
-import * as CSSTransition from 'react-transition-group/CSSTransition';
+import { CSSTransition } from 'react-transition-group';
 import { RootState } from '../data';
 import { Dashboard } from './dashboard';
 import { Settings } from './settings';
