@@ -24,6 +24,16 @@ const UnsplashCredit: React.StatelessComponent<Props> = (props) => (
         defaultMessage="Photo"
       />
     </a>
+    <a
+      href={props.image.image_link + '/download?force=true'}
+      rel="noopener noreferrer"
+    >
+      <FormattedMessage
+        id="plugins.unsplash.photoDownloadLink"
+        description="Photo download link text"
+        defaultMessage=" (↓)"
+      />
+    </a>
     {' / '}
     <a
       href={props.image.user_link + UNSPLASH_UTM}
