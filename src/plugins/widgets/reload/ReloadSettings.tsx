@@ -6,14 +6,14 @@ interface Props {
   onChange: (settings: Settings) => void;
 }
 
-const ReloadSettings: React.StatelessComponent<Props> = ({ input = 1, onChange }) => {
+const ReloadSettings: React.StatelessComponent<Props> = ({ input = 15, onChange }) => {
   return (
     <div className="ReloadSettings">
       <label>
         Time between refreshes (minutes)
         <input
           type="number"
-          min="0.1"
+          min="1"
           max="300"
           value={input}
           onChange={event => onChange({ input: event.target.value })}

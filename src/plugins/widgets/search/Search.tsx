@@ -49,6 +49,11 @@ class Search extends React.PureComponent<Props & InjectedIntlProps, State> {
   componentDidUpdate() {
     this.getSuggestionData();
   }
+  
+  componentDidMount() {
+    if (this.searchInput.current)
+      this.searchInput.current.focus();
+  }
 
   render() {
     const { intl, placeholder, suggestionsEngine } = this.props;

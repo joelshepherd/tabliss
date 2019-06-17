@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
+## [1.18.0] - 2019-05-30
+### Added
+- New Reload widget! Thanks @trickypr
+
+### Fixed
+- Weather widget's city geocoder works again, thanks @Raul6469!
+- Unsplash could go permanently black - requiring a reinstall, thanks aptly named @Tester798!
+
 ## [1.17.0] - 2019-03-15
 ### Added
 - New search suggestions for the search box! Thanks @Wavum
