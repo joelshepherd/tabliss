@@ -99,6 +99,9 @@ const System: React.StatelessComponent<Props> = props => {
           <option value="ru" title="Russian">
             Русский
           </option>
+          <option value="sk" title="Slovak">
+            Slovenčina
+          </option>
           <option value="tr" title="Turkish">
             Türkçe
           </option>

@@ -1,6 +1,6 @@
 {
   "name": "tabliss",
-  "version": "1.18.0",
+  "version": "1.18.1",
   "license": "GPL-3.0",
   "private": true,
   "scripts": {
@@ -68,6 +68,6 @@
     "url-loader": "^1.0.0",
     "webpack": "^4.14.0",
     "webpack-cli": "^3.0.8",
-    "webpack-dev-server": "^3.4.1"
+    "webpack-dev-server": "^3.7.2"
   }
 }

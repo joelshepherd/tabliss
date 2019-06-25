@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
+## [1.18.1] - 2019-06-25
+### Added
+- Translations for Slovak! Thanks @mrehacek
+
+### Fixed
+- Small typo in Italian translations, thanks @plcancelleri
+
 ## [1.18.0] - 2019-05-30
 ### Added
 - New Reload widget! Thanks @trickypr
