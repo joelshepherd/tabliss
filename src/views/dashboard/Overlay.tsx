@@ -1,8 +1,8 @@
 import React from 'react';
 import { defineMessages, injectIntl, InjectedIntlProps } from 'react-intl';
-import { ActionCreator, connect } from 'react-redux';
+import { connect } from 'react-redux';
 import screenfull from 'screenfull';
-import { Action, RootState, toggleFocus, toggleSettings } from '../../data';
+import { RootState, toggleFocus, toggleSettings } from '../../data';
 import { isInputEvent } from '../../utils';
 import { eyeIcon, eyeOffIcon } from '../../components';
 import './Overlay.sass';
@@ -15,8 +15,8 @@ const pendingIcon = require('feather-icons/dist/icons/zap.svg');
 interface Props {
   focus: boolean;
   pending: boolean;
-  toggleFocus: ActionCreator<Action>;
-  toggleSettings: ActionCreator<Action>;
+  toggleFocus: () => void;
+  toggleSettings: () => void;
 }
 
 interface State {

@@ -16,7 +16,7 @@ class Greeting extends React.PureComponent<Props & InjectedIntlProps, State> {
     hour: getConvertedDate().getHours(),
   };
 
-  private interval: number;
+  private interval?: number;
 
   componentWillMount() {
     this.interval = window.setInterval(

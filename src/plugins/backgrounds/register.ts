@@ -2,7 +2,6 @@ import { Type } from '../interfaces';
 import { registerPlugin } from '../registry';
 
 import { Colour, ColourSettings } from './colour';
-import { Dribbble, DribbbleSettings } from './dribbble';
 import { Giphy, GiphySettings } from './giphy';
 import { Gradient, GradientSettings } from './gradient';
 import { Image, ImageSettings } from './image';
@@ -14,14 +13,6 @@ registerPlugin({
   title: 'Solid Colour',
   Dashboard: Colour,
   Settings: ColourSettings,
-});
-
-registerPlugin({
-  key: 'extra/backgrounds/dribbble',
-  type: Type.BACKGROUND,
-  title: 'Dribbble',
-  Dashboard: Dribbble,
-  Settings: DribbbleSettings,
 });
 
 registerPlugin({

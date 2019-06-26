@@ -8,17 +8,17 @@ import { getPlugin } from '../plugins';
 import { RootState } from '../store/store';
 
 type Props = {
-  type: string;
+  id: string;
 };
 
-const Plugin = ({ type }: Props) => {
-  const { Dashboard } = getPlugin(type);
-
+const Plugin = ({ id }: Props) => {
   // @todo Not make this suck
-  const { data, position } = useSelector(
+  const { data, type } = useSelector(
     (state: RootState) =>
-      state.profiles.profiles[0].storage.find(({ key }) => key === type)!,
+      state.profiles.profiles[0].storage.find(storage => storage.id === id)!,
   );
+
+  const { Dashboard } = getPlugin(type);
 
   // Plugin API this
   const props = { data };

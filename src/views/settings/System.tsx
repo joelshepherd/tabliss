@@ -137,7 +137,7 @@ const System: React.StatelessComponent<Props> = props => {
             <option value="">Automatic</option>
             {timezones.map(timezone => (
               <option key={timezone} value={timezone}>
-                {timezone.replace(/_/g, ' ')}
+                {timezone}
               </option>
             ))}
           </select>

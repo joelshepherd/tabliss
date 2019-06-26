@@ -8,7 +8,7 @@ class Reload extends React.PureComponent<Props> {
   static defaultProps = {
     input: 15,
   };
-  timeOut: ReturnType<typeof setTimeout>;
+  timeOut?: ReturnType<typeof setTimeout>;
 
   componentDidMount() {
     this.attach();
@@ -37,7 +37,7 @@ class Reload extends React.PureComponent<Props> {
     if (this.props.input) {
       this.timeOut = setTimeout(
         () => location.reload(),
-        this.props.input * 60000
+        this.props.input * 60000,
       );
     }
   }

@@ -27,7 +27,7 @@ class Time extends React.PureComponent<Props, State> {
     showSeconds: false,
   };
   state: State = { time: getConvertedDate() };
-  private interval: number;
+  private interval?: number;
 
   componentWillMount() {
     this.interval = window.setInterval(this.tick, 1000);

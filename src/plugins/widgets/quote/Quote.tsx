@@ -1,15 +1,15 @@
 import get from 'lodash-es/get';
 import has from 'lodash-es/has';
 import React from 'react';
-import { ActionCreator, connect } from 'react-redux';
-import { Action, popPending, pushPending } from '../../../data';
+import { connect } from 'react-redux';
+import { popPending, pushPending } from '../../../data';
 require('./Quote.sass');
 
 interface Props {
   category?: string;
   local?: Data;
-  popPending: ActionCreator<Action>;
-  pushPending: ActionCreator<Action>;
+  popPending: () => void;
+  pushPending: () => void;
   setLocal: (state: Data) => void;
 }
 

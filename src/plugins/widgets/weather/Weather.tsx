@@ -1,15 +1,15 @@
 import get from 'lodash-es/get';
 import React from 'react';
-import { ActionCreator, connect } from 'react-redux';
-import { Action, popPending, pushPending } from '../../../data';
+import { connect } from 'react-redux';
+import { popPending, pushPending } from '../../../data';
 import { weatherIcons } from './icons';
 import { Conditions, Settings } from './interfaces';
 import './Weather.sass';
 
 interface Props extends Settings {
   local: Local;
-  popPending: ActionCreator<Action>;
-  pushPending: ActionCreator<Action>;
+  popPending: () => void;
+  pushPending: () => void;
   updateLocal: (state: Partial<Local>) => void;
 }
 

@@ -1,6 +1,6 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { RootState } from '../../data';
+import { connect, useSelector } from 'react-redux';
+import { RootState } from '../../store/store';
 import Plugin from '../../containers/Plugin';
 import './Widgets.sass';
 
@@ -9,19 +9,19 @@ type Props = {
   widgets: string[];
 };
 
-const Widgets: React.StatelessComponent<Props> = ({ focus, widgets }) => {
+const Widgets: React.StatelessComponent<Props> = () => {
+  const { focus, widgets } = useSelector((state: RootState) => ({
+    focus: state.ui.focus,
+    widgets: state.profiles.profiles[0].widgets,
+  }));
+
   return (
     <div className="Widgets fullscreen">
       <div className="container">
-        {!focus && widgets.map(type => <Plugin key={type} type={type} />)}
+        {!focus && widgets.map(({ id }) => <Plugin key={id} id={id} />)}
       </div>
     </div>
   );
 };
 
-const mapStateToProps = (state: RootState) => ({
-  focus: state.ui.focus,
-  widgets: state.dashboard.widgets,
-});
-
-export default connect(mapStateToProps)(Widgets);
+export default Widgets;

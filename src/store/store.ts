@@ -1,15 +1,14 @@
-import { ProfilesState } from './reducers/profiles';
+import { createStore, combineReducers } from 'redux';
+
+import { ProfilesState, profiles } from './reducers/profiles';
+import { SettingsState, settings } from './reducers/settings';
 
 export type RootState = {
   // This gets synced
   profiles: ProfilesState;
 
   // Settings saved in the browser
-  settings: {
-    profileId: string;
-    locale?: string;
-    timezone?: string;
-  };
+  settings: SettingsState;
 
   // Controlled the user interface
   ui: {
@@ -18,3 +17,10 @@ export type RootState = {
     settings: boolean;
   };
 };
+
+export const store = createStore(
+  combineReducers({
+    profiles,
+    settings,
+  }),
+);

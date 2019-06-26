@@ -2,15 +2,15 @@ import get from 'lodash-es/get';
 import has from 'lodash-es/has';
 import React from 'react';
 import { getConvertedDate } from '../../../utils';
-import { ActionCreator, connect } from 'react-redux';
-import { Action, popPending, pushPending } from '../../../data';
+import { connect } from 'react-redux';
+import { popPending, pushPending } from '../../../data';
 import './LiteratureClock.sass';
 
 interface Props {
   showBookAndAuthor: boolean;
   centerText: boolean;
-  popPending: ActionCreator<Action>;
-  pushPending: ActionCreator<Action>;
+  popPending: () => void;
+  pushPending: () => void;
   local?: Data;
   setLocal: (state: Data) => void;
 }
@@ -34,7 +34,7 @@ class LiteratureClock extends React.PureComponent<Props, State> {
     centerText: false,
   };
   state: State = { time: getConvertedDate() };
-  private interval: number;
+  private interval?: number;
 
   componentWillMount() {
     this.interval = window.setInterval(this.tick, 1000);

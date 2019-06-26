@@ -63,7 +63,7 @@
     "sw-precache-webpack-plugin": "^0.11.5",
     "ts-jest": "^22.4.6",
     "ts-loader": "^4.0.0",
-    "typescript": "^2.8.4",
+    "typescript": "^3.5.2",
     "typescript-react-intl": "^0.2.5",
     "url-loader": "^1.0.0",
     "webpack": "^4.14.0",

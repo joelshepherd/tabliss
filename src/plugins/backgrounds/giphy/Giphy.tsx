@@ -1,8 +1,8 @@
 import debounce from 'lodash-es/debounce';
 import get from 'lodash-es/get';
 import React from 'react';
-import { ActionCreator, connect } from 'react-redux';
-import { Action, popPending, pushPending, RootState } from '../../../data';
+import { connect } from 'react-redux';
+import { popPending, pushPending, RootState } from '../../../data';
 import './Giphy.sass';
 const GIPHY_API_KEY = process.env.GIPHY_API_KEY;
 const giphyLogo = require('./giphy-logo.png');
@@ -12,8 +12,8 @@ interface Props {
   focus: boolean;
   local: State;
   nsfw?: boolean;
-  popPending: ActionCreator<Action>;
-  pushPending: ActionCreator<Action>;
+  popPending: () => void;
+  pushPending: () => void;
   tag?: string;
   setLocal: (state: State) => void;
 }

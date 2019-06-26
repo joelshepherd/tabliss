@@ -12,7 +12,7 @@ class Image extends React.PureComponent<Props> {
   static defaultProps = {
     images: [],
   };
-  private current: string;
+  private current?: string;
 
   render() {
     if (!this.props.images.length) {

@@ -61,7 +61,7 @@ const config = {
       { from: 'target/shared' },
       { from: `target/${buildTarget}` },
     ]),
-    new HtmlWebpackPlugin({ template: './target/common/index.html' }),
+    new HtmlWebpackPlugin({ template: './target/shared/index.html' }),
     new MiniCssExtractPlugin({
       filename: isWeb ? '[name].[hash:12].css' : '[name].css',
     }),

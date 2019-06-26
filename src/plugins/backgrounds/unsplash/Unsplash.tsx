@@ -1,8 +1,8 @@
 import debounce from 'lodash-es/debounce';
 import get from 'lodash-es/get';
 import React from 'react';
-import { ActionCreator, connect } from 'react-redux';
-import { Action, popPending, pushPending, RootState } from '../../../data';
+import { connect } from 'react-redux';
+import { popPending, pushPending, RootState } from '../../../data';
 import { getImage } from './api';
 import { defaultProps } from './constants';
 import { Image, Settings } from './interfaces';
@@ -12,8 +12,8 @@ import './Unsplash.sass';
 interface Props extends Settings {
   focus: boolean;
   local: Local;
-  popPending: ActionCreator<Action>;
-  pushPending: ActionCreator<Action>;
+  popPending: () => void;
+  pushPending: () => void;
   updateLocal: (state: Partial<Local>) => void;
 }
 

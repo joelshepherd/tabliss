@@ -1,17 +1,15 @@
 import React from 'react';
 import { defineMessages, injectIntl, InjectedIntlProps } from 'react-intl';
-import { connect, Provider as StoreProvider } from 'react-redux';
-import { compose } from 'redux';
+import { useSelector } from 'react-redux';
 
-import { RootState } from './data';
 import { Dashboard } from './views/dashboard';
 import { Settings } from './views/settings';
-import { store } from './data';
 import { IntlProvider } from './locales';
+import { RootState } from './store/store';
+import StoreProvider from './store/StoreProvider';
 import './Root.sass';
 
-type ConnectedProps = { settings: boolean };
-type Props = ConnectedProps & InjectedIntlProps;
+type Props = InjectedIntlProps;
 
 const messages = defineMessages({
   pageTitle: {
@@ -21,27 +19,22 @@ const messages = defineMessages({
   },
 });
 
-const Root: React.FC<Props> = ({ intl, settings }) => {
+const Root: React.FC<Props> = ({ intl }) => {
   React.useEffect(() => {
     document.title = intl.formatMessage(messages.pageTitle);
   });
+  const showSettings = useSelector((state: RootState) => state.ui.settings);
 
   return (
-    <StoreProvider store={store}>
+    <StoreProvider>
       <IntlProvider>
         <div className="Root">
           <Dashboard />
-          {settings && <Settings />}
+          {showSettings && <Settings />}
         </div>
       </IntlProvider>
     </StoreProvider>
   );
 };
 
-const enhance = compose(
-  connect((state: RootState) => ({
-    settings: state.ui.settings,
-  })),
-);
-
-export default enhance(injectIntl(Root));
+export default injectIntl(Root);

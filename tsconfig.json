@@ -9,7 +9,8 @@
     "lib": ["esnext", "dom"],
     "sourceMap": true,
     "strict": true,
-    "typeRoots": ["node_modules/@types", "types"]
+    "typeRoots": ["node_modules/@types", "types"],
+    "allowSyntheticDefaultImports": true
   },
   "exclude": ["node_modules", "dist"]
 }

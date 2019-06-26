@@ -9,7 +9,7 @@ export interface Conditions {
   alerts: Alert[];
   apparentTemperature: number;
   humidity: number;
-  icon: string;
+  icon: ConditionIcon;
   precipProbability: number;
   temperature: number;
   precipType?: number;
@@ -21,3 +21,15 @@ export interface Alert {
   title: string;
   description: string;
 }
+
+type ConditionIcon =
+  | 'clear-day'
+  | 'clear-night'
+  | 'rain'
+  | 'snow'
+  | 'sleet'
+  | 'wind'
+  | 'fog'
+  | 'cloudy'
+  | 'partly-cloudy-day'
+  | 'partly-cloudy-night';
