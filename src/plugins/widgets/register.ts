@@ -16,7 +16,7 @@ import { Todo, TodoSettings } from './todo';
 import { Weather, WeatherSettings } from './weather';
 
 registerPlugin({
-  key: 'core/widgets/css',
+  key: 'widget/css',
   type: Type.WIDGET,
   title: 'Custom CSS',
   Dashboard: Css,
@@ -24,7 +24,7 @@ registerPlugin({
 });
 
 registerPlugin({
-  key: 'core/widgets/font',
+  key: 'widget/font',
   type: Type.WIDGET,
   title: 'Font Settings',
   Dashboard: Font,
@@ -32,7 +32,7 @@ registerPlugin({
 });
 
 registerPlugin({
-  key: 'core/widgets/greeting',
+  key: 'widget/greeting',
   type: Type.WIDGET,
   title: 'Greeting',
   Dashboard: Greeting,
@@ -42,7 +42,7 @@ registerPlugin({
 // Only available on the web version due to extension's CSP
 if (process.env.BUILD_TARGET === 'web') {
   registerPlugin({
-    key: 'widgets/js',
+    key: 'widget/js',
     type: Type.WIDGET,
     title: 'Custom JS',
     Dashboard: Js,
@@ -51,7 +51,7 @@ if (process.env.BUILD_TARGET === 'web') {
 }
 
 registerPlugin({
-  key: 'core/widgets/links',
+  key: 'widget/links',
   type: Type.WIDGET,
   title: 'Quick Links',
   Dashboard: Links,
@@ -59,7 +59,7 @@ registerPlugin({
 });
 
 registerPlugin({
-  key: 'core/widgets/message',
+  key: 'widget/message',
   type: Type.WIDGET,
   title: 'Message',
   Dashboard: Message,
@@ -67,7 +67,7 @@ registerPlugin({
 });
 
 registerPlugin({
-  key: 'extra/widgets/quote',
+  key: 'widget/quote',
   type: Type.WIDGET,
   title: 'Daily Quotes',
   Dashboard: Quote,
@@ -75,7 +75,7 @@ registerPlugin({
 });
 
 registerPlugin({
-  key: 'core/widgets/reload',
+  key: 'widget/reload',
   type: Type.WIDGET,
   title: 'Auto Reload',
   Dashboard: Reload,
@@ -83,7 +83,7 @@ registerPlugin({
 });
 
 registerPlugin({
-  key: 'extra/widgets/search',
+  key: 'widget/search',
   type: Type.WIDGET,
   title: 'Search Box',
   Dashboard: Search,
@@ -91,7 +91,7 @@ registerPlugin({
 });
 
 registerPlugin({
-  key: 'core/widgets/time',
+  key: 'widget/time',
   type: Type.WIDGET,
   title: 'Time',
   Dashboard: Time,
@@ -99,7 +99,7 @@ registerPlugin({
 });
 
 registerPlugin({
-  key: 'widgets/literature-clock',
+  key: 'widget/literature-clock',
   type: Type.WIDGET,
   title: 'Literature Clock',
   Dashboard: LiteratureClock,
@@ -107,7 +107,7 @@ registerPlugin({
 });
 
 registerPlugin({
-  key: 'widgets/todo',
+  key: 'widget/todo',
   type: Type.WIDGET,
   title: 'Todos',
   Dashboard: Todo,
@@ -115,7 +115,7 @@ registerPlugin({
 });
 
 registerPlugin({
-  key: 'extra/widgets/weather',
+  key: 'widget/weather',
   type: Type.WIDGET,
   title: 'Weather',
   Dashboard: Weather,
