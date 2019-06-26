@@ -8,7 +8,7 @@ import { Image, ImageSettings } from './image';
 import { Unsplash, UnsplashSettings } from './unsplash';
 
 registerPlugin({
-  key: 'core/backgrounds/colour',
+  key: 'background/colour',
   type: Type.BACKGROUND,
   title: 'Solid Colour',
   Dashboard: Colour,
@@ -16,7 +16,7 @@ registerPlugin({
 });
 
 registerPlugin({
-  key: 'extra/backgrounds/giphy',
+  key: 'background/giphy',
   type: Type.BACKGROUND,
   title: 'GIPHY',
   Dashboard: Giphy,
@@ -24,7 +24,7 @@ registerPlugin({
 });
 
 registerPlugin({
-  key: 'core/backgrounds/gradient',
+  key: 'background/gradient',
   type: Type.BACKGROUND,
   title: 'Colour Gradient',
   Dashboard: Gradient,
@@ -32,7 +32,7 @@ registerPlugin({
 });
 
 registerPlugin({
-  key: 'core/backgrounds/image',
+  key: 'background/image',
   type: Type.BACKGROUND,
   title: 'Upload Images',
   Dashboard: Image,
@@ -40,7 +40,7 @@ registerPlugin({
 });
 
 registerPlugin({
-  key: 'extra/backgrounds/unsplash',
+  key: 'background/unsplash',
   type: Type.BACKGROUND,
   title: 'Unsplash',
   Dashboard: Unsplash,

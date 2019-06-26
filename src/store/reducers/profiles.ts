@@ -36,7 +36,13 @@ export type ProfilesState = {
 
 const initialState: ProfilesState = {
   activeId: '00000000-0000-0000-0000-000000000000',
-  profiles: [],
+  profiles: [
+    {
+      ...defaultProfile,
+      id: '00000000-0000-0000-0000-000000000000',
+      name: 'Default',
+    },
+  ],
 };
 
 export function profiles(

@@ -1,28 +1,20 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
 
-import { RootState } from '../../data';
-import Background from './Background';
-import Overlay from './Overlay';
-import Widgets from './Widgets';
+import Plugin from '../../containers/Plugin';
+import { activeProfile } from '../../store/selectors/activeProfile';
+// import Overlay from './Overlay';
 import './Dashboard.sass';
 
-type Props = { booted: boolean };
-
-const Dashboard: React.StatelessComponent<Props> = ({ booted }) => {
-  if (!booted) {
-    return <div className="Dashboard fullscreen" />;
-  }
+const Dashboard: React.FC = () => {
+  const profile = useSelector(activeProfile);
 
   return (
     <div className="Dashboard fullscreen booted">
-      <Background />
-      <Widgets />
-      <Overlay />
+      <Plugin id={profile.background.id} />
+      {/* <Overlay /> */}
     </div>
   );
 };
 
-const mapStateToProps = (state: RootState) => ({ booted: state.booted });
-
-export default connect(mapStateToProps)(Dashboard);
+export default Dashboard;

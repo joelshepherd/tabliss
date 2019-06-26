@@ -1,11 +1,13 @@
 import React from 'react';
 import { defineMessages, injectIntl, InjectedIntlProps } from 'react-intl';
 import { connect } from 'react-redux';
-import screenfull from 'screenfull';
+import sf from 'screenfull';
 import { RootState, toggleFocus, toggleSettings } from '../../data';
 import { isInputEvent } from '../../utils';
 import { eyeIcon, eyeOffIcon } from '../../components';
 import './Overlay.sass';
+
+const screenfull: any = sf;
 
 const maximiseIcon = require('feather-icons/dist/icons/maximize-2.svg');
 const minimiseIcon = require('feather-icons/dist/icons/minimize-2.svg');

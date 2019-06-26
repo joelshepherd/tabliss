@@ -7,7 +7,7 @@ export function changeLocale(locale: string) {
   };
 }
 
-export function changeTimezone(timezone: string) {
+export function changeTimezone(timezone?: string) {
   return {
     type: CHANGE_TIMEZONE,
     payload: timezone,

@@ -1,20 +1,20 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
-import { ActionCreator, connect } from 'react-redux';
+import { connect } from 'react-redux';
 import Background from './Background';
 import Feedback from './Feedback';
 import Homepage from './Homepage';
 import System from './System';
 import Widgets from './Widgets';
-import { Action, resetDashboard, toggleSettings } from '../../data';
+import { resetDashboard, toggleSettings } from '../../data';
 import { githubIcon, globeIcon, twitterIcon } from '../../components';
 import './Settings.sass';
 const logo = require('./logo.svg');
 const ESCAPE_KEY = 27;
 
 interface Props {
-  resetDashboard: ActionCreator<Action>;
-  toggleSettings: ActionCreator<Action>;
+  resetDashboard: () => void;
+  toggleSettings: () => void;
 }
 
 class Settings extends React.PureComponent<Props> {

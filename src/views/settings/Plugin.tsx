@@ -1,5 +1,5 @@
 import React from 'react';
-import { connect, Dispatch } from 'react-redux';
+import { connect } from 'react-redux';
 import { Action, RootState, updateSettings } from '../../data';
 import { Plugin as IPlugin, Settings } from '../../plugins';
 import {
@@ -100,7 +100,7 @@ const mapStateToProps = (state: RootState, props: OwnProps) => ({
   settings: (state.storage[props.plugin.key] || {}).settings,
 });
 
-const mapDispatchToProps = (dispatch: Dispatch<Action>, props: OwnProps) => ({
+const mapDispatchToProps = (dispatch: any, props: OwnProps) => ({
   updateSettings: (settings: Settings) => {
     dispatch(updateSettings(props.plugin.key, settings));
   },

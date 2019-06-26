@@ -3,10 +3,9 @@ import { persistStore, autoRehydrate } from 'redux-persist';
 import { createBlacklistFilter } from 'redux-persist-transform-filter';
 import localForage from 'localforage';
 import { booted, dashboard, settings, storage, version, ui } from './reducers';
-import { RootState } from './interfaces';
 
 // Create store
-export const store = createStore<RootState>(
+export const store = createStore(
   combineReducers({
     booted,
     dashboard,

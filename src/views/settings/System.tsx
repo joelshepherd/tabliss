@@ -7,10 +7,10 @@ import { defaultLocale } from '../../locales';
 const timezones: string[] = require('./timezones.json');
 
 interface Props {
-  changeLocale: (locale: string) => Action;
-  changeTimezone: (timezone?: string) => Action;
+  changeLocale: (locale: string) => void;
+  changeTimezone: (timezone?: string) => void;
   locale: string;
-  timezone: string;
+  timezone?: string;
 }
 
 const System: React.StatelessComponent<Props> = props => {
@@ -19,7 +19,7 @@ const System: React.StatelessComponent<Props> = props => {
   };
 
   const onChangeTimezone = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    let zone = event.target.value || undefined;
+    let zone: string | undefined = event.target.value;
 
     // Check for a valid zone in this browser
     if (zone && !Info.isValidIANAZone(zone)) {
