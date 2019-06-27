@@ -1,30 +1,46 @@
 import React from 'react';
 import { withErrorBoundary } from 'react-error-boundary';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { capture as captureException } from '../errorHandler';
 import Crashed from '../components/crashed/Crashed';
-import { getPlugin } from '../plugins';
-import { RootState } from '../store/store';
-import { activeProfile } from '../store/selectors/activeProfile';
+import { capture as captureException } from '../errorHandler';
+import { getPlugin, API } from '../plugins';
+import { pluginStorage } from '../store/selectors/pluginStorage';
+import { setData } from '../store/actions/profile';
 
 type Props = {
   id: string;
+  display?: 'dashboard' | 'settings';
 };
 
-const Plugin = ({ id }: Props) => {
-  // @todo Not make this suck
-  const { data, type } = useSelector(
-    (state: RootState) =>
-      activeProfile(state).storage.find(storage => storage.id === id)!,
-  );
-
-  const { Dashboard } = getPlugin(type);
+const Plugin: React.FC<Props> = ({ id, display = 'dashboard' }) => {
+  const { data, type } = useSelector(pluginStorage(id));
+  const { Dashboard, Settings } = getPlugin(type);
 
   // Plugin API this
-  const props = { data };
+  const api = useApi(id);
+  const props: API<unknown, unknown> = {
+    ...api,
+    data,
+  };
 
-  return <Dashboard {...props} />;
+  if (display === 'dashboard') return <Dashboard {...props} />;
+  if (Settings) return <Settings {...props} />;
+
+  return null;
 };
 
 export default withErrorBoundary(Plugin, Crashed, captureException);
+
+function useApi(id: string) {
+  const dispatch = useDispatch();
+
+  const setDataAction = React.useCallback(
+    (state: unknown) => dispatch(setData(id, state)),
+    [dispatch],
+  );
+
+  return {
+    setData: setDataAction,
+  };
+}

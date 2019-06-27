@@ -1,29 +1,14 @@
 import React from 'react';
 import { defineMessages, injectIntl, InjectedIntlProps } from 'react-intl';
-import { connect } from 'react-redux';
-import sf from 'screenfull';
-import { RootState, toggleFocus, toggleSettings } from '../../data';
+import { useDispatch } from 'react-redux';
+import { toggleFocus, toggleSettings } from '../../store/reducers/ui';
 import { isInputEvent } from '../../utils';
 import { eyeIcon, eyeOffIcon } from '../../components';
 import './Overlay.sass';
+import { useSelector } from '../../store/store';
 
-const screenfull: any = sf;
-
-const maximiseIcon = require('feather-icons/dist/icons/maximize-2.svg');
-const minimiseIcon = require('feather-icons/dist/icons/minimize-2.svg');
 const settingsIcon = require('feather-icons/dist/icons/settings.svg');
 const pendingIcon = require('feather-icons/dist/icons/zap.svg');
-
-interface Props {
-  focus: boolean;
-  pending: boolean;
-  toggleFocus: () => void;
-  toggleSettings: () => void;
-}
-
-interface State {
-  fullscreen: boolean;
-}
 
 const messages = defineMessages({
   settingsHint: {
@@ -48,104 +33,62 @@ const messages = defineMessages({
   },
 });
 
-class Overlay extends React.PureComponent<Props & InjectedIntlProps, State> {
-  state: State = { fullscreen: screenfull.isFullscreen };
+const Overlay: React.FC<InjectedIntlProps> = ({ intl }) => {
+  const settingsHint = intl.formatMessage(messages.settingsHint);
+  const focusHint = intl.formatMessage(messages.focusHint);
 
-  componentWillMount() {
-    document.addEventListener('keydown', this.onKeyDown);
+  const focus = useSelector(state => state.ui.focus);
+  const pending = false;
 
-    if (screenfull.enabled) {
-      screenfull.on('change', this.onFullscreen);
-    }
-  }
+  const dispatch = useDispatch();
+  const handleToggleFocus = React.useCallback(() => dispatch(toggleFocus()), [
+    dispatch,
+  ]);
+  const handleToggleSettings = React.useCallback(
+    () => dispatch(toggleSettings()),
+    [dispatch],
+  );
 
-  componentWillUnmount() {
-    document.removeEventListener('keydown', this.onKeyDown);
+  return (
+    <div className="Overlay">
+      <a onClick={handleToggleSettings} title={`${settingsHint} (S)`}>
+        <i dangerouslySetInnerHTML={{ __html: settingsIcon }} />
+      </a>
 
-    if (screenfull.enabled) {
-      screenfull.off('change', this.onFullscreen);
-    }
-  }
+      <a onClick={handleToggleFocus} title={`${focusHint} (W)`}>
+        {focus ? eyeOffIcon : eyeIcon}
+      </a>
 
-  render() {
-    const { focus, intl, pending } = this.props;
-
-    const settingsHint = intl.formatMessage(messages.settingsHint);
-    const focusHint = intl.formatMessage(messages.focusHint);
-    const fullscreenHint = intl.formatMessage(messages.fullscreenHint);
-
-    return (
-      <div className="Overlay">
-        <a onClick={this.props.toggleSettings} title={`${settingsHint} (S)`}>
-          <i dangerouslySetInnerHTML={{ __html: settingsIcon }} />
-        </a>
-
-        <a onClick={this.props.toggleFocus} title={`${focusHint} (W)`}>
-          {focus ? eyeOffIcon : eyeIcon}
-        </a>
-
-        {screenfull.enabled && (
-          <a
-            onClick={() => screenfull.toggle()}
-            title={`${fullscreenHint} (F)`}
-          >
-            <i
-              dangerouslySetInnerHTML={{
-                __html: this.state.fullscreen ? minimiseIcon : maximiseIcon,
-              }}
-            />
-          </a>
-        )}
-
-        {pending && (
-          <span title={intl.formatMessage(messages.loadingHint)}>
-            <i dangerouslySetInnerHTML={{ __html: pendingIcon }} />
-          </span>
-        )}
-      </div>
-    );
-  }
-
-  private onFullscreen = () => {
-    this.setState({ fullscreen: screenfull.isFullscreen });
-  };
-
-  private onKeyDown = (event: KeyboardEvent) => {
-    // Check for input focus
-    if (isInputEvent(event)) {
-      return;
-    }
-
-    switch (event.keyCode) {
-      case 70: // F
-        screenfull.toggle();
-        break;
-
-      case 83: // S
-        this.props.toggleSettings();
-        break;
-
-      case 87: // W
-        this.props.toggleFocus();
-        break;
-
-      default:
-    }
-  };
-}
-
-const mapStateToProps = (state: RootState) => {
-  return {
-    focus: state.ui.focus,
-    pending: state.ui.pending > 0,
-  };
+      {pending && (
+        <span title={intl.formatMessage(messages.loadingHint)}>
+          <i dangerouslySetInnerHTML={{ __html: pendingIcon }} />
+        </span>
+      )}
+    </div>
+  );
 };
 
-const mapDispatchToProps = { toggleFocus, toggleSettings };
+// private onKeyDown = (event: KeyboardEvent) => {
+//   // Check for input focus
+//   if (isInputEvent(event)) {
+//     return;
+//   }
 
-export default injectIntl<{}>(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps,
-  )(Overlay),
-);
+//   switch (event.keyCode) {
+//     case 70: // F
+//       screenfull.toggle();
+//       break;
+
+//     case 83: // S
+//       this.props.toggleSettings();
+//       break;
+
+//     case 87: // W
+//       this.props.toggleFocus();
+//       break;
+
+//     default:
+//   }
+// };
+
+export default injectIntl(Overlay);

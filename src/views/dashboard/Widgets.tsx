@@ -1,16 +1,12 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../store/store';
+
 import Plugin from '../../containers/Plugin';
-import './Widgets.sass';
+import { RootState } from '../../store/store';
 import { activeProfile } from '../../store/selectors/activeProfile';
+import './Widgets.sass';
 
-type Props = {
-  focus: boolean;
-  widgets: string[];
-};
-
-const Widgets: React.StatelessComponent<Props> = () => {
+const Widgets: React.FC = () => {
   const { focus, widgets } = useSelector((state: RootState) => ({
     focus: state.ui.focus,
     widgets: activeProfile(state).widgets,

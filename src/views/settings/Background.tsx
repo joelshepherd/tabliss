@@ -1,55 +1,45 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { Action, changeBackground, RootState } from '../../data';
-import {
-  getPlugin,
-  getPluginsByType,
-  Plugin as IPlugin,
-  Type,
-} from '../../plugins';
-import Plugin from './Plugin';
+import { useDispatch } from 'react-redux';
 
-interface Props {
-  plugin: IPlugin;
-  plugins: IPlugin[];
-  changeBackground: (event: React.ChangeEvent<HTMLSelectElement>) => Action;
-}
+import Plugin from '../../containers/Plugin';
+import { getPluginsByType, Type } from '../../plugins';
+import { setBackground } from '../../store/actions/profile';
+import { useSelector } from '../../store/store';
+import { activeProfile } from '../../store/selectors/activeProfile';
+import { pluginStorage } from '../../store/selectors/pluginStorage';
 
-const Background: React.StatelessComponent<Props> = props => (
-  <div>
-    <h3>Background</h3>
+const Background: React.FC = () => {
+  const plugins = getPluginsByType(Type.BACKGROUND);
+  const profile = useSelector(activeProfile);
+  const { id, type } = useSelector(pluginStorage(profile.background.id));
 
-    <label>
-      <select
-        value={props.plugin.key}
-        onChange={props.changeBackground}
-        className="primary"
-      >
-        {props.plugins.map(plugin => (
-          <option key={plugin.key} value={plugin.key}>
-            {plugin.title}
-          </option>
-        ))}
-      </select>
-    </label>
+  const dispatch = useDispatch();
+  const handleChangeBackground = React.useCallback(
+    (type: string) => dispatch(setBackground(type)),
+    [dispatch],
+  );
 
-    {props.plugin.Settings && (
-      <Plugin key={props.plugin.key} plugin={props.plugin} />
-    )}
-  </div>
-);
+  return (
+    <div>
+      <h3>Background</h3>
 
-const mapStateToProps = (state: RootState) => ({
-  plugin: getPlugin(state.dashboard.background),
-  plugins: getPluginsByType(Type.BACKGROUND),
-});
+      <label>
+        <select
+          value={type}
+          onChange={event => handleChangeBackground(event.target.value)}
+          className="primary"
+        >
+          {plugins.map(plugin => (
+            <option key={plugin.key} value={plugin.key}>
+              {plugin.title}
+            </option>
+          ))}
+        </select>
+      </label>
 
-const mapDispatchToProps = {
-  changeBackground: (event: React.ChangeEvent<HTMLSelectElement>) =>
-    changeBackground(event.target.value),
+      <Plugin id={id} display="settings" />
+    </div>
+  );
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(Background);
+export default Background;

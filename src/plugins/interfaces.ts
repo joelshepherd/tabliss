@@ -28,3 +28,11 @@ export interface PluginAPI extends Settings {
   setLocal: (state: Local) => void;
   updateLocal: (state: Local) => void;
 }
+
+export interface API<Data = {}, Cache = {}> {
+  // cache: Cache;
+  // setCache: (cache: Cache) => void;
+
+  data: Data;
+  setData: (data: Data) => void;
+}

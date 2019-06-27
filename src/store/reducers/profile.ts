@@ -41,7 +41,7 @@ export const defaultProfile: Pick<
   storage: [
     {
       id: backgroundId,
-      type: 'background/unsplash',
+      type: 'background/colour',
       data: {},
     },
     {
@@ -69,9 +69,26 @@ export function profile(
 ): ProfileState {
   switch (action.type) {
     case 'SET_BACKGROUND':
+      const [existingBackground] = state.storage.filter(
+        storage => storage.type === action.data.type,
+      );
+
+      if (existingBackground) {
+        return {
+          ...state,
+          background: { id: existingBackground.id },
+        };
+      }
+
+      const backgroundId = generateId();
       return {
         ...state,
-        background: { id: action.data.id },
+        background: { id: backgroundId },
+        storage: state.storage.concat({
+          id: backgroundId,
+          type: action.data.type,
+          data: {},
+        }),
       };
 
     case 'ADD_WIDGET':

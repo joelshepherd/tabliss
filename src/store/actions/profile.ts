@@ -1,7 +1,7 @@
-export function setBackground(id: string) {
+export function setBackground(type: string) {
   return {
     type: 'SET_BACKGROUND',
-    data: { id },
+    data: { type },
   } as const;
 }
 
