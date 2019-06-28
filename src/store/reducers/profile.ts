@@ -64,7 +64,7 @@ const initialState: ProfileState = {
 };
 
 export function profile(
-  state: ProfileState,
+  state = initialState,
   action: ProfileActions,
 ): ProfileState {
   switch (action.type) {

@@ -1,15 +1,13 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
 
 import Plugin from '../../containers/Plugin';
-import { RootState } from '../../store/store';
-import { activeProfile } from '../../store/selectors/activeProfile';
+import { useSelector } from '../../store/store';
 import './Widgets.sass';
 
 const Widgets: React.FC = () => {
-  const { focus, widgets } = useSelector((state: RootState) => ({
+  const { focus, widgets } = useSelector(state => ({
     focus: state.ui.focus,
-    widgets: activeProfile(state).widgets,
+    widgets: state.profile.widgets,
   }));
 
   // @todo How to store the state and draw the widget slots

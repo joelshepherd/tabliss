@@ -1,12 +1,13 @@
 import React from 'react';
 import { withErrorBoundary } from 'react-error-boundary';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import Crashed from '../components/crashed/Crashed';
 import { capture as captureException } from '../errorHandler';
 import { getPlugin, API } from '../plugins';
-import { pluginStorage } from '../store/selectors/pluginStorage';
+import { storage } from '../store/selectors/storage';
 import { setData } from '../store/actions/profile';
+import { useSelector } from '../store/store';
 
 type Props = {
   id: string;
@@ -14,7 +15,7 @@ type Props = {
 };
 
 const Plugin: React.FC<Props> = ({ id, display = 'dashboard' }) => {
-  const { data, type } = useSelector(pluginStorage(id));
+  const { data, type } = useSelector(storage(id));
   const { Dashboard, Settings } = getPlugin(type);
 
   // Plugin API this

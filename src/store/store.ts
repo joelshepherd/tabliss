@@ -4,13 +4,13 @@ import {
   useSelector as baseUseSelector,
 } from 'react-redux';
 
-import { ProfilesState, profiles } from './reducers/profiles';
+import { ProfileState, profile } from './reducers/profile';
 import { SettingsState, settings } from './reducers/settings';
 import { UiState, ui } from './reducers/ui';
 
 export type RootState = {
   // This gets synced
-  profiles: ProfilesState;
+  profile: ProfileState;
 
   // Settings saved in the browser
   settings: SettingsState;
@@ -21,7 +21,7 @@ export type RootState = {
 
 export const store = createStore(
   combineReducers({
-    profiles,
+    profile,
     settings,
     ui,
   }),

@@ -5,13 +5,12 @@ import Plugin from '../../containers/Plugin';
 import { getPluginsByType, Type } from '../../plugins';
 import { setBackground } from '../../store/actions/profile';
 import { useSelector } from '../../store/store';
-import { activeProfile } from '../../store/selectors/activeProfile';
-import { pluginStorage } from '../../store/selectors/pluginStorage';
+import { storage } from '../../store/selectors/storage';
 
 const Background: React.FC = () => {
   const plugins = getPluginsByType(Type.BACKGROUND);
-  const profile = useSelector(activeProfile);
-  const { id, type } = useSelector(pluginStorage(profile.background.id));
+  const id = useSelector(state => state.profile.background.id);
+  const { type } = useSelector(storage(id));
 
   const dispatch = useDispatch();
   const handleChangeBackground = React.useCallback(
