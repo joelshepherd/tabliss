@@ -1,18 +1,10 @@
 import React from 'react';
+
 import { IconButton, removeIcon } from '../../../components';
-import { Settings } from '../../interfaces';
+import { Props } from './types';
 import './ImageSettings.sass';
 
-interface Props {
-  image?: string;
-  images: Blob[];
-  onChange: (settings: Settings) => void;
-}
-
-class ImageSettings extends React.PureComponent<Props> {
-  static defaultProps = {
-    images: [],
-  };
+class ImageSettings extends React.Component<Props> {
   currentUrls: string[] = [];
 
   render() {
@@ -21,13 +13,6 @@ class ImageSettings extends React.PureComponent<Props> {
 
     return (
       <div className="ImageSettings">
-        {this.props.image && (
-          <p className="info">
-            Sorry for making you have to upload your image again. But you can
-            have multiple images now! So yay?
-          </p>
-        )}
-
         <label>
           <input
             accept="image/*"
@@ -40,7 +25,7 @@ class ImageSettings extends React.PureComponent<Props> {
         </label>
 
         <div className="grid">
-          {this.props.images.map((image, index) => (
+          {this.images.map((image, index) => (
             <div className="preview" key={index}>
               <img src={this.createURL(image)} />
               <IconButton
@@ -61,27 +46,27 @@ class ImageSettings extends React.PureComponent<Props> {
   }
 
   private loadImages(files: FileList) {
-    // Strip File to Blob so localForage doesn't get confused about its storage in localstorage.
-    // Still need to sort localstorage only accept top-level keys for blobs though.
-    const images = Array.from(files).map(
-      image => new Blob([image], { type: image.type }),
-    );
+    // Need to sort localstorage only accept top-level keys for blobs though.
+    const images = Array.from(files);
 
-    this.props.onChange({
-      images: this.props.images.concat(images),
-      image: undefined, // Clean legacy settings
+    this.props.setData({
+      images: this.images.concat(images),
     });
   }
 
-  private removeImage(remove: Blob) {
-    this.props.onChange({
-      images: this.props.images.filter(image => image !== remove),
+  private removeImage(remove: File) {
+    this.props.setData({
+      images: this.images.filter(image => image !== remove),
     });
+  }
+
+  private get images() {
+    return this.props.data.images || [];
   }
 
   private get oversized() {
     // Are any images over 2 mb?
-    return this.props.images.some(image => image.size > 2097152);
+    return this.images.some(image => image.size > 2097152);
   }
 
   private createURL(blob: Blob) {

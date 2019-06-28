@@ -1,57 +1,25 @@
-import localForage from 'localforage';
 import sample from 'lodash-es/sample';
-import Raven from 'raven-js';
 import React from 'react';
+
+import { Props } from './types';
 import './Image.sass';
 
-interface Props {
-  images: Blob[];
-}
-
-class Image extends React.PureComponent<Props> {
-  static defaultProps = {
-    images: [],
-  };
-  private current?: string;
-
-  render() {
-    if (!this.props.images.length) {
-      return <div className="Image default fullscreen" />;
-    }
-
-    return (
-      <div
-        className="Image fullscreen"
-        style={{ backgroundImage: `url(${this.url})` }}
-      />
-    );
+const Image: React.FC<Props> = ({ data: { images = [] } }) => {
+  if (!images.length) {
+    return <div className="Image default fullscreen" />;
   }
 
-  private get url() {
-    if (this.current) {
-      URL.revokeObjectURL(this.current);
-    }
+  const url = React.useMemo(() => {
+    if (url) URL.revokeObjectURL(url);
+    return URL.createObjectURL(sample(images));
+  }, [images]);
 
-    // @TODO Should this actually be truely random?
-    // Rotating or peusdo-random might be better.
-    const image = sample(this.props.images);
-
-    try {
-      return (this.current = URL.createObjectURL(image));
-    } catch (err) {
-      // Y u no give less vague messages so I can fix you!
-      // ლ(ಠ益ಠლ)
-      Raven.setExtraContext({
-        driver: localForage.driver(),
-        size: image && image.size,
-        string: image && image.toString(),
-        type: image && image.type,
-        typeof: typeof image,
-      });
-
-      throw new Error('Unable to display image.');
-    }
-  }
-}
+  return (
+    <div
+      className="Image fullscreen"
+      style={{ backgroundImage: `url(${url})` }}
+    />
+  );
+};
 
 export default Image;
