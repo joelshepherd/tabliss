@@ -5,53 +5,36 @@ import { ProfileActions } from '../actions/profile';
 export interface ProfileState {
   id: string;
   name: string;
-  background: {
-    id: string;
-  };
-  widgets: {
-    id: string;
-    position: [number, number];
-  }[];
-  storage: {
+  plugins: {
     id: string;
     type: string;
-    data: unknown;
+    active: boolean;
+    position: 'background' | 'widget';
+    data: object;
   }[];
 }
 
-const backgroundId = generateId();
-const timeId = generateId();
-const greetingId = generateId();
-
-export const defaultProfile: Pick<
-  ProfileState,
-  'background' | 'storage' | 'widgets'
-> = {
-  background: { id: backgroundId },
-  widgets: [
+export const defaultProfile: Pick<ProfileState, 'plugins'> = {
+  plugins: [
     {
-      id: timeId,
-      position: [1, 1],
-    },
-    {
-      id: greetingId,
-      position: [1, 1],
-    },
-  ],
-  storage: [
-    {
-      id: backgroundId,
+      id: generateId(),
       type: 'background/colour',
+      active: true,
+      position: 'background',
       data: {},
     },
     {
-      id: timeId,
+      id: generateId(),
       type: 'widget/time',
+      active: true,
+      position: 'widget',
       data: {},
     },
     {
-      id: greetingId,
+      id: generateId(),
       type: 'widget/greeting',
+      active: true,
+      position: 'widget',
       data: {},
     },
   ],
@@ -69,65 +52,45 @@ export function profile(
 ): ProfileState {
   switch (action.type) {
     case 'SET_BACKGROUND':
-      const [existingBackground] = state.storage.filter(
-        storage => storage.type === action.data.type,
-      );
+      let newState = { ...state };
 
-      if (existingBackground) {
-        return {
-          ...state,
-          background: { id: existingBackground.id },
-        };
+      if (
+        !state.plugins.map(plugin => plugin.type).includes(action.data.type)
+      ) {
+        newState.plugins = newState.plugins.concat({
+          id: generateId(),
+          type: action.data.type,
+          active: true,
+          position: 'background',
+          data: {},
+        });
       }
 
-      const backgroundId = generateId();
       return {
-        ...state,
-        background: { id: backgroundId },
-        storage: state.storage.concat({
-          id: backgroundId,
-          type: action.data.type,
-          data: {},
-        }),
+        ...newState,
+        plugins: newState.plugins.map(plugin =>
+          plugin.position === 'background'
+            ? { ...plugin, active: plugin.type === action.data.type }
+            : plugin,
+        ),
       };
 
     case 'ADD_WIDGET':
-      const [existing] = state.storage
-        .filter(storage => storage.type === action.data.type)
-        .filter(
-          storage =>
-            !state.widgets.map(widget => widget.id).includes(storage.id),
-        );
-
-      if (existing) {
-        return {
-          ...state,
-          widgets: state.widgets.concat({
-            id: existing.id,
-            position: [1, 1],
-          }),
-        };
-      }
-
-      const id = generateId();
       return {
         ...state,
-        storage: state.storage.concat({
-          id,
+        plugins: state.plugins.concat({
+          id: generateId(),
           type: action.data.type,
+          active: true,
+          position: 'widget',
           data: {},
-        }),
-        widgets: state.widgets.concat({
-          id,
-          position: [1, 1],
         }),
       };
 
     case 'REMOVE_WIDGET':
-      // @todo Should we remove all but the last version of the storage?
       return {
         ...state,
-        widgets: state.widgets.filter(widget => widget.id === action.data.id),
+        plugins: state.plugins.filter(plugin => plugin.id === action.data.id),
       };
 
     // @todo Reorder widget?
@@ -135,10 +98,10 @@ export function profile(
     case 'SET_DATA':
       return {
         ...state,
-        storage: state.storage.map(storage =>
-          storage.id === action.data.id
-            ? { ...storage, data: action.data.data }
-            : storage,
+        plugins: state.plugins.map(plugin =>
+          plugin.id === action.data.id
+            ? { ...plugin, data: action.data.data }
+            : plugin,
         ),
       };
   }

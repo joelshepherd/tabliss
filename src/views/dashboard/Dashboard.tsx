@@ -5,13 +5,24 @@ import { useSelector } from '../../store/store';
 import Overlay from './Overlay';
 import './Dashboard.sass';
 import Widgets from './Widgets';
+import { getPlugin } from '../../plugins';
 
 const Dashboard: React.FC = () => {
-  const id = useSelector(state => state.profile.background.id);
+  const background = useSelector(state =>
+    state.profile.plugins.find(
+      plugin => plugin.active && plugin.position === 'background',
+    ),
+  );
 
   return (
     <div className="Dashboard fullscreen booted">
-      <Plugin id={id} />
+      {background && (
+        <Plugin
+          id={background.id}
+          Component={getPlugin(background.type).Dashboard}
+          data={background.data}
+        />
+      )}
       <Overlay />
       <Widgets />
     </div>

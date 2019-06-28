@@ -4,31 +4,24 @@ import { useDispatch } from 'react-redux';
 
 import Crashed from '../components/crashed/Crashed';
 import { capture as captureException } from '../errorHandler';
-import { getPlugin, API } from '../plugins';
-import { storage } from '../store/selectors/storage';
+import { API } from '../plugins';
 import { setData } from '../store/actions/profile';
-import { useSelector } from '../store/store';
 
 type Props = {
   id: string;
-  display?: 'dashboard' | 'settings';
+  Component: React.ComponentType<API>;
+  data: object;
 };
 
-const Plugin: React.FC<Props> = ({ id, display = 'dashboard' }) => {
-  const { data, type } = useSelector(storage(id));
-  const { Dashboard, Settings } = getPlugin(type);
-
+const Plugin: React.FC<Props> = ({ id, Component, data }) => {
   // Plugin API this
   const api = useApi(id);
-  const props: API<unknown, unknown> = {
+  const props: API = {
     ...api,
     data,
   };
 
-  if (display === 'dashboard') return <Dashboard {...props} />;
-  if (Settings) return <Settings {...props} />;
-
-  return null;
+  return <Component {...props} />;
 };
 
 export default withErrorBoundary(Plugin, Crashed, captureException);
@@ -37,7 +30,7 @@ function useApi(id: string) {
   const dispatch = useDispatch();
 
   const setDataAction = React.useCallback(
-    (state: unknown) => dispatch(setData(id, state)),
+    (data: object) => dispatch(setData(id, data)),
     [dispatch],
   );
 

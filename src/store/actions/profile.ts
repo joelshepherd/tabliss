@@ -19,7 +19,7 @@ export function removeWidget(id: string) {
   } as const;
 }
 
-export function setData(id: string, data: unknown) {
+export function setData(id: string, data: object) {
   return {
     type: 'SET_DATA',
     data: { id, data },

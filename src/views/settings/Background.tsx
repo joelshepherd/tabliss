@@ -2,15 +2,18 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 
 import Plugin from '../../containers/Plugin';
-import { getPluginsByType, Type } from '../../plugins';
+import { getPluginsByType, Type, getPlugin } from '../../plugins';
 import { setBackground } from '../../store/actions/profile';
 import { useSelector } from '../../store/store';
-import { storage } from '../../store/selectors/storage';
 
 const Background: React.FC = () => {
   const plugins = getPluginsByType(Type.BACKGROUND);
-  const id = useSelector(state => state.profile.background.id);
-  const { type } = useSelector(storage(id));
+
+  const background = useSelector(state =>
+    state.profile.plugins.find(
+      plugin => plugin.active && plugin.position === 'background',
+    ),
+  );
 
   const dispatch = useDispatch();
   const handleChangeBackground = React.useCallback(
@@ -24,7 +27,7 @@ const Background: React.FC = () => {
 
       <label>
         <select
-          value={type}
+          value={background && background.type}
           onChange={event => handleChangeBackground(event.target.value)}
           className="primary"
         >
@@ -36,7 +39,13 @@ const Background: React.FC = () => {
         </select>
       </label>
 
-      <Plugin id={id} display="settings" />
+      {background && getPlugin(background.type).Settings && (
+        <Plugin
+          id={background.id}
+          Component={getPlugin(background.type).Settings!}
+          data={background.data}
+        />
+      )}
     </div>
   );
 };
