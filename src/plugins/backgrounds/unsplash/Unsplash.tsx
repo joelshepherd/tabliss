@@ -2,27 +2,13 @@ import debounce from 'lodash-es/debounce';
 import get from 'lodash-es/get';
 import React from 'react';
 import { connect } from 'react-redux';
-import { popPending, pushPending, RootState } from '../../../data';
+
+import { RootState } from '../../../store/store';
 import { getImage } from './api';
 import { defaultProps } from './constants';
-import { Image, Settings } from './interfaces';
+import { Image, Props } from './interfaces';
 import UnsplashCredit from './UnsplashCredit';
 import './Unsplash.sass';
-
-interface Props extends Settings {
-  focus: boolean;
-  local: Local;
-  popPending: () => void;
-  pushPending: () => void;
-  updateLocal: (state: Partial<Local>) => void;
-}
-
-interface Local {
-  current?: Image & {
-    timestamp: number;
-  };
-  next?: Image;
-}
 
 interface State {
   current?: Image & {
@@ -30,8 +16,8 @@ interface State {
   };
 }
 
-class Unsplash extends React.PureComponent<Props, State> {
-  static defaultProps: Partial<Props> = defaultProps;
+class Unsplash extends React.PureComponent<Props & { focus: boolean }, State> {
+  static defaultProps = { data: defaultProps };
   state: State = {};
   private refreshDebounced = debounce(this.refresh, 250);
 
@@ -45,36 +31,29 @@ class Unsplash extends React.PureComponent<Props, State> {
           this.fetchImage().then(this.setNextImage);
         }
       })
-      .catch(() => this.refresh(this.props));
+      .catch(() => this.refresh(this.props.data));
   }
 
-  componentWillReceiveProps(nextProps: Props) {
+  componentWillReceiveProps({ data }: Props) {
     if (
-      nextProps.by !== this.props.by ||
-      nextProps.featured !== this.props.featured
+      data.by !== this.props.data.by ||
+      data.featured !== this.props.data.featured
     ) {
       this.refreshDebounced.cancel();
-      this.refresh(nextProps);
+      this.refresh(data);
     }
 
     if (
-      nextProps.search !== this.props.search ||
-      nextProps.collections !== this.props.collections
+      data.search !== this.props.data.search ||
+      data.collections !== this.props.data.collections
     ) {
-      this.refreshDebounced(nextProps);
+      this.refreshDebounced(data);
     }
   }
 
   render() {
-    let { blur, darken, focus } = this.props;
-
-    // Migrate some legacy values
-    if (blur === true) {
-      blur = 5;
-    }
-    if (darken === true) {
-      darken = 10;
-    }
+    const { focus } = this.props;
+    const { blur, darken } = this.props.data;
 
     let styles: React.CSSProperties = this.state.current
       ? { backgroundImage: `url(${this.state.current.src})` }
@@ -109,12 +88,12 @@ class Unsplash extends React.PureComponent<Props, State> {
    */
   private async getImage() {
     if (this.shouldRotate()) {
-      return get(this.props, 'local.next.data') instanceof Blob
-        ? get(this.props, 'local.next')
+      return get(this.props.cache, 'next.data') instanceof Blob
+        ? this.props.cache.next!
         : await this.fetchImage();
     } else {
-      return get(this.props, 'local.current.data') instanceof Blob
-        ? get(this.props, 'local.current')
+      return get(this.props.cache, 'current.data') instanceof Blob
+        ? this.props.cache.current!
         : await this.fetchImage();
     }
   }
@@ -128,11 +107,12 @@ class Unsplash extends React.PureComponent<Props, State> {
 
     this.setState({
       current: {
-        ...(image as Image),
+        ...image,
         src,
       },
     });
-    this.props.updateLocal({
+    this.props.setCache({
+      ...this.props.cache,
       current: {
         ...image,
         timestamp,
@@ -141,7 +121,7 @@ class Unsplash extends React.PureComponent<Props, State> {
 
     let img = new Image();
     img.onerror = () => {
-      this.refresh(this.props);
+      this.refresh(this.props.data);
     };
     img.src = src;
   };
@@ -150,7 +130,10 @@ class Unsplash extends React.PureComponent<Props, State> {
    * Set the next image.
    */
   private setNextImage = (image: Image) => {
-    this.props.updateLocal({ next: image });
+    this.props.setCache({
+      ...this.props.cache,
+      next: image,
+    });
   };
 
   /**
@@ -158,7 +141,8 @@ class Unsplash extends React.PureComponent<Props, State> {
    */
   private shouldRotate(props: Props = this.props) {
     return (
-      get(props, 'local.current.timestamp', 0) + this.props.timeout * 1000 <
+      get(props.cache, 'current.timestamp', 0) +
+        (this.props.data.timeout || 0) * 1000 <
       Date.now()
     );
   }
@@ -167,7 +151,7 @@ class Unsplash extends React.PureComponent<Props, State> {
    * Refresh current and next images.
    * (when settings update, for instance)
    */
-  private refresh(props: Props = this.props) {
+  private refresh(props: Props['data'] = this.props.data) {
     this.fetchImage(props).then(this.setCurrentImage);
     this.fetchImage(props).then(this.setNextImage);
   }
@@ -175,16 +159,11 @@ class Unsplash extends React.PureComponent<Props, State> {
   /**
    * Fetch an image from the Unsplash API.
    */
-  private fetchImage(props: Props = this.props) {
-    return getImage(props, this.props.pushPending, this.props.popPending);
+  private fetchImage(props: Props['data'] = this.props.data) {
+    return getImage(props, () => {}, () => {});
   }
 }
 
 const mapStateToProps = (state: RootState) => ({ focus: state.ui.focus });
 
-const mapDispatchToProps = { popPending, pushPending };
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(Unsplash);
+export default connect(mapStateToProps)(Unsplash);

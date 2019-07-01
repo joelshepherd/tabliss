@@ -1,11 +1,20 @@
-export interface Settings {
-  blur: boolean | number; // Migrating from boolean -> number
-  darken: boolean | number; // Migrating from boolean -> number
+import { API } from '../../interfaces';
+
+interface Data {
+  blur: number;
+  darken: number;
   by: By;
   collections: string;
   featured: boolean;
   search: string;
   timeout: number;
+}
+
+interface Cache {
+  current?: Image & {
+    timestamp: number;
+  };
+  next?: Image;
 }
 
 export interface Image {
@@ -21,3 +30,5 @@ export enum By {
   COLLECTIONS = 'collections',
   SEARCH = 'search',
 }
+
+export type Props = API<Data, Cache>;

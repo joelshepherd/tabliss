@@ -32,21 +32,21 @@ function useApi(id: string) {
   const dispatch = useDispatch();
 
   // Cache
-  const cache = useSelector(state => state.cache[id]) || {};
-  const setCacheAction = React.useCallback(
+  const cache = useSelector(state => state.cache[id]);
+  const boundSetCache = React.useCallback(
     (cache: object) => dispatch(setCache(id, cache)),
-    [dispatch],
+    [dispatch, id],
   );
 
   // Data
-  const setDataAction = React.useCallback(
+  const boundSetData = React.useCallback(
     (data: object) => dispatch(setData(id, data)),
-    [dispatch],
+    [dispatch, id],
   );
 
   return {
     cache,
-    setCache: setCacheAction,
-    setData: setDataAction,
+    setCache: boundSetCache,
+    setData: boundSetData,
   };
 }
