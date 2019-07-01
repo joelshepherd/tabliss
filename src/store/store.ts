@@ -4,11 +4,15 @@ import {
   useSelector as baseUseSelector,
 } from 'react-redux';
 
+import { CacheState, cache } from './reducers/cache';
 import { ProfileState, profile } from './reducers/profile';
 import { SettingsState, settings } from './reducers/settings';
 import { UiState, ui } from './reducers/ui';
 
 export type RootState = {
+  // This is not synced
+  cache: CacheState;
+
   // This gets synced
   profile: ProfileState;
 
@@ -21,6 +25,7 @@ export type RootState = {
 
 export const store = createStore(
   combineReducers({
+    cache,
     profile,
     settings,
     ui,

@@ -30,8 +30,8 @@ export interface PluginAPI extends Settings {
 }
 
 export interface API<Data = {}, Cache = {}> {
-  // cache: Cache;
-  // setCache: (cache: Cache) => void;
+  cache: Cache;
+  setCache: (cache: Cache) => void;
 
   data: Data;
   setData: (data: Data) => void;

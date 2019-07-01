@@ -6,6 +6,8 @@ import Crashed from '../components/crashed/Crashed';
 import { capture as captureException } from '../errorHandler';
 import { API } from '../plugins';
 import { setData } from '../store/actions/profile';
+import { setCache } from '../store/reducers/cache';
+import { useSelector } from '../store/store';
 
 type Props = {
   id: string;
@@ -29,12 +31,22 @@ export default withErrorBoundary(Plugin, Crashed, captureException);
 function useApi(id: string) {
   const dispatch = useDispatch();
 
+  // Cache
+  const cache = useSelector(state => state.cache[id]) || {};
+  const setCacheAction = React.useCallback(
+    (cache: object) => dispatch(setCache(id, cache)),
+    [dispatch],
+  );
+
+  // Data
   const setDataAction = React.useCallback(
     (data: object) => dispatch(setData(id, data)),
     [dispatch],
   );
 
   return {
+    cache,
+    setCache: setCacheAction,
     setData: setDataAction,
   };
 }
