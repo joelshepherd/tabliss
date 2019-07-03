@@ -1,15 +1,10 @@
 import React from 'react';
-import { Settings } from '../../interfaces';
 
-interface Props {
-  input?: string;
-  onChange: (settings: Settings) => void;
-}
+import { API } from '../../interfaces';
 
-const CssSettings: React.StatelessComponent<Props> = ({
-  input = '',
-  onChange,
-}) => {
+type Props = API<{ input: string }>;
+
+const CssSettings: React.FC<Props> = ({ data, setData }) => {
   return (
     <div className="CssSettings">
       <label>
@@ -17,8 +12,8 @@ const CssSettings: React.StatelessComponent<Props> = ({
         <textarea
           rows={3}
           style={{ fontFamily: 'monospace' }}
-          value={input}
-          onChange={event => onChange({ input: event.target.value })}
+          value={data ? data.input : ''}
+          onChange={event => setData({ input: event.target.value })}
         />
       </label>
 

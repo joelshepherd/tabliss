@@ -1,65 +1,42 @@
-import React from 'react';
+import React, { useState } from 'react';
+
 import { isInputEvent } from '../../../utils';
-import { Settings } from './interfaces';
-import LinkDisplay from './LinkDisplay';
+import Display from './Display';
+import { Props, defaultData } from './types';
 import './Links.sass';
 const linkIcon = require('feather-icons/dist/icons/link-2.svg');
 
-interface State {
-  visible: boolean;
-}
+const Links: React.FC<Props> = ({ data = defaultData }) => {
+  const [visible, setVisible] = useState(false);
 
-class Links extends React.PureComponent<Settings, State> {
-  static defaultProps = {
-    columns: 1,
-    links: [{ url: 'https://tabliss.io' }],
-    visible: false,
-  };
-  state = {
-    visible: false,
-  };
+  return (
+    <div
+      className="Links"
+      style={{ gridTemplateColumns: '1fr '.repeat(data.columns) }}
+    >
+      {data.visible || visible ? (
+        data.links.map((link, index) => (
+          <Display key={index} number={index + 1} {...link} />
+        ))
+      ) : (
+        <a onClick={() => setVisible(true)} title="Show quick links">
+          <i dangerouslySetInnerHTML={{ __html: linkIcon }} />
+        </a>
+      )}
+    </div>
+  );
+};
 
-  componentWillMount() {
-    document.addEventListener('keydown', this.onKeyDown);
-  }
+// const onKeyDown = (event: KeyboardEvent) => {
+//   // Check for input focus
+//   if (isInputEvent(event)) {
+//     return;
+//   }
 
-  componentWillUnmount() {
-    document.removeEventListener('keydown', this.onKeyDown);
-  }
-
-  render() {
-    return (
-      <div
-        className="Links"
-        style={{ gridTemplateColumns: '1fr '.repeat(this.props.columns) }}
-      >
-        {!this.props.visible && !this.state.visible && (
-          <a
-            onClick={() => this.setState({ visible: true })}
-            title="Show quick links"
-          >
-            <i dangerouslySetInnerHTML={{ __html: linkIcon }} />
-          </a>
-        )}
-        {(this.props.visible || this.state.visible) &&
-          this.props.links.map((link, index) => (
-            <LinkDisplay key={index} number={index + 1} {...link} />
-          ))}
-      </div>
-    );
-  }
-
-  private onKeyDown = (event: KeyboardEvent) => {
-    // Check for input focus
-    if (isInputEvent(event)) {
-      return;
-    }
-
-    const key = event.keyCode - 49; // Starting at 1
-    if (this.props.links[key]) {
-      window.location.assign(this.props.links[key].url);
-    }
-  };
-}
+//   const key = event.keyCode - 49; // Starting at 1
+//   if (this.props.links[key]) {
+//     window.location.assign(this.props.links[key].url);
+//   }
+// };
 
 export default Links;

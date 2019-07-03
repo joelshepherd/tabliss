@@ -6,7 +6,7 @@ import {
   IconButton,
   removeIcon,
 } from '../../../components';
-import { Link as LinkProps } from './interfaces';
+import { Link as LinkProps } from './types';
 
 interface Props extends LinkProps {
   number: number;
@@ -16,7 +16,7 @@ interface Props extends LinkProps {
   onRemove: () => void;
 }
 
-const LinkInput: React.StatelessComponent<Props> = props => (
+const Input: React.StatelessComponent<Props> = props => (
   <div className="LinkInput">
     <h5>
       <div className="title--buttons">
@@ -73,4 +73,4 @@ const LinkInput: React.StatelessComponent<Props> = props => (
   </div>
 );
 
-export default LinkInput;
+export default Input;

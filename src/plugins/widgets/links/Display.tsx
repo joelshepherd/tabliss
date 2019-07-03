@@ -1,7 +1,7 @@
 import featherIcons from 'feather-icons';
 import React from 'react';
 import { defineMessages, injectIntl, InjectedIntlProps } from 'react-intl';
-import { Link as LinkProps } from './interfaces';
+import { Link as LinkProps } from './types';
 
 interface Props extends LinkProps {
   number: number;
@@ -29,9 +29,7 @@ const messages = defineMessages({
   },
 });
 
-const LinkDisplay: React.StatelessComponent<
-  Props & InjectedIntlProps
-> = props => (
+const Display: React.FC<Props & InjectedIntlProps> = props => (
   <a
     href={props.url}
     rel="noopener noreferrer"
@@ -55,4 +53,4 @@ const LinkDisplay: React.StatelessComponent<
   </a>
 );
 
-export default injectIntl(LinkDisplay);
+export default injectIntl(Display);
