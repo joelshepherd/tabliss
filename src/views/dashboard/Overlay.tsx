@@ -1,11 +1,12 @@
 import React from 'react';
 import { defineMessages, injectIntl, InjectedIntlProps } from 'react-intl';
 import { useDispatch } from 'react-redux';
+
+import { eyeIcon, eyeOffIcon } from '../../components';
+import { useSelector } from '../../store/store';
 import { toggleFocus, toggleSettings } from '../../store/reducers/ui';
 import { isInputEvent } from '../../utils';
-import { eyeIcon, eyeOffIcon } from '../../components';
 import './Overlay.sass';
-import { useSelector } from '../../store/store';
 
 const settingsIcon = require('feather-icons/dist/icons/settings.svg');
 const pendingIcon = require('feather-icons/dist/icons/zap.svg');
@@ -38,7 +39,7 @@ const Overlay: React.FC<InjectedIntlProps> = ({ intl }) => {
   const focusHint = intl.formatMessage(messages.focusHint);
 
   const focus = useSelector(state => state.ui.focus);
-  const pending = false;
+  const pending = useSelector(state => state.ui.loaders > 0);
 
   const dispatch = useDispatch();
   const handleToggleFocus = React.useCallback(() => dispatch(toggleFocus()), [

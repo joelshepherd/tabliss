@@ -7,6 +7,7 @@ import { capture as captureException } from '../errorHandler';
 import { API } from '../plugins';
 import { setData } from '../store/actions/profile';
 import { setCache } from '../store/reducers/cache';
+import { pushLoader, popLoader } from '../store/reducers/ui';
 import { useSelector } from '../store/store';
 
 type Props = {
@@ -44,8 +45,18 @@ function useApi(id: string) {
     [dispatch, id],
   );
 
+  // Loader
+  const loader = React.useMemo<API['loader']>(
+    () => ({
+      push: () => dispatch(pushLoader()),
+      pop: () => dispatch(popLoader()),
+    }),
+    [dispatch],
+  );
+
   return {
     cache,
+    loader,
     setCache: boundSetCache,
     setData: boundSetData,
   };

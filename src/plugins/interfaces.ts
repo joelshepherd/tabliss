@@ -35,4 +35,9 @@ export interface API<Data = {}, Cache = {}> {
 
   data: Data;
   setData: (data: Data) => void;
+
+  loader: {
+    push: () => void;
+    pop: () => void;
+  };
 }

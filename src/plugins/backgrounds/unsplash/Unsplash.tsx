@@ -160,7 +160,7 @@ class Unsplash extends React.PureComponent<Props & { focus: boolean }, State> {
    * Fetch an image from the Unsplash API.
    */
   private fetchImage(props: Props['data'] = this.props.data) {
-    return getImage(props, () => {}, () => {});
+    return getImage(props, this.props.loader.push, this.props.loader.pop);
   }
 }
 
