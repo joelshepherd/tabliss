@@ -10,7 +10,7 @@ export interface ProfileState {
     type: string;
     active: boolean;
     position: 'background' | 'widget';
-    data: object;
+    data?: object;
   }[];
 }
 
@@ -21,21 +21,18 @@ export const defaultProfile: Pick<ProfileState, 'plugins'> = {
       type: 'background/colour',
       active: true,
       position: 'background',
-      data: {},
     },
     {
       id: generateId(),
       type: 'widget/time',
       active: true,
       position: 'widget',
-      data: {},
     },
     {
       id: generateId(),
       type: 'widget/greeting',
       active: true,
       position: 'widget',
-      data: {},
     },
   ],
 };
@@ -62,7 +59,6 @@ export function profile(
           type: action.data.type,
           active: true,
           position: 'background',
-          data: {},
         });
       }
 

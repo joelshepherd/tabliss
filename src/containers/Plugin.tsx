@@ -13,7 +13,7 @@ import { useSelector } from '../store/store';
 type Props = {
   id: string;
   Component: React.ComponentType<API>;
-  data: object;
+  data?: object;
 };
 
 const Plugin: React.FC<Props> = ({ id, Component, data }) => {

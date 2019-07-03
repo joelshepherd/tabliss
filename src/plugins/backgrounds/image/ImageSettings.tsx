@@ -61,7 +61,7 @@ class ImageSettings extends React.Component<Props> {
   }
 
   private get images() {
-    return this.props.data.images || [];
+    return this.props.data ? this.props.data.images : [];
   }
 
   private get oversized() {

@@ -1,11 +1,8 @@
 import React from 'react';
-import { defaultProps } from './constants';
+import { defaultData } from './constants';
 import { By, Props } from './interfaces';
 
-const UnsplashSettings: React.FC<Props> = ({
-  data = defaultProps,
-  setData,
-}) => {
+const UnsplashSettings: React.FC<Props> = ({ data = defaultData, setData }) => {
   const updateData = (update: Partial<Props['data']>) =>
     setData({ ...data, ...update });
 

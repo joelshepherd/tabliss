@@ -27,8 +27,7 @@
     "react-intl": "^2.9.0",
     "react-redux": "^7.1.0",
     "redux": "^4.0.1",
-    "redux-persist": "^4.10.2",
-    "redux-persist-transform-filter": "0.0.16",
+    "redux-persist": "^5.10.0",
     "screenfull": "^3.3.3",
     "tlds": "^1.203.1",
     "uuid": "^3.2.1"

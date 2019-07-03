@@ -1,8 +1,8 @@
 import { officialCollection, UNSPLASH_API_KEY } from './constants';
-import { By, Image, Props } from './interfaces';
+import { By, Image, Data } from './interfaces';
 
 export const getImage = async function(
-  settings: Props['data'],
+  settings: Data,
   pushCallback: Function,
   popCallback: Function,
 ): Promise<Image> {

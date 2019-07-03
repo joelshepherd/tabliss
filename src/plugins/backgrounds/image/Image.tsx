@@ -1,18 +1,22 @@
 import sample from 'lodash-es/sample';
 import React from 'react';
 
-import { Props } from './types';
+import { Props, defaultData } from './types';
 import './Image.sass';
 
-const Image: React.FC<Props> = ({ data: { images = [] } }) => {
-  if (!images.length) {
+const Image: React.FC<Props> = ({ data = defaultData }) => {
+  if (!data.images.length) {
     return <div className="Image default fullscreen" />;
   }
 
-  const url = React.useMemo(() => {
-    if (url) URL.revokeObjectURL(url);
-    return URL.createObjectURL(sample(images));
-  }, [images]);
+  const [url, setUrl] = React.useState<string>();
+  React.useEffect(() => {
+    setUrl(URL.createObjectURL(sample(data.images)));
+
+    return () => {
+      if (url) URL.revokeObjectURL(url);
+    };
+  }, [data.images]);
 
   return (
     <div

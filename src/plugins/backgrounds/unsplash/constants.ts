@@ -1,10 +1,10 @@
-import { By } from './interfaces';
+import { By, Data } from './interfaces';
 
 export const UNSPLASH_API_KEY = process.env.UNSPLASH_API_KEY;
 export const UNSPLASH_UTM =
   '?utm_source=Start&utm_medium=referral&utm_campaign=api-credit';
 
-export const defaultProps = {
+export const defaultData: Data = {
   blur: 0,
   darken: 10,
   by: By.OFFICIAL,

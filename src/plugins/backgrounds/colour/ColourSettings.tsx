@@ -1,17 +1,14 @@
 import React from 'react';
 
-import { Props } from './types';
+import { Props, defaultData } from './types';
 
-const ColourSettings: React.FC<Props> = ({
-  data: { colour = '#3498db' },
-  setData,
-}) => (
+const ColourSettings: React.FC<Props> = ({ data = defaultData, setData }) => (
   <div className="ColourSettings">
     <label>
       Colour
       <input
         type="color"
-        value={colour}
+        value={data.colour}
         onChange={event => setData({ colour: event.target.value })}
       />
     </label>

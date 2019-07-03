@@ -5,8 +5,8 @@ import { connect } from 'react-redux';
 
 import { RootState } from '../../../store/store';
 import { getImage } from './api';
-import { defaultProps } from './constants';
-import { Image, Props } from './interfaces';
+import { defaultData } from './constants';
+import { Image, Props as APIProps } from './interfaces';
 import UnsplashCredit from './UnsplashCredit';
 import './Unsplash.sass';
 
@@ -16,8 +16,13 @@ interface State {
   };
 }
 
-class Unsplash extends React.PureComponent<Props & { focus: boolean }, State> {
-  static defaultProps = { data: defaultProps };
+type Props = Required<APIProps> & { focus: boolean };
+
+class Unsplash extends React.PureComponent<Props, State> {
+  static defaultProps = {
+    cache: {},
+    data: defaultData,
+  };
   state: State = {};
   private refreshDebounced = debounce(this.refresh, 250);
 

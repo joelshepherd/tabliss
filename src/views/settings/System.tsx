@@ -1,34 +1,33 @@
 import { Info } from 'luxon';
 import React from 'react';
-import { connect } from 'react-redux';
-import { Action, changeLocale, changeTimezone, RootState } from '../../data';
+import { useDispatch } from 'react-redux';
+
+import { setLocale } from '../../store/reducers/settings';
 import { defaultLocale } from '../../locales';
+import { useSelector } from '../../store/store';
 
 const timezones: string[] = require('./timezones.json');
 
-interface Props {
-  changeLocale: (locale: string) => void;
-  changeTimezone: (timezone?: string) => void;
-  locale: string;
-  timezone?: string;
-}
+const System: React.FC = () => {
+  const dispatch = useDispatch();
+  const locale = useSelector(state => state.settings.locale || defaultLocale);
+  const handleSetLocale = React.useCallback(
+    (event: React.ChangeEvent<HTMLSelectElement>) =>
+      dispatch(setLocale(event.target.value)),
+    [dispatch],
+  );
 
-const System: React.StatelessComponent<Props> = props => {
-  const onChangeLocale = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    props.changeLocale(event.target.value);
-  };
+  // const onChangeTimezone = (event: React.ChangeEvent<HTMLSelectElement>) => {
+  //   let zone: string | undefined = event.target.value;
 
-  const onChangeTimezone = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    let zone: string | undefined = event.target.value;
+  //   // Check for a valid zone in this browser
+  //   if (zone && !Info.isValidIANAZone(zone)) {
+  //     alert(`Sorry, the timezone ${zone} is not supported in your browser.`);
+  //     zone = undefined;
+  //   }
 
-    // Check for a valid zone in this browser
-    if (zone && !Info.isValidIANAZone(zone)) {
-      alert(`Sorry, the timezone ${zone} is not supported in your browser.`);
-      zone = undefined;
-    }
-
-    props.changeTimezone(zone);
-  };
+  //   props.changeTimezone(zone);
+  // };
 
   return (
     <div>
@@ -44,8 +43,8 @@ const System: React.StatelessComponent<Props> = props => {
       >
         <span>Language</span>
         <select
-          value={props.locale}
-          onChange={onChangeLocale}
+          value={locale}
+          onChange={handleSetLocale}
           style={{ padding: '0.25rem' }}
         >
           <option value="cs" title="Czech">
@@ -117,7 +116,7 @@ const System: React.StatelessComponent<Props> = props => {
         </select>
       </label>
 
-      {Info.features().zones && (
+      {/* {Info.features().zones && (
         <label
           style={{
             alignItems: 'center',
@@ -142,19 +141,9 @@ const System: React.StatelessComponent<Props> = props => {
             ))}
           </select>
         </label>
-      )}
+      )} */}
     </div>
   );
 };
 
-const mapStateToProps = (state: RootState) => ({
-  locale: state.settings.locale || defaultLocale,
-  timezone: state.settings.timezone,
-});
-
-const mapDispatchToProps = { changeLocale, changeTimezone };
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(System);
+export default System;

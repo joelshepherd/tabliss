@@ -1,6 +1,6 @@
 import { API } from '../../interfaces';
 
-interface Data {
+export interface Data {
   blur: number;
   darken: number;
   by: By;

@@ -5,3 +5,7 @@ export type Data = {
 };
 
 export type Props = API<Data>;
+
+export const defaultData: Data = {
+  colour: '#3498db',
+};

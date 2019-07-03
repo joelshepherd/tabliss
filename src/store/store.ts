@@ -1,8 +1,10 @@
-import { createStore, combineReducers } from 'redux';
+import localForage from 'localforage';
 import {
   TypedUseSelectorHook,
   useSelector as baseUseSelector,
 } from 'react-redux';
+import { createStore, combineReducers } from 'redux';
+import { persistStore, persistReducer } from 'redux-persist';
 
 import { CacheState, cache } from './reducers/cache';
 import { ProfileState, profile } from './reducers/profile';
@@ -23,13 +25,39 @@ export type RootState = {
   ui: UiState;
 };
 
+const storage = localForage.createInstance({
+  name: 'tabliss',
+  driver: localForage.INDEXEDDB,
+  storeName: 'storage',
+});
+
+const cacheConfig = {
+  key: 'cache',
+  serialize: false,
+  storage,
+};
+
+const profileConfig = {
+  key: 'profile',
+  serialize: false,
+  storage,
+};
+
+const localConfig = {
+  key: 'settings',
+  serialize: false,
+  storage,
+};
+
 export const store = createStore(
   combineReducers({
-    cache,
-    profile,
-    settings,
+    cache: persistReducer(cacheConfig, cache),
+    profile: persistReducer(profileConfig, profile),
+    settings: persistReducer(localConfig, settings),
     ui,
   }),
 );
+
+export const persistor = persistStore(store);
 
 export const useSelector: TypedUseSelectorHook<RootState> = baseUseSelector;
