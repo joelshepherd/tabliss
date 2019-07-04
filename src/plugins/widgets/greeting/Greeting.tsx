@@ -1,23 +1,15 @@
 import React from 'react';
 import { injectIntl, InjectedIntlProps } from 'react-intl';
 
-import { getConvertedDate } from '../../../utils';
+import { useTime } from '../../../utils/useTime';
 import { messages } from './messages';
 import { Props, defaultData } from './types';
-
-function getHour() {
-  return getConvertedDate().getHours();
-}
 
 const Greeting: React.FC<Props & InjectedIntlProps> = ({
   data = defaultData,
   intl,
 }) => {
-  const [hour, setHour] = React.useState(getHour());
-  React.useEffect(() => {
-    const id = setInterval(() => setHour(getHour()));
-    return () => clearInterval(id);
-  });
+  const hour = useTime().getHours();
 
   const greeting = data.name
     ? intl.formatMessage(messages.greetingWithName, {

@@ -1,9 +1,4 @@
-export interface Settings {
-  latitude: number | string;
-  longitude: number | string;
-  mode: string;
-  units: string;
-}
+import { API } from '../../interfaces';
 
 export interface Conditions {
   alerts: Alert[];
@@ -33,3 +28,26 @@ type ConditionIcon =
   | 'cloudy'
   | 'partly-cloudy-day'
   | 'partly-cloudy-night';
+
+export type Data = {
+  latitude?: number;
+  longitude?: number;
+  mode: string;
+  units: string;
+};
+
+export type Cache = {
+  conditions?: Conditions;
+  details: boolean;
+};
+
+export type Props = API<Data, Cache>;
+
+export const defaultCache: Cache = {
+  details: false,
+};
+
+export const defaultData: Data = {
+  mode: 'corner',
+  units: 'auto',
+};

@@ -1,46 +1,13 @@
-import React from 'react';
+import { FC, useEffect } from 'react';
+import { Props, defaultData } from './types';
 
-interface Props {
-  input?: number;
-}
+const Reload: FC<Props> = ({ data = defaultData }) => {
+  useEffect(() => {
+    const id = setTimeout(location.reload, data.timeout * 60000);
+    return () => clearTimeout(id);
+  }, [data.timeout]);
 
-class Reload extends React.PureComponent<Props> {
-  static defaultProps = {
-    input: 15,
-  };
-  timeOut?: ReturnType<typeof setTimeout>;
-
-  componentDidMount() {
-    this.attach();
-  }
-
-  componentDidUpdate() {
-    this.detach();
-    this.attach();
-  }
-
-  componentWillUnmount() {
-    this.detach();
-  }
-
-  render() {
-    return null;
-  }
-
-  private detach() {
-    if (this.timeOut) {
-      clearTimeout(this.timeOut);
-    }
-  }
-
-  private attach() {
-    if (this.props.input) {
-      this.timeOut = setTimeout(
-        () => location.reload(),
-        this.props.input * 60000,
-      );
-    }
-  }
-}
+  return null;
+};
 
 export default Reload;

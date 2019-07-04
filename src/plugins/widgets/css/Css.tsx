@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import { API } from '../../interfaces';
 
 type Props = API<{ input: string }>;
 
 const Css: React.FC<Props> = ({ data = { input: '' } }) => {
-  React.useEffect(() => {
+  useEffect(() => {
     const style = document.createElement('style');
 
     style.id = 'CustomCss';

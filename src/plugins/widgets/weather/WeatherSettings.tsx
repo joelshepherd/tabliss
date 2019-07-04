@@ -1,82 +1,66 @@
-import React from 'react';
-import { Settings } from './interfaces';
+import React, { FC } from 'react';
+
+import { Props, defaultData } from './types';
 import LocationInput from './LocationInput';
 
-interface Props extends Settings {
-  onChange: (settings: Partial<Settings>) => void;
-}
+const WeatherSettings: FC<Props> = ({ data = defaultData, setData }) => (
+  <div className="WeatherSettings">
+    <LocationInput
+      latitude={data.latitude}
+      longitude={data.longitude}
+      onChange={location => setData({ ...data, ...location })}
+    />
 
-class WeatherSettings extends React.PureComponent<Props> {
-  static defaultProps = {
-    latitude: '',
-    longitude: '',
-    mode: 'corner',
-    units: 'auto',
-  };
+    <hr />
 
-  render() {
-    return (
-      <div className="WeatherSettings">
-        <LocationInput
-          latitude={this.props.latitude}
-          longitude={this.props.longitude}
-          onChange={location => this.props.onChange(location)}
-        />
+    <label>
+      <input
+        type="radio"
+        checked={data.units === 'auto'}
+        onChange={event => setData({ ...data, units: 'auto' })}
+      />{' '}
+      Automatic units (based on location)
+    </label>
 
-        <hr />
+    <label>
+      <input
+        type="radio"
+        checked={data.units === 'si'}
+        onChange={() => setData({ ...data, units: 'si' })}
+      />{' '}
+      Metric units
+    </label>
 
-        <label>
-          <input
-            type="radio"
-            checked={this.props.units === 'auto'}
-            onChange={event => this.props.onChange({ units: 'auto' })}
-          />{' '}
-          Automatic units (based on location)
-        </label>
+    <label>
+      <input
+        type="radio"
+        checked={data.units === 'us'}
+        onChange={() => setData({ ...data, units: 'us' })}
+      />{' '}
+      Imperial units
+    </label>
 
-        <label>
-          <input
-            type="radio"
-            checked={this.props.units === 'si'}
-            onChange={event => this.props.onChange({ units: 'si' })}
-          />{' '}
-          Metric units
-        </label>
+    <label>
+      <input
+        type="checkbox"
+        checked={data.mode === 'corner'}
+        onChange={event =>
+          setData({ ...data, mode: event.target.checked ? 'corner' : 'centre' })
+        }
+      />
+      Display on screen edge
+    </label>
 
-        <label>
-          <input
-            type="radio"
-            checked={this.props.units === 'us'}
-            onChange={event => this.props.onChange({ units: 'us' })}
-          />{' '}
-          Imperial units
-        </label>
-
-        <label>
-          <input
-            type="checkbox"
-            checked={this.props.mode === 'corner'}
-            onChange={event =>
-              this.props.onChange({
-                mode: event.target.checked ? 'corner' : 'centre',
-              })
-            }
-          />
-          Display on screen edge
-        </label>
-
-        <p>
-          <a
-            href="https://darksky.net/poweredby/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Powered by Dark Sky
-          </a>
-        </p>
-      </div>
-    );
-  }
-}
+    <p>
+      <a
+        href="https://darksky.net/poweredby/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Powered by Dark Sky
+      </a>
+    </p>
+  </div>
+);
 
 export default WeatherSettings;

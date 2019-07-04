@@ -1,29 +1,20 @@
-import React from 'react';
-import { Settings } from '../../interfaces';
+import React, { FC } from 'react';
 
-interface Props {
-  input?: number;
-  onChange: (settings: Settings) => void;
-}
+import { Props, defaultData } from './types';
 
-const ReloadSettings: React.StatelessComponent<Props> = ({
-  input = 15,
-  onChange,
-}) => {
-  return (
-    <div className="ReloadSettings">
-      <label>
-        Time between refreshes (minutes)
-        <input
-          type="number"
-          min="1"
-          max="300"
-          value={input}
-          onChange={event => onChange({ input: event.target.value })}
-        />
-      </label>
-    </div>
-  );
-};
+const ReloadSettings: FC<Props> = ({ data = defaultData, setData }) => (
+  <div className="ReloadSettings">
+    <label>
+      Time between refreshes (minutes)
+      <input
+        type="number"
+        min="1"
+        max="300"
+        value={data.timeout}
+        onChange={event => setData({ timeout: Number(event.target.value) })}
+      />
+    </label>
+  </div>
+);
 
 export default ReloadSettings;

@@ -1,17 +1,13 @@
-import React from 'react';
+import React, { FC } from 'react';
 import './Analogue.sass';
 
-interface Props {
+type Props = {
   showMinutes: boolean;
   showSeconds: boolean;
   time: Date;
-}
+};
 
-const Analogue: React.StatelessComponent<Props> = ({
-  time,
-  showMinutes,
-  showSeconds,
-}) => {
+const Analogue: FC<Props> = ({ time, showMinutes, showSeconds }) => {
   const hoursAngle = time.getHours() * 30 + time.getMinutes() * 0.5;
   const minutesAngle = time.getHours() * 360 + time.getMinutes() * 6;
   const secondsAngle =

@@ -1,15 +1,13 @@
 import React from 'react';
+
 import './LocationInput.sass';
 const navigationIcon = require('feather-icons/dist/icons/navigation.svg');
 const searchIcon = require('feather-icons/dist/icons/search.svg');
 
 interface Props {
-  latitude: number | string;
-  longitude: number | string;
-  onChange: (location: {
-    latitude?: number | string;
-    longitude?: number | string;
-  }) => void;
+  latitude?: number;
+  longitude?: number;
+  onChange: (location: { latitude?: number; longitude?: number }) => void;
 }
 
 interface State {
@@ -84,7 +82,7 @@ class LocationInput extends React.PureComponent<Props, State> {
             type="text"
             value={this.props.latitude}
             onChange={event =>
-              this.props.onChange({ latitude: event.target.value })
+              this.props.onChange({ latitude: Number(event.target.value) })
             }
           />
 
@@ -93,7 +91,7 @@ class LocationInput extends React.PureComponent<Props, State> {
             type="text"
             value={this.props.longitude}
             onChange={event =>
-              this.props.onChange({ longitude: event.target.value })
+              this.props.onChange({ longitude: Number(event.target.value) })
             }
           />
 
@@ -132,8 +130,8 @@ class LocationInput extends React.PureComponent<Props, State> {
       .then(res => res.json())
       .then(data =>
         this.props.onChange({
-          latitude: Number(data[0].lat).toFixed(4),
-          longitude: Number(data[0].lon).toFixed(4),
+          latitude: Number(Number(data[0].lat).toFixed(4)),
+          longitude: Number(Number(data[0].lon).toFixed(4)),
         }),
       )
       .then(() => this.setState({ lookup: false, query: '' }))
