@@ -40,17 +40,6 @@ const WeatherSettings: FC<Props> = ({ data = defaultData, setData }) => (
       Imperial units
     </label>
 
-    <label>
-      <input
-        type="checkbox"
-        checked={data.mode === 'corner'}
-        onChange={event =>
-          setData({ ...data, mode: event.target.checked ? 'corner' : 'centre' })
-        }
-      />
-      Display on screen edge
-    </label>
-
     <p>
       <a
         href="https://darksky.net/poweredby/"

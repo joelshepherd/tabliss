@@ -1,0 +1,52 @@
+.Slot
+  position: absolute;
+
+  &.topLeft
+    top: 2rem
+    left: 0
+    text-align: left
+
+  &.topCentre
+    top: 0
+    left: 50%
+    transform: translateX(-50%)
+    text-align: center
+
+  &.topRight
+    top: 0
+    right: 0
+    text-align: right
+
+  &.middleLeft
+    top: 50%
+    left: 0
+    transform: translateY(-50%)
+    text-align: left
+
+  &.middleCentre
+    top: 50%
+    left: 50%
+    transform: translate(-50%, -50%)
+    text-align: center
+
+  &.middleRight
+    top: 50%
+    right: 0
+    transform: translateY(-50%)
+    text-align: right
+
+  &.bottomLeft
+    bottom: 3rem
+    left: 0
+    text-align: left
+
+  &.bottomCentre
+    bottom: 3rem
+    left: 50%
+    transform: translateX(-50%)
+    text-align: center
+
+  &.bottomRight
+    bottom: 3rem
+    right: 0
+    text-align: right

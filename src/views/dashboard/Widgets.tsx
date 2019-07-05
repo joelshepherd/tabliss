@@ -1,26 +1,26 @@
+import groupBy from 'lodash-es/groupBy';
 import React from 'react';
 
-import Plugin from '../../components/plugin/Plugin';
 import { useSelector } from '../../store/store';
+import Slot from './Slot';
 import './Widgets.sass';
-import { getPlugin } from '../../plugins';
 
 const Widgets: React.FC = () => {
   const { focus, widgets } = useSelector(state => ({
     focus: state.ui.focus,
     widgets: state.profile.plugins.filter(
-      plugin => plugin.position === 'widget',
+      plugin => plugin.position !== 'background',
     ),
   }));
 
-  // @todo How to store the state and draw the widget slots
+  const groups = Object.entries(groupBy(widgets, widget => widget.position));
 
   return (
     <div className="Widgets fullscreen">
       <div className="container">
         {!focus &&
-          widgets.map(({ id, type }) => (
-            <Plugin key={id} id={id} Component={getPlugin(type).Dashboard} />
+          groups.map(([position, widgets]) => (
+            <Slot key={position} position={position as any} widgets={widgets} />
           ))}
       </div>
     </div>

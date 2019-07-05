@@ -32,7 +32,6 @@ type ConditionIcon =
 export type Data = {
   latitude?: number;
   longitude?: number;
-  mode: string;
   units: string;
 };
 
@@ -48,6 +47,5 @@ export const defaultCache: Cache = {
 };
 
 export const defaultData: Data = {
-  mode: 'corner',
   units: 'auto',
 };

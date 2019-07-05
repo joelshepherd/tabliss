@@ -9,7 +9,7 @@ const TodoSettings: FC<Props> = ({ data = defaultData, setData }) => (
         Tasks to show
         <input
           type="number"
-          min="1"
+          min="0"
           onChange={event =>
             setData({ ...data, show: Number(event.target.value) })
           }

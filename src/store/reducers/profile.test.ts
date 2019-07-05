@@ -11,7 +11,7 @@ const basePlugin: PluginState = {
   id: '1234',
   type: 'widget/test',
   active: true,
-  position: 'widget',
+  position: 'middleCentre',
 };
 
 describe('profile()', () => {
@@ -23,7 +23,7 @@ describe('profile()', () => {
           id: expect.any(String),
           type: 'widget/test-add',
           active: true,
-          position: 'widget',
+          position: 'middleCentre',
           data: undefined,
         },
       ],

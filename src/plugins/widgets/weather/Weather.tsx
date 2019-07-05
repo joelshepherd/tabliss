@@ -19,7 +19,7 @@ const Weather: FC<Props> = ({
   }, [data]);
 
   if (!cache.conditions) {
-    return <div className={`Weather ${data.mode}`}>-</div>;
+    return <div className="Weather">-</div>;
   }
 
   // Check for expired cache
@@ -28,7 +28,7 @@ const Weather: FC<Props> = ({
   }
 
   return (
-    <div className={`Weather ${data.mode}`}>
+    <div className="Weather">
       <div
         className="summary"
         onClick={() => setCache({ ...cache, details: !cache.details })}
@@ -42,7 +42,7 @@ const Weather: FC<Props> = ({
         <span className="temperature">{cache.conditions.temperature}˚</span>
       </div>
 
-      {data.mode === 'corner' && cache.details && (
+      {cache.details && (
         <div className="details">
           <dl>
             <dt>{cache.conditions.humidity}%</dt>

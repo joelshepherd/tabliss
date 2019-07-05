@@ -1,3 +1,5 @@
+import { PluginPosition } from '../reducers/profile';
+
 export function setBackground(type: string) {
   return {
     type: 'SET_BACKGROUND',
@@ -26,8 +28,16 @@ export function setData(id: string, data: object) {
   } as const;
 }
 
+export function setPosition(id: string, position: PluginPosition) {
+  return {
+    type: 'SET_POSITION',
+    data: { id, position },
+  } as const;
+}
+
 export type ProfileActions =
   | ReturnType<typeof setBackground>
   | ReturnType<typeof addWidget>
   | ReturnType<typeof removeWidget>
-  | ReturnType<typeof setData>;
+  | ReturnType<typeof setData>
+  | ReturnType<typeof setPosition>;

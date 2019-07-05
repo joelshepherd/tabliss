@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useCallback } from 'react';
 
 import PluginContainer from '../../components/plugin/Plugin';
 import { getPlugin } from '../../plugins';
@@ -13,6 +13,8 @@ import {
 import './Plugin.sass';
 import { useToggle } from '../../utils/useToggle';
 import { PluginState } from '../../store/reducers/profile';
+import { useDispatch } from 'react-redux';
+import { setPosition } from '../../store/actions/profile';
 
 interface Props {
   plugin: PluginState;
@@ -25,6 +27,12 @@ const Plugin: FC<Props> = ({ plugin, onMoveDown, onMoveUp, onRemove }) => {
   const [isOpen, toggleIsOpen] = useToggle(onRemove === undefined);
 
   const { title, Settings } = getPlugin(plugin.type);
+
+  const dispatch = useDispatch();
+  const handlePositionChange = useCallback(
+    (position: any) => dispatch(setPosition(plugin.id, position)),
+    [dispatch],
+  );
 
   return (
     <fieldset className="Plugin">
@@ -66,7 +74,26 @@ const Plugin: FC<Props> = ({ plugin, onMoveDown, onMoveUp, onRemove }) => {
       )}
 
       {isOpen && Settings && (
-        <PluginContainer id={plugin.id} Component={Settings} />
+        <>
+          Position
+          <label>
+            <select
+              value={plugin.position}
+              onChange={e => handlePositionChange(e.target.value)}
+            >
+              <option value="topLeft">Top Left</option>
+              <option value="topCentre">Top Centre</option>
+              <option value="topRight">Top Right</option>
+              <option value="middleLeft">Middle Left</option>
+              <option value="middleCentre">Middle Centre</option>
+              <option value="middleRight">Middle Right</option>
+              <option value="bottomLeft">Bottom Left</option>
+              <option value="bottomCentre">Bottom Centre</option>
+              <option value="bottomRight">Bottom Right</option>
+            </select>
+          </label>
+          <PluginContainer id={plugin.id} Component={Settings} />
+        </>
       )}
     </fieldset>
   );
