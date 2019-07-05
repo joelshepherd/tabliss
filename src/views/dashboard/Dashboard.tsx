@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Plugin from '../../containers/Plugin';
+import Plugin from '../../components/plugin/Plugin';
 import { useSelector } from '../../store/store';
 import Overlay from './Overlay';
 import './Dashboard.sass';
@@ -20,7 +20,6 @@ const Dashboard: React.FC = () => {
         <Plugin
           id={background.id}
           Component={getPlugin(background.type).Dashboard}
-          data={background.data}
         />
       )}
       <Overlay />

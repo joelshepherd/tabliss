@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 
-import Plugin from '../../containers/Plugin';
+import Plugin from '../../components/plugin/Plugin';
 import { getPluginsByType, Type, getPlugin } from '../../plugins';
 import { setBackground } from '../../store/actions/profile';
 import { useSelector } from '../../store/store';
@@ -43,7 +43,6 @@ const Background: React.FC = () => {
         <Plugin
           id={background.id}
           Component={getPlugin(background.type).Settings!}
-          data={background.data}
         />
       )}
     </div>

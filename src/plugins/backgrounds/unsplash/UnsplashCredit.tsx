@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { UNSPLASH_UTM } from './constants';
 import { Image } from './interfaces';
@@ -7,7 +7,7 @@ interface Props {
   image: Image;
 }
 
-const UnsplashCredit: React.StatelessComponent<Props> = props => (
+const UnsplashCredit: FC<Props> = props => (
   <div className="credit">
     <span style={{ float: 'right' }}>{props.image.location_title}</span>
 

@@ -11,7 +11,7 @@ export type Data = {
   tag: string;
 };
 
-export type Cache = {};
+export type Cache = Gif;
 
 export type Props = API<Data, Cache>;
 

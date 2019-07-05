@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 
-import PluginContainer from '../../containers/Plugin';
+import PluginContainer from '../../components/plugin/Plugin';
 import { getPlugin } from '../../plugins';
 import {
   arrowDownIcon,
@@ -66,11 +66,7 @@ const Plugin: FC<Props> = ({ plugin, onMoveDown, onMoveUp, onRemove }) => {
       )}
 
       {isOpen && Settings && (
-        <PluginContainer
-          id={plugin.id}
-          Component={Settings}
-          data={plugin.data}
-        />
+        <PluginContainer id={plugin.id} Component={Settings} />
       )}
     </fieldset>
   );

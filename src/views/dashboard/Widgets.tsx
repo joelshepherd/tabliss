@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Plugin from '../../containers/Plugin';
+import Plugin from '../../components/plugin/Plugin';
 import { useSelector } from '../../store/store';
 import './Widgets.sass';
 import { getPlugin } from '../../plugins';
@@ -19,13 +19,8 @@ const Widgets: React.FC = () => {
     <div className="Widgets fullscreen">
       <div className="container">
         {!focus &&
-          widgets.map(({ id, type, data }) => (
-            <Plugin
-              key={id}
-              id={id}
-              Component={getPlugin(type).Dashboard}
-              data={data}
-            />
+          widgets.map(({ id, type }) => (
+            <Plugin key={id} id={id} Component={getPlugin(type).Dashboard} />
           ))}
       </div>
     </div>

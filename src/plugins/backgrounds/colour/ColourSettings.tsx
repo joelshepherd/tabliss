@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { FC } from 'react';
 
 import { Props, defaultData } from './types';
 
-const ColourSettings: React.FC<Props> = ({ data = defaultData, setData }) => (
+const ColourSettings: FC<Props> = ({ data = defaultData, setData }) => (
   <div className="ColourSettings">
     <label>
       Colour

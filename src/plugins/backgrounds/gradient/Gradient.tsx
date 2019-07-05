@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { FC } from 'react';
 
 import { Props, defaultData } from './types';
 
-const Gradient: React.FC<Props> = ({ data = defaultData }) => (
+const Gradient: FC<Props> = ({ data = defaultData }) => (
   <div
     className="Gradient fullscreen"
     style={{
