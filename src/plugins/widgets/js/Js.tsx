@@ -1,47 +1,28 @@
-import React from 'react';
-import debounce from 'lodash-es/debounce';
+import throttle from 'lodash-es/throttle';
+import { FC, useEffect } from 'react';
 
-interface Props {
-  input?: string;
-}
+import { Props, defaultData } from './types';
 
-class Js extends React.PureComponent<Props> {
-  private debouncedAttach = debounce(this.attach, 500);
+const Js: FC<Props> = ({ data = defaultData }) => {
+  // @todo Debounce data.input and feed that into thenuseEffect
 
-  componentDidMount() {
-    this.attach();
-  }
-
-  componentDidUpdate() {
-    this.detach();
-    this.debouncedAttach();
-  }
-
-  componentWillUnmount() {
-    this.detach();
-  }
-
-  render() {
-    return null;
-  }
-
-  private detach() {
-    const script = document.getElementById('CustomJs');
-
-    if (script) {
-      document.head.removeChild(script);
-    }
-  }
-
-  private attach() {
+  useEffect(() => {
     const script = document.createElement('script');
+
+    throttle;
 
     script.id = 'CustomJs';
     script.type = 'text/javascript';
-    script.appendChild(document.createTextNode(this.props.input || ''));
+    script.appendChild(document.createTextNode(data.input));
 
     document.head.appendChild(script);
-  }
-}
+
+    return () => {
+      document.head.removeChild(script);
+    };
+  }, [data.input]);
+
+  return null;
+};
 
 export default Js;

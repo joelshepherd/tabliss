@@ -1,15 +1,13 @@
 import React from 'react';
 import { defineMessages, injectIntl, InjectedIntlProps } from 'react-intl';
 import tlds from 'tlds';
+
+import { engines } from './engines';
+import { Suggestions } from './suggestions';
 import getSuggestions from './suggestions/getSuggestions';
 import { SuggestionsResult, SuggestionsData } from './suggestions/interfaces';
-import { Engine, Settings } from './interfaces';
-import { Suggestions } from './suggestions';
+import { Props, defaultData } from './types';
 import './Search.sass';
-
-const engines: Engine[] = require('./engines.json');
-
-interface Props extends Settings {}
 
 interface State {
   query: string;
@@ -27,13 +25,10 @@ const messages = defineMessages({
 
 class Search extends React.PureComponent<Props & InjectedIntlProps, State> {
   static defaultProps = {
-    searchEngine: 'google',
-    placeholder: '',
-    suggestionsEngine: 'google',
-    suggestionsQuantity: 4,
+    data: defaultData,
   };
 
-  state = {
+  state: State = {
     query: '',
     getSuggestionData: false,
     suggestions: {
@@ -55,7 +50,7 @@ class Search extends React.PureComponent<Props & InjectedIntlProps, State> {
   }
 
   render() {
-    const { intl, placeholder, suggestionsEngine } = this.props;
+    const { data, intl } = this.props;
 
     return (
       <form className="Search" onKeyUp={this.keyUp} onSubmit={this.search}>
@@ -72,10 +67,12 @@ class Search extends React.PureComponent<Props & InjectedIntlProps, State> {
               getSuggestionData: true,
             });
           }}
-          placeholder={placeholder || intl.formatMessage(messages.placeholder)}
+          placeholder={
+            data!.placeholder || intl.formatMessage(messages.placeholder)
+          }
         />
 
-        {suggestionsEngine && (
+        {data!.suggestionsEngine && (
           <Suggestions
             data={this.state.suggestions}
             onMouseOver={(event, key) =>
@@ -114,7 +111,7 @@ class Search extends React.PureComponent<Props & InjectedIntlProps, State> {
     if (
       this.state.query === '' ||
       (keyCode !== 38 && keyCode !== 40) ||
-      !this.props.suggestionsEngine
+      !this.props.data!.suggestionsEngine
     ) {
       return;
     }
@@ -184,7 +181,7 @@ class Search extends React.PureComponent<Props & InjectedIntlProps, State> {
 
     // Probably searching then
     const searchEngine =
-      engines.find(engine => engine.key === this.props.searchEngine) ||
+      engines.find(engine => engine.key === this.props.data!.searchEngine) ||
       engines[0];
 
     return searchEngine.search_url.replace('{searchTerms}', query);
@@ -196,7 +193,7 @@ class Search extends React.PureComponent<Props & InjectedIntlProps, State> {
   private getSuggestionData() {
     const { query, getSuggestionData } = this.state;
 
-    if (!getSuggestionData || !this.props.suggestionsEngine) {
+    if (!getSuggestionData || !this.props.data!.suggestionsEngine) {
       return;
     }
 
@@ -209,8 +206,9 @@ class Search extends React.PureComponent<Props & InjectedIntlProps, State> {
     }
 
     const suggestionEngine =
-      engines.find(engine => engine.key === this.props.suggestionsEngine) ||
-      engines[0];
+      engines.find(
+        engine => engine.key === this.props.data!.suggestionsEngine,
+      ) || engines[0];
 
     const suggestionUrl = suggestionEngine.suggest_url!.replace(
       '{searchTerms}',
@@ -246,7 +244,7 @@ class Search extends React.PureComponent<Props & InjectedIntlProps, State> {
     } else {
       data = {
         active: -1,
-        values: suggestions[1].slice(0, this.props.suggestionsQuantity),
+        values: suggestions[1].slice(0, this.props.data!.suggestionsQuantity),
       };
     }
 

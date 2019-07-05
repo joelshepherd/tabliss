@@ -30,7 +30,7 @@ const Settings: React.FC = () => {
 
         <Background />
 
-        {/* <Widgets /> */}
+        <Widgets />
 
         <System />
 

@@ -1,15 +1,8 @@
-import React from 'react';
-import { Settings } from './interfaces';
+import React, { FC } from 'react';
 
-interface Props extends Settings {
-  onChange: (settings: Partial<Settings>) => void;
-}
+import { Props, defaultData } from './types';
 
-const TodoSettings: React.StatelessComponent<Props> = ({
-  show = 3,
-  textAlign = 'left',
-  onChange,
-}) => (
+const TodoSettings: FC<Props> = ({ data = defaultData, setData }) => (
   <div className="SearchSettings">
     <p>
       <label>
@@ -17,9 +10,11 @@ const TodoSettings: React.StatelessComponent<Props> = ({
         <input
           type="number"
           min="1"
-          onChange={event => onChange({ show: Number(event.target.value) })}
+          onChange={event =>
+            setData({ ...data, show: Number(event.target.value) })
+          }
           placeholder="Number of todo items to show"
-          value={show}
+          value={data.show}
         />
       </label>
     </p>
@@ -28,8 +23,8 @@ const TodoSettings: React.StatelessComponent<Props> = ({
       <label>
         <input
           type="radio"
-          checked={textAlign === 'inherit'}
-          onChange={() => onChange({ textAlign: 'inherit' })}
+          checked={data.textAlign === 'inherit'}
+          onChange={() => setData({ ...data, textAlign: 'inherit' })}
         />
         Default text align
       </label>
@@ -37,8 +32,8 @@ const TodoSettings: React.StatelessComponent<Props> = ({
       <label>
         <input
           type="radio"
-          checked={textAlign === 'left'}
-          onChange={() => onChange({ textAlign: 'left' })}
+          checked={data.textAlign === 'left'}
+          onChange={() => setData({ ...data, textAlign: 'left' })}
         />
         Left text align
       </label>

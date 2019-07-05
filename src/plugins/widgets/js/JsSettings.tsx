@@ -1,35 +1,25 @@
-import React from 'react';
-import { Settings } from '../../interfaces';
+import React, { FC } from 'react';
 
-interface Props {
-  input?: string;
-  onChange: (settings: Settings) => void;
-}
+import { Props, defaultData } from './types';
 
-const JsSettings: React.StatelessComponent<Props> = ({
-  input = '',
-  onChange,
-}) => {
-  return (
-    <div className="JsSettings">
-      <label>
-        JavaScript Snippet
-        <textarea
-          rows={3}
-          style={{ fontFamily: 'monospace' }}
-          value={input}
-          onChange={event => onChange({ input: event.target.value })}
-        />
-      </label>
+const JsSettings: FC<Props> = ({ data = defaultData, setData }) => (
+  <div className="JsSettings">
+    <label>
+      JavaScript Snippet
+      <textarea
+        rows={3}
+        style={{ fontFamily: 'monospace' }}
+        value={data.input}
+        onChange={event => setData({ input: event.target.value })}
+      />
+    </label>
 
-      <p className="info">
-        Warning: this functionality is intended for advanced users. Custom
-        scripts may break at any time. The snippet will run once after the
-        dashboard has loaded. Be careful of persisting event listeners when
-        editing the snippet.
-      </p>
-    </div>
-  );
-};
+    <p className="info">
+      Warning: this functionality is intended for advanced users. Custom scripts
+      may break at any time. The snippet will run once after the dashboard has
+      loaded. Be careful of persisting event listeners when editing the snippet.
+    </p>
+  </div>
+);
 
 export default JsSettings;

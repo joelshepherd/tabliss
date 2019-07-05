@@ -2,16 +2,18 @@ import { v4 as generateId } from 'uuid';
 
 import { ProfileActions } from '../actions/profile';
 
+export interface PluginState {
+  id: string;
+  type: string;
+  active: boolean;
+  position: 'background' | 'widget';
+  data?: object;
+}
+
 export interface ProfileState {
   id: string;
   name: string;
-  plugins: {
-    id: string;
-    type: string;
-    active: boolean;
-    position: 'background' | 'widget';
-    data?: object;
-  }[];
+  plugins: PluginState[];
 }
 
 export const defaultProfile: Pick<ProfileState, 'plugins'> = {
@@ -79,14 +81,13 @@ export function profile(
           type: action.data.type,
           active: true,
           position: 'widget',
-          data: {},
         }),
       };
 
     case 'REMOVE_WIDGET':
       return {
         ...state,
-        plugins: state.plugins.filter(plugin => plugin.id === action.data.id),
+        plugins: state.plugins.filter(plugin => plugin.id !== action.data.id),
       };
 
     // @todo Reorder widget?

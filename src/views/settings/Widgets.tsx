@@ -1,95 +1,51 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import {
-  Action,
-  addWidget,
-  removeWidget,
-  reorderWidget,
-  RootState,
-} from '../../data';
-import {
-  getPlugin,
-  getPluginsByType,
-  Plugin as IPlugin,
-  Type,
-} from '../../plugins';
+import React, { FC, useCallback } from 'react';
+import { useDispatch } from 'react-redux';
+
+import { getPluginsByType, Type } from '../../plugins';
+import { useSelector } from '../../store/store';
+import { addWidget, removeWidget } from '../../store/actions/profile';
 import Plugin from './Plugin';
 
-interface Props {
-  plugins: IPlugin[];
-  widgets: IPlugin[];
-  addWidget: (key: string) => Action;
-  removeWidget: (key: string) => Action;
-  reorderWidget: (key: string, to: number) => Action;
-}
+const Widgets: FC = () => {
+  const available = getPluginsByType(Type.WIDGET);
 
-class Widgets extends React.PureComponent<Props> {
-  render() {
-    return (
-      <div>
-        <h3>Widgets</h3>
+  const active = useSelector(state => state.profile.plugins);
+  const dispatch = useDispatch();
+  const boundAddWidget = useCallback(
+    (type: string) => dispatch(addWidget(type)),
+    [dispatch],
+  );
 
-        {this.props.plugins.length > 0 && (
-          <label>
-            <select
-              value={''}
-              onChange={event => this.add(event.target.value)}
-              className="primary"
-            >
-              <option value={''}>Add a new widget</option>
-              {this.props.plugins.map(plugin => (
-                <option key={plugin.key} value={plugin.key}>
-                  {plugin.title}
-                </option>
-              ))}
-            </select>
-          </label>
-        )}
+  return (
+    <div>
+      <h3>Widgets</h3>
+      <label>
+        <select
+          value={''}
+          onChange={event => boundAddWidget(event.target.value)}
+          className="primary"
+        >
+          <option value={''}>Add a new widget</option>
+          {available.map(plugin => (
+            <option key={plugin.key} value={plugin.key}>
+              {plugin.title}
+            </option>
+          ))}
+        </select>
+      </label>
 
-        {this.props.widgets.length === 0 ? (
-          <p>No widgets selected.</p>
-        ) : (
-          this.props.widgets.map((plugin, index) => (
-            <Plugin
-              key={plugin.key}
-              plugin={plugin}
-              onMoveUp={
-                index !== 0
-                  ? () => this.props.reorderWidget(plugin.key, index - 1)
-                  : undefined
-              }
-              onMoveDown={
-                index !== this.props.widgets.length - 1
-                  ? () => this.props.reorderWidget(plugin.key, index + 1)
-                  : undefined
-              }
-              onRemove={() => this.props.removeWidget(plugin.key)}
-            />
-          ))
-        )}
-      </div>
-    );
-  }
-
-  private add(key: string) {
-    if (key !== '') {
-      this.props.addWidget(key);
-    }
-  }
-}
-
-const mapStateToProps = (state: RootState) => {
-  return {
-    plugins: getPluginsByType(Type.WIDGET).filter(
-      plugin => !state.dashboard.widgets.includes(plugin.key),
-    ),
-    widgets: state.dashboard.widgets.map(getPlugin),
-  };
+      {active.length === 0 && <p>No widgets selected.</p>}
+      {active.map((plugin, index) => (
+        <Plugin
+          key={plugin.id}
+          plugin={plugin}
+          onMoveUp={index !== 0 ? undefined : undefined}
+          onMoveDown={index !== active.length - 1 ? undefined : undefined}
+          onRemove={() => dispatch(removeWidget(plugin.id))}
+        />
+      ))}
+    </div>
+  );
 };
 
-const mapDispatchToProps = { addWidget, removeWidget, reorderWidget };
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(Widgets);
+export default Widgets;

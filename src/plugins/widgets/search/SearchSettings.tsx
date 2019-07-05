@@ -1,27 +1,20 @@
-import React from 'react';
-import { Engine, Settings } from './interfaces';
-const engines: Engine[] = require('./engines.json');
+import React, { FC } from 'react';
+
+import { engines } from './engines';
+import { Props, defaultData } from './types';
 
 const MAX_QUANTITY = 20;
 
-interface Props extends Settings {
-  onChange: (settings: Settings) => void;
-}
-
-const SearchSettings: React.StatelessComponent<Props> = ({
-  searchEngine = 'google',
-  placeholder = '',
-  suggestionsEngine = 'google',
-  suggestionsQuantity = 4,
-  onChange,
-}) => (
+const SearchSettings: FC<Props> = ({ data = defaultData, setData }) => (
   <div className="SearchSettings">
     <label>
       Placeholder
       <input
         type="text"
-        value={placeholder}
-        onChange={event => onChange({ placeholder: event.target.value })}
+        value={data.placeholder}
+        onChange={event =>
+          setData({ ...data, placeholder: event.target.value })
+        }
         placeholder="Type to search"
       />
     </label>
@@ -29,8 +22,10 @@ const SearchSettings: React.StatelessComponent<Props> = ({
     <label>
       Search Provider
       <select
-        onChange={event => onChange({ searchEngine: event.target.value })}
-        value={searchEngine}
+        onChange={event =>
+          setData({ ...data, searchEngine: event.target.value })
+        }
+        value={data.searchEngine}
       >
         {engines.map(({ key, name }) => (
           <option key={key} value={key}>
@@ -43,8 +38,10 @@ const SearchSettings: React.StatelessComponent<Props> = ({
     <label>
       Suggestions Provider
       <select
-        onChange={event => onChange({ suggestionsEngine: event.target.value })}
-        value={suggestionsEngine}
+        onChange={event =>
+          setData({ ...data, suggestionsEngine: event.target.value })
+        }
+        value={data.suggestionsEngine}
       >
         <option key="off" value="">
           Off
@@ -59,16 +56,19 @@ const SearchSettings: React.StatelessComponent<Props> = ({
       </select>
     </label>
 
-    {suggestionsEngine && (
+    {data.suggestionsEngine && (
       <label>
         Suggestion Quanitity
         <input
           type="number"
           min="1"
           max={MAX_QUANTITY}
-          value={suggestionsQuantity}
+          value={data.suggestionsQuantity}
           onChange={event =>
-            onChange({ suggestionsQuantity: Number(event.target.value) })
+            setData({
+              ...data,
+              suggestionsQuantity: Number(event.target.value),
+            })
           }
         />
       </label>

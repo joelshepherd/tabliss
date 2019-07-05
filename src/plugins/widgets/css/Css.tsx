@@ -1,10 +1,8 @@
-import React, { useEffect } from 'react';
+import { FC, useEffect } from 'react';
 
-import { API } from '../../interfaces';
+import { Props, defaultData } from './types';
 
-type Props = API<{ input: string }>;
-
-const Css: React.FC<Props> = ({ data = { input: '' } }) => {
+const Css: FC<Props> = ({ data = defaultData }) => {
   useEffect(() => {
     const style = document.createElement('style');
 

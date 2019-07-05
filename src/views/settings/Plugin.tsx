@@ -1,7 +1,7 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { Action, RootState, updateSettings } from '../../data';
-import { Plugin as IPlugin, Settings } from '../../plugins';
+import React, { FC } from 'react';
+
+import PluginContainer from '../../containers/Plugin';
+import { getPlugin } from '../../plugins';
 import {
   arrowDownIcon,
   arrowUpIcon,
@@ -11,102 +11,69 @@ import {
   removeIcon,
 } from '../../components';
 import './Plugin.sass';
+import { useToggle } from '../../utils/useToggle';
+import { PluginState } from '../../store/reducers/profile';
 
-interface OwnProps {
-  plugin: IPlugin;
+interface Props {
+  plugin: PluginState;
   onMoveUp?: () => void;
   onMoveDown?: () => void;
-  onRemove?: () => void;
+  onRemove: () => void;
 }
 
-interface Props extends OwnProps {
-  settings: Settings;
-  updateSettings: (settings: Settings) => void;
-}
+const Plugin: FC<Props> = ({ plugin, onMoveDown, onMoveUp, onRemove }) => {
+  const [isOpen, toggleIsOpen] = useToggle(onRemove === undefined);
 
-interface State {
-  open: boolean;
-}
+  const { title, Settings } = getPlugin(plugin.type);
 
-class Plugin extends React.PureComponent<Props, State> {
-  state: State = {
-    open: this.props.onRemove === undefined,
-  };
+  return (
+    <fieldset className="Plugin">
+      {Settings ? (
+        <div className="title--buttons">
+          <IconButton
+            onClick={toggleIsOpen}
+            title={`${isOpen ? 'Close' : 'Edit'} widget settings`}
+          >
+            {isOpen ? collapseIcon : expandIcon}
+          </IconButton>
 
-  render() {
-    const Component = this.props.plugin.Settings;
-
-    return (
-      <fieldset className="Plugin">
-        {this.props.onRemove !== undefined ? (
-          <div className="title--buttons">
-            <IconButton
-              onClick={this.toggle}
-              title={`${this.state.open ? 'Close' : 'Edit'} widget settings`}
-            >
-              {this.state.open ? collapseIcon : expandIcon}
+          {isOpen && (
+            <IconButton key="remove" onClick={onRemove} title="Remove widget">
+              {removeIcon}
             </IconButton>
+          )}
 
-            {this.state.open && this.props.onRemove !== undefined && (
-              <IconButton
-                key="remove"
-                onClick={this.props.onRemove}
-                title="Remove widget"
-              >
-                {removeIcon}
-              </IconButton>
-            )}
+          {isOpen && onMoveDown && (
+            <IconButton
+              key="down"
+              onClick={onMoveDown}
+              title="Move widget down"
+            >
+              {arrowDownIcon}
+            </IconButton>
+          )}
 
-            {this.state.open && this.props.onMoveDown !== undefined && (
-              <IconButton
-                key="down"
-                onClick={this.props.onMoveDown}
-                title="Move widget down"
-              >
-                {arrowDownIcon}
-              </IconButton>
-            )}
+          {isOpen && onMoveUp && (
+            <IconButton key="up" onClick={onMoveUp} title="Move widget up">
+              {arrowUpIcon}
+            </IconButton>
+          )}
 
-            {this.state.open && this.props.onMoveUp !== undefined && (
-              <IconButton
-                key="up"
-                onClick={this.props.onMoveUp}
-                title="Move widget up"
-              >
-                {arrowUpIcon}
-              </IconButton>
-            )}
+          <h4 onClick={toggleIsOpen}>{title}</h4>
+        </div>
+      ) : (
+        <h4>{title}</h4>
+      )}
 
-            <h4 onClick={this.toggle}>{this.props.plugin.title}</h4>
-          </div>
-        ) : (
-          <h4>{this.props.plugin.title}</h4>
-        )}
+      {isOpen && Settings && (
+        <PluginContainer
+          id={plugin.id}
+          Component={Settings}
+          data={plugin.data}
+        />
+      )}
+    </fieldset>
+  );
+};
 
-        {this.state.open && Component && (
-          <Component
-            {...this.props.settings}
-            onChange={this.props.updateSettings}
-          />
-        )}
-      </fieldset>
-    );
-  }
-
-  private toggle = () => this.setState({ open: !this.state.open });
-}
-
-const mapStateToProps = (state: RootState, props: OwnProps) => ({
-  settings: (state.storage[props.plugin.key] || {}).settings,
-});
-
-const mapDispatchToProps = (dispatch: any, props: OwnProps) => ({
-  updateSettings: (settings: Settings) => {
-    dispatch(updateSettings(props.plugin.key, settings));
-  },
-});
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(Plugin);
+export default Plugin;

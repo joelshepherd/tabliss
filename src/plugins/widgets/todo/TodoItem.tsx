@@ -1,10 +1,10 @@
 import React from 'react';
 import { checkedIcon, uncheckedIcon, removeIcon } from '../../../components';
-import { Todo } from './interfaces';
+import { State } from './reducer';
 import './TodoItem.sass';
 
 interface Props {
-  item: Todo;
+  item: State[number];
   onToggle(): void;
   onUpdate(contents: string): void;
   onDelete(): void;

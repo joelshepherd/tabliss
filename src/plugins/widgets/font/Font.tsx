@@ -1,12 +1,7 @@
-import React from 'react';
-import './Font.sass';
+import { FC, useEffect } from 'react';
 
-interface Props {
-  colour?: string;
-  family?: string;
-  size?: number;
-  weight?: number;
-}
+import { Props, defaultData } from './types';
+import './Font.sass';
 
 const classNames = [
   'weight--',
@@ -18,50 +13,27 @@ const classNames = [
   'weight--900',
 ];
 
-class Font extends React.PureComponent<Props> {
-  static defaultProps = {
-    colour: '#ffffff',
-    family: '',
-    size: 28,
-    weight: 400,
-  };
+const Font: FC<Props> = ({ data = defaultData }) => {
+  useEffect(() => {
+    const element = document.querySelector('.Widgets') as HTMLDivElement;
 
-  componentDidMount() {
-    this.attach();
-  }
-
-  componentDidUpdate() {
-    this.attach();
-  }
-
-  componentWillUnmount() {
-    this.detach();
-  }
-
-  render() {
-    return null;
-  }
-
-  private detach() {
-    const element = document.querySelector('.Widgets') as HTMLElement;
-
-    element.style.fontFamily = null;
-    element.style.fontSize = null;
-    element.style.color = null;
+    element.style.fontFamily = data.family || null;
+    element.style.fontSize = data.size ? `${data.size}px` : null;
+    element.style.color = data.colour || null;
 
     element.classList.remove(...classNames);
-  }
+    element.classList.add(`weight--${data.weight}`);
 
-  private attach() {
-    const element = document.querySelector('.Widgets') as HTMLElement;
+    return () => {
+      element.style.fontFamily = null;
+      element.style.fontSize = null;
+      element.style.color = null;
 
-    element.style.fontFamily = this.props.family || null;
-    element.style.fontSize = this.props.size ? `${this.props.size}px` : null;
-    element.style.color = this.props.colour || null;
+      element.classList.remove(...classNames);
+    };
+  }, [data]);
 
-    element.classList.remove(...classNames);
-    element.classList.add(`weight--${this.props.weight}`);
-  }
-}
+  return null;
+};
 
 export default Font;

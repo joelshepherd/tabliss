@@ -1,46 +1,32 @@
-import React from 'react';
-import { Settings } from '../../interfaces';
+import React, { FC } from 'react';
 
-interface Props {
-  showBookAndAuthor: boolean;
-  centerText: boolean;
-  onChange: (settings: Settings) => void;
-}
+import { Props, defaultData } from './types';
 
-class LiteratureClockSettings extends React.PureComponent<Props> {
-  static defaultProps: Partial<Props> = {
-    showBookAndAuthor: true,
-    centerText: false,
-  };
+const LiteratureClockSettings: FC<Props> = ({
+  data = defaultData,
+  setData,
+}) => (
+  <div className="LiteratureClockSettings">
+    <label>
+      <input
+        type="checkbox"
+        checked={data.showBookAndAuthor}
+        onChange={() =>
+          setData({ ...data, showBookAndAuthor: !data.showBookAndAuthor })
+        }
+      />{' '}
+      Display book and author
+    </label>
 
-  render() {
-    return (
-      <div className="LiteratureClockSettings">
-        <label>
-          <input
-            type="checkbox"
-            checked={this.props.showBookAndAuthor}
-            onChange={() =>
-              this.props.onChange({
-                showBookAndAuthor: !this.props.showBookAndAuthor,
-              })
-            }
-          />{' '}
-          Display book and author
-        </label>
-        <label>
-          <input
-            type="checkbox"
-            checked={this.props.centerText}
-            onChange={() =>
-              this.props.onChange({ centerText: !this.props.centerText })
-            }
-          />{' '}
-          Align text at center
-        </label>
-      </div>
-    );
-  }
-}
+    <label>
+      <input
+        type="checkbox"
+        checked={data.centerText}
+        onChange={() => setData({ ...data, centerText: !data.centerText })}
+      />{' '}
+      Align text at center
+    </label>
+  </div>
+);
 
 export default LiteratureClockSettings;
