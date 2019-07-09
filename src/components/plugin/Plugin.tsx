@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { withErrorBoundary } from 'react-error-boundary';
 
 import { capture as captureException } from '../../errorHandler';
@@ -11,7 +11,7 @@ type Props = {
   Component: React.ComponentType<API>;
 };
 
-const Plugin: React.FC<Props> = ({ id, Component }) => {
+const Plugin: FC<Props> = ({ id, Component }) => {
   // Create plugin API
   const api = useApi(id);
 

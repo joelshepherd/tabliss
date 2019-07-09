@@ -1,5 +1,5 @@
 import featherIcons from 'feather-icons';
-import React from 'react';
+import React, { FC } from 'react';
 import { defineMessages, injectIntl, InjectedIntlProps } from 'react-intl';
 import { Link as LinkProps } from './types';
 
@@ -29,7 +29,7 @@ const messages = defineMessages({
   },
 });
 
-const Display: React.FC<Props & InjectedIntlProps> = props => (
+const Display: FC<Props & InjectedIntlProps> = props => (
   <a
     href={props.url}
     rel="noopener noreferrer"

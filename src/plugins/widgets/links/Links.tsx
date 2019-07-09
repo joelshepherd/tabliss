@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, FC } from 'react';
 
 import { isInputEvent } from '../../../utils';
 import Display from './Display';
@@ -6,7 +6,7 @@ import { Props, defaultData } from './types';
 import './Links.sass';
 const linkIcon = require('feather-icons/dist/icons/link-2.svg');
 
-const Links: React.FC<Props> = ({ data = defaultData }) => {
+const Links: FC<Props> = ({ data = defaultData }) => {
   const [visible, setVisible] = useState(false);
 
   return (

@@ -1,17 +1,18 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { useDispatch } from 'react-redux';
+
+import { githubIcon, globeIcon, twitterIcon } from '../../components';
+import { toggleSettings } from '../../store/reducers/ui';
 import Background from './Background';
 import Feedback from './Feedback';
 import Homepage from './Homepage';
 import System from './System';
 import Widgets from './Widgets';
-import { githubIcon, globeIcon, twitterIcon } from '../../components';
 import './Settings.sass';
-import { toggleSettings } from '../../store/reducers/ui';
 const logo = require('./logo.svg');
 
-const Settings: React.FC = () => {
+const Settings: FC = () => {
   const dispatch = useDispatch();
 
   const handleToggleSettings = React.useCallback(

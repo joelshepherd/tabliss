@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { defineMessages, injectIntl, InjectedIntlProps } from 'react-intl';
 import { useDispatch } from 'react-redux';
 
@@ -34,7 +34,7 @@ const messages = defineMessages({
   },
 });
 
-const Overlay: React.FC<InjectedIntlProps> = ({ intl }) => {
+const Overlay: FC<InjectedIntlProps> = ({ intl }) => {
   const settingsHint = intl.formatMessage(messages.settingsHint);
   const focusHint = intl.formatMessage(messages.focusHint);
 

@@ -1,10 +1,19 @@
-import React from 'react';
+import React, { FC, useMemo } from 'react';
+import { PersistGate } from 'redux-persist/integration/react';
 import { Provider } from 'react-redux';
 
-import { store } from './store';
+import { configureStore } from './store';
 
-const StoreProvider: React.FC = ({ children }) => (
-  <Provider store={store}>{children}</Provider>
-);
+const StoreProvider: FC = ({ children }) => {
+  const { persistor, store } = useMemo(configureStore, []);
+
+  return (
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        {children}
+      </PersistGate>
+    </Provider>
+  );
+};
 
 export default StoreProvider;

@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { FC } from 'react';
 
 import { Props, defaultData } from './types';
 
-const MessageSettings: React.FC<Props> = ({ data = defaultData, setData }) => (
+const MessageSettings: FC<Props> = ({ data = defaultData, setData }) => (
   <div className="MessageSettings">
     <label>
       Message

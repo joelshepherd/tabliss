@@ -1,5 +1,5 @@
 import { Info } from 'luxon';
-import React from 'react';
+import React, { FC } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { setLocale } from '../../store/reducers/settings';
@@ -8,7 +8,7 @@ import { useSelector } from '../../store/store';
 
 const timezones: string[] = require('./timezones.json');
 
-const System: React.FC = () => {
+const System: FC = () => {
   const dispatch = useDispatch();
   const locale = useSelector(state => state.settings.locale || defaultLocale);
   const handleSetLocale = React.useCallback(

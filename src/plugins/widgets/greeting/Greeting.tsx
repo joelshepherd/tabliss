@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { injectIntl, InjectedIntlProps } from 'react-intl';
 
 import { useTime } from '../../../utils/useTime';
 import { messages } from './messages';
 import { Props, defaultData } from './types';
 
-const Greeting: React.FC<Props & InjectedIntlProps> = ({
+const Greeting: FC<Props & InjectedIntlProps> = ({
   data = defaultData,
   intl,
 }) => {

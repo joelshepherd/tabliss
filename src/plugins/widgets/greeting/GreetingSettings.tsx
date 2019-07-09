@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { FC } from 'react';
 
 import { Props, defaultData } from './types';
 
-const GreetingSettings: React.FC<Props> = ({ data = defaultData, setData }) => (
+const GreetingSettings: FC<Props> = ({ data = defaultData, setData }) => (
   <div className="GreetingSettings">
     <label>
       Name

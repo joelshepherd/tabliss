@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { FC } from 'react';
+
 import { defaultData } from './constants';
 import { By, Props } from './interfaces';
 
-const UnsplashSettings: React.FC<Props> = ({ data = defaultData, setData }) => (
+const UnsplashSettings: FC<Props> = ({ data = defaultData, setData }) => (
   <div className="UnsplashSettings">
     <label>
       Show a new photo

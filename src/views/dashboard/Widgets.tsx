@@ -1,11 +1,11 @@
 import groupBy from 'lodash-es/groupBy';
-import React from 'react';
+import React, { FC } from 'react';
 
 import { useSelector } from '../../store/store';
 import Slot from './Slot';
 import './Widgets.sass';
 
-const Widgets: React.FC = () => {
+const Widgets: FC = () => {
   const { focus, widgets } = useSelector(state => ({
     focus: state.ui.focus,
     widgets: state.profile.plugins.filter(

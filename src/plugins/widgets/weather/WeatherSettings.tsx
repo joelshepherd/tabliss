@@ -17,7 +17,7 @@ const WeatherSettings: FC<Props> = ({ data = defaultData, setData }) => (
       <input
         type="radio"
         checked={data.units === 'auto'}
-        onChange={event => setData({ ...data, units: 'auto' })}
+        onChange={() => setData({ ...data, units: 'auto' })}
       />{' '}
       Automatic units (based on location)
     </label>

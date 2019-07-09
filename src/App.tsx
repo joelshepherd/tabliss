@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC, useEffect } from 'react';
 import { defineMessages, injectIntl, InjectedIntlProps } from 'react-intl';
 
 import { Dashboard } from './views/dashboard';
@@ -16,10 +16,10 @@ const messages = defineMessages({
   },
 });
 
-const Root: React.FC<Props> = ({ intl }) => {
-  React.useEffect(() => {
+const Root: FC<Props> = ({ intl }) => {
+  useEffect(() => {
     document.title = intl.formatMessage(messages.pageTitle);
-  });
+  }, []);
   const showSettings = useSelector(state => state.ui.settings);
 
   return (

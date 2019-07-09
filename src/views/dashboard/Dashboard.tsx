@@ -1,13 +1,13 @@
-import React from 'react';
+import React, { FC } from 'react';
 
 import Plugin from '../../components/plugin/Plugin';
+import { getPlugin } from '../../plugins';
 import { useSelector } from '../../store/store';
 import Overlay from './Overlay';
-import './Dashboard.sass';
 import Widgets from './Widgets';
-import { getPlugin } from '../../plugins';
+import './Dashboard.sass';
 
-const Dashboard: React.FC = () => {
+const Dashboard: FC = () => {
   const background = useSelector(state =>
     state.profile.plugins.find(
       plugin => plugin.active && plugin.position === 'background',

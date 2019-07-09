@@ -2,58 +2,51 @@ import React, { FC, useEffect } from 'react';
 
 import { getForecast } from './api';
 import { weatherIcons } from './icons';
-import { Conditions, Props, defaultCache, defaultData } from './types';
+import { Props, defaultData } from './types';
 import './Weather.sass';
 
 const Weather: FC<Props> = ({
-  cache = defaultCache,
+  cache,
   data = defaultData,
   loader,
   setCache,
+  setData,
 }) => {
-  const setConditions = (conditions?: Conditions) =>
-    setCache({ ...cache, conditions });
-
   useEffect(() => {
-    getForecast(data, loader).then(setConditions);
+    getForecast(data, loader).then(setCache);
   }, [data]);
 
-  if (!cache.conditions) {
+  if (!cache) {
     return <div className="Weather">-</div>;
-  }
-
-  // Check for expired cache
-  if (cache.conditions.timestamp + 900000 < Date.now()) {
-    getForecast(data, loader).then(setConditions);
   }
 
   return (
     <div className="Weather">
       <div
         className="summary"
-        onClick={() => setCache({ ...cache, details: !cache.details })}
+        onClick={() => setData({ ...data, showDetails: !data.showDetails })}
         title="Toggle weather details"
       >
         <i
           dangerouslySetInnerHTML={{
-            __html: weatherIcons[cache.conditions.icon],
+            __html: weatherIcons[cache.icon],
           }}
         />
-        <span className="temperature">{cache.conditions.temperature}˚</span>
+        <span className="temperature">{cache.temperature}˚</span>
       </div>
 
-      {cache.details && (
+      {data.showDetails && (
         <div className="details">
           <dl>
-            <dt>{cache.conditions.humidity}%</dt>
+            <dt>{cache.humidity}%</dt>
             <dd>Humidity</dd>
           </dl>
           <dl>
-            <dt>{cache.conditions.precipProbability}%</dt>
-            <dd>Chance of {cache.conditions.precipType || 'rain'}</dd>
+            <dt>{cache.precipProbability}%</dt>
+            <dd>Chance of {cache.precipType || 'rain'}</dd>
           </dl>
           <dl>
-            <dt>{cache.conditions.apparentTemperature}˚</dt>
+            <dt>{cache.apparentTemperature}˚</dt>
             <dd>Feels like</dd>
           </dl>
         </div>

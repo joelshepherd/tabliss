@@ -1,9 +1,10 @@
-import React, { useReducer, useEffect } from 'react';
-import { Link, Props, defaultData } from './types';
+import React, { useReducer, useEffect, FC } from 'react';
+
 import Input from './Input';
 import { reducer } from './reducer';
+import { Props, defaultData } from './types';
 
-const LinksSettings: React.FC<Props> = ({ data = defaultData, setData }) => {
+const LinksSettings: FC<Props> = ({ data = defaultData, setData }) => {
   const [state, dispatch] = useReducer(reducer, data.links);
   useEffect(() => {
     setData({ ...data, links: state });

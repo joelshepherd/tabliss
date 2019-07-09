@@ -1,7 +1,10 @@
 import { API } from '../../interfaces';
 
 export interface Conditions {
-  alerts: Alert[];
+  alerts: {
+    title: string;
+    description: string;
+  }[];
   apparentTemperature: number;
   humidity: number;
   icon: ConditionIcon;
@@ -10,11 +13,6 @@ export interface Conditions {
   precipType?: number;
   timestamp: number;
   units: string;
-}
-
-export interface Alert {
-  title: string;
-  description: string;
 }
 
 type ConditionIcon =
@@ -30,22 +28,17 @@ type ConditionIcon =
   | 'partly-cloudy-night';
 
 export type Data = {
+  showDetails: boolean;
   latitude?: number;
   longitude?: number;
   units: string;
 };
 
-export type Cache = {
-  conditions?: Conditions;
-  details: boolean;
-};
+export type Cache = Conditions | undefined;
 
 export type Props = API<Data, Cache>;
 
-export const defaultCache: Cache = {
-  details: false,
-};
-
 export const defaultData: Data = {
+  showDetails: false,
   units: 'auto',
 };

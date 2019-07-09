@@ -10,6 +10,7 @@ import { CacheState, cache } from './reducers/cache';
 import { ProfileState, profile } from './reducers/profile';
 import { SettingsState, settings } from './reducers/settings';
 import { UiState, ui } from './reducers/ui';
+import storage from 'redux-persist/es/storage';
 
 export type RootState = {
   // This is not synced
@@ -25,39 +26,53 @@ export type RootState = {
   ui: UiState;
 };
 
-const storage = localForage.createInstance({
+const localStorage = localForage.createInstance({
   name: 'tabliss',
   driver: localForage.INDEXEDDB,
-  storeName: 'storage',
+  storeName: 'local',
 });
+
+// const syncStorage = localForage.createInstance({
+//   name: 'tabliss',
+//   driver: localForage.INDEXEDDB, // Or sync storage in web extensions
+//   storeName: 'sync',
+// });
+const syncStorage = storage;
 
 const cacheConfig = {
   key: 'cache',
   serialize: false,
-  storage,
+  storage: localStorage,
+  timeout: 0, // Test to see if this fixes the freezing thing: https://github.com/rt2zz/redux-persist/issues/717
 };
 
 const profileConfig = {
   key: 'profile',
-  serialize: false,
-  storage,
+  serialize: true,
+  storage: syncStorage,
+  timeout: 0,
 };
 
 const localConfig = {
   key: 'settings',
   serialize: false,
-  storage,
+  storage: localStorage,
+  timeout: 0,
 };
 
-export const store = createStore(
-  combineReducers({
-    cache: persistReducer(cacheConfig, cache),
-    profile: persistReducer(profileConfig, profile),
-    settings: persistReducer(localConfig, settings),
-    ui,
-  }),
-);
-
-export const persistor = persistStore(store);
-
 export const useSelector: TypedUseSelectorHook<RootState> = baseUseSelector;
+
+export function configureStore() {
+  const store = createStore(
+    combineReducers({
+      cache: persistReducer(cacheConfig, cache),
+      profile: persistReducer(profileConfig, profile),
+      settings: persistReducer(localConfig, settings),
+      ui,
+    }),
+  );
+
+  const persistor = persistStore(store);
+
+  return { store, persistor };
+}

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { useDispatch } from 'react-redux';
 
 import Plugin from '../../components/plugin/Plugin';
@@ -6,7 +6,7 @@ import { getPluginsByType, Type, getPlugin } from '../../plugins';
 import { setBackground } from '../../store/actions/profile';
 import { useSelector } from '../../store/store';
 
-const Background: React.FC = () => {
+const Background: FC = () => {
   const plugins = getPluginsByType(Type.BACKGROUND);
 
   const background = useSelector(state =>
