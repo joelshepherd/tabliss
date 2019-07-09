@@ -9,7 +9,7 @@ import Plugin from './Plugin';
 const Widgets: FC = () => {
   const available = getPluginsByType(Type.WIDGET);
 
-  const active = useSelector(state => state.profile.plugins);
+  const active = useSelector(state => state.profile.widgets);
   const dispatch = useDispatch();
   const boundAddWidget = useCallback(
     (type: string) => dispatch(addWidget(type)),

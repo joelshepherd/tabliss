@@ -2,12 +2,12 @@ import React, { FC } from 'react';
 
 import Plugin from '../../components/plugin/Plugin';
 import { getPlugin } from '../../plugins';
-import { PluginPosition, PluginState } from '../../store/reducers/profile';
+import { WidgetPosition, WidgetState } from '../../store/reducers/profile';
 import './Slot.sass';
 
 type Props = {
-  position: PluginPosition;
-  widgets: PluginState[];
+  position: WidgetPosition;
+  widgets: WidgetState[];
 };
 
 const Slot: FC<Props> = ({ position, widgets }) => (

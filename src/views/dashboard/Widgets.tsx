@@ -8,9 +8,7 @@ import './Widgets.sass';
 const Widgets: FC = () => {
   const { focus, widgets } = useSelector(state => ({
     focus: state.ui.focus,
-    widgets: state.profile.plugins.filter(
-      plugin => plugin.position !== 'background',
-    ),
+    widgets: state.profile.widgets,
   }));
 
   const groups = Object.entries(groupBy(widgets, widget => widget.position));

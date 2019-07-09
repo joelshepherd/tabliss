@@ -1,4 +1,4 @@
-import { PluginPosition } from '../reducers/profile';
+import { WidgetPosition } from '../reducers/profile';
 
 export function setBackground(type: string) {
   return {
@@ -28,10 +28,24 @@ export function setData(id: string, data: object) {
   } as const;
 }
 
-export function setPosition(id: string, position: PluginPosition) {
+export function setPosition(id: string, position: WidgetPosition) {
   return {
     type: 'SET_POSITION',
     data: { id, position },
+  } as const;
+}
+
+export function setBlur(blur: number) {
+  return {
+    type: 'SET_BLUR',
+    data: { blur },
+  } as const;
+}
+
+export function setLuminosity(luminosity: number) {
+  return {
+    type: 'SET_LUMINOSITY',
+    data: { luminosity },
   } as const;
 }
 
@@ -40,4 +54,6 @@ export type ProfileActions =
   | ReturnType<typeof addWidget>
   | ReturnType<typeof removeWidget>
   | ReturnType<typeof setData>
-  | ReturnType<typeof setPosition>;
+  | ReturnType<typeof setPosition>
+  | ReturnType<typeof setBlur>
+  | ReturnType<typeof setLuminosity>;

@@ -12,12 +12,12 @@ import {
 } from '../../components';
 import './Plugin.sass';
 import { useToggle } from '../../utils/useToggle';
-import { PluginState } from '../../store/reducers/profile';
+import { WidgetState } from '../../store/reducers/profile';
 import { useDispatch } from 'react-redux';
 import { setPosition } from '../../store/actions/profile';
 
 interface Props {
-  plugin: PluginState;
+  plugin: WidgetState;
   onMoveUp?: () => void;
   onMoveDown?: () => void;
   onRemove: () => void;
@@ -75,8 +75,8 @@ const Plugin: FC<Props> = ({ plugin, onMoveDown, onMoveUp, onRemove }) => {
 
       {isOpen && Settings && (
         <>
-          Position
           <label>
+            Position
             <select
               value={plugin.position}
               onChange={e => handlePositionChange(e.target.value)}
@@ -92,6 +92,7 @@ const Plugin: FC<Props> = ({ plugin, onMoveDown, onMoveUp, onRemove }) => {
               <option value="bottomRight">Bottom Right</option>
             </select>
           </label>
+
           <PluginContainer id={plugin.id} Component={Settings} />
         </>
       )}

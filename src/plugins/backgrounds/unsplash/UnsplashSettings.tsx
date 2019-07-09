@@ -84,34 +84,6 @@ const UnsplashSettings: FC<Props> = ({ data = defaultData, setData }) => (
         </label>
       </div>
     )}
-
-    <label>
-      Blur <br />
-      <input
-        type="range"
-        min="0"
-        max="50"
-        step="5"
-        value={data.blur}
-        onChange={event =>
-          setData({ ...data, blur: Number(event.target.value) })
-        }
-      />
-    </label>
-
-    <label>
-      Darken <br />
-      <input
-        type="range"
-        min="0"
-        max="100"
-        step="10"
-        value={data.darken}
-        onChange={event =>
-          setData({ ...data, darken: Number(event.target.value) })
-        }
-      />
-    </label>
   </div>
 );
 

@@ -18,10 +18,7 @@ export function useApi(id: string): API {
   );
 
   // Data
-  const data = useSelector(state => {
-    const plugin = state.profile.plugins.find(plugin => plugin.id === id);
-    return plugin ? plugin.data : undefined;
-  });
+  const data = useSelector(state => state.profile.data[id]);
   const boundSetData = useCallback(
     (data: object) => dispatch(setData(id, data)),
     [dispatch, id],
