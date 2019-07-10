@@ -1,4 +1,4 @@
-import { WidgetPosition } from '../reducers/profile';
+import { BackgroundDisplay, WidgetDisplay } from '../reducers/profile';
 
 export function setBackground(type: string) {
   return {
@@ -28,24 +28,20 @@ export function setData(id: string, data: object) {
   } as const;
 }
 
-export function setPosition(id: string, position: WidgetPosition) {
+export function setBackgroundDisplay(
+  id: string,
+  display: Partial<BackgroundDisplay>,
+) {
   return {
-    type: 'SET_POSITION',
-    data: { id, position },
+    type: 'SET_BACKGROUND_DISPLAY',
+    data: { id, display },
   } as const;
 }
 
-export function setBlur(blur: number) {
+export function setWidgetDisplay(id: string, display: Partial<WidgetDisplay>) {
   return {
-    type: 'SET_BLUR',
-    data: { blur },
-  } as const;
-}
-
-export function setLuminosity(luminosity: number) {
-  return {
-    type: 'SET_LUMINOSITY',
-    data: { luminosity },
+    type: 'SET_WIDGET_DISPLAY',
+    data: { id, display },
   } as const;
 }
 
@@ -54,6 +50,5 @@ export type ProfileActions =
   | ReturnType<typeof addWidget>
   | ReturnType<typeof removeWidget>
   | ReturnType<typeof setData>
-  | ReturnType<typeof setPosition>
-  | ReturnType<typeof setBlur>
-  | ReturnType<typeof setLuminosity>;
+  | ReturnType<typeof setBackgroundDisplay>
+  | ReturnType<typeof setWidgetDisplay>;

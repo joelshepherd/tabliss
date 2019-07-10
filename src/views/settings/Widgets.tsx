@@ -1,13 +1,13 @@
 import React, { FC, useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { getPluginsByType, Type } from '../../plugins';
+import { getPluginsByType } from '../../plugins';
 import { useSelector } from '../../store/store';
 import { addWidget, removeWidget } from '../../store/actions/profile';
 import Plugin from './Plugin';
 
 const Widgets: FC = () => {
-  const available = getPluginsByType(Type.WIDGET);
+  const available = getPluginsByType('widget');
 
   const active = useSelector(state => state.profile.widgets);
   const dispatch = useDispatch();

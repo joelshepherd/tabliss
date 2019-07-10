@@ -10,10 +10,7 @@ export interface Plugin {
 }
 
 // Types
-export enum Type {
-  BACKGROUND = 'background',
-  WIDGET = 'widget',
-}
+export type Type = 'background' | 'widget';
 
 export interface API<Data = {}, Cache = {}> {
   cache?: Cache;

@@ -1,8 +1,6 @@
-import { Type } from '../interfaces';
 import { registerPlugin } from '../registry';
 
 import { Css, CssSettings } from './css';
-import { Font, FontSettings } from './font';
 import { Greeting, GreetingSettings } from './greeting';
 import { Js, JsSettings } from './js';
 import { Links, LinksSettings } from './links';
@@ -17,23 +15,15 @@ import { Weather, WeatherSettings } from './weather';
 
 registerPlugin({
   key: 'widget/css',
-  type: Type.WIDGET,
+  type: 'widget',
   title: 'Custom CSS',
   Dashboard: Css,
   Settings: CssSettings,
 });
 
 registerPlugin({
-  key: 'widget/font',
-  type: Type.WIDGET,
-  title: 'Font Settings',
-  Dashboard: Font,
-  Settings: FontSettings,
-});
-
-registerPlugin({
   key: 'widget/greeting',
-  type: Type.WIDGET,
+  type: 'widget',
   title: 'Greeting',
   Dashboard: Greeting,
   Settings: GreetingSettings,
@@ -43,7 +33,7 @@ registerPlugin({
 if (process.env.BUILD_TARGET === 'web') {
   registerPlugin({
     key: 'widget/js',
-    type: Type.WIDGET,
+    type: 'widget',
     title: 'Custom JS',
     Dashboard: Js,
     Settings: JsSettings,
@@ -52,7 +42,7 @@ if (process.env.BUILD_TARGET === 'web') {
 
 registerPlugin({
   key: 'widget/links',
-  type: Type.WIDGET,
+  type: 'widget',
   title: 'Quick Links',
   Dashboard: Links,
   Settings: LinksSettings,
@@ -60,7 +50,7 @@ registerPlugin({
 
 registerPlugin({
   key: 'widget/message',
-  type: Type.WIDGET,
+  type: 'widget',
   title: 'Message',
   Dashboard: Message,
   Settings: MessageSettings,
@@ -68,7 +58,7 @@ registerPlugin({
 
 registerPlugin({
   key: 'widget/quote',
-  type: Type.WIDGET,
+  type: 'widget',
   title: 'Daily Quotes',
   Dashboard: Quote,
   Settings: QuoteSettings,
@@ -76,7 +66,7 @@ registerPlugin({
 
 registerPlugin({
   key: 'widget/reload',
-  type: Type.WIDGET,
+  type: 'widget',
   title: 'Auto Reload',
   Dashboard: Reload,
   Settings: ReloadSettings,
@@ -84,7 +74,7 @@ registerPlugin({
 
 registerPlugin({
   key: 'widget/search',
-  type: Type.WIDGET,
+  type: 'widget',
   title: 'Search Box',
   Dashboard: Search,
   Settings: SearchSettings,
@@ -92,7 +82,7 @@ registerPlugin({
 
 registerPlugin({
   key: 'widget/time',
-  type: Type.WIDGET,
+  type: 'widget',
   title: 'Time',
   Dashboard: Time,
   Settings: TimeSettings,
@@ -100,7 +90,7 @@ registerPlugin({
 
 registerPlugin({
   key: 'widget/literature-clock',
-  type: Type.WIDGET,
+  type: 'widget',
   title: 'Literature Clock',
   Dashboard: LiteratureClock,
   Settings: LiteratureClockSettings,
@@ -108,7 +98,7 @@ registerPlugin({
 
 registerPlugin({
   key: 'widget/todo',
-  type: Type.WIDGET,
+  type: 'widget',
   title: 'Todos',
   Dashboard: Todo,
   Settings: TodoSettings,
@@ -116,7 +106,7 @@ registerPlugin({
 
 registerPlugin({
   key: 'widget/weather',
-  type: Type.WIDGET,
+  type: 'widget',
   title: 'Weather',
   Dashboard: Weather,
   Settings: WeatherSettings,

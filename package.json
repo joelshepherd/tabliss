@@ -16,6 +16,7 @@
     "feather-icons": "^4.7.3",
     "in-browser-language": "^1.0.2",
     "localforage": "^1.7.1",
+    "localforage-webextensionstorage-driver": "^1.2.0",
     "lodash-es": "^4.17.10",
     "luxon": "^1.0.0",
     "normalize.css": "^8.0.0",

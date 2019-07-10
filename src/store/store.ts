@@ -1,4 +1,3 @@
-import localForage from 'localforage';
 import {
   TypedUseSelectorHook,
   useSelector as baseUseSelector,
@@ -10,7 +9,7 @@ import { CacheState, cache } from './reducers/cache';
 import { ProfileState, profile } from './reducers/profile';
 import { SettingsState, settings } from './reducers/settings';
 import { UiState, ui } from './reducers/ui';
-import storage from 'redux-persist/es/storage';
+import { createStorage } from './storage';
 
 export type RootState = {
   // This is not synced
@@ -26,43 +25,30 @@ export type RootState = {
   ui: UiState;
 };
 
-const localStorage = localForage.createInstance({
-  name: 'tabliss',
-  driver: localForage.INDEXEDDB,
-  storeName: 'local',
-});
-
-// const syncStorage = localForage.createInstance({
-//   name: 'tabliss',
-//   driver: localForage.INDEXEDDB, // Or sync storage in web extensions
-//   storeName: 'sync',
-// });
-const syncStorage = storage;
-
-const cacheConfig = {
-  key: 'cache',
-  serialize: false,
-  storage: localStorage,
-  timeout: 0, // Test to see if this fixes the freezing thing: https://github.com/rt2zz/redux-persist/issues/717
-};
-
-const profileConfig = {
-  key: 'profile',
-  serialize: true,
-  storage: syncStorage,
-  timeout: 0,
-};
-
-const localConfig = {
-  key: 'settings',
-  serialize: false,
-  storage: localStorage,
-  timeout: 0,
-};
-
+// Typed `useSelector` hook
 export const useSelector: TypedUseSelectorHook<RootState> = baseUseSelector;
 
 export function configureStore() {
+  const { localStorage, syncStorage } = createStorage();
+
+  const cacheConfig = {
+    key: 'cache',
+    serialize: false,
+    storage: localStorage,
+  };
+
+  const profileConfig = {
+    key: 'profile',
+    serialize: false,
+    storage: syncStorage,
+  };
+
+  const localConfig = {
+    key: 'settings',
+    serialize: false,
+    storage: localStorage,
+  };
+
   const store = createStore(
     combineReducers({
       cache: persistReducer(cacheConfig, cache),

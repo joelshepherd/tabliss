@@ -2,16 +2,16 @@ import React, { FC } from 'react';
 import { useDispatch } from 'react-redux';
 
 import Plugin from '../../components/plugin/Plugin';
-import { getPluginsByType, Type, getPlugin } from '../../plugins';
+import { getPluginsByType, getPlugin } from '../../plugins';
 import {
   setBackground,
-  setBlur,
-  setLuminosity,
+  setBackgroundDisplay,
 } from '../../store/actions/profile';
 import { useSelector } from '../../store/store';
+import { BackgroundDisplay } from '../../store/reducers/profile';
 
 const Background: FC = () => {
-  const plugins = getPluginsByType(Type.BACKGROUND);
+  const plugins = getPluginsByType('background');
 
   const background = useSelector(state =>
     state.profile.backgrounds.find(plugin => plugin.active),
@@ -22,14 +22,9 @@ const Background: FC = () => {
     (type: string) => dispatch(setBackground(type)),
     [dispatch],
   );
-  const handleSetBlur = React.useCallback(
-    (event: React.ChangeEvent<HTMLInputElement>) =>
-      dispatch(setBlur(Number(event.target.value))),
-    [dispatch],
-  );
-  const handleSetLuminosity = React.useCallback(
-    (event: React.ChangeEvent<HTMLInputElement>) =>
-      dispatch(setLuminosity(Number(event.target.value))),
+  const handleSetDisplay = React.useCallback(
+    (id: string, display: Partial<BackgroundDisplay>) =>
+      dispatch(setBackgroundDisplay(id, display)),
     [dispatch],
   );
 
@@ -67,20 +62,28 @@ const Background: FC = () => {
               min="0"
               max="50"
               step="5"
-              value={background.blur}
-              onChange={handleSetBlur}
+              value={background.display.blur}
+              onChange={event =>
+                handleSetDisplay(background.id, {
+                  blur: Number(event.target.value),
+                })
+              }
             />
           </label>
 
           <label>
-            Darken <br />
+            Luminosity <br />
             <input
               type="range"
               min="-100"
               max="100"
               step="10"
-              value={background.luminosity}
-              onChange={handleSetLuminosity}
+              value={background.display.luminosity}
+              onChange={event =>
+                handleSetDisplay(background.id, {
+                  luminosity: Number(event.target.value),
+                })
+              }
             />
           </label>
         </>

@@ -2,6 +2,11 @@ import { v4 as generateId } from 'uuid';
 
 import { ProfileActions } from '../actions/profile';
 
+export type BackgroundDisplay = {
+  blur: number;
+  luminosity: number; // Positive to lighten, negative to darken
+};
+
 export type WidgetPosition =
   | 'topLeft'
   | 'topCentre'
@@ -13,6 +18,14 @@ export type WidgetPosition =
   | 'bottomCentre'
   | 'bottomRight';
 
+export type WidgetDisplay = {
+  colour?: string;
+  fontFamily?: string;
+  fontSize?: number;
+  fontWeight?: number;
+  position: WidgetPosition;
+};
+
 interface PluginState {
   id: string;
   type: string;
@@ -20,14 +33,11 @@ interface PluginState {
 }
 
 export interface BackgroundState extends PluginState {
-  luminosity: number; // Positive to lighten, negative to darken
-  blur: number;
+  display: BackgroundDisplay;
 }
 
 export interface WidgetState extends PluginState {
-  position: WidgetPosition;
-  fontFamily?: string;
-  fontSize?: string;
+  display: WidgetDisplay;
 }
 
 export interface ProfileState {
@@ -47,8 +57,7 @@ export const defaultProfile: Pick<
       id: generateId(),
       type: 'background/colour',
       active: true,
-      luminosity: 0,
-      blur: 0,
+      display: { luminosity: 0, blur: 0 },
     },
   ],
   widgets: [
@@ -56,13 +65,13 @@ export const defaultProfile: Pick<
       id: generateId(),
       type: 'widget/time',
       active: true,
-      position: 'middleCentre',
+      display: { position: 'middleCentre', colour: 'black' },
     },
     {
       id: generateId(),
       type: 'widget/greeting',
       active: true,
-      position: 'middleCentre',
+      display: { position: 'middleCentre', fontSize: 10 },
     },
   ],
   data: {},
@@ -89,8 +98,7 @@ export function profile(
           id: generateId(),
           type: action.data.type,
           active: true,
-          luminosity: 0,
-          blur: 0,
+          display: { luminosity: 0, blur: 0 },
         });
       }
 
@@ -109,7 +117,7 @@ export function profile(
           id: generateId(),
           type: action.data.type,
           active: true,
-          position: 'middleCentre',
+          display: { position: 'middleCentre' },
         }),
       };
 
@@ -130,30 +138,28 @@ export function profile(
         },
       };
 
-    case 'SET_POSITION':
+    case 'SET_BACKGROUND_DISPLAY':
       return {
         ...state,
-        widgets: state.widgets.map(plugin =>
+        backgrounds: state.backgrounds.map(plugin =>
           plugin.id === action.data.id
-            ? { ...plugin, position: action.data.position }
+            ? {
+                ...plugin,
+                display: { ...plugin.display, ...action.data.display },
+              }
             : plugin,
         ),
       };
 
-    case 'SET_BLUR':
+    case 'SET_WIDGET_DISPLAY':
       return {
         ...state,
-        backgrounds: state.backgrounds.map(plugin =>
-          plugin.active ? { ...plugin, blur: action.data.blur } : plugin,
-        ),
-      };
-
-    case 'SET_LUMINOSITY':
-      return {
-        ...state,
-        backgrounds: state.backgrounds.map(plugin =>
-          plugin.active
-            ? { ...plugin, luminosity: action.data.luminosity }
+        widgets: state.widgets.map(plugin =>
+          plugin.id === action.data.id
+            ? {
+                ...plugin,
+                display: { ...plugin.display, ...action.data.display },
+              }
             : plugin,
         ),
       };
