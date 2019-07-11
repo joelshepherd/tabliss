@@ -1,9 +1,12 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC } from 'react';
 
+import { useExpiry } from '../../../utils/useCache';
 import { getForecast } from './api';
 import { weatherIcons } from './icons';
 import { Props, defaultData } from './types';
 import './Weather.sass';
+
+const EXPIRE_IN = 15 * 60 * 1000; // 15 minutes
 
 const Weather: FC<Props> = ({
   cache,
@@ -12,9 +15,13 @@ const Weather: FC<Props> = ({
   setCache,
   setData,
 }) => {
-  useEffect(() => {
-    getForecast(data, loader).then(setCache);
-  }, [data]);
+  useExpiry(
+    () => {
+      getForecast(data, loader).then(setCache);
+    },
+    cache ? cache.timestamp + EXPIRE_IN : 0,
+    [data.latitude, data.latitude, data.units],
+  );
 
   if (!cache) {
     return <div className="Weather">-</div>;

@@ -2,8 +2,8 @@ import { API } from '../../interfaces';
 
 export type Quote = {
   author?: string;
-  date: number;
   quote: string;
+  timestamp: number;
 };
 
 type Data = {

@@ -1,18 +1,25 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC } from 'react';
 
+import { useExpiry } from '../../../utils/useCache';
 import { getQuote } from './api';
 import { Props, defaultData } from './types';
 import './Quote.sass';
 
+const EXPIRE_IN = 60 * 60 * 1000; // 1 hour
+
 const Quote: FC<Props> = ({ cache, data = defaultData, setCache, loader }) => {
-  useEffect(() => {
-    getQuote(loader, data.category).then(setCache);
-  }, [data.category]);
+  useExpiry(
+    () => {
+      getQuote(loader, data.category).then(setCache);
+    },
+    cache ? cache.timestamp + EXPIRE_IN : 0,
+    [data.category],
+  );
 
   if (cache) {
     return (
       <h4 className="Quote">
-        "{cache.quote}"
+        “{cache.quote}”
         {cache.author && (
           <sub>
             <br />
