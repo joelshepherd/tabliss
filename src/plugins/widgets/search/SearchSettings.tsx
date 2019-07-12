@@ -11,7 +11,7 @@ interface Props extends Settings {
 const SearchSettings: React.StatelessComponent<Props> = ({
   searchEngine = 'google',
   placeholder = '',
-  suggestionsEngine = 'google',
+  suggestionsEngine = '',
   suggestionsQuantity = 4,
   onChange,
 }) => (
@@ -35,16 +35,18 @@ const SearchSettings: React.StatelessComponent<Props> = ({
       </select>
     </label>
 
-    <label>
-      Suggestions Provider
-      <select onChange={event => onChange({ suggestionsEngine: event.target.value })} value={suggestionsEngine}>
-        <option key="off" value="">Off</option>
-        {engines
-          .filter(({ suggest_url }) => Boolean(suggest_url))
-          .map(({ key, name }) => <option key={key} value={key}>{name}</option>)
-        }
-      </select>
-    </label>
+    {process.env.BUILD_TARGET !== 'firefox' && (
+      <label>
+        Suggestions Provider
+        <select onChange={event => onChange({ suggestionsEngine: event.target.value })} value={suggestionsEngine}>
+          <option key="off" value="">Off</option>
+          {engines
+            .filter(({ suggest_url }) => Boolean(suggest_url))
+            .map(({ key, name }) => <option key={key} value={key}>{name}</option>)
+          }
+        </select>
+      </label>
+    )}
 
     {suggestionsEngine && (
       <label>

@@ -29,7 +29,7 @@ class Search extends React.PureComponent<Props & InjectedIntlProps, State> {
   static defaultProps = {
     searchEngine: 'google',
     placeholder: '',
-    suggestionsEngine: 'google',
+    suggestionsEngine: '',
     suggestionsQuantity: 4,
   };
 
@@ -51,8 +51,9 @@ class Search extends React.PureComponent<Props & InjectedIntlProps, State> {
   }
   
   componentDidMount() {
-    if (this.searchInput.current)
+    if (this.searchInput.current) {
       this.searchInput.current.focus();
+    }
   }
 
   render() {
@@ -179,10 +180,15 @@ class Search extends React.PureComponent<Props & InjectedIntlProps, State> {
   }
 
   /**
-   * Retrieves suggestiondata from google
+   * Retrieves suggestion data
    */
   private getSuggestionData() {
     const { query, getSuggestionData } = this.state;
+
+    // Disable suggestions for Firefox (they do not allow the required CSP)
+    if (process.env.BUILD_TARGET === 'firefox') {
+      return;
+    }
 
     if (! getSuggestionData || ! this.props.suggestionsEngine) {
       return;
