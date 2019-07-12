@@ -1,5 +1,5 @@
 import { officialCollection, UNSPLASH_API_KEY } from './constants';
-import { By, Image, Data } from './interfaces';
+import { By, Image, Data } from './types';
 
 export const getImage = async function(
   settings: Data,

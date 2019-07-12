@@ -7,7 +7,6 @@ import { Links, LinksSettings } from './links';
 import { Message, MessageSettings } from './message';
 import { LiteratureClock, LiteratureClockSettings } from './literature-clock';
 import { Quote, QuoteSettings } from './quote';
-import { Reload, ReloadSettings } from './reload';
 import { Search, SearchSettings } from './search';
 import { Time, TimeSettings } from './time';
 import { Todo, TodoSettings } from './todo';
@@ -62,14 +61,6 @@ registerPlugin({
   title: 'Daily Quotes',
   Dashboard: Quote,
   Settings: QuoteSettings,
-});
-
-registerPlugin({
-  key: 'widget/reload',
-  type: 'widget',
-  title: 'Auto Reload',
-  Dashboard: Reload,
-  Settings: ReloadSettings,
 });
 
 registerPlugin({

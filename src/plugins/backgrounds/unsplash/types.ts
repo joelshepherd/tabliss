@@ -1,4 +1,11 @@
 import { API } from '../../interfaces';
+import { RotatingCache } from '../../../utils/useCache';
+
+export enum By {
+  OFFICIAL = 'official',
+  COLLECTIONS = 'collections',
+  SEARCH = 'search',
+}
 
 export interface Data {
   blur: number;
@@ -10,13 +17,6 @@ export interface Data {
   timeout: number;
 }
 
-interface Cache {
-  current?: Image & {
-    timestamp: number;
-  };
-  next?: Image;
-}
-
 export interface Image {
   data: Blob;
   image_link: string;
@@ -25,10 +25,6 @@ export interface Image {
   user_link: string;
 }
 
-export enum By {
-  OFFICIAL = 'official',
-  COLLECTIONS = 'collections',
-  SEARCH = 'search',
-}
+type Cache = RotatingCache<Image>;
 
 export type Props = API<Data, Cache>;

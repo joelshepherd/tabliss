@@ -1,4 +1,4 @@
-import { By, Data } from './interfaces';
+import { By, Data } from './types';
 
 export const UNSPLASH_API_KEY = process.env.UNSPLASH_API_KEY;
 export const UNSPLASH_UTM =

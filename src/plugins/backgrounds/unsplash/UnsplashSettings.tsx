@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 
 import { defaultData } from './constants';
-import { By, Props } from './interfaces';
+import { By, Props } from './types';
 
 const UnsplashSettings: FC<Props> = ({ data = defaultData, setData }) => (
   <div className="UnsplashSettings">
@@ -14,6 +14,7 @@ const UnsplashSettings: FC<Props> = ({ data = defaultData, setData }) => (
         }
       >
         <option value="0">Every new tab</option>
+        <option value="300">Every 5 minutes</option>
         <option value="900">Every 15 minutes</option>
         <option value="3600">Every hour</option>
         <option value="86400">Every day</option>
