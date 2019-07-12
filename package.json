@@ -13,6 +13,7 @@
     "translations": "node ./scripts/translations.js"
   },
   "dependencies": {
+    "@sentry/browser": "^5.5.0",
     "feather-icons": "^4.7.3",
     "in-browser-language": "^1.0.2",
     "localforage": "^1.7.1",
@@ -21,7 +22,6 @@
     "luxon": "^1.0.0",
     "normalize.css": "^8.0.0",
     "parse-link-header": "^1.0.1",
-    "raven-js": "^3.25.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-error-boundary": "^1.2.5",
