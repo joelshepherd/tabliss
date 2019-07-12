@@ -1,17 +1,16 @@
 import React from 'react';
-
-const arrowDown = require('feather-icons/dist/icons/arrow-down.svg');
-const arrowUp = require('feather-icons/dist/icons/arrow-up.svg');
-const globe = require('feather-icons/dist/icons/globe.svg');
-const minus = require('feather-icons/dist/icons/minus.svg');
-const plus = require('feather-icons/dist/icons/plus.svg');
-const trash2 = require('feather-icons/dist/icons/trash-2.svg');
-const twitter = require('feather-icons/dist/icons/twitter.svg');
-const github = require('feather-icons/dist/icons/github.svg');
-const checked = require('feather-icons/dist/icons/check-circle.svg');
-const unchecked = require('feather-icons/dist/icons/circle.svg');
-const eye = require('feather-icons/dist/icons/eye.svg');
-const eyeOff = require('feather-icons/dist/icons/eye-off.svg');
+import arrowDown from 'feather-icons/dist/icons/arrow-down.svg';
+import arrowUp from 'feather-icons/dist/icons/arrow-up.svg';
+import globe from 'feather-icons/dist/icons/globe.svg';
+import minus from 'feather-icons/dist/icons/minus.svg';
+import plus from 'feather-icons/dist/icons/plus.svg';
+import trash2 from 'feather-icons/dist/icons/trash-2.svg';
+import twitter from 'feather-icons/dist/icons/twitter.svg';
+import github from 'feather-icons/dist/icons/github.svg';
+import checked from 'feather-icons/dist/icons/check-circle.svg';
+import unchecked from 'feather-icons/dist/icons/circle.svg';
+import eye from 'feather-icons/dist/icons/eye.svg';
+import eyeOff from 'feather-icons/dist/icons/eye-off.svg';
 
 export const arrowDownIcon = (
   <i dangerouslySetInnerHTML={{ __html: arrowDown }} />

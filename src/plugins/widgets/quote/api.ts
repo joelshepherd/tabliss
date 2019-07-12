@@ -1,4 +1,4 @@
-import { API } from '../../interfaces';
+import { API } from '../../types';
 import get from 'lodash-es/get';
 import { Quote } from './types';
 

@@ -1,13 +1,13 @@
-import React from 'react';
+import React, { FC } from 'react';
 
 interface Props {
   onClick: () => void;
   title: string;
 }
 
-const IconButton: React.StatelessComponent<Props> = props => (
+const IconButton: FC<Props> = ({ children, ...props }) => (
   <button className="button--icon" {...props}>
-    {props.children}
+    {children}
   </button>
 );
 

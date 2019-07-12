@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 
-import Plugin from '../../components/plugin/Plugin';
-import { getPlugin } from '../../plugins';
+import Plugin from '../shared/Plugin';
+import { get } from '../../plugins';
 import { WidgetPosition, WidgetState } from '../../store/reducers/profile';
 import Widget from './Widget';
 import './Slot.sass';
@@ -15,7 +15,7 @@ const Slot: FC<Props> = ({ position, widgets }) => (
   <div className={`Slot ${position}`}>
     {widgets.map(({ display, id, type }) => (
       <Widget key={id} {...display}>
-        <Plugin id={id} Component={getPlugin(type).Dashboard} />
+        <Plugin id={id} Component={get(type).Dashboard} />
       </Widget>
     ))}
   </div>

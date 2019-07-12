@@ -6,5 +6,13 @@
  * @url http://jenevoldsen.com/literature-clock/
  * @url https://github.com/JohannesNE/literature-clock
  */
-export { default as LiteratureClock } from './LiteratureClock';
-export { default as LiteratureClockSettings } from './LiteratureClockSettings';
+import LiteratureClock from './LiteratureClock';
+import LiteratureClockSettings from './LiteratureClockSettings';
+
+export default {
+  type: 'widget/literature-clock',
+  kind: 'widget',
+  title: 'Literature Clock',
+  Dashboard: LiteratureClock,
+  Settings: LiteratureClockSettings,
+} as const;

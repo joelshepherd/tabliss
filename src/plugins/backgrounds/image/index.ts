@@ -1,2 +1,10 @@
-export { default as Image } from './Image';
-export { default as ImageSettings } from './ImageSettings';
+import Image from './Image';
+import ImageSettings from './ImageSettings';
+
+export default {
+  type: 'background/image',
+  kind: 'background',
+  title: 'Upload Images',
+  Dashboard: Image,
+  Settings: ImageSettings,
+} as const;

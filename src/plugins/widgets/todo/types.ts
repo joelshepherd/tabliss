@@ -1,4 +1,4 @@
-import { API } from '../../interfaces';
+import { API } from '../../types';
 import { State } from './reducer';
 
 export type Data = {

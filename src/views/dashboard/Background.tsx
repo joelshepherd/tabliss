@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
 
-import Plugin from '../../components/plugin/Plugin';
-import { getPlugin } from '../../plugins';
-import { useSelector } from '../../store/store';
+import { get } from '../../plugins';
+import { useSelector } from '../../store';
+import Plugin from '../shared/Plugin';
 
 const Background: FC = () => {
   const background = useSelector(state =>
@@ -11,14 +11,13 @@ const Background: FC = () => {
 
   if (!background) return null;
 
+  const { Dashboard } = get(background.type);
+
   // @todo Apply darken and blur
 
   return (
     <div className="Background">
-      <Plugin
-        id={background.id}
-        Component={getPlugin(background.type).Dashboard}
-      />
+      <Plugin id={background.id} Component={Dashboard} />
     </div>
   );
 };

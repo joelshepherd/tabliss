@@ -1,18 +1,16 @@
 import React, { FC } from 'react';
 import { useDispatch } from 'react-redux';
 
-import Plugin from '../../components/plugin/Plugin';
-import { getPluginsByType, getPlugin } from '../../plugins';
+import { BACKGROUND_PLUGINS, get } from '../../plugins';
+import { useSelector } from '../../store';
 import {
   setBackground,
   setBackgroundDisplay,
 } from '../../store/actions/profile';
-import { useSelector } from '../../store/store';
 import { BackgroundDisplay } from '../../store/reducers/profile';
+import Plugin from '../shared/Plugin';
 
 const Background: FC = () => {
-  const plugins = getPluginsByType('background');
-
   const background = useSelector(state =>
     state.profile.backgrounds.find(plugin => plugin.active),
   );
@@ -38,8 +36,8 @@ const Background: FC = () => {
           onChange={event => handleChangeBackground(event.target.value)}
           className="primary"
         >
-          {plugins.map(plugin => (
-            <option key={plugin.key} value={plugin.key}>
+          {BACKGROUND_PLUGINS.map(plugin => (
+            <option key={plugin.type} value={plugin.type}>
               {plugin.title}
             </option>
           ))}
@@ -48,10 +46,10 @@ const Background: FC = () => {
 
       {background && (
         <>
-          {getPlugin(background.type).Settings && (
+          {get(background.type).Settings && (
             <Plugin
               id={background.id}
-              Component={getPlugin(background.type).Settings!}
+              Component={get(background.type).Settings}
             />
           )}
 

@@ -1,4 +1,4 @@
-import { API } from '../../interfaces';
+import { API } from '../../types';
 
 type Data = {
   input: string;

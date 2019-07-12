@@ -1,7 +1,7 @@
 import groupBy from 'lodash-es/groupBy';
 import React, { FC } from 'react';
 
-import { useSelector } from '../../store/store';
+import { useSelector } from '../../store';
 import { WidgetPosition } from '../../store/reducers/profile';
 import Slot from './Slot';
 import './Widgets.sass';

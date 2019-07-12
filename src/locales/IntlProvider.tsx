@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { IntlProvider as ReactIntlProvider } from 'react-intl';
 
-import { useSelector } from '../store/store';
+import { useSelector } from '../store';
 import { defaultLocale, messages } from './locales';
 
 const IntlProvider: FC = ({ children }) => {

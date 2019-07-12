@@ -28,7 +28,7 @@ export type WidgetDisplay = {
 
 interface PluginState {
   id: string;
-  type: string;
+  type: string; // May not exactly match the plugin keys, deprecated types that still exist in a browser's storage for instance
   active: boolean;
 }
 

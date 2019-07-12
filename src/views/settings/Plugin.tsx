@@ -1,8 +1,8 @@
 import React, { FC, useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 
-import PluginContainer from '../../components/plugin/Plugin';
-import { getPlugin } from '../../plugins';
+import PluginContainer from '../shared/Plugin';
+import { get } from '../../plugins';
 import {
   arrowDownIcon,
   arrowUpIcon,
@@ -10,7 +10,7 @@ import {
   expandIcon,
   IconButton,
   removeIcon,
-} from '../../components';
+} from '../shared';
 import { WidgetDisplay, WidgetState } from '../../store/reducers/profile';
 import { setWidgetDisplay } from '../../store/actions/profile';
 import { useToggle } from '../../utils/useToggle';
@@ -26,7 +26,7 @@ interface Props {
 const Plugin: FC<Props> = ({ plugin, onMoveDown, onMoveUp, onRemove }) => {
   const [isOpen, toggleIsOpen] = useToggle(onRemove === undefined);
 
-  const { title, Settings } = getPlugin(plugin.type);
+  const { title, Settings } = get(plugin.type);
 
   const dispatch = useDispatch();
   const boundSetDisplay = useCallback(

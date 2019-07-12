@@ -1,2 +1,10 @@
-export { default as Message } from './Message';
-export { default as MessageSettings } from './MessageSettings';
+import Message from './Message';
+import MessageSettings from './MessageSettings';
+
+export default {
+  type: 'widget/message',
+  kind: 'widget',
+  title: 'Message',
+  Dashboard: Message,
+  Settings: MessageSettings,
+} as const;

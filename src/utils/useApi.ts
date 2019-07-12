@@ -1,11 +1,11 @@
 import { useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { API } from '../../plugins';
-import { setData } from '../../store/actions/profile';
-import { setCache } from '../../store/reducers/cache';
-import { pushLoader, popLoader } from '../../store/reducers/ui';
-import { useSelector } from '../../store/store';
+import { API } from '../plugins';
+import { useSelector } from '../store';
+import { setData } from '../store/actions/profile';
+import { setCache } from '../store/reducers/cache';
+import { pushLoader, popLoader } from '../store/reducers/ui';
 
 export function useApi(id: string): API {
   const dispatch = useDispatch();

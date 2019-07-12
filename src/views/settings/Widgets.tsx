@@ -1,14 +1,12 @@
 import React, { FC, useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { getPluginsByType } from '../../plugins';
-import { useSelector } from '../../store/store';
+import { WIDGET_PLUGINS } from '../../plugins';
+import { useSelector } from '../../store';
 import { addWidget, removeWidget } from '../../store/actions/profile';
 import Plugin from './Plugin';
 
 const Widgets: FC = () => {
-  const available = getPluginsByType('widget');
-
   const active = useSelector(state => state.profile.widgets);
   const dispatch = useDispatch();
   const boundAddWidget = useCallback(
@@ -26,8 +24,8 @@ const Widgets: FC = () => {
           className="primary"
         >
           <option value={''}>Add a new widget</option>
-          {available.map(plugin => (
-            <option key={plugin.key} value={plugin.key}>
+          {WIDGET_PLUGINS.map(plugin => (
+            <option key={plugin.type} value={plugin.type}>
               {plugin.title}
             </option>
           ))}

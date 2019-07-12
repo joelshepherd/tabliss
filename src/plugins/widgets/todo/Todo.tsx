@@ -5,7 +5,7 @@ import {
   arrowUpIcon,
   checkedIcon,
   uncheckedIcon,
-} from '../../../components';
+} from '../../../views/shared';
 import { useToggle } from '../../../utils/useToggle';
 import { addTodo, removeTodo, toggleTodo, updateTodo } from './actions';
 import { reducer } from './reducer';

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { IconButton, removeIcon } from '../../../components';
+import { IconButton, removeIcon } from '../../../views/shared';
 import { Props } from './types';
 import './ImageSettings.sass';
 

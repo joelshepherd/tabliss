@@ -1,5 +1,5 @@
 import React from 'react';
-import { checkedIcon, uncheckedIcon, removeIcon } from '../../../components';
+import { checkedIcon, uncheckedIcon, removeIcon } from '../../../views/shared';
 import { State } from './reducer';
 import './TodoItem.sass';
 

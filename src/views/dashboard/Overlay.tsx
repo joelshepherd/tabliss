@@ -2,8 +2,8 @@ import React, { FC } from 'react';
 import { defineMessages, injectIntl, InjectedIntlProps } from 'react-intl';
 import { useDispatch } from 'react-redux';
 
-import { eyeIcon, eyeOffIcon } from '../../components';
-import { useSelector } from '../../store/store';
+import { eyeIcon, eyeOffIcon } from '../shared';
+import { useSelector } from '../../store';
 import { toggleFocus, toggleSettings } from '../../store/reducers/ui';
 import { isInputEvent } from '../../utils';
 import './Overlay.sass';

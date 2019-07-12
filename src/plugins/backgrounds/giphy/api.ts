@@ -1,5 +1,5 @@
 import { Gif } from './types';
-import { API } from '../../interfaces';
+import { API } from '../../types';
 
 const GIPHY_API_KEY = process.env.GIPHY_API_KEY;
 

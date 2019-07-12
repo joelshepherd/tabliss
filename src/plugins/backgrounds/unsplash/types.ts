@@ -1,4 +1,4 @@
-import { API } from '../../interfaces';
+import { API } from '../../types';
 import { RotatingCache } from '../../../utils/useCache';
 
 export enum By {

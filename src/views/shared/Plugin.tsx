@@ -3,12 +3,12 @@ import { withErrorBoundary } from 'react-error-boundary';
 
 import { capture as captureException } from '../../errorHandler';
 import { API } from '../../plugins';
-import Crashed from '../crashed/Crashed';
-import { useApi } from './useApi';
+import Crashed from './Crashed';
+import { useApi } from '../../utils/useApi';
 
 type Props = {
   id: string;
-  Component: React.ComponentType<API>;
+  Component: React.ComponentType<API<any, any>>;
 };
 
 const Plugin: FC<Props> = ({ id, Component }) => {

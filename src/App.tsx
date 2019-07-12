@@ -3,7 +3,7 @@ import { defineMessages, injectIntl, InjectedIntlProps } from 'react-intl';
 
 import { Dashboard } from './views/dashboard';
 import { Settings } from './views/settings';
-import { useSelector } from './store/store';
+import { useSelector } from './store';
 import './Root.sass';
 
 type Props = InjectedIntlProps;

@@ -5,7 +5,7 @@ import {
   arrowDownIcon,
   IconButton,
   removeIcon,
-} from '../../../components';
+} from '../../../views/shared';
 import { Link as LinkProps } from './types';
 
 interface Props extends LinkProps {

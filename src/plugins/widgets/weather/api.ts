@@ -1,5 +1,5 @@
 import { Data, Conditions } from './types';
-import { API } from '../../interfaces';
+import { API } from '../../types';
 
 const apiEndpoint = process.env.API_ENDPOINT!;
 
