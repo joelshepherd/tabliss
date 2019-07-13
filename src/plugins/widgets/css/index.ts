@@ -1,10 +1,14 @@
+import { Plugin } from '../../types';
 import Css from './Css';
 import CssSettings from './CssSettings';
 
-export default {
-  type: 'widget/css',
+const config: Plugin = {
+  key: 'widget/css',
   kind: 'widget',
-  title: 'Custom CSS',
+  name: 'Custom CSS',
+  description: 'Make your new tab more style-ish (advanced users).',
   Dashboard: Css,
   Settings: CssSettings,
-} as const;
+};
+
+export default config;

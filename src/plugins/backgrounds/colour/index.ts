@@ -1,10 +1,14 @@
+import { Plugin } from '../../types';
 import Colour from './Colour';
 import ColourSettings from './ColourSettings';
 
-export default {
-  type: 'background/colour',
+const config: Plugin = {
+  key: 'background/colour',
   kind: 'background',
-  title: 'Solid Colour',
+  name: 'Solid Colour',
+  description: 'Add a splash of colour.',
   Dashboard: Colour,
   Settings: ColourSettings,
-} as const;
+};
+
+export default config;

@@ -1,10 +1,14 @@
+import { Plugin } from '../../types';
 import Gradient from './Gradient';
 import GradientSettings from './GradientSettings';
 
-export default {
-  type: 'background/gradient',
+const config: Plugin = {
+  key: 'background/gradient',
   kind: 'background',
-  title: 'Colour Gradient',
+  name: 'Colour Gradient',
+  description: 'Add more splashes of colour.',
   Dashboard: Gradient,
   Settings: GradientSettings,
-} as const;
+};
+
+export default config;

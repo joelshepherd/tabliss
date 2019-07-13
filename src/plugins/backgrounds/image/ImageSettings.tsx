@@ -4,6 +4,8 @@ import { IconButton, removeIcon } from '../../../views/shared';
 import { Props } from './types';
 import './ImageSettings.sass';
 
+// @todo Needs to be rewritten to FC.
+//       Also the object URLs do not work with strict mode at the moment.
 class ImageSettings extends React.Component<Props> {
   currentUrls: string[] = [];
 
@@ -41,27 +43,28 @@ class ImageSettings extends React.Component<Props> {
         {this.oversized && (
           <p className="info">Large images may affect performance</p>
         )}
+
+        <p className="info">Images do not sync between browers.</p>
       </div>
     );
   }
 
   private loadImages(files: FileList) {
-    // Need to sort localstorage only accept top-level keys for blobs though.
     const images = Array.from(files);
 
-    this.props.setData({
+    this.props.setCache({
       images: this.images.concat(images),
     });
   }
 
   private removeImage(remove: File) {
-    this.props.setData({
+    this.props.setCache({
       images: this.images.filter(image => image !== remove),
     });
   }
 
   private get images() {
-    return this.props.data ? this.props.data.images : [];
+    return this.props.cache ? this.props.cache.images : [];
   }
 
   private get oversized() {

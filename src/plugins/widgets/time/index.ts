@@ -1,10 +1,14 @@
+import { Plugin } from '../../types';
 import Time from './Time';
 import TimeSettings from './TimeSettings';
 
-export default {
-  type: 'widget/time',
+const config: Plugin = {
+  key: 'widget/time',
   kind: 'widget',
-  title: 'Time',
+  name: 'Time',
+  description: 'Be on time.',
   Dashboard: Time,
   Settings: TimeSettings,
-} as const;
+};
+
+export default config;

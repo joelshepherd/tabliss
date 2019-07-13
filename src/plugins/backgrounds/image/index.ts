@@ -1,10 +1,14 @@
+import { Plugin } from '../../types';
 import Image from './Image';
 import ImageSettings from './ImageSettings';
 
-export default {
-  type: 'background/image',
+const config: Plugin = {
+  key: 'background/image',
   kind: 'background',
-  title: 'Upload Images',
+  name: 'Upload Images',
+  description: 'See your own images.',
   Dashboard: Image,
   Settings: ImageSettings,
-} as const;
+};
+
+export default config;

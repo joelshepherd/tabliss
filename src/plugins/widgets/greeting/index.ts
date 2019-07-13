@@ -1,10 +1,14 @@
+import { Plugin } from '../../types';
 import Greeting from './Greeting';
 import GreetingSettings from './GreetingSettings';
 
-export default {
-  type: 'widget/greeting',
+const config: Plugin = {
+  key: 'widget/greeting',
   kind: 'widget',
-  title: 'Greeting',
+  name: 'Greeting',
+  description: 'Be personally greeting all day.',
   Dashboard: Greeting,
   Settings: GreetingSettings,
-} as const;
+};
+
+export default config;

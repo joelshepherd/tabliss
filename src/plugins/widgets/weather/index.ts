@@ -1,10 +1,14 @@
+import { Plugin } from '../../types';
 import Weather from './Weather';
 import WeatherSettings from './WeatherSettings';
 
-export default {
-  type: 'widget/weather',
+const config: Plugin = {
+  key: 'widget/weather',
   kind: 'widget',
-  title: 'Weather',
+  name: 'Weather',
+  description: 'Add a window to your new tab.',
   Dashboard: Weather,
   Settings: WeatherSettings,
-} as const;
+};
+
+export default config;

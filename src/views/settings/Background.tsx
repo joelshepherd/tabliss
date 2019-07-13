@@ -26,6 +26,8 @@ const Background: FC = () => {
     [dispatch],
   );
 
+  const plugin = background ? get(background.type) : undefined;
+
   return (
     <div>
       <h3>Background</h3>
@@ -37,20 +39,19 @@ const Background: FC = () => {
           className="primary"
         >
           {BACKGROUND_PLUGINS.map(plugin => (
-            <option key={plugin.type} value={plugin.type}>
-              {plugin.title}
+            <option key={plugin.key} value={plugin.key}>
+              {plugin.name} - {plugin.description}
             </option>
           ))}
         </select>
       </label>
 
-      {background && (
-        <>
-          {get(background.type).Settings && (
-            <Plugin
-              id={background.id}
-              Component={get(background.type).Settings}
-            />
+      {background && plugin && (
+        <div className="Widget">
+          <h4>{plugin.name}</h4>
+
+          {plugin.Settings && (
+            <Plugin id={background.id} Component={plugin.Settings} />
           )}
 
           <label>
@@ -84,7 +85,7 @@ const Background: FC = () => {
               }
             />
           </label>
-        </>
+        </div>
       )}
     </div>
   );

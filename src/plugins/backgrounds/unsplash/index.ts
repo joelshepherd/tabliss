@@ -1,10 +1,14 @@
+import { Plugin } from '../../types';
 import Unsplash from './Unsplash';
 import UnsplashSettings from './UnsplashSettings';
 
-export default {
-  type: 'background/unsplash',
+const config: Plugin = {
+  key: 'background/unsplash',
   kind: 'background',
-  title: 'Unsplash',
+  name: 'Unsplash',
+  description: 'Who has time to add their own images.',
   Dashboard: Unsplash,
   Settings: UnsplashSettings,
-} as const;
+};
+
+export default config;

@@ -1,10 +1,14 @@
+import { Plugin } from '../../types';
 import Js from './Js';
 import JsSettings from './JsSettings';
 
-export default {
-  type: 'widget/js',
+const config: Plugin = {
+  key: 'widget/js',
   kind: 'widget',
-  title: 'Custom JS',
+  name: 'Custom JS',
+  description: 'Program in your program.',
   Dashboard: Js,
   Settings: JsSettings,
-} as const;
+};
+
+export default config;

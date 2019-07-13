@@ -1,10 +1,14 @@
+import { Plugin } from '../../types';
 import Giphy from './Giphy';
 import GiphySettings from './GiphySettings';
 
-export default {
-  type: 'background/giphy',
+const config: Plugin = {
+  key: 'background/giphy',
   kind: 'background',
-  title: 'GIPHY',
+  name: 'GIPHY',
+  description: 'Hurt your eyes in every new tab.',
   Dashboard: Giphy,
   Settings: GiphySettings,
-} as const;
+};
+
+export default config;

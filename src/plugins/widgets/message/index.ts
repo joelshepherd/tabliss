@@ -1,10 +1,14 @@
+import { Plugin } from '../../types';
 import Message from './Message';
 import MessageSettings from './MessageSettings';
 
-export default {
-  type: 'widget/message',
+const config: Plugin = {
+  key: 'widget/message',
   kind: 'widget',
-  title: 'Message',
+  name: 'Message',
+  description: 'Add your own text.',
   Dashboard: Message,
   Settings: MessageSettings,
-} as const;
+};
+
+export default config;

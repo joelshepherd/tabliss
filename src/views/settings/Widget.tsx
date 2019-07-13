@@ -14,7 +14,7 @@ import {
 import { WidgetDisplay, WidgetState } from '../../store/reducers/profile';
 import { setWidgetDisplay } from '../../store/actions/profile';
 import { useToggle } from '../../utils/useToggle';
-import './Plugin.sass';
+import './Widget.sass';
 
 interface Props {
   plugin: WidgetState;
@@ -23,10 +23,10 @@ interface Props {
   onRemove: () => void;
 }
 
-const Plugin: FC<Props> = ({ plugin, onMoveDown, onMoveUp, onRemove }) => {
+const Widget: FC<Props> = ({ plugin, onMoveDown, onMoveUp, onRemove }) => {
   const [isOpen, toggleIsOpen] = useToggle(onRemove === undefined);
 
-  const { title, Settings } = get(plugin.type);
+  const { name: title, Settings } = get(plugin.type);
 
   const dispatch = useDispatch();
   const boundSetDisplay = useCallback(
@@ -38,7 +38,7 @@ const Plugin: FC<Props> = ({ plugin, onMoveDown, onMoveUp, onRemove }) => {
   const [showDisplay, toggleDisplay] = useToggle();
 
   return (
-    <fieldset className="Plugin">
+    <fieldset className="Widget">
       {Settings ? (
         <div className="title--buttons">
           <IconButton
@@ -167,4 +167,4 @@ const Plugin: FC<Props> = ({ plugin, onMoveDown, onMoveUp, onRemove }) => {
   );
 };
 
-export default Plugin;
+export default Widget;

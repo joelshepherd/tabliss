@@ -31,7 +31,7 @@ export const WIDGET_PLUGINS = [
 export const PLUGINS = [...BACKGROUND_PLUGINS, ...WIDGET_PLUGINS];
 
 export function get(type: string) {
-  const plugin = PLUGINS.find(plugin => plugin.type === type);
+  const plugin = PLUGINS.find(plugin => plugin.key === type);
 
   if (!plugin) throw new Error(`Unable to find plugin: ${type}`);
 
