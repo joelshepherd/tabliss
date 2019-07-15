@@ -1,11 +1,4 @@
-export function setLocale(locale: string) {
-  return {
-    type: 'SET_LOCALE',
-    data: { locale },
-  } as const;
-}
-
-type SettingsActions = ReturnType<typeof setLocale>;
+import { Actions } from '../actions';
 
 export type SettingsState = {
   locale?: string;
@@ -13,10 +6,7 @@ export type SettingsState = {
 
 const initialState: SettingsState = {};
 
-export function settings(
-  state = initialState,
-  action: SettingsActions,
-): SettingsState {
+export function settings(state = initialState, action: Actions): SettingsState {
   switch (action.type) {
     case 'SET_LOCALE':
       return {

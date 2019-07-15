@@ -1,19 +1,12 @@
-export function setCache(id: string, cache: object) {
-  return {
-    type: 'SET_CACHE',
-    payload: { id, cache },
-  } as const;
-}
-
-type CacheActions = ReturnType<typeof setCache>;
+import { Actions } from '../actions';
 
 export interface CacheState {
-  [id: string]: object;
+  [id: string]: object | undefined;
 }
 
 const initialState: CacheState = {};
 
-export function cache(state = initialState, action: CacheActions) {
+export function cache(state = initialState, action: Actions): CacheState {
   switch (action.type) {
     case 'SET_CACHE':
       return {

@@ -1,6 +1,6 @@
 import { v4 as generateId } from 'uuid';
 
-import { ProfileActions } from '../actions/profile';
+import { Actions } from '../actions';
 
 export type BackgroundDisplay = {
   blur: number;
@@ -48,10 +48,9 @@ export interface ProfileState {
   data: { [id: string]: object };
 }
 
-export const defaultProfile: Pick<
-  ProfileState,
-  'backgrounds' | 'data' | 'widgets'
-> = {
+const initialState: ProfileState = {
+  id: '00000000-0000-0000-0000-000000000000',
+  name: 'Default',
   backgrounds: [
     {
       id: generateId(),
@@ -77,16 +76,7 @@ export const defaultProfile: Pick<
   data: {},
 };
 
-const initialState: ProfileState = {
-  ...defaultProfile,
-  id: '00000000-0000-0000-0000-000000000000',
-  name: 'Default',
-};
-
-export function profile(
-  state = initialState,
-  action: ProfileActions,
-): ProfileState {
+export function profile(state = initialState, action: Actions): ProfileState {
   switch (action.type) {
     case 'SET_BACKGROUND':
       let newState = { ...state };

@@ -1,47 +1,48 @@
-// import { ProfileState, PluginState, profile } from './profile';
-// import { addWidget, removeWidget } from '../actions/profile';
+import { ProfileState, profile, WidgetState } from './profile';
+import { addWidget, removeWidget } from '../actions/profile';
 
-// const baseProfile: ProfileState = {
-//   id: '1234',
-//   name: 'Test Profile',
-//   plugins: [],
-// };
+const baseProfile: ProfileState = {
+  id: '1234',
+  name: 'Test Profile',
+  backgrounds: [],
+  widgets: [],
+  data: {},
+};
 
-// const basePlugin: PluginState = {
-//   id: '1234',
-//   type: 'widget/test',
-//   active: true,
-//   position: 'middleCentre',
-// };
+const baseWidget: WidgetState = {
+  id: '1234',
+  type: 'widget/test',
+  active: true,
+  display: { position: 'middleCentre' },
+};
 
-// describe('profile()', () => {
-//   it('should add widget', () => {
-//     expect(profile(baseProfile, addWidget('widget/test-add'))).toEqual({
-//       ...baseProfile,
-//       plugins: [
-//         {
-//           id: expect.any(String),
-//           type: 'widget/test-add',
-//           active: true,
-//           position: 'middleCentre',
-//           data: undefined,
-//         },
-//       ],
-//     });
-//   });
+describe('profile() reducer', () => {
+  it('should add widget', () => {
+    expect(profile(baseProfile, addWidget('widget/test-add'))).toEqual({
+      ...baseProfile,
+      widgets: [
+        {
+          id: expect.any(String),
+          type: 'widget/test-add',
+          active: true,
+          display: { position: 'middleCentre' },
+        },
+      ],
+    });
+  });
 
-//   it('should remove widget', () => {
-//     expect(
-//       profile(
-//         {
-//           ...baseProfile,
-//           plugins: [basePlugin, { ...basePlugin, id: '5678' }],
-//         },
-//         removeWidget('5678'),
-//       ),
-//     ).toEqual({
-//       ...baseProfile,
-//       plugins: [basePlugin],
-//     });
-//   });
-// });
+  it('should remove widget', () => {
+    expect(
+      profile(
+        {
+          ...baseProfile,
+          widgets: [baseWidget, { ...baseWidget, id: '5678' }],
+        },
+        removeWidget('5678'),
+      ),
+    ).toEqual({
+      ...baseProfile,
+      widgets: [baseWidget],
+    });
+  });
+});

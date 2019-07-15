@@ -1,32 +1,4 @@
-export function pushLoader() {
-  return {
-    type: 'PUSH_LOADER',
-  } as const;
-}
-
-export function popLoader() {
-  return {
-    type: 'POP_LOADER',
-  } as const;
-}
-
-export function toggleFocus() {
-  return {
-    type: 'TOGGLE_FOCUS',
-  } as const;
-}
-
-export function toggleSettings() {
-  return {
-    type: 'TOGGLE_SETTINGS',
-  } as const;
-}
-
-type UiActions =
-  | ReturnType<typeof pushLoader>
-  | ReturnType<typeof popLoader>
-  | ReturnType<typeof toggleFocus>
-  | ReturnType<typeof toggleSettings>;
+import { Actions } from '../actions';
 
 export interface UiState {
   focus: boolean;
@@ -40,7 +12,7 @@ const initialState: UiState = {
   settings: false,
 };
 
-export function ui(state = initialState, action: UiActions) {
+export function ui(state = initialState, action: Actions): UiState {
   switch (action.type) {
     case 'PUSH_LOADER':
       return {

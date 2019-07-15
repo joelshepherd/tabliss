@@ -14,6 +14,7 @@ const Background: FC = () => {
   const background = useSelector(state =>
     state.profile.backgrounds.find(plugin => plugin.active),
   );
+  const plugin = background ? get(background.type) : undefined;
 
   const dispatch = useDispatch();
   const handleChangeBackground = React.useCallback(
@@ -25,8 +26,6 @@ const Background: FC = () => {
       dispatch(setBackgroundDisplay(id, display)),
     [dispatch],
   );
-
-  const plugin = background ? get(background.type) : undefined;
 
   return (
     <div>
