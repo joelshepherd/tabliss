@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 
 import { eyeIcon, eyeOffIcon } from '../shared';
 import { useSelector } from '../../store';
-import { toggleFocus, toggleSettings } from '../../store/reducers/ui';
+import { toggleFocus, toggleSettings } from '../../store/actions';
 import { isInputEvent } from '../../utils';
 import './Overlay.sass';
 

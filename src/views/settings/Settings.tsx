@@ -2,8 +2,8 @@ import React, { FC } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { useDispatch } from 'react-redux';
 
+import { toggleSettings } from '../../store/actions';
 import { githubIcon, globeIcon, twitterIcon } from '../shared';
-import { toggleSettings } from '../../store/reducers/ui';
 import Background from './Background';
 import Feedback from './Feedback';
 import Homepage from './Homepage';

@@ -3,7 +3,7 @@ import React, { FC } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { useSelector } from '../../store';
-import { setLocale } from '../../store/reducers/settings';
+import { setLocale } from '../../store/actions';
 import { defaultLocale } from '../../locales';
 
 const timezones: string[] = require('./timezones.json');
