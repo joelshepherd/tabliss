@@ -5,18 +5,18 @@ import { Props, defaultCache } from './types';
 import './Image.sass';
 
 const Image: FC<Props> = ({ cache = defaultCache }) => {
-  if (!cache.images.length) {
+  if (!cache.length) {
     return <div className="Image default fullscreen" />;
   }
 
   const [url, setUrl] = useState<string>();
   useEffect(() => {
-    setUrl(URL.createObjectURL(sample(cache.images)));
+    setUrl(URL.createObjectURL(sample(cache)));
 
     return () => {
       if (url) URL.revokeObjectURL(url);
     };
-  }, [cache.images]);
+  }, [cache]);
 
   return (
     <div

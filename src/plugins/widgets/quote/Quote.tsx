@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 
-import { useExpiry } from '../../../utils/useCache';
+import { useExpiringCache } from '../../../utils/useCache';
 import { getQuote } from './api';
 import { Props, defaultData } from './types';
 import './Quote.sass';
@@ -8,7 +8,7 @@ import './Quote.sass';
 const EXPIRE_IN = 60 * 60 * 1000; // 1 hour
 
 const Quote: FC<Props> = ({ cache, data = defaultData, setCache, loader }) => {
-  useExpiry(
+  useExpiringCache(
     () => {
       getQuote(loader, data.category).then(setCache);
     },

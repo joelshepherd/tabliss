@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { useTime } from './useTime';
 
-export function useExpiry(
+export function useExpiringCache(
   effect: () => void | (() => void),
   expires: Date | number,
   deps: unknown[],
