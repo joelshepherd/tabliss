@@ -1,33 +1,25 @@
-import { Info } from 'luxon';
 import React, { FC } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { useSelector } from '../../store';
-import { setLocale } from '../../store/actions';
+import { setLocale, setTimeZone } from '../../store/actions';
 import { defaultLocale } from '../../locales';
-
-const timezones: string[] = require('./timezones.json');
+import TimeZoneInput from '../shared/timeZone/TimeZoneInput';
 
 const System: FC = () => {
-  const dispatch = useDispatch();
   const locale = useSelector(state => state.settings.locale || defaultLocale);
+  const timeZone = useSelector(state => state.settings.timeZone || '');
+
+  const dispatch = useDispatch();
   const handleSetLocale = React.useCallback(
     (event: React.ChangeEvent<HTMLSelectElement>) =>
       dispatch(setLocale(event.target.value)),
     [dispatch],
   );
-
-  // const onChangeTimezone = (event: React.ChangeEvent<HTMLSelectElement>) => {
-  //   let zone: string | undefined = event.target.value;
-
-  //   // Check for a valid zone in this browser
-  //   if (zone && !Info.isValidIANAZone(zone)) {
-  //     alert(`Sorry, the timezone ${zone} is not supported in your browser.`);
-  //     zone = undefined;
-  //   }
-
-  //   props.changeTimezone(zone);
-  // };
+  const handleSetTimeZone = React.useCallback(
+    (timeZone?: string) => dispatch(setTimeZone(timeZone)),
+    [dispatch],
+  );
 
   return (
     <div>
@@ -42,11 +34,7 @@ const System: FC = () => {
         }}
       >
         <span>Language</span>
-        <select
-          value={locale}
-          onChange={handleSetLocale}
-          style={{ padding: '0.25rem' }}
-        >
+        <select value={locale} onChange={handleSetLocale}>
           <option value="cs" title="Czech">
             Čeština
           </option>
@@ -116,32 +104,19 @@ const System: FC = () => {
         </select>
       </label>
 
-      {/* {Info.features().zones && (
-        <label
-          style={{
-            alignItems: 'center',
-            display: 'grid',
-            gridGap: '0 0.5rem',
-            gridTemplateColumns: '1fr 2fr',
-            width: '100%',
-            margin: 0,
-          }}
-        >
-          Timezone
-          <select
-            value={props.timezone || ''}
-            onChange={onChangeTimezone}
-            style={{ padding: '0.25rem', fontSize: '1em' }}
-          >
-            <option value="">Automatic</option>
-            {timezones.map(timezone => (
-              <option key={timezone} value={timezone}>
-                {timezone}
-              </option>
-            ))}
-          </select>
-        </label>
-      )} */}
+      <label
+        style={{
+          alignItems: 'center',
+          display: 'grid',
+          gridGap: '0 0.5rem',
+          gridTemplateColumns: '1fr 2fr',
+          width: '100%',
+          margin: 0,
+        }}
+      >
+        Time Zone
+        <TimeZoneInput timeZone={timeZone} onChange={handleSetTimeZone} />
+      </label>
     </div>
   );
 };

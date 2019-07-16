@@ -5,4 +5,13 @@ export function setLocale(locale: string) {
   } as const;
 }
 
-export type SettingsActions = ReturnType<typeof setLocale>;
+export function setTimeZone(timeZone?: string) {
+  return {
+    type: 'SET_TIME_ZONE',
+    data: { timeZone },
+  } as const;
+}
+
+export type SettingsActions =
+  | ReturnType<typeof setLocale>
+  | ReturnType<typeof setTimeZone>;
