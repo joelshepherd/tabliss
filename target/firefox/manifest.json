@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "Tabliss",
   "short_name": "Tabliss",
-  "version": "1.18.1",
+  "version": "2.0.0",
   "description": "A beautiful New Tab page with many customisable backgrounds and widgets that does not require any permissions.",
   "applications": {
     "gecko": {
@@ -19,5 +19,6 @@
     "48": "icons/48.png",
     "96": "icons/96.png",
     "128": "icons/128.png"
-  }
+  },
+  "permissions": ["storage"]
 }

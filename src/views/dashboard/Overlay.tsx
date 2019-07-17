@@ -2,10 +2,10 @@ import React, { FC } from 'react';
 import { defineMessages, injectIntl, InjectedIntlProps } from 'react-intl';
 import { useDispatch } from 'react-redux';
 
-import { eyeIcon, eyeOffIcon } from '../shared';
+import { useKeyPress } from '../../utils/useKeyPress';
 import { useSelector } from '../../store';
 import { toggleFocus, toggleSettings } from '../../store/actions';
-import { isInputEvent } from '../../utils';
+import { eyeIcon, eyeOffIcon } from '../shared';
 import './Overlay.sass';
 
 const settingsIcon = require('feather-icons/dist/icons/settings.svg');
@@ -50,6 +50,9 @@ const Overlay: FC<InjectedIntlProps> = ({ intl }) => {
     [dispatch],
   );
 
+  useKeyPress(handleToggleFocus, ['w']);
+  useKeyPress(handleToggleSettings, ['s']);
+
   return (
     <div className="Overlay">
       <a onClick={handleToggleSettings} title={`${settingsHint} (S)`}>
@@ -68,28 +71,5 @@ const Overlay: FC<InjectedIntlProps> = ({ intl }) => {
     </div>
   );
 };
-
-// private onKeyDown = (event: KeyboardEvent) => {
-//   // Check for input focus
-//   if (isInputEvent(event)) {
-//     return;
-//   }
-
-//   switch (event.keyCode) {
-//     case 70: // F
-//       screenfull.toggle();
-//       break;
-
-//     case 83: // S
-//       this.props.toggleSettings();
-//       break;
-
-//     case 87: // W
-//       this.props.toggleFocus();
-//       break;
-
-//     default:
-//   }
-// };
 
 export default injectIntl(Overlay);

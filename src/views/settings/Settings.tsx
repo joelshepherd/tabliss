@@ -3,6 +3,7 @@ import { FormattedMessage } from 'react-intl';
 import { useDispatch } from 'react-redux';
 
 import { toggleSettings } from '../../store/actions';
+import { useKeyPress } from '../../utils/useKeyPress';
 import { githubIcon, globeIcon, twitterIcon } from '../shared';
 import Background from './Background';
 import Feedback from './Feedback';
@@ -19,6 +20,8 @@ const Settings: FC = () => {
     () => dispatch(toggleSettings()),
     [dispatch],
   );
+
+  useKeyPress(handleToggleSettings, ['Escape']);
 
   return (
     <div className="Settings">

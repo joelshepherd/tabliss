@@ -1,13 +1,24 @@
-import React, { useState, FC } from 'react';
+import React, { FC } from 'react';
 
-import { isInputEvent } from '../../../utils';
+import { useKeyPress } from '../../../utils/useKeyPress';
+import { useToggle } from '../../../utils/useToggle';
 import Display from './Display';
 import { Props, defaultData } from './types';
 import './Links.sass';
 const linkIcon = require('feather-icons/dist/icons/link-2.svg');
 
 const Links: FC<Props> = ({ data = defaultData }) => {
-  const [visible, setVisible] = useState(false);
+  const [visible, toggleVisible] = useToggle();
+
+  useKeyPress(
+    ({ key }) => {
+      const index = Number(key) - 1;
+      if (data.links[index]) {
+        window.location.assign(data.links[index].url);
+      }
+    },
+    ['1', '2', '3', '4', '5', '6', '7', '8', '9'],
+  );
 
   return (
     <div
@@ -19,24 +30,12 @@ const Links: FC<Props> = ({ data = defaultData }) => {
           <Display key={index} number={index + 1} {...link} />
         ))
       ) : (
-        <a onClick={() => setVisible(true)} title="Show quick links">
+        <a onClick={toggleVisible} title="Show quick links">
           <i dangerouslySetInnerHTML={{ __html: linkIcon }} />
         </a>
       )}
     </div>
   );
 };
-
-// const onKeyDown = (event: KeyboardEvent) => {
-//   // Check for input focus
-//   if (isInputEvent(event)) {
-//     return;
-//   }
-
-//   const key = event.keyCode - 49; // Starting at 1
-//   if (this.props.links[key]) {
-//     window.location.assign(this.props.links[key].url);
-//   }
-// };
 
 export default Links;

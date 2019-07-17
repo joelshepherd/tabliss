@@ -1,4 +1,3 @@
-import throttle from 'lodash-es/throttle';
 import { FC, useEffect } from 'react';
 
 import { Props, defaultData } from './types';
@@ -8,8 +7,6 @@ const Js: FC<Props> = ({ data = defaultData }) => {
 
   useEffect(() => {
     const script = document.createElement('script');
-
-    throttle;
 
     script.id = 'CustomJs';
     script.type = 'text/javascript';

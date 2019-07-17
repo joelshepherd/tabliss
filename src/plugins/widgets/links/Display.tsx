@@ -1,11 +1,8 @@
 import featherIcons from 'feather-icons';
 import React, { FC } from 'react';
 import { defineMessages, injectIntl, InjectedIntlProps } from 'react-intl';
-import { Link as LinkProps } from './types';
 
-interface Props extends LinkProps {
-  number: number;
-}
+import { Link } from './types';
 
 const displayUrl = (url: string) => {
   try {
@@ -29,27 +26,30 @@ const messages = defineMessages({
   },
 });
 
-const Display: FC<Props & InjectedIntlProps> = props => (
+type OwnProps = Link & { number: number };
+type Props = OwnProps & InjectedIntlProps;
+
+const Display: FC<Props> = ({ icon, intl, name, number, url }) => (
   <a
-    href={props.url}
+    href={url}
     rel="noopener noreferrer"
     title={
-      props.number < 10
-        ? props.intl.formatMessage(messages.shortcutHint, {
-            number: props.number,
+      number < 10
+        ? intl.formatMessage(messages.shortcutHint, {
+            number: number,
           })
-        : props.intl.formatMessage(messages.standardHint)
+        : intl.formatMessage(messages.standardHint)
     }
   >
-    {props.icon && featherIcons.icons[props.icon] && (
+    {icon && featherIcons.icons[icon] && (
       <i
         dangerouslySetInnerHTML={{
-          __html: featherIcons.icons[props.icon].toSvg(),
+          __html: featherIcons.icons[icon].toSvg(),
         }}
       />
     )}
-    {props.name}
-    {!props.name && !props.icon && displayUrl(props.url)}
+    {name}
+    {!name && !icon && displayUrl(url)}
   </a>
 );
 
