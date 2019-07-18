@@ -8,9 +8,16 @@
     transition: all 0.25s ease-out
     font-size: 1.1rem
 
+    .on-hover
+        opacity: 0
+        transition: all 0.25s ease-out
+
     &:hover
         opacity: 1
         background-color: rgba(255, 255, 255, 0.85)
+
+        .on-hover
+            opacity: 1
 
         svg
             color: #3498db
