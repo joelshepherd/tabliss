@@ -2,10 +2,9 @@ import React, { FC, useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { WIDGET_PLUGINS } from '../../plugins';
-import { useSelector } from '../../store';
+import { useProfile } from '../../store';
 import { addWidget, removeWidget } from '../../store/actions/profile';
 import Widget from './Widget';
-import { useProfile } from '../../store/store';
 
 const Widgets: FC = () => {
   const active = useProfile(profile => profile.widgets);

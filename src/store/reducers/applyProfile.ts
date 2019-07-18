@@ -1,17 +1,18 @@
 import { Actions } from '../actions';
-import { RootState, activeProfileSelector } from '../store';
+import { profileSelector } from '../useProfile';
 import { profile } from './profile';
+import { RootState } from './types';
 
 export function applyProfile(state: RootState, action: Actions): RootState {
-  const active = activeProfileSelector(state);
-  const reduced = profile(active, action);
+  const currentProfile = profileSelector(state);
+  const nextProfile = profile(currentProfile, action);
 
-  return active === reduced
+  return currentProfile === nextProfile
     ? state
     : {
         ...state,
         profiles: state.profiles.map(current =>
-          current.id === reduced.id ? reduced : current,
+          current.id === nextProfile.id ? nextProfile : current,
         ),
       };
 }

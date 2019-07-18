@@ -1,1 +1,2 @@
-export { useProfile, useSelector } from './store';
+export { useSelector } from './store';
+export { useProfile } from './useProfile';
