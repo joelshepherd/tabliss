@@ -1,12 +1,12 @@
 import React, { FC } from 'react';
 
 import { get } from '../../plugins';
-import { useSelector } from '../../store';
+import { useProfile } from '../../store';
 import Plugin from '../shared/Plugin';
 
 const Background: FC = () => {
-  const background = useSelector(state =>
-    state.profile.backgrounds.find(plugin => plugin.active),
+  const background = useProfile(profile =>
+    profile.backgrounds.find(plugin => plugin.active),
   );
 
   if (!background) return null;

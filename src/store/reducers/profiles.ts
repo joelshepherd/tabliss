@@ -1,83 +1,32 @@
-// import { v4 as generateId } from 'uuid';
+import { v4 as generateId } from 'uuid';
 
-// import { ProfileState, defaultProfile, profile } from './profile';
-// import { ProfileActions } from '../actions/profile';
+import { ProfileState, initialState as initialProfileState } from './profile';
+import { Actions } from '../actions';
 
-// export function addProfile(name: string) {
-//   return {
-//     type: 'ADD_PROFILE',
-//     data: { name },
-//   } as const;
-// }
+export type ProfilesState = ProfileState[];
 
-// export function removeProfile(id: string) {
-//   return {
-//     type: 'REMOVE_PROFILE',
-//     data: { id },
-//   } as const;
-// }
+const initialState: ProfilesState = [initialProfileState];
 
-// export function setProfile(id: string) {
-//   return {
-//     type: 'SET_PROFILE',
-//     data: { id },
-//   } as const;
-// }
+export function profiles(state = initialState, action: Actions): ProfilesState {
+  switch (action.type) {
+    case 'ADD_PROFILE':
+      return state.concat({
+        ...initialProfileState,
+        id: generateId(),
+        name: action.data.name,
+      });
 
-// type ProfilesActions =
-//   | ReturnType<typeof addProfile>
-//   | ReturnType<typeof removeProfile>
-//   | ReturnType<typeof setProfile>;
+    case 'REMOVE_PROFILE':
+      return state.filter(current => current.id !== action.data.id);
 
-// export type ProfilesState = {
-//   activeId: string;
-//   profiles: ProfileState[];
-// };
+    case 'SET_PROFILE':
+      return state.map(current =>
+        current.id === action.data.id
+          ? { ...current, name: action.data.name }
+          : current,
+      );
 
-// const initialState: ProfilesState = {
-//   activeId: '00000000-0000-0000-0000-000000000000',
-//   profiles: [
-//     {
-//       ...defaultProfile,
-//       id: '00000000-0000-0000-0000-000000000000',
-//       name: 'Default',
-//     },
-//   ],
-// };
-
-// export function profiles(
-//   state = initialState,
-//   action: ProfilesActions | ProfileActions,
-// ): ProfilesState {
-//   switch (action.type) {
-//     case 'ADD_PROFILE':
-//       return {
-//         ...state,
-//         profiles: state.profiles.concat({
-//           ...defaultProfile,
-//           id: generateId(),
-//           name: action.data.name,
-//         }),
-//       };
-
-//     case 'REMOVE_PROFILE':
-//       return {
-//         ...state,
-//         profiles: state.profiles.filter(p => p.id === action.data.id),
-//       };
-
-//     case 'SET_PROFILE':
-//       return {
-//         ...state,
-//         activeId: action.data.id,
-//       };
-
-//     default:
-//       return {
-//         ...state,
-//         profiles: state.profiles.map(p =>
-//           p.id === state.activeId ? profile(p, action) : p,
-//         ),
-//       };
-//   }
-// }
+    default:
+      return state;
+  }
+}

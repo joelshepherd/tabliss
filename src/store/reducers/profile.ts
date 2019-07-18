@@ -48,7 +48,7 @@ export interface ProfileState {
   data: { [id: string]: object };
 }
 
-const initialState: ProfileState = {
+export const initialState: ProfileState = {
   id: '00000000-0000-0000-0000-000000000000',
   name: 'Default',
   backgrounds: [
@@ -153,7 +153,8 @@ export function profile(state = initialState, action: Actions): ProfileState {
             : plugin,
         ),
       };
-  }
 
-  return state;
+    default:
+      return state;
+  }
 }

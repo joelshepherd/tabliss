@@ -4,6 +4,7 @@ import { setLocale, setTimeZone } from '../actions/settings';
 describe('settings() reducer', () => {
   const state = {
     locale: 'en-GB',
+    profileId: '00000000-0000-0000-0000-000000000000',
     timeZone: 'UTC',
   };
 

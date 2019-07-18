@@ -6,17 +6,19 @@ import { createStore, combineReducers } from 'redux';
 import { persistStore, persistReducer } from 'redux-persist';
 
 import { CacheState, cache } from './reducers/cache';
-import { ProfileState, profile } from './reducers/profile';
+import { ProfilesState, profiles } from './reducers/profiles';
 import { SettingsState, settings } from './reducers/settings';
 import { UiState, ui } from './reducers/ui';
 import { createStorage } from './storage';
+import { ProfileState, profile } from './reducers/profile';
+import reducers from './reducers';
 
 export type RootState = {
   // This is not synced
   cache: CacheState;
 
   // This gets synced
-  profile: ProfileState;
+  profiles: ProfilesState;
 
   // Settings saved in the browser
   settings: SettingsState;
@@ -28,36 +30,25 @@ export type RootState = {
 // Typed `useSelector` hook
 export const useSelector: TypedUseSelectorHook<RootState> = baseUseSelector;
 
-export function configureStore() {
-  const { localStorage, syncStorage } = createStorage();
+export function useProfile<T>(selector: (profile: ProfileState) => T) {
+  const state = useSelector(state => state);
+  return selector(activeProfileSelector(state));
+}
 
-  const cacheConfig = {
-    key: 'cache',
-    serialize: false,
-    storage: localStorage,
-  };
-
-  const profileConfig = {
-    key: 'profile',
-    serialize: false,
-    storage: syncStorage,
-  };
-
-  const localConfig = {
-    key: 'settings',
-    serialize: false,
-    storage: localStorage,
-  };
-
-  const store = createStore(
-    combineReducers({
-      cache: persistReducer(cacheConfig, cache),
-      profile: persistReducer(profileConfig, profile),
-      settings: persistReducer(localConfig, settings),
-      ui,
-    }),
+export function activeProfileSelector(state: RootState) {
+  const profile = state.profiles.find(
+    profile => profile.id === state.settings.profileId,
   );
 
+  if (!profile) {
+    throw new Error('Cannot find active profile');
+  }
+
+  return profile;
+}
+
+export function configureStore() {
+  const store = createStore(reducers);
   const persistor = persistStore(store);
 
   return { store, persistor };

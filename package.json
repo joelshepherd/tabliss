@@ -28,6 +28,7 @@
     "react-error-boundary": "^1.2.5",
     "react-intl": "^2.9.0",
     "react-redux": "^7.1.0",
+    "reduce-reducers": "^1.0.4",
     "redux": "^4.0.1",
     "redux-persist": "^5.10.0",
     "tlds": "^1.203.1",

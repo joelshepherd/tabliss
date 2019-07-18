@@ -5,9 +5,10 @@ import { WIDGET_PLUGINS } from '../../plugins';
 import { useSelector } from '../../store';
 import { addWidget, removeWidget } from '../../store/actions/profile';
 import Widget from './Widget';
+import { useProfile } from '../../store/store';
 
 const Widgets: FC = () => {
-  const active = useSelector(state => state.profile.widgets);
+  const active = useProfile(profile => profile.widgets);
   const dispatch = useDispatch();
   const boundAddWidget = useCallback(
     (type: string) => dispatch(addWidget(type)),

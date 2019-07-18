@@ -1,16 +1,14 @@
 import groupBy from 'lodash-es/groupBy';
 import React, { FC } from 'react';
 
-import { useSelector } from '../../store';
+import { useProfile, useSelector } from '../../store';
 import { WidgetPosition } from '../../store/reducers/profile';
 import Slot from './Slot';
 import './Widgets.sass';
 
 const Widgets: FC = () => {
-  const { focus, widgets } = useSelector(state => ({
-    focus: state.ui.focus,
-    widgets: state.profile.widgets,
-  }));
+  const focus = useSelector(state => state.ui.focus);
+  const widgets = useProfile(profile => profile.widgets);
 
   const groups = Object.entries(
     groupBy(widgets, widget => widget.display.position),

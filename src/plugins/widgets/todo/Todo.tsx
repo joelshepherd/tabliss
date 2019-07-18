@@ -9,24 +9,20 @@ import {
 import { useToggle } from '../../../utils/useToggle';
 import { addTodo, removeTodo, toggleTodo, updateTodo } from './actions';
 import { reducer } from './reducer';
-import { Props, defaultCache, defaultData } from './types';
+import { Props, defaultData } from './types';
 import TodoInput from './TodoInput';
 import TodoList from './TodoList';
 
-const Todo: FC<Props> = ({
-  cache = defaultCache,
-  data = defaultData,
-  setCache,
-}) => {
+const Todo: FC<Props> = ({ data = defaultData, setData }) => {
   const [showCompleted, toggleShowCompleted] = useToggle();
   const [showMore, toggleShowMore] = useToggle();
 
-  const [state, dispatch] = useReducer(reducer, cache);
+  const [state, dispatch] = useReducer(reducer, data.items);
   useEffect(() => {
-    setCache(state);
+    setData({ ...data, items: state });
   }, [state]);
 
-  const items = cache.filter(item => !item.completed || showCompleted);
+  const items = data.items.filter(item => !item.completed || showCompleted);
   const show = !showMore ? data.show : undefined;
 
   return (
