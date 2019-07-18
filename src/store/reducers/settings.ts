@@ -24,6 +24,12 @@ export function settings(state = initialState, action: Actions): SettingsState {
         timeZone: action.data.timeZone,
       };
 
+    case 'SWITCH_PROFILE':
+      return {
+        ...state,
+        profileId: action.data.id,
+      };
+
     default:
       return state;
   }

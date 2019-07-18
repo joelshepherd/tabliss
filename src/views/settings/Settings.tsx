@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useCallback } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { useDispatch } from 'react-redux';
 
@@ -8,6 +8,7 @@ import { githubIcon, globeIcon, twitterIcon } from '../shared';
 import Background from './Background';
 import Feedback from './Feedback';
 import Homepage from './Homepage';
+import Profiles from './Profiles';
 import System from './System';
 import Widgets from './Widgets';
 import './Settings.sass';
@@ -15,11 +16,9 @@ const logo = require('./logo.svg');
 
 const Settings: FC = () => {
   const dispatch = useDispatch();
-
-  const handleToggleSettings = React.useCallback(
-    () => dispatch(toggleSettings()),
-    [dispatch],
-  );
+  const handleToggleSettings = useCallback(() => dispatch(toggleSettings()), [
+    dispatch,
+  ]);
 
   useKeyPress(handleToggleSettings, ['Escape']);
 
@@ -31,6 +30,8 @@ const Settings: FC = () => {
         <h1>
           <i dangerouslySetInnerHTML={{ __html: logo }} />
         </h1>
+
+        <Profiles />
 
         <Background />
 

@@ -12,6 +12,14 @@ export function setTimeZone(timeZone?: string) {
   } as const;
 }
 
+export function switchProfile(id: string) {
+  return {
+    type: 'SWITCH_PROFILE',
+    data: { id },
+  } as const;
+}
+
 export type SettingsActions =
   | ReturnType<typeof setLocale>
-  | ReturnType<typeof setTimeZone>;
+  | ReturnType<typeof setTimeZone>
+  | ReturnType<typeof switchProfile>;
