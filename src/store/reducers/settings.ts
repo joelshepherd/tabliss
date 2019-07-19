@@ -2,13 +2,10 @@ import { Actions } from '../actions';
 
 export type SettingsState = {
   locale?: string;
-  profileId: string;
   timeZone?: string;
 };
 
-const initialState: SettingsState = {
-  profileId: '00000000-0000-0000-0000-000000000000',
-};
+const initialState: SettingsState = {};
 
 export function settings(state = initialState, action: Actions): SettingsState {
   switch (action.type) {
@@ -22,12 +19,6 @@ export function settings(state = initialState, action: Actions): SettingsState {
       return {
         ...state,
         timeZone: action.data.timeZone,
-      };
-
-    case 'SWITCH_PROFILE':
-      return {
-        ...state,
-        profileId: action.data.id,
       };
 
     default:

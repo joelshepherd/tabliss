@@ -2,7 +2,7 @@ import { useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { API } from '../plugins';
-import { useProfile, useSelector } from '../store';
+import { useSelector } from '../store';
 import { pushLoader, popLoader, setData, setCache } from '../store/actions';
 
 export function useApi(id: string): API {
@@ -16,7 +16,7 @@ export function useApi(id: string): API {
   );
 
   // Data
-  const data = useProfile(profile => profile.data[id]);
+  const data = useSelector(state => state.profile.data[id]);
   const boundSetData = useCallback(
     (data: object) => dispatch(setData(id, data)),
     [dispatch, id],

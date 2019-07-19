@@ -1,10 +1,9 @@
 import { settings } from './settings';
-import { setLocale, setTimeZone, switchProfile } from '../actions/settings';
+import { setLocale, setTimeZone } from '../actions/settings';
 
 describe('settings() reducer', () => {
   const state = {
     locale: 'en-GB',
-    profileId: '00000000-0000-0000-0000-000000000000',
     timeZone: 'UTC',
   };
 
@@ -19,13 +18,6 @@ describe('settings() reducer', () => {
     expect(settings(state, setTimeZone('Australia/Brisbane'))).toEqual({
       ...state,
       timeZone: 'Australia/Brisbane',
-    });
-  });
-
-  it('should switch profile', () => {
-    expect(settings(state, switchProfile('1234'))).toEqual({
-      ...state,
-      profileId: '1234',
     });
   });
 });

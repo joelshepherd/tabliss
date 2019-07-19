@@ -2,12 +2,12 @@ import React, { FC, useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { WIDGET_PLUGINS } from '../../plugins';
-import { useProfile } from '../../store';
+import { useSelector } from '../../store';
 import { addWidget, removeWidget } from '../../store/actions/profile';
 import Widget from './Widget';
 
 const Widgets: FC = () => {
-  const active = useProfile(profile => profile.widgets);
+  const active = useSelector(state => state.profile.widgets);
   const dispatch = useDispatch();
   const boundAddWidget = useCallback(
     (type: string) => dispatch(addWidget(type)),

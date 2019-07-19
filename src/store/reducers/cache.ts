@@ -20,9 +20,6 @@ export function cache(state = initialState, action: Actions): CacheState {
         [action.payload.id]: action.payload.cache,
       };
 
-    case 'SWITCH_PROFILE':
-      return initialState;
-
     default:
       return state;
   }

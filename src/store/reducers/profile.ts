@@ -41,16 +41,12 @@ export interface WidgetState extends PluginState {
 }
 
 export interface ProfileState {
-  id: string;
-  name: string;
   backgrounds: BackgroundState[];
   widgets: WidgetState[];
   data: { [id: string]: object };
 }
 
 export const initialState: ProfileState = {
-  id: '00000000-0000-0000-0000-000000000000',
-  name: 'Default',
   backgrounds: [
     {
       id: generateId(),

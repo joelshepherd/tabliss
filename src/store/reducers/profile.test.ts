@@ -2,8 +2,6 @@ import { ProfileState, profile, WidgetState } from './profile';
 import { addWidget, removeWidget } from '../actions/profile';
 
 const baseProfile: ProfileState = {
-  id: '1234',
-  name: 'Test Profile',
   backgrounds: [],
   widgets: [],
   data: {},

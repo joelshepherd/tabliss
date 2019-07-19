@@ -1,14 +1,14 @@
 import { CacheState } from './cache';
-import { ProfilesState } from './profiles';
 import { SettingsState } from './settings';
 import { UiState } from './ui';
+import { ProfileState } from './profile';
 
 export type RootState = {
   // This is not synced
   cache: CacheState;
 
   // This gets synced
-  profiles: ProfilesState;
+  profile: ProfileState;
 
   // Settings saved in the browser
   settings: SettingsState;

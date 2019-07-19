@@ -1,37 +1,26 @@
-import reduceReducers from 'reduce-reducers';
 import { combineReducers } from 'redux';
-import { persistReducer } from 'redux-persist';
+import { persistReducer, PersistConfig } from 'redux-persist';
 
 import { createStorage } from '../storage';
-import { applyProfile } from './applyProfile';
 import { cache } from './cache';
 import { settings } from './settings';
-import { profiles } from './profiles';
+import { profile } from './profile';
 import { ui } from './ui';
 
-const { localStorage, syncStorage } = createStorage();
+const { cacheStorage, localStorage, syncStorage } = createStorage();
 
 const config = (
   key: string,
-  storage: typeof localStorage | typeof syncStorage,
-) => ({
+  storage: PersistConfig['storage'],
+): PersistConfig => ({
   key,
   storage,
   serialize: false,
 });
 
-const root = combineReducers({
-  profiles,
+export default combineReducers({
   ui,
-  cache: persistReducer(config('cache', localStorage), cache),
+  cache: persistReducer(config('cache', cacheStorage), cache),
+  profile: persistReducer(config('profile', syncStorage), profile),
   settings: persistReducer(config('settings', localStorage), settings),
 });
-
-// TypeScript cannot seem to figure this out
-// The persist partials and reduce reducer's basic types seem to be the culprits
-const reducer = reduceReducers(root as any, applyProfile as any);
-
-export default persistReducer(
-  { ...config('profiles', syncStorage), whitelist: ['profiles'] },
-  reducer,
-);

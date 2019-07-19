@@ -8,7 +8,6 @@ import { githubIcon, globeIcon, twitterIcon } from '../shared';
 import Background from './Background';
 import Feedback from './Feedback';
 import Homepage from './Homepage';
-import Profiles from './Profiles';
 import System from './System';
 import Widgets from './Widgets';
 import './Settings.sass';
@@ -30,8 +29,6 @@ const Settings: FC = () => {
         <h1>
           <i dangerouslySetInnerHTML={{ __html: logo }} />
         </h1>
-
-        <Profiles />
 
         <Background />
 

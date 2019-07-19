@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { BACKGROUND_PLUGINS, get } from '../../plugins';
-import { useProfile } from '../../store';
+import { useSelector } from '../../store';
 import {
   setBackground,
   setBackgroundDisplay,
@@ -11,8 +11,8 @@ import { BackgroundDisplay } from '../../store/reducers/profile';
 import Plugin from '../shared/Plugin';
 
 const Background: FC = () => {
-  const background = useProfile(profile =>
-    profile.backgrounds.find(plugin => plugin.active),
+  const background = useSelector(state =>
+    state.profile.backgrounds.find(plugin => plugin.active),
   );
   const plugin = background ? get(background.type) : undefined;
 

@@ -1,5 +1,5 @@
 import { cache } from './cache';
-import { removeWidget, setCache, switchProfile } from '../actions';
+import { removeWidget, setCache } from '../actions';
 
 describe('cache() reducer', () => {
   it('should set cache data', () => {
@@ -18,11 +18,5 @@ describe('cache() reducer', () => {
     expect(
       cache({ '1234': { key: 'test' }, '5678': {} }, removeWidget('1234')),
     ).toEqual({ '5678': {} });
-  });
-
-  it('should clear cache when switching profiles', () => {
-    expect(
-      cache({ '1234': { key: 'test' }, '5678': {} }, switchProfile('1234')),
-    ).toEqual({});
   });
 });
