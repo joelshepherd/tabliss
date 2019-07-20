@@ -3,8 +3,7 @@ import React, { FC } from 'react';
 import { useRotatingCache } from '../../../utils/useCache';
 import { useObjectUrl } from '../../../utils/useObjectUrl';
 import { getImage } from './api';
-import { Props } from './types';
-import { defaultData } from './constants';
+import { Props, defaultData } from './types';
 import UnsplashCredit from './UnsplashCredit';
 import './Unsplash.sass';
 

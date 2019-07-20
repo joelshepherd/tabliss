@@ -9,6 +9,12 @@ const initialState: SettingsState = {};
 
 export function settings(state = initialState, action: Actions): SettingsState {
   switch (action.type) {
+    case 'MIGRATE_STORE':
+      return action.data.settings;
+
+    case 'RESET_STORE':
+      return initialState;
+
     case 'SET_LOCALE':
       return {
         ...state,

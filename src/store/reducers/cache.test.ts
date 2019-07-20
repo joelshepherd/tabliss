@@ -1,5 +1,5 @@
 import { cache } from './cache';
-import { removeWidget, setCache } from '../actions';
+import { removeWidget, setCache, resetStore } from '../actions';
 
 describe('cache() reducer', () => {
   it('should set cache data', () => {
@@ -18,5 +18,11 @@ describe('cache() reducer', () => {
     expect(
       cache({ '1234': { key: 'test' }, '5678': {} }, removeWidget('1234')),
     ).toEqual({ '5678': {} });
+  });
+
+  it('should clear all cache when store is reset', () => {
+    expect(
+      cache({ '1234': { key: 'test' }, '5678': {} }, resetStore()),
+    ).toEqual({});
   });
 });

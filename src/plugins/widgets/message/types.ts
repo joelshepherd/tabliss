@@ -1,7 +1,7 @@
 import { API } from '../../types';
 
-type Data = { message: string };
+type Data = { messages: string[] };
 
 export type Props = API<Data>;
 
-export const defaultData: Data = { message: 'Write something fun' };
+export const defaultData: Data = { messages: ['Write something fun'] };

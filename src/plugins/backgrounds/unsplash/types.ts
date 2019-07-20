@@ -28,3 +28,13 @@ export interface Image {
 type Cache = RotatingCache<Image>;
 
 export type Props = API<Data, Cache>;
+
+export const defaultData: Data = {
+  blur: 0,
+  darken: 10,
+  by: By.OFFICIAL,
+  collections: '',
+  featured: false,
+  search: '',
+  timeout: 0,
+};

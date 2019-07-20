@@ -1,6 +1,13 @@
 import { useEffect } from 'react';
 
-import { isInputEvent } from './isInputEvent';
+function isInputEvent(event: KeyboardEvent) {
+  return (
+    event.target instanceof HTMLInputElement ||
+    event.target instanceof HTMLTextAreaElement ||
+    (event.target instanceof HTMLSpanElement &&
+      Boolean(event.target.contentEditable))
+  );
+}
 
 export function useKeyPress(
   callback: (event: KeyboardEvent) => void,

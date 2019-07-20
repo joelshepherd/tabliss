@@ -2,7 +2,7 @@ import React, { FC, useCallback } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { useDispatch } from 'react-redux';
 
-import { toggleSettings } from '../../store/actions';
+import { resetStore, toggleSettings } from '../../store/actions';
 import { useKeyPress } from '../../utils/useKeyPress';
 import { githubIcon, globeIcon, twitterIcon } from '../shared';
 import Background from './Background';
@@ -18,6 +18,7 @@ const Settings: FC = () => {
   const handleToggleSettings = useCallback(() => dispatch(toggleSettings()), [
     dispatch,
   ]);
+  const handleReset = useCallback(() => dispatch(resetStore()), [dispatch]);
 
   useKeyPress(handleToggleSettings, ['Escape']);
 
@@ -50,9 +51,9 @@ const Settings: FC = () => {
           </a>
         </p>
 
-        {/* <p>
-            <a onClick={this.reset}>Reset to default</a>
-          </p> */}
+        <p>
+          <a onClick={handleReset}>Reset to default</a>
+        </p>
 
         <p>
           <a href="https://tabliss.io/" target="_blank">

@@ -6,7 +6,7 @@ type Data = {
   showDate: boolean;
   showMinutes: boolean;
   showSeconds: boolean;
-  timezone?: string;
+  timeZone?: string;
 };
 
 export type Props = API<Data>;

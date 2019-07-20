@@ -14,6 +14,9 @@ export function cache(state = initialState, action: Actions): CacheState {
         [action.data.id]: undefined,
       };
 
+    case 'RESET_STORE':
+      return initialState;
+
     case 'SET_CACHE':
       return {
         ...state,

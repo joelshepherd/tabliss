@@ -74,6 +74,12 @@ export const initialState: ProfileState = {
 
 export function profile(state = initialState, action: Actions): ProfileState {
   switch (action.type) {
+    case 'MIGRATE_STORE':
+      return action.data.profile;
+
+    case 'RESET_STORE':
+      return initialState;
+
     case 'SET_BACKGROUND':
       let newState = { ...state };
 

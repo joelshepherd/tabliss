@@ -76,7 +76,6 @@ const config = {
     }),
   ],
   devServer: {
-    historyApiFallback: true,
     overlay: true,
   },
   devtool: isWeb ? 'source-map' : false,

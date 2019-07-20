@@ -8,8 +8,8 @@ const MessageSettings: FC<Props> = ({ data = defaultData, setData }) => (
       Message
       <textarea
         rows={3}
-        value={data.message}
-        onChange={event => setData({ message: event.target.value })}
+        value={data.messages[0]}
+        onChange={event => setData({ messages: [event.target.value] })}
       />
     </label>
   </div>
