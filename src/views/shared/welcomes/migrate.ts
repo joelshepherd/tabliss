@@ -2,8 +2,12 @@ import { v4 as generateId } from 'uuid';
 
 import { RootState } from '../../../store/reducers/types';
 import { ProfileState } from '../../../store/reducers/profile';
+import { defaultData as defaultGiphyData } from '../../../plugins/backgrounds/giphy/types';
+import { defaultData as defaultGradientData } from '../../../plugins/backgrounds/gradient/types';
 import { defaultData as defaultUnsplashData } from '../../../plugins/backgrounds/unsplash/types';
+import { defaultData as defaultSearchData } from '../../../plugins/widgets/search/types';
 import { defaultData as defaultTimeData } from '../../../plugins/widgets/time/types';
+import { defaultData as defaultTodoData } from '../../../plugins/widgets/todo/types';
 
 // Root state
 export interface Version1Config {
@@ -125,6 +129,14 @@ type Storage = {
 
 function translateData(type: string, storage?: Storage) {
   switch (type) {
+    case 'extra/backgrounds/giphy':
+      return storage ? { ...defaultGiphyData, ...storage.settings } : undefined;
+
+    case 'core/backgrounds/gradient':
+      return storage
+        ? { ...defaultGradientData, ...storage.settings }
+        : undefined;
+
     case 'core/backgrounds/image':
       // @todo Can I move this to cache?
       return undefined;
@@ -134,9 +146,17 @@ function translateData(type: string, storage?: Storage) {
         ? { ...defaultUnsplashData, ...storage.settings }
         : undefined;
 
+    case 'core/widgets/links':
+      return storage ? { columns: 1, ...storage.settings } : undefined;
+
     case 'core/widgets/message':
       return storage && storage.settings
         ? { messages: [storage.settings.message] }
+        : undefined;
+
+    case 'extra/widgets/search':
+      return storage
+        ? { ...defaultSearchData, ...storage.settings }
         : undefined;
 
     case 'core/widgets/time':
@@ -145,6 +165,7 @@ function translateData(type: string, storage?: Storage) {
     case 'widgets/todo':
       return storage
         ? {
+            ...defaultTodoData,
             ...storage.settings,
             ...storage.local, // Move into data
           }
