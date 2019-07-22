@@ -5,13 +5,13 @@ import { useDispatch } from 'react-redux';
 import { resetStore, toggleSettings } from '../../store/actions';
 import { useKeyPress } from '../../utils/useKeyPress';
 import { githubIcon, globeIcon, twitterIcon } from '../shared';
+import Logo from '../shared/Logo';
 import Background from './Background';
 import Feedback from './Feedback';
 import Homepage from './Homepage';
 import System from './System';
 import Widgets from './Widgets';
 import './Settings.sass';
-const logo = require('./logo.svg');
 
 const Settings: FC = () => {
   const dispatch = useDispatch();
@@ -27,9 +27,7 @@ const Settings: FC = () => {
       <a onClick={handleToggleSettings} className="fullscreen" />
 
       <div className="plane">
-        <h1>
-          <i dangerouslySetInnerHTML={{ __html: logo }} />
-        </h1>
+        <Logo />
 
         <Background />
 

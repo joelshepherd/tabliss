@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux';
 import { migrateStore } from '../../../store/actions';
 import Modal from '../modal/Modal';
 import { Version1Config, migrateVersion1 } from './migrate';
+import Logo from '../Logo';
 
 function getOldStore() {
   return localForage.createInstance({
@@ -13,7 +14,7 @@ function getOldStore() {
   });
 }
 
-const Welcome2: FC = () => {
+const WelcomeTo2: FC = () => {
   // Is v1 config active?
   const [v1Config, setV1Config] = useState<Version1Config>();
 
@@ -39,28 +40,39 @@ const Welcome2: FC = () => {
   }
 
   const handleMigrate = () => {
-    const newState = migrateVersion1(v1Config);
-    console.log(newState);
-    dispatch(migrateStore(newState));
-    setV1Config(undefined);
+    const migratedState = migrateVersion1(v1Config);
+    dispatch(migrateStore(migratedState));
+
+    handleClear();
   };
   const handleClear = () => {
-    // @todo Enable these when finished testing
-    // const oldStore = getOldStore();
-    // oldStore.clear();
-
+    getOldStore().clear();
     setV1Config(undefined);
   };
 
   return (
     <Modal>
-      <h1>Welcome to Tabliss 2!</h1>
-      <p>There are new features, yay!</p>
+      <Logo />
+      <h2>Welcome to Tabliss 2!</h2>
 
-      <button onClick={handleMigrate}>Transfer settings</button>
-      <button onClick={handleClear}>Start fresh</button>
+      <p>
+        Hot new features, straight out of the <del>kitchen</del> code:
+      </p>
+      <ul>
+        <li>Reposition your widgets around the screen</li>
+        <li>Sync your settings between computers</li>
+        <li>Add the same widget twice</li>
+      </ul>
+
+      <p>
+        As part of the update, you will need to transfer your old settings from
+        Tabliss 1 to Tabliss 2.
+      </p>
+
+      <button onClick={handleMigrate}>Transfer your old settings</button>
+      <button onClick={handleClear}>Start again, fresh</button>
     </Modal>
   );
 };
 
-export default Welcome2;
+export default WelcomeTo2;

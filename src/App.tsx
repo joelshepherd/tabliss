@@ -4,7 +4,7 @@ import { defineMessages, injectIntl, InjectedIntlProps } from 'react-intl';
 import { useSelector } from './store';
 import { Dashboard } from './views/dashboard';
 import { Settings } from './views/settings';
-import Welcome2 from './views/shared/welcomes/Welcome2';
+import WelcomeTo2 from './views/shared/welcomes/WelcomeTo2';
 import './Root.sass';
 
 type Props = InjectedIntlProps;
@@ -27,7 +27,7 @@ const Root: FC<Props> = ({ intl }) => {
     <div className="App">
       <Dashboard />
       {showSettings && <Settings />}
-      <Welcome2 />
+      <WelcomeTo2 />
     </div>
   );
 };

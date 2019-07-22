@@ -1,11 +1,11 @@
 import React, { FC } from 'react';
 
-import './styles.css';
+import './Modal.css';
 
 const Modal: FC = ({ children }) => {
   return (
-    <div className="modal-container">
-      <div className="modal">{children}</div>
+    <div className="Modal-container">
+      <div className="Modal">{children}</div>
     </div>
   );
 };
