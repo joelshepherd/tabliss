@@ -4,6 +4,7 @@ export interface UiState {
   focus: boolean;
   loaders: number;
   settings: boolean;
+  storeError?: Error;
 }
 
 const initialState: UiState = {
@@ -24,6 +25,12 @@ export function ui(state = initialState, action: Actions): UiState {
       return {
         ...state,
         loaders: state.loaders - 1,
+      };
+
+    case 'SET_STORE_ERROR':
+      return {
+        ...state,
+        storeError: action.data.storeError,
       };
 
     case 'TOGGLE_FOCUS':

@@ -4,6 +4,7 @@ import { defineMessages, injectIntl, InjectedIntlProps } from 'react-intl';
 import { useSelector } from './store';
 import { Dashboard } from './views/dashboard';
 import { Settings } from './views/settings';
+import StoreError from './views/shared/StoreError';
 import WelcomeTo2 from './views/shared/welcomes/WelcomeTo2';
 import './Root.sass';
 
@@ -22,11 +23,13 @@ const Root: FC<Props> = ({ intl }) => {
     document.title = intl.formatMessage(messages.pageTitle);
   }, []);
   const showSettings = useSelector(state => state.ui.settings);
+  const storeError = useSelector(state => state.ui.storeError);
 
   return (
     <div className="App">
       <Dashboard />
       {showSettings && <Settings />}
+      {storeError && <StoreError error={storeError} />}
       <WelcomeTo2 />
     </div>
   );

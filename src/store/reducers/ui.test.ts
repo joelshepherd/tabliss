@@ -1,10 +1,11 @@
-import { ui } from './ui';
 import {
   popLoader,
   pushLoader,
+  setStoreError,
   toggleFocus,
   toggleSettings,
-} from '../actions/ui';
+} from '../actions';
+import { ui } from './ui';
 
 const state = {
   focus: false,
@@ -47,5 +48,16 @@ describe('ui() reducer', () => {
       ...state,
       loaders: 4,
     });
+  });
+
+  it('should set store error', () => {
+    const error = new Error('Test message');
+
+    expect(ui(state, setStoreError(error))).toEqual({
+      ...state,
+      storeError: error,
+    });
+
+    expect(ui({ ...state, storeError: error }, setStoreError())).toEqual(state);
   });
 });

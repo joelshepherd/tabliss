@@ -11,6 +11,14 @@ export function resetStore() {
   } as const;
 }
 
+export function setStoreError(storeError?: Error) {
+  return {
+    type: 'SET_STORE_ERROR',
+    data: { storeError },
+  } as const;
+}
+
 export type StoreActions =
   | ReturnType<typeof migrateStore>
-  | ReturnType<typeof resetStore>;
+  | ReturnType<typeof resetStore>
+  | ReturnType<typeof setStoreError>;

@@ -54,9 +54,9 @@ export function migrateVersion1(
   const fontSettings = config.storage['core/widgets/font'];
   const fontDisplay = fontSettings
     ? {
-        colour: fontSettings.settings.colour,
+        colour: fontSettings.settings.colour || '#ffffff',
         fontFamily: fontSettings.settings.family,
-        fontSize: fontSettings.settings.size,
+        fontSize: fontSettings.settings.size || 28,
       }
     : {};
 

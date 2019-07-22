@@ -1,21 +1,28 @@
 import { combineReducers } from 'redux';
-import { persistReducer, PersistConfig } from 'redux-persist';
+import { persistReducer, Storage } from 'redux-persist';
 
+import { capture as captureException } from '../../errorHandler';
+import { setStoreError } from '../actions';
 import { createStorage } from '../storage';
+import { store } from '../store';
 import { cache } from './cache';
 import { settings } from './settings';
 import { profile } from './profile';
 import { ui } from './ui';
 
+function writeFailHandler(err: Error) {
+  captureException(err);
+  store.dispatch(setStoreError(err));
+}
+
 const { cacheStorage, localStorage, syncStorage } = createStorage();
 
-const config = (
-  key: string,
-  storage: PersistConfig['storage'],
-): PersistConfig => ({
+const config = (key: string, storage: Storage) => ({
+  throttle: 250,
   key,
   storage,
   serialize: false,
+  writeFailHandler: key !== 'cache' ? writeFailHandler : undefined,
 });
 
 export default combineReducers({
