@@ -18,10 +18,11 @@ function writeFailHandler(err: Error) {
 const { cacheStorage, localStorage, syncStorage } = createStorage();
 
 const config = (key: string, storage: Storage) => ({
-  throttle: 250,
   key,
   storage,
+  deserialize: false,
   serialize: false,
+  throttle: 250,
   writeFailHandler: key !== 'cache' ? writeFailHandler : undefined,
 });
 
