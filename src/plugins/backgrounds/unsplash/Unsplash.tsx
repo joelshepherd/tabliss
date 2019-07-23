@@ -2,6 +2,7 @@ import React, { FC } from 'react';
 
 import { useRotatingCache } from '../../../utils/useCache';
 import { useObjectUrl } from '../../../utils/useObjectUrl';
+import Backdrop from '../../../views/shared/Backdrop';
 import { getImage } from './api';
 import { Props, defaultData } from './types';
 import UnsplashCredit from './UnsplashCredit';
@@ -24,7 +25,7 @@ const Unsplash: FC<Props> = ({
 
   return (
     <div className="Unsplash fullscreen">
-      <div
+      <Backdrop
         className="image fullscreen"
         style={{ backgroundImage: `url(${url})` }}
       />

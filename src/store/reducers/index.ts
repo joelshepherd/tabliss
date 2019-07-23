@@ -6,8 +6,7 @@ import { setStoreError } from '../actions';
 import { createStorage } from '../storage';
 import { store } from '../store';
 import { cache } from './cache';
-import { settings } from './settings';
-import { profile } from './profile';
+import { data } from './data';
 import { ui } from './ui';
 
 function writeFailHandler(err: Error) {
@@ -15,7 +14,7 @@ function writeFailHandler(err: Error) {
   store.dispatch(setStoreError(err));
 }
 
-const { cacheStorage, localStorage, syncStorage } = createStorage();
+const { cacheStorage, dataStorage } = createStorage();
 
 const config = (key: string, storage: Storage) => ({
   key,
@@ -29,6 +28,5 @@ const config = (key: string, storage: Storage) => ({
 export default combineReducers({
   ui,
   cache: persistReducer(config('cache', cacheStorage), cache),
-  profile: persistReducer(config('profile', syncStorage), profile),
-  settings: persistReducer(config('settings', localStorage), settings),
+  data: persistReducer(config('data', dataStorage), data),
 });

@@ -1,7 +1,7 @@
-import { ProfileState, profile, WidgetState } from './profile';
-import { addWidget, removeWidget } from '../actions/profile';
+import { DataState, data, WidgetState } from './data';
+import { addWidget, removeWidget, setLocale, setTimeZone } from '../actions';
 
-const baseProfile: ProfileState = {
+const state: DataState = {
   backgrounds: [],
   widgets: [],
   data: {},
@@ -14,10 +14,10 @@ const baseWidget: WidgetState = {
   display: { position: 'middleCentre' },
 };
 
-describe('profile() reducer', () => {
+describe('data() reducer', () => {
   it('should add widget', () => {
-    expect(profile(baseProfile, addWidget('widget/test-add'))).toEqual({
-      ...baseProfile,
+    expect(data(state, addWidget('widget/test-add'))).toEqual({
+      ...state,
       widgets: [
         {
           id: expect.any(String),
@@ -31,16 +31,30 @@ describe('profile() reducer', () => {
 
   it('should remove widget', () => {
     expect(
-      profile(
+      data(
         {
-          ...baseProfile,
+          ...state,
           widgets: [baseWidget, { ...baseWidget, id: '5678' }],
         },
         removeWidget('5678'),
       ),
     ).toEqual({
-      ...baseProfile,
+      ...state,
       widgets: [baseWidget],
+    });
+  });
+
+  it('should set locale', () => {
+    expect(data(state, setLocale('en-AU'))).toEqual({
+      ...state,
+      locale: 'en-AU',
+    });
+  });
+
+  it('should set time zone', () => {
+    expect(data(state, setTimeZone('Australia/Brisbane'))).toEqual({
+      ...state,
+      timeZone: 'Australia/Brisbane',
     });
   });
 });

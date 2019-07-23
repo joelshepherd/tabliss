@@ -11,8 +11,8 @@ import {
   IconButton,
   removeIcon,
 } from '../shared';
-import { WidgetDisplay, WidgetState } from '../../store/reducers/profile';
-import { setWidgetDisplay } from '../../store/actions/profile';
+import { WidgetDisplay, WidgetState } from '../../store/reducers/data';
+import { setWidgetDisplay } from '../../store/actions/data';
 import { useToggle } from '../../utils/useToggle';
 import './Widget.sass';
 

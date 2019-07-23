@@ -1,11 +1,7 @@
 import localForage from 'localforage';
-import {
-  local as localDriver,
-  sync as syncDriver,
-} from 'localforage-webextensionstorage-driver';
+import { sync as syncDriver } from 'localforage-webextensionstorage-driver';
 
 if (process.env.BUILD_TARGET !== 'web') {
-  localForage.defineDriver(localDriver);
   localForage.defineDriver(syncDriver);
 }
 
@@ -17,32 +13,20 @@ function createCacheStorage() {
   });
 }
 
-function createLocalStorage() {
-  return localForage.createInstance({
-    name: 'tabliss',
-    driver:
-      process.env.BUILD_TARGET === 'web'
-        ? localForage.LOCALSTORAGE
-        : localDriver._driver,
-    storeName: 'local',
-  });
-}
-
-function createSyncStorage() {
+function createDataStorage() {
   return localForage.createInstance({
     name: 'tabliss',
     driver:
       process.env.BUILD_TARGET === 'web'
         ? localForage.LOCALSTORAGE
         : syncDriver._driver,
-    storeName: 'sync',
+    storeName: 'data',
   });
 }
 
 export function createStorage() {
   const cacheStorage = createCacheStorage();
-  const localStorage = createLocalStorage();
-  const syncStorage = createSyncStorage();
+  const dataStorage = createDataStorage();
 
-  return { cacheStorage, localStorage, syncStorage };
+  return { cacheStorage, dataStorage };
 }

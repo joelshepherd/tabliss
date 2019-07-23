@@ -1,6 +1,7 @@
 import sample from 'lodash-es/sample';
 import React, { FC, useEffect, useState } from 'react';
 
+import Backdrop from '../../../views/shared/Backdrop';
 import { Props, defaultCache } from './types';
 import './Image.sass';
 
@@ -19,7 +20,7 @@ const Image: FC<Props> = ({ cache = defaultCache }) => {
   }, [cache]);
 
   return (
-    <div
+    <Backdrop
       className="Image fullscreen"
       style={{ backgroundImage: `url(${url})` }}
     />

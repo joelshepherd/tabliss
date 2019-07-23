@@ -16,7 +16,7 @@ export function useApi(id: string): API {
   );
 
   // Data
-  const data = useSelector(state => state.profile.data[id]);
+  const data = useSelector(state => state.data.data[id]);
   const boundSetData = useCallback(
     (data: object) => dispatch(setData(id, data)),
     [dispatch, id],

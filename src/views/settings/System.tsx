@@ -7,8 +7,8 @@ import { defaultLocale } from '../../locales';
 import TimeZoneInput from '../shared/timeZone/TimeZoneInput';
 
 const System: FC = () => {
-  const locale = useSelector(state => state.settings.locale || defaultLocale);
-  const timeZone = useSelector(state => state.settings.timeZone || '');
+  const locale = useSelector(state => state.data.locale || defaultLocale);
+  const timeZone = useSelector(state => state.data.timeZone || '');
 
   const dispatch = useDispatch();
   const handleSetLocale = React.useCallback(

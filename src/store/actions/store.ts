@@ -1,7 +1,9 @@
-export function migrateStore(state: any) {
+import { DataState } from '../reducers/data';
+
+export function migrateStore(state: DataState) {
   return {
     type: 'MIGRATE_STORE',
-    data: state,
+    data: { state },
   } as const;
 }
 

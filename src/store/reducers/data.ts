@@ -4,7 +4,7 @@ import { Actions } from '../actions';
 
 export type BackgroundDisplay = {
   blur: number;
-  luminosity: number; // Positive to lighten, negative to darken
+  luminosity: number;
 };
 
 export type WidgetPosition =
@@ -40,13 +40,17 @@ export interface WidgetState extends PluginState {
   display: WidgetDisplay;
 }
 
-export interface ProfileState {
+export interface DataState {
   backgrounds: BackgroundState[];
   widgets: WidgetState[];
-  data: { [id: string]: object };
+  data: {
+    [id: string]: object;
+  };
+  locale?: string;
+  timeZone?: string;
 }
 
-export const initialState: ProfileState = {
+export const initialState: DataState = {
   backgrounds: [
     {
       id: generateId(),
@@ -72,10 +76,10 @@ export const initialState: ProfileState = {
   data: {},
 };
 
-export function profile(state = initialState, action: Actions): ProfileState {
+export function data(state = initialState, action: Actions): DataState {
   switch (action.type) {
     case 'MIGRATE_STORE':
-      return action.data.profile;
+      return action.data.state;
 
     case 'RESET_STORE':
       return initialState;
@@ -154,6 +158,18 @@ export function profile(state = initialState, action: Actions): ProfileState {
               }
             : plugin,
         ),
+      };
+
+    case 'SET_LOCALE':
+      return {
+        ...state,
+        locale: action.data.locale,
+      };
+
+    case 'SET_TIME_ZONE':
+      return {
+        ...state,
+        timeZone: action.data.timeZone,
       };
 
     default:

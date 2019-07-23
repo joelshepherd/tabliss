@@ -1,6 +1,7 @@
 import React, { FC, useEffect, useState } from 'react';
 
 import { useObjectUrl } from '../../../utils/useObjectUrl';
+import Backdrop from '../../../views/shared/Backdrop';
 import { getGif } from './api';
 import { Props, defaultData } from './types';
 import Credit from './Credit';
@@ -21,7 +22,7 @@ const Giphy: FC<Props> = ({ cache, data = defaultData, setCache, loader }) => {
 
   return (
     <div className="Giphy fullscreen">
-      <div
+      <Backdrop
         className="gif fullscreen"
         style={{
           backgroundImage: url ? `url(${url})` : undefined,

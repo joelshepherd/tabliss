@@ -4,7 +4,7 @@ import { utcToZonedTime } from 'date-fns-tz';
 import { useSelector } from '../store';
 
 export function useTime() {
-  const timeZone = useSelector(state => state.settings.timeZone);
+  const timeZone = useSelector(state => state.data.timeZone);
 
   const [state, setState] = useState(getTime(timeZone));
 

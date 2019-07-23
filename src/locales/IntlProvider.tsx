@@ -5,7 +5,7 @@ import { useSelector } from '../store';
 import { defaultLocale, messages } from './locales';
 
 const IntlProvider: FC = ({ children }) => {
-  const locale = useSelector(state => state.settings.locale || defaultLocale);
+  const locale = useSelector(state => state.data.locale || defaultLocale);
 
   return (
     <ReactIntlProvider locale={locale} key={locale} messages={messages[locale]}>

@@ -1,4 +1,4 @@
-import { BackgroundDisplay, WidgetDisplay } from '../reducers/profile';
+import { BackgroundDisplay, WidgetDisplay } from '../reducers/data';
 
 export function setBackground(type: string) {
   return {
@@ -38,6 +38,20 @@ export function setBackgroundDisplay(
   } as const;
 }
 
+export function setLocale(locale: string) {
+  return {
+    type: 'SET_LOCALE',
+    data: { locale },
+  } as const;
+}
+
+export function setTimeZone(timeZone?: string) {
+  return {
+    type: 'SET_TIME_ZONE',
+    data: { timeZone },
+  } as const;
+}
+
 export function setWidgetDisplay(id: string, display: Partial<WidgetDisplay>) {
   return {
     type: 'SET_WIDGET_DISPLAY',
@@ -45,10 +59,12 @@ export function setWidgetDisplay(id: string, display: Partial<WidgetDisplay>) {
   } as const;
 }
 
-export type ProfileActions =
+export type DataActions =
   | ReturnType<typeof setBackground>
   | ReturnType<typeof addWidget>
   | ReturnType<typeof removeWidget>
   | ReturnType<typeof setData>
   | ReturnType<typeof setBackgroundDisplay>
+  | ReturnType<typeof setLocale>
+  | ReturnType<typeof setTimeZone>
   | ReturnType<typeof setWidgetDisplay>;

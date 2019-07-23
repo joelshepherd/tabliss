@@ -1,18 +1,11 @@
 import { CacheActions } from './cache';
-import { ProfileActions } from './profile';
-import { SettingsActions } from './settings';
+import { DataActions } from './data';
 import { StoreActions } from './store';
 import { UiActions } from './ui';
 
 export * from './cache';
-export * from './profile';
-export * from './settings';
+export * from './data';
 export * from './store';
 export * from './ui';
 
-export type Actions =
-  | CacheActions
-  | ProfileActions
-  | SettingsActions
-  | StoreActions
-  | UiActions;
+export type Actions = CacheActions | DataActions | StoreActions | UiActions;

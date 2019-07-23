@@ -1,7 +1,6 @@
 import { v4 as generateId } from 'uuid';
 
-import { RootState } from '../../../store/reducers/types';
-import { ProfileState } from '../../../store/reducers/profile';
+import { DataState } from '../../../store/reducers/data';
 import { defaultData as defaultGiphyData } from '../../../plugins/backgrounds/giphy/types';
 import { defaultData as defaultGradientData } from '../../../plugins/backgrounds/gradient/types';
 import { defaultData as defaultUnsplashData } from '../../../plugins/backgrounds/unsplash/types';
@@ -30,14 +29,12 @@ export interface Version1Config {
 /**
  * Migrate Tabliss v1 config to v2
  */
-export function migrateVersion1(
-  config: Version1Config,
-): Pick<RootState, 'profile' | 'settings'> {
+export function migrateVersion1(config: Version1Config): DataState {
   // Data
-  const data: ProfileState['data'] = {};
+  const data: DataState['data'] = {};
 
   // Backgrounds
-  const backgrounds: ProfileState['backgrounds'] = [
+  const backgrounds: DataState['backgrounds'] = [
     {
       id: generateId(),
       type: translateType(config.dashboard.background) || 'background/unsplash',
@@ -60,7 +57,7 @@ export function migrateVersion1(
       }
     : {};
 
-  const widgets: ProfileState['widgets'] = config.dashboard.widgets
+  const widgets: DataState['widgets'] = config.dashboard.widgets
     .filter(translateType)
     .map(previousType => {
       const id = generateId();
@@ -82,15 +79,11 @@ export function migrateVersion1(
     });
 
   return {
-    profile: {
-      backgrounds,
-      data,
-      widgets,
-    },
-    settings: {
-      locale: config.settings.locale,
-      timeZone: config.settings.timezone,
-    },
+    backgrounds,
+    data,
+    widgets,
+    locale: config.settings.locale,
+    timeZone: config.settings.timezone,
   };
 }
 

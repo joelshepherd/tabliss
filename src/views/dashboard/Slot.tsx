@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 
 import Plugin from '../shared/Plugin';
 import { get } from '../../plugins';
-import { WidgetPosition, WidgetState } from '../../store/reducers/profile';
+import { WidgetPosition, WidgetState } from '../../store/reducers/data';
 import Widget from './Widget';
 import './Slot.sass';
 

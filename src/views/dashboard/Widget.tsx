@@ -1,12 +1,12 @@
 import React, { FC } from 'react';
 
-import { WidgetDisplay } from '../../store/reducers/profile';
+import { WidgetDisplay } from '../../store/reducers/data';
 
 const Widget: FC<WidgetDisplay> = ({
   children,
   colour,
-  fontSize = 24,
   fontFamily,
+  fontSize = 24,
   fontWeight = 400,
 }) => (
   <div
