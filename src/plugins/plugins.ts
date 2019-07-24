@@ -9,6 +9,7 @@ import greeting from './widgets/greeting';
 import links from './widgets/links';
 import literatureClock from './widgets/literatureClock';
 import message from './widgets/message';
+import nba from './widgets/nba';
 import quote from './widgets/quote';
 import search from './widgets/search';
 import time from './widgets/time';
@@ -22,6 +23,7 @@ export const WIDGET_PLUGINS = [
   links,
   literatureClock,
   message,
+  nba,
   quote,
   search,
   time,

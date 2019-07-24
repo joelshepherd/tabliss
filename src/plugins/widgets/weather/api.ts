@@ -9,9 +9,9 @@ export async function getForecast(
   { latitude, longitude, units }: Config,
   loader: API['loader'],
 ): Promise<Conditions | undefined> {
-  if (!latitude || !longitude) {
+  // if (!latitude || !longitude) {
     return undefined;
-  }
+  // }
 
   loader.push();
 

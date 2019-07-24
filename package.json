@@ -14,9 +14,11 @@
   },
   "dependencies": {
     "@sentry/browser": "^5.5.0",
+    "apollo-boost": "^0.4.3",
     "date-fns": "^2.0.0-beta.2",
     "date-fns-tz": "^1.0.7",
     "feather-icons": "^4.7.3",
+    "graphql": "^14.4.2",
     "in-browser-language": "^1.0.2",
     "localforage": "^1.7.1",
     "localforage-webextensionstorage-driver": "^1.2.1",
