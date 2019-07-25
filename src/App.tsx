@@ -1,5 +1,5 @@
 import React, { FC, useEffect } from 'react';
-import { defineMessages, injectIntl, InjectedIntlProps } from 'react-intl';
+import { defineMessages, useIntl } from 'react-intl';
 
 import { useSelector } from './store';
 import { Dashboard } from './views/dashboard';
@@ -7,8 +7,6 @@ import { Settings } from './views/settings';
 import StoreError from './views/shared/StoreError';
 import WelcomeTo2 from './views/shared/welcomes/WelcomeTo2';
 import './Root.sass';
-
-type Props = InjectedIntlProps;
 
 const messages = defineMessages({
   pageTitle: {
@@ -18,12 +16,14 @@ const messages = defineMessages({
   },
 });
 
-const Root: FC<Props> = ({ intl }) => {
-  useEffect(() => {
-    document.title = intl.formatMessage(messages.pageTitle);
-  }, []);
+const Root: FC = () => {
   const showSettings = useSelector(state => state.ui.settings);
   const storeError = useSelector(state => state.ui.storeError);
+
+  const intl = useIntl();
+  useEffect(() => {
+    document.title = intl.formatMessage(messages.pageTitle);
+  }, [intl]);
 
   return (
     <div className="App">
@@ -35,4 +35,4 @@ const Root: FC<Props> = ({ intl }) => {
   );
 };
 
-export default injectIntl(Root);
+export default Root;

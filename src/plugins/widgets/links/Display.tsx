@@ -1,8 +1,9 @@
 import featherIcons from 'feather-icons';
 import React, { FC } from 'react';
-import { defineMessages, injectIntl, InjectedIntlProps } from 'react-intl';
+import { defineMessages, useIntl } from 'react-intl';
 
 import { Link } from './types';
+import { Icon } from '../../../views/shared';
 
 const displayUrl = (url: string) => {
   try {
@@ -26,31 +27,26 @@ const messages = defineMessages({
   },
 });
 
-type OwnProps = Link & { number: number };
-type Props = OwnProps & InjectedIntlProps;
+type Props = Link & { number: number };
 
-const Display: FC<Props> = ({ icon, intl, name, number, url }) => (
-  <a
-    href={url}
-    rel="noopener noreferrer"
-    title={
-      number < 10
-        ? intl.formatMessage(messages.shortcutHint, {
-            number: number,
-          })
-        : intl.formatMessage(messages.standardHint)
-    }
-  >
-    {icon && featherIcons.icons[icon] && (
-      <i
-        dangerouslySetInnerHTML={{
-          __html: featherIcons.icons[icon].toSvg(),
-        }}
-      />
-    )}
-    {name}
-    {!name && !icon && displayUrl(url)}
-  </a>
-);
+const Display: FC<Props> = ({ icon, name, number, url }) => {
+  const intl = useIntl();
+  const title =
+    number < 10
+      ? intl.formatMessage(messages.shortcutHint, {
+          number: number,
+        })
+      : intl.formatMessage(messages.standardHint);
 
-export default injectIntl(Display);
+  return (
+    <a href={url} rel="noopener noreferrer" title={title}>
+      {icon && featherIcons.icons[icon] && (
+        <Icon svg={featherIcons.icons[icon].toSvg()} />
+      )}
+      {name}
+      {!name && !icon && displayUrl(url)}
+    </a>
+  );
+};
+
+export default Display;

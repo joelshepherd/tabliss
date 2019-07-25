@@ -1,5 +1,5 @@
 import React from 'react';
-import { defineMessages, injectIntl, InjectedIntlProps } from 'react-intl';
+import { defineMessages, injectIntl, WrappedComponentProps } from 'react-intl';
 import tlds from 'tlds';
 
 import { engines } from './engines';
@@ -23,7 +23,7 @@ const messages = defineMessages({
   },
 });
 
-class Search extends React.PureComponent<Props & InjectedIntlProps, State> {
+class Search extends React.PureComponent<Props & WrappedComponentProps, State> {
   static defaultProps = {
     data: defaultData,
   };

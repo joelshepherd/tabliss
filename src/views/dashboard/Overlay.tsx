@@ -5,7 +5,7 @@ import minimise from 'feather-icons/dist/icons/minimize-2.svg';
 import settings from 'feather-icons/dist/icons/settings.svg';
 import zap from 'feather-icons/dist/icons/zap.svg';
 import React, { FC } from 'react';
-import { defineMessages, injectIntl, InjectedIntlProps } from 'react-intl';
+import { defineMessages, useIntl } from 'react-intl';
 import { useDispatch } from 'react-redux';
 
 import { useFullscreen } from '../../utils/useFullscreen';
@@ -39,7 +39,8 @@ const messages = defineMessages({
   },
 });
 
-const Overlay: FC<InjectedIntlProps> = ({ intl }) => {
+const Overlay: FC = () => {
+  const intl = useIntl();
   const settingsHint = intl.formatMessage(messages.settingsHint);
   const focusHint = intl.formatMessage(messages.focusHint);
   const fullscreenHint = intl.formatMessage(messages.fullscreenHint);
@@ -99,4 +100,4 @@ const Overlay: FC<InjectedIntlProps> = ({ intl }) => {
   );
 };
 
-export default injectIntl(Overlay);
+export default Overlay;

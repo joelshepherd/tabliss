@@ -1,15 +1,13 @@
 import React, { FC } from 'react';
-import { injectIntl, InjectedIntlProps } from 'react-intl';
+import { useIntl } from 'react-intl';
 
 import { useTime } from '../../../utils/useTime';
 import { messages } from './messages';
 import { Props, defaultData } from './types';
 
-const Greeting: FC<Props & InjectedIntlProps> = ({
-  data = defaultData,
-  intl,
-}) => {
+const Greeting: FC<Props> = ({ data = defaultData }) => {
   const hour = useTime().getHours();
+  const intl = useIntl();
 
   const greeting = data.name
     ? intl.formatMessage(messages.greetingWithName, {
@@ -27,4 +25,4 @@ const Greeting: FC<Props & InjectedIntlProps> = ({
   );
 };
 
-export default injectIntl(Greeting);
+export default Greeting;
