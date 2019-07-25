@@ -43,6 +43,7 @@
     "@types/react-dom": "^16.8.4",
     "@types/react-intl": "^2.3.17",
     "@types/react-redux": "^7.1.0",
+    "@types/tlds": "^1.199.0",
     "@types/uuid": "^3.4.3",
     "clean-webpack-plugin": "^0.1.19",
     "copy-webpack-plugin": "^4.5.1",
