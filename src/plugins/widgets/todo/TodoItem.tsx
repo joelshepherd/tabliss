@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { FC, useLayoutEffect, useRef } from 'react';
+
+import { useKeyPress } from '../../../utils/useKeyPress';
 import { checkedIcon, uncheckedIcon, removeIcon } from '../../../views/shared';
 import { State } from './reducer';
 import './TodoItem.sass';
@@ -10,53 +12,60 @@ interface Props {
   onDelete(): void;
 }
 
-class TodoItem extends React.Component<Props> {
-  ref?: HTMLSpanElement | null;
+const TodoItem: FC<Props> = ({ item, onDelete, onUpdate, onToggle }) => {
+  const ref = useRef<HTMLSpanElement>(null);
 
-  shouldComponentUpdate(nextProps: Props) {
-    if (!this.ref) {
-      return true;
+  useLayoutEffect(() => {
+    if (ref.current) {
+      ref.current.innerText = item.contents;
     }
+  }, [item.contents]);
 
-    return (
-      nextProps.item.id !== this.props.item.id ||
-      nextProps.item.completed !== this.props.item.completed ||
-      nextProps.item.contents !== this.ref.innerText
-    );
-  }
+  useKeyPress(
+    event => {
+      if (event.target === ref.current) {
+        event.preventDefault();
 
-  render() {
-    const { item, onDelete, onUpdate, onToggle } = this.props;
+        if (ref.current) {
+          ref.current.blur();
+        }
+      }
+    },
+    ['Enter'],
+    false,
+  );
 
-    return (
-      <div className="TodoItem">
-        <a onClick={onToggle}>{item.completed ? checkedIcon : uncheckedIcon}</a>
+  useKeyPress(
+    event => {
+      if (event.target === ref.current) {
+        event.preventDefault();
 
-        <span
-          ref={ref => (this.ref = ref)}
-          contentEditable={true}
-          onBlur={event => onUpdate(event.currentTarget.innerText)}
-          onInput={event => onUpdate(event.currentTarget.innerText)}
-          onKeyDownCapture={this.onKeyDown}
-          suppressContentEditableWarning={true}
-        >
-          {item.contents}
-        </span>
+        if (ref.current) {
+          // Reset contents on escape
+          ref.current.innerText = item.contents;
+          ref.current.blur();
+        }
+      }
+    },
+    ['Escape'],
+    false,
+  );
 
-        <a onClick={onDelete} className="delete">
-          {removeIcon}
-        </a>
-      </div>
-    );
-  }
+  return (
+    <div className="TodoItem">
+      <a onClick={onToggle}>{item.completed ? checkedIcon : uncheckedIcon}</a>
 
-  private onKeyDown = (event: React.KeyboardEvent<HTMLSpanElement>) => {
-    // Did we press enter while editing?
-    if (event.keyCode === 13 && this.ref) {
-      event.preventDefault();
-      this.ref.blur();
-    }
-  };
-}
+      <span
+        ref={ref}
+        contentEditable={true}
+        onBlur={event => onUpdate(event.currentTarget.innerText)}
+      />
+
+      <a onClick={onDelete} className="delete">
+        {removeIcon}
+      </a>
+    </div>
+  );
+};
 
 export default TodoItem;

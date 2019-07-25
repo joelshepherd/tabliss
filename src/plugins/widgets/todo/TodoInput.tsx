@@ -1,68 +1,47 @@
-import React from 'react';
+import React, { FC, useState } from 'react';
+
 import { expandIcon } from '../../../views/shared';
+import { useToggle } from '../../../utils/useToggle';
 import './TodoInput.sass';
 
-interface Props {
+type Props = {
   onCreate(contents: string): void;
-}
+};
 
-interface State {
-  contents: string;
-  open: boolean;
-}
+const TodoInput: FC<Props> = ({ onCreate }) => {
+  const [isOpen, toggleIsOpen] = useToggle();
+  const [contents, setContents] = useState('');
 
-class TodoInput extends React.PureComponent<Props, State> {
-  state: State = {
-    contents: '',
-    open: false,
-  };
-
-  render() {
-    return (
-      <span className="TodoInput">
-        {this.state.open && (
-          <form onSubmit={this.onSubmit}>
-            <label>
-              <input
-                autoFocus={true}
-                type="text"
-                value={this.state.contents}
-                onBlur={this.onClose}
-                onChange={this.onChange}
-              />
-            </label>
-          </form>
-        )}
-
-        {!this.state.open && <a onClick={this.onOpen}>{expandIcon}</a>}
-      </span>
-    );
-  }
-
-  private onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    this.setState({ contents: event.target.value });
-  };
-
-  private onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    if (this.state.contents) {
-      this.props.onCreate(this.state.contents);
+    if (contents !== '') {
+      onCreate(contents);
     }
 
-    this.setState({
-      contents: '',
-      open: false,
-    });
+    setContents('');
+    toggleIsOpen();
   };
 
-  private onOpen = () => {
-    this.setState({ open: true });
-  };
+  return (
+    <span className="TodoInput">
+      {!isOpen && <a onClick={toggleIsOpen}>{expandIcon}</a>}
 
-  private onClose = () => {
-    this.setState({ open: false });
-  };
-}
+      {isOpen && (
+        <form onSubmit={handleSubmit}>
+          <label>
+            <input
+              autoFocus={true}
+              type="text"
+              value={contents}
+              onBlur={toggleIsOpen}
+              onChange={event => setContents(event.target.value)}
+            />
+          </label>
+        </form>
+      )}
+    </span>
+  );
+};
 
 export default TodoInput;
