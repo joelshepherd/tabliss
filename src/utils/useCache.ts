@@ -47,6 +47,32 @@ export function useRotatingCache<T>(
   timeout: number,
   deps: unknown[],
 ): T | undefined {
+  const rotateCache = () => {
+    const rotatedCache = {
+      ...cache!,
+      now: cache!.next,
+      rotated: Date.now(),
+    };
+    setCache(rotatedCache);
+
+    Promise.resolve(create()).then(next => setCache({ ...rotatedCache, next }));
+  };
+
+  // Special case for changing every new tab
+  useEffect(() => {
+    if (cache && timeout === 0) {
+      rotateCache();
+    }
+  }, [timeout]);
+
+  // Rotate cache on timeout
+  const time = useTime().getTime();
+  useEffect(() => {
+    if (cache && timeout !== 0 && time > cache.rotated + timeout) {
+      rotateCache();
+    }
+  }, [time, timeout]);
+
   // On dependency change, refresh all
   useEffect(() => {
     if (!cache || !areDepsEqual(deps, cache.deps)) {
@@ -55,27 +81,6 @@ export function useRotatingCache<T>(
       );
     }
   }, deps);
-
-  // On timeout, rotate to the next image
-  const time = useTime().getTime();
-  const loadingNext = useRef(false);
-
-  if (cache && time > cache.rotated + timeout && !loadingNext.current) {
-    const rotatedCache = {
-      ...cache,
-      now: cache.next,
-      rotated: Date.now(),
-    };
-    setCache(rotatedCache);
-
-    loadingNext.current = true;
-    Promise.resolve(create()).then(next => {
-      setCache({ ...rotatedCache, next });
-
-      // Don't keep rotation going if set to change on every new tab
-      if (timeout !== 0) loadingNext.current = false;
-    });
-  }
 
   return cache ? cache.now : undefined;
 }
