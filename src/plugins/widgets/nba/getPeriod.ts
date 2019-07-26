@@ -3,7 +3,7 @@ import { Game } from './types';
 
 export function getPeriod(game: Game) {
   const period = game.period;
-  let periodStr = '';
+  let periodStr = format(new Date(game.startTimeUTC), 'hh:mm a');
 
   if (game.isGameActivated || period.current > 0) {
     if (period.isHalftime) {
@@ -17,8 +17,7 @@ export function getPeriod(game: Game) {
     } else {
       periodStr = `OT ${game.clock}`;
     }
-  } else {
-    periodStr = format(new Date(game.startTimeUTC), 'hh:mm a');
   }
+
   return periodStr;
 }

@@ -1,4 +1,3 @@
-import { format } from 'date-fns';
 import React, { FC, useEffect } from 'react';
 
 import { useTime } from '../../../utils/useTime';
@@ -32,13 +31,17 @@ setCache
           <div className="period">
             { getPeriod(game) }
           </div>
-          <div>{data.displayLogo ? <img className="icon"src={game.hTeam.logo}/> : null}</div>
+          <div>
+            { data.displayLogo ? <img className="icon"src={ game.hTeam.logo }/> : null }
+          </div>
           <span className="teams">
-            {game.hTeam.triCode} - {game.vTeam.triCode}
+            { game.hTeam.triCode } - { game.vTeam.triCode }
           </span>
-          <div>{data.displayLogo ? <img className="icon"src={game.vTeam.logo}/> : null}</div>
+          <div>
+            { data.displayLogo ? <img className="icon"src={ game.vTeam.logo }/> : null }
+          </div>
           <div className="score">
-            {game.period.current ? <span>{game.hTeam.score} {game.vTeam.score}</span>: <span>{format(new Date(game.startTimeUTC), 'hh:mm a')}</span>}
+            { game.period.current ? <span>{ game.hTeam.score } { game.vTeam.score }</span>: null }
           </div>
         </div>
       ))}
