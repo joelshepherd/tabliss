@@ -9,7 +9,7 @@ const Widgets: FC = () => {
   const focus = useSelector(state => state.ui.focus);
   const widgets = useSelector(state => state.data.widgets);
 
-  const groups = Object.entries(
+  const slots = Object.entries(
     widgets.reduce<{ [key: string]: WidgetState[] }>((carry, widget) => {
       return {
         ...carry,
@@ -24,7 +24,7 @@ const Widgets: FC = () => {
     <div className="Widgets fullscreen">
       <div className="container">
         {!focus &&
-          groups.map(([position, widgets]) => (
+          slots.map(([position, widgets]) => (
             <Slot
               key={position}
               position={position as WidgetPosition}

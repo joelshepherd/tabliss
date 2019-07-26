@@ -27,7 +27,7 @@ const Unsplash: FC<Props> = ({
     <div className="Unsplash fullscreen">
       <Backdrop
         className="image fullscreen"
-        style={{ backgroundImage: `url(${url})` }}
+        style={{ backgroundImage: url && `url(${url})` }}
       />
 
       {cache && <UnsplashCredit image={cache.now} />}
