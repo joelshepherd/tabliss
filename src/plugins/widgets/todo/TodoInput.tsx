@@ -1,6 +1,6 @@
 import React, { FC, useState } from 'react';
 
-import { expandIcon } from '../../../views/shared';
+import { ExpandIcon } from '../../../views/shared';
 import { useToggle } from '../../../utils/useToggle';
 import './TodoInput.sass';
 
@@ -25,7 +25,11 @@ const TodoInput: FC<Props> = ({ onCreate }) => {
 
   return (
     <span className="TodoInput">
-      {!isOpen && <a onClick={toggleIsOpen}>{expandIcon}</a>}
+      {!isOpen && (
+        <a onClick={toggleIsOpen}>
+          <ExpandIcon />
+        </a>
+      )}
 
       {isOpen && (
         <form onSubmit={handleSubmit}>

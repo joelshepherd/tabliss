@@ -4,12 +4,12 @@ import { useDispatch } from 'react-redux';
 import { get } from '../../plugins';
 import PluginContainer from '../shared/Plugin';
 import {
-  arrowDownIcon,
-  arrowUpIcon,
-  collapseIcon,
-  expandIcon,
+  CollapseIcon,
+  DownIcon,
+  ExpandIcon,
   IconButton,
-  removeIcon,
+  RemoveIcon,
+  UpIcon,
 } from '../shared';
 import { setWidgetDisplay } from '../../store/actions';
 import { WidgetDisplay, WidgetState } from '../../store/reducers/data';
@@ -44,24 +44,24 @@ const Widget: FC<Props> = ({ plugin, onMoveDown, onMoveUp, onRemove }) => {
           onClick={toggleIsOpen}
           title={`${isOpen ? 'Close' : 'Edit'} widget settings`}
         >
-          {isOpen ? collapseIcon : expandIcon}
+          {isOpen ? <CollapseIcon /> : <ExpandIcon />}
         </IconButton>
 
         {isOpen && (
           <IconButton onClick={onRemove} title="Remove widget">
-            {removeIcon}
+            <RemoveIcon />
           </IconButton>
         )}
 
         {isOpen && onMoveDown && (
           <IconButton onClick={onMoveDown} title="Move widget down">
-            {arrowDownIcon}
+            <DownIcon />
           </IconButton>
         )}
 
         {isOpen && onMoveUp && (
           <IconButton onClick={onMoveUp} title="Move widget up">
-            {arrowUpIcon}
+            <UpIcon />
           </IconButton>
         )}
 

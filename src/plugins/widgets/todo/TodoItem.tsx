@@ -1,7 +1,8 @@
+import icons from 'feather-icons/dist/icons.json';
 import React, { FC, useLayoutEffect, useRef } from 'react';
 
 import { useKeyPress } from '../../../utils/useKeyPress';
-import { checkedIcon, uncheckedIcon, removeIcon } from '../../../views/shared';
+import { Icon, RemoveIcon } from '../../../views/shared';
 import { State } from './reducer';
 import './TodoItem.sass';
 
@@ -53,7 +54,9 @@ const TodoItem: FC<Props> = ({ item, onDelete, onUpdate, onToggle }) => {
 
   return (
     <div className="TodoItem">
-      <a onClick={onToggle}>{item.completed ? checkedIcon : uncheckedIcon}</a>
+      <a onClick={onToggle}>
+        <Icon svg={icons[item.completed ? 'check-circle' : 'circle']} />
+      </a>
 
       <span
         ref={ref}
@@ -62,7 +65,7 @@ const TodoItem: FC<Props> = ({ item, onDelete, onUpdate, onToggle }) => {
       />
 
       <a onClick={onDelete} className="delete">
-        {removeIcon}
+        <RemoveIcon />
       </a>
     </div>
   );

@@ -1,9 +1,10 @@
-import featherIcons from 'feather-icons';
+// import featherIcons from 'feather-icons';
+import featherIcons from 'feather-icons/dist/icons.json';
 import React, { FC } from 'react';
 import { defineMessages, useIntl } from 'react-intl';
 
-import { Link } from './types';
 import { Icon } from '../../../views/shared';
+import { Link } from './types';
 
 const displayUrl = (url: string) => {
   try {
@@ -40,9 +41,7 @@ const Display: FC<Props> = ({ icon, name, number, url }) => {
 
   return (
     <a href={url} rel="noopener noreferrer" title={title}>
-      {icon && featherIcons.icons[icon] && (
-        <Icon svg={featherIcons.icons[icon].toSvg()} />
-      )}
+      {icon && featherIcons[icon] && <Icon svg={featherIcons[icon]} />}
       {name}
       {!name && !icon && displayUrl(url)}
     </a>

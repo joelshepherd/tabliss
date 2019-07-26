@@ -1,9 +1,4 @@
-import eyeOn from 'feather-icons/dist/icons/eye.svg';
-import eyeOff from 'feather-icons/dist/icons/eye-off.svg';
-import maximise from 'feather-icons/dist/icons/maximize-2.svg';
-import minimise from 'feather-icons/dist/icons/minimize-2.svg';
-import settings from 'feather-icons/dist/icons/settings.svg';
-import zap from 'feather-icons/dist/icons/zap.svg';
+import icons from 'feather-icons/dist/icons.json';
 import React, { FC } from 'react';
 import { defineMessages, useIntl } from 'react-intl';
 import { useDispatch } from 'react-redux';
@@ -70,12 +65,12 @@ const Overlay: FC = () => {
   return (
     <div className="Overlay">
       <a onClick={handleToggleSettings} title={`${settingsHint} (S)`}>
-        <Icon svg={settings} />
+        <Icon svg={icons['settings']} />
       </a>
 
       {pending && (
         <span title={intl.formatMessage(messages.loadingHint)}>
-          <Icon svg={zap} />
+          <Icon svg={icons['zap']} />
         </span>
       )}
 
@@ -84,7 +79,7 @@ const Overlay: FC = () => {
         onClick={handleToggleFocus}
         title={`${focusHint} (W)`}
       >
-        <Icon svg={focus ? eyeOff : eyeOn} />
+        <Icon svg={focus ? icons['eye-off'] : icons['eye']} />
       </a>
 
       {handleToggleFullscreen && (
@@ -93,7 +88,9 @@ const Overlay: FC = () => {
           onClick={handleToggleFullscreen}
           title={`${fullscreenHint} (F)`}
         >
-          <Icon svg={isFullscreen ? minimise : maximise} />
+          <Icon
+            svg={isFullscreen ? icons['minimize-2'] : icons['maximize-2']}
+          />
         </a>
       )}
     </div>

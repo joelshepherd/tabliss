@@ -1,11 +1,7 @@
+import icons from 'feather-icons/dist/icons.json';
 import React, { FC, useReducer, useEffect } from 'react';
 
-import {
-  arrowDownIcon,
-  arrowUpIcon,
-  checkedIcon,
-  uncheckedIcon,
-} from '../../../views/shared';
+import { DownIcon, Icon, UpIcon } from '../../../views/shared';
 import { useToggle } from '../../../utils/useToggle';
 import { addTodo, removeTodo, toggleTodo, updateTodo } from './actions';
 import { reducer } from './reducer';
@@ -40,12 +36,10 @@ const Todo: FC<Props> = ({ data = defaultData, setData }) => {
       <div>
         <TodoInput onCreate={(...args) => dispatch(addTodo(...args))} />{' '}
         <a onClick={toggleShowCompleted}>
-          {showCompleted ? checkedIcon : uncheckedIcon}
+          <Icon svg={icons[showCompleted ? 'check-circle' : 'circle']} />
         </a>{' '}
         {items.length > data.show && (
-          <a onClick={toggleShowMore}>
-            {showMore ? arrowUpIcon : arrowDownIcon}
-          </a>
+          <a onClick={toggleShowMore}>{showMore ? <UpIcon /> : <DownIcon />}</a>
         )}
       </div>
     </div>

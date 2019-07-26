@@ -1,4 +1,4 @@
-import browserLanguage from 'in-browser-language';
+import { pick } from 'in-browser-language';
 
 export const messages: Record<string, Record<string, string>> = {
   cs: require('./lang/cs.json'),
@@ -27,4 +27,4 @@ export const messages: Record<string, Record<string, string>> = {
 };
 
 export const locales = Object.keys(messages);
-export const defaultLocale = browserLanguage.pick(locales, 'en');
+export const defaultLocale = pick(locales, 'en');
