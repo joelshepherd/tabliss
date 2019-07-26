@@ -7,25 +7,14 @@ const NbaSettings: FC<Props> = ({
   setData,
 }) => (
   <div className="NbaSettings">
-    {/* <label>
-      <input
-        type="checkbox"
-        checked={data.showBookAndAuthor}
-        onChange={() =>
-          setData({ ...data, showBookAndAuthor: !data.showBookAndAuthor })
-        }
-      />{' '}
-      Display book and author
-    </label>
-
     <label>
       <input
         type="checkbox"
-        checked={data.centerText}
-        onChange={() => setData({ ...data, centerText: !data.centerText })}
+        checked={data.displayLogo}
+        onChange={() => setData({ ...data, displayLogo: !data.displayLogo })}
       />{' '}
-      Align text at center
-    </label> */}
+      Display team logo
+    </label>
   </div>
 );
 

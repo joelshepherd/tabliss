@@ -20,20 +20,22 @@ setCache
     getCurrentGames(new Date()).then(setCache);
   }, [timeCode]);
 
-  if (!cache) {
-     return null;
+  if (!cache || cache.length < 1) {
+     return <div>No games today</div>;
   }
 
   return (
     <div>{
       cache.map((game: Game) => (
         <div key={game.gameId} className='nba-game'>
-          <p>
-            <img className="icon"src={game.hTeam.logo}/>
+          <div>{data.displayLogo ? <img className="icon"src={game.hTeam.logo}/> : null}</div>
+          <span className="teams">
             {game.hTeam.triCode} - {game.vTeam.triCode}
-            <img className="icon"src={game.vTeam.logo}/>
-          </p>
-          {game.period.current ? <p>{game.hTeam.score} - {game.vTeam.score}</p>: <p>{format(new Date(game.startTimeUTC), 'hh:mm a')}</p>}
+          </span>
+          <div>{data.displayLogo ? <img className="icon"src={game.vTeam.logo}/> : null}</div>
+          <div className="score">
+            {game.period.current ? <span>{game.hTeam.score} {game.vTeam.score}</span>: <span>{format(new Date(game.startTimeUTC), 'hh:mm a')}</span>}
+          </div>
         </div>
       ))}
     </div>

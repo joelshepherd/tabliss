@@ -1,7 +1,8 @@
 import { API } from "../../types";
 
 export type Data ={
-
+  teams: string[];
+  displayLogo: boolean;
 }
 
 type Team = {
@@ -32,5 +33,6 @@ export type Cache = Game[];
 export type Props = API<Data, Cache>;
 
 export const defaultData: Data = {
-
+  teams: [],
+  displayLogo: false,
 }
