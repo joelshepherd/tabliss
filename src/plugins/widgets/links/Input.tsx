@@ -1,4 +1,4 @@
-import featherIcons from 'feather-icons/dist/icons.json';
+import icons from 'feather-icons/dist/icons.json';
 import React, { FC } from 'react';
 
 import {
@@ -17,7 +17,7 @@ type Props = Link & {
   onRemove: () => void;
 };
 
-const iconList = Object.keys(featherIcons);
+const iconList = Object.keys(icons);
 
 const Input: FC<Props> = props => (
   <div className="LinkInput">

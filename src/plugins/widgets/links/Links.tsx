@@ -1,4 +1,3 @@
-import featherIcons from 'feather-icons/dist/icons.json';
 import React, { FC } from 'react';
 
 import { useKeyPress } from '../../../utils/useKeyPress';
@@ -32,7 +31,7 @@ const Links: FC<Props> = ({ data = defaultData }) => {
         ))
       ) : (
         <a onClick={toggleVisible} title="Show quick links">
-          <Icon svg={featherIcons['link-2']} />
+          <Icon name={'link-2'} />
         </a>
       )}
     </div>

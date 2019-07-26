@@ -1,4 +1,3 @@
-import icons from 'feather-icons/dist/icons.json';
 import React, { FC, useReducer, useEffect } from 'react';
 
 import { DownIcon, Icon, UpIcon } from '../../../views/shared';
@@ -36,7 +35,7 @@ const Todo: FC<Props> = ({ data = defaultData, setData }) => {
       <div>
         <TodoInput onCreate={(...args) => dispatch(addTodo(...args))} />{' '}
         <a onClick={toggleShowCompleted}>
-          <Icon svg={icons[showCompleted ? 'check-circle' : 'circle']} />
+          <Icon name={showCompleted ? 'check-circle' : 'circle'} />
         </a>{' '}
         {items.length > data.show && (
           <a onClick={toggleShowMore}>{showMore ? <UpIcon /> : <DownIcon />}</a>

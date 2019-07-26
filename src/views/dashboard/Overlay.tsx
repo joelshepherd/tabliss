@@ -1,4 +1,3 @@
-import icons from 'feather-icons/dist/icons.json';
 import React, { FC } from 'react';
 import { defineMessages, useIntl } from 'react-intl';
 import { useDispatch } from 'react-redux';
@@ -65,12 +64,12 @@ const Overlay: FC = () => {
   return (
     <div className="Overlay">
       <a onClick={handleToggleSettings} title={`${settingsHint} (S)`}>
-        <Icon svg={icons['settings']} />
+        <Icon name="settings" />
       </a>
 
       {pending && (
         <span title={intl.formatMessage(messages.loadingHint)}>
-          <Icon svg={icons['zap']} />
+          <Icon name="zap" />
         </span>
       )}
 
@@ -79,7 +78,7 @@ const Overlay: FC = () => {
         onClick={handleToggleFocus}
         title={`${focusHint} (W)`}
       >
-        <Icon svg={focus ? icons['eye-off'] : icons['eye']} />
+        <Icon name={focus ? 'eye-off' : 'eye'} />
       </a>
 
       {handleToggleFullscreen && (
@@ -88,9 +87,7 @@ const Overlay: FC = () => {
           onClick={handleToggleFullscreen}
           title={`${fullscreenHint} (F)`}
         >
-          <Icon
-            svg={isFullscreen ? icons['minimize-2'] : icons['maximize-2']}
-          />
+          <Icon name={isFullscreen ? 'minimize-2' : 'maximize-2'} />
         </a>
       )}
     </div>

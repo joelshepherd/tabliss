@@ -1,8 +1,7 @@
-import groupBy from 'lodash-es/groupBy';
 import React, { FC } from 'react';
 
 import { useSelector } from '../../store';
-import { WidgetPosition } from '../../store/reducers/data';
+import { WidgetPosition, WidgetState } from '../../store/reducers/data';
 import Slot from './Slot';
 import './Widgets.sass';
 
@@ -11,7 +10,14 @@ const Widgets: FC = () => {
   const widgets = useSelector(state => state.data.widgets);
 
   const groups = Object.entries(
-    groupBy(widgets, widget => widget.display.position),
+    widgets.reduce<{ [key: string]: WidgetState[] }>((carry, widget) => {
+      return {
+        ...carry,
+        [widget.display.position]: (
+          carry[widget.display.position] || []
+        ).concat(widget),
+      };
+    }, {}),
   );
 
   return (

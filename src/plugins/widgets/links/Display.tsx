@@ -1,5 +1,3 @@
-// import featherIcons from 'feather-icons';
-import featherIcons from 'feather-icons/dist/icons.json';
 import React, { FC } from 'react';
 import { defineMessages, useIntl } from 'react-intl';
 
@@ -41,7 +39,7 @@ const Display: FC<Props> = ({ icon, name, number, url }) => {
 
   return (
     <a href={url} rel="noopener noreferrer" title={title}>
-      {icon && featherIcons[icon] && <Icon svg={featherIcons[icon]} />}
+      {icon && <Icon name={icon} />}
       {name}
       {!name && !icon && displayUrl(url)}
     </a>

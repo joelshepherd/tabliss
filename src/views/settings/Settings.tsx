@@ -1,10 +1,10 @@
-import icons from 'feather-icons/dist/icons.json';
 import React, { FC, useCallback } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { useDispatch } from 'react-redux';
 
 import { resetStore, toggleSettings } from '../../store/actions';
 import { useKeyPress } from '../../utils/useKeyPress';
+import { Icon } from '../shared';
 import Logo from '../shared/Logo';
 import Background from './Background';
 import Feedback from './Feedback';
@@ -55,7 +55,7 @@ const Settings: FC = () => {
 
         <p>
           <a href="https://tabliss.io/" target="_blank">
-            {icons['globe']}
+            <Icon name="globe" />
           </a>
           &nbsp;&nbsp;
           <a
@@ -63,7 +63,7 @@ const Settings: FC = () => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            {icons['twitter']}
+            <Icon name="twitter" />
           </a>
           &nbsp;&nbsp;
           <a
@@ -71,7 +71,7 @@ const Settings: FC = () => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            {icons['github']}
+            <Icon name="github" />
           </a>
         </p>
 

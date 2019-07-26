@@ -7,39 +7,39 @@ import { IconButton, Icon } from '../shared';
 const positions = [
   {
     value: 'topLeft',
-    icon: require('feather-icons/dist/icons/arrow-up-left.svg'),
+    icon: 'arrow-up-left',
   },
   {
     value: 'topCentre',
-    icon: require('feather-icons/dist/icons/arrow-up.svg'),
+    icon: 'arrow-up',
   },
   {
     value: 'topRight',
-    icon: require('feather-icons/dist/icons/arrow-up-right.svg'),
+    icon: 'arrow-up-right',
   },
   {
     value: 'middleLeft',
-    icon: require('feather-icons/dist/icons/arrow-left.svg'),
+    icon: 'arrow-left',
   },
   {
     value: 'middleCentre',
-    icon: require('feather-icons/dist/icons/move.svg'),
+    icon: 'move',
   },
   {
     value: 'middleRight',
-    icon: require('feather-icons/dist/icons/arrow-right.svg'),
+    icon: 'arrow-right',
   },
   {
     value: 'bottomLeft',
-    icon: require('feather-icons/dist/icons/arrow-down-left.svg'),
+    icon: 'arrow-down-left',
   },
   {
     value: 'bottomCentre',
-    icon: require('feather-icons/dist/icons/arrow-down.svg'),
+    icon: 'arrow-down',
   },
   {
     value: 'bottomRight',
-    icon: require('feather-icons/dist/icons/arrow-down-right.svg'),
+    icon: 'arrow-down-right',
   },
 ] as const;
 
@@ -59,7 +59,7 @@ const PositionInput: FC<Props> = ({ value, onChange }) => (
           onClick={() => onChange(position.value)}
           primary={value === position.value}
         >
-          <Icon svg={position.icon} />
+          <Icon name={position.icon} />
         </IconButton>
       ))}
     </div>

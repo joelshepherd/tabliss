@@ -1,4 +1,3 @@
-import icons from 'feather-icons/dist/icons.json';
 import React, { FC, useLayoutEffect, useRef } from 'react';
 
 import { useKeyPress } from '../../../utils/useKeyPress';
@@ -55,7 +54,7 @@ const TodoItem: FC<Props> = ({ item, onDelete, onUpdate, onToggle }) => {
   return (
     <div className="TodoItem">
       <a onClick={onToggle}>
-        <Icon svg={icons[item.completed ? 'check-circle' : 'circle']} />
+        <Icon name={item.completed ? 'check-circle' : 'circle'} />
       </a>
 
       <span
