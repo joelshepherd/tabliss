@@ -12,6 +12,6 @@ export type Props = API<Data>;
 export const defaultData: Data = {
   searchEngine: 'google',
   placeholder: '',
-  suggestionsEngine: 'google',
+  suggestionsEngine: '',
   suggestionsQuantity: 4,
 };

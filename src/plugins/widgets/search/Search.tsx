@@ -46,7 +46,9 @@ class Search extends React.PureComponent<Props & WrappedComponentProps, State> {
   }
 
   componentDidMount() {
-    if (this.searchInput.current) this.searchInput.current.focus();
+    if (this.searchInput.current) {
+      this.searchInput.current.focus();
+    }
   }
 
   render() {
@@ -188,10 +190,15 @@ class Search extends React.PureComponent<Props & WrappedComponentProps, State> {
   }
 
   /**
-   * Retrieves suggestiondata from google
+   * Retrieves suggestion data
    */
   private getSuggestionData() {
     const { query, getSuggestionData } = this.state;
+
+    // Disable suggestions for Firefox (they do not allow the required CSP)
+    if (process.env.BUILD_TARGET === 'firefox') {
+      return;
+    }
 
     if (!getSuggestionData || !this.props.data!.suggestionsEngine) {
       return;

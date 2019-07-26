@@ -35,26 +35,28 @@ const SearchSettings: FC<Props> = ({ data = defaultData, setData }) => (
       </select>
     </label>
 
-    <label>
-      Suggestions Provider
-      <select
-        onChange={event =>
-          setData({ ...data, suggestionsEngine: event.target.value })
-        }
-        value={data.suggestionsEngine}
-      >
-        <option key="off" value="">
-          Off
-        </option>
-        {engines
-          .filter(({ suggest_url }) => Boolean(suggest_url))
-          .map(({ key, name }) => (
-            <option key={key} value={key}>
-              {name}
-            </option>
-          ))}
-      </select>
-    </label>
+    {process.env.BUILD_TARGET !== 'firefox' && (
+      <label>
+        Suggestions Provider
+        <select
+          onChange={event =>
+            setData({ ...data, suggestionsEngine: event.target.value })
+          }
+          value={data.suggestionsEngine}
+        >
+          <option key="off" value="">
+            Off
+          </option>
+          {engines
+            .filter(({ suggest_url }) => Boolean(suggest_url))
+            .map(({ key, name }) => (
+              <option key={key} value={key}>
+                {name}
+              </option>
+            ))}
+        </select>
+      </label>
+    )}
 
     {data.suggestionsEngine && (
       <label>
