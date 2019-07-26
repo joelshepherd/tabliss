@@ -7,6 +7,7 @@ import { getCurrentGames } from './api';
 import { Props, defaultData, Game } from './types';
 
 import './Nba.sass';
+import { getPeriod } from './getPeriod';
 
 const Nba: FC<Props> = ({
   cache,
@@ -25,9 +26,12 @@ setCache
   }
 
   return (
-    <div>{
+    <div className="nba-container">{
       cache.map((game: Game) => (
         <div key={game.gameId} className='nba-game'>
+          <div className="period">
+            { getPeriod(game) }
+          </div>
           <div>{data.displayLogo ? <img className="icon"src={game.hTeam.logo}/> : null}</div>
           <span className="teams">
             {game.hTeam.triCode} - {game.vTeam.triCode}

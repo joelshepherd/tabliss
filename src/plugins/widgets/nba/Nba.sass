@@ -1,15 +1,23 @@
-.nba-game
-  display: grid;
-  grid-template-columns: 20% 50% 20%;
-  text-align: center;
-  width: 12em;
-  margin: 1em auto;
-  .teams
-    text-align-last: justify;
-  .score
-    grid-column: 2;
-    text-align-last: justify;
-  .icon
-    height: 1.5em;
-    width: 1.5em;
+.nba-container
+  max-height: 45vh;
+  overflow: hidden
+  &:hover
+      overflow-y: auto
+  .nba-game
+    display: grid;
+    grid-template-columns: 25% 50% 25%;
+    grid-template-rows: auto auto auto;
+    text-align: center;
+    width: 12em;
+    margin: 1.5em auto;
+    .period
+      grid-column: 1 / 4;
+    .teams
+      text-align-last: justify;
+    .score
+      grid-column: 2;
+      text-align-last: justify;
+    .icon
+      height: 1.5em;
+      width: 1.5em;
 
