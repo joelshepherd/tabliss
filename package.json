@@ -19,7 +19,6 @@
     "feather-icons": "^4.22.1",
     "in-browser-language": "^1.0.3",
     "localforage": "^1.7.1",
-    "localforage-webextensionstorage-driver": "^1.2.1",
     "lodash-es": "^4.17.10",
     "normalize.css": "^8.0.0",
     "parse-link-header": "^1.0.1",
@@ -30,6 +29,7 @@
     "react-redux": "^7.1.0",
     "redux": "^4.0.1",
     "redux-persist": "^6.0.0-pre2.1",
+    "redux-persist-webextension-storage": "^1.0.2",
     "tlds": "^1.203.1",
     "uuid": "^3.2.1"
   },

@@ -1,9 +1,5 @@
 import localForage from 'localforage';
-import { sync as syncDriver } from 'localforage-webextensionstorage-driver';
-
-if (process.env.BUILD_TARGET !== 'web') {
-  localForage.defineDriver(syncDriver);
-}
+import { syncStorage } from 'redux-persist-webextension-storage';
 
 function createCacheStorage() {
   return localForage.createInstance({
@@ -14,14 +10,13 @@ function createCacheStorage() {
 }
 
 function createDataStorage() {
-  return localForage.createInstance({
-    name: 'tabliss',
-    driver:
-      process.env.BUILD_TARGET === 'web'
-        ? localForage.LOCALSTORAGE
-        : syncDriver._driver,
-    storeName: 'data',
-  });
+  return process.env.BUILD_TARGET === 'web'
+    ? localForage.createInstance({
+        name: 'tabliss',
+        driver: localForage.LOCALSTORAGE,
+        storeName: 'data',
+      })
+    : syncStorage;
 }
 
 export function createStorage() {
