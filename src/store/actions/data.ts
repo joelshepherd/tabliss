@@ -21,6 +21,13 @@ export function removeWidget(id: string) {
   } as const;
 }
 
+export function reorderWidget(id: string, to: number) {
+  return {
+    type: 'REORDER_WIDGET',
+    data: { id, to },
+  } as const;
+}
+
 export function setData(id: string, data: object) {
   return {
     type: 'SET_DATA',
@@ -63,6 +70,7 @@ export type DataActions =
   | ReturnType<typeof setBackground>
   | ReturnType<typeof addWidget>
   | ReturnType<typeof removeWidget>
+  | ReturnType<typeof reorderWidget>
   | ReturnType<typeof setData>
   | ReturnType<typeof setBackgroundDisplay>
   | ReturnType<typeof setLocale>

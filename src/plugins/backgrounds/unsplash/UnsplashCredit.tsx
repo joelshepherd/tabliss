@@ -8,12 +8,12 @@ interface Props {
   image: Image;
 }
 
-const UnsplashCredit: FC<Props> = props => (
+const UnsplashCredit: FC<Props> = ({ image }) => (
   <div className="credit">
-    <span style={{ float: 'right' }}>{props.image.location_title}</span>
+    <span style={{ float: 'right' }}>{image.location_title}</span>
 
     <a
-      href={props.image.image_link + UNSPLASH_UTM}
+      href={image.image_link + UNSPLASH_UTM}
       rel="noopener noreferrer"
       target="_blank"
     >
@@ -25,11 +25,11 @@ const UnsplashCredit: FC<Props> = props => (
     </a>
     {' / '}
     <a
-      href={props.image.user_link + UNSPLASH_UTM}
+      href={image.user_link + UNSPLASH_UTM}
       rel="noopener noreferrer"
       target="_blank"
     >
-      {props.image.user_name}
+      {image.user_name}
     </a>
     {' / '}
     <a

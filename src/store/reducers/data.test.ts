@@ -44,6 +44,8 @@ describe('data() reducer', () => {
     });
   });
 
+  // @todo Test reorder widget
+
   it('should set locale', () => {
     expect(data(state, setLocale('en-AU'))).toEqual({
       ...state,

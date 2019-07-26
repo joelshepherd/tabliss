@@ -81,4 +81,8 @@ describe('links/reducer()', () => {
       { url: 'https://tabliss.io/about.html' },
     ]);
   });
+
+  it('should throw on unknown action', () => {
+    expect(() => reducer([], { type: 'UNKNOWN' } as any)).toThrow();
+  });
 });

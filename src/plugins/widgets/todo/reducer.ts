@@ -31,6 +31,6 @@ export function reducer(state: State, action: Action) {
       );
 
     default:
-      throw new Error();
+      throw new Error('Unknown action');
   }
 }
