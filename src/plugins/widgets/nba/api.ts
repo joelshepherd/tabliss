@@ -4,8 +4,7 @@ import { gameQuery as query } from './query';
 
 export function getEstString(date:Date) {
   const est = subMinutes(addMinutes(startOfDay(date), date.getTimezoneOffset()), 240);
-  // return format(est, 'yyyyMMdd');
-  return '20190312';
+  return format(est, 'yyyyMMdd');
 };
 
 export async function getCurrentGames(date: Date) {

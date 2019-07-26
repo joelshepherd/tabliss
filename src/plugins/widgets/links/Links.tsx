@@ -2,10 +2,10 @@ import React, { FC } from 'react';
 
 import { useKeyPress } from '../../../utils/useKeyPress';
 import { useToggle } from '../../../utils/useToggle';
+import { Icon } from '../../../views/shared';
 import Display from './Display';
 import { Props, defaultData } from './types';
 import './Links.sass';
-const linkIcon = require('feather-icons/dist/icons/link-2.svg');
 
 const Links: FC<Props> = ({ data = defaultData }) => {
   const [visible, toggleVisible] = useToggle();
@@ -31,7 +31,7 @@ const Links: FC<Props> = ({ data = defaultData }) => {
         ))
       ) : (
         <a onClick={toggleVisible} title="Show quick links">
-          <i dangerouslySetInnerHTML={{ __html: linkIcon }} />
+          <Icon name={'link-2'} />
         </a>
       )}
     </div>

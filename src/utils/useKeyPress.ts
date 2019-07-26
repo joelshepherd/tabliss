@@ -12,9 +12,13 @@ function isInputEvent(event: KeyboardEvent) {
 export function useKeyPress(
   callback: (event: KeyboardEvent) => void,
   detectKeys: string[],
+  ignoreInputEvents = true,
 ) {
   const handler = (event: KeyboardEvent) => {
-    if (detectKeys.includes(event.key) && !isInputEvent(event)) {
+    if (
+      detectKeys.includes(event.key) &&
+      !(ignoreInputEvents && isInputEvent(event))
+    ) {
       callback(event);
     }
   };
@@ -25,5 +29,5 @@ export function useKeyPress(
     return () => {
       window.removeEventListener('keydown', handler);
     };
-  }, []);
+  }, [ignoreInputEvents, callback]);
 }

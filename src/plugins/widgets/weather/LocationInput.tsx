@@ -1,8 +1,7 @@
 import React from 'react';
 
+import { Icon } from '../../../views/shared';
 import './LocationInput.sass';
-const navigationIcon = require('feather-icons/dist/icons/navigation.svg');
-const searchIcon = require('feather-icons/dist/icons/search.svg');
 
 interface Props {
   latitude?: number;
@@ -46,7 +45,7 @@ class LocationInput extends React.PureComponent<Props, State> {
               />
 
               <button type="submit" className="button--primary button--icon">
-                <i dangerouslySetInnerHTML={{ __html: searchIcon }} />
+                <Icon name="search" />
               </button>
             </div>
           </form>
@@ -100,7 +99,7 @@ class LocationInput extends React.PureComponent<Props, State> {
               className="button--primary button--icon"
               onClick={this.getCurrentLocation}
             >
-              <i dangerouslySetInnerHTML={{ __html: navigationIcon }} />
+              <Icon name="navigation" />
             </button>
           )}
         </div>

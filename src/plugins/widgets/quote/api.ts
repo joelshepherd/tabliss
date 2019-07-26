@@ -1,5 +1,4 @@
 import { API } from '../../types';
-import get from 'lodash-es/get';
 import { Quote } from './types';
 
 // Get developer excuse
@@ -32,9 +31,21 @@ async function getQuoteOfTheDay(category?: string) {
     };
   }
 
+  if (
+    body &&
+    body.contents &&
+    body.contents.quotes &&
+    body.contents.quotes[0]
+  ) {
+    return {
+      author: body.contents.quotes[0].author,
+      quote: body.contents.quotes[0].quote,
+    };
+  }
+
   return {
-    author: get(body, 'contents.quotes[0].author'),
-    quote: get(body, 'contents.quotes[0].quote'),
+    author: null,
+    quote: null,
   };
 }
 

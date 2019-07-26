@@ -1,19 +1,20 @@
 import React, { FC, useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 
-import PluginContainer from '../shared/Plugin';
 import { get } from '../../plugins';
+import PluginContainer from '../shared/Plugin';
 import {
-  arrowDownIcon,
-  arrowUpIcon,
-  collapseIcon,
-  expandIcon,
+  CollapseIcon,
+  DownIcon,
+  ExpandIcon,
   IconButton,
-  removeIcon,
+  RemoveIcon,
+  UpIcon,
 } from '../shared';
+import { setWidgetDisplay } from '../../store/actions';
 import { WidgetDisplay, WidgetState } from '../../store/reducers/data';
-import { setWidgetDisplay } from '../../store/actions/data';
 import { useToggle } from '../../utils/useToggle';
+import PositionInput from './PositionInput';
 import './Widget.sass';
 
 interface Props {
@@ -25,8 +26,9 @@ interface Props {
 
 const Widget: FC<Props> = ({ plugin, onMoveDown, onMoveUp, onRemove }) => {
   const [isOpen, toggleIsOpen] = useToggle(onRemove === undefined);
+  const [isFontOpen, toggleIsFontOpen] = useToggle();
 
-  const { name: title, Settings } = get(plugin.type);
+  const { name, Settings } = get(plugin.type);
 
   const dispatch = useDispatch();
   const boundSetDisplay = useCallback(
@@ -35,91 +37,69 @@ const Widget: FC<Props> = ({ plugin, onMoveDown, onMoveUp, onRemove }) => {
     [dispatch, plugin.id],
   );
 
-  const [showDisplay, toggleDisplay] = useToggle();
-
   return (
     <fieldset className="Widget">
-      {Settings ? (
-        <div className="title--buttons">
-          <IconButton
-            onClick={toggleIsOpen}
-            title={`${isOpen ? 'Close' : 'Edit'} widget settings`}
-          >
-            {isOpen ? collapseIcon : expandIcon}
+      <div className="title--buttons">
+        <IconButton
+          onClick={toggleIsOpen}
+          title={`${isOpen ? 'Close' : 'Edit'} widget settings`}
+        >
+          {isOpen ? <CollapseIcon /> : <ExpandIcon />}
+        </IconButton>
+
+        {isOpen && (
+          <IconButton onClick={onRemove} title="Remove widget">
+            <RemoveIcon />
           </IconButton>
+        )}
 
-          {isOpen && (
-            <IconButton key="remove" onClick={onRemove} title="Remove widget">
-              {removeIcon}
-            </IconButton>
-          )}
+        {isOpen && onMoveDown && (
+          <IconButton onClick={onMoveDown} title="Move widget down">
+            <DownIcon />
+          </IconButton>
+        )}
 
-          {isOpen && onMoveDown && (
-            <IconButton
-              key="down"
-              onClick={onMoveDown}
-              title="Move widget down"
-            >
-              {arrowDownIcon}
-            </IconButton>
-          )}
+        {isOpen && onMoveUp && (
+          <IconButton onClick={onMoveUp} title="Move widget up">
+            <UpIcon />
+          </IconButton>
+        )}
 
-          {isOpen && onMoveUp && (
-            <IconButton key="up" onClick={onMoveUp} title="Move widget up">
-              {arrowUpIcon}
-            </IconButton>
-          )}
+        <h4 onClick={toggleIsOpen}>{name}</h4>
+      </div>
 
-          <h4 onClick={toggleIsOpen}>{title}</h4>
-        </div>
-      ) : (
-        <h4>{title}</h4>
-      )}
-
-      {isOpen && Settings && (
+      {isOpen && (
         <div>
-          <PluginContainer id={plugin.id} Component={Settings} />
+          <PositionInput
+            value={plugin.display.position}
+            onChange={position => boundSetDisplay({ position })}
+          />
+
+          <label>
+            Size
+            <br />
+            <input
+              type="range"
+              value={plugin.display.fontSize}
+              min="2"
+              max="100"
+              step="2"
+              onChange={event =>
+                boundSetDisplay({ fontSize: Number(event.target.value) })
+              }
+            />
+          </label>
+
+          {Settings && <PluginContainer id={plugin.id} Component={Settings} />}
 
           <p>
-            <a onClick={toggleDisplay}>
-              {showDisplay ? 'Hide' : 'Show'} display settings
+            <a onClick={toggleIsFontOpen}>
+              {isFontOpen ? 'Close' : 'Edit'} font settings
             </a>
           </p>
-          {showDisplay && (
+
+          {isFontOpen && (
             <>
-              <label>
-                Position
-                <select
-                  value={plugin.display.position}
-                  onChange={event =>
-                    boundSetDisplay({ position: event.target.value as any })
-                  }
-                >
-                  <option value="topLeft">Top Left</option>
-                  <option value="topCentre">Top Centre</option>
-                  <option value="topRight">Top Right</option>
-                  <option value="middleLeft">Middle Left</option>
-                  <option value="middleCentre">Middle Centre</option>
-                  <option value="middleRight">Middle Right</option>
-                  <option value="bottomLeft">Bottom Left</option>
-                  <option value="bottomCentre">Bottom Centre</option>
-                  <option value="bottomRight">Bottom Right</option>
-                </select>
-              </label>
-
-              <label>
-                Size
-                <input
-                  type="number"
-                  value={plugin.display.fontSize}
-                  min="1"
-                  max="100"
-                  onChange={event =>
-                    boundSetDisplay({ fontSize: Number(event.target.value) })
-                  }
-                />
-              </label>
-
               <label>
                 Font
                 <input

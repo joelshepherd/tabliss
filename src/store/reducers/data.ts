@@ -54,9 +54,9 @@ export const initialState: DataState = {
   backgrounds: [
     {
       id: generateId(),
-      type: 'background/colour',
+      type: 'background/unsplash',
       active: true,
-      display: { luminosity: 0, blur: 0 },
+      display: { luminosity: -0.1, blur: 0 },
     },
   ],
   widgets: [
@@ -123,7 +123,15 @@ export function data(state = initialState, action: Actions): DataState {
         widgets: state.widgets.filter(plugin => plugin.id !== action.data.id),
       };
 
-    // @todo Reorder widget?
+    case 'REORDER_WIDGET':
+      const widgets = [...state.widgets];
+      const index = widgets.findIndex(widget => widget.id === action.data.id);
+      widgets.splice(action.data.to, 0, widgets.splice(index, 1)[0]);
+
+      return {
+        ...state,
+        widgets,
+      };
 
     case 'SET_DATA':
       return {

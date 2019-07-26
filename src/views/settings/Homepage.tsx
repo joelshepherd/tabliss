@@ -1,33 +1,27 @@
-import React from 'react';
+import React, { FC } from 'react';
 
-interface State {
-  open: boolean;
-}
+import { useToggle } from '../../utils/useToggle';
 
-class Homepage extends React.PureComponent<{}, State> {
-  state: State = { open: false };
+const Homepage: FC = () => {
+  const [isOpen, toggleIsOpen] = useToggle();
 
-  render() {
-    return (
-      <div>
-        {!this.state.open && (
-          <p>
-            <a onClick={this.handleToggle}>Open Tabliss when Firefox starts</a>
-          </p>
-        )}
+  return (
+    <div>
+      {!isOpen && (
+        <p>
+          <a onClick={toggleIsOpen}>Open Tabliss when Firefox starts</a>
+        </p>
+      )}
 
-        {this.state.open && (
-          <p>
-            Tabliss no longer controls your homepage. If you would like Tabliss
-            to open when you start Firefox, set your homepage to:
-            <input type="text" value={window.location.href} readOnly={true} />
-          </p>
-        )}
-      </div>
-    );
-  }
-
-  handleToggle = () => this.setState({ open: !this.state.open });
-}
+      {isOpen && (
+        <p>
+          Tabliss no longer controls your homepage. If you would like Tabliss to
+          open when you start Firefox, set your homepage to:
+          <input type="text" value={window.location.href} readOnly={true} />
+        </p>
+      )}
+    </div>
+  );
+};
 
 export default Homepage;

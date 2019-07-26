@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 
 import { resetStore, toggleSettings } from '../../store/actions';
 import { useKeyPress } from '../../utils/useKeyPress';
-import { githubIcon, globeIcon, twitterIcon } from '../shared';
+import { Icon } from '../shared';
 import Logo from '../shared/Logo';
 import Background from './Background';
 import Feedback from './Feedback';
@@ -55,7 +55,7 @@ const Settings: FC = () => {
 
         <p>
           <a href="https://tabliss.io/" target="_blank">
-            {globeIcon}
+            <Icon name="globe" />
           </a>
           &nbsp;&nbsp;
           <a
@@ -63,7 +63,7 @@ const Settings: FC = () => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            {twitterIcon}
+            <Icon name="twitter" />
           </a>
           &nbsp;&nbsp;
           <a
@@ -71,7 +71,7 @@ const Settings: FC = () => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            {githubIcon}
+            <Icon name="github" />
           </a>
         </p>
 

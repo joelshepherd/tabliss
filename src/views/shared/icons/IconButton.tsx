@@ -2,11 +2,15 @@ import React, { FC } from 'react';
 
 interface Props {
   onClick: () => void;
-  title: string;
+  primary?: boolean;
+  title?: string;
 }
 
-const IconButton: FC<Props> = ({ children, ...props }) => (
-  <button className="button--icon" {...props}>
+const IconButton: FC<Props> = ({ children, primary, ...props }) => (
+  <button
+    className={`button--icon ${primary ? 'button--primary' : ''}`}
+    {...props}
+  >
     {children}
   </button>
 );

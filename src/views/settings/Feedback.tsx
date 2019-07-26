@@ -1,5 +1,5 @@
 import React from 'react';
-import { IconButton, collapseIcon } from '../shared/index';
+import { CollapseIcon, IconButton } from '../shared';
 
 interface State {
   body: string;
@@ -43,7 +43,7 @@ class Feedback extends React.PureComponent<{}, State> {
 
             <div style={{ float: 'right' }}>
               <IconButton onClick={this.toggle} title="Close feedback form">
-                {collapseIcon}
+                <CollapseIcon />
               </IconButton>
             </div>
             <button

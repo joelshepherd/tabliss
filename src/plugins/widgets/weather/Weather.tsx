@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 
 import { useExpiringCache } from '../../../utils/useCache';
+import { Icon } from '../../../views/shared';
 import { getForecast } from './api';
 import { weatherIcons } from './icons';
 import { Props, defaultData } from './types';
@@ -34,11 +35,7 @@ const Weather: FC<Props> = ({
         onClick={() => setData({ ...data, showDetails: !data.showDetails })}
         title="Toggle weather details"
       >
-        <i
-          dangerouslySetInnerHTML={{
-            __html: weatherIcons[cache.icon],
-          }}
-        />
+        <Icon name={weatherIcons[cache.icon]} />
         <span className="temperature">{cache.temperature}˚</span>
       </div>
 

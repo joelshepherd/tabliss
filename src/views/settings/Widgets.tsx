@@ -3,14 +3,23 @@ import { useDispatch } from 'react-redux';
 
 import { WIDGET_PLUGINS } from '../../plugins';
 import { useSelector } from '../../store';
-import { addWidget, removeWidget } from '../../store/actions/data';
+import {
+  addWidget,
+  removeWidget,
+  reorderWidget,
+} from '../../store/actions/data';
 import Widget from './Widget';
 
 const Widgets: FC = () => {
   const active = useSelector(state => state.data.widgets);
+
   const dispatch = useDispatch();
   const boundAddWidget = useCallback(
     (type: string) => dispatch(addWidget(type)),
+    [dispatch],
+  );
+  const boundReorderWidget = useCallback(
+    (id: string, to: number) => dispatch(reorderWidget(id, to)),
     [dispatch],
   );
 
@@ -37,8 +46,16 @@ const Widgets: FC = () => {
         <Widget
           key={plugin.id}
           plugin={plugin}
-          onMoveUp={index !== 0 ? undefined : undefined}
-          onMoveDown={index !== active.length - 1 ? undefined : undefined}
+          onMoveUp={
+            index !== 0
+              ? () => boundReorderWidget(plugin.id, index - 1)
+              : undefined
+          }
+          onMoveDown={
+            index !== active.length - 1
+              ? () => boundReorderWidget(plugin.id, index + 1)
+              : undefined
+          }
           onRemove={() => dispatch(removeWidget(plugin.id))}
         />
       ))}

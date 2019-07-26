@@ -1,36 +1,39 @@
-import featherIcons from 'feather-icons';
-import React from 'react';
-import {
-  arrowUpIcon,
-  arrowDownIcon,
-  IconButton,
-  removeIcon,
-} from '../../../views/shared';
-import { Link as LinkProps } from './types';
+import icons from 'feather-icons/dist/icons.json';
+import React, { FC } from 'react';
 
-interface Props extends LinkProps {
+import {
+  IconButton,
+  RemoveIcon,
+  DownIcon,
+  UpIcon,
+} from '../../../views/shared';
+import { Link } from './types';
+
+type Props = Link & {
   number: number;
-  onChange: (values: Partial<LinkProps>) => void;
+  onChange: (values: Partial<Link>) => void;
   onMoveUp?: () => void;
   onMoveDown?: () => void;
   onRemove: () => void;
-}
+};
 
-const Input: React.StatelessComponent<Props> = props => (
+const iconList = Object.keys(icons);
+
+const Input: FC<Props> = props => (
   <div className="LinkInput">
     <h5>
       <div className="title--buttons">
         <IconButton onClick={props.onRemove} title="Remove link">
-          {removeIcon}
+          <RemoveIcon />
         </IconButton>
         {props.onMoveDown !== undefined && (
           <IconButton onClick={props.onMoveDown} title="Move link down">
-            {arrowDownIcon}
+            <DownIcon />
           </IconButton>
         )}
         {props.onMoveUp !== undefined && (
           <IconButton onClick={props.onMoveUp} title="Move link up">
-            {arrowUpIcon}
+            <UpIcon />
           </IconButton>
         )}
       </div>
@@ -63,7 +66,7 @@ const Input: React.StatelessComponent<Props> = props => (
         onChange={event => props.onChange({ icon: event.target.value })}
       >
         <option value={''}>None</option>
-        {Object.keys(featherIcons.icons).map(key => (
+        {iconList.map(key => (
           <option key={key}>{key}</option>
         ))}
       </select>

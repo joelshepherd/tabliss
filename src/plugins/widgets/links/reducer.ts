@@ -25,7 +25,8 @@ export function reducer(state: State, action: Action) {
       const links = [...state];
       links.splice(action.data.to, 0, links.splice(action.data.index, 1)[0]);
       return links;
-  }
 
-  return state;
+    default:
+      throw new Error('Unknown action');
+  }
 }

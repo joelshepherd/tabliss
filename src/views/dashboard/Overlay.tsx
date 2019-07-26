@@ -1,11 +1,5 @@
-import eyeOn from 'feather-icons/dist/icons/eye.svg';
-import eyeOff from 'feather-icons/dist/icons/eye-off.svg';
-import maximise from 'feather-icons/dist/icons/maximize-2.svg';
-import minimise from 'feather-icons/dist/icons/minimize-2.svg';
-import settings from 'feather-icons/dist/icons/settings.svg';
-import zap from 'feather-icons/dist/icons/zap.svg';
 import React, { FC } from 'react';
-import { defineMessages, injectIntl, InjectedIntlProps } from 'react-intl';
+import { defineMessages, useIntl } from 'react-intl';
 import { useDispatch } from 'react-redux';
 
 import { useFullscreen } from '../../utils/useFullscreen';
@@ -39,7 +33,8 @@ const messages = defineMessages({
   },
 });
 
-const Overlay: FC<InjectedIntlProps> = ({ intl }) => {
+const Overlay: FC = () => {
+  const intl = useIntl();
   const settingsHint = intl.formatMessage(messages.settingsHint);
   const focusHint = intl.formatMessage(messages.focusHint);
   const fullscreenHint = intl.formatMessage(messages.fullscreenHint);
@@ -69,12 +64,12 @@ const Overlay: FC<InjectedIntlProps> = ({ intl }) => {
   return (
     <div className="Overlay">
       <a onClick={handleToggleSettings} title={`${settingsHint} (S)`}>
-        <Icon svg={settings} />
+        <Icon name="settings" />
       </a>
 
       {pending && (
         <span title={intl.formatMessage(messages.loadingHint)}>
-          <Icon svg={zap} />
+          <Icon name="zap" />
         </span>
       )}
 
@@ -83,7 +78,7 @@ const Overlay: FC<InjectedIntlProps> = ({ intl }) => {
         onClick={handleToggleFocus}
         title={`${focusHint} (W)`}
       >
-        <Icon svg={focus ? eyeOff : eyeOn} />
+        <Icon name={focus ? 'eye-off' : 'eye'} />
       </a>
 
       {handleToggleFullscreen && (
@@ -92,11 +87,11 @@ const Overlay: FC<InjectedIntlProps> = ({ intl }) => {
           onClick={handleToggleFullscreen}
           title={`${fullscreenHint} (F)`}
         >
-          <Icon svg={isFullscreen ? minimise : maximise} />
+          <Icon name={isFullscreen ? 'minimize-2' : 'maximize-2'} />
         </a>
       )}
     </div>
   );
 };
 
-export default injectIntl(Overlay);
+export default Overlay;

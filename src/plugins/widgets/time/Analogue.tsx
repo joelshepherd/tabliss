@@ -16,14 +16,14 @@ const Analogue: FC<Props> = ({ time, showMinutes, showSeconds }) => {
   return (
     <div className="Time Analogue">
       <svg viewBox="0 0 100 100">
-        <circle cx="50" cy="50" r="45" className="bezel" />
+        <circle cx="50" cy="50" r="45" className="bezel theme-stroke" />
 
         <line
           x1="50"
           y1="50"
           x2="50"
           y2="30"
-          className="hours"
+          className="hours theme-stroke"
           style={{ transform: `rotate(${hoursAngle}deg)` }}
         />
 
@@ -33,7 +33,7 @@ const Analogue: FC<Props> = ({ time, showMinutes, showSeconds }) => {
             y1="50"
             x2="50"
             y2="15"
-            className="minutes"
+            className="minutes theme-stroke"
             style={{ transform: `rotate(${minutesAngle}deg)` }}
           />
         )}
@@ -44,12 +44,12 @@ const Analogue: FC<Props> = ({ time, showMinutes, showSeconds }) => {
             y1="50"
             x2="50"
             y2="10"
-            className="seconds"
+            className="seconds theme-stroke"
             style={{ transform: `rotate(${secondsAngle}deg)` }}
           />
         )}
 
-        <circle cx="50" cy="50" r="3" className="cap" />
+        <circle cx="50" cy="50" r="3" className="cap theme-fill" />
       </svg>
     </div>
   );

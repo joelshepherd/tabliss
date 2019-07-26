@@ -1,17 +1,11 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { FallbackProps } from 'react-error-boundary';
-import featherIcons from 'feather-icons';
 
-const Crashed: React.StatelessComponent<FallbackProps> = props => (
+import { Icon } from './icons';
+
+const Crashed: FC<FallbackProps> = () => (
   <div className="Crashed">
-    <p>
-      <i
-        dangerouslySetInnerHTML={{
-          __html: featherIcons.icons['alert-triangle'].toSvg(),
-        }}
-      />{' '}
-      Sorry this plugin has crashed!
-    </p>
+    <Icon name="alert-triangle" /> Sorry this plugin has crashed!
   </div>
 );
 

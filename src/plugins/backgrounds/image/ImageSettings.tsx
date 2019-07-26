@@ -1,9 +1,9 @@
 import React, { FC } from 'react';
 
-import { IconButton, removeIcon } from '../../../views/shared';
+import { useObjectUrls } from '../../../utils/useObjectUrl';
+import { IconButton, RemoveIcon } from '../../../views/shared';
 import { Props, defaultCache } from './types';
 import './ImageSettings.sass';
-import { useObjectUrls } from '../../../utils/useObjectUrl';
 
 const ImageSettings: FC<Props> = ({ cache = defaultCache, setCache }) => {
   const urls = useObjectUrls(cache);
@@ -38,7 +38,7 @@ const ImageSettings: FC<Props> = ({ cache = defaultCache, setCache }) => {
                 onClick={() => removeImage(index)}
                 title="Remove image"
               >
-                {removeIcon}
+                <RemoveIcon />
               </IconButton>
             </div>
           ))}
