@@ -16,9 +16,9 @@ const Giphy: FC<Props> = ({ cache, data = defaultData, setCache, loader }) => {
     getGif(config, loader).then(setCache);
   }, [data.tag, data.nsfw]);
 
-  if (!gif) return null;
+  const url = useObjectUrl(gif && gif.data);
 
-  const url = useObjectUrl(gif.data);
+  if (!gif) return null;
 
   return (
     <div className="Giphy fullscreen">

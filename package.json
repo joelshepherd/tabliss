@@ -19,7 +19,6 @@
     "feather-icons": "^4.22.1",
     "in-browser-language": "^1.0.3",
     "localforage": "^1.7.1",
-    "lodash-es": "^4.17.10",
     "normalize.css": "^8.0.0",
     "parse-link-header": "^1.0.1",
     "react": "^16.8.6",
