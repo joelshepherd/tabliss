@@ -80,7 +80,7 @@ export function useRotatingCache<T>(
         setCache({ now, next, rotated: Date.now(), deps }),
       );
     }
-  }, deps);
+  }, [...deps, cache]);
 
   return cache ? cache.now : undefined;
 }
