@@ -26,12 +26,12 @@ const Input: FC<Props> = props => (
         <IconButton onClick={props.onRemove} title="Remove link">
           <RemoveIcon />
         </IconButton>
-        {props.onMoveDown !== undefined && (
+        {props.onMoveDown && (
           <IconButton onClick={props.onMoveDown} title="Move link down">
             <DownIcon />
           </IconButton>
         )}
-        {props.onMoveUp !== undefined && (
+        {props.onMoveUp && (
           <IconButton onClick={props.onMoveUp} title="Move link up">
             <UpIcon />
           </IconButton>
