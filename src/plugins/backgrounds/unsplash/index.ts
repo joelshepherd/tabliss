@@ -8,6 +8,7 @@ const config: Plugin = {
   description: 'Who has time to add their own images.',
   Dashboard: Unsplash,
   Settings: UnsplashSettings,
+  supportsBackdrop: true,
 };
 
 export default config;

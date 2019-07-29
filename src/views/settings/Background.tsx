@@ -50,48 +50,52 @@ const Background: FC = () => {
             <Plugin id={background.id} Component={plugin.Settings} />
           )}
 
-          <label>
-            Blur <br />
-            <input
-              type="range"
-              list="blur-markers"
-              min="0"
-              max="50"
-              step="2"
-              value={background.display.blur}
-              onChange={event =>
-                handleSetDisplay(background.id, {
-                  blur: Number(event.target.value),
-                })
-              }
-            />
-            <datalist id="blur-markers">
-              <option value="0" />
-              <option value="50" />
-            </datalist>
-          </label>
+          {plugin.supportsBackdrop && (
+            <>
+              <label>
+                Blur <br />
+                <input
+                  type="range"
+                  list="blur-markers"
+                  min="0"
+                  max="50"
+                  step="2"
+                  value={background.display.blur}
+                  onChange={event =>
+                    handleSetDisplay(background.id, {
+                      blur: Number(event.target.value),
+                    })
+                  }
+                />
+                <datalist id="blur-markers">
+                  <option value="0" />
+                  <option value="50" />
+                </datalist>
+              </label>
 
-          <label>
-            Luminosity <br />
-            <input
-              type="range"
-              list="luminosity-markers"
-              min="-1"
-              max="1"
-              step="0.1"
-              value={background.display.luminosity}
-              onChange={event =>
-                handleSetDisplay(background.id, {
-                  luminosity: Number(event.target.value),
-                })
-              }
-            />
-            <datalist id="luminosity-markers">
-              <option value="-1" label="Darken" />
-              <option value="0" />
-              <option value="1" label="Lighten" />
-            </datalist>
-          </label>
+              <label>
+                Luminosity <br />
+                <input
+                  type="range"
+                  list="luminosity-markers"
+                  min="-1"
+                  max="1"
+                  step="0.1"
+                  value={background.display.luminosity}
+                  onChange={event =>
+                    handleSetDisplay(background.id, {
+                      luminosity: Number(event.target.value),
+                    })
+                  }
+                />
+                <datalist id="luminosity-markers">
+                  <option value="-1" label="Darken" />
+                  <option value="0" />
+                  <option value="1" label="Lighten" />
+                </datalist>
+              </label>
+            </>
+          )}
         </div>
       )}
     </div>

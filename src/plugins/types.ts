@@ -8,6 +8,7 @@ export type Plugin = {
   readonly description: string;
   readonly Dashboard: ComponentType<API<any, any>>;
   readonly Settings?: ComponentType<API<any, any>>;
+  readonly supportsBackdrop?: boolean;
 };
 
 export type BackgroundKeys = typeof BACKGROUNDS[number]['key'];

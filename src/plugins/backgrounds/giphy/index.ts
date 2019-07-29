@@ -8,6 +8,7 @@ const config: Plugin = {
   description: 'Hurt your eyes in every new tab.',
   Dashboard: Giphy,
   Settings: GiphySettings,
+  supportsBackdrop: true,
 };
 
 export default config;

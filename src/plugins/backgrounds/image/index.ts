@@ -8,6 +8,7 @@ const config: Plugin = {
   description: 'See your own images.',
   Dashboard: Image,
   Settings: ImageSettings,
+  supportsBackdrop: true,
 };
 
 export default config;
