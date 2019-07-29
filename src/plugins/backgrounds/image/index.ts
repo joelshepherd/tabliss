@@ -1,13 +1,13 @@
-import { Plugin } from '../../types';
+import { Config } from '../../types';
 import Image from './Image';
 import ImageSettings from './ImageSettings';
 
-const config: Plugin = {
+const config: Config = {
   key: 'background/image',
   name: 'Upload Images',
   description: 'See your own images.',
-  Dashboard: Image,
-  Settings: ImageSettings,
+  dashboardComponent: Image,
+  settingsComponent: ImageSettings,
   supportsBackdrop: true,
 };
 

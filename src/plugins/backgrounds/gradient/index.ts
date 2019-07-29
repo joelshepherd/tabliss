@@ -1,13 +1,13 @@
-import { Plugin } from '../../types';
+import { Config } from '../../types';
 import Gradient from './Gradient';
 import GradientSettings from './GradientSettings';
 
-const config: Plugin = {
+const config: Config = {
   key: 'background/gradient',
   name: 'Colour Gradient',
   description: 'Add more splashes of colour.',
-  Dashboard: Gradient,
-  Settings: GradientSettings,
+  dashboardComponent: Gradient,
+  settingsComponent: GradientSettings,
 };
 
 export default config;

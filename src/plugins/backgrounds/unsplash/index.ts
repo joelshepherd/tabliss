@@ -1,13 +1,13 @@
-import { Plugin } from '../../types';
+import { Config } from '../../types';
 import Unsplash from './Unsplash';
 import UnsplashSettings from './UnsplashSettings';
 
-const config: Plugin = {
+const config: Config = {
   key: 'background/unsplash',
   name: 'Unsplash',
   description: 'Who has time to add their own images.',
-  Dashboard: Unsplash,
-  Settings: UnsplashSettings,
+  dashboardComponent: Unsplash,
+  settingsComponent: UnsplashSettings,
   supportsBackdrop: true,
 };
 

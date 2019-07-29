@@ -1,39 +1,15 @@
-import colour from './backgrounds/colour';
-import giphy from './backgrounds/giphy';
-import gradient from './backgrounds/gradient';
-import image from './backgrounds/image';
-import unsplash from './backgrounds/unsplash';
+import { backgroundConfigs } from './backgrounds';
+import { widgetConfigs } from './widgets';
 
-import css from './widgets/css';
-import greeting from './widgets/greeting';
-import links from './widgets/links';
-import literatureClock from './widgets/literatureClock';
-import message from './widgets/message';
-import quote from './widgets/quote';
-import search from './widgets/search';
-import time from './widgets/time';
-import todo from './widgets/todo';
-import weather from './widgets/weather';
+export { backgroundConfigs } from './backgrounds';
+export { widgetConfigs } from './widgets';
 
-export const BACKGROUNDS = [colour, giphy, gradient, image, unsplash];
-export const WIDGETS = [
-  css,
-  greeting,
-  links,
-  literatureClock,
-  message,
-  quote,
-  search,
-  time,
-  todo,
-  weather,
-];
-export const PLUGINS = [...BACKGROUNDS, ...WIDGETS];
+const configs = [...backgroundConfigs, ...widgetConfigs];
 
-export function get(type: string) {
-  const plugin = PLUGINS.find(plugin => plugin.key === type);
+export function getConfig(key: string) {
+  const config = configs.find(config => config.key === key);
 
-  if (!plugin) throw new Error(`Unable to find plugin: ${type}`);
+  if (!config) throw new Error(`Unable to find config for plugin: ${key}`);
 
-  return plugin;
+  return config;
 }

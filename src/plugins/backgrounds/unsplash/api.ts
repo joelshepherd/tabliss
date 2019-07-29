@@ -1,10 +1,10 @@
 import { officialCollection, UNSPLASH_API_KEY } from './constants';
 import { By, Image, Data } from './types';
+import { API } from '../../types';
 
 export const getImage = async function(
-  settings: Data,
-  pushCallback: Function,
-  popCallback: Function,
+  settings: Pick<Data, 'by' | 'collections' | 'featured' | 'search'>,
+  loader: API['loader'],
 ): Promise<Image> {
   // Setup
   const { by, collections, featured, search } = settings;
@@ -30,10 +30,10 @@ export const getImage = async function(
   }
 
   // Fetch from API
-  pushCallback();
+  loader.push();
   const res = await (await fetch(url, { headers })).json();
   const data = await (await fetch(res.urls.raw + '?q=85&w=1920')).blob();
-  popCallback();
+  loader.pop();
 
   return {
     data,

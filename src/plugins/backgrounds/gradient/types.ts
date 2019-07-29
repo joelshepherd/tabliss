@@ -4,7 +4,7 @@ export type Data = {
   angle: number;
   from: string;
   to: string;
-  type: string;
+  type: 'linear-gradient' | 'radial-gradient';
 };
 
 export type Props = API<Data>;

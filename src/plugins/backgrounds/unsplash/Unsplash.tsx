@@ -14,9 +14,10 @@ const Unsplash: FC<Props> = ({
   loader,
   setCache,
 }) => {
+  const cacheArea = { cache, setCache };
   const image = useRotatingCache(
-    () => getImage(data, loader.push, loader.pop),
-    { cache, setCache },
+    () => getImage(data, loader),
+    cacheArea,
     data.timeout * 1000,
     [data.by, data.collections, data.featured, data.search],
   );

@@ -8,8 +8,6 @@ export enum By {
 }
 
 export interface Data {
-  blur: number;
-  darken: number;
   by: By;
   collections: string;
   featured: boolean;
@@ -30,8 +28,6 @@ type Cache = RotatingCache<Image>;
 export type Props = API<Data, Cache>;
 
 export const defaultData: Data = {
-  blur: 0,
-  darken: 10,
   by: By.OFFICIAL,
   collections: '',
   featured: false,

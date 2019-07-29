@@ -1,13 +1,13 @@
-import { Plugin } from '../../types';
+import { Config } from '../../types';
 import Time from './Time';
 import TimeSettings from './TimeSettings';
 
-const config: Plugin = {
+const config: Config = {
   key: 'widget/time',
   name: 'Time',
   description: 'Be on time.',
-  Dashboard: Time,
-  Settings: TimeSettings,
+  dashboardComponent: Time,
+  settingsComponent: TimeSettings,
 };
 
 export default config;

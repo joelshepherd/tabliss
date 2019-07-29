@@ -1,7 +1,7 @@
 import React, { FC, useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { get } from '../../plugins';
+import { getConfig } from '../../plugins';
 import PluginContainer from '../shared/Plugin';
 import {
   CollapseIcon,
@@ -28,7 +28,7 @@ const Widget: FC<Props> = ({ plugin, onMoveDown, onMoveUp, onRemove }) => {
   const [isOpen, toggleIsOpen] = useToggle(onRemove === undefined);
   const [isFontOpen, toggleIsFontOpen] = useToggle();
 
-  const { name, Settings } = get(plugin.key);
+  const { name, settingsComponent } = getConfig(plugin.key);
 
   const dispatch = useDispatch();
   const boundSetDisplay = useCallback(
@@ -90,7 +90,9 @@ const Widget: FC<Props> = ({ plugin, onMoveDown, onMoveUp, onRemove }) => {
             />
           </label>
 
-          {Settings && <PluginContainer id={plugin.id} Component={Settings} />}
+          {settingsComponent && (
+            <PluginContainer id={plugin.id} component={settingsComponent} />
+          )}
 
           <p>
             <a onClick={toggleIsFontOpen}>

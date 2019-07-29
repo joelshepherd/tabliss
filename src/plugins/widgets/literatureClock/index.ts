@@ -6,16 +6,16 @@
  * @url http://jenevoldsen.com/literature-clock/
  * @url https://github.com/JohannesNE/literature-clock
  */
-import { Plugin } from '../../types';
+import { Config } from '../../types';
 import LiteratureClock from './LiteratureClock';
 import LiteratureClockSettings from './LiteratureClockSettings';
 
-const config: Plugin = {
+const config: Config = {
   key: 'widget/literature-clock',
   name: 'Literature Clock',
   description: 'Read the time with culture.',
-  Dashboard: LiteratureClock,
-  Settings: LiteratureClockSettings,
+  dashboardComponent: LiteratureClock,
+  settingsComponent: LiteratureClockSettings,
 };
 
 export default config;
