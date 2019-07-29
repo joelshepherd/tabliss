@@ -28,7 +28,11 @@ export type WidgetDisplay = {
 
 interface PluginState {
   id: string;
-  type: string; // May not exactly match the plugin keys, deprecated types that still exist in a browser's storage for instance
+  /**
+   * May not exactly match plugin keys.
+   * Keys of removed plugins may still exist in a browser's storage for instance
+   */
+  key: string;
   active: boolean;
 }
 
@@ -54,7 +58,7 @@ export const initialState: DataState = {
   backgrounds: [
     {
       id: generateId(),
-      type: 'background/unsplash',
+      key: 'background/unsplash',
       active: true,
       display: { luminosity: -0.1, blur: 0 },
     },
@@ -62,13 +66,13 @@ export const initialState: DataState = {
   widgets: [
     {
       id: generateId(),
-      type: 'widget/time',
+      key: 'widget/time',
       active: true,
       display: { position: 'middleCentre' },
     },
     {
       id: generateId(),
-      type: 'widget/greeting',
+      key: 'widget/greeting',
       active: true,
       display: { position: 'middleCentre' },
     },
@@ -88,11 +92,11 @@ export function data(state = initialState, action: Actions): DataState {
       let newState = { ...state };
 
       if (
-        !state.backgrounds.map(plugin => plugin.type).includes(action.data.type)
+        !state.backgrounds.map(plugin => plugin.key).includes(action.data.key)
       ) {
         newState.backgrounds = newState.backgrounds.concat({
           id: generateId(),
-          type: action.data.type,
+          key: action.data.key,
           active: true,
           display: { luminosity: 0, blur: 0 },
         });
@@ -102,7 +106,7 @@ export function data(state = initialState, action: Actions): DataState {
         ...newState,
         backgrounds: newState.backgrounds.map(plugin => ({
           ...plugin,
-          active: plugin.type === action.data.type,
+          active: plugin.key === action.data.key,
         })),
       };
 
@@ -111,7 +115,7 @@ export function data(state = initialState, action: Actions): DataState {
         ...state,
         widgets: state.widgets.concat({
           id: generateId(),
-          type: action.data.type,
+          key: action.data.key,
           active: true,
           display: { position: 'middleCentre' },
         }),

@@ -28,7 +28,7 @@ const Widget: FC<Props> = ({ plugin, onMoveDown, onMoveUp, onRemove }) => {
   const [isOpen, toggleIsOpen] = useToggle(onRemove === undefined);
   const [isFontOpen, toggleIsFontOpen] = useToggle();
 
-  const { name, Settings } = get(plugin.type);
+  const { name, Settings } = get(plugin.key);
 
   const dispatch = useDispatch();
   const boundSetDisplay = useCallback(

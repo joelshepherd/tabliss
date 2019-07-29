@@ -4,7 +4,6 @@ import GiphySettings from './GiphySettings';
 
 const config: Plugin = {
   key: 'background/giphy',
-  kind: 'background',
   name: 'GIPHY',
   description: 'Hurt your eyes in every new tab.',
   Dashboard: Giphy,

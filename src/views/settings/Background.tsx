@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { BACKGROUND_PLUGINS, get } from '../../plugins';
+import { BACKGROUNDS, get } from '../../plugins';
 import { useSelector } from '../../store';
 import { setBackground, setBackgroundDisplay } from '../../store/actions/data';
 import { BackgroundDisplay } from '../../store/reducers/data';
@@ -11,7 +11,7 @@ const Background: FC = () => {
   const background = useSelector(state =>
     state.data.backgrounds.find(plugin => plugin.active),
   );
-  const plugin = background ? get(background.type) : undefined;
+  const plugin = background ? get(background.key) : undefined;
 
   const dispatch = useDispatch();
   const handleChangeBackground = React.useCallback(
@@ -30,11 +30,11 @@ const Background: FC = () => {
 
       <label>
         <select
-          value={background && background.type}
+          value={background && background.key}
           onChange={event => handleChangeBackground(event.target.value)}
           className="primary"
         >
-          {BACKGROUND_PLUGINS.map(plugin => (
+          {BACKGROUNDS.map(plugin => (
             <option key={plugin.key} value={plugin.key}>
               {plugin.name} - {plugin.description}
             </option>

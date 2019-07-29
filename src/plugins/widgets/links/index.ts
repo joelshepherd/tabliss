@@ -4,7 +4,6 @@ import LinksSettings from './LinksSettings';
 
 const config: Plugin = {
   key: 'widget/links',
-  kind: 'widget',
   name: 'Quick Links',
   description: 'I heard you like bookmarks.',
   Dashboard: Links,

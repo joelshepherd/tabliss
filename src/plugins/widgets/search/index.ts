@@ -4,7 +4,6 @@ import SearchSettings from './SearchSettings';
 
 const config: Plugin = {
   key: 'widget/search',
-  kind: 'widget',
   name: 'Search Box',
   description: 'Replace your URL bar with another bar.',
   Dashboard: Search,

@@ -13,9 +13,9 @@ type Props = {
 
 const Slot: FC<Props> = ({ position, widgets }) => (
   <div className={`Slot ${position}`}>
-    {widgets.map(({ display, id, type }) => (
+    {widgets.map(({ display, id, key }) => (
       <Widget key={id} {...display}>
-        <Plugin id={id} Component={get(type).Dashboard} />
+        <Plugin id={id} Component={get(key).Dashboard} />
       </Widget>
     ))}
   </div>

@@ -12,7 +12,6 @@ import LiteratureClockSettings from './LiteratureClockSettings';
 
 const config: Plugin = {
   key: 'widget/literature-clock',
-  kind: 'widget',
   name: 'Literature Clock',
   description: 'Read the time with culture.',
   Dashboard: LiteratureClock,

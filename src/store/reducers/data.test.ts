@@ -9,7 +9,7 @@ const state: DataState = {
 
 const baseWidget: WidgetState = {
   id: '1234',
-  type: 'widget/test',
+  key: 'widget/test',
   active: true,
   display: { position: 'middleCentre' },
 };

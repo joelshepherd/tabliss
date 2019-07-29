@@ -11,8 +11,8 @@ import { defaultData as defaultTodoData } from '../../../plugins/widgets/todo/ty
 // Root state
 export interface Version1Config {
   dashboard: {
-    background: keyof typeof typeMap;
-    widgets: (keyof typeof typeMap)[];
+    background: keyof typeof keyMap;
+    widgets: (keyof typeof keyMap)[];
   };
   storage: {
     [key: string]: {
@@ -37,7 +37,7 @@ export function migrateVersion1(config: Version1Config): DataState {
   const backgrounds: DataState['backgrounds'] = [
     {
       id: generateId(),
-      type: translateType(config.dashboard.background) || 'background/unsplash',
+      key: translateKey(config.dashboard.background) || 'background/unsplash',
       active: true,
       display: { blur: 0, luminosity: 0 },
     },
@@ -58,10 +58,10 @@ export function migrateVersion1(config: Version1Config): DataState {
     : {};
 
   const widgets: DataState['widgets'] = config.dashboard.widgets
-    .filter(translateType)
+    .filter(translateKey)
     .map(previousType => {
       const id = generateId();
-      const type = translateType(previousType) as string; // false is removed in filter
+      const key = translateKey(previousType) as string; // false is removed in filter
       data[id] = translateData(
         previousType,
         config.storage[previousType],
@@ -69,7 +69,7 @@ export function migrateVersion1(config: Version1Config): DataState {
 
       return {
         id,
-        type,
+        key,
         active: true,
         display: {
           ...fontDisplay,
@@ -88,7 +88,7 @@ export function migrateVersion1(config: Version1Config): DataState {
 }
 
 // Translate plugin type keys
-const typeMap = {
+const keyMap = {
   'core/backgrounds/colour': 'background/colour',
   'extra/backgrounds/dribbble': null,
   'extra/backgrounds/giphy': 'background/giphy',
@@ -110,8 +110,8 @@ const typeMap = {
   'extra/widgets/weather': 'widget/weather',
 };
 
-function translateType(type: keyof typeof typeMap) {
-  return typeMap[type];
+function translateKey(key: keyof typeof keyMap) {
+  return keyMap[key];
 }
 
 // Translate storage to data

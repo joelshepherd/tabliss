@@ -1,7 +1,7 @@
 import React, { FC, useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { WIDGET_PLUGINS } from '../../plugins';
+import { WIDGETS } from '../../plugins';
 import { useSelector } from '../../store';
 import {
   addWidget,
@@ -33,7 +33,7 @@ const Widgets: FC = () => {
           className="primary"
         >
           <option value={''}>Add a new widget</option>
-          {WIDGET_PLUGINS.map(plugin => (
+          {WIDGETS.map(plugin => (
             <option key={plugin.key} value={plugin.key}>
               {plugin.name} - {plugin.description}
             </option>

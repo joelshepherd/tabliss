@@ -11,7 +11,7 @@ const Background: FC = () => {
 
   if (!background) return null;
 
-  const { Dashboard } = get(background.type);
+  const { Dashboard } = get(background.key);
 
   return (
     <div className="Background">

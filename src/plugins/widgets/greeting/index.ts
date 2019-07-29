@@ -4,7 +4,6 @@ import GreetingSettings from './GreetingSettings';
 
 const config: Plugin = {
   key: 'widget/greeting',
-  kind: 'widget',
   name: 'Greeting',
   description: 'Be personally greeting all day.',
   Dashboard: Greeting,

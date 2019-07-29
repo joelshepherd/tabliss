@@ -15,8 +15,8 @@ import time from './widgets/time';
 import todo from './widgets/todo';
 import weather from './widgets/weather';
 
-export const BACKGROUND_PLUGINS = [colour, giphy, gradient, image, unsplash];
-export const WIDGET_PLUGINS = [
+export const BACKGROUNDS = [colour, giphy, gradient, image, unsplash];
+export const WIDGETS = [
   css,
   greeting,
   links,
@@ -28,7 +28,7 @@ export const WIDGET_PLUGINS = [
   todo,
   weather,
 ];
-export const PLUGINS = [...BACKGROUND_PLUGINS, ...WIDGET_PLUGINS];
+export const PLUGINS = [...BACKGROUNDS, ...WIDGETS];
 
 export function get(type: string) {
   const plugin = PLUGINS.find(plugin => plugin.key === type);

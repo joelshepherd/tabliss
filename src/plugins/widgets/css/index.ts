@@ -4,7 +4,6 @@ import CssSettings from './CssSettings';
 
 const config: Plugin = {
   key: 'widget/css',
-  kind: 'widget',
   name: 'Custom CSS',
   description: 'Make your new tab more style-ish (advanced users).',
   Dashboard: Css,

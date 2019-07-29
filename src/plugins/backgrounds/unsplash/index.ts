@@ -4,7 +4,6 @@ import UnsplashSettings from './UnsplashSettings';
 
 const config: Plugin = {
   key: 'background/unsplash',
-  kind: 'background',
   name: 'Unsplash',
   description: 'Who has time to add their own images.',
   Dashboard: Unsplash,
