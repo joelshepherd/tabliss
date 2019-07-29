@@ -21,7 +21,7 @@ describe('data() reducer', () => {
       widgets: [
         {
           id: expect.any(String),
-          type: 'widget/test-add',
+          key: 'widget/test-add',
           active: true,
           display: { position: 'middleCentre' },
         },
