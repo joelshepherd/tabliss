@@ -1,11 +1,7 @@
 import { API } from '../../types';
 import { RotatingCache } from '../../../utils/useCache';
 
-export enum By {
-  OFFICIAL = 'official',
-  COLLECTIONS = 'collections',
-  SEARCH = 'search',
-}
+export type By = 'official' | 'collections' | 'search';
 
 export interface Data {
   by: By;
@@ -28,7 +24,7 @@ type Cache = RotatingCache<Image>;
 export type Props = API<Data, Cache>;
 
 export const defaultData: Data = {
-  by: By.OFFICIAL,
+  by: 'official',
   collections: '',
   featured: false,
   search: '',

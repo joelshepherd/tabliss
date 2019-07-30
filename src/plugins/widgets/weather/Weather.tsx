@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 
-import { useExpiringCache } from '../../../utils/useCache';
+import { useCachedEffect } from '../../../utils/useCache';
 import { Icon } from '../../../views/shared';
 import { getForecast } from './api';
 import { weatherIcons } from './icons';
@@ -16,7 +16,7 @@ const Weather: FC<Props> = ({
   setCache,
   setData,
 }) => {
-  useExpiringCache(
+  useCachedEffect(
     () => {
       getForecast(data, loader).then(setCache);
     },

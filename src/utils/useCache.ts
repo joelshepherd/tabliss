@@ -1,23 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { useTime } from './useTime';
 
-export function useExpiringCache(
-  effect: () => void | (() => void),
-  expires: Date | number,
-  deps: unknown[],
-) {
-  const first = useRef(true);
-
-  useEffect(() => {
-    const booted = !first.current;
-    first.current = false;
-
-    if (booted || Date.now() >= expires) {
-      return effect();
-    }
-  }, deps);
-}
-
 export type RotatingCache<Item> = {
   now: Item;
   next: Item;
@@ -83,4 +66,23 @@ export function useRotatingCache<T>(
   }, [...deps, cache]);
 
   return cache ? cache.now : undefined;
+}
+
+export function useCachedEffect(
+  effect: () => void | (() => void),
+  expires: Date | number,
+  deps: unknown[],
+) {
+  const time = useTime();
+  const prevDeps = useRef(deps);
+
+  useEffect(() => {
+    const depsChanged = !areDepsEqual(prevDeps.current, deps);
+    const expired = time >= expires;
+
+    if (depsChanged || expired) {
+      prevDeps.current = deps;
+      return effect();
+    }
+  }, [...deps, time]);
 }

@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 
-import { useExpiringCache } from '../../../utils/useCache';
+import { useCachedEffect } from '../../../utils/useCache';
 import { getQuote } from './api';
 import { Props, defaultData } from './types';
 import './Quote.sass';
@@ -8,7 +8,7 @@ import './Quote.sass';
 const EXPIRE_IN = 60 * 60 * 1000; // 1 hour
 
 const Quote: FC<Props> = ({ cache, data = defaultData, setCache, loader }) => {
-  useExpiringCache(
+  useCachedEffect(
     () => {
       getQuote(loader, data.category).then(setCache);
     },
@@ -16,21 +16,21 @@ const Quote: FC<Props> = ({ cache, data = defaultData, setCache, loader }) => {
     [data.category],
   );
 
-  if (cache) {
-    return (
-      <h4 className="Quote">
-        “{cache.quote}”
-        {cache.author && (
-          <sub>
-            <br />
-            &mdash; {cache.author}
-          </sub>
-        )}
-      </h4>
-    );
+  if (!cache) {
+    return null;
   }
 
-  return null;
+  return (
+    <h4 className="Quote">
+      “{cache.quote}”
+      {cache.author && (
+        <sub>
+          <br />
+          &mdash; {cache.author}
+        </sub>
+      )}
+    </h4>
+  );
 };
 
 export default Quote;

@@ -14,11 +14,11 @@ export const getImage = async function(
   // Build search url
   let url = 'https://api.unsplash.com/photos/random?';
   switch (by) {
-    case By.COLLECTIONS:
+    case 'collections':
       url += `collections=${collections}`;
       break;
 
-    case By.SEARCH:
+    case 'search':
       url +=
         'orientation=landscape' +
         (featured ? '&featured=true' : '') +

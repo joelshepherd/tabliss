@@ -24,8 +24,8 @@ const UnsplashSettings: FC<Props> = ({ data = defaultData, setData }) => (
     <label>
       <input
         type="radio"
-        checked={data.by === By.OFFICIAL}
-        onChange={() => setData({ ...data, by: By.OFFICIAL })}
+        checked={data.by === 'official'}
+        onChange={() => setData({ ...data, by: 'official' })}
       />{' '}
       Official collection
     </label>
@@ -33,13 +33,13 @@ const UnsplashSettings: FC<Props> = ({ data = defaultData, setData }) => (
     <label>
       <input
         type="radio"
-        checked={data.by === By.COLLECTIONS}
-        onChange={() => setData({ ...data, by: By.COLLECTIONS })}
+        checked={data.by === 'collections'}
+        onChange={() => setData({ ...data, by: 'collections' })}
       />{' '}
       Custom collection
     </label>
 
-    {data.by === By.COLLECTIONS && (
+    {data.by === 'collections' && (
       <label>
         Collection
         <input
@@ -56,13 +56,13 @@ const UnsplashSettings: FC<Props> = ({ data = defaultData, setData }) => (
     <label>
       <input
         type="radio"
-        checked={data.by === By.SEARCH}
-        onChange={() => setData({ ...data, by: By.SEARCH })}
+        checked={data.by === 'search'}
+        onChange={() => setData({ ...data, by: 'search' })}
       />{' '}
       Custom search
     </label>
 
-    {data.by === By.SEARCH && (
+    {data.by === 'search' && (
       <div>
         <label>
           Tags
