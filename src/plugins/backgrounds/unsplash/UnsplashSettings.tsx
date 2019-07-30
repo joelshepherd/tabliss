@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 
-import { By, Props, defaultData } from './types';
+import { Props, defaultData } from './types';
 
 const UnsplashSettings: FC<Props> = ({ data = defaultData, setData }) => (
   <div className="UnsplashSettings">

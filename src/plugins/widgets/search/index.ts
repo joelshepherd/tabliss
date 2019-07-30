@@ -5,7 +5,7 @@ import SearchSettings from './SearchSettings';
 const config: Config = {
   key: 'widget/search',
   name: 'Search Box',
-  description: 'Replace your URL bar with another bar.',
+  description: 'Move your URL bar.',
   dashboardComponent: Search,
   settingsComponent: SearchSettings,
 };

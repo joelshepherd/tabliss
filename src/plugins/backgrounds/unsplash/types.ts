@@ -1,7 +1,7 @@
 import { API } from '../../types';
 import { RotatingCache } from '../../../utils/useCache';
 
-export type By = 'official' | 'collections' | 'search';
+type By = 'official' | 'collections' | 'search';
 
 export interface Data {
   by: By;
