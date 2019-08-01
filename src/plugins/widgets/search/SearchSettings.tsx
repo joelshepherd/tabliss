@@ -8,18 +8,6 @@ const MAX_QUANTITY = 20;
 const SearchSettings: FC<Props> = ({ data = defaultData, setData }) => (
   <div className="SearchSettings">
     <label>
-      Placeholder
-      <input
-        type="text"
-        value={data.placeholder}
-        onChange={event =>
-          setData({ ...data, placeholder: event.target.value })
-        }
-        placeholder="Type to search"
-      />
-    </label>
-
-    <label>
       Search Provider
       <select
         onChange={event =>

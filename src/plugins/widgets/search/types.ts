@@ -2,7 +2,6 @@ import { API } from '../../types';
 
 type Data = {
   searchEngine: string;
-  placeholder?: string;
   suggestionsEngine?: string;
   suggestionsQuantity: number;
 };
