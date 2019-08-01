@@ -1,6 +1,6 @@
+import { API } from '../../types';
 import { officialCollection, UNSPLASH_API_KEY } from './constants';
 import { Image, Data } from './types';
-import { API } from '../../types';
 
 export const getImage = async function(
   settings: Pick<Data, 'by' | 'collections' | 'featured' | 'search'>,

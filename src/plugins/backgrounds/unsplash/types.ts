@@ -1,5 +1,5 @@
-import { API } from '../../types';
 import { RotatingCache } from '../../../utils/useCache';
+import { API } from '../../types';
 
 type By = 'official' | 'collections' | 'search';
 

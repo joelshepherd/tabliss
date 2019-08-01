@@ -1,14 +1,13 @@
-import React, { useReducer, useEffect, FC } from 'react';
+import React, { FC } from 'react';
 
+import { useSavedReducer } from '../../../utils/useSavedReducer';
 import Input from './Input';
 import { reducer } from './reducer';
-import { Props, defaultData } from './types';
+import { Link, Props, defaultData } from './types';
 
 const LinksSettings: FC<Props> = ({ data = defaultData, setData }) => {
-  const [state, dispatch] = useReducer(reducer, data.links);
-  useEffect(() => {
-    setData({ ...data, links: state });
-  }, [state]);
+  const saveLinks = (links: Link[]) => setData({ ...data, links });
+  const dispatch = useSavedReducer(reducer, data.links, saveLinks);
 
   return (
     <div className="LinksSettings">
