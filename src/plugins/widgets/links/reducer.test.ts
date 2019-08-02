@@ -1,8 +1,9 @@
+import { addLink, removeLink, updateLink, reorderLink } from './actions';
 import { reducer } from './reducer';
 
 describe('links/reducer()', () => {
   it('should add new links', () => {
-    expect(reducer([], { type: 'ADD_LINK' })).toEqual([{ url: 'https://' }]);
+    expect(reducer([], addLink())).toEqual([{ url: 'https://' }]);
     expect(
       reducer([{ url: 'https://tabliss.io/' }], { type: 'ADD_LINK' }),
     ).toEqual([{ url: 'https://tabliss.io/' }, { url: 'https://' }]);
@@ -15,10 +16,7 @@ describe('links/reducer()', () => {
           { url: 'https://tabliss.io/' },
           { url: 'https://tabliss.io/about.html' },
         ],
-        {
-          type: 'REMOVE_LINK',
-          data: { index: 0 },
-        },
+        removeLink(0),
       ),
     ).toEqual([{ url: 'https://tabliss.io/about.html' }]);
   });
@@ -30,13 +28,7 @@ describe('links/reducer()', () => {
           { url: 'https://tabliss.io/' },
           { url: 'https://tabliss.io/about.html' },
         ],
-        {
-          type: 'UPDATE_LINK',
-          data: {
-            index: 0,
-            link: { name: 'Tabliss', url: 'https://tabliss.io/' },
-          },
-        },
+        updateLink(0, { name: 'Tabliss', url: 'https://tabliss.io/' }),
       ),
     ).toEqual([
       { name: 'Tabliss', url: 'https://tabliss.io/' },
@@ -52,10 +44,7 @@ describe('links/reducer()', () => {
           { url: 'https://tabliss.io/about.html' },
           { url: 'https://tabliss.io/support.html' },
         ],
-        {
-          type: 'REORDER_LINK',
-          data: { index: 1, to: 0 },
-        },
+        reorderLink(1, 0),
       ),
     ).toEqual([
       { url: 'https://tabliss.io/about.html' },
@@ -70,10 +59,7 @@ describe('links/reducer()', () => {
           { url: 'https://tabliss.io/about.html' },
           { url: 'https://tabliss.io/support.html' },
         ],
-        {
-          type: 'REORDER_LINK',
-          data: { index: 1, to: 2 },
-        },
+        reorderLink(1, 2),
       ),
     ).toEqual([
       { url: 'https://tabliss.io/' },
