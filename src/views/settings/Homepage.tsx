@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 
-import { useToggle } from '../../utils/useToggle';
+import { useToggle } from '../../hooks';
 
 const Homepage: FC = () => {
   const [isOpen, toggleIsOpen] = useToggle();

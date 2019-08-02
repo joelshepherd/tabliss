@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 
-import { useCachedEffect } from '../../../utils/useCache';
+import { useCachedEffect } from '../../../hooks';
 import { Icon } from '../../../views/shared';
 import { getForecast } from './api';
 import { weatherIcons } from './icons';

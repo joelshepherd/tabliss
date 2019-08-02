@@ -1,4 +1,4 @@
-import { RotatingCache } from '../../../utils/useCache';
+import { RotatingCache } from '../../../hooks';
 import { API } from '../../types';
 
 type By = 'official' | 'collections' | 'search';

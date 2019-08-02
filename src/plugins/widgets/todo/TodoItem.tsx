@@ -1,6 +1,6 @@
 import React, { FC, useLayoutEffect, useRef } from 'react';
 
-import { useKeyPress } from '../../../utils/useKeyPress';
+import { useKeyPress } from '../../../hooks';
 import { Icon, RemoveIcon } from '../../../views/shared';
 import { State } from './reducer';
 import './TodoItem.sass';

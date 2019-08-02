@@ -1,7 +1,6 @@
 import React, { FC } from 'react';
 
-import { useRotatingCache } from '../../../utils/useCache';
-import { useObjectUrl } from '../../../utils/useObjectUrl';
+import { useObjectUrl, useRotatingCache } from '../../../hooks';
 import Backdrop from '../../../views/shared/Backdrop';
 import { getImage } from './api';
 import { Props, defaultData } from './types';

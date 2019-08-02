@@ -1,7 +1,6 @@
 import React, { FC } from 'react';
 
-import { useSavedReducer } from '../../../utils/useSavedReducer';
-import { useToggle } from '../../../utils/useToggle';
+import { useSavedReducer, useToggle } from '../../../hooks';
 import { DownIcon, Icon, UpIcon } from '../../../views/shared';
 import { addTodo, removeTodo, toggleTodo, updateTodo } from './actions';
 import { reducer, State } from './reducer';

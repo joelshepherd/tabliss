@@ -1,7 +1,6 @@
 import React, { FC } from 'react';
 
-import { useKeyPress } from '../../../utils/useKeyPress';
-import { useToggle } from '../../../utils/useToggle';
+import { useKeyPress, useToggle } from '../../../hooks';
 import { Icon } from '../../../views/shared';
 import Display from './Display';
 import { Props, defaultData } from './types';

@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 
-import { useSavedReducer } from '../../../utils/useSavedReducer';
+import { useSavedReducer } from '../../../hooks';
 import Input from './Input';
 import { reducer } from './reducer';
 import { Link, Props, defaultData } from './types';

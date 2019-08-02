@@ -2,8 +2,8 @@ import React, { FC, useCallback } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { useDispatch } from 'react-redux';
 
+import { useKeyPress } from '../../hooks';
 import { resetStore, toggleSettings } from '../../store/actions';
-import { useKeyPress } from '../../utils/useKeyPress';
 import { Icon } from '../shared';
 import Logo from '../shared/Logo';
 import Background from './Background';

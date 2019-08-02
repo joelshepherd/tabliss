@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
 
-import Plugin from '../shared/Plugin';
 import { getConfig } from '../../plugins';
 import { WidgetPosition, WidgetState } from '../../store/reducers/types';
+import Plugin from '../shared/Plugin';
 import Widget from './Widget';
 import './Slot.sass';
 

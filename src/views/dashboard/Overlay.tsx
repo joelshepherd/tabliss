@@ -1,9 +1,8 @@
 import React, { FC } from 'react';
-import { defineMessages, useIntl } from 'react-intl';
+import { defineMessages } from 'react-intl';
 import { useDispatch } from 'react-redux';
 
-import { useFullscreen } from '../../utils/useFullscreen';
-import { useKeyPress } from '../../utils/useKeyPress';
+import { useFormatMessages, useFullscreen, useKeyPress } from '../../hooks';
 import { useSelector } from '../../store';
 import { toggleFocus, toggleSettings } from '../../store/actions';
 import { Icon } from '../shared';
@@ -34,41 +33,32 @@ const messages = defineMessages({
 });
 
 const Overlay: FC = () => {
-  const intl = useIntl();
-  const settingsHint = intl.formatMessage(messages.settingsHint);
-  const focusHint = intl.formatMessage(messages.focusHint);
-  const fullscreenHint = intl.formatMessage(messages.fullscreenHint);
-
+  const translated = useFormatMessages(messages);
   const focus = useSelector(state => state.ui.focus);
   const pending = useSelector(state => state.ui.loaders > 0);
 
   const dispatch = useDispatch();
-  const handleToggleFocus = React.useCallback(() => dispatch(toggleFocus()), [
-    dispatch,
-  ]);
-  const handleToggleSettings = React.useCallback(
-    () => dispatch(toggleSettings()),
-    [dispatch],
-  );
+  const handleToggleFocus = () => dispatch(toggleFocus());
+  const handleToggleSettings = () => dispatch(toggleSettings());
 
   useKeyPress(handleToggleFocus, ['w']);
   useKeyPress(handleToggleSettings, ['s']);
 
-  // Hooks inside a condition???
-  // Not good, but it works because the condition always resolves the same
+  // Hooks inside a condition? Works because the condition always resolves the same
   const [isFullscreen, handleToggleFullscreen] = useFullscreen();
-  if (handleToggleFullscreen) {
-    useKeyPress(handleToggleFullscreen, ['f']);
-  }
+  if (handleToggleFullscreen) useKeyPress(handleToggleFullscreen, ['f']);
 
   return (
     <div className="Overlay">
-      <a onClick={handleToggleSettings} title={`${settingsHint} (S)`}>
+      <a
+        onClick={handleToggleSettings}
+        title={`${translated.settingsHint} (S)`}
+      >
         <Icon name="settings" />
       </a>
 
       {pending && (
-        <span title={intl.formatMessage(messages.loadingHint)}>
+        <span title={translated.loadingHint}>
           <Icon name="zap" />
         </span>
       )}
@@ -76,7 +66,7 @@ const Overlay: FC = () => {
       <a
         className="on-hover"
         onClick={handleToggleFocus}
-        title={`${focusHint} (W)`}
+        title={`${translated.focusHint} (W)`}
       >
         <Icon name={focus ? 'eye-off' : 'eye'} />
       </a>
@@ -85,7 +75,7 @@ const Overlay: FC = () => {
         <a
           className="on-hover"
           onClick={handleToggleFullscreen}
-          title={`${fullscreenHint} (F)`}
+          title={`${translated.fullscreenHint} (F)`}
         >
           <Icon name={isFullscreen ? 'minimize-2' : 'maximize-2'} />
         </a>

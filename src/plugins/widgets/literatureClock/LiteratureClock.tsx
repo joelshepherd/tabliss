@@ -1,6 +1,6 @@
 import React, { FC, useEffect } from 'react';
 
-import { useTime } from '../../../utils/useTime';
+import { useTime } from '../../../hooks';
 import { getTimeCode, getQuoteByTimeCode } from './api';
 import { Props, defaultData } from './types';
 import './LiteratureClock.sass';

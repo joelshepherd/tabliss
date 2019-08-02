@@ -1,6 +1,6 @@
 import React, { FC, FormEvent, useState } from 'react';
 
-import { useToggle } from '../../../utils/useToggle';
+import { useToggle } from '../../../hooks';
 import { Icon } from '../../../views/shared';
 import { geocodeLocation, getCurrentLocation } from './api';
 import { Coordinates } from './types';

@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 
-import { useCachedEffect } from '../../../utils/useCache';
+import { useCachedEffect } from '../../../hooks';
 import { getQuote } from './api';
 import { Props, defaultData } from './types';
 import './Quote.sass';

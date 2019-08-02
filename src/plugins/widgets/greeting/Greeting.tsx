@@ -1,7 +1,7 @@
 import React, { FC, useMemo } from 'react';
 import { useIntl } from 'react-intl';
 
-import { useTime } from '../../../utils/useTime';
+import { useTime } from '../../../hooks';
 import { messages } from './messages';
 import { Props, defaultData } from './types';
 

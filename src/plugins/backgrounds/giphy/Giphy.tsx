@@ -1,6 +1,6 @@
 import React, { FC, useEffect, useState } from 'react';
 
-import { useObjectUrl } from '../../../utils/useObjectUrl';
+import { useObjectUrl } from '../../../hooks';
 import Backdrop from '../../../views/shared/Backdrop';
 import { getGif } from './api';
 import { Props, defaultData } from './types';
