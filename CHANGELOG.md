@@ -5,10 +5,25 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+Tabliss has essentially been rewritten from scratch to be faster, more modern, and easier to contribute too.
+
+### Added
+
+- Widget positioning! You can now place widgets in different areas of the screen.
+- Syncing of your settings! You can now sync your Tabliss settings with Firefox or Chrome sync.
+- Widgets automatically update without needing to refresh the page.
+- Have the same widget multiple times.
+
 ### Changed
 
-- Everything
-- @todo Document everything
+- Tabliss is even faster!
+- Various small changes and improvements throughout the different plugins.
+
+### Fixed
+
+- Settings not saving if using "always browse in private mode" in Firefox.
+
+### Remove
 
 ## [1.18.2] - 2019-07-12
 
