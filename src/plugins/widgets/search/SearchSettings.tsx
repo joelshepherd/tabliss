@@ -3,8 +3,6 @@ import React, { FC } from 'react';
 import { engines } from './engines';
 import { Props, defaultData } from './types';
 
-const MAX_QUANTITY = 20;
-
 const SearchSettings: FC<Props> = ({ data = defaultData, setData }) => (
   <div className="SearchSettings">
     <label>
@@ -52,7 +50,7 @@ const SearchSettings: FC<Props> = ({ data = defaultData, setData }) => (
         <input
           type="number"
           min="1"
-          max={MAX_QUANTITY}
+          max="10"
           value={data.suggestionsQuantity}
           onChange={event =>
             setData({

@@ -82,11 +82,8 @@ export const initialState: DataState = {
 
 export function data(state = initialState, action: Actions): DataState {
   switch (action.type) {
-    case 'MIGRATE_STORE':
-      return action.data.state;
-
     case 'RESET_STORE':
-      return initialState;
+      return action.data.state || initialState;
 
     case 'SET_BACKGROUND':
       let newState = { ...state };
