@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { CollapseIcon, IconButton } from '../shared';
 
 interface State {
