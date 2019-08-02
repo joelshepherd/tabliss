@@ -1,9 +1,9 @@
 import { BackgroundDisplay, WidgetDisplay } from '../reducers/types';
 
-export function setBackground(key: string) {
+export function setBackground(key: string, from?: string) {
   return {
     type: 'SET_BACKGROUND',
-    data: { key },
+    data: { key, from },
   } as const;
 }
 

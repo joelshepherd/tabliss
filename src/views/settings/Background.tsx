@@ -28,7 +28,11 @@ const Background: FC = () => {
       <label>
         <select
           value={background && background.key}
-          onChange={event => dispatch(setBackground(event.target.value))}
+          onChange={event =>
+            dispatch(
+              setBackground(event.target.value, background && background.id),
+            )
+          }
           className="primary"
         >
           {backgroundConfigs.map(plugin => (

@@ -35,25 +35,16 @@ export function data(state = initialState, action: Actions): DataState {
       return action.data.state || initialState;
 
     case 'SET_BACKGROUND':
-      let newState = { ...state };
-
-      if (
-        !state.backgrounds.map(plugin => plugin.key).includes(action.data.key)
-      ) {
-        newState.backgrounds = newState.backgrounds.concat({
-          id: generateId(),
-          key: action.data.key,
-          active: true,
-          display: { luminosity: 0, blur: 0 },
-        });
-      }
-
       return {
-        ...newState,
-        backgrounds: newState.backgrounds.map(plugin => ({
-          ...plugin,
-          active: plugin.key === action.data.key,
-        })),
+        ...state,
+        backgrounds: [
+          {
+            id: generateId(),
+            key: action.data.key,
+            active: true,
+            display: { luminosity: 0, blur: 0 },
+          },
+        ],
       };
 
     case 'ADD_WIDGET':
