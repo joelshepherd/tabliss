@@ -1,58 +1,7 @@
 import { v4 as generateId } from 'uuid';
 
 import { Actions } from '../actions';
-
-export type BackgroundDisplay = {
-  blur: number;
-  luminosity: number;
-};
-
-export type WidgetPosition =
-  | 'topLeft'
-  | 'topCentre'
-  | 'topRight'
-  | 'middleLeft'
-  | 'middleCentre'
-  | 'middleRight'
-  | 'bottomLeft'
-  | 'bottomCentre'
-  | 'bottomRight';
-
-export type WidgetDisplay = {
-  colour?: string;
-  fontFamily?: string;
-  fontSize?: number;
-  fontWeight?: number;
-  position: WidgetPosition;
-};
-
-interface PluginState {
-  id: string;
-  /**
-   * May not exactly match plugin keys.
-   * Keys of removed plugins may still exist in a browser's storage for instance
-   */
-  key: string;
-  active: boolean;
-}
-
-export interface BackgroundState extends PluginState {
-  display: BackgroundDisplay;
-}
-
-export interface WidgetState extends PluginState {
-  display: WidgetDisplay;
-}
-
-export interface DataState {
-  backgrounds: BackgroundState[];
-  widgets: WidgetState[];
-  data: {
-    [id: string]: object;
-  };
-  locale?: string;
-  timeZone?: string;
-}
+import { DataState } from './types';
 
 export const initialState: DataState = {
   backgrounds: [

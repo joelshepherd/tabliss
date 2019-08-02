@@ -1,4 +1,4 @@
-import { BackgroundDisplay, WidgetDisplay } from '../reducers/data';
+import { BackgroundDisplay, WidgetDisplay } from '../reducers/types';
 
 export function setBackground(key: string) {
   return {

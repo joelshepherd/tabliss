@@ -1,6 +1,6 @@
 import { v4 as generateId } from 'uuid';
 
-import { DataState } from '../../../store/reducers/data';
+import { DataState } from '../../../store/reducers/types';
 import { defaultData as defaultGiphyData } from '../../../plugins/backgrounds/giphy/types';
 import { defaultData as defaultGradientData } from '../../../plugins/backgrounds/gradient/types';
 import { defaultData as defaultUnsplashData } from '../../../plugins/backgrounds/unsplash/types';

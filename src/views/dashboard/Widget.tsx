@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 
-import { WidgetDisplay } from '../../store/reducers/data';
+import { WidgetDisplay } from '../../store/reducers/types';
 
 const Widget: FC<WidgetDisplay> = ({
   children,

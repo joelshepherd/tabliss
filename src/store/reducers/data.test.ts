@@ -1,5 +1,6 @@
-import { DataState, data, WidgetState } from './data';
 import { addWidget, removeWidget, setLocale, setTimeZone } from '../actions';
+import { data } from './data';
+import { DataState, WidgetState } from './types';
 
 const state: DataState = {
   backgrounds: [],

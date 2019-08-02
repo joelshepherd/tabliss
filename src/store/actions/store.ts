@@ -1,4 +1,4 @@
-import { DataState } from '../reducers/data';
+import { DataState } from '../reducers/types';
 
 export function resetStore(state?: DataState) {
   return {

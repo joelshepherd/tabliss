@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { backgroundConfigs, getConfig } from '../../plugins';
 import { useSelector } from '../../store';
 import { setBackground, setBackgroundDisplay } from '../../store/actions/data';
-import { BackgroundDisplay } from '../../store/reducers/data';
+import { BackgroundDisplay } from '../../store/reducers/types';
 import Plugin from '../shared/Plugin';
 
 const Background: FC = () => {

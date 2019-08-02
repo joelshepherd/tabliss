@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 
 import { useSelector } from '../../store';
-import { WidgetPosition, WidgetState } from '../../store/reducers/data';
+import { WidgetPosition, WidgetState } from '../../store/reducers/types';
 import Slot from './Slot';
 import './Widgets.sass';
 

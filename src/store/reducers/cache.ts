@@ -1,8 +1,5 @@
 import { Actions } from '../actions';
-
-export interface CacheState {
-  [id: string]: object | undefined;
-}
+import { CacheState } from './types';
 
 const initialState: CacheState = {};
 

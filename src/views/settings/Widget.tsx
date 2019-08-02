@@ -12,7 +12,7 @@ import {
   UpIcon,
 } from '../shared';
 import { setWidgetDisplay } from '../../store/actions';
-import { WidgetDisplay, WidgetState } from '../../store/reducers/data';
+import { WidgetDisplay, WidgetState } from '../../store/reducers/types';
 import { useToggle } from '../../utils/useToggle';
 import PositionInput from './PositionInput';
 import './Widget.sass';
