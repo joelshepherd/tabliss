@@ -96,7 +96,7 @@ export function data(state = initialState, action: Actions): DataState {
       return {
         ...state,
         backgrounds: state.backgrounds.map(plugin =>
-          plugin.id === action.data.id
+          plugin.active
             ? {
                 ...plugin,
                 display: { ...plugin.display, ...action.data.display },

@@ -4,34 +4,31 @@ import { useDispatch } from 'react-redux';
 import { backgroundConfigs, getConfig } from '../../plugins';
 import { useSelector } from '../../store';
 import { setBackground, setBackgroundDisplay } from '../../store/actions/data';
-import { BackgroundDisplay } from '../../store/reducers/types';
 import Plugin from '../shared/Plugin';
+import { FormattedMessage } from 'react-intl';
 
 const Background: FC = () => {
+  const dispatch = useDispatch();
+
   const background = useSelector(state =>
     state.data.backgrounds.find(plugin => plugin.active),
   );
   const plugin = background ? getConfig(background.key) : undefined;
 
-  const dispatch = useDispatch();
-  const handleChangeBackground = React.useCallback(
-    (type: string) => dispatch(setBackground(type)),
-    [dispatch],
-  );
-  const handleSetDisplay = React.useCallback(
-    (id: string, display: Partial<BackgroundDisplay>) =>
-      dispatch(setBackgroundDisplay(id, display)),
-    [dispatch],
-  );
-
   return (
     <div>
-      <h3>Background</h3>
+      <h3>
+        <FormattedMessage
+          id="background"
+          defaultMessage="Background"
+          description="Background title"
+        />
+      </h3>
 
       <label>
         <select
           value={background && background.key}
-          onChange={event => handleChangeBackground(event.target.value)}
+          onChange={event => dispatch(setBackground(event.target.value))}
           className="primary"
         >
           {backgroundConfigs.map(plugin => (
@@ -62,9 +59,11 @@ const Background: FC = () => {
                   step="2"
                   value={background.display.blur}
                   onChange={event =>
-                    handleSetDisplay(background.id, {
-                      blur: Number(event.target.value),
-                    })
+                    dispatch(
+                      setBackgroundDisplay({
+                        blur: Number(event.target.value),
+                      }),
+                    )
                   }
                 />
                 <datalist id="blur-markers">
@@ -83,9 +82,11 @@ const Background: FC = () => {
                   step="0.1"
                   value={background.display.luminosity}
                   onChange={event =>
-                    handleSetDisplay(background.id, {
-                      luminosity: Number(event.target.value),
-                    })
+                    dispatch(
+                      setBackgroundDisplay({
+                        luminosity: Number(event.target.value),
+                      }),
+                    )
                   }
                 />
                 <datalist id="luminosity-markers">

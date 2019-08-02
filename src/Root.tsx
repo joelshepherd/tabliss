@@ -1,6 +1,6 @@
 import React, { FC, StrictMode } from 'react';
 
-import TimeProvider from './context/time';
+import TimeProvider from './contexts/time';
 import IntlProvider from './locales/IntlProvider';
 import StoreProvider from './store/StoreProvider';
 import App from './App';

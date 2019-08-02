@@ -17,7 +17,7 @@ const Homepage: FC = () => {
         <p>
           Tabliss no longer controls your homepage. If you would like Tabliss to
           open when you start Firefox, set your homepage to:
-          <input type="text" value={window.location.href} readOnly={true} />
+          <input type="text" value={window.location.href} readOnly />
         </p>
       )}
     </div>

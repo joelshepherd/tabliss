@@ -1,4 +1,4 @@
-import React, { FC, useCallback } from 'react';
+import React, { FC, memo, useCallback } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { useDispatch } from 'react-redux';
 
@@ -86,4 +86,4 @@ const Settings: FC = () => {
   );
 };
 
-export default Settings;
+export default memo(Settings);

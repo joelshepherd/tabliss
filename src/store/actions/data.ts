@@ -35,13 +35,10 @@ export function setData(id: string, data: object) {
   } as const;
 }
 
-export function setBackgroundDisplay(
-  id: string,
-  display: Partial<BackgroundDisplay>,
-) {
+export function setBackgroundDisplay(display: Partial<BackgroundDisplay>) {
   return {
     type: 'SET_BACKGROUND_DISPLAY',
-    data: { id, display },
+    data: { display },
   } as const;
 }
 

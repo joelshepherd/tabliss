@@ -9,6 +9,7 @@ import {
   reorderWidget,
 } from '../../store/actions/data';
 import Widget from './Widget';
+import { FormattedMessage } from 'react-intl';
 
 const Widgets: FC = () => {
   const active = useSelector(state => state.data.widgets);
@@ -25,7 +26,14 @@ const Widgets: FC = () => {
 
   return (
     <div>
-      <h3>Widgets</h3>
+      <h3>
+        <FormattedMessage
+          id="widgets"
+          defaultMessage="Widgets"
+          description="Widgets title"
+        />
+      </h3>
+
       <label>
         <select
           value={''}
