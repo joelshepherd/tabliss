@@ -1,5 +1,6 @@
 {
   "app.pageTitle": "Új Lap",
+  "background": "Background",
   "dashboard.focusHint": "Widget kapcsolás",
   "dashboard.fullscreenHint": "Teljes képernyő kapcsolás",
   "dashboard.loadingHint": "Új tartalom töltődik",
@@ -10,5 +11,6 @@
   "plugins.links.standardHint": "Kattintson ide megtekintéséhez",
   "plugins.search.placeholder": "Gépeld be a keresést",
   "plugins.unsplash.photoLink": "Fotó",
-  "settings.translationCredits": " "
+  "settings.translationCredits": " ",
+  "widgets": "Widgets"
 }

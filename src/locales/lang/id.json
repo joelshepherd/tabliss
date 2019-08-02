@@ -1,5 +1,6 @@
 {
   "app.pageTitle": "Tab Baru",
+  "background": "Background",
   "dashboard.focusHint": "Muncul/Hilangkan widget",
   "dashboard.fullscreenHint": "Beralih ke layar penuh",
   "dashboard.loadingHint": "Memuat konten baru",
@@ -10,5 +11,6 @@
   "plugins.links.standardHint": "Klik untuk mengunjungi",
   "plugins.search.placeholder": "Ketik untuk cari",
   "plugins.unsplash.photoLink": "Foto",
-  "settings.translationCredits": "Diterjemahkan oleh masbossun"
+  "settings.translationCredits": "Diterjemahkan oleh masbossun",
+  "widgets": "Widgets"
 }

@@ -1,5 +1,6 @@
 {
   "app.pageTitle": "Novo Separador",
+  "background": "Background",
   "dashboard.focusHint": "Mostrar/Esconder widgets",
   "dashboard.fullscreenHint": "Ecrã inteiro",
   "dashboard.loadingHint": "Carregar novo conteúdo",
@@ -10,5 +11,6 @@
   "plugins.links.standardHint": "Clique para visitar",
   "plugins.search.placeholder": "Pesquisar",
   "plugins.unsplash.photoLink": "Foto",
-  "settings.translationCredits": "Traduzido por Tiago Carneiro"
+  "settings.translationCredits": "Traduzido por Tiago Carneiro",
+  "widgets": "Widgets"
 }

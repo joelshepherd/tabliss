@@ -1,4 +1,5 @@
 import React, { FC, useCallback } from 'react';
+import { FormattedMessage } from 'react-intl';
 import { useDispatch } from 'react-redux';
 
 import { widgetConfigs } from '../../plugins';
@@ -9,7 +10,6 @@ import {
   reorderWidget,
 } from '../../store/actions/data';
 import Widget from './Widget';
-import { FormattedMessage } from 'react-intl';
 
 const Widgets: FC = () => {
   const active = useSelector(state => state.data.widgets);

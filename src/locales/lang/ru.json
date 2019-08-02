@@ -1,5 +1,6 @@
 {
   "app.pageTitle": "Новая вкладка",
+  "background": "Background",
   "dashboard.focusHint": "Видимость виджетов",
   "dashboard.fullscreenHint": "Полный экран",
   "dashboard.loadingHint": "Загрузка нового контента",
@@ -10,5 +11,6 @@
   "plugins.links.standardHint": "Кликните для открытия",
   "plugins.search.placeholder": "Введите запрос",
   "plugins.unsplash.photoLink": "Фото",
-  "settings.translationCredits": "Перевёл на русский Илья Бирюков"
+  "settings.translationCredits": "Перевёл на русский Илья Бирюков",
+  "widgets": "Widgets"
 }

@@ -1,11 +1,11 @@
 import React, { FC } from 'react';
+import { FormattedMessage } from 'react-intl';
 import { useDispatch } from 'react-redux';
 
 import { backgroundConfigs, getConfig } from '../../plugins';
 import { useSelector } from '../../store';
 import { setBackground, setBackgroundDisplay } from '../../store/actions/data';
 import Plugin from '../shared/Plugin';
-import { FormattedMessage } from 'react-intl';
 
 const Background: FC = () => {
   const dispatch = useDispatch();

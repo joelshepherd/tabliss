@@ -1,5 +1,6 @@
 {
   "app.pageTitle": "Nový panel",
+  "background": "Background",
   "dashboard.focusHint": "Přepnout widgety",
   "dashboard.fullscreenHint": "Přepnout zobrazení na celou obrazovku",
   "dashboard.loadingHint": "Načítání nového obsahu",
@@ -10,5 +11,6 @@
   "plugins.links.standardHint": "Kliněte pro navštívení",
   "plugins.search.placeholder": "Hledat..",
   "plugins.unsplash.photoLink": "Fotografie",
-  "settings.translationCredits": "Czech translation by Petr Schmidt"
+  "settings.translationCredits": "Czech translation by Petr Schmidt",
+  "widgets": "Widgets"
 }

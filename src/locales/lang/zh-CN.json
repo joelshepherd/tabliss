@@ -1,5 +1,6 @@
 {
   "app.pageTitle": "新标签页",
+  "background": "Background",
   "dashboard.focusHint": "切换部件可视性",
   "dashboard.fullscreenHint": "切换图片全屏",
   "dashboard.loadingHint": "正在加载……",
@@ -10,5 +11,6 @@
   "plugins.links.standardHint": "点击以访问",
   "plugins.search.placeholder": "输入要搜索的关键字",
   "plugins.unsplash.photoLink": "本图片链接",
-  "settings.translationCredits": " "
+  "settings.translationCredits": " ",
+  "widgets": "Widgets"
 }

@@ -1,5 +1,6 @@
 {
   "app.pageTitle": "新分頁",
+  "background": "Background",
   "dashboard.focusHint": "切換顯示小工具",
   "dashboard.fullscreenHint": "切換顯示全螢幕",
   "dashboard.loadingHint": "正在載入新內容…",
@@ -10,5 +11,6 @@
   "plugins.links.standardHint": "點擊開啟",
   "plugins.search.placeholder": "輸入關鍵字進行搜尋",
   "plugins.unsplash.photoLink": "圖片來源",
-  "settings.translationCredits": "Traditional Chinese by Peter Chen (petercpg)"
+  "settings.translationCredits": "Traditional Chinese by Peter Chen (petercpg)",
+  "widgets": "Widgets"
 }

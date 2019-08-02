@@ -1,5 +1,6 @@
 {
   "app.pageTitle": "New Tab",
+  "background": "Background",
   "dashboard.focusHint": "Toggle widgets",
   "dashboard.fullscreenHint": "Toggle fullscreen",
   "dashboard.loadingHint": "Loading new content",
@@ -10,5 +11,6 @@
   "plugins.links.standardHint": "Click to visit",
   "plugins.search.placeholder": "Type to search",
   "plugins.unsplash.photoLink": "Photo",
-  "settings.translationCredits": " "
+  "settings.translationCredits": " ",
+  "widgets": "Widgets"
 }

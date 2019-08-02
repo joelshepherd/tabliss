@@ -1,5 +1,6 @@
 {
   "app.pageTitle": "Nuova scheda",
+  "background": "Background",
   "dashboard.focusHint": "Escludi i widgets",
   "dashboard.fullscreenHint": "Commuta a schermo intero",
   "dashboard.loadingHint": "Carica nuovi contenuti",
@@ -10,5 +11,6 @@
   "plugins.links.standardHint": "Clicca per visitare",
   "plugins.search.placeholder": "Scrivi qui per cercare",
   "plugins.unsplash.photoLink": "Foto",
-  "settings.translationCredits": "Italian translations by Gianni"
+  "settings.translationCredits": "Italian translations by Gianni",
+  "widgets": "Widgets"
 }

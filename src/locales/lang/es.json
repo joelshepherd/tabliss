@@ -1,5 +1,6 @@
 {
   "app.pageTitle": "Nueva Pestaña",
+  "background": "Background",
   "dashboard.focusHint": "Oculta los Widgets",
   "dashboard.fullscreenHint": "Pantalla Completa",
   "dashboard.loadingHint": "Cargando nuevo contenido",
@@ -10,5 +11,6 @@
   "plugins.links.standardHint": "Click para ir al sitio",
   "plugins.search.placeholder": "Escribe aquí para buscar",
   "plugins.unsplash.photoLink": "Foto",
-  "settings.translationCredits": "Spanish translation by Gastón Alegre Stotzer"
+  "settings.translationCredits": "Spanish translation by Gastón Alegre Stotzer",
+  "widgets": "Widgets"
 }
