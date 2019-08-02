@@ -1,123 +1,90 @@
-import * as React from 'react';
-import { defaultProps } from './constants';
-import { By, Settings } from './interfaces';
+import React, { FC } from 'react';
 
-interface Props extends Settings {
-  onChange: (settings: Partial<Settings>) => void;
-}
+import { Props, defaultData } from './types';
 
-class UnsplashSettings extends React.PureComponent<Props> {
-  static defaultProps = defaultProps;
-
-  render() {
-    return (
-      <div className="UnsplashSettings">
-        <label>
-          Show a new photo
-          <select
-            value={this.props.timeout}
-            onChange={event => this.props.onChange({ timeout: parseInt(event.target.value, 10) })}
-          >
-            <option value="0">Every new tab</option>
-            <option value="900">Every 15 minutes</option>
-            <option value="3600">Every hour</option>
-            <option value="86400">Every day</option>
-            <option value={Number.MAX_SAFE_INTEGER}>Pause</option>
-          </select>
-        </label>
-
-        <label>
-          <input
-            type="radio"
-            checked={this.props.by === By.OFFICIAL}
-            onChange={event => this.props.onChange({ by: By.OFFICIAL })}
-          />
-          {' '}
-          Official collection
-        </label>
-
-        <label>
-          <input
-            type="radio"
-            checked={this.props.by === By.COLLECTIONS}
-            onChange={event => this.props.onChange({ by: By.COLLECTIONS })}
-          />
-          {' '}
-          Custom collection
-        </label>
-
-        {this.props.by === By.COLLECTIONS &&
-          <label>
-            Collection
-            <input
-              placeholder="Collection ID number"
-              type="text"
-              value={this.props.collections}
-              onChange={event => this.props.onChange({ collections: event.target.value })}
-            />
-          </label>
+const UnsplashSettings: FC<Props> = ({ data = defaultData, setData }) => (
+  <div className="UnsplashSettings">
+    <label>
+      Show a new photo
+      <select
+        value={data.timeout}
+        onChange={event =>
+          setData({ ...data, timeout: Number(event.target.value) })
         }
+      >
+        <option value="0">Every new tab</option>
+        <option value="300">Every 5 minutes</option>
+        <option value="900">Every 15 minutes</option>
+        <option value="3600">Every hour</option>
+        <option value="86400">Every day</option>
+        <option value={Number.MAX_SAFE_INTEGER}>Pause</option>
+      </select>
+    </label>
 
+    <label>
+      <input
+        type="radio"
+        checked={data.by === 'official'}
+        onChange={() => setData({ ...data, by: 'official' })}
+      />{' '}
+      Official collection
+    </label>
+
+    <label>
+      <input
+        type="radio"
+        checked={data.by === 'collections'}
+        onChange={() => setData({ ...data, by: 'collections' })}
+      />{' '}
+      Custom collection
+    </label>
+
+    {data.by === 'collections' && (
+      <label>
+        Collection
+        <input
+          placeholder="Collection ID number"
+          type="text"
+          value={data.collections}
+          onChange={event =>
+            setData({ ...data, collections: event.target.value })
+          }
+        />
+      </label>
+    )}
+
+    <label>
+      <input
+        type="radio"
+        checked={data.by === 'search'}
+        onChange={() => setData({ ...data, by: 'search' })}
+      />{' '}
+      Custom search
+    </label>
+
+    {data.by === 'search' && (
+      <div>
         <label>
+          Tags
           <input
-            type="radio"
-            checked={this.props.by === By.SEARCH}
-            onChange={event => this.props.onChange({ by: By.SEARCH })}
+            placeholder="Try landscapes or animals..."
+            type="text"
+            value={data.search}
+            onChange={event => setData({ ...data, search: event.target.value })}
           />
-          {' '}
-          Custom search
         </label>
 
-        {this.props.by === By.SEARCH &&
-          <div>
-            <label>
-              Tags
-              <input
-                placeholder="Try landscapes or animals..."
-                type="text"
-                value={this.props.search}
-                onChange={event => this.props.onChange({ search: event.target.value })}
-              />
-            </label>
-
-            <label>
-              <input
-                type="checkbox"
-                checked={this.props.featured}
-                onChange={event => this.props.onChange({ featured: ! this.props.featured })}
-              />
-              {' '}
-              Only featured images
-            </label>
-          </div>
-        }
-
         <label>
-          Blur <br />
           <input
-            type="range"
-            min="0"
-            max="50"
-            step="5"
-            value={typeof this.props.blur === 'boolean' ? 0 : this.props.blur}
-            onChange={event => this.props.onChange({ blur: Number(event.target.value) })}
-          />
-        </label>
-
-        <label>
-          Darken <br />
-          <input
-            type="range"
-            min="0"
-            max="100"
-            step="10"
-            value={typeof this.props.darken === 'boolean' ? 0 : this.props.darken}
-            onChange={event => this.props.onChange({ darken: Number(event.target.value) })}
-          />
+            type="checkbox"
+            checked={data.featured}
+            onChange={event => setData({ ...data, featured: !data.featured })}
+          />{' '}
+          Only featured images
         </label>
       </div>
-    );
-  }
-}
+    )}
+  </div>
+);
 
 export default UnsplashSettings;

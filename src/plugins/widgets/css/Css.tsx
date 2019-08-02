@@ -1,45 +1,23 @@
-import * as React from 'react';
+import { FC, useEffect } from 'react';
 
-interface Props {
-  input?: string;
-}
+import { Props, defaultData } from './types';
 
-class Css extends React.PureComponent<Props> {
-  componentDidMount() {
-    this.attach();
-  }
-
-  componentDidUpdate() {
-    // Need to remove the existing style element before inserting an updated one.
-    this.detach();
-    this.attach();
-  }
-
-  componentWillUnmount() {
-    this.detach();
-  }
-
-  render() {
-    return null;
-  }
-
-  private detach() {
-    const style = document.getElementById('CustomCss');
-
-    if (style) {
-      document.head.removeChild(style);
-    }
-  }
-
-  private attach() {
+const Css: FC<Props> = ({ data = defaultData }) => {
+  useEffect(() => {
     const style = document.createElement('style');
 
     style.id = 'CustomCss';
     style.type = 'text/css';
-    style.appendChild(document.createTextNode(this.props.input || ''));
+    style.appendChild(document.createTextNode(data.input || ''));
 
     document.head.appendChild(style);
-  }
-}
+
+    return () => {
+      document.head.removeChild(style);
+    };
+  }, [data.input]);
+
+  return null;
+};
 
 export default Css;

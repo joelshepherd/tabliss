@@ -1,62 +1,63 @@
-import * as React from 'react';
-import { Engine, Settings } from './interfaces';
-const engines: Engine[] = require('./engines.json');
+import React, { FC } from 'react';
 
-const MAX_QUANTITY = 20;
+import { engines } from './engines';
+import { Props, defaultData } from './types';
 
-interface Props extends Settings {
-  onChange: (settings: Settings) => void;
-}
-
-const SearchSettings: React.StatelessComponent<Props> = ({
-  searchEngine = 'google',
-  placeholder = '',
-  suggestionsEngine = '',
-  suggestionsQuantity = 4,
-  onChange,
-}) => (
+const SearchSettings: FC<Props> = ({ data = defaultData, setData }) => (
   <div className="SearchSettings">
     <label>
-      Placeholder
-      <input
-        type="text"
-        value={placeholder}
-        onChange={event => onChange({ placeholder: event.target.value })}
-        placeholder="Type to search"
-      />
-    </label>
-
-    <label>
       Search Provider
-      <select onChange={event => onChange({ searchEngine: event.target.value })} value={searchEngine}>
-        {engines.map(({ key, name }) =>
-          <option key={key} value={key}>{name}</option>
-        )}
+      <select
+        onChange={event =>
+          setData({ ...data, searchEngine: event.target.value })
+        }
+        value={data.searchEngine}
+      >
+        {engines.map(({ key, name }) => (
+          <option key={key} value={key}>
+            {name}
+          </option>
+        ))}
       </select>
     </label>
 
     {process.env.BUILD_TARGET !== 'firefox' && (
       <label>
         Suggestions Provider
-        <select onChange={event => onChange({ suggestionsEngine: event.target.value })} value={suggestionsEngine}>
-          <option key="off" value="">Off</option>
+        <select
+          onChange={event =>
+            setData({ ...data, suggestionsEngine: event.target.value })
+          }
+          value={data.suggestionsEngine}
+        >
+          <option key="off" value="">
+            Off
+          </option>
           {engines
             .filter(({ suggest_url }) => Boolean(suggest_url))
-            .map(({ key, name }) => <option key={key} value={key}>{name}</option>)
-          }
+            .map(({ key, name }) => (
+              <option key={key} value={key}>
+                {name}
+              </option>
+            ))}
         </select>
       </label>
     )}
 
-    {suggestionsEngine && (
+    {data.suggestionsEngine && (
       <label>
         Suggestion Quanitity
         <input
           type="number"
           min="1"
-          max={MAX_QUANTITY}
-          value={suggestionsQuantity}
-          onChange={event =>  onChange({ suggestionsQuantity: Number(event.target.value) })}
+          max="10"
+          value={data.suggestionsQuantity}
+          onChange={event =>
+            setData({
+              ...data,
+              suggestionsQuantity: Number(event.target.value),
+            })
+          }
         />
       </label>
     )}

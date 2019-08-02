@@ -1,21 +1,11 @@
-import * as React from 'react';
-import { defineMessages, injectIntl, InjectedIntlProps } from 'react-intl';
-import tlds from 'tlds';
-import getSuggestions from './suggestions/getSuggestions';
-import { SuggestionsResult, SuggestionsData } from './suggestions/interfaces';
-import { Engine, Settings } from './interfaces';
-import { Suggestions } from './suggestions';
+import React, { FC, useMemo, useRef, useState } from 'react';
+import { defineMessages, useIntl } from 'react-intl';
+
+import { getSuggestions } from './getSuggestions';
+import Suggestions from './Suggestions';
+import { Props, defaultData } from './types';
+import { buildUrl, getSearchUrl, getSuggestUrl } from './utils';
 import './Search.sass';
-
-const engines: Engine[] = require('./engines.json');
-
-interface Props extends Settings {}
-
-interface State {
-  query: string;
-  getSuggestionData: boolean;
-  suggestions: SuggestionsData;
-}
 
 const messages = defineMessages({
   placeholder: {
@@ -25,224 +15,103 @@ const messages = defineMessages({
   },
 });
 
-class Search extends React.PureComponent<Props & InjectedIntlProps, State> {
-  static defaultProps = {
-    searchEngine: 'google',
-    placeholder: '',
-    suggestionsEngine: '',
-    suggestionsQuantity: 4,
-  };
+const Search: FC<Props> = ({ data = defaultData }) => {
+  const searchInput = useRef<HTMLInputElement>(null);
+  const previousValue = useRef('');
 
-  state = {
-    query: '',
-    getSuggestionData: false,
-    suggestions: {
-      active: -1,
-      values: [],
-    },
-  };
+  const [active, setActive] = useState<number>();
+  const [suggestions, setSuggestions] = useState<string[]>();
 
-  private searchInput: React.RefObject<HTMLInputElement> = React.createRef();
-  private currentExecutionTime = 0;
-  private oldQuery: string = '';
+  const intl = useIntl();
+  const placeholder = useMemo(() => intl.formatMessage(messages.placeholder), [
+    intl,
+  ]);
 
-  componentDidUpdate() {
-    this.getSuggestionData();
-  }
-  
-  componentDidMount() {
-    if (this.searchInput.current) {
-      this.searchInput.current.focus();
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    previousValue.current = event.target.value;
+
+    const suggestUrl = getSuggestUrl(data.suggestionsEngine);
+    if (suggestUrl) {
+      getSuggestions(event.target.value, suggestUrl).then(suggestions => {
+        setSuggestions(suggestions.slice(0, data.suggestionsQuantity));
+        setActive(undefined);
+      });
     }
-  }
+  };
 
-  render() {
-    const { intl, placeholder, suggestionsEngine } = this.props;
-
-    return (
-      <form className="Search" onKeyUp={this.keyUp} onSubmit={this.search}>
-        <input
-          ref={this.searchInput}
-          autoFocus={true}
-          tabIndex={1}
-          type="text"
-          value={this.state.query}
-          onChange={event => {
-            this.oldQuery = event.target.value;
-            this.setState({ query: event.target.value, getSuggestionData: true });
-          }}
-          placeholder={placeholder || intl.formatMessage(messages.placeholder)}
-        />
-
-        {suggestionsEngine && (
-          <Suggestions
-            data={this.state.suggestions}
-            onMouseOver={(event, key) => this.setState({ suggestions: { ...this.state.suggestions, active: key } })}
-            onMouseOut={() => this.setState({ suggestions: { ...this.state.suggestions, active: -1 } })}
-            onMouseClick={event => {
-              const target = event.currentTarget;
-
-              target.blur();
-              this.searchInput.current!.focus();
-
-              this.setState({
-                query: target.value,
-                getSuggestionData: true,
-              });
-            }}
-          />
-        )}
-      </form>
-    );
-  }
-
-  /**
-   * Sets active suggestion on keyup and keydown
-   */
-  private keyUp = (event: React.KeyboardEvent<HTMLFormElement>) => {
-    const { keyCode } = event;
-
-    if (this.state.query === '' || (keyCode !== 38 && keyCode !== 40) || ! this.props.suggestionsEngine) {
+  const handleKeyUp = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (!suggestions) {
       return;
     }
 
-    let quantity = this.state.suggestions.values.length;
-    let { active } = this.state.suggestions;
-
-    // 38 - Up arrow
-    if (keyCode === 38) {
-      active--;
-
-      // Select last when nothing is selected
-      if (active < -1) {
-        active = quantity - 1;
-      }
-    }
-
-    // 40 - Down arrow
-    if (keyCode === 40) {
-      active++;
-
-      // Reset when nothing is selected
-      if (active >= quantity) {
-        active = -1;
-      }
-    }
-
-    let query: string;
-
-    // Show old query if nothing is selected
-    if (active === -1) {
-      query = this.oldQuery;
-    } else {
-      query = this.state.suggestions.values[active];
-    }
-
-    this.setState({
-      query,
-      suggestions: {
-        ...this.state.suggestions,
-        active,
-      },
-    });
-  }
-
-  private search = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
+    switch (event.key) {
+      case 'ArrowUp':
+        const upTo = !active ? suggestions.length - 1 : active - 1;
+        searchInput.current!.value = suggestions[upTo];
+        setActive(upTo);
+        break;
+
+      case 'ArrowDown':
+        const downTo =
+          active === undefined || active === suggestions.length - 1
+            ? 0
+            : active + 1;
+        searchInput.current!.value = suggestions[downTo];
+        setActive(downTo);
+        break;
+
+      case 'Escape':
+        if (active) {
+          setActive(undefined);
+          searchInput.current!.value = previousValue.current;
+        } else if (suggestions) {
+          setSuggestions(undefined);
+        }
+        break;
+    }
+  };
+
+  const handleSelect = (suggestion: string) => {
+    searchInput.current!.value = suggestion;
+    search();
+  };
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    search();
+  };
+
+  const search = () => {
     document.location.assign(
-      this.buildUrl(this.state.query)
+      buildUrl(searchInput.current!.value, getSearchUrl(data.searchEngine)),
     );
-  }
+  };
 
-  /**
-   * Build a navigatable URL from a query.
-   *
-   * @type {string}
-   */
-  private buildUrl(query: string) {
-    // See if they have started with a web scheme
-    if (/^https?:\/\/\w+/.test(query)) {
-      return query;
-    }
+  return (
+    <form className="Search" onSubmit={handleSubmit}>
+      <input
+        autoFocus
+        defaultValue=""
+        placeholder={placeholder}
+        ref={searchInput}
+        tabIndex={1}
+        type="text"
+        onChange={handleChange}
+        onKeyUp={handleKeyUp}
+      />
 
-    // See if they have ended with a valid TLD
-    if (tlds.some(tld => query.endsWith(`.${tld}`))) {
-      return `https://${query}`;
-    }
+      {suggestions && (
+        <Suggestions
+          active={active}
+          setActive={setActive}
+          suggestions={suggestions}
+          onSelect={handleSelect}
+        />
+      )}
+    </form>
+  );
+};
 
-    // Probably searching then
-    const searchEngine = engines
-      .find(engine => engine.key === this.props.searchEngine)
-      || engines[0];
-
-    return searchEngine.search_url.replace('{searchTerms}', query);
-  }
-
-  /**
-   * Retrieves suggestion data
-   */
-  private getSuggestionData() {
-    const { query, getSuggestionData } = this.state;
-
-    // Disable suggestions for Firefox (they do not allow the required CSP)
-    if (process.env.BUILD_TARGET === 'firefox') {
-      return;
-    }
-
-    if (! getSuggestionData || ! this.props.suggestionsEngine) {
-      return;
-    }
-
-    // To get the most recent result
-    const executionTime = window.performance.now();
-
-    if (!query) {
-      this.setSuggestions(executionTime, undefined);
-      return;
-    }
-
-    const suggestionEngine = engines
-      .find(engine => engine.key === this.props.suggestionsEngine)
-      || engines[0];
-
-    const suggestionUrl = suggestionEngine.suggest_url!.replace('{searchTerms}', query);
-
-    getSuggestions(suggestionUrl, suggestions => {
-      this.setSuggestions(executionTime, suggestions);
-    });
-  }
-
-  /**
-   * Sets suggestiondata in state
-   */
-  private setSuggestions(executionTime: number, suggestions?: SuggestionsResult) {
-    // Only update with latest data
-    if (executionTime < this.currentExecutionTime) {
-      return;
-    }
-
-    this.currentExecutionTime = executionTime;
-
-    let data: SuggestionsData;
-
-    if (!suggestions) {
-      data = {
-        active: -1,
-        values: [],
-      };
-    } else {
-      data = {
-        active: -1,
-        values: suggestions[1].slice(0, this.props.suggestionsQuantity),
-      };
-    }
-
-    this.setState({
-      getSuggestionData: false,
-      suggestions: data,
-    });
-  }
-}
-
-export default injectIntl(Search);
+export default Search;

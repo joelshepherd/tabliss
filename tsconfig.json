@@ -4,21 +4,13 @@
     "target": "es5",
     "module": "es6",
     "moduleResolution": "node",
-    "experimentalDecorators": true,
-    "forceConsistentCasingInFileNames": true,
+    "esModuleInterop": true,
     "jsx": "react",
     "lib": ["esnext", "dom"],
-    "noImplicitReturns": true,
-    "noImplicitThis": true,
-    "noImplicitAny": true,
-    "noUnusedLocals": true,
     "sourceMap": true,
-    "strictNullChecks": true,
-    "suppressImplicitAnyIndexErrors": true,
-    "typeRoots": ["node_modules/@types", "types"]
+    "strict": true,
+    "typeRoots": ["node_modules/@types", "types"],
+    "allowSyntheticDefaultImports": true
   },
-  "exclude": [
-    "node_modules",
-    "dist"
-  ]
+  "exclude": ["node_modules", "dist"]
 }

@@ -1,10 +1,10 @@
+import { API } from '../../types';
 import { officialCollection, UNSPLASH_API_KEY } from './constants';
-import { By, Image, Settings } from './interfaces';
+import { Image, Data } from './types';
 
-export const getImage = async function (
-  settings: Settings,
-  pushCallback: Function,
-  popCallback: Function,
+export const getImage = async function(
+  settings: Pick<Data, 'by' | 'collections' | 'featured' | 'search'>,
+  loader: API['loader'],
 ): Promise<Image> {
   // Setup
   const { by, collections, featured, search } = settings;
@@ -14,14 +14,15 @@ export const getImage = async function (
   // Build search url
   let url = 'https://api.unsplash.com/photos/random?';
   switch (by) {
-    case By.COLLECTIONS:
+    case 'collections':
       url += `collections=${collections}`;
       break;
 
-    case By.SEARCH:
-      url += 'orientation=landscape'
-        + (featured ? '&featured=true' : '')
-        + (search ? `&query=${search}` : '');
+    case 'search':
+      url +=
+        'orientation=landscape' +
+        (featured ? '&featured=true' : '') +
+        (search ? `&query=${search}` : '');
       break;
 
     default:
@@ -29,10 +30,10 @@ export const getImage = async function (
   }
 
   // Fetch from API
-  pushCallback();
+  loader.push();
   const res = await (await fetch(url, { headers })).json();
   const data = await (await fetch(res.urls.raw + '?q=85&w=1920')).blob();
-  popCallback();
+  loader.pop();
 
   return {
     data,

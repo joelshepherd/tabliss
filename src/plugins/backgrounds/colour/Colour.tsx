@@ -1,17 +1,9 @@
-import * as React from 'react';
+import React, { FC } from 'react';
 
-interface Props {
-  colour?: string;
-}
+import { Props, defaultData } from './types';
 
-class Colour extends React.PureComponent<Props> {
-  static defaultProps: Props = {
-    colour: '#3498db',
-  };
-
-  render() {
-    return <div className="Colour fullscreen" style={{backgroundColor: this.props.colour}} />;
-  }
-}
+const Colour: FC<Props> = ({ data = defaultData }) => (
+  <div className="Colour fullscreen" style={{ backgroundColor: data.colour }} />
+);
 
 export default Colour;

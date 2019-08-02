@@ -1,52 +1,33 @@
-import * as localForage from 'localforage';
-import sample from 'lodash-es/sample';
-import * as Raven from 'raven-js';
-import * as React from 'react';
+import React, { FC, useEffect, useState } from 'react';
+
+import Backdrop from '../../../views/shared/Backdrop';
+import { Props, defaultCache } from './types';
 import './Image.sass';
 
-interface Props {
-  images: Blob[];
+function pickItem(items: unknown[]) {
+  return items[Math.floor(Math.random() * items.length)];
 }
 
-class Image extends React.PureComponent<Props> {
-  static defaultProps = {
-    images: [],
-  };
-  private current: string;
-
-  render() {
-    if (! this.props.images.length) {
-      return <div className="Image default fullscreen" />;
-    }
-
-    return <div className="Image fullscreen" style={{ backgroundImage: `url(${this.url})` }} />;
+const Image: FC<Props> = ({ cache = defaultCache }) => {
+  if (!cache.length) {
+    return <div className="Image default fullscreen" />;
   }
 
-  private get url() {
-    if (this.current) {
-      URL.revokeObjectURL(this.current);
-    }
+  const [url, setUrl] = useState<string>();
+  useEffect(() => {
+    setUrl(URL.createObjectURL(pickItem(cache)));
 
-    // @TODO Should this actually be truely random?
-    // Rotating or peusdo-random might be better.
-    const image = sample(this.props.images);
+    return () => {
+      if (url) URL.revokeObjectURL(url);
+    };
+  }, [cache]);
 
-    try {
-      return this.current = URL.createObjectURL(image);
-    } catch (err) {
-      // Y u no give less vague messages so I can fix you!
-      // ლ(ಠ益ಠლ)
-      Raven.setExtraContext({
-        driver: localForage.driver(),
-        size: image && image.size,
-        string: image && image.toString(),
-        type: image && image.type,
-        typeof: typeof image,
-      });
-
-      throw new Error('Unable to display image.');
-    }
-  }
-}
+  return (
+    <Backdrop
+      className="Image fullscreen"
+      style={{ backgroundImage: url && `url(${url})` }}
+    />
+  );
+};
 
 export default Image;

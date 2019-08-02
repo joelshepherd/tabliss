@@ -1,20 +1,19 @@
-import * as React from 'react';
+import React, { FC, memo } from 'react';
 import { FormattedMessage } from 'react-intl';
+
 import { UNSPLASH_UTM } from './constants';
-import { Image } from './interfaces';
+import { Image } from './types';
 
 interface Props {
   image: Image;
 }
 
-const UnsplashCredit: React.StatelessComponent<Props> = (props) => (
+const UnsplashCredit: FC<Props> = ({ image }) => (
   <div className="credit">
-    <span style={{float: 'right'}}>
-      {props.image.location_title}
-    </span>
+    <span style={{ float: 'right' }}>{image.location_title}</span>
 
     <a
-      href={props.image.image_link + UNSPLASH_UTM}
+      href={image.image_link + UNSPLASH_UTM}
       rel="noopener noreferrer"
       target="_blank"
     >
@@ -26,11 +25,11 @@ const UnsplashCredit: React.StatelessComponent<Props> = (props) => (
     </a>
     {' / '}
     <a
-      href={props.image.user_link + UNSPLASH_UTM}
+      href={image.user_link + UNSPLASH_UTM}
       rel="noopener noreferrer"
       target="_blank"
     >
-      {props.image.user_name}
+      {image.user_name}
     </a>
     {' / '}
     <a
@@ -43,4 +42,4 @@ const UnsplashCredit: React.StatelessComponent<Props> = (props) => (
   </div>
 );
 
-export default UnsplashCredit;
+export default memo(UnsplashCredit);

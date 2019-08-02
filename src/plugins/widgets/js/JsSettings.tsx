@@ -1,12 +1,11 @@
-import * as React from 'react';
-import { Settings } from '../../interfaces';
+import React, { FC, useState } from 'react';
 
-interface Props {
-  input?: string;
-  onChange: (settings: Settings) => void;
-}
+import { Props, defaultData } from './types';
 
-const JsSettings: React.StatelessComponent<Props> = ({ input = '', onChange }) => {
+const JsSettings: FC<Props> = ({ data = defaultData, setData }) => {
+  const [input, setInput] = useState(data.input);
+  const handleSave = () => setData({ input });
+
   return (
     <div className="JsSettings">
       <label>
@@ -15,14 +14,17 @@ const JsSettings: React.StatelessComponent<Props> = ({ input = '', onChange }) =
           rows={3}
           style={{ fontFamily: 'monospace' }}
           value={input}
-          onChange={event => onChange({ input: event.target.value })}
+          onChange={event => setInput(event.target.value)}
         />
       </label>
 
+      <button onClick={handleSave}>Apply</button>
+
       <p className="info">
-        Warning: this functionality is intended for advanced users. Custom scripts may break at any time.
-        The snippet will run once after the dashboard has loaded.
-        Be careful of persisting event listeners when editing the snippet.
+        Warning: this functionality is intended for advanced users. Custom
+        scripts may break at any time. The snippet will run once after the
+        dashboard has loaded. Be careful of persisting event listeners when
+        editing the snippet.
       </p>
     </div>
   );

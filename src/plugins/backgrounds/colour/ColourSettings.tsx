@@ -1,30 +1,18 @@
-import * as React from 'react';
-import { Settings } from '../../interfaces';
+import React, { FC } from 'react';
 
-interface Props {
-  colour?: string;
-  onChange: (settings: Settings) => void;
-}
+import { Props, defaultData } from './types';
 
-class ColourSettings extends React.PureComponent<Props> {
-  static defaultProps = {
-    colour: '#3498db',
-  };
-
-  render() {
-    return (
-      <div className="ColourSettings">
-        <label>
-          Colour
-          <input
-            type="color"
-            value={this.props.colour}
-            onChange={event => this.props.onChange({ colour: event.target.value })}
-          />
-        </label>
-      </div>
-    );
-  }
-}
+const ColourSettings: FC<Props> = ({ data = defaultData, setData }) => (
+  <div className="ColourSettings">
+    <label>
+      Colour
+      <input
+        type="color"
+        value={data.colour}
+        onChange={event => setData({ colour: event.target.value })}
+      />
+    </label>
+  </div>
+);
 
 export default ColourSettings;

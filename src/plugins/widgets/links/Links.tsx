@@ -1,58 +1,40 @@
-import * as React from 'react';
-import { isInputEvent } from '../../../utils';
-import { Settings } from './interfaces';
-import LinkDisplay from './LinkDisplay';
+import React, { FC } from 'react';
+
+import { useKeyPress, useToggle } from '../../../hooks';
+import { Icon } from '../../../views/shared';
+import Display from './Display';
+import { Props, defaultData } from './types';
 import './Links.sass';
-const linkIcon = require('feather-icons/dist/icons/link-2.svg');
 
-interface State {
-  visible: boolean;
-}
+const Links: FC<Props> = ({ data = defaultData }) => {
+  const [visible, toggleVisible] = useToggle();
 
-class Links extends React.PureComponent<Settings, State> {
-  static defaultProps = {
-    columns: 1,
-    links: [{ url: 'https://tabliss.io' }],
-    visible: false,
-  };
-  state = {
-    visible: false,
-  };
+  useKeyPress(
+    ({ key }) => {
+      const index = Number(key) - 1;
+      if (data.links[index]) {
+        window.location.assign(data.links[index].url);
+      }
+    },
+    ['1', '2', '3', '4', '5', '6', '7', '8', '9'],
+  );
 
-  componentWillMount() {
-    document.addEventListener('keydown', this.onKeyDown);
-  }
-
-  componentWillUnmount() {
-    document.removeEventListener('keydown', this.onKeyDown);
-  }
-
-  render() {
-    return (
-      <div className="Links" style={{ gridTemplateColumns: '1fr '.repeat(this.props.columns) }}>
-        {! this.props.visible && ! this.state.visible && (
-          <a onClick={() => this.setState({ visible: true })} title="Show quick links">
-            <i dangerouslySetInnerHTML={{ __html: linkIcon }} />
-          </a>
-        )}
-        {(this.props.visible || this.state.visible) && this.props.links.map((link, index) => (
-          <LinkDisplay key={index} number={index + 1} {...link} />
-        ))}
-      </div>
-    );
-  }
-
-  private onKeyDown = (event: KeyboardEvent) => {
-    // Check for input focus
-    if (isInputEvent(event)) {
-      return;
-    }
-
-    const key = event.keyCode - 49; // Starting at 1
-    if (this.props.links[key]) {
-      window.location.assign(this.props.links[key].url);
-    }
-  }
-}
+  return (
+    <div
+      className="Links"
+      style={{ gridTemplateColumns: '1fr '.repeat(data.columns) }}
+    >
+      {data.visible || visible ? (
+        data.links.map((link, index) => (
+          <Display key={index} number={index + 1} {...link} />
+        ))
+      ) : (
+        <a onClick={toggleVisible} title="Show quick links">
+          <Icon name={'link-2'} />
+        </a>
+      )}
+    </div>
+  );
+};
 
 export default Links;

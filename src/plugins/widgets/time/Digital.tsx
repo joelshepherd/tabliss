@@ -1,14 +1,14 @@
-import * as React from 'react';
+import React, { FC } from 'react';
 import { FormattedTime } from 'react-intl';
 
-interface Props {
+type Props = {
   hour12: boolean;
   showMinutes: boolean;
   showSeconds: boolean;
   time: Date;
-}
+};
 
-const Digital: React.StatelessComponent<Props> = ({ time, hour12, showMinutes, showSeconds }) => (
+const Digital: FC<Props> = ({ time, hour12, showMinutes, showSeconds }) => (
   <div className="Time Digital">
     <h1>
       <FormattedTime

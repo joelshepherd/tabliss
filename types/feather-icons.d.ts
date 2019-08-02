@@ -1,4 +1,4 @@
-declare module 'feather-icons' {
-  const feather: any;
-  export default feather;
+declare module 'feather-icons/dist/icons.json' {
+  const icons: Record<string, string>;
+  export default icons;
 }

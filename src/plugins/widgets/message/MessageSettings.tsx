@@ -1,24 +1,18 @@
-import * as React from 'react';
-import { Settings } from '../../interfaces';
+import React, { FC } from 'react';
 
-interface Props {
-  message?: string;
-  onChange: (settings: Settings) => void;
-}
+import { Props, defaultData } from './types';
 
-const MessageSettings: React.StatelessComponent<Props> = ({ message = 'Add something witty', onChange }) => {
-  return (
-    <div className="MessageSettings">
-      <label>
-        Message
-        <textarea
-          rows={3}
-          value={message}
-          onChange={event => onChange({ message: event.target.value })}
-        />
-      </label>
-    </div>
-  );
-};
+const MessageSettings: FC<Props> = ({ data = defaultData, setData }) => (
+  <div className="MessageSettings">
+    <label>
+      Message
+      <textarea
+        rows={3}
+        value={data.messages[0]}
+        onChange={event => setData({ messages: [event.target.value] })}
+      />
+    </label>
+  </div>
+);
 
 export default MessageSettings;

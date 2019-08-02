@@ -1,2 +1,14 @@
-export { default as Image } from './Image';
-export { default as ImageSettings } from './ImageSettings';
+import { Config } from '../../types';
+import Image from './Image';
+import ImageSettings from './ImageSettings';
+
+const config: Config = {
+  key: 'background/image',
+  name: 'Upload Images',
+  description: 'See your own images.',
+  dashboardComponent: Image,
+  settingsComponent: ImageSettings,
+  supportsBackdrop: true,
+};
+
+export default config;

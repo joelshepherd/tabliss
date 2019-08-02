@@ -1,14 +1,16 @@
 {
   "app.pageTitle": "Ny fane",
+  "background": "Background",
   "dashboard.focusHint": "Veksle widgets",
   "dashboard.fullscreenHint": "Veksle fullskjerm",
   "dashboard.loadingHint": "Laster nytt innhold",
   "dashboard.settingsHint": "Tilpass Tabliss",
-  "plugin.greeting.withName": "{hour, plural,\n      =0 {Sov godt, {name}}\n      =1 {Sov godt, {name}}\n      =2 {Sov godt, {name}}\n      =3 {Rise and shine, {name}}\n      =4 {Rise and shine, {name}}\n      =5 {Rise and shine, {name}}\n      =6 {God morgen, {name}}\n      =7 {God morgen, {name}}\n      =8 {God morgen, {name}}\n      =9 {God morgen, {name}}\n      =10 {Hei, {name}}\n      =11 {Hei, {name}}\n      =12 {Hei, {name}}\n      =13 {Hei, {name}}\n      =14 {God dag, {name}}\n      =15 {God dag, {name}}\n      =16 {God dag, {name}}\n      =17 {God dag, {name}}\n      =18 {God kveld, {name}}\n      =19 {God kveld, {name}}\n      =20 {God kveld, {name}}\n      =21 {God kveld, {name}}\n      =22 {God natt, {name}}\n      =23 {God natt, {name}}\n    }",
-  "plugin.greeting.withoutName": "{hour, plural,\n      =0 {Sov godt}\n      =1 {Sov godt}\n      =2 {Sov godt}\n      =3 {Rise and shine}\n      =4 {Rise and shine}\n      =5 {Rise and shine}\n      =6 {God morgen}\n      =7 {God morgen}\n      =8 {God morgen}\n      =9 {God morgen}\n      =10 {Hei}\n      =11 {Hei}\n      =12 {Hei}\n      =13 {Hei}\n      =14 {God dag}\n      =15 {God dag}\n      =16 {God dag}\n      =17 {God dag}\n      =18 {God kveld}\n      =19 {God kveld}\n      =20 {God kveld}\n      =21 {God kveld}\n      =22 {God natt}\n      =23 {God natt}\n    }",
+  "plugin.greeting.withName": "{hour, select, 0 {Sov godt, {name}} 1 {Sov godt, {name}} 2 {Sov godt, {name}} 3 {Rise and shine, {name}} 4 {Rise and shine, {name}} 5 {Rise and shine, {name}} 6 {God morgen, {name}} 7 {God morgen, {name}} 8 {God morgen, {name}} 9 {God morgen, {name}} 10 {Hei, {name}} 11 {Hei, {name}} 12 {Hei, {name}} 13 {Hei, {name}} 14 {God dag, {name}} 15 {God dag, {name}} 16 {God dag, {name}} 17 {God dag, {name}} 18 {God kveld, {name}} 19 {God kveld, {name}} 20 {God kveld, {name}} 21 {God kveld, {name}} 22 {God natt, {name}} 23 {God natt, {name}}\n    }",
+  "plugin.greeting.withoutName": "{hour, select, 0 {Sov godt} 1 {Sov godt} 2 {Sov godt} 3 {Rise and shine} 4 {Rise and shine} 5 {Rise and shine} 6 {God morgen} 7 {God morgen} 8 {God morgen} 9 {God morgen} 10 {Hei} 11 {Hei} 12 {Hei} 13 {Hei} 14 {God dag} 15 {God dag} 16 {God dag} 17 {God dag} 18 {God kveld} 19 {God kveld} 20 {God kveld} 21 {God kveld} 22 {God natt} 23 {God natt}\n    }",
   "plugins.links.shortcutHint": "Trykk {number} eller klikk for å besøke",
   "plugins.links.standardHint": "Trykk for å besøke",
   "plugins.search.placeholder": "Skriv for å søke",
   "plugins.unsplash.photoLink": "Foto",
-  "settings.translationCredits": " "
+  "settings.translationCredits": " ",
+  "widgets": "Widgets"
 }
