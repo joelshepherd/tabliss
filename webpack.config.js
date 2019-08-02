@@ -100,7 +100,6 @@ if (isWeb) {
       dontCacheBustUrlsMatching: /\.\w{12}\./,
       filename: 'service-worker.js',
       minify: true,
-      navigateFallback: '/index.html',
       staticFileGlobsIgnorePatterns: [/\.map$/],
     }),
   );
