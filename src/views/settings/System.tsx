@@ -81,11 +81,11 @@ const System: FC = () => {
           <option value="ru" title="Russian">
             Русский
           </option>
-          <option value="se" title="Svenska">
-            Svenska
-          </option>
           <option value="sk" title="Slovak">
             Slovenčina
+          </option>
+          <option value="sv" title="Swedish">
+            Svenska
           </option>
           <option value="tr" title="Turkish">
             Türkçe

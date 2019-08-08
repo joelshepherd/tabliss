@@ -41,6 +41,11 @@ const config = {
         },
       },
       {
+        // Thanks, `react-intl`
+        test: /\.mjs$/,
+        type: 'javascript/auto',
+      },
+      {
         test: /\.sass$/,
         use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
       },
