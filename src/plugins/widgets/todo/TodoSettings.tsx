@@ -1,9 +1,10 @@
 import React, { FC } from 'react';
 
 import { Props, defaultData } from './types';
+import AsanaSettings from './integrations/asana/AsanaSettings';
 
 const TodoSettings: FC<Props> = ({ data = defaultData, setData }) => (
-  <div className="SearchSettings">
+  <div>
     <label>
       Tasks to show
       <input
@@ -16,6 +17,16 @@ const TodoSettings: FC<Props> = ({ data = defaultData, setData }) => (
         value={data.show}
       />
     </label>
+
+    <AsanaSettings
+      data={data.integration.data}
+      setData={integrationData =>
+        setData({
+          ...data,
+          integration: { ...data.integration, data: integrationData },
+        })
+      }
+    />
   </div>
 );
 

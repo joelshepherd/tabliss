@@ -11,7 +11,7 @@ export type State = Todo[];
 export function reducer(state: State, action: Action) {
   switch (action.type) {
     case 'ADD_TODO':
-      return state.concat(action.data);
+      return [action.data, ...state];
 
     case 'REMOVE_TODO':
       return state.filter(todo => todo.id !== action.data.id);

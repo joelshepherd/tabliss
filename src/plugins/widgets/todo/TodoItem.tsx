@@ -51,13 +51,17 @@ const TodoItem: FC<Props> = ({ item, onDelete, onUpdate, onToggle }) => {
     false,
   );
 
+  const handleBlur = () => {
+    if (ref.current) {
+      if (ref.current.innerText !== item.contents) {
+        onUpdate(ref.current.innerText);
+      }
+    }
+  };
+
   return (
     <div className="TodoItem">
-      <span
-        ref={ref}
-        contentEditable={true}
-        onBlur={event => onUpdate(event.currentTarget.innerText)}
-      />
+      <span ref={ref} contentEditable onBlur={handleBlur} />
 
       <a onMouseDown={onToggle} className="complete">
         <Icon name={item.completed ? 'check-circle' : 'circle'} />

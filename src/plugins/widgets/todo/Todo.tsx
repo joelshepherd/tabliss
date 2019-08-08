@@ -7,16 +7,32 @@ import { reducer, State } from './reducer';
 import { Props, defaultData } from './types';
 import TodoInput from './TodoInput';
 import TodoList from './TodoList';
+import { useAsana } from './integrations/asana/useAsana';
 
 const Todo: FC<Props> = ({ data = defaultData, setData }) => {
   const [showCompleted, toggleShowCompleted] = useToggle();
   const [showMore, toggleShowMore] = useToggle();
 
   const setItems = (items: State) => setData({ ...data, items });
-  const dispatch = useSavedReducer(reducer, data.items, setItems);
+  const baseDispatch = useSavedReducer(reducer, data.items, setItems);
 
   const items = data.items.filter(item => !item.completed || showCompleted);
   const show = !showMore ? data.show : undefined;
+
+  const listener = useAsana(
+    data.integration ? data.integration.data : undefined,
+    integrationData =>
+      setData({
+        ...data,
+        integration: { ...data.integration, data: integrationData },
+      }),
+    items => setData({ ...data, items }),
+  );
+
+  const dispatch = (action: any) => {
+    baseDispatch(action);
+    listener(action);
+  };
 
   return (
     <div className="Todo">
