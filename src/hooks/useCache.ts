@@ -12,16 +12,18 @@ export function useCachedEffect(
 ) {
   const time = useTime();
   const prevDeps = useRef(deps);
+  const prevExpires = useRef<Date | number>();
 
   useEffect(() => {
     const depsChanged = !areDepsEqual(prevDeps.current, deps);
-    const expired = time >= expires;
+    const expired = time >= expires && expires !== prevExpires.current;
 
     if (depsChanged || expired) {
       prevDeps.current = deps;
+      prevExpires.current = expires;
       return effect();
     }
-  }, [...deps, time]);
+  }, [...deps, expires, time]);
 }
 
 export type RotatingCache<Item> = {
