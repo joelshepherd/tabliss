@@ -24,6 +24,7 @@ const languages = [
   'pt',
   'ro',
   'ru',
+  'se',
   'sk',
   'tr',
   'vi',
