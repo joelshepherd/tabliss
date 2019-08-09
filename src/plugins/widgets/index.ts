@@ -1,3 +1,4 @@
+import countdown from './countdown';
 import css from './css';
 import greeting from './greeting';
 import links from './links';
@@ -11,6 +12,7 @@ import todo from './todo';
 import weather from './weather';
 
 export const widgetConfigs = [
+  countdown,
   css,
   greeting,
   links,
