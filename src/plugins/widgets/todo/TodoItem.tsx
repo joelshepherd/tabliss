@@ -13,7 +13,6 @@ type Props = {
 
 const TodoItem: FC<Props> = ({ dispatch, item }) => {
   const ref = useRef<HTMLSpanElement>(null);
-
   useLayoutEffect(() => {
     if (ref.current) {
       ref.current.innerText = item.contents;
@@ -25,12 +24,8 @@ const TodoItem: FC<Props> = ({ dispatch, item }) => {
       dispatch(updateTodo(item.id, ref.current.innerText));
     }
   };
-
   const handleComplete = () => dispatch(completeTodo(item.id, !item.completed));
-
-  const handleRemove = () => dispatch(removeTodo(item.id));
-
-  const handleKeyUp = (event: React.KeyboardEvent<HTMLSpanElement>) => {
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLSpanElement>) => {
     switch (event.key) {
       case 'Enter':
         event.preventDefault();
@@ -45,6 +40,7 @@ const TodoItem: FC<Props> = ({ dispatch, item }) => {
         break;
     }
   };
+  const handleRemove = () => dispatch(removeTodo(item.id));
 
   return (
     <div className="TodoItem">
@@ -52,7 +48,7 @@ const TodoItem: FC<Props> = ({ dispatch, item }) => {
         ref={ref}
         contentEditable
         onBlur={handleBlur}
-        onKeyUp={handleKeyUp}
+        onKeyDown={handleKeyDown}
       />
 
       <a onMouseDown={handleComplete} className="complete">

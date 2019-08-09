@@ -1,4 +1,5 @@
 import { v4 as generateId } from 'uuid';
+import { State } from './reducer';
 
 export function addTodo(contents: string) {
   return {
@@ -25,6 +26,13 @@ export function removeTodo(id: string) {
   } as const;
 }
 
+export function replaceTodos(state: State) {
+  return {
+    type: 'REPLACE_TODOS',
+    data: { state },
+  } as const;
+}
+
 export function updateTodo(id: string, contents: string) {
   return {
     type: 'UPDATE_TODO',
@@ -36,4 +44,5 @@ export type Action =
   | ReturnType<typeof addTodo>
   | ReturnType<typeof completeTodo>
   | ReturnType<typeof removeTodo>
+  | ReturnType<typeof replaceTodos>
   | ReturnType<typeof updateTodo>;

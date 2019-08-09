@@ -13,15 +13,18 @@ export function reducer(state: State, action: Action) {
     case 'ADD_TODO':
       return [action.data, ...state];
 
-    case 'REMOVE_TODO':
-      return state.filter(todo => todo.id !== action.data.id);
-
     case 'COMPLETE_TODO':
       return state.map(todo =>
         todo.id === action.data.id
           ? { ...todo, completed: action.data.completed }
           : todo,
       );
+
+    case 'REMOVE_TODO':
+      return state.filter(todo => todo.id !== action.data.id);
+
+    case 'REPLACE_TODOS':
+      return action.data.state;
 
     case 'UPDATE_TODO':
       return state.map(todo =>

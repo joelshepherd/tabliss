@@ -1,16 +1,23 @@
-import { Data } from '../types';
-import { useAsana } from './asana/useAsana';
+import { useMemo } from 'react';
+
+import { DataIntegration, Dispatch } from '../types';
+import integrations from './integrations';
 
 export function useIntegration(
-  integration: Data['integration'],
-  setIntegration: (data: Data['integration']) => void,
-  setTasks: (tasks: any[]) => void,
-) {
+  dispatch: Dispatch,
+  integration: DataIntegration,
+  setIntegration: (data: DataIntegration) => void,
+): Dispatch {
   const data = integration.data;
   const setData = (data?: unknown) => setIntegration({ ...integration, data });
 
-  switch (data.provider) {
-    case 'asana':
-      return useAsana(data, setData, setTasks);
-  }
+  const config = integrations.find(({ key }) => key === integration.provider);
+
+  return useMemo(
+    () =>
+      config
+        ? config.middleware({ data, dispatch, setData })(dispatch)
+        : dispatch,
+    [config, data, dispatch],
+  );
 }

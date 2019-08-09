@@ -1,7 +1,8 @@
 import React, { FC, useState, useEffect, ChangeEvent } from 'react';
 
 import { getAccessToken } from '../../../../../lib/oauth';
-import { oauthSettings, request } from './api';
+import { SettingsProps } from '../types';
+import { oauthSettings, request, Workspace } from './api';
 
 type Data = {
   accessToken: string;
@@ -9,15 +10,7 @@ type Data = {
   workspaceId?: string;
 };
 
-type Props = {
-  data?: Data;
-  setData: (data?: Data) => void;
-};
-
-type Workspace = {
-  gid: string;
-  name: string;
-};
+type Props = SettingsProps<Data>;
 
 const UnauthenticatedSettings: FC<Props> = ({ setData }) => {
   const handleLogin = () => {
@@ -44,6 +37,7 @@ const AuthenticatedSettings: FC<Required<Props>> = ({ data, setData }) => {
 
   return (
     <>
+      <h5>Asana Settings</h5>
       <label>
         Workspace
         <select value={data.workspaceId || ''} onChange={handleChange}>

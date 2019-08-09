@@ -4,11 +4,13 @@ import { Action } from './actions';
 
 export type Dispatch = (action: Action) => void;
 
+export type DataIntegration = {
+  provider?: string;
+  data?: any;
+};
+
 export type Data = {
-  integration: {
-    provider: 'tabliss' | 'asana';
-    data?: any;
-  };
+  integration: DataIntegration;
   items: State;
   show: number;
 };
@@ -16,9 +18,7 @@ export type Data = {
 export type Props = API<Data>;
 
 export const defaultData: Data = {
-  integration: {
-    provider: 'asana',
-  },
+  integration: {},
   items: [],
   show: 3,
 };

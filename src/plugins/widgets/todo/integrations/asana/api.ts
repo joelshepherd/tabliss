@@ -1,3 +1,14 @@
+export type Task = {
+  gid: string;
+  name: string;
+  completed: boolean;
+};
+
+export type Workspace = {
+  gid: string;
+  name: string;
+};
+
 export const oauthSettings = {
   authority: 'https://app.asana.com/api/1.0',
   client_id: '1134637450518855',

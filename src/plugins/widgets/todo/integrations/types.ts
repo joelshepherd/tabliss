@@ -1,41 +1,20 @@
-// import { ComponentType } from 'react';
-// import { Action } from '../actions';
+import { ComponentType } from 'react';
 
-// type Integration = {
-//   hook: (data: unknown, setData: (data: unknown) => void) => I;
-//   settingsComponent: ComponentType;
-// };
+import { Dispatch } from '../types';
 
-// type I = {
-//   items: any[];
-//   add(contents: string): void;
-//   update(id: string, contents: string): void;
-//   toggle(id: string): void;
-//   remove(id: string): void;
-// };
+export type SettingsProps<Data> = {
+  data?: Data;
+  setData: (data?: Data) => void;
+};
 
-// type Hook = (data: unknown, setData: (data: unknown) => void) => I;
+export type IntegrationConfig = {
+  key: string;
+  name: string;
+  middleware: Middleware<any>;
+  settingsComponent: ComponentType<SettingsProps<any>>;
+};
 
-// type DispatchWrapper<D = React.Dispatch<Action>> = (dispatch: D) => D;
-
-// const wrapper: DispatchWrapper = dispatch => {
-//   //
-//   init();
-
-//   return action => {
-//     dispatch(action);
-//     listener(dispatch, action);
-//   };
-// };
-
-// type Listener = (dispatch: React.Dispatch<Action>, action: Action) => void;
-
-// class IClass {
-//   constructor(private dispatch: React.Dispatch<Action>) {}
-
-//   add(contents: string) {
-//     this.dispatch({ type: 'ADD_TODO', data: { contents } });
-//   }
-// }
-
-export default {};
+export type Next = (next: Dispatch) => Dispatch;
+export type Middleware<Data> = (
+  props: SettingsProps<Data> & { dispatch: Dispatch },
+) => Next;

@@ -4,28 +4,20 @@ import { useSavedReducer, useToggle } from '../../../hooks';
 import { DownIcon, Icon, UpIcon } from '../../../views/shared';
 import { useIntegration } from './integrations';
 import { reducer, State } from './reducer';
-import { Dispatch, Props, defaultData } from './types';
+import { Props, defaultData } from './types';
 import TodoInput from './TodoInput';
 import TodoList from './TodoList';
 
 const Todo: FC<Props> = ({ data = defaultData, setData }) => {
-  const [showCompleted, toggleShowCompleted] = useToggle();
-  const [showMore, toggleShowMore] = useToggle();
+  const [showCompleted, toggleCompleted] = useToggle();
+  const [showMore, toggleMore] = useToggle();
 
   const setItems = (items: State) => setData({ ...data, items });
   const dispatch = useSavedReducer(reducer, data.items, setItems);
-  const listener = useIntegration(
+  const integratedDispatch = useIntegration(
+    dispatch,
     data.integration,
     integration => setData({ ...data, integration }),
-    setItems,
-  );
-
-  const dispatchWithListener: Dispatch = useCallback(
-    action => {
-      dispatch(action);
-      if (listener) listener(action);
-    },
-    [dispatch, listener],
   );
 
   const items = data.items.filter(item => !item.completed || showCompleted);
@@ -33,19 +25,19 @@ const Todo: FC<Props> = ({ data = defaultData, setData }) => {
 
   return (
     <div className="Todo">
-      <TodoList dispatch={dispatchWithListener} items={items} show={show} />
-
       <div>
-        <TodoInput dispatch={dispatchWithListener} />
+        <TodoInput dispatch={integratedDispatch} />
         &nbsp;
-        <a onClick={toggleShowCompleted}>
+        <a onClick={toggleCompleted}>
           <Icon name={showCompleted ? 'check-circle' : 'circle'} />
         </a>
         &nbsp;
         {items.length > data.show && (
-          <a onClick={toggleShowMore}>{showMore ? <UpIcon /> : <DownIcon />}</a>
+          <a onClick={toggleMore}>{showMore ? <UpIcon /> : <DownIcon />}</a>
         )}
       </div>
+
+      <TodoList dispatch={integratedDispatch} items={items} show={show} />
     </div>
   );
 };
