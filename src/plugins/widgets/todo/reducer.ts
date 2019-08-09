@@ -16,10 +16,10 @@ export function reducer(state: State, action: Action) {
     case 'REMOVE_TODO':
       return state.filter(todo => todo.id !== action.data.id);
 
-    case 'TOGGLE_TODO':
+    case 'COMPLETE_TODO':
       return state.map(todo =>
         todo.id === action.data.id
-          ? { ...todo, completed: !todo.completed }
+          ? { ...todo, completed: action.data.completed }
           : todo,
       );
 

@@ -2,13 +2,15 @@ import React, { FC, useState } from 'react';
 
 import { useToggle } from '../../../hooks';
 import { ExpandIcon } from '../../../views/shared';
+import { addTodo } from './actions';
+import { Dispatch } from './types';
 import './TodoInput.sass';
 
 type Props = {
-  onCreate(contents: string): void;
+  dispatch: Dispatch;
 };
 
-const TodoInput: FC<Props> = ({ onCreate }) => {
+const TodoInput: FC<Props> = ({ dispatch }) => {
   const [isOpen, toggleIsOpen] = useToggle();
   const [contents, setContents] = useState('');
 
@@ -16,7 +18,7 @@ const TodoInput: FC<Props> = ({ onCreate }) => {
     event.preventDefault();
 
     if (contents !== '') {
-      onCreate(contents);
+      dispatch(addTodo(contents));
     }
 
     setContents('');

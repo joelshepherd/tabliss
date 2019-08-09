@@ -1,18 +1,17 @@
 import React, { FC, useLayoutEffect, useRef } from 'react';
 
-import { useKeyPress } from '../../../hooks';
 import { Icon, RemoveIcon } from '../../../views/shared';
+import { completeTodo, removeTodo, updateTodo } from './actions';
 import { State } from './reducer';
+import { Dispatch } from './types';
 import './TodoItem.sass';
 
-interface Props {
+type Props = {
+  dispatch: Dispatch;
   item: State[number];
-  onToggle(): void;
-  onUpdate(contents: string): void;
-  onDelete(): void;
-}
+};
 
-const TodoItem: FC<Props> = ({ item, onDelete, onUpdate, onToggle }) => {
+const TodoItem: FC<Props> = ({ dispatch, item }) => {
   const ref = useRef<HTMLSpanElement>(null);
 
   useLayoutEffect(() => {
@@ -21,52 +20,45 @@ const TodoItem: FC<Props> = ({ item, onDelete, onUpdate, onToggle }) => {
     }
   }, [item.contents]);
 
-  useKeyPress(
-    event => {
-      if (event.target === ref.current) {
-        event.preventDefault();
-
-        if (ref.current) {
-          ref.current.blur();
-        }
-      }
-    },
-    ['Enter'],
-    false,
-  );
-
-  useKeyPress(
-    event => {
-      if (event.target === ref.current) {
-        event.preventDefault();
-
-        if (ref.current) {
-          // Reset contents on escape
-          ref.current.innerText = item.contents;
-          ref.current.blur();
-        }
-      }
-    },
-    ['Escape'],
-    false,
-  );
-
   const handleBlur = () => {
-    if (ref.current) {
-      if (ref.current.innerText !== item.contents) {
-        onUpdate(ref.current.innerText);
-      }
+    if (ref.current && ref.current.innerText !== item.contents) {
+      dispatch(updateTodo(item.id, ref.current.innerText));
+    }
+  };
+
+  const handleComplete = () => dispatch(completeTodo(item.id, !item.completed));
+
+  const handleRemove = () => dispatch(removeTodo(item.id));
+
+  const handleKeyUp = (event: React.KeyboardEvent<HTMLSpanElement>) => {
+    switch (event.key) {
+      case 'Enter':
+        event.preventDefault();
+        event.currentTarget.blur();
+        break;
+
+      case 'Escape':
+        // Reset contents on escape
+        event.preventDefault();
+        event.currentTarget.innerText = item.contents;
+        event.currentTarget.blur();
+        break;
     }
   };
 
   return (
     <div className="TodoItem">
-      <span ref={ref} contentEditable onBlur={handleBlur} />
+      <span
+        ref={ref}
+        contentEditable
+        onBlur={handleBlur}
+        onKeyUp={handleKeyUp}
+      />
 
-      <a onMouseDown={onToggle} className="complete">
+      <a onMouseDown={handleComplete} className="complete">
         <Icon name={item.completed ? 'check-circle' : 'circle'} />
       </a>
-      <a onMouseDown={onDelete} className="delete">
+      <a onMouseDown={handleRemove} className="delete">
         <RemoveIcon />
       </a>
     </div>

@@ -11,16 +11,16 @@ export function addTodo(contents: string) {
   } as const;
 }
 
-export function removeTodo(id: string) {
+export function completeTodo(id: string, completed = true) {
   return {
-    type: 'REMOVE_TODO',
-    data: { id },
+    type: 'COMPLETE_TODO',
+    data: { id, completed },
   } as const;
 }
 
-export function toggleTodo(id: string) {
+export function removeTodo(id: string) {
   return {
-    type: 'TOGGLE_TODO',
+    type: 'REMOVE_TODO',
     data: { id },
   } as const;
 }
@@ -34,6 +34,6 @@ export function updateTodo(id: string, contents: string) {
 
 export type Action =
   | ReturnType<typeof addTodo>
+  | ReturnType<typeof completeTodo>
   | ReturnType<typeof removeTodo>
-  | ReturnType<typeof toggleTodo>
   | ReturnType<typeof updateTodo>;

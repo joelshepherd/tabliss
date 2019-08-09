@@ -1,5 +1,5 @@
 import { reducer } from './reducer';
-import { addTodo, removeTodo, toggleTodo, updateTodo } from './actions';
+import { addTodo, completeTodo, removeTodo, updateTodo } from './actions';
 
 describe('todo/reducer', () => {
   it('should add todo', () => {
@@ -75,7 +75,7 @@ describe('todo/reducer', () => {
     ]);
   });
 
-  it('should toggle todo', () => {
+  it('should complete todo', () => {
     expect(
       reducer(
         [
@@ -90,7 +90,7 @@ describe('todo/reducer', () => {
             completed: false,
           },
         ],
-        toggleTodo('1234'),
+        completeTodo('1234', false),
       ),
     ).toEqual([
       {
@@ -119,7 +119,7 @@ describe('todo/reducer', () => {
             completed: false,
           },
         ],
-        toggleTodo('5678'),
+        completeTodo('5678'),
       ),
     ).toEqual([
       {

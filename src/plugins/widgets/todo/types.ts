@@ -1,5 +1,8 @@
 import { API } from '../../types';
 import { State } from './reducer';
+import { Action } from './actions';
+
+export type Dispatch = (action: Action) => void;
 
 export type Data = {
   integration: {
