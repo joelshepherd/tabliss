@@ -1,8 +1,8 @@
-import React, { FC, useState, useEffect, ChangeEvent } from 'react';
+import React, { FC, useState, useEffect, ChangeEvent, useMemo } from 'react';
 
 import { getAccessToken } from '../../../../../lib/oauth';
 import { SettingsProps } from '../types';
-import { oauthSettings, request, Workspace } from './api';
+import { Workspace, createRequest, oauthSettings } from './api';
 
 type Data = {
   accessToken: string;
@@ -21,9 +21,17 @@ const UnauthenticatedSettings: FC<Props> = ({ setData }) => {
 };
 
 const AuthenticatedSettings: FC<Required<Props>> = ({ data, setData }) => {
+  const request = useMemo(
+    () =>
+      createRequest(data.accessToken, accessToken =>
+        setData({ ...data, accessToken }),
+      ),
+    [data],
+  );
+
   const [workspaces, setWorkspaces] = useState<Workspace[]>([]);
   useEffect(() => {
-    request('workspaces', data.accessToken)
+    request<Workspace[]>('workspaces')
       .then(body => body.data)
       .then(setWorkspaces);
   }, []);

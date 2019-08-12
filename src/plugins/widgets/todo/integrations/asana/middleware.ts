@@ -1,6 +1,6 @@
 import { replaceTodos } from '../../actions';
 import { Middleware } from '../types';
-import { request, Task } from './api';
+import { Task, createRequest } from './api';
 
 type Data = {
   accessToken: string;
@@ -13,16 +13,19 @@ const middleware: Middleware<Data> = ({ data, dispatch, setData }) => {
     return next => next;
   }
 
+  const request = createRequest(data.accessToken, accessToken =>
+    setData({ ...data, accessToken }),
+  );
+
   // fetch latest from asana
-  request(
+  request<Task[]>(
     `tasks?assignee=me&workspace=${
       data.workspaceId
     }&opt_fields=gid,name,completed`,
-    data.accessToken,
   ).then(({ data }) =>
     dispatch(
       replaceTodos(
-        data.map((task: Task) => ({
+        data.map(task => ({
           id: task.gid,
           contents: task.name,
           completed: task.completed,
@@ -34,7 +37,7 @@ const middleware: Middleware<Data> = ({ data, dispatch, setData }) => {
   return next => action => {
     switch (action.type) {
       case 'ADD_TODO':
-        request('tasks', data.accessToken, {
+        request('tasks', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
@@ -49,7 +52,7 @@ const middleware: Middleware<Data> = ({ data, dispatch, setData }) => {
         break;
 
       case 'COMPLETE_TODO':
-        request(`tasks/${action.data.id}`, data.accessToken, {
+        request(`tasks/${action.data.id}`, {
           method: 'PUT',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
@@ -61,7 +64,7 @@ const middleware: Middleware<Data> = ({ data, dispatch, setData }) => {
         break;
 
       case 'UPDATE_TODO':
-        request(`tasks/${action.data.id}`, data.accessToken, {
+        request(`tasks/${action.data.id}`, {
           method: 'PUT',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
@@ -73,9 +76,7 @@ const middleware: Middleware<Data> = ({ data, dispatch, setData }) => {
         break;
 
       case 'REMOVE_TODO':
-        request(`tasks/${action.data.id}`, data.accessToken, {
-          method: 'DELETE',
-        });
+        request(`tasks/${action.data.id}`, { method: 'DELETE' });
         break;
     }
 
