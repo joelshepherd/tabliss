@@ -1,9 +1,9 @@
 import React, { FC } from 'react';
 import { useDispatch } from 'react-redux';
 
+import { defaultLocale } from '../../locales';
 import { useSelector } from '../../store';
 import { setLocale, setTimeZone } from '../../store/actions';
-import { defaultLocale } from '../../locales';
 import TimeZoneInput from '../shared/timeZone/TimeZoneInput';
 
 const System: FC = () => {
@@ -11,15 +11,10 @@ const System: FC = () => {
   const timeZone = useSelector(state => state.data.timeZone || '');
 
   const dispatch = useDispatch();
-  const handleSetLocale = React.useCallback(
-    (event: React.ChangeEvent<HTMLSelectElement>) =>
-      dispatch(setLocale(event.target.value)),
-    [dispatch],
-  );
-  const handleSetTimeZone = React.useCallback(
-    (timeZone?: string) => dispatch(setTimeZone(timeZone)),
-    [dispatch],
-  );
+  const handleSetLocale = (event: React.ChangeEvent<HTMLSelectElement>) =>
+    dispatch(setLocale(event.target.value));
+  const handleSetTimeZone = (timeZone?: string) =>
+    dispatch(setTimeZone(timeZone));
 
   return (
     <div>
@@ -88,6 +83,9 @@ const System: FC = () => {
           </option>
           <option value="sk" title="Slovak">
             Slovenčina
+          </option>
+          <option value="sv" title="Swedish">
+            Svenska
           </option>
           <option value="tr" title="Turkish">
             Türkçe

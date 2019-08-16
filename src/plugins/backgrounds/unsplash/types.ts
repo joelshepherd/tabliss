@@ -1,15 +1,9 @@
+import { RotatingCache } from '../../../hooks';
 import { API } from '../../types';
-import { RotatingCache } from '../../../utils/useCache';
 
-export enum By {
-  OFFICIAL = 'official',
-  COLLECTIONS = 'collections',
-  SEARCH = 'search',
-}
+type By = 'official' | 'collections' | 'search';
 
 export interface Data {
-  blur: number;
-  darken: number;
   by: By;
   collections: string;
   featured: boolean;
@@ -30,9 +24,7 @@ type Cache = RotatingCache<Image>;
 export type Props = API<Data, Cache>;
 
 export const defaultData: Data = {
-  blur: 0,
-  darken: 10,
-  by: By.OFFICIAL,
+  by: 'official',
   collections: '',
   featured: false,
   search: '',

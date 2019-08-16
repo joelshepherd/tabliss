@@ -1,14 +1,13 @@
-import { Plugin } from '../../types';
+import { Config } from '../../types';
 import Search from './Search';
 import SearchSettings from './SearchSettings';
 
-const config: Plugin = {
+const config: Config = {
   key: 'widget/search',
-  kind: 'widget',
   name: 'Search Box',
-  description: 'Replace your URL bar with another bar.',
-  Dashboard: Search,
-  Settings: SearchSettings,
+  description: 'Move your URL bar.',
+  dashboardComponent: Search,
+  settingsComponent: SearchSettings,
 };
 
 export default config;

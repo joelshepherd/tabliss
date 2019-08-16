@@ -1,5 +1,6 @@
 {
   "app.pageTitle": "Tab mới",
+  "background": "Background",
   "dashboard.focusHint": "Bật/Tắt widget",
   "dashboard.fullscreenHint": "Bật/Tắt fullscreen",
   "dashboard.loadingHint": "Đang tải nội dung mới",
@@ -10,5 +11,6 @@
   "plugins.links.standardHint": "Click để mở",
   "plugins.search.placeholder": "Gõ để tìm kiếm",
   "plugins.unsplash.photoLink": "Ảnh",
-  "settings.translationCredits": "Bản dịch tiếng Việt của Phạm Ngọc Thạch"
+  "settings.translationCredits": "Bản dịch tiếng Việt của Phạm Ngọc Thạch",
+  "widgets": "Widgets"
 }

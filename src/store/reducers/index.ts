@@ -3,7 +3,7 @@ import { persistReducer, Storage } from 'redux-persist';
 
 import { capture as captureException } from '../../errorHandler';
 import { setStoreError } from '../actions';
-import { createStorage } from '../storage';
+import { cacheStorage, dataStorage } from '../storage';
 import { store } from '../store';
 import { cache } from './cache';
 import { data } from './data';
@@ -13,8 +13,6 @@ function writeFailHandler(err: Error) {
   captureException(err);
   store.dispatch(setStoreError(err));
 }
-
-const { cacheStorage, dataStorage } = createStorage();
 
 const config = (key: string, storage: Storage) => ({
   key,

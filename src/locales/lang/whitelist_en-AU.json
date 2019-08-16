@@ -1,12 +1,12 @@
 [
   "app.pageTitle",
+  "plugins.unsplash.photoLink",
+  "plugins.links.shortcutHint",
+  "plugins.links.standardHint",
+  "plugins.search.placeholder",
   "dashboard.settingsHint",
   "dashboard.focusHint",
   "dashboard.fullscreenHint",
   "dashboard.loadingHint",
-  "settings.translationCredits",
-  "plugins.unsplash.photoLink",
-  "plugins.links.shortcutHint",
-  "plugins.links.standardHint",
-  "plugins.search.placeholder"
+  "settings.translationCredits"
 ]

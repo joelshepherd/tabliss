@@ -1,5 +1,6 @@
 {
   "app.pageTitle": "새 탭",
+  "background": "Background",
   "dashboard.focusHint": "위젯 숨기기 / 보이기",
   "dashboard.fullscreenHint": "전체 화면",
   "dashboard.loadingHint": "새 콘텐츠 로딩 중",
@@ -10,5 +11,6 @@
   "plugins.links.standardHint": "클릭하여 이동",
   "plugins.search.placeholder": "검색어를 입력하세요",
   "plugins.unsplash.photoLink": "사진",
-  "settings.translationCredits": "Korean translations by 심심한누군가"
+  "settings.translationCredits": "Korean translations by 심심한누군가",
+  "widgets": "Widgets"
 }

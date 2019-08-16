@@ -1,14 +1,13 @@
-import { Plugin } from '../../types';
+import { Config } from '../../types';
 import Todo from './Todo';
 import TodoSettings from './TodoSettings';
 
-const config: Plugin = {
+const config: Config = {
   key: 'widget/todo',
-  kind: 'widget',
   name: 'Todos',
   description: 'Add reminders to procrastinate.',
-  Dashboard: Todo,
-  Settings: TodoSettings,
+  dashboardComponent: Todo,
+  settingsComponent: TodoSettings,
 };
 
 export default config;

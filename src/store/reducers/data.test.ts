@@ -1,5 +1,6 @@
-import { DataState, data, WidgetState } from './data';
 import { addWidget, removeWidget, setLocale, setTimeZone } from '../actions';
+import { data } from './data';
+import { DataState, WidgetState } from './types';
 
 const state: DataState = {
   backgrounds: [],
@@ -9,7 +10,7 @@ const state: DataState = {
 
 const baseWidget: WidgetState = {
   id: '1234',
-  type: 'widget/test',
+  key: 'widget/test',
   active: true,
   display: { position: 'middleCentre' },
 };
@@ -21,7 +22,7 @@ describe('data() reducer', () => {
       widgets: [
         {
           id: expect.any(String),
-          type: 'widget/test-add',
+          key: 'widget/test-add',
           active: true,
           display: { position: 'middleCentre' },
         },

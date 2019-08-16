@@ -1,5 +1,6 @@
 {
   "app.pageTitle": "Ny fane",
+  "background": "Background",
   "dashboard.focusHint": "Veksle widgets",
   "dashboard.fullscreenHint": "Veksle fullskjerm",
   "dashboard.loadingHint": "Laster nytt innhold",
@@ -10,5 +11,6 @@
   "plugins.links.standardHint": "Trykk for å besøke",
   "plugins.search.placeholder": "Skriv for å søke",
   "plugins.unsplash.photoLink": "Foto",
-  "settings.translationCredits": " "
+  "settings.translationCredits": " ",
+  "widgets": "Widgets"
 }

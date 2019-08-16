@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 
-import { get } from '../../plugins';
+import { getConfig } from '../../plugins';
 import { useSelector } from '../../store';
 import Plugin from '../shared/Plugin';
 
@@ -11,11 +11,11 @@ const Background: FC = () => {
 
   if (!background) return null;
 
-  const { Dashboard } = get(background.type);
+  const { dashboardComponent } = getConfig(background.key);
 
   return (
     <div className="Background">
-      <Plugin id={background.id} Component={Dashboard} />
+      <Plugin id={background.id} component={dashboardComponent} />
     </div>
   );
 };

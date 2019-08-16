@@ -1,5 +1,5 @@
-import React, { FC, useEffect, useState } from 'react';
 import { utcToZonedTime } from 'date-fns-tz';
+import React, { FC, useEffect, useState } from 'react';
 
 import timeZones from './timeZones';
 

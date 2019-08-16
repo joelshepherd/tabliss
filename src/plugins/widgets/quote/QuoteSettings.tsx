@@ -1,12 +1,7 @@
 import React, { FC } from 'react';
 
+import categories from './categories';
 import { Props, defaultData } from './types';
-const categories: Category[] = require('./categories.json');
-
-interface Category {
-  key: string;
-  name: string;
-}
 
 const QuoteSettings: FC<Props> = ({ data = defaultData, setData }) => (
   <div className="QuoteSettings">

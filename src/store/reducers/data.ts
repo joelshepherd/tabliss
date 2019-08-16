@@ -1,60 +1,13 @@
 import { v4 as generateId } from 'uuid';
 
 import { Actions } from '../actions';
-
-export type BackgroundDisplay = {
-  blur: number;
-  luminosity: number;
-};
-
-export type WidgetPosition =
-  | 'topLeft'
-  | 'topCentre'
-  | 'topRight'
-  | 'middleLeft'
-  | 'middleCentre'
-  | 'middleRight'
-  | 'bottomLeft'
-  | 'bottomCentre'
-  | 'bottomRight';
-
-export type WidgetDisplay = {
-  colour?: string;
-  fontFamily?: string;
-  fontSize?: number;
-  fontWeight?: number;
-  position: WidgetPosition;
-};
-
-interface PluginState {
-  id: string;
-  type: string; // May not exactly match the plugin keys, deprecated types that still exist in a browser's storage for instance
-  active: boolean;
-}
-
-export interface BackgroundState extends PluginState {
-  display: BackgroundDisplay;
-}
-
-export interface WidgetState extends PluginState {
-  display: WidgetDisplay;
-}
-
-export interface DataState {
-  backgrounds: BackgroundState[];
-  widgets: WidgetState[];
-  data: {
-    [id: string]: object;
-  };
-  locale?: string;
-  timeZone?: string;
-}
+import { DataState } from './types';
 
 export const initialState: DataState = {
   backgrounds: [
     {
       id: generateId(),
-      type: 'background/unsplash',
+      key: 'background/unsplash',
       active: true,
       display: { luminosity: -0.1, blur: 0 },
     },
@@ -62,13 +15,13 @@ export const initialState: DataState = {
   widgets: [
     {
       id: generateId(),
-      type: 'widget/time',
+      key: 'widget/time',
       active: true,
       display: { position: 'middleCentre' },
     },
     {
       id: generateId(),
-      type: 'widget/greeting',
+      key: 'widget/greeting',
       active: true,
       display: { position: 'middleCentre' },
     },
@@ -78,32 +31,20 @@ export const initialState: DataState = {
 
 export function data(state = initialState, action: Actions): DataState {
   switch (action.type) {
-    case 'MIGRATE_STORE':
-      return action.data.state;
-
     case 'RESET_STORE':
-      return initialState;
+      return action.data.state || initialState;
 
     case 'SET_BACKGROUND':
-      let newState = { ...state };
-
-      if (
-        !state.backgrounds.map(plugin => plugin.type).includes(action.data.type)
-      ) {
-        newState.backgrounds = newState.backgrounds.concat({
-          id: generateId(),
-          type: action.data.type,
-          active: true,
-          display: { luminosity: 0, blur: 0 },
-        });
-      }
-
       return {
-        ...newState,
-        backgrounds: newState.backgrounds.map(plugin => ({
-          ...plugin,
-          active: plugin.type === action.data.type,
-        })),
+        ...state,
+        backgrounds: [
+          {
+            id: generateId(),
+            key: action.data.key,
+            active: true,
+            display: { luminosity: 0, blur: 0 },
+          },
+        ],
       };
 
     case 'ADD_WIDGET':
@@ -111,7 +52,7 @@ export function data(state = initialState, action: Actions): DataState {
         ...state,
         widgets: state.widgets.concat({
           id: generateId(),
-          type: action.data.type,
+          key: action.data.key,
           active: true,
           display: { position: 'middleCentre' },
         }),
@@ -146,7 +87,7 @@ export function data(state = initialState, action: Actions): DataState {
       return {
         ...state,
         backgrounds: state.backgrounds.map(plugin =>
-          plugin.id === action.data.id
+          plugin.active
             ? {
                 ...plugin,
                 display: { ...plugin.display, ...action.data.display },

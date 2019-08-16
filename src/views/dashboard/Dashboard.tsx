@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, memo } from 'react';
 
 import { useSelector } from '../../store';
 import Background from './Background';
@@ -23,4 +23,4 @@ const Dashboard: FC = () => {
   );
 };
 
-export default Dashboard;
+export default memo(Dashboard);

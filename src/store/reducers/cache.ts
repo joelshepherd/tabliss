@@ -1,8 +1,5 @@
 import { Actions } from '../actions';
-
-export interface CacheState {
-  [id: string]: object | undefined;
-}
+import { CacheState } from './types';
 
 const initialState: CacheState = {};
 
@@ -14,9 +11,16 @@ export function cache(state = initialState, action: Actions): CacheState {
         [action.data.id]: undefined,
       };
 
-    case 'MIGRATE_STORE':
     case 'RESET_STORE':
       return initialState;
+
+    case 'SET_BACKGROUND':
+      return action.data.from
+        ? {
+            ...state,
+            [action.data.from]: undefined,
+          }
+        : state;
 
     case 'SET_CACHE':
       return {

@@ -1,7 +1,8 @@
 import React, { FC, useCallback } from 'react';
-import Modal from './modal/Modal';
 import { useDispatch } from 'react-redux';
+
 import { resetStore, setStoreError } from '../../store/actions';
+import Modal from './modal/Modal';
 
 type Props = {
   error: Error;

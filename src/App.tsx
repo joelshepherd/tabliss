@@ -6,7 +6,6 @@ import { Dashboard } from './views/dashboard';
 import { Settings } from './views/settings';
 import StoreError from './views/shared/StoreError';
 import WelcomeTo2 from './views/shared/welcomes/WelcomeTo2';
-import './Root.sass';
 
 const messages = defineMessages({
   pageTitle: {
@@ -26,12 +25,12 @@ const Root: FC = () => {
   }, [intl]);
 
   return (
-    <div className="App">
+    <>
       <Dashboard />
       {showSettings && <Settings />}
       {storeError && <StoreError error={storeError} />}
       <WelcomeTo2 />
-    </div>
+    </>
   );
 };
 

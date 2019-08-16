@@ -1,6 +1,6 @@
 import React, { FC, useLayoutEffect, useRef } from 'react';
 
-import { useKeyPress } from '../../../utils/useKeyPress';
+import { useKeyPress } from '../../../hooks';
 import { Icon, RemoveIcon } from '../../../views/shared';
 import { State } from './reducer';
 import './TodoItem.sass';
@@ -53,17 +53,16 @@ const TodoItem: FC<Props> = ({ item, onDelete, onUpdate, onToggle }) => {
 
   return (
     <div className="TodoItem">
-      <a onClick={onToggle}>
-        <Icon name={item.completed ? 'check-circle' : 'circle'} />
-      </a>
-
       <span
         ref={ref}
         contentEditable={true}
         onBlur={event => onUpdate(event.currentTarget.innerText)}
       />
 
-      <a onClick={onDelete} className="delete">
+      <a onMouseDown={onToggle} className="complete">
+        <Icon name={item.completed ? 'check-circle' : 'circle'} />
+      </a>
+      <a onMouseDown={onDelete} className="delete">
         <RemoveIcon />
       </a>
     </div>

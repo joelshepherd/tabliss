@@ -25,6 +25,7 @@ const languages = [
   'ro',
   'ru',
   'sk',
+  'sv',
   'tr',
   'vi',
   'zh-CN',

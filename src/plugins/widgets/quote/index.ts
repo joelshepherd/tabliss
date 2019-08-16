@@ -1,14 +1,13 @@
-import { Plugin } from '../../types';
+import { Config } from '../../types';
 import Quote from './Quote';
 import QuoteSettings from './QuoteSettings';
 
-const config: Plugin = {
+const config: Config = {
   key: 'widget/quote',
-  kind: 'widget',
-  name: 'Daily Quotes',
-  description: 'If you like to be inspired (or not - there are categories).',
-  Dashboard: Quote,
-  Settings: QuoteSettings,
+  name: 'Quotes',
+  description: 'Be inspired (or not - there are categories).',
+  dashboardComponent: Quote,
+  settingsComponent: QuoteSettings,
 };
 
 export default config;

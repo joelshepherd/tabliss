@@ -1,5 +1,6 @@
 {
   "app.pageTitle": "Nieuw tabblad",
+  "background": "Background",
   "dashboard.focusHint": "Widgets aan- en uitzetten",
   "dashboard.fullscreenHint": "Volledig scherm",
   "dashboard.loadingHint": "Nieuwe inhoud aan het laden",
@@ -10,5 +11,6 @@
   "plugins.links.standardHint": "Klik om te bezoeken",
   "plugins.search.placeholder": "Typ om te zoeken",
   "plugins.unsplash.photoLink": "Foto",
-  "settings.translationCredits": "Translations by Rick"
+  "settings.translationCredits": "Translations by Rick",
+  "widgets": "Widgets"
 }

@@ -1,5 +1,22 @@
 import { API } from '../../types';
 
+export type Coordinates = {
+  latitude?: number;
+  longitude?: number;
+};
+
+type ConditionIcon =
+  | 'clear-day'
+  | 'clear-night'
+  | 'rain'
+  | 'snow'
+  | 'sleet'
+  | 'wind'
+  | 'fog'
+  | 'cloudy'
+  | 'partly-cloudy-day'
+  | 'partly-cloudy-night';
+
 export interface Conditions {
   alerts: {
     title: string;
@@ -15,22 +32,8 @@ export interface Conditions {
   units: string;
 }
 
-type ConditionIcon =
-  | 'clear-day'
-  | 'clear-night'
-  | 'rain'
-  | 'snow'
-  | 'sleet'
-  | 'wind'
-  | 'fog'
-  | 'cloudy'
-  | 'partly-cloudy-day'
-  | 'partly-cloudy-night';
-
-export type Data = {
+export type Data = Coordinates & {
   showDetails: boolean;
-  latitude?: number;
-  longitude?: number;
   units: string;
 };
 

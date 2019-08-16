@@ -2,7 +2,7 @@ import localForage from 'localforage';
 import React, { FC, useLayoutEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { migrateStore } from '../../../store/actions';
+import { resetStore } from '../../../store/actions';
 import Modal from '../modal/Modal';
 import { Version1Config, migrateVersion1 } from './migrate';
 import Logo from '../Logo';
@@ -41,7 +41,7 @@ const WelcomeTo2: FC = () => {
 
   const handleMigrate = () => {
     const migratedState = migrateVersion1(v1Config);
-    dispatch(migrateStore(migratedState));
+    dispatch(resetStore(migratedState));
 
     handleClear();
   };

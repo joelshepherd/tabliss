@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
 
-import { WidgetPosition } from '../../store/reducers/data';
-import './PositionInput.css';
+import { WidgetPosition } from '../../store/reducers/types';
 import { IconButton, Icon } from '../shared';
+import './PositionInput.css';
 
 const positions = [
   {

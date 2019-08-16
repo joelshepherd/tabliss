@@ -1,12 +1,12 @@
-export function pushLoader() {
-  return {
-    type: 'PUSH_LOADER',
-  } as const;
-}
-
 export function popLoader() {
   return {
     type: 'POP_LOADER',
+  } as const;
+}
+
+export function pushLoader() {
+  return {
+    type: 'PUSH_LOADER',
   } as const;
 }
 
@@ -23,7 +23,7 @@ export function toggleSettings() {
 }
 
 export type UiActions =
-  | ReturnType<typeof pushLoader>
   | ReturnType<typeof popLoader>
+  | ReturnType<typeof pushLoader>
   | ReturnType<typeof toggleFocus>
   | ReturnType<typeof toggleSettings>;

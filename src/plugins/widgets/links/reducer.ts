@@ -1,12 +1,7 @@
 import { Link } from './types';
+import { Action } from './actions';
 
 type State = Link[];
-
-type Action =
-  | { type: 'ADD_LINK' }
-  | { type: 'UPDATE_LINK'; data: { index: number; link: Link } }
-  | { type: 'REMOVE_LINK'; data: { index: number } }
-  | { type: 'REORDER_LINK'; data: { index: number; to: number } };
 
 export function reducer(state: State, action: Action) {
   switch (action.type) {

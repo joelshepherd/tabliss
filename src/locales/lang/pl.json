@@ -1,5 +1,6 @@
 {
   "app.pageTitle": "Nowa karta",
+  "background": "Background",
   "dashboard.focusHint": "Przełącz widżety",
   "dashboard.fullscreenHint": "Przełącz tryb pełnoekranowy",
   "dashboard.loadingHint": "Ładowanie nowej zawartości",
@@ -10,5 +11,6 @@
   "plugins.links.standardHint": "Kliknij, aby odwiedzić witrynę",
   "plugins.search.placeholder": "Wpisz, aby wyszukać",
   "plugins.unsplash.photoLink": "Zdjęcie",
-  "settings.translationCredits": "Polish translation by achook"
+  "settings.translationCredits": "Polish translation by achook",
+  "widgets": "Widgets"
 }

@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 
-import { useObjectUrls } from '../../../utils/useObjectUrl';
+import { useObjectUrls } from '../../../hooks';
 import { IconButton, RemoveIcon } from '../../../views/shared';
 import { Props, defaultCache } from './types';
 import './ImageSettings.sass';

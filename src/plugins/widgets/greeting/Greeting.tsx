@@ -1,7 +1,7 @@
-import React, { FC } from 'react';
+import React, { FC, useMemo } from 'react';
 import { useIntl } from 'react-intl';
 
-import { useTime } from '../../../utils/useTime';
+import { useTime } from '../../../hooks';
 import { messages } from './messages';
 import { Props, defaultData } from './types';
 
@@ -9,14 +9,16 @@ const Greeting: FC<Props> = ({ data = defaultData }) => {
   const hour = useTime().getHours();
   const intl = useIntl();
 
-  const greeting = data.name
-    ? intl.formatMessage(messages.greetingWithName, {
-        hour: hour,
-        name: data.name,
-      })
-    : intl.formatMessage(messages.greeting, {
-        hour: hour,
-      });
+  const greeting = useMemo(
+    () =>
+      data.name
+        ? intl.formatMessage(messages.greetingWithName, {
+            hour: hour,
+            name: data.name,
+          })
+        : intl.formatMessage(messages.greeting, { hour: hour }),
+    [data.name, hour, intl],
+  );
 
   return (
     <div className="Greeting">

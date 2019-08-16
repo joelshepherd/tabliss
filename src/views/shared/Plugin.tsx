@@ -2,16 +2,16 @@ import React, { FC } from 'react';
 import { withErrorBoundary } from 'react-error-boundary';
 
 import { capture as captureException } from '../../errorHandler';
+import { useApi } from '../../hooks';
 import { API } from '../../plugins';
 import Crashed from './Crashed';
-import { useApi } from '../../utils/useApi';
 
 type Props = {
   id: string;
-  Component: React.ComponentType<API<any, any>>;
+  component: React.ComponentType<API<any, any>>;
 };
 
-const Plugin: FC<Props> = ({ id, Component }) => {
+const Plugin: FC<Props> = ({ id, component: Component }) => {
   // Create plugin API
   const api = useApi(id);
 

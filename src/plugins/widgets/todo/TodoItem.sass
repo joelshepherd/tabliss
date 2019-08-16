@@ -1,28 +1,22 @@
 .TodoItem
     // Some weird element size bug
     white-space: nowrap
+    direction: rtl
 
     a
         display: inline-block
         font-size: 0.75em
         margin: 0.25em 0.5em
 
-        &:hover
-            svg
-                fill: rgba(255, 255, 255, 0.5)
-
-        &:active
-            svg
-                fill: white
-
-        &.delete
-            opacity: 0
-            transition: opacity 0.15s ease-out
-
     span
+        direction: initial
         display: inline-block
 
-    &:hover
-        a.delete
-            opacity: 1
-            transition: opacity 0.15s 0.4s ease-out
+    a.delete
+        display: none
+
+    span:focus
+        & ~ a.delete
+            display: inline-block
+        & ~ a.complete
+            display: none

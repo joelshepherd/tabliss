@@ -3,8 +3,6 @@ import { FC, useEffect } from 'react';
 import { Props, defaultData } from './types';
 
 const Js: FC<Props> = ({ data = defaultData }) => {
-  // @todo Debounce data.input and feed that into thenuseEffect
-
   useEffect(() => {
     const script = document.createElement('script');
 

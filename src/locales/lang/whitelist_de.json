@@ -1,1 +1,4 @@
-["settings.translationCredits", "plugins.unsplash.photoLink"]
+[
+  "plugins.unsplash.photoLink",
+  "settings.translationCredits"
+]

@@ -3,18 +3,52 @@
 All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
-## [1.18.1] - 2019-06-25
+## [Unreleased]
+
+Tabliss has essentially been rewritten from scratch to be faster, more modern, and easier to contribute too.
+
 ### Added
+
+- Widget positioning! You can now place widgets in different areas of the screen.
+- Syncing of your settings! You can now sync your Tabliss settings with Firefox or Chrome sync.
+- Widgets automatically update without needing to refresh the page.
+- Have the same widget multiple times.
+
+### Changed
+
+- Tabliss is even faster!
+- Various small changes and improvements throughout the different plugins.
+
+### Fixed
+
+- Settings not saving if using "always browse in private mode" in Firefox.
+
+### Remove
+
+## [1.18.2] - 2019-07-12
+
+### Removed
+
+- Search suggestions have been disabled in Firefox for security reasons.
+
+## [1.18.1] - 2019-06-25
+
+### Added
+
 - Translations for Slovak! Thanks @mrehacek
 
 ### Fixed
+
 - Small typo in Italian translations, thanks @plcancelleri
 
 ## [1.18.0] - 2019-05-30
+
 ### Added
+
 - New Reload widget! Thanks @trickypr
 
 ### Fixed
+
 - Weather widget's city geocoder works again, thanks @Raul6469!
 - Unsplash could go permanently black - requiring a reinstall, thanks aptly named @Tester798!
 

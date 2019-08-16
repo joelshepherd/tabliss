@@ -1,7 +1,7 @@
 import React, { FC, useState } from 'react';
 
+import { useToggle } from '../../../hooks';
 import { ExpandIcon } from '../../../views/shared';
-import { useToggle } from '../../../utils/useToggle';
 import './TodoInput.sass';
 
 type Props = {

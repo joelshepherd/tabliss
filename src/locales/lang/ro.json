@@ -1,5 +1,6 @@
 {
   "app.pageTitle": "Filă nouă",
+  "background": "Background",
   "dashboard.focusHint": "Afișează widgeturi",
   "dashboard.fullscreenHint": "Afișează în fullscreen",
   "dashboard.loadingHint": "Se descarcă imagini noi",
@@ -10,5 +11,6 @@
   "plugins.links.standardHint": "Click pentru a vizita",
   "plugins.search.placeholder": "Tastează pentru a căuta",
   "plugins.unsplash.photoLink": "Poză",
-  "settings.translationCredits": " "
+  "settings.translationCredits": " ",
+  "widgets": "Widgets"
 }

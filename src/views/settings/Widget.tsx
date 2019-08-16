@@ -1,7 +1,10 @@
 import React, { FC, useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { get } from '../../plugins';
+import { useToggle } from '../../hooks';
+import { getConfig } from '../../plugins';
+import { setWidgetDisplay } from '../../store/actions';
+import { WidgetDisplay, WidgetState } from '../../store/reducers/types';
 import PluginContainer from '../shared/Plugin';
 import {
   CollapseIcon,
@@ -11,9 +14,6 @@ import {
   RemoveIcon,
   UpIcon,
 } from '../shared';
-import { setWidgetDisplay } from '../../store/actions';
-import { WidgetDisplay, WidgetState } from '../../store/reducers/data';
-import { useToggle } from '../../utils/useToggle';
 import PositionInput from './PositionInput';
 import './Widget.sass';
 
@@ -28,7 +28,7 @@ const Widget: FC<Props> = ({ plugin, onMoveDown, onMoveUp, onRemove }) => {
   const [isOpen, toggleIsOpen] = useToggle(onRemove === undefined);
   const [isFontOpen, toggleIsFontOpen] = useToggle();
 
-  const { name, Settings } = get(plugin.type);
+  const { name, settingsComponent } = getConfig(plugin.key);
 
   const dispatch = useDispatch();
   const boundSetDisplay = useCallback(
@@ -90,7 +90,9 @@ const Widget: FC<Props> = ({ plugin, onMoveDown, onMoveUp, onRemove }) => {
             />
           </label>
 
-          {Settings && <PluginContainer id={plugin.id} Component={Settings} />}
+          {settingsComponent && (
+            <PluginContainer id={plugin.id} component={settingsComponent} />
+          )}
 
           <p>
             <a onClick={toggleIsFontOpen}>

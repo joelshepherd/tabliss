@@ -1,14 +1,14 @@
-import React, { useReducer, useEffect, FC } from 'react';
+import React, { FC } from 'react';
 
+import { useSavedReducer } from '../../../hooks';
 import Input from './Input';
+import { addLink, removeLink, reorderLink, updateLink } from './actions';
 import { reducer } from './reducer';
-import { Props, defaultData } from './types';
+import { Link, Props, defaultData } from './types';
 
 const LinksSettings: FC<Props> = ({ data = defaultData, setData }) => {
-  const [state, dispatch] = useReducer(reducer, data.links);
-  useEffect(() => {
-    setData({ ...data, links: state });
-  }, [state]);
+  const saveLinks = (links: Link[]) => setData({ ...data, links });
+  const dispatch = useSavedReducer(reducer, data.links, saveLinks);
 
   return (
     <div className="LinksSettings">
@@ -28,7 +28,7 @@ const LinksSettings: FC<Props> = ({ data = defaultData, setData }) => {
         <input
           type="checkbox"
           checked={data.visible}
-          onChange={event => setData({ ...data, visible: !data.visible })}
+          onChange={() => setData({ ...data, visible: !data.visible })}
         />
         Links are always visible
       </label>
@@ -41,38 +41,24 @@ const LinksSettings: FC<Props> = ({ data = defaultData, setData }) => {
           key={index}
           number={index + 1}
           onChange={values =>
-            dispatch({
-              type: 'UPDATE_LINK',
-              data: { index, link: { ...link, ...values } },
-            })
+            dispatch(updateLink(index, { ...link, ...values }))
           }
           onMoveUp={
             index !== 0
-              ? () =>
-                  dispatch({
-                    type: 'REORDER_LINK',
-                    data: { index, to: index - 1 },
-                  })
+              ? () => dispatch(reorderLink(index, index - 1))
               : undefined
           }
           onMoveDown={
             index !== data.links.length - 1
-              ? () =>
-                  dispatch({
-                    type: 'REORDER_LINK',
-                    data: { index, to: index + 1 },
-                  })
+              ? () => dispatch(reorderLink(index, index + 1))
               : undefined
           }
-          onRemove={() => dispatch({ type: 'REMOVE_LINK', data: { index } })}
+          onRemove={() => dispatch(removeLink(index))}
         />
       ))}
 
       <p style={{ marginTop: '0.5rem' }}>
-        <button
-          className="button--primary"
-          onClick={() => dispatch({ type: 'ADD_LINK' })}
-        >
+        <button className="button--primary" onClick={() => dispatch(addLink())}>
           Add link
         </button>
       </p>

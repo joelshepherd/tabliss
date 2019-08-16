@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { FormattedDate } from 'react-intl';
 
-import { useTime } from '../../../utils/useTime';
+import { useTime } from '../../../hooks';
 import Analogue from './Analogue';
 import Digital from './Digital';
 import { Props, defaultData } from './types';

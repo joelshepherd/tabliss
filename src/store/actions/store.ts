@@ -1,15 +1,9 @@
-import { DataState } from '../reducers/data';
+import { DataState } from '../reducers/types';
 
-export function migrateStore(state: DataState) {
-  return {
-    type: 'MIGRATE_STORE',
-    data: { state },
-  } as const;
-}
-
-export function resetStore() {
+export function resetStore(state?: DataState) {
   return {
     type: 'RESET_STORE',
+    data: { state },
   } as const;
 }
 
@@ -21,6 +15,5 @@ export function setStoreError(storeError?: Error) {
 }
 
 export type StoreActions =
-  | ReturnType<typeof migrateStore>
   | ReturnType<typeof resetStore>
   | ReturnType<typeof setStoreError>;

@@ -1,6 +1,6 @@
 import React, { FC, useEffect, useState } from 'react';
 
-import { useObjectUrl } from '../../../utils/useObjectUrl';
+import { useObjectUrl } from '../../../hooks';
 import Backdrop from '../../../views/shared/Backdrop';
 import { getGif } from './api';
 import { Props, defaultData } from './types';
@@ -16,9 +16,9 @@ const Giphy: FC<Props> = ({ cache, data = defaultData, setCache, loader }) => {
     getGif(config, loader).then(setCache);
   }, [data.tag, data.nsfw]);
 
-  if (!gif) return null;
+  const url = useObjectUrl(gif && gif.data);
 
-  const url = useObjectUrl(gif.data);
+  if (!gif) return null;
 
   return (
     <div className="Giphy fullscreen">

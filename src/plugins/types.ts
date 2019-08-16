@@ -1,30 +1,47 @@
 import { ComponentType } from 'react';
 
-import { BACKGROUND_PLUGINS, WIDGET_PLUGINS } from './plugins';
-
-export type Kind = 'background' | 'widget';
-
-export type Plugin = {
-  readonly key: string;
-  readonly kind: Kind;
-  readonly name: string;
-  readonly description: string;
-  readonly Dashboard: ComponentType<API<any, any>>;
-  readonly Settings?: ComponentType<API<any, any>>;
+export type Cache<Shape = {}> = {
+  /**
+   * A temporary cache for storing large or temporary objects for the plugin.
+   */
+  cache?: Shape;
+  /**
+   * Set (replace) the cache for the plugin.
+   */
+  setCache: (cache: Shape) => void;
 };
 
-export type BackgroundPluginType = typeof BACKGROUND_PLUGINS[number]['key'];
-export type WidgetPluginType = typeof WIDGET_PLUGINS[number]['key'];
+export type Data<Shape = {}> = {
+  /**
+   * A permanent (and synced) data store for storing small items and settings for the plugin.
+   * Note, the total Tabliss can store here is 100KB across all plugins.
+   */
+  data?: Shape;
+  /**
+   * Set (replace) the data store for the plugin.
+   */
+  setData: (data: Shape) => void;
+};
 
-export interface API<Data = {}, Cache = {}> {
-  cache?: Cache;
-  setCache: (cache: Cache) => void;
+export type Loader = {
+  push: () => void;
+  pop: () => void;
+};
 
-  data?: Data;
-  setData: (data: Data) => void;
-
-  loader: {
-    push: () => void;
-    pop: () => void;
-  };
+/** Plugin API interface. */
+export interface API<D = {}, C = {}> extends Data<D>, Cache<C> {
+  /**
+   * Contol the loading indicator when the plugin is fetching remote data.
+   */
+  loader: Loader;
 }
+
+/** Plugin config object type. */
+export type Config = {
+  readonly key: string;
+  readonly name: string;
+  readonly description: string;
+  readonly dashboardComponent: ComponentType<API<any, any>>;
+  readonly settingsComponent?: ComponentType<API<any, any>>;
+  readonly supportsBackdrop?: boolean;
+};

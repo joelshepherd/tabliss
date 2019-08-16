@@ -1,5 +1,6 @@
 {
   "app.pageTitle": "Yeni Sekme",
+  "background": "Background",
   "dashboard.focusHint": "Ögeleri gizle/göster",
   "dashboard.fullscreenHint": "Tam ekranı aç/kapa",
   "dashboard.loadingHint": "Yeni içerik yükleniyor",
@@ -10,5 +11,6 @@
   "plugins.links.standardHint": "Gitmek için tıkla",
   "plugins.search.placeholder": "Aramak için yaz",
   "plugins.unsplash.photoLink": "Fotoğraf",
-  "settings.translationCredits": " "
+  "settings.translationCredits": " ",
+  "widgets": "Widgets"
 }

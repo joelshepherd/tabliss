@@ -1,11 +1,5 @@
 import { Actions } from '../actions';
-
-export interface UiState {
-  focus: boolean;
-  loaders: number;
-  settings: boolean;
-  storeError?: Error;
-}
+import { UiState } from './types';
 
 const initialState: UiState = {
   focus: false,

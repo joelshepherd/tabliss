@@ -1,7 +1,8 @@
 import React, { FC, useCallback } from 'react';
+import { FormattedMessage } from 'react-intl';
 import { useDispatch } from 'react-redux';
 
-import { WIDGET_PLUGINS } from '../../plugins';
+import { widgetConfigs } from '../../plugins';
 import { useSelector } from '../../store';
 import {
   addWidget,
@@ -25,7 +26,14 @@ const Widgets: FC = () => {
 
   return (
     <div>
-      <h3>Widgets</h3>
+      <h3>
+        <FormattedMessage
+          id="widgets"
+          defaultMessage="Widgets"
+          description="Widgets title"
+        />
+      </h3>
+
       <label>
         <select
           value={''}
@@ -33,7 +41,7 @@ const Widgets: FC = () => {
           className="primary"
         >
           <option value={''}>Add a new widget</option>
-          {WIDGET_PLUGINS.map(plugin => (
+          {widgetConfigs.map(plugin => (
             <option key={plugin.key} value={plugin.key}>
               {plugin.name} - {plugin.description}
             </option>

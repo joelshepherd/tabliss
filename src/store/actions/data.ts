@@ -1,16 +1,16 @@
-import { BackgroundDisplay, WidgetDisplay } from '../reducers/data';
+import { BackgroundDisplay, WidgetDisplay } from '../reducers/types';
 
-export function setBackground(type: string) {
+export function setBackground(key: string, from?: string) {
   return {
     type: 'SET_BACKGROUND',
-    data: { type },
+    data: { key, from },
   } as const;
 }
 
-export function addWidget(type: string) {
+export function addWidget(key: string) {
   return {
     type: 'ADD_WIDGET',
-    data: { type },
+    data: { key },
   } as const;
 }
 
@@ -35,13 +35,10 @@ export function setData(id: string, data: object) {
   } as const;
 }
 
-export function setBackgroundDisplay(
-  id: string,
-  display: Partial<BackgroundDisplay>,
-) {
+export function setBackgroundDisplay(display: Partial<BackgroundDisplay>) {
   return {
     type: 'SET_BACKGROUND_DISPLAY',
-    data: { id, display },
+    data: { display },
   } as const;
 }
 

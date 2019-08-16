@@ -1,4 +1,4 @@
-require('dotenv').config();
+require('dotenv/config');
 
 const path = require('path');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
@@ -41,6 +41,11 @@ const config = {
         },
       },
       {
+        // Thanks, `react-intl`
+        test: /\.mjs$/,
+        type: 'javascript/auto',
+      },
+      {
         test: /\.sass$/,
         use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
       },
@@ -61,7 +66,9 @@ const config = {
       { from: 'target/shared' },
       { from: `target/${buildTarget}` },
     ]),
-    new HtmlWebpackPlugin({ template: './target/shared/index.html' }),
+    new HtmlWebpackPlugin({
+      template: `./target/${buildTarget}/index.html`,
+    }),
     new MiniCssExtractPlugin({
       filename: isWeb ? '[name].[hash:12].css' : '[name].css',
     }),
@@ -69,7 +76,6 @@ const config = {
       BUILD_TARGET: 'web',
       API_ENDPOINT: 'https://api.tabliss.io/v1',
       SENTRY_PUBLIC_DSN: null,
-      DRIBBBLE_API_KEY: null,
       GIPHY_API_KEY: null,
       UNSPLASH_API_KEY: null,
       VERSION: version,
@@ -100,7 +106,6 @@ if (isWeb) {
       dontCacheBustUrlsMatching: /\.\w{12}\./,
       filename: 'service-worker.js',
       minify: true,
-      navigateFallback: '/index.html',
       staticFileGlobsIgnorePatterns: [/\.map$/],
     }),
   );

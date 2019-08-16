@@ -1,5 +1,6 @@
 {
   "app.pageTitle": "Neuer Tab",
+  "background": "Background",
   "dashboard.focusHint": "Bedienelemente umschalten",
   "dashboard.fullscreenHint": "Vollbildmodus umschalten",
   "dashboard.loadingHint": "Neue Inhalte werden geladen",
@@ -10,5 +11,6 @@
   "plugins.links.standardHint": "Zum Aufrufen klicken",
   "plugins.search.placeholder": "Suche eingeben",
   "plugins.unsplash.photoLink": "Photo",
-  "settings.translationCredits": " "
+  "settings.translationCredits": " ",
+  "widgets": "Widgets"
 }

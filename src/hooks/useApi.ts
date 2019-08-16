@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import { useCallback, useMemo } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { API } from '../plugins';
@@ -23,13 +23,18 @@ export function useApi(id: string): API {
   );
 
   // Loader
-  const push = useCallback(() => dispatch(pushLoader()), [dispatch]);
-  const pop = useCallback(() => dispatch(popLoader()), [dispatch]);
+  const loader = useMemo(
+    () => ({
+      push: () => dispatch(pushLoader()),
+      pop: () => dispatch(popLoader()),
+    }),
+    [dispatch],
+  );
 
   return {
     cache,
     data,
-    loader: { push, pop },
+    loader,
     setCache: boundSetCache,
     setData: boundSetData,
   };

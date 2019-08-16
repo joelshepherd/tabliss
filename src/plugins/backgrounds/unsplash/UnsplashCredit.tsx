@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, memo } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import { UNSPLASH_UTM } from './constants';
@@ -42,4 +42,4 @@ const UnsplashCredit: FC<Props> = ({ image }) => (
   </div>
 );
 
-export default UnsplashCredit;
+export default memo(UnsplashCredit);

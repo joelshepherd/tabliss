@@ -1,14 +1,13 @@
-import { Plugin } from '../../types';
+import { Config } from '../../types';
 import Links from './Links';
 import LinksSettings from './LinksSettings';
 
-const config: Plugin = {
+const config: Config = {
   key: 'widget/links',
-  kind: 'widget',
   name: 'Quick Links',
   description: 'I heard you like bookmarks.',
-  Dashboard: Links,
-  Settings: LinksSettings,
+  dashboardComponent: Links,
+  settingsComponent: LinksSettings,
 };
 
 export default config;
