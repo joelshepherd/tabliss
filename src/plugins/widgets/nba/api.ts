@@ -15,10 +15,14 @@ function getEstString(date: Date) {
 }
 
 export async function getCurrentGames(date: Date, loader: API['loader']) {
+  loader.push();
+
   const client = await getClient();
   const { data } = await client.query({
     query,
     variables: { date: getEstString(date) },
   });
+
+  loader.pop();
   return data ? data.schedule : [];
 }
