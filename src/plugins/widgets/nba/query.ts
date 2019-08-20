@@ -1,7 +1,5 @@
-import { gql } from 'apollo-boost';
-
-export const gameQuery = gql`query getSchedule($date: String!) {
-  schedule(date: $date) {
+export const gameQuery = (date: string) => `query {
+  schedule(date: "${date}") {
     gameId
     clock
     isGameActivated
@@ -37,4 +35,4 @@ export const gameQuery = gql`query getSchedule($date: String!) {
       logo
     }
   }
-}`
+}`;

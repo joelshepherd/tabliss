@@ -2,7 +2,6 @@ import { startOfDay } from 'date-fns';
 import { format, utcToZonedTime, zonedTimeToUtc } from 'date-fns-tz';
 
 import { API } from '../../types';
-import { getClient } from './getClient';
 import { gameQuery as query } from './query';
 
 function getEstString(date: Date) {
@@ -14,15 +13,17 @@ function getEstString(date: Date) {
   return format(dateEST, 'yyyyMMdd');
 }
 
-export async function getCurrentGames(date: Date, loader: API['loader']) {
+export async function getCurrentGames(loader: API['loader']) {
   loader.push();
+  const { data } = await fetch('https://nba.rickyg.io/v1/graphql', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ query: query(getEstString(new Date())) }),
+  })
+    .then(res => res.json())
+    .finally(() => loader.pop());
 
-  const client = await getClient();
-  const { data } = await client.query({
-    query,
-    variables: { date: getEstString(date) },
-  });
-
-  loader.pop();
   return data ? data.schedule : [];
 }

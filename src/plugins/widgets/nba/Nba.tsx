@@ -14,7 +14,7 @@ const Nba: FC<Props> = ({ cache, data = defaultData, setCache, loader }) => {
 
   useCachedEffect(
     () => {
-      getCurrentGames(new Date(), loader).then(setCache);
+      getCurrentGames(loader).then(setCache);
     },
     cache ? 60000 : 0,
     [timeCode],
