@@ -1,4 +1,4 @@
-import React, { FC, useCallback } from 'react';
+import React, { FC, useCallback, ChangeEvent } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { useDispatch } from 'react-redux';
 
@@ -15,32 +15,31 @@ const Widgets: FC = () => {
   const active = useSelector(state => state.data.widgets);
 
   const dispatch = useDispatch();
-  const boundAddWidget = useCallback(
-    (type: string) => dispatch(addWidget(type)),
-    [dispatch],
-  );
   const boundReorderWidget = useCallback(
     (id: string, to: number) => dispatch(reorderWidget(id, to)),
     [dispatch],
   );
 
+  const handleAddWidget = (event: ChangeEvent<HTMLSelectElement>) => {
+    dispatch(addWidget(event.target.value));
+  };
+
   return (
     <div>
-      <h3>
+      <h2>
         <FormattedMessage
           id="widgets"
           defaultMessage="Widgets"
           description="Widgets title"
         />
-      </h3>
+      </h2>
 
       <label>
-        <select
-          value={''}
-          onChange={event => boundAddWidget(event.target.value)}
-          className="primary"
-        >
-          <option value={''}>Add a new widget</option>
+        Add a new widget
+        <select value="" onChange={handleAddWidget} className="primary">
+          <option disabled value="">
+            Select a widget
+          </option>
           {widgetConfigs.map(plugin => (
             <option key={plugin.key} value={plugin.key}>
               {plugin.name} - {plugin.description}

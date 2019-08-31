@@ -6,14 +6,7 @@ import { getConfig } from '../../plugins';
 import { setWidgetDisplay } from '../../store/actions';
 import { WidgetDisplay, WidgetState } from '../../store/reducers/types';
 import PluginContainer from '../shared/Plugin';
-import {
-  CollapseIcon,
-  DownIcon,
-  ExpandIcon,
-  IconButton,
-  RemoveIcon,
-  UpIcon,
-} from '../shared';
+import { DownIcon, IconButton, RemoveIcon, UpIcon, Icon } from '../shared';
 import PositionInput from './PositionInput';
 import './Widget.sass';
 
@@ -28,7 +21,7 @@ const Widget: FC<Props> = ({ plugin, onMoveDown, onMoveUp, onRemove }) => {
   const [isOpen, toggleIsOpen] = useToggle(onRemove === undefined);
   const [isFontOpen, toggleIsFontOpen] = useToggle();
 
-  const { name, settingsComponent } = getConfig(plugin.key);
+  const { description, name, settingsComponent } = getConfig(plugin.key);
 
   const dispatch = useDispatch();
   const boundSetDisplay = useCallback(
@@ -40,32 +33,31 @@ const Widget: FC<Props> = ({ plugin, onMoveDown, onMoveUp, onRemove }) => {
   return (
     <fieldset className="Widget">
       <div className="title--buttons">
+        <IconButton onClick={onRemove} title="Remove widget">
+          <RemoveIcon />
+        </IconButton>
+
         <IconButton
           onClick={toggleIsOpen}
           title={`${isOpen ? 'Close' : 'Edit'} widget settings`}
         >
-          {isOpen ? <CollapseIcon /> : <ExpandIcon />}
+          <Icon name="settings" />
         </IconButton>
 
-        {isOpen && (
-          <IconButton onClick={onRemove} title="Remove widget">
-            <RemoveIcon />
-          </IconButton>
-        )}
-
-        {isOpen && onMoveDown && (
+        {onMoveDown && (
           <IconButton onClick={onMoveDown} title="Move widget down">
             <DownIcon />
           </IconButton>
         )}
 
-        {isOpen && onMoveUp && (
+        {onMoveUp && (
           <IconButton onClick={onMoveUp} title="Move widget up">
             <UpIcon />
           </IconButton>
         )}
 
         <h4 onClick={toggleIsOpen}>{name}</h4>
+        <p>{description}</p>
       </div>
 
       {isOpen && (

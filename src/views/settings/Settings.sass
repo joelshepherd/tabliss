@@ -10,24 +10,18 @@
         color: #212121
 
     .plane
-        border-top: 4px solid #3498db
-        box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.25)
+        border-bottom: 4px solid #3498db
+        border-radius: 1rem
+        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.25)
         background-color: white
-        height: 100%
         max-width: 100%
+        max-height: calc(100vh - 2rem)
         overflow-y: auto
+        margin: 1rem
         padding: 0 2rem
         position: absolute
         width: 330px
         transition: transform 0.15s ease-out
-
-    &.slide-enter .plane,
-    &.slide-exit.slide-exit-active .plane
-      transform: translateX(-100%)
-
-    &.slide-enter.slide-enter-active .plane,
-    &.slide-exit .plane
-        transform: translateX(0)
 
     label
         display: block

@@ -17,15 +17,16 @@ const Background: FC = () => {
 
   return (
     <div>
-      <h3>
+      <h2>
         <FormattedMessage
           id="background"
           defaultMessage="Background"
           description="Background title"
         />
-      </h3>
+      </h2>
 
       <label>
+        Choose a new background
         <select
           value={background && background.key}
           onChange={event =>
@@ -45,7 +46,8 @@ const Background: FC = () => {
 
       {background && plugin && (
         <div className="Widget">
-          <h4>{plugin.name}</h4>
+          <h3>{plugin.name}</h3>
+          <p>{plugin.description}</p>
 
           {plugin.settingsComponent && (
             <Plugin id={background.id} component={plugin.settingsComponent} />
