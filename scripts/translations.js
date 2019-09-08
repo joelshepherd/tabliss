@@ -17,6 +17,7 @@ const languages = [
   'hu',
   'id',
   'it',
+  'ja',
   'ko',
   'nl',
   'no',

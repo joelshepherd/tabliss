@@ -1,0 +1,16 @@
+{
+  "app.pageTitle": "新規タブ",
+  "background": "Background",
+  "dashboard.focusHint": "ウィジェット表示切り替え",
+  "dashboard.fullscreenHint": "フルスクリーン切り替え",
+  "dashboard.loadingHint": "読み込み中…",
+  "dashboard.settingsHint": "設定",
+  "plugin.greeting.withName": "{hour, select,\n      0 {ゆっくり眠ってね、{name}}\n      1 {ゆっくり眠ってね、{name}}\n      2 {ゆっくり眠ってね、{name}}\n      3 {起きましょう、{name}}\n      4 {起きましょう、{name}}\n      5 {起きましょう、{name}}\n      6 {おはよう、{name}}\n      7 {おはよう、{name}}\n      8 {おはよう、{name}}\n      9 {おはよう、{name}}\n      10 {こんにちは、{name}}\n      11 {こんにちは、{name}}\n      12 {こんにちは、{name}}\n      13 {こんにちは、{name}}\n      14 {こんにちは、{name}}\n      15 {こんにちは、{name}}\n      16 {こんにちは、{name}}\n      17 {こんにちは、{name}}\n      18 {こんばんは、{name}}\n      19 {こんばんは、{name}}\n      20 {こんばんは、{name}}\n      21 {こんばんは、{name}}\n      22 {おやすみなさい、{name}}\n      23 {おやすみなさい、{name}}\n    }",
+  "plugin.greeting.withoutName": "{hour, select,\n      0 {ゆっくり眠ってね}\n      1 {ゆっくり眠ってね}\n      2 {ゆっくり眠ってね}\n      3 {起きましょう}\n      4 {起きましょう}\n      5 {起きましょう}\n      6 {おはよう}\n      7 {おはよう}\n      8 {おはよう}\n      9 {おはよう}\n      10 {こんにちは}\n      11 {こんにちは}\n      12 {こんにちは}\n      13 {こんにちは}\n      14 {こんにちは}\n      15 {こんにちは}\n      16 {こんにちは}\n      17 {こんにちは}\n      18 {こんばんは}\n      19 {こんばんは}\n      20 {こんばんは}\n      21 {こんばんは}\n      22 {おやすみなさい}\n      23 {おやすみなさい}\n    }",
+  "plugins.links.shortcutHint": "{number}を押すかクリックで移動",
+  "plugins.links.standardHint": "クリックで移動",
+  "plugins.search.placeholder": "検索キーワードを入力",
+  "plugins.unsplash.photoLink": "Photo",
+  "settings.translationCredits": "Japanese translation by Kodaka",
+  "widgets": "Widgets"
+}
