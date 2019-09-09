@@ -1,0 +1,16 @@
+{
+  "app.pageTitle": "新規タブ",
+  "background": "Background",
+  "dashboard.focusHint": "ウィジェット表示切り替え",
+  "dashboard.fullscreenHint": "フルスクリーン切り替え",
+  "dashboard.loadingHint": "読み込み中…",
+  "dashboard.settingsHint": "設定",
+  "plugin.greeting.withName": "{hour, select, 0 {ゆっくり眠ってね、{name}} 1 {ゆっくり眠ってね、{name}} 2 {ゆっくり眠ってね、{name}} 3 {起きましょう、{name}} 4 {起きましょう、{name}} 5 {起きましょう、{name}} 6 {おはよう、{name}} 7 {おはよう、{name}} 8 {おはよう、{name}} 9 {おはよう、{name}} 10 {こんにちは、{name}} 11 {こんにちは、{name}} 12 {こんにちは、{name}} 13 {こんにちは、{name}} 14 {こんにちは、{name}} 15 {こんにちは、{name}} 16 {こんにちは、{name}} 17 {こんにちは、{name}} 18 {こんばんは、{name}} 19 {こんばんは、{name}} 20 {こんばんは、{name}} 21 {こんばんは、{name}} 22 {おやすみなさい、{name}} 23 {おやすみなさい、{name}}}",
+  "plugin.greeting.withoutName": "{hour, select, 0 {ゆっくり眠ってね} 1 {ゆっくり眠ってね} 2 {ゆっくり眠ってね} 3 {起きましょう} 4 {起きましょう} 5 {起きましょう} 6 {おはよう} 7 {おはよう} 8 {おはよう} 9 {おはよう} 10 {こんにちは} 11 {こんにちは} 12 {こんにちは} 13 {こんにちは} 14 {こんにちは} 15 {こんにちは} 16 {こんにちは} 17 {こんにちは} 18 {こんばんは} 19 {こんばんは} 20 {こんばんは} 21 {こんばんは} 22 {おやすみなさい} 23 {おやすみなさい}}",
+  "plugins.links.shortcutHint": "{number}を押すかクリックで移動",
+  "plugins.links.standardHint": "クリックで移動",
+  "plugins.search.placeholder": "検索キーワードを入力",
+  "plugins.unsplash.photoLink": "Photo",
+  "settings.translationCredits": "Japanese translation by Kodaka",
+  "widgets": "Widgets"
+}

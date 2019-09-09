@@ -60,6 +60,9 @@ const System: FC = () => {
           <option value="it" title="Italian">
             Italiano
           </option>
+          <option value="ja" title="Japanese">
+            日本語
+          </option>
           <option value="ko" title="Korean">
             한국어
           </option>
