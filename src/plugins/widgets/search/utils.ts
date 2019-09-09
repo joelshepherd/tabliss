@@ -14,7 +14,7 @@ export function buildUrl(query: string, engineUrl: string) {
   }
 
   // Probably searching then
-  return engineUrl.replace('{searchTerms}', query);
+  return engineUrl.replace('{searchTerms}', encodeURIComponent(query));
 }
 
 export function getSearchUrl(key: string) {
