@@ -6,6 +6,7 @@ import { backgroundConfigs, getConfig } from '../../plugins';
 import { useSelector } from '../../store';
 import { setBackground, setBackgroundDisplay } from '../../store/actions/data';
 import Plugin from '../shared/Plugin';
+import ToggleSection from '../shared/ToggleSection';
 
 const Background: FC = () => {
   const dispatch = useDispatch();
@@ -26,7 +27,6 @@ const Background: FC = () => {
       </h2>
 
       <label>
-        Choose a new background
         <select
           value={background && background.key}
           onChange={event =>
@@ -46,7 +46,7 @@ const Background: FC = () => {
 
       {background && plugin && (
         <div className="Widget">
-          <h3>{plugin.name}</h3>
+          <h4>{plugin.name}</h4>
           <p>{plugin.description}</p>
 
           {plugin.settingsComponent && (
@@ -54,54 +54,56 @@ const Background: FC = () => {
           )}
 
           {plugin.supportsBackdrop && (
-            <>
-              <label>
-                Blur <br />
-                <input
-                  type="range"
-                  list="blur-markers"
-                  min="0"
-                  max="50"
-                  step="2"
-                  value={background.display.blur}
-                  onChange={event =>
-                    dispatch(
-                      setBackgroundDisplay({
-                        blur: Number(event.target.value),
-                      }),
-                    )
-                  }
-                />
-                <datalist id="blur-markers">
-                  <option value="0" />
-                  <option value="50" />
-                </datalist>
-              </label>
+            <ToggleSection name="Display Settings">
+              <>
+                <label>
+                  Blur <br />
+                  <input
+                    type="range"
+                    list="blur-markers"
+                    min="0"
+                    max="50"
+                    step="2"
+                    value={background.display.blur}
+                    onChange={event =>
+                      dispatch(
+                        setBackgroundDisplay({
+                          blur: Number(event.target.value),
+                        }),
+                      )
+                    }
+                  />
+                  <datalist id="blur-markers">
+                    <option value="0" />
+                    <option value="50" />
+                  </datalist>
+                </label>
 
-              <label>
-                Luminosity <br />
-                <input
-                  type="range"
-                  list="luminosity-markers"
-                  min="-1"
-                  max="1"
-                  step="0.1"
-                  value={background.display.luminosity}
-                  onChange={event =>
-                    dispatch(
-                      setBackgroundDisplay({
-                        luminosity: Number(event.target.value),
-                      }),
-                    )
-                  }
-                />
-                <datalist id="luminosity-markers">
-                  <option value="-1" label="Darken" />
-                  <option value="0" />
-                  <option value="1" label="Lighten" />
-                </datalist>
-              </label>
-            </>
+                <label>
+                  Luminosity <br />
+                  <input
+                    type="range"
+                    list="luminosity-markers"
+                    min="-1"
+                    max="1"
+                    step="0.1"
+                    value={background.display.luminosity}
+                    onChange={event =>
+                      dispatch(
+                        setBackgroundDisplay({
+                          luminosity: Number(event.target.value),
+                        }),
+                      )
+                    }
+                  />
+                  <datalist id="luminosity-markers">
+                    <option value="-1" label="Darken" />
+                    <option value="0" />
+                    <option value="1" label="Lighten" />
+                  </datalist>
+                </label>
+              </>
+            </ToggleSection>
           )}
         </div>
       )}

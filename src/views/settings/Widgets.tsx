@@ -35,14 +35,13 @@ const Widgets: FC = () => {
       </h2>
 
       <label>
-        Add a new widget
         <select value="" onChange={handleAddWidget} className="primary">
           <option disabled value="">
-            Select a widget
+            Add a new widget
           </option>
           {widgetConfigs.map(plugin => (
             <option key={plugin.key} value={plugin.key}>
-              {plugin.name} - {plugin.description}
+              {plugin.name}
             </option>
           ))}
         </select>

@@ -1,23 +1,18 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC } from 'react';
 
-import { getTimeCode } from '../literatureClock/api';
+import { useCachedEffect } from '../../../hooks';
 import { getCurrentGames } from './api';
 import { Props, defaultData, Game } from './types';
-
-import './Nba.sass';
 import { getPeriod } from './getPeriod';
-import { useTime, useCachedEffect } from '../../../hooks';
+import './Nba.sass';
 
 const Nba: FC<Props> = ({ cache, data = defaultData, setCache, loader }) => {
-  const time = useTime();
-  const timeCode = getTimeCode(time);
-
   useCachedEffect(
     () => {
       getCurrentGames(loader).then(setCache);
     },
-    cache ? 60000 : 0,
-    [timeCode],
+    cache ? 60000 : 0, // @todo Add timestamp
+    [],
   );
 
   if (!cache || cache.length < 1) {
