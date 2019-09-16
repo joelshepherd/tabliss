@@ -38,7 +38,7 @@ const Background: FC = () => {
         >
           {backgroundConfigs.map(plugin => (
             <option key={plugin.key} value={plugin.key}>
-              {plugin.name} - {plugin.description}
+              {plugin.name}
             </option>
           ))}
         </select>
@@ -47,10 +47,11 @@ const Background: FC = () => {
       {background && plugin && (
         <div className="Widget">
           <h4>{plugin.name}</h4>
-          <p>{plugin.description}</p>
 
           {plugin.settingsComponent && (
-            <Plugin id={background.id} component={plugin.settingsComponent} />
+            <div className="settings">
+              <Plugin id={background.id} component={plugin.settingsComponent} />
+            </div>
           )}
 
           {plugin.supportsBackdrop && (
