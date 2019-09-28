@@ -76,10 +76,10 @@ const System: FC = () => {
             Polski
           </option>
           <option value="pt-BR" title="Portuguese (Brazil)">
-            Português de Portugal
+            Português do Brasil
           </option>
           <option value="pt-PT" title="Portuguese (Portugal)">
-            Português do Brasil
+            Português de Portugal
           </option>
           <option value="ro" title="Romanian">
             Română
