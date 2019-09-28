@@ -1,5 +1,7 @@
 const fs = require('fs');
-const { promisify } = require('util');
+const {
+  promisify
+} = require('util');
 const glob = promisify(require('glob'));
 const manageTranslations = require('react-intl-translations-manager').default;
 const parser = require('typescript-react-intl').default;
@@ -25,6 +27,7 @@ const languages = [
   'no',
   'pl',
   'pt',
+  'pt-BR',
   'ro',
   'ru',
   'sk',

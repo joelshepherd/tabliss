@@ -1,5 +1,6 @@
 {
   "app.pageTitle": "નવું ટૅબ",
+  "background": "Background",
   "dashboard.focusHint": "વિજેટ બદલો",
   "dashboard.fullscreenHint": "પૂર્ણ સ્ક્રીન મોડને સ્વીચ કરો",
   "dashboard.loadingHint": "નવી સામગ્રી લોડ કરી રહ્યું છે",
@@ -10,5 +11,6 @@
   "plugins.links.standardHint": "સાઇટ પર જવા માટે અહીં ક્લિક કરોरें",
   "plugins.search.placeholder": "શોધવા માટે Enter દબાવો",
   "plugins.unsplash.photoLink": "ચિત્ર",
-  "settings.translationCredits": "ગુજરાતી અનુવાદ આશિષ તરફ થી"
+  "settings.translationCredits": "ગુજરાતી અનુવાદ આશિષ તરફ થી",
+  "widgets": "Widgets"
 }

@@ -1,5 +1,6 @@
 {
   "app.pageTitle": "नया टैब",
+  "background": "Background",
   "dashboard.focusHint": "विजेट स्विच करें",
   "dashboard.fullscreenHint": "पूर्ण स्क्रीन मोड स्विच करें",
   "dashboard.loadingHint": "नई सामग्री लोड हो रही है",
@@ -10,5 +11,6 @@
   "plugins.links.standardHint": "साइट पर जाने के लिए यहाँ क्लिक करें",
   "plugins.search.placeholder": "खोजने के लिए Enter दबाएँ",
   "plugins.unsplash.photoLink": "चित्र",
-  "settings.translationCredits": "हिन्दी अनुवाद आशिष के द्वारा"
+  "settings.translationCredits": "हिन्दी अनुवाद आशिष के द्वारा",
+  "widgets": "Widgets"
 }
