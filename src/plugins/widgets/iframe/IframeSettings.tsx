@@ -3,7 +3,7 @@ import React, { FC } from 'react';
 import { Props, defaultData } from './types';
 
 const IframeSettings: FC<Props> = ({ data = defaultData, setData }) => {
-  const { url, width, height, id, css } = data;
+  const { url, width, height, id } = data;
 
   return (
     <div className="IframeSettings">
@@ -17,7 +17,6 @@ const IframeSettings: FC<Props> = ({ data = defaultData, setData }) => {
               url: e.target.value,
               width,
               height,
-              css,
               id,
             })
           }
@@ -35,25 +34,6 @@ const IframeSettings: FC<Props> = ({ data = defaultData, setData }) => {
               height,
               width,
               url,
-              css,
-            })
-          }
-        />
-      </label>
-
-      <label>
-        CSS Snippet
-        <textarea
-          rows={3}
-          style={{ fontFamily: 'monospace' }}
-          value={css}
-          onChange={e =>
-            setData({
-              css: e.target.value,
-              height,
-              width,
-              url,
-              id,
             })
           }
         />
@@ -70,7 +50,6 @@ const IframeSettings: FC<Props> = ({ data = defaultData, setData }) => {
               width: e.target.value,
               height,
               url,
-              css,
               id,
             })
           }
@@ -88,7 +67,6 @@ const IframeSettings: FC<Props> = ({ data = defaultData, setData }) => {
               height: e.target.value,
               width,
               url,
-              css,
               id,
             })
           }
@@ -97,7 +75,8 @@ const IframeSettings: FC<Props> = ({ data = defaultData, setData }) => {
 
       <p className="info">
         Warning: this functionality is intended for advanced users. Iframes may
-        break at any time.
+        break at any time. You can't style the contents of an iframe. Some
+        websites may not be emendable
       </p>
     </div>
   );
