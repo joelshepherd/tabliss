@@ -10,8 +10,8 @@ type Data = {
 export type Props = API<Data>;
 
 export const defaultData: Data = {
-  url: 'https://github.com/joelshepherd/tabliss/blob/master/README.md',
+  url: 'https://excuses.dev/it-works-on-my-computer',
   id: 'custom-iframe',
-  width: '100px',
-  height: '100px',
+  width: '500px',
+  height: '450px',
 };
