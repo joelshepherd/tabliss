@@ -74,9 +74,9 @@ const IframeSettings: FC<Props> = ({ data = defaultData, setData }) => {
       </label>
 
       <p className="info">
-        Warning: this functionality is intended for advanced users. Iframes may
-        break at any time. You can't style the contents of an iframe. Some
-        websites may not be emendable
+        Warning: this functionality is intended for advanced users. Embedded
+        pages may break at any time. You can't style the contents of an embedded
+        page. Some websites may not be emendable
       </p>
     </div>
   );

@@ -4,8 +4,8 @@ import IframeSettings from './IframeSettings';
 
 const config: Config = {
   key: 'widget/iframe',
-  name: 'Iframe',
-  description: 'Create your own component with a website (advanced users).',
+  name: 'Embed Web page',
+  description: 'Embed a website into a widget',
   dashboardComponent: Iframe,
   settingsComponent: IframeSettings,
 };
