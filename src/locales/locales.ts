@@ -3,6 +3,7 @@ import { pick } from 'in-browser-language';
 export const messages: Record<string, Record<string, string>> = {
   cs: require('./lang/cs.json'),
   de: require('./lang/de.json'),
+  el: require('./lang/el.json'),
   en: {},
   'en-AU': require('./lang/en-AU.json'),
   'en-GB': require('./lang/en-GB.json'),

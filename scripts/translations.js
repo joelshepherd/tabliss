@@ -10,6 +10,7 @@ const parser = require('typescript-react-intl').default;
 const languages = [
   'cs',
   'de',
+  'el',
   'en-AU',
   'en-GB',
   'es',

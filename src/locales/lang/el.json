@@ -1,0 +1,16 @@
+{
+  "app.pageTitle": "Νέα Καρτέλα",
+  "background": "Παρασκήνιο",
+  "dashboard.focusHint": "Εναλλαγή Widgets",
+  "dashboard.fullscreenHint": "Εναλλαγή πλήρης εικόνας",
+  "dashboard.loadingHint": "Φόρτωση νέου περιεχομένου",
+  "dashboard.settingsHint": "Προσαρμόστε το Tabliss",
+  "plugin.greeting.withName": "{hour, select,\n      0 {Καλό ύπνο, {name}}\n      1 {Καλό ύπνο, {name}}\n      2 {Καλό ύπνο, {name}}\n      3 {Καλημερούδια, {name}}\n      4 {Καλημερούδια, {name}}\n      5 {Καλημερούδια, {name}}\n      6 {Καλημέρα, {name}}\n      7 {Καλημέρα, {name}}\n      8 {Καλημέρα, {name}}\n      9 {Καλημέρα, {name}}\n      10 {Γεια σας, {name}}\n      11 {Γεια σας, {name}}\n      12 {Γεια σας, {name}}\n      13 {Γεια σας, {name}}\n      14 {Καλό απόγευμα, {name}}\n      15 {Καλό απόγευμα, {name}}\n      16 {Καλό απόγευμα, {name}}\n      17 {Καλό απόγευμα, {name}}\n      18 {Καλησπέρα, {name}}\n      19 {Καλησπέρα, {name}}\n      20 {Καλησπέρα, {name}}\n      21 {Καλησπέρα, {name}}\n      22 {Καληνύχτα, {name}}\n      23 {Καληνύχτα, {name}}\n    }",
+  "plugin.greeting.withoutName": "{hour, select,\n      0 {Καλό ύπνο}\n      1 {Καλό ύπνο}\n      2 {Καλό ύπνο}\n      3 {Καλημερούδια}\n      4 {Καλημερούδια}\n      5 {Καλημερούδια}\n      6 {Καλημέρα}\n      7 {Καλημέρα}\n      8 {Καλημέρα}\n      9 {Καλημέρα}\n      10 {Γεια σας}\n      11 {Γεια σας}\n      12 {Γεια σας}\n      13 {Γεια σας}\n      14 {Καλό απόγευμα}\n      15 {Καλό απόγευμα}\n      16 {Καλό απόγευμα}\n      17 {Καλό απόγευμα}\n      18 {Καλησπέρα}\n      19 {Καλησπέρα}\n      20 {Καλησπέρα}\n      21 {Καλησπέρα}\n      22 {Καληνύχτα}\n      23 {Καληνύχτα}\n    }",
+  "plugins.links.shortcutHint": "Πατήστε {number} ή κάντε κλικ για να επισκεφθείτε",
+  "plugins.links.standardHint": "Κάντε κλικ για να επισκεφθείτε",
+  "plugins.search.placeholder": "Πληκτρολογήστε για να αναζητήσετε",
+  "plugins.unsplash.photoLink": "Φωτογραφία",
+  "settings.translationCredits": "Greek Translation by @Damian96",
+  "widgets": "Widgets"
+}

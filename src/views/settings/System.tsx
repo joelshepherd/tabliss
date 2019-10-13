@@ -36,6 +36,9 @@ const System: FC = () => {
           <option value="de" title="German">
             Deutsch
           </option>
+          <option value="el" title="Greek">
+            Ελληνικά
+          </option>
           <option value="en-AU" title="English (Australian)">
             English (AU)
           </option>
