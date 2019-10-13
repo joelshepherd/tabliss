@@ -1,0 +1,16 @@
+{
+  "app.pageTitle": "New Tab",
+  "background": "Background",
+  "dashboard.focusHint": "Toggle widgets",
+  "dashboard.fullscreenHint": "Toggle fullscreen",
+  "dashboard.loadingHint": "Loading new content",
+  "dashboard.settingsHint": "Customise Tabliss",
+  "plugin.greeting.withName": "{hour, select,\n      0 {Sleep well, {name}}\n      1 {Sleep well, {name}}\n      2 {Sleep well, {name}}\n      3 {Rise and shine, {name}}\n      4 {Rise and shine, {name}}\n      5 {Rise and shine, {name}}\n      6 {Good morning, {name}}\n      7 {Good morning, {name}}\n      8 {Good morning, {name}}\n      9 {Good morning, {name}}\n      10 {Hello, {name}}\n      11 {Hello, {name}}\n      12 {Hello, {name}}\n      13 {Hello, {name}}\n      14 {Good afternoon, {name}}\n      15 {Good afternoon, {name}}\n      16 {Good afternoon, {name}}\n      17 {Good afternoon, {name}}\n      18 {Good evening, {name}}\n      19 {Good evening, {name}}\n      20 {Good evening, {name}}\n      21 {Good evening, {name}}\n      22 {Good night, {name}}\n      23 {Good night, {name}}\n    }",
+  "plugin.greeting.withoutName": "{hour, select,\n      0 {Sleep well}\n      1 {Sleep well}\n      2 {Sleep well}\n      3 {Rise and shine}\n      4 {Rise and shine}\n      5 {Rise and shine}\n      6 {Good morning}\n      7 {Good morning}\n      8 {Good morning}\n      9 {Good morning}\n      10 {Hello}\n      11 {Hello}\n      12 {Hello}\n      13 {Hello}\n      14 {Good afternoon}\n      15 {Good afternoon}\n      16 {Good afternoon}\n      17 {Good afternoon}\n      18 {Good evening}\n      19 {Good evening}\n      20 {Good evening}\n      21 {Good evening}\n      22 {Good night}\n      23 {Good night}\n    }",
+  "plugins.links.shortcutHint": "Press {number} or click to visit",
+  "plugins.links.standardHint": "Click to visit",
+  "plugins.search.placeholder": "Type to search",
+  "plugins.unsplash.photoLink": "Photo",
+  "settings.translationCredits": " ",
+  "widgets": "Widgets"
+}
