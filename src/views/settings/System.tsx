@@ -30,6 +30,9 @@ const System: FC = () => {
       >
         <span>Language</span>
         <select value={locale} onChange={handleSetLocale}>
+          <option value="ca-ES" title="Catalan">
+            Català
+          </option>
           <option value="cs" title="Czech">
             Čeština
           </option>
