@@ -9,10 +9,13 @@ export interface Data {
   featured: boolean;
   search: string;
   timeout: number;
+  size?: string;
+  id?: string;
 }
 
 export interface Image {
   data: Blob;
+  id: string;
   image_link: string;
   location_title?: string;
   user_name: string;
@@ -21,7 +24,7 @@ export interface Image {
 
 export interface cachedData {
   currentImage: Image;
-  previous_images?: Array<String>;
+  previous_images: Array<String>;
 }
 
 type Cache = RotatingCache<cachedData>;

@@ -19,7 +19,10 @@ const Unsplash: FC<Props> = ({
       getImage(data, loader).then(imageData => {
         return {
           currentImage: imageData,
-          previous_images: [''],
+          previous_images: [
+            ...cache!.now.previous_images,
+            imageData.image_link,
+          ],
         };
       }),
     cacheArea,
