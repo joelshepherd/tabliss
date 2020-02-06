@@ -1,6 +1,5 @@
 import React, { FC } from 'react';
-
-import { useObjectUrl, useRotatingCache } from '../../../hooks';
+import { useRotatingCache } from '../../../hooks';
 import Backdrop from '../../../views/shared/Backdrop';
 import { getImage } from './api';
 import { Props, defaultData } from './types';
@@ -14,14 +13,20 @@ const Unsplash: FC<Props> = ({
   setCache,
 }) => {
   const cacheArea = { cache, setCache };
-  const image = useRotatingCache(
-    () => getImage(data, loader),
+
+  useRotatingCache(
+    () =>
+      getImage(data, loader).then(imageData => {
+        return {
+          currentImage: imageData,
+          previous_images: [''],
+        };
+      }),
     cacheArea,
     data.timeout * 1000,
     [data.by, data.collections, data.featured, data.search],
   );
-
-  const url = useObjectUrl(image && image.data);
+  const url = URL.createObjectURL(cache!.now.currentImage.data);
 
   return (
     <div className="Unsplash fullscreen">
@@ -30,7 +35,7 @@ const Unsplash: FC<Props> = ({
         style={{ backgroundImage: url && `url(${url})` }}
       />
 
-      {cache && <UnsplashCredit image={cache.now} />}
+      {cache && <UnsplashCredit image={cache.now.currentImage} />}
     </div>
   );
 };

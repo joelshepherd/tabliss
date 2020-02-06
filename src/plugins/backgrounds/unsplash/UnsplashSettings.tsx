@@ -84,6 +84,9 @@ const UnsplashSettings: FC<Props> = ({ data = defaultData, setData }) => (
         </label>
       </div>
     )}
+
+    <div>last 3 images</div>
+    <div className="previousImages-wrapper" />
   </div>
 );
 

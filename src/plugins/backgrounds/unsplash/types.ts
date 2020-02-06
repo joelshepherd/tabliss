@@ -19,7 +19,12 @@ export interface Image {
   user_link: string;
 }
 
-type Cache = RotatingCache<Image>;
+export interface cachedData {
+  currentImage: Image;
+  previous_images?: Array<String>;
+}
+
+type Cache = RotatingCache<cachedData>;
 
 export type Props = API<Data, Cache>;
 
