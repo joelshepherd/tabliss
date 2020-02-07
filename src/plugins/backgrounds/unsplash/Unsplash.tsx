@@ -17,19 +17,23 @@ const Unsplash: FC<Props> = ({
   useRotatingCache(
     () =>
       getImage(data, loader).then(imageData => {
+        let prevImages = cache!.now.previous_images;
         return {
           currentImage: imageData,
-          previous_images: [
-            ...cache!.now.previous_images,
-            imageData.image_link,
-          ],
+          previous_images:
+            prevImages.length > 0
+              ? prevImages.length > 2
+                ? [...cache!.now.previous_images.slice(1, 3), imageData.id]
+                : [...cache!.now.previous_images, imageData.id]
+              : [''],
         };
       }),
     cacheArea,
     data.timeout * 1000,
     [data.by, data.collections, data.featured, data.search],
   );
-  const url = URL.createObjectURL(cache!.now.currentImage.data);
+
+  const url = cache ? URL.createObjectURL(cache.now.currentImage.data) : '';
 
   return (
     <div className="Unsplash fullscreen">
