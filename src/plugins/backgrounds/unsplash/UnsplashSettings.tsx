@@ -1,93 +1,125 @@
 import React, { FC } from 'react';
+import { Props, defaultData, Image } from './types';
+import { getImage } from './api';
+const UnsplashSettings: FC<Props> = ({
+  data = defaultData,
+  setData,
+  cache,
+  loader,
+}) => {
+  const [images = [], setImages] = React.useState<Array<Image>>();
+  const [urls = [], seturls] = React.useState<Array<String>>();
 
-import { Props, defaultData } from './types';
+  //Since there are many cache rotations, avoid updating the state for each one rotation.
+  if (cache && images != cache.now.previous_images) {
+    const newUrls = cache.now.previous_images.map(image => {
+      return URL.createObjectURL(image.data);
+    });
+    seturls(newUrls);
+    setImages(cache.now.previous_images);
+  }
 
-const UnsplashSettings: FC<Props> = ({ data = defaultData, setData }) => (
-  <div className="UnsplashSettings">
-    <label>
-      Show a new photo
-      <select
-        value={data.timeout}
-        onChange={event =>
-          setData({ ...data, timeout: Number(event.target.value) })
-        }
-      >
-        <option value="0">Every new tab</option>
-        <option value="300">Every 5 minutes</option>
-        <option value="900">Every 15 minutes</option>
-        <option value="3600">Every hour</option>
-        <option value="86400">Every day</option>
-        <option value={Number.MAX_SAFE_INTEGER}>Pause</option>
-      </select>
-    </label>
-
-    <label>
-      <input
-        type="radio"
-        checked={data.by === 'official'}
-        onChange={() => setData({ ...data, by: 'official' })}
-      />{' '}
-      Official collection
-    </label>
-
-    <label>
-      <input
-        type="radio"
-        checked={data.by === 'collections'}
-        onChange={() => setData({ ...data, by: 'collections' })}
-      />{' '}
-      Custom collection
-    </label>
-
-    {data.by === 'collections' && (
+  return (
+    <div className="UnsplashSettings">
       <label>
-        Collection
-        <input
-          placeholder="Collection ID number"
-          type="text"
-          value={data.collections}
+        Show a new photo
+        <select
+          value={data.timeout}
           onChange={event =>
-            setData({ ...data, collections: event.target.value })
+            setData({ ...data, timeout: Number(event.target.value) })
           }
-        />
+        >
+          <option value="0">Every new tab</option>
+          <option value="300">Every 5 minutes</option>
+          <option value="900">Every 15 minutes</option>
+          <option value="3600">Every hour</option>
+          <option value="86400">Every day</option>
+          <option value={Number.MAX_SAFE_INTEGER}>Pause</option>
+        </select>
       </label>
-    )}
 
-    <label>
-      <input
-        type="radio"
-        checked={data.by === 'search'}
-        onChange={() => setData({ ...data, by: 'search' })}
-      />{' '}
-      Custom search
-    </label>
+      <label>
+        <input
+          type="radio"
+          checked={data.by === 'official'}
+          onChange={() => setData({ ...data, by: 'official' })}
+        />{' '}
+        Official collection
+      </label>
 
-    {data.by === 'search' && (
-      <div>
+      <label>
+        <input
+          type="radio"
+          checked={data.by === 'collections'}
+          onChange={() => setData({ ...data, by: 'collections' })}
+        />{' '}
+        Custom collection
+      </label>
+
+      {data.by === 'collections' && (
         <label>
-          Tags
+          Collection
           <input
-            placeholder="Try landscapes or animals..."
+            placeholder="Collection ID number"
             type="text"
-            value={data.search}
-            onChange={event => setData({ ...data, search: event.target.value })}
+            value={data.collections}
+            onChange={event =>
+              setData({ ...data, collections: event.target.value })
+            }
           />
         </label>
+      )}
 
-        <label>
-          <input
-            type="checkbox"
-            checked={data.featured}
-            onChange={event => setData({ ...data, featured: !data.featured })}
-          />{' '}
-          Only featured images
-        </label>
+      <label>
+        <input
+          type="radio"
+          checked={data.by === 'search'}
+          onChange={() => setData({ ...data, by: 'search' })}
+        />{' '}
+        Custom search
+      </label>
+
+      {data.by === 'search' && (
+        <div>
+          <label>
+            Tags
+            <input
+              placeholder="Try landscapes or animals..."
+              type="text"
+              value={data.search}
+              onChange={event =>
+                setData({ ...data, search: event.target.value })
+              }
+            />
+          </label>
+
+          <label>
+            <input
+              type="checkbox"
+              checked={data.featured}
+              onChange={event => setData({ ...data, featured: !data.featured })}
+            />{' '}
+            Only featured images
+          </label>
+        </div>
+      )}
+
+      <div>last 3 images</div>
+      <div className="previousImages-wrapper">
+        {urls &&
+          urls.map((url, index) => (
+            <a
+              href={url.toString()}
+              className="previousImage"
+              key={index}
+              style={{
+                backgroundImage: url && `url(${url})`,
+              }}
+            />
+          ))}
       </div>
-    )}
-
-    <div>last 3 images</div>
-    <div className="previousImages-wrapper" />
-  </div>
-);
+    </div>
+  );
+};
 
 export default UnsplashSettings;

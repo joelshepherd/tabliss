@@ -3,14 +3,13 @@ import { officialCollection, UNSPLASH_API_KEY } from './constants';
 import { Image, Data } from './types';
 
 export const getImage = async function(
-  settings: Pick<
-    Data,
-    'by' | 'collections' | 'featured' | 'search' | 'size' | 'id'
-  >,
+  settings: Pick<Data, 'by' | 'collections' | 'featured' | 'search'>,
   loader: API['loader'],
+  id?: String,
+  size?: number,
 ): Promise<Image> {
   // Setup
-  const { by, collections, featured, search, size, id } = settings;
+  const { by, collections, featured, search } = settings;
   const headers = new Headers();
   headers.append('Authorization', `Client-ID ${UNSPLASH_API_KEY}`);
 

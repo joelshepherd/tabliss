@@ -24,7 +24,7 @@ export interface Image {
 
 export interface cachedData {
   currentImage: Image;
-  previous_images: Array<String>;
+  previous_images: Array<Image>;
 }
 
 type Cache = RotatingCache<cachedData>;
