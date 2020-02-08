@@ -9,6 +9,8 @@ export interface Data {
   featured: boolean;
   search: string;
   timeout: number;
+  size?: string;
+  id?: string;
 }
 
 export interface Image {
@@ -19,7 +21,12 @@ export interface Image {
   user_link: string;
 }
 
-type Cache = RotatingCache<Image>;
+export interface cachedData {
+  currentImage: Image;
+  previous_images: Array<Image>;
+}
+
+type Cache = RotatingCache<cachedData>;
 
 export type Props = API<Data, Cache>;
 
