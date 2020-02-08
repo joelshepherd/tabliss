@@ -15,7 +15,6 @@ export interface Data {
 
 export interface Image {
   data: Blob;
-  id: string;
   image_link: string;
   location_title?: string;
   user_name: string;

@@ -47,7 +47,6 @@ export const getImage = async function(
 
   return {
     data,
-    id: res.id,
     image_link: res.links.html,
     location_title: res.location ? res.location.title : null,
     user_name: res.user.name,

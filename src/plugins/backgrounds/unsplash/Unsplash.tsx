@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import { useRotatingCache } from '../../../hooks';
 import Backdrop from '../../../views/shared/Backdrop';
 import { getImage } from './api';
-import { Props, defaultData } from './types';
+import { Props, defaultData, Image } from './types';
 import UnsplashCredit from './UnsplashCredit';
 import './Unsplash.sass';
 
@@ -17,8 +17,9 @@ const Unsplash: FC<Props> = ({
   useRotatingCache(
     () =>
       getImage(data, loader).then(imageData => {
-        let prevImages = cache && cache.now.previous_images;
-        if (prevImages && prevImages.length > 1) prevImages.shift();
+        var prevImages = Array<Image>();
+        if (cache) var prevImages = cache.next.previous_images;
+        if (prevImages.length > 3) prevImages.shift();
         return {
           currentImage: imageData,
           //cache the last 3 images
