@@ -1,6 +1,5 @@
 import React, { FC } from 'react';
 import { Props, defaultData, Image } from './types';
-import { getImage } from './api';
 const UnsplashSettings: FC<Props> = ({
   data = defaultData,
   setData,
@@ -16,7 +15,8 @@ const UnsplashSettings: FC<Props> = ({
       return URL.createObjectURL(image.data);
     });
     seturls(newUrls);
-    setImages(cache.now.previous_images);
+    let prevImages = cache.now.previous_images;
+    setImages(prevImages);
   }
 
   return (

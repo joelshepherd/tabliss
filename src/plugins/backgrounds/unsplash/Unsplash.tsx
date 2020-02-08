@@ -19,7 +19,7 @@ const Unsplash: FC<Props> = ({
       getImage(data, loader).then(imageData => {
         var prevImages = Array<Image>();
         if (cache) var prevImages = cache.next.previous_images;
-        if (prevImages.length > 3) prevImages.shift();
+        if (prevImages.length > 2) prevImages.shift();
         return {
           currentImage: imageData,
           //cache the last 3 images
