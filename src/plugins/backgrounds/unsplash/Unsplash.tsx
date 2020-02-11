@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { useRotatingCache } from '../../../hooks';
+import { useRotatingCache, useObjectUrl } from '../../../hooks';
 import Backdrop from '../../../views/shared/Backdrop';
 import { getImage } from './api';
 import { Props, defaultData, Image } from './types';
@@ -14,29 +14,37 @@ const Unsplash: FC<Props> = ({
 }) => {
   const cacheArea = { cache, setCache };
 
-  useRotatingCache(
-    () =>
-      getImage(data, loader).then(imageData => {
-        var prevImages = Array<Image>();
-        if (cache) var prevImages = cache.next.previous_images;
-        if (prevImages.length > 2) prevImages.shift();
-        return {
-          currentImage: imageData,
-          //cache the last 3 images
-          previous_images: [...prevImages!, imageData],
-        };
-      }),
+  const newCache = useRotatingCache(
+    async () => {
+      const fetchedData = await getImage(data, loader);
+      var prevImages = Array<Image>();
+      var cacheImages = cache && cache.next.previous_images;
+      if (cacheImages) {
+        if (cacheImages.length > 2)
+          prevImages = cacheImages.slice(
+            cacheImages.length - 2,
+            cacheImages.length,
+          );
+        else prevImages = cacheImages;
+      }
+
+      return {
+        currentImage: fetchedData,
+        //cache the last 3 images
+        previous_images: prevImages && [...prevImages, fetchedData],
+      };
+    },
     cacheArea,
     data.timeout * 1000,
     [data.by, data.collections, data.featured, data.search],
   );
 
-  const url = cache && URL.createObjectURL(cache.now.currentImage.data);
+  const url = useObjectUrl(newCache && newCache.currentImage.data);
   return (
     <div className="Unsplash fullscreen">
       <Backdrop
         className="image fullscreen"
-        style={{ backgroundImage: url && `url(${url})` }}
+        style={{ background: url && `url(${url})` }}
       />
 
       {cache && <UnsplashCredit image={cache.now.currentImage} />}
