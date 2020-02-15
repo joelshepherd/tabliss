@@ -10,6 +10,7 @@ import {
   reorderWidget,
 } from '../../store/actions/data';
 import Widget from './Widget';
+import WidgetsDnD from './WidgetsDnD';
 
 const Widgets: FC = () => {
   const active = useSelector(state => state.data.widgets);
@@ -48,7 +49,12 @@ const Widgets: FC = () => {
       </label>
 
       {active.length === 0 && <p>No widgets selected.</p>}
-      {active.map((plugin, index) => (
+      <WidgetsDnD
+        widgets={active}
+        moveWidget={boundReorderWidget}
+        removeWidget={id => dispatch(removeWidget(id))}
+      />
+      {/* {active.map((plugin, index) => (
         <Widget
           key={plugin.id}
           plugin={plugin}
@@ -64,7 +70,7 @@ const Widgets: FC = () => {
           }
           onRemove={() => dispatch(removeWidget(plugin.id))}
         />
-      ))}
+      ))} */}
     </div>
   );
 };
