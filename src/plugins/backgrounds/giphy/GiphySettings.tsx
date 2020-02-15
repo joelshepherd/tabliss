@@ -1,35 +1,35 @@
 import React, { FC } from 'react';
 
 import { Props, defaultData } from './types';
+import { FormGroup, Input, Label, CustomInput } from 'reactstrap';
 
 const GiphySettings: FC<Props> = ({ data = defaultData, setData }) => (
   <div className="GiphySettings">
-    <label>
-      Tag
-      <input
+    <FormGroup>
+      <Label for="giphyTag">Tag</Label>
+      <Input
+        id="giphyTag"
         type="text"
         value={data.tag}
         onChange={event => setData({ ...data, tag: event.target.value })}
       />
-    </label>
+    </FormGroup>
 
-    <label>
-      <input
+    <FormGroup>
+      <CustomInput
         type="checkbox"
+        label="Allow NSFW"
         checked={data.nsfw}
-        onChange={event => setData({ ...data, nsfw: !data.nsfw })}
-      />{' '}
-      Allow NSFW
-    </label>
+        onChange={() => setData({ ...data, nsfw: !data.nsfw })}
+      />
 
-    <label>
-      <input
+      <CustomInput
         type="checkbox"
         checked={data.expand}
-        onChange={event => setData({ ...data, expand: !data.expand })}
-      />{' '}
-      Stretch to fill screen
-    </label>
+        label="Stretch to fill screen"
+        onChange={() => setData({ ...data, expand: !data.expand })}
+      />
+    </FormGroup>
   </div>
 );
 

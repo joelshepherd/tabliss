@@ -1,9 +1,10 @@
 import React, { FC } from 'react';
 
 import { useObjectUrls } from '../../../hooks';
-import { IconButton, RemoveIcon } from '../../../views/shared';
+import { RemoveIcon } from '../../../views/shared';
 import { Props, defaultCache } from './types';
 import './ImageSettings.sass';
+import { Input, Card, CardImg } from 'reactstrap';
 
 const ImageSettings: FC<Props> = ({ cache = defaultCache, setCache }) => {
   const urls = useObjectUrls(cache);
@@ -18,37 +19,30 @@ const ImageSettings: FC<Props> = ({ cache = defaultCache, setCache }) => {
 
   return (
     <div className="ImageSettings">
-      <label>
-        <input
-          accept="image/*"
-          multiple={true}
-          onChange={event =>
-            event.target.files && addImages(event.target.files)
-          }
-          type="file"
-        />
-      </label>
+      <Input
+        type="file"
+        multiple={true}
+        accept="image/*"
+        onChange={event => event.target.files && addImages(event.target.files)}
+      />
 
       <div className="grid">
         {urls &&
           urls.map((url, index) => (
-            <div className="preview" key={index}>
-              <img src={url} />
-              <IconButton
-                onClick={() => removeImage(index)}
-                title="Remove image"
-              >
+            <Card key={index} onClick={() => removeImage(index)}>
+              <CardImg width="100%" src={url} />
+
+              <div className="delete">
                 <RemoveIcon />
-              </IconButton>
-            </div>
+              </div>
+            </Card>
           ))}
       </div>
 
-      {largeImages && (
-        <p className="info">Large images may affect performance</p>
-      )}
-
-      <p className="info">Images do not sync between browers.</p>
+      <p className="info">
+        Images do not sync between browsers.{' '}
+        {largeImages && 'Large images may affect performance'}
+      </p>
     </div>
   );
 };
