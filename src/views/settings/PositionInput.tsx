@@ -1,7 +1,6 @@
 import React, { FC } from 'react';
 
 import { WidgetPosition } from '../../store/reducers/types';
-import { IconButton, Icon } from '../shared';
 import './PositionInput.css';
 
 const positions = [
@@ -53,15 +52,45 @@ const PositionInput: FC<Props> = ({ value, onChange }) => (
     <label>Position</label>
 
     <div className="grid">
-      {positions.map(position => (
-        <IconButton
-          key={position.value}
-          onClick={() => onChange(position.value)}
-          primary={value === position.value}
-        >
-          <Icon name={position.icon} />
-        </IconButton>
-      ))}
+      {positions.map((position, i) => {
+        const splitPosition = position.value.split(/(?=[A-Z])/);
+
+        let positionX = 'start',
+          positionY = 'start';
+
+        switch (splitPosition[0].toLowerCase()) {
+          case 'middle':
+            positionY = 'center';
+            break;
+
+          case 'bottom':
+            positionY = 'end';
+            break;
+        }
+
+        switch (splitPosition[1].toLowerCase()) {
+          case 'centre':
+            positionX = 'center';
+            break;
+
+          case 'right':
+            positionX = 'end';
+            break;
+        }
+
+        return (
+          <div
+            key={i}
+            className="position-rectangle"
+            style={{
+              alignSelf: positionY,
+              justifySelf: positionX,
+              borderColor: value === position.value ? '#3498db' : '#4e4e4e',
+            }}
+            onClick={() => onChange(position.value)}
+          />
+        );
+      })}
     </div>
   </div>
 );

@@ -2,8 +2,22 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, 1fr);
+
+  height: 100px;
+
+  border: solid #4e4e4e;
+  border-radius: 2px;
 }
 
 .PositionInput .grid .button--icon {
   margin: 1px;
+}
+
+.position-rectangle {
+  height: calc(75% - 2px);
+  width: calc(75% - 2px);
+  margin: 1px;
+
+  border: solid #4e4e4e;
+  border-radius: 2px;
 }

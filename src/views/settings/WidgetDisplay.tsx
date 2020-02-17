@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 
 import { WidgetDisplay } from '../../store/reducers/types';
 import PositionInput from './PositionInput';
-import './WidgetDisplay.css';
+import { CustomInput, Label } from 'reactstrap';
 
 type Props = {
   display: WidgetDisplay;
@@ -17,18 +17,16 @@ const WidgetDisplay: FC<Props> = ({ display, onChange }) => {
         onChange={position => onChange({ position })}
       />
 
-      <label>
-        Size
-        <br />
-        <input
-          type="range"
-          value={display.fontSize}
-          min="2"
-          max="100"
-          step="2"
-          onChange={event => onChange({ fontSize: Number(event.target.value) })}
-        />
-      </label>
+      <Label for="WidgetSizeSelector">Size</Label>
+      <CustomInput
+        type="range"
+        id="WidgetSizeSelector"
+        value={display.fontSize}
+        min="2"
+        max="100"
+        step="2"
+        onChange={event => onChange({ fontSize: Number(event.target.value) })}
+      />
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import React, { FC, useCallback } from 'react';
+import React, { FC, useCallback, useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { useToggle } from '../../hooks';
@@ -9,20 +9,42 @@ import {
   WidgetState,
 } from '../../store/reducers/types';
 import PluginContainer from '../shared/Plugin';
-import { DownIcon, IconButton, RemoveIcon, UpIcon, Icon } from '../shared';
+import { IconButton, RemoveIcon, Icon } from '../shared';
 import ToggleSection from '../shared/ToggleSection';
 import WidgetDisplay from './WidgetDisplay';
 import './Widget.sass';
+import {
+  Card,
+  CardBody,
+  CardTitle,
+  CardText,
+  Collapse,
+  CardLink,
+  DropdownMenu,
+  DropdownItem,
+  FormGroup,
+  Label,
+  Input,
+  CustomInput,
+} from 'reactstrap';
 
 interface Props {
   plugin: WidgetState;
-  onMoveUp?: () => void;
-  onMoveDown?: () => void;
   onRemove: () => void;
 }
 
-const Widget: FC<Props> = ({ plugin, onMoveDown, onMoveUp, onRemove }) => {
+enum Config {
+  DISPLAY = 'Display',
+  FONT = 'Font',
+  NONE = '',
+}
+
+const Widget: FC<Props> = ({ plugin, onRemove }) => {
   const [isOpen, toggleIsOpen] = useToggle(onRemove === undefined);
+  const [dropdown, dropdownToggle] = useToggle(true);
+
+  const [configOpen, setConfigOpen] = useState(Config.NONE);
+  const [configPrimary, setConfigPrimary] = useState(Config.DISPLAY);
 
   const { description, name, settingsComponent } = getConfig(plugin.key);
 
@@ -34,96 +56,93 @@ const Widget: FC<Props> = ({ plugin, onMoveDown, onMoveUp, onRemove }) => {
   );
 
   return (
-    <fieldset className="Widget">
-      <div className="title--buttons">
-        <IconButton onClick={onRemove} title="Remove widget">
-          <RemoveIcon />
-        </IconButton>
-
-        <IconButton
-          onClick={toggleIsOpen}
-          title={`${isOpen ? 'Close' : 'Edit'} widget settings`}
-        >
-          <Icon name="settings" />
-        </IconButton>
-
-        {onMoveDown && (
-          <IconButton onClick={onMoveDown} title="Move widget down">
-            <DownIcon />
-          </IconButton>
-        )}
-
-        {onMoveUp && (
-          <IconButton onClick={onMoveUp} title="Move widget up">
-            <UpIcon />
-          </IconButton>
-        )}
-
-        <h4 onClick={toggleIsOpen}>{name}</h4>
-        {!isOpen && <p>{description}</p>}
-      </div>
+    <Card>
+      {!isOpen && (
+        <CardBody onClick={toggleIsOpen}>
+          <CardTitle>
+            <h4>{name}</h4>
+          </CardTitle>
+          <CardText>{description}</CardText>
+        </CardBody>
+      )}
 
       {isOpen && (
-        <div>
+        <CardBody>
+          <CardTitle onClick={toggleIsOpen}>
+            <h4>{name}</h4>
+          </CardTitle>
+
           {settingsComponent && (
             <div className="settings">
               <PluginContainer id={plugin.id} component={settingsComponent} />
             </div>
           )}
 
-          <ToggleSection name="Display Settings">
+          <CardLink
+            href="#"
+            onClick={() => {
+              if (configOpen === Config.NONE) setConfigOpen(configPrimary);
+              else setConfigOpen(Config.NONE);
+            }}
+          >
+            {configOpen === Config.NONE ? 'Open' : 'Close'} {configPrimary}{' '}
+            Settings
+          </CardLink>
+
+          <CardLink className="float-right" onClick={dropdownToggle}>
+            <Icon name="more-vertical" />
+          </CardLink>
+
+          <DropdownMenu style={{ display: dropdown ? 'none' : 'block' }} right>
+            <DropdownItem
+              onClick={() => {
+                const nextPrimary =
+                  configPrimary === Config.FONT ? Config.DISPLAY : Config.FONT;
+
+                setConfigPrimary(nextPrimary);
+                setConfigOpen(nextPrimary);
+
+                dropdownToggle();
+              }}
+            >
+              Open {configPrimary === Config.FONT ? 'Display' : 'Font'} Settings
+            </DropdownItem>
+            <DropdownItem onClick={onRemove}>Delete</DropdownItem>
+          </DropdownMenu>
+
+          <Collapse isOpen={configOpen === Config.DISPLAY}>
             <WidgetDisplay
               display={plugin.display}
               onChange={boundSetDisplay}
             />
-          </ToggleSection>
+          </Collapse>
 
-          <ToggleSection name="Font Settings">
-            <>
-              <label>
-                Font
-                <input
-                  type="text"
-                  value={plugin.display.fontFamily}
-                  onChange={event =>
-                    boundSetDisplay({ fontFamily: event.target.value })
-                  }
-                />
-              </label>
+          <Collapse isOpen={configOpen === Config.FONT}>
+            <FormGroup>
+              <Label>Font</Label>
+              <Input
+                type="text"
+                value={plugin.display.fontFamily}
+                onChange={event =>
+                  boundSetDisplay({ fontFamily: event.target.value })
+                }
+              />
+            </FormGroup>
 
-              {/* <label>
-                Font Weight
-                <select
-                  value={plugin.display.fontWeight}
-                  onChange={event =>
-                    boundSetDisplay({ fontWeight: Number(event.target.value) })
-                  }
-                >
-                  <option value={undefined}>None</option>
-                  <option value={100}>Thin</option>
-                  <option value={300}>Light</option>
-                  <option value={400}>Regular</option>
-                  <option value={500}>Medium</option>
-                  <option value={700}>Bold</option>
-                  <option value={900}>Black</option>
-                </select>
-              </label> */}
-
-              <label>
-                Colour
-                <input
-                  type="color"
-                  value={plugin.display.colour}
-                  onChange={event =>
-                    boundSetDisplay({ colour: event.target.value })
-                  }
-                />
-              </label>
-            </>
-          </ToggleSection>
-        </div>
+            <FormGroup>
+              <Label>Colour</Label>
+              <Input
+                type="color"
+                value={plugin.display.colour}
+                onChange={event =>
+                  boundSetDisplay({ colour: event.target.value })
+                }
+              />
+            </FormGroup>
+          </Collapse>
+        </CardBody>
       )}
-    </fieldset>
+    </Card>
   );
 };
 

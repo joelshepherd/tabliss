@@ -11,6 +11,7 @@ import {
 } from '../../store/actions/data';
 import Widget from './Widget';
 import WidgetsDnD from './WidgetsDnD';
+import { CustomInput } from 'reactstrap';
 
 const Widgets: FC = () => {
   const active = useSelector(state => state.data.widgets);
@@ -21,7 +22,7 @@ const Widgets: FC = () => {
     [dispatch],
   );
 
-  const handleAddWidget = (event: ChangeEvent<HTMLSelectElement>) => {
+  const handleAddWidget = (event: ChangeEvent<HTMLInputElement>) => {
     dispatch(addWidget(event.target.value));
   };
 
@@ -35,42 +36,23 @@ const Widgets: FC = () => {
         />
       </h2>
 
-      <label>
-        <select value="" onChange={handleAddWidget} className="primary">
-          <option disabled value="">
-            Add a new widget
+      <CustomInput type="select" value="" onChange={handleAddWidget}>
+        <option disabled value="">
+          Add a new widget
+        </option>
+        {widgetConfigs.map(plugin => (
+          <option key={plugin.key} value={plugin.key}>
+            {plugin.name}
           </option>
-          {widgetConfigs.map(plugin => (
-            <option key={plugin.key} value={plugin.key}>
-              {plugin.name}
-            </option>
-          ))}
-        </select>
-      </label>
+        ))}
+      </CustomInput>
 
-      {active.length === 0 && <p>No widgets selected.</p>}
+      {active.length === 0 && <p>No widgets added.</p>}
       <WidgetsDnD
         widgets={active}
         moveWidget={boundReorderWidget}
         removeWidget={id => dispatch(removeWidget(id))}
       />
-      {/* {active.map((plugin, index) => (
-        <Widget
-          key={plugin.id}
-          plugin={plugin}
-          onMoveUp={
-            index !== 0
-              ? () => boundReorderWidget(plugin.id, index - 1)
-              : undefined
-          }
-          onMoveDown={
-            index !== active.length - 1
-              ? () => boundReorderWidget(plugin.id, index + 1)
-              : undefined
-          }
-          onRemove={() => dispatch(removeWidget(plugin.id))}
-        />
-      ))} */}
     </div>
   );
 };
