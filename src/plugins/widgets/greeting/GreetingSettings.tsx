@@ -1,17 +1,16 @@
 import React, { FC } from 'react';
 
 import { Props, defaultData } from './types';
+import { Label, Input } from 'reactstrap';
 
 const GreetingSettings: FC<Props> = ({ data = defaultData, setData }) => (
   <div className="GreetingSettings">
-    <label>
-      Name
-      <input
-        type="text"
-        value={data.name}
-        onChange={event => setData({ name: event.target.value })}
-      />
-    </label>
+    <Label>Name</Label>
+    <Input
+      type="text"
+      value={data.name}
+      onChange={event => setData({ name: event.target.value })}
+    />
   </div>
 );
 
