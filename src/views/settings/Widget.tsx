@@ -73,9 +73,7 @@ const Widget: FC<Props> = ({ plugin, onRemove }) => {
           </CardTitle>
 
           {settingsComponent && (
-            <div className="settings">
-              <PluginContainer id={plugin.id} component={settingsComponent} />
-            </div>
+            <PluginContainer id={plugin.id} component={settingsComponent} />
           )}
 
           <CardLink
