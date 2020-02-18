@@ -6,53 +6,53 @@ import { CustomInput } from 'reactstrap';
 const TimeSettings: FC<Props> = ({ data = defaultData, setData }) => (
   <div className="TimeSettings">
     <CustomInput
-      id="timeSettingAnalog"
       type="radio"
+      label="Analogue"
+      id="timeSettingAnalog"
       checked={data.mode === 'analogue'}
       onChange={() => setData({ ...data, mode: 'analogue' })}
-      label="Analogue"
     />
 
     <CustomInput
-      id="timeSetting12Digital"
       type="radio"
+      label="12-hour digital"
+      id="timeSetting12Digital"
       checked={data.mode === 'digital' && data.hour12}
       onChange={() => setData({ ...data, mode: 'digital', hour12: true })}
-      label="12-hour digital"
     />
 
     <CustomInput
-      id="timeSetting24Digital"
       type="radio"
+      label="24-hour digital"
+      id="timeSetting24Digital"
       checked={data.mode === 'digital' && !data.hour12}
       onChange={() => setData({ ...data, mode: 'digital', hour12: false })}
-      label="24-hour digital"
     />
 
     <br />
 
     <CustomInput
-      id="timeSettingSeconds"
       type="checkbox"
+      label="Display seconds"
+      id="timeSettingSeconds"
       checked={data.showSeconds}
       onChange={() => setData({ ...data, showSeconds: !data.showSeconds })}
-      label="Display seconds"
     />
 
     <CustomInput
-      id="timeSettingMinutes"
       type="checkbox"
+      label="Display minutes"
+      id="timeSettingMinutes"
       checked={data.showMinutes}
       onChange={() => setData({ ...data, showMinutes: !data.showMinutes })}
-      label="Display minutes"
     />
 
     <CustomInput
-      id="timeSettingDate"
       type="checkbox"
+      id="timeSettingDate"
       checked={data.showDate}
-      onChange={() => setData({ ...data, showDate: !data.showDate })}
       label="Display the date"
+      onChange={() => setData({ ...data, showDate: !data.showDate })}
     />
   </div>
 );
