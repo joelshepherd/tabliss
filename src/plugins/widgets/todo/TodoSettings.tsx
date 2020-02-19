@@ -1,12 +1,13 @@
 import React, { FC } from 'react';
 
 import { Props, defaultData } from './types';
+import { FormGroup, Label, Input } from 'reactstrap';
 
 const TodoSettings: FC<Props> = ({ data = defaultData, setData }) => (
   <div className="SearchSettings">
-    <label>
-      Tasks to show
-      <input
+    <FormGroup>
+      <Label>Tasks to show</Label>
+      <Input
         type="number"
         min="0"
         onChange={event =>
@@ -15,7 +16,7 @@ const TodoSettings: FC<Props> = ({ data = defaultData, setData }) => (
         placeholder="Number of todo items to show"
         value={data.show}
       />
-    </label>
+    </FormGroup>
   </div>
 );
 
