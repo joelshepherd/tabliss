@@ -2,12 +2,15 @@ import React, { FC } from 'react';
 
 import { engines } from './engines';
 import { Props, defaultData } from './types';
+import { FormGroup, Label, CustomInput, Input } from 'reactstrap';
 
 const SearchSettings: FC<Props> = ({ data = defaultData, setData }) => (
   <div className="SearchSettings">
-    <label>
-      Search Provider
-      <select
+    <FormGroup>
+      <Label>Search Provider</Label>
+      <CustomInput
+        type="select"
+        id="searchProviderSelect"
         onChange={event =>
           setData({ ...data, searchEngine: event.target.value })
         }
@@ -18,13 +21,15 @@ const SearchSettings: FC<Props> = ({ data = defaultData, setData }) => (
             {name}
           </option>
         ))}
-      </select>
-    </label>
+      </CustomInput>
+    </FormGroup>
 
     {process.env.BUILD_TARGET !== 'firefox' && (
-      <label>
-        Suggestions Provider
-        <select
+      <FormGroup>
+        <Label>Suggestions Provider</Label>
+
+        <CustomInput
+          type="select"
           onChange={event =>
             setData({ ...data, suggestionsEngine: event.target.value })
           }
@@ -40,14 +45,14 @@ const SearchSettings: FC<Props> = ({ data = defaultData, setData }) => (
                 {name}
               </option>
             ))}
-        </select>
-      </label>
+        </CustomInput>
+      </FormGroup>
     )}
 
     {data.suggestionsEngine && (
-      <label>
-        Suggestion Quanitity
-        <input
+      <FormGroup>
+        <Label>Suggestion Quantity</Label>
+        <Input
           type="number"
           min="1"
           max="10"
@@ -59,7 +64,7 @@ const SearchSettings: FC<Props> = ({ data = defaultData, setData }) => (
             })
           }
         />
-      </label>
+      </FormGroup>
     )}
   </div>
 );

@@ -2,28 +2,30 @@ import React, { FC } from 'react';
 
 import categories from './categories';
 import { Props, defaultData } from './types';
+import { CustomInput } from 'reactstrap';
 
 const QuoteSettings: FC<Props> = ({ data = defaultData, setData }) => (
   <div className="QuoteSettings">
-    <label>
-      <input
-        type="radio"
-        checked={data.category === undefined}
-        onChange={() => setData({ category: undefined })}
-      />{' '}
-      All Categories
-    </label>
+    <CustomInput
+      id="quoteAllCatagories"
+      type="radio"
+      checked={data.category === undefined}
+      onChange={() => setData({ category: undefined })}
+      label="All Categories"
+    />
 
     {categories.map(category => (
-      <label key={category.key}>
-        <input
-          type="radio"
-          checked={data.category === category.key}
-          onChange={() => setData({ category: category.key })}
-        />{' '}
-        {category.name}
-      </label>
+      <CustomInput
+        id={`quote${category.key}`}
+        key={category.key}
+        type="radio"
+        checked={data.category === category.key}
+        onChange={() => setData({ category: category.key })}
+        label={category.name}
+      />
     ))}
+
+    <br />
 
     <p>
       Powered by{' '}
