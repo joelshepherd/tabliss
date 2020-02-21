@@ -2,6 +2,7 @@ import { utcToZonedTime } from 'date-fns-tz';
 import React, { FC, useEffect, useState } from 'react';
 
 import timeZones from './timeZones';
+import { CustomInput } from 'reactstrap';
 
 let cachedSupportedTimeZones: string[] | undefined;
 
@@ -32,7 +33,9 @@ const TimeZoneInput: FC<Props> = ({ timeZone, onChange }) => {
   }, []);
 
   return (
-    <select
+    <CustomInput
+      bsSize="sm"
+      type="select"
       value={timeZone}
       onChange={event => onChange(event.target.value || undefined)}
     >
@@ -46,7 +49,7 @@ const TimeZoneInput: FC<Props> = ({ timeZone, onChange }) => {
       {!supportedTimeZones && (
         <option disabled>Calculating supported time zones...</option>
       )}
-    </select>
+    </CustomInput>
   );
 };
 

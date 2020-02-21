@@ -5,13 +5,14 @@ import { defaultLocale } from '../../locales';
 import { useSelector } from '../../store';
 import { setLocale, setTimeZone } from '../../store/actions';
 import TimeZoneInput from '../shared/timeZone/TimeZoneInput';
+import { CustomInput } from 'reactstrap';
 
 const System: FC = () => {
   const locale = useSelector(state => state.data.locale || defaultLocale);
   const timeZone = useSelector(state => state.data.timeZone || '');
 
   const dispatch = useDispatch();
-  const handleSetLocale = (event: React.ChangeEvent<HTMLSelectElement>) =>
+  const handleSetLocale = (event: React.ChangeEvent<HTMLInputElement>) =>
     dispatch(setLocale(event.target.value));
   const handleSetTimeZone = (timeZone?: string) =>
     dispatch(setTimeZone(timeZone));
@@ -29,7 +30,12 @@ const System: FC = () => {
         }}
       >
         <span>Language</span>
-        <select value={locale} onChange={handleSetLocale}>
+        <CustomInput
+          type="select"
+          value={locale}
+          onChange={handleSetLocale}
+          bsSize="sm"
+        >
           <option value="cs" title="Czech">
             Čeština
           </option>
@@ -108,7 +114,7 @@ const System: FC = () => {
           <option value="gu" title="Gujarati">
             ગુજરાતી
           </option>
-        </select>
+        </CustomInput>
       </label>
 
       <label
