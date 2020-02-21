@@ -33,13 +33,15 @@ const Settings: FC = () => {
 
         <Widgets />
 
+        <Feedback />
+
         <System />
 
         {process.env.BUILD_TARGET === 'firefox' && <Homepage />}
 
-        <Feedback />
+        <br />
 
-        <p>
+        <div>
           <a
             href="https://www.paypal.me/tabliss"
             target="_blank"
@@ -47,11 +49,15 @@ const Settings: FC = () => {
           >
             Love Tabliss? Donate 😍
           </a>
-        </p>
+        </div>
 
-        <p>
-          <a onClick={handleReset}>Reset to default</a>
-        </p>
+        <div>
+          <a onClick={handleReset} href="#">
+            Reset to default
+          </a>
+        </div>
+
+        <br />
 
         <p>
           <a href="https://tabliss.io/" target="_blank">

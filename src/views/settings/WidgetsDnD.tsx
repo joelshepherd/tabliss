@@ -50,6 +50,8 @@ export const WidgetsDnD: FC<DnDProps> = ({
                 )}
               </Draggable>
             ))}
+
+            {provided.placeholder}
           </div>
         )}
       </Droppable>

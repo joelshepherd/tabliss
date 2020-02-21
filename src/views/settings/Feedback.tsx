@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { CollapseIcon, IconButton } from '../shared';
+import { CardBody, Card, Input, Button, CardText, CardTitle } from 'reactstrap';
 
 interface State {
   body: string;
@@ -19,44 +20,46 @@ class Feedback extends React.PureComponent<{}, State> {
 
   render() {
     return (
-      <div className="Feedback">
-        {!this.state.open && (
-          <p>
-            <a onClick={this.toggle}>Send feedback or suggestions</a>
-          </p>
-        )}
+      <Card>
+        <CardBody onClick={this.toggle}>
+          <CardTitle>
+            <h4>Send feedback or suggestions</h4>
+          </CardTitle>
 
-        {this.state.open && (
-          <div>
-            <input
-              type="email"
-              value={this.state.email}
-              onChange={event => this.setState({ email: event.target.value })}
-              placeholder="Your email (optional)"
-            />
+          {!this.state.open && (
+            <CardText>
+              Send us an idea or bug. You can also open an issue on Github.
+            </CardText>
+          )}
 
-            <textarea
-              value={this.state.body}
-              rows={3}
-              onChange={event => this.setState({ body: event.target.value })}
-              placeholder="Your feedback or suggestion"
-            />
+          {this.state.open && (
+            <>
+              <Input
+                type="email"
+                value={this.state.email}
+                onChange={event => this.setState({ email: event.target.value })}
+                placeholder="Your email (optional)"
+              />
 
-            <div style={{ float: 'right' }}>
-              <IconButton onClick={this.toggle} title="Close feedback form">
-                <CollapseIcon />
-              </IconButton>
-            </div>
-            <button
-              className="button--primary"
-              disabled={this.state.pending}
-              onClick={this.send}
-            >
-              Send
-            </button>
-          </div>
-        )}
-      </div>
+              <Input
+                type="textarea"
+                value={this.state.body}
+                rows={3}
+                onChange={event => this.setState({ body: event.target.value })}
+                placeholder="Your feedback or suggestion"
+              />
+
+              <Button
+                color="primary"
+                disabled={this.state.pending}
+                onClick={this.send}
+              >
+                Send
+              </Button>
+            </>
+          )}
+        </CardBody>
+      </Card>
     );
   }
 

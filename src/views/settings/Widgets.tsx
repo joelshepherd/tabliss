@@ -47,7 +47,7 @@ const Widgets: FC = () => {
         ))}
       </CustomInput>
 
-      {active.length === 0 && <p>No widgets added.</p>}
+      {active.length === 0 && <p className="my-3">No widgets added.</p>}
       <WidgetsDnD
         widgets={active}
         moveWidget={boundReorderWidget}
