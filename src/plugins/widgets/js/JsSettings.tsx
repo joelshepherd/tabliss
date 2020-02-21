@@ -1,6 +1,7 @@
 import React, { FC, useState } from 'react';
 
 import { Props, defaultData } from './types';
+import { Label, Input, Button, Alert } from 'reactstrap';
 
 const JsSettings: FC<Props> = ({ data = defaultData, setData }) => {
   const [input, setInput] = useState(data.input);
@@ -8,24 +9,23 @@ const JsSettings: FC<Props> = ({ data = defaultData, setData }) => {
 
   return (
     <div className="JsSettings">
-      <label>
-        JavaScript Snippet
-        <textarea
-          rows={3}
-          style={{ fontFamily: 'monospace' }}
-          value={input}
-          onChange={event => setInput(event.target.value)}
-        />
-      </label>
-
-      <button onClick={handleSave}>Apply</button>
-
-      <p className="info">
+      <Alert color="warning">
         Warning: this functionality is intended for advanced users. Custom
         scripts may break at any time. The snippet will run once after the
         dashboard has loaded. Be careful of persisting event listeners when
         editing the snippet.
-      </p>
+      </Alert>
+
+      <Label>JavaScript Snippet</Label>
+      <Input
+        type="textarea"
+        rows={3}
+        style={{ fontFamily: 'monospace' }}
+        value={input}
+        onChange={event => setInput(event.target.value)}
+      />
+
+      <Button onClick={handleSave}>Apply</Button>
     </div>
   );
 };
