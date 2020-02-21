@@ -5,6 +5,15 @@ import { Icon } from '../../../views/shared';
 import { geocodeLocation, getCurrentLocation } from './api';
 import { Coordinates } from './types';
 import './LocationInput.sass';
+import {
+  FormGroup,
+  InputGroup,
+  Label,
+  Input,
+  InputGroupAddon,
+  Button,
+  InputGroupText,
+} from 'reactstrap';
 
 type Props = {
   latitude?: number;
@@ -28,11 +37,11 @@ const GeocodeInput: FC<Props> = ({ onChange }) => {
   return (
     <form onSubmit={handleGeocode}>
       <div className="grid" style={{ gridTemplateColumns: '1fr auto' }}>
-        <label htmlFor="LocationInput__query">Search for city</label>
+        <Label>Search for city</Label>
 
         <div />
 
-        <input
+        <Input
           id="LocationInput__query"
           placeholder="City or location"
           type="text"
@@ -40,9 +49,9 @@ const GeocodeInput: FC<Props> = ({ onChange }) => {
           onChange={event => setQuery(event.target.value)}
         />
 
-        <button type="submit" className="button--primary button--icon">
+        <Button class="searchButton">
           <Icon name="search" />
-        </button>
+        </Button>
       </div>
     </form>
   );
@@ -67,20 +76,20 @@ const CoordinateInput: FC<Props> = ({ latitude, longitude, onChange }) => {
             : '1fr 1fr',
         }}
       >
-        <label htmlFor="LocationInput__latitude">Latitude</label>
+        <Label for="LocationInput__latitude">Latitude</Label>
 
-        <label htmlFor="LocationInput__longitude">Longitude</label>
+        <Label for="LocationInput__longitude">Longitude</Label>
 
         {geolocationAvailable && <div />}
 
-        <input
+        <Input
           id="LocationInput__latitude"
           type="text"
           value={latitude}
           onChange={event => onChange({ latitude: Number(event.target.value) })}
         />
 
-        <input
+        <Input
           id="LocationInput__longitude"
           type="text"
           value={longitude}
@@ -90,12 +99,9 @@ const CoordinateInput: FC<Props> = ({ latitude, longitude, onChange }) => {
         />
 
         {geolocationAvailable && (
-          <button
-            className="button--primary button--icon"
-            onClick={handleLocate}
-          >
+          <Button onClick={handleLocate}>
             <Icon name="navigation" />
-          </button>
+          </Button>
         )}
       </div>
     </div>
@@ -119,7 +125,7 @@ const LocationInput: FC<Props> = ({ onChange, ...props }) => {
         <CoordinateInput {...props} onChange={handleChange} />
       )}
 
-      <a onClick={toggleLookUp}>
+      <a onClick={toggleLookUp} href="#">
         {lookUp ? 'Enter coordinates' : 'Search for city'}
       </a>
     </div>
