@@ -31,10 +31,11 @@ const System: FC = () => {
       >
         <span>Language</span>
         <CustomInput
+          bsSize="sm"
           type="select"
           value={locale}
+          id="languageSelector"
           onChange={handleSetLocale}
-          bsSize="sm"
         >
           <option value="cs" title="Czech">
             Čeština

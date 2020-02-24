@@ -1,6 +1,6 @@
 import React from 'react';
+import { FormattedMessage } from 'react-intl';
 
-import { CollapseIcon, IconButton } from '../shared';
 import { CardBody, Card, Input, Button, CardText, CardTitle } from 'reactstrap';
 
 interface State {
@@ -20,46 +20,60 @@ class Feedback extends React.PureComponent<{}, State> {
 
   render() {
     return (
-      <Card>
-        <CardBody onClick={this.toggle}>
-          <CardTitle>
-            <h4>Send feedback or suggestions</h4>
-          </CardTitle>
+      <>
+        <h2>
+          <FormattedMessage
+            id="other"
+            defaultMessage="Other"
+            description="Other title"
+          />
+        </h2>
 
-          {!this.state.open && (
-            <CardText>
-              Send us an idea or bug. You can also open an issue on Github.
-            </CardText>
-          )}
+        <Card>
+          <CardBody onClick={this.toggle}>
+            <CardTitle>
+              <h4>Send feedback or suggestions</h4>
+            </CardTitle>
 
-          {this.state.open && (
-            <>
-              <Input
-                type="email"
-                value={this.state.email}
-                onChange={event => this.setState({ email: event.target.value })}
-                placeholder="Your email (optional)"
-              />
+            {!this.state.open && (
+              <CardText>
+                Send us an idea or bug. You can also open an issue on Github.
+              </CardText>
+            )}
 
-              <Input
-                type="textarea"
-                value={this.state.body}
-                rows={3}
-                onChange={event => this.setState({ body: event.target.value })}
-                placeholder="Your feedback or suggestion"
-              />
+            {this.state.open && (
+              <>
+                <Input
+                  type="email"
+                  value={this.state.email}
+                  onChange={event =>
+                    this.setState({ email: event.target.value })
+                  }
+                  placeholder="Your email (optional)"
+                />
 
-              <Button
-                color="primary"
-                disabled={this.state.pending}
-                onClick={this.send}
-              >
-                Send
-              </Button>
-            </>
-          )}
-        </CardBody>
-      </Card>
+                <Input
+                  type="textarea"
+                  value={this.state.body}
+                  rows={3}
+                  onChange={event =>
+                    this.setState({ body: event.target.value })
+                  }
+                  placeholder="Your feedback or suggestion"
+                />
+
+                <Button
+                  color="primary"
+                  disabled={this.state.pending}
+                  onClick={this.send}
+                >
+                  Send
+                </Button>
+              </>
+            )}
+          </CardBody>
+        </Card>
+      </>
     );
   }
 

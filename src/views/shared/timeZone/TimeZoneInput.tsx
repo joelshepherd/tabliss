@@ -37,6 +37,7 @@ const TimeZoneInput: FC<Props> = ({ timeZone, onChange }) => {
       bsSize="sm"
       type="select"
       value={timeZone}
+      id="timeZoneSelector"
       onChange={event => onChange(event.target.value || undefined)}
     >
       <option value="">Automatic</option>

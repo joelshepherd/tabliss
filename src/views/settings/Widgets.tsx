@@ -9,7 +9,6 @@ import {
   removeWidget,
   reorderWidget,
 } from '../../store/actions/data';
-import Widget from './Widget';
 import WidgetsDnD from './WidgetsDnD';
 import { CustomInput } from 'reactstrap';
 
@@ -36,7 +35,12 @@ const Widgets: FC = () => {
         />
       </h2>
 
-      <CustomInput type="select" value="" onChange={handleAddWidget}>
+      <CustomInput
+        value=""
+        type="select"
+        id="addWidgetSelector"
+        onChange={handleAddWidget}
+      >
         <option disabled value="">
           Add a new widget
         </option>
