@@ -28,19 +28,12 @@ const Settings: FC = () => {
 
       <div className="plane">
         <Logo />
-
         <Background />
-
         <Widgets />
-
         <Feedback />
-
         <System />
-
         {process.env.BUILD_TARGET === 'firefox' && <Homepage />}
-
         <br />
-
         <div>
           <a
             href="https://www.paypal.me/tabliss"
@@ -50,36 +43,37 @@ const Settings: FC = () => {
             Love Tabliss? Donate 😍
           </a>
         </div>
-
         <div>
           <a onClick={handleReset} href="#">
             Reset to default
           </a>
         </div>
-
         <br />
-
-        <p>
+        <div id="links">
           <a href="https://tabliss.io/" target="_blank">
             <Icon name="globe" />
           </a>
-          &nbsp;&nbsp;
           <a
             href="https://twitter.com/tabliss"
             target="_blank"
             rel="noopener noreferrer"
+            style={{
+              justifySelf: 'center',
+            }}
           >
             <Icon name="twitter" />
           </a>
-          &nbsp;&nbsp;
           <a
             href="https://github.com/joelshepherd/tabliss"
             target="_blank"
             rel="noopener noreferrer"
+            style={{
+              justifySelf: 'right',
+            }}
           >
             <Icon name="github" />
           </a>
-        </p>
+        </div>
 
         <FormattedMessage
           id="settings.translationCredits"
