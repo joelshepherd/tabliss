@@ -7,6 +7,8 @@ import { Link, Props, defaultData } from './types';
 import { Label, Input, CustomInput, CardLink } from 'reactstrap';
 import { LinkDnD } from './LinkDnD';
 
+import './LinksSettings.sass';
+
 const LinksSettings: FC<Props> = ({ data = defaultData, setData }) => {
   const saveLinks = (links: Link[]) => setData({ ...data, links });
   const dispatch = useSavedReducer(reducer, data.links, saveLinks);

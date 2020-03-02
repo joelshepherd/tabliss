@@ -15,11 +15,7 @@ const version = require('./package.json').version;
 
 const config = {
   entry: {
-    main: [
-      'bootstrap/dist/css/bootstrap.css',
-      './src/styles.sass',
-      './src/main.tsx',
-    ],
+    main: ['./src/styles.sass', './src/main.tsx'],
   },
   output: {
     path: path.resolve('./dist'),
@@ -51,7 +47,12 @@ const config = {
       },
       {
         test: /\.sass$/,
-        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+          'postcss-loader',
+          'sass-loader',
+        ],
       },
       {
         test: /\.svg$/,

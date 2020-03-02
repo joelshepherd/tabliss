@@ -82,11 +82,12 @@ const Background: FC = () => {
                 <Collapse isOpen={displaySettings}>
                   <Label>Blur</Label>
                   <CustomInput
-                    type="range"
-                    list="blur-markers"
                     min="0"
                     max="50"
                     step="2"
+                    type="range"
+                    id="blur-slider"
+                    list="blur-markers"
                     value={background.display.blur}
                     onChange={event =>
                       dispatch(
@@ -103,11 +104,12 @@ const Background: FC = () => {
 
                   <Label>Luminosity</Label>
                   <CustomInput
-                    type="range"
-                    list="luminosity-markers"
-                    min="-1"
                     max="1"
+                    min="-1"
                     step="0.1"
+                    type="range"
+                    id="luminosity-slider"
+                    list="luminosity-markers"
                     value={background.display.luminosity}
                     onChange={event =>
                       dispatch(

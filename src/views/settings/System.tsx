@@ -20,11 +20,13 @@ const System: FC = () => {
   return (
     <div>
       <label
+        className="p-b-3"
         style={{
-          alignItems: 'center',
-          display: 'grid',
-          gridGap: '0 0.5rem',
           gridTemplateColumns: '1fr 2fr',
+          paddingBottom: '5px',
+          alignItems: 'center',
+          gridGap: '0 0.5rem',
+          display: 'grid',
           width: '100%',
           margin: 0,
         }}

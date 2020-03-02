@@ -67,10 +67,16 @@ const LinkInput: FC<Props> = props => {
           <ButtonDropdown
             isOpen={iconDropdown}
             toggle={toggleIconDropdown}
-            style={{ width: '100%' }}
+            style={{ width: '100%', position: 'relative' }}
           >
             <DropdownToggle caret>Icon (optional)</DropdownToggle>
-            <DropdownMenu style={{ maxHeight: '600px', overflowY: 'scroll' }}>
+            <DropdownMenu
+              style={{
+                maxHeight: '300px',
+                overflowY: 'scroll',
+                position: 'absolute',
+              }}
+            >
               <DropdownItem header>
                 <Input
                   type="text"
@@ -91,15 +97,14 @@ const LinkInput: FC<Props> = props => {
                 if (key.indexOf(iconSearchTerm) > -1)
                   return (
                     <DropdownItem
+                      className="icon-grid"
                       onClick={() => props.onChange({ icon: key })}
                       active={props.icon === key ? true : false}
                     >
-                      <Row>
-                        <Col xs="2">
-                          <Icon name={key} />
-                        </Col>
-                        <Col xs="9">{key}</Col>
-                      </Row>
+                      <>
+                        <Icon name={key} />
+                        <span>{key}</span>
+                      </>
                     </DropdownItem>
                   );
                 else return;
