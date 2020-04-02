@@ -29,6 +29,7 @@ export const messages: Record<string, Record<string, string>> = {
   zh: {},
   'zh-CN': require('./lang/zh-CN.json'),
   'zh-TW': require('./lang/zh-TW.json'),
+  uk: require('./lang/uk.json'),
 };
 
 export const locales = Object.keys(messages);

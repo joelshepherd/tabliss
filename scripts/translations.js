@@ -34,6 +34,7 @@ const languages = [
   'vi',
   'zh-CN',
   'zh-TW',
+  'uk',
 ];
 
 async function main() {
