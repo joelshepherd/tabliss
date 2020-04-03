@@ -1,7 +1,7 @@
 require('dotenv/config');
 
 const path = require('path');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -61,7 +61,7 @@ const config = {
     ],
   },
   plugins: [
-    new CleanWebpackPlugin('dist'),
+    new CleanWebpackPlugin(),
     new CopyWebpackPlugin([
       { from: 'target/shared' },
       { from: `target/${buildTarget}` },
