@@ -6,7 +6,7 @@ const tablissLogo = require('./tabliss.svg');
 
 const Logo: FC = () => (
   <h1 className="Logo">
-    <i dangerouslySetInnerHTML={{ __html: tablissLogo }} />
+    <i dangerouslySetInnerHTML={{ __html: tablissLogo.default }} />
   </h1>
 );
 

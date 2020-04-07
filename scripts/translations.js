@@ -10,8 +10,10 @@ const parser = require('typescript-react-intl').default;
 // `xx` and `xx-XX` formats are accepted (e.g. 'en' or 'en-AU')
 // Then run `npm run translations` to create your language files!
 const languages = [
+  'ca-ES',
   'cs',
   'de',
+  'el',
   'en-AU',
   'en-GB',
   'es',
@@ -36,6 +38,7 @@ const languages = [
   'vi',
   'zh-CN',
   'zh-TW',
+  'uk',
 ];
 
 async function main() {
