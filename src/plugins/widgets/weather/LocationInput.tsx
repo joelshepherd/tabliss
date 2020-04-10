@@ -5,15 +5,7 @@ import { Icon } from '../../../views/shared';
 import { geocodeLocation, getCurrentLocation } from './api';
 import { Coordinates } from './types';
 import './LocationInput.sass';
-import {
-  FormGroup,
-  InputGroup,
-  Label,
-  Input,
-  InputGroupAddon,
-  Button,
-  InputGroupText,
-} from 'reactstrap';
+import { Label, Input, Button } from 'reactstrap';
 
 type Props = {
   latitude?: number;
@@ -49,7 +41,7 @@ const GeocodeInput: FC<Props> = ({ onChange }) => {
           onChange={event => setQuery(event.target.value)}
         />
 
-        <Button class="searchButton">
+        <Button className="searchButton">
           <Icon name="search" />
         </Button>
       </div>

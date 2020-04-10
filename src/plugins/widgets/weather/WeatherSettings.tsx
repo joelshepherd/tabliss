@@ -26,23 +26,26 @@ const WeatherSettings: FC<Props> = ({ data = defaultData, setData }) => (
 
     <CustomInput
       type="radio"
+      id="weatherUnitsAuto"
       checked={data.units === 'auto'}
-      onChange={() => setData({ ...data, units: 'auto' })}
       label="Automatic units (based on location)"
+      onChange={() => setData({ ...data, units: 'auto' })}
     />
 
     <CustomInput
       type="radio"
+      label="Metric units"
+      id="weatherUnitsMetric"
       checked={data.units === 'si'}
       onChange={() => setData({ ...data, units: 'si' })}
-      label="Metric units"
     />
 
     <CustomInput
       type="radio"
+      label="Imperial units"
+      id="weatherUnitsImperial"
       checked={data.units === 'us'}
       onChange={() => setData({ ...data, units: 'us' })}
-      label="Imperial units"
     />
 
     <br />
