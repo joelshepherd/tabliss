@@ -6,14 +6,13 @@ import { defaultData, Props } from './types';
 const TodoSettings: FC<Props> = ({ data = defaultData, setData }) => (
   <div className="SearchSettings">
     <InputGroup
-      type="number"
       min="0"
-      onChange={event => setData({ ...data, show: Number(event.target.value) })}
-      placeholder="Number of todo items to show"
+      type="number"
       value={data.show}
-    >
-      Tasks to show
-    </InputGroup>
+      label="Tasks to show"
+      placeholder="Number of todo items to show"
+      onChange={event => setData({ ...data, show: Number(event.target.value) })}
+    />
   </div>
 );
 

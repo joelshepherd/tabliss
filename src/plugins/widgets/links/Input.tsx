@@ -42,14 +42,14 @@ const LinkInput: FC<Props> = props => {
 
           <InputGroup
             type="url"
+            label="URL"
             value={props.url}
             onChange={event => props.onChange({ url: event.target.value })}
-          >
-            URL
-          </InputGroup>
+          />
 
           <InputGroup
             type="text"
+            label="URL"
             value={props.name}
             onChange={event => props.onChange({ name: event.target.value })}
           >
@@ -89,9 +89,10 @@ const LinkInput: FC<Props> = props => {
                 if (key.indexOf(iconSearchTerm) > -1)
                   return (
                     <DropdownItem
+                      key={`icon-${key}`}
                       className="icon-grid"
-                      onClick={() => props.onChange({ icon: key })}
                       active={props.icon === key ? true : false}
+                      onClick={() => props.onChange({ icon: key })}
                     >
                       <>
                         <Icon name={key} />

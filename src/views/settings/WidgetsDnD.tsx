@@ -14,20 +14,18 @@ export const WidgetsDnD: FC<DnDProps> = ({
   widgets,
   moveWidget,
   removeWidget,
-}) => {
-  return (
-    <DnD
-      move={moveWidget}
-      items={widgets}
-      template={widget => (
-          <Widget
-            key={widget.id}
-            plugin={widget}
-            onRemove={() => removeWidget(widget.id)}
-          />
-      )}
-    />
-  );
-};
+}) => (
+  <DnD
+    move={moveWidget}
+    items={widgets}
+    template={widget => (
+      <Widget
+        key={widget.id}
+        plugin={widget}
+        onRemove={() => removeWidget(widget.id)}
+      />
+    )}
+  />
+);
 
 export default WidgetsDnD;

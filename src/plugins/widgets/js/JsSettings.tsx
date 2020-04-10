@@ -18,14 +18,13 @@ const JsSettings: FC<Props> = ({ data = defaultData, setData }) => {
       </Alert>
 
       <InputGroup
-        type="textarea"
         rows={3}
-        style={{ fontFamily: 'monospace' }}
         value={input}
+        type="textarea"
+        label="JavaScript Snippet"
+        style={{ fontFamily: 'monospace' }}
         onChange={event => setInput(event.target.value)}
-      >
-        JavaScript Snippet
-      </InputGroup>
+      />
 
       <Button onClick={handleSave}>Apply</Button>
     </div>

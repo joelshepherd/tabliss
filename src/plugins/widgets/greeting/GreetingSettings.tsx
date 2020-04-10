@@ -7,11 +7,10 @@ const GreetingSettings: FC<Props> = ({ data = defaultData, setData }) => (
   <div className="GreetingSettings">
     <InputGroup
       type="text"
+      label="Name"
       value={data.name}
       onChange={event => setData({ name: event.target.value })}
-    >
-      Name
-    </InputGroup>
+    />
   </div>
 );
 

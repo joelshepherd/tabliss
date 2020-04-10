@@ -22,15 +22,15 @@ const LinksSettings: FC<Props> = ({ data = defaultData, setData }) => {
           setData({ ...data, columns: Number(event.target.value) })
         }
         min={1}
-      >
-        Number of columns
-      </InputGroup>
+        label="Number of columns"
+      />
 
       <CustomInput
         type="checkbox"
         checked={data.visible}
-        onChange={() => setData({ ...data, visible: !data.visible })}
+        id="link-visibility-checkbox"
         label="Links are always visible"
+        onChange={() => setData({ ...data, visible: !data.visible })}
       />
 
       <LinkDnD

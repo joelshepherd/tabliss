@@ -43,12 +43,15 @@ const UnsplashSettings: FC<Props> = ({ data = defaultData, setData }) => (
       />
 
       {data.by === 'collections' && (
-        <InputGroup type="text"
-        value={data.collections}
-        placeholder="Collection ID number"
-        onChange={event =>
-          setData({ ...data, collections: event.target.value })
-        }>Collection</InputGroup>
+        <InputGroup
+          type="text"
+          value={data.collections}
+          placeholder="Collection ID number"
+          onChange={event =>
+            setData({ ...data, collections: event.target.value })
+          }
+          label="Collection"
+        />
       )}
 
       <CustomInput

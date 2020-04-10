@@ -15,9 +15,12 @@ export const LinkDnD: FC<DnDProps> = ({ data, move, remove, change }) => {
   const items = data.map((item, i) => {
     return {
       ...item,
-      id: i,
+      index: i,
+      id: `quick-links-dnd-${i}`,
     };
   });
+
+  console.log(items);
 
   return (
     <DnD
@@ -27,9 +30,9 @@ export const LinkDnD: FC<DnDProps> = ({ data, move, remove, change }) => {
         <LinkInput
           {...item}
           key={item.id}
-          number={item.id + 1}
-          onChange={values => change(item.id, item, values)}
-          onRemove={() => remove(item.id.toString())}
+          number={item.index + 1}
+          onChange={values => change(item.index, item, values)}
+          onRemove={() => remove(item.index.toString())}
         />
       )}
     />

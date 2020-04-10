@@ -97,19 +97,17 @@ const Widget: FC<Props> = ({ plugin, onRemove }) => {
             onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
               boundSetDisplay({ fontFamily: event.target.value })
             }
-          >
-            Font
-          </InputGroup>
-
+            label="Font"
+          />
+          Font
           <InputGroup
             type="color"
             value={plugin.display.colour}
             onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
               boundSetDisplay({ colour: event.target.value })
             }
-          >
-            Colour
-          </InputGroup>
+            label="Colour"
+          />
         </Collapse>
       </>
     </ToggleCard>

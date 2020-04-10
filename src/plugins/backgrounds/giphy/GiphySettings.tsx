@@ -7,13 +7,12 @@ import { defaultData, Props } from './types';
 const GiphySettings: FC<Props> = ({ data = defaultData, setData }) => (
   <div className="GiphySettings">
     <InputGroup
-      id="giphyTag"
       type="text"
+      label="Tag"
+      id="giphyTag"
       value={data.tag}
       onChange={event => setData({ ...data, tag: event.target.value })}
-    >
-      Tag
-    </InputGroup>
+    />
 
     <FormGroup>
       <CustomInput

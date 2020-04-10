@@ -52,9 +52,10 @@ const SearchSettings: FC<Props> = ({ data = defaultData, setData }) => (
 
     {data.suggestionsEngine && (
       <InputGroup
-        type="number"
         min="1"
         max="10"
+        type="number"
+        label="Suggestion Quantity"
         value={data.suggestionsQuantity}
         onChange={event =>
           setData({
@@ -62,9 +63,7 @@ const SearchSettings: FC<Props> = ({ data = defaultData, setData }) => (
             suggestionsQuantity: Number(event.target.value),
           })
         }
-      >
-        Suggestion Quantity
-      </InputGroup>
+      />
     )}
   </div>
 );

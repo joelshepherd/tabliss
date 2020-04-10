@@ -33,24 +33,21 @@ const DnD: FC<DnDProps> = ({ move, items, template }) => {
       <Droppable droppableId={droppableId}>
         {(provided, snapshot) => (
           <div {...provided.droppableProps} ref={provided.innerRef}>
-            {items.map((item, index) => {
-              console.log(provided.placeholder);
-              return (
-                <Draggable key={item.id} draggableId={item.id} index={index}>
-                  {(provided, snapshot) => (
-                    <div
-                      ref={provided.innerRef}
-                      {...provided.draggableProps}
-                      {...provided.dragHandleProps}
-                    >
-                      <div style={{ display: 'inline-block', width: '100%' }}>
-                        {template(item)}
-                      </div>
+            {items.map((item, index) => (
+              <Draggable key={item.id} draggableId={item.id} index={index}>
+                {(provided, snapshot) => (
+                  <div
+                    ref={provided.innerRef}
+                    {...provided.draggableProps}
+                    {...provided.dragHandleProps}
+                  >
+                    <div style={{ display: 'inline-block', width: '100%' }}>
+                      {template(item)}
                     </div>
-                  )}
-                </Draggable>
-              );
-            })}
+                  </div>
+                )}
+              </Draggable>
+            ))}
 
             {provided.placeholder}
           </div>

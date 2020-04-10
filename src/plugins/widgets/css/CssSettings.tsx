@@ -7,15 +7,14 @@ import { defaultData, Props } from './types';
 const CssSettings: FC<Props> = ({ data = defaultData, setData }) => (
   <div className="CssSettings">
     <InputGroup
-      type="textarea"
-      id="CustomCssTextarea"
       rows={3}
-      style={{ fontFamily: 'monospace' }}
+      type="textarea"
       value={data.input}
+      label="CSS Snippet"
+      id="CustomCssTextarea"
+      style={{ fontFamily: 'monospace' }}
       onChange={event => setData({ input: event.target.value })}
-    >
-      CSS Snippet
-    </InputGroup>
+    />
 
     <Alert color="warning">
       Warning: this functionality is intended for advanced users. Custom styles
