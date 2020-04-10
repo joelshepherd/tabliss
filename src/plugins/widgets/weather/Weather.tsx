@@ -7,8 +7,6 @@ import { weatherIcons } from './icons';
 import { Props, defaultData } from './types';
 import './Weather.sass';
 
-const EXPIRE_IN = 15 * 60 * 1000; // 15 minutes
-
 const Weather: FC<Props> = ({
   cache,
   data = defaultData,
@@ -20,7 +18,7 @@ const Weather: FC<Props> = ({
     () => {
       getForecast(data, loader).then(setCache);
     },
-    cache ? cache.timestamp + EXPIRE_IN : 0,
+    cache ? cache.expiresAt : 0,
     [data.latitude, data.latitude, data.units],
   );
 
@@ -36,11 +34,19 @@ const Weather: FC<Props> = ({
         title="Toggle weather details"
       >
         <Icon name={weatherIcons[cache.icon]} />
-        <span className="temperature">{cache.temperature}˚</span>
+        <span className="temperature">
+          {cache.temperatureLow}-{cache.temperatureHigh}˚
+        </span>
       </div>
 
       {data.showDetails && (
         <div className="details">
+          <dl>
+            <dt>
+              {cache.apparentTemperatureLow}-{cache.apparentTemperatureHigh}˚
+            </dt>
+            <dd>Feels like</dd>
+          </dl>
           <dl>
             <dt>{cache.humidity}%</dt>
             <dd>Humidity</dd>
@@ -48,10 +54,6 @@ const Weather: FC<Props> = ({
           <dl>
             <dt>{cache.precipProbability}%</dt>
             <dd>Chance of {cache.precipType || 'rain'}</dd>
-          </dl>
-          <dl>
-            <dt>{cache.apparentTemperature}˚</dt>
-            <dd>Feels like</dd>
           </dl>
         </div>
       )}
