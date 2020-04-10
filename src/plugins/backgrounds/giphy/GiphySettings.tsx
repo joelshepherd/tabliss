@@ -5,13 +5,14 @@ import { Props, defaultData } from './types';
 const GiphySettings: FC<Props> = ({ data = defaultData, setData }) => (
   <div className="GiphySettings">
     <label>
-      Tag (separate multiple tags with a comma ',')
+      Tag
       <input
         type="text"
         value={data.tag}
         onChange={event => setData({ ...data, tag: event.target.value })}
       />
     </label>
+    <p className="info">Separate multiple tags with a commas</p>
 
     <label>
       <input

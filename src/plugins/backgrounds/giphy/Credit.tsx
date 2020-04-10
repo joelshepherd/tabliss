@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 
-const giphyLogo = require('./giphy-logo.png');
+const giphyLogo = require('./giphy-logo.png').default;
 
 type Props = {
   link?: string;
