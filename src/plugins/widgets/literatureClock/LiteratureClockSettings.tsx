@@ -10,6 +10,7 @@ const LiteratureClockSettings: FC<Props> = ({
   <div className="LiteratureClockSettings">
     <CustomInput
       type="checkbox"
+      id="bookAuthorDisplayCheckbox"
       label="Display book and author"
       checked={data.showBookAndAuthor}
       onChange={() =>

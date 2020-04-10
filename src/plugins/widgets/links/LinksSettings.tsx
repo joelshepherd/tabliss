@@ -28,7 +28,7 @@ const LinksSettings: FC<Props> = ({ data = defaultData, setData }) => {
       <CustomInput
         type="checkbox"
         checked={data.visible}
-        id="link-visibility-checkbox"
+        id="linkVisibilityCheckbox"
         label="Links are always visible"
         onChange={() => setData({ ...data, visible: !data.visible })}
       />

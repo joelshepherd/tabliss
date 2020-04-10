@@ -17,6 +17,7 @@ const GiphySettings: FC<Props> = ({ data = defaultData, setData }) => (
     <FormGroup>
       <CustomInput
         type="checkbox"
+        id="allowNsfw"
         label="Allow NSFW"
         checked={data.nsfw}
         onChange={() => setData({ ...data, nsfw: !data.nsfw })}
@@ -24,6 +25,7 @@ const GiphySettings: FC<Props> = ({ data = defaultData, setData }) => (
 
       <CustomInput
         type="checkbox"
+        id="strechFillScreen"
         checked={data.expand}
         label="Stretch to fill screen"
         onChange={() => setData({ ...data, expand: !data.expand })}

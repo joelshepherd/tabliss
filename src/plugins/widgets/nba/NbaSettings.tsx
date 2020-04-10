@@ -5,11 +5,11 @@ import { CustomInput } from 'reactstrap';
 
 const NbaSettings: FC<Props> = ({ data = defaultData, setData }) => (
   <CustomInput
-    id="nbaDisplayLogo"
     type="checkbox"
+    id="nbaDisplayLogo"
+    label="Display team logo"
     checked={data.displayLogo}
     onChange={() => setData({ ...data, displayLogo: !data.displayLogo })}
-    label="Display team logo"
   />
 );
 

@@ -16,9 +16,10 @@ const WeatherSettings: FC<Props> = ({ data = defaultData, setData }) => (
 
     <CustomInput
       type="checkbox"
+      id="showExtendedDetails"
       checked={data.showDetails}
-      onChange={() => setData({ ...data, showDetails: !data.showDetails })}
       label="Show extended details"
+      onChange={() => setData({ ...data, showDetails: !data.showDetails })}
     />
 
     <br />
