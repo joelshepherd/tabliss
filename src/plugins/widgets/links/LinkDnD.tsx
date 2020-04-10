@@ -20,8 +20,6 @@ export const LinkDnD: FC<DnDProps> = ({ data, move, remove, change }) => {
     };
   });
 
-  console.log(items);
-
   return (
     <DnD
       move={move}

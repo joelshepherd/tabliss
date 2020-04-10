@@ -1,8 +1,8 @@
-import React, { FC } from 'react';
+import React, { FC, ReactElement } from 'react';
 import { FormGroup, Input, InputProps, Label } from 'reactstrap';
 
 interface InputGroup extends InputProps {
-  label: string | Element;
+  label: string | ReactElement;
 }
 
 /**

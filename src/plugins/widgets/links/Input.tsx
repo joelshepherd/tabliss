@@ -49,12 +49,14 @@ const LinkInput: FC<Props> = props => {
 
           <InputGroup
             type="text"
-            label="URL"
             value={props.name}
             onChange={event => props.onChange({ name: event.target.value })}
-          >
-            Name <span className="text-secondary">(optional)</span>
-          </InputGroup>
+            label={
+              <span>
+                Name <span className="text-secondary">(optional)</span>
+              </span>
+            }
+          />
 
           <ButtonDropdown
             isOpen={iconDropdown}
