@@ -5,7 +5,7 @@ import NbaSettings from './NbaSettings';
 const config: Config = {
   key: 'widget/nba',
   name: 'NBA Scores',
-  description: 'Keep up to date with todays NBA games.',
+  description: "Keep up to date with today's NBA games.",
   dashboardComponent: Nba,
   settingsComponent: NbaSettings,
 };
