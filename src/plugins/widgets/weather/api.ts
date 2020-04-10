@@ -4,10 +4,10 @@ import { Data, Conditions, Coordinates } from './types';
 const apiEndpoint = process.env.API_ENDPOINT!;
 const geocodeEndpoint = 'https://nominatim.openstreetmap.org';
 
-type Config = Pick<Data, 'latitude' | 'longitude' | 'units'>;
+type Config = Pick<Data, 'latitude' | 'longitude' | 'units' | 'name'>;
 
 export async function getForecast(
-  { latitude, longitude, units }: Config,
+  { latitude, longitude, name, units }: Config,
   loader: API['loader'],
 ): Promise<Conditions | undefined> {
   if (!latitude || !longitude) {
@@ -24,8 +24,10 @@ export async function getForecast(
 
   return {
     ...body.data,
+    name,
     apparentTemperatureHigh: Math.round(body.data.apparentTemperatureHigh),
     apparentTemperatureLow: Math.round(body.data.apparentTemperatureLow),
+    apparentTemperature: Math.round(body.data.apparentTemperature),
     humidity: Math.round(body.data.humidity * 100),
     precipProbability: Math.round(body.data.precipProbability * 100),
     temperatureHigh: Math.round(body.data.temperatureHigh),

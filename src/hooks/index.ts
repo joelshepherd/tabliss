@@ -1,5 +1,6 @@
 export * from './useApi';
 export * from './useCache';
+export * from './useDebounce';
 export * from './useFormatMessages';
 export * from './useFullscreen';
 export * from './useKeyPress';

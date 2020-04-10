@@ -19,7 +19,7 @@ const Weather: FC<Props> = ({
       getForecast(data, loader).then(setCache);
     },
     cache ? cache.expiresAt : 0,
-    [data.latitude, data.latitude, data.units],
+    [data.latitude, data.latitude, data.units, data.name],
   );
 
   if (!cache) {
@@ -37,6 +37,7 @@ const Weather: FC<Props> = ({
         <span className="temperature">
           {cache.temperatureLow}-{cache.temperatureHigh}˚
         </span>
+        {cache.name && <dd>{cache.name}</dd>}
       </div>
 
       {data.showDetails && (
