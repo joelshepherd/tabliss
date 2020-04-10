@@ -5,7 +5,7 @@ import { Props, defaultData } from './types';
 const GiphySettings: FC<Props> = ({ data = defaultData, setData }) => (
   <div className="GiphySettings">
     <label>
-      Tag (separate tags with a commar ',')
+      Tag (separate multiple tags with a comma ',')
       <input
         type="text"
         value={data.tag}
