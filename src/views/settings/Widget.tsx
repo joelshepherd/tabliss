@@ -11,10 +11,11 @@ import {
 import PluginContainer from '../shared/Plugin';
 import { Icon } from '../shared';
 import WidgetDisplay from './WidgetDisplay';
-import './Widget.sass';
 import { Collapse, CardLink, DropdownMenu, DropdownItem } from 'reactstrap';
 import ToggleCard from '../shared/bootstrap/ToggleCard';
 import InputGroup from '../shared/bootstrap/InputGroup';
+
+import './styles/Widget.sass';
 
 interface Props {
   plugin: WidgetState;

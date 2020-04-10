@@ -1,0 +1,13 @@
+$depth-layers: 3;
+
+:root {
+  --shadows: none;
+  --primary: #3498db;
+
+  --border-radius: 0.5rem;
+
+  // Height adjustments
+  --layer-0: white;
+  --layer-1: #ecf0f1;
+  --layer-2: white;
+}

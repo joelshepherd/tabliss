@@ -32,7 +32,7 @@ const LinkInput: FC<Props> = props => {
 
   return (
     <>
-      <Card>
+      <Card className="layer-0">
         <CardBody>
           <h5>
             {props.number <= 9

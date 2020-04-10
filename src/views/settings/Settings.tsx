@@ -11,7 +11,8 @@ import Feedback from './Feedback';
 import Homepage from './Homepage';
 import System from './System';
 import Widgets from './Widgets';
-import './Settings.sass';
+
+import './styles/Settings.sass';
 
 const Settings: FC = () => {
   const dispatch = useDispatch();

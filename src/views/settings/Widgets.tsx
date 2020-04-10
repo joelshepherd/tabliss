@@ -10,7 +10,7 @@ import {
   reorderWidget,
 } from '../../store/actions/data';
 import WidgetsDnD from './WidgetsDnD';
-import { CustomInput } from 'reactstrap';
+import { CustomInput, FormGroup } from 'reactstrap';
 
 const Widgets: FC = () => {
   const active = useSelector(state => state.data.widgets);
@@ -26,7 +26,7 @@ const Widgets: FC = () => {
   };
 
   return (
-    <div>
+    <div className="WidgetsSettings">
       <h2>
         <FormattedMessage
           id="widgets"
@@ -35,21 +35,23 @@ const Widgets: FC = () => {
         />
       </h2>
 
-      <CustomInput
-        value=""
-        type="select"
-        id="addWidgetSelector"
-        onChange={handleAddWidget}
-      >
-        <option disabled value="">
-          Add a new widget
-        </option>
-        {widgetConfigs.map(plugin => (
-          <option key={plugin.key} value={plugin.key}>
-            {plugin.name}
+      <FormGroup>
+        <CustomInput
+          value=""
+          type="select"
+          id="addWidgetSelector"
+          onChange={handleAddWidget}
+        >
+          <option disabled value="">
+            Add a new widget
           </option>
-        ))}
-      </CustomInput>
+          {widgetConfigs.map(plugin => (
+            <option key={plugin.key} value={plugin.key}>
+              {plugin.name}
+            </option>
+          ))}
+        </CustomInput>
+      </FormGroup>
 
       {active.length === 0 && <p className="my-3">No widgets added.</p>}
       <WidgetsDnD

@@ -11,6 +11,7 @@ const UnsplashSettings: FC<Props> = ({ data = defaultData, setData }) => (
       <CustomInput
         type="select"
         id="unsplashSelect"
+        className="layer-0"
         value={data.timeout}
         onChange={event =>
           setData({ ...data, timeout: Number(event.target.value) })
