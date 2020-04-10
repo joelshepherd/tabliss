@@ -1,9 +1,18 @@
 import { format } from 'date-fns';
+import { utcToZonedTime } from 'date-fns-tz';
 import { Game } from './types';
+import { useSelector } from '../../../store';
 
 export function getPeriod(game: Game) {
   const period = game.period;
-  let periodStr = format(new Date(game.startTimeUTC), 'hh:mm a');
+  let periodDate = new Date(game.startTimeUTC);
+
+  const timeZone = useSelector(state => state.data.timeZone);
+  if (timeZone) {
+    periodDate = utcToZonedTime(new Date(game.startTimeUTC), timeZone);
+  }
+
+  let periodStr = format(periodDate, 'hh:mm a');
 
   if (game.isGameActivated || period.current > 0) {
     if (period.isHalftime) {
