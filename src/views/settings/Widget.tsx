@@ -29,7 +29,6 @@ enum Config {
 }
 
 const Widget: FC<Props> = ({ plugin, onRemove }) => {
-  const [isOpen, toggleIsOpen] = useToggle(onRemove === undefined);
   const [dropdown, dropdownToggle] = useToggle(true);
 
   const [configOpen, setConfigOpen] = useState(Config.NONE);

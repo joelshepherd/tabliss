@@ -1,8 +1,4 @@
-// Style from current master branch
-@import './variables.classic';
-
-// My styling
-// @import './variables.new';
+@import './variables';
 
 $theme-colors: (
   'primary': #3498db,
@@ -27,4 +23,4 @@ $theme-colors: (
 @import '../../../../node_modules/bootstrap/scss/custom-forms';
 @import '../../../../node_modules/bootstrap/scss/input-group';
 
-@import './theming';
+@import './theming.sass';
