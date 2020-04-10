@@ -43,7 +43,8 @@ const DnD: FC<DnDProps> = ({ move, items, template }) => {
                       {...provided.draggableProps}
                       {...provided.dragHandleProps}
                     >
-                      {template(item)}
+                      {/* overflow:auto contains any margins inside the template so the drag and drop takes them into account */}
+                      <div style={{ overflow: 'auto' }}>{template(item)}</div>
                     </div>
                   )}
                 </Draggable>
