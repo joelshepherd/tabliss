@@ -1,4 +1,4 @@
-import { Gif } from './types';
+import { Gif, defaultData } from './types';
 import { API } from '../../types';
 
 const GIPHY_API_KEY = process.env.GIPHY_API_KEY;
@@ -12,12 +12,15 @@ export async function getGif(
   { tag, nsfw }: Config,
   loader: API['loader'],
 ): Promise<Gif> {
+  var tagArray = tag?.split(',') ?? [defaultData.tag];
+  var randomTag = tagArray[Math.floor(Math.random() * tagArray.length)];
+
   const request = new Request(
     'https://api.giphy.com/v1/gifs/random' +
       `?api_key=${GIPHY_API_KEY}` +
       '&rating=' +
       (nsfw ? 'r' : 'g') +
-      (tag ? `&tag=${tag}` : ''),
+      (randomTag ? `&tag=${randomTag}` : ''),
   );
 
   loader.push();
