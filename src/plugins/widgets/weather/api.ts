@@ -26,7 +26,6 @@ export async function getForecast(
     ...body.data,
     apparentTemperatureHigh: Math.round(body.data.apparentTemperatureHigh),
     apparentTemperatureLow: Math.round(body.data.apparentTemperatureLow),
-    apparentTemperature: Math.round(body.data.apparentTemperature),
     humidity: Math.round(body.data.humidity * 100),
     precipProbability: Math.round(body.data.precipProbability * 100),
     temperatureHigh: Math.round(body.data.temperatureHigh),
