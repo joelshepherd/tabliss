@@ -20,11 +20,11 @@ export const WidgetsDnD: FC<DnDProps> = ({
       move={moveWidget}
       items={widgets}
       template={widget => (
-        <Widget
-          key={widget.id}
-          plugin={widget}
-          onRemove={() => removeWidget(widget.id)}
-        />
+          <Widget
+            key={widget.id}
+            plugin={widget}
+            onRemove={() => removeWidget(widget.id)}
+          />
       )}
     />
   );
