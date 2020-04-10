@@ -9,24 +9,12 @@ import {
   WidgetState,
 } from '../../store/reducers/types';
 import PluginContainer from '../shared/Plugin';
-import { IconButton, RemoveIcon, Icon } from '../shared';
-import ToggleSection from '../shared/ToggleSection';
+import { Icon } from '../shared';
 import WidgetDisplay from './WidgetDisplay';
 import './Widget.sass';
-import {
-  Card,
-  CardBody,
-  CardTitle,
-  CardText,
-  Collapse,
-  CardLink,
-  DropdownMenu,
-  DropdownItem,
-  FormGroup,
-  Label,
-  Input,
-  CustomInput,
-} from 'reactstrap';
+import { Collapse, CardLink, DropdownMenu, DropdownItem } from 'reactstrap';
+import ToggleCard from '../shared/bootstrap/ToggleCard';
+import InputGroup from '../shared/bootstrap/InputGroup';
 
 interface Props {
   plugin: WidgetState;
@@ -56,91 +44,75 @@ const Widget: FC<Props> = ({ plugin, onRemove }) => {
   );
 
   return (
-    <Card>
-      {!isOpen && (
-        <CardBody onClick={toggleIsOpen}>
-          <CardTitle>
-            <h4>{name}</h4>
-          </CardTitle>
-          <CardText>{description}</CardText>
-        </CardBody>
-      )}
+    <ToggleCard
+      title={name}
+      description={description}
+      defaultState={onRemove === undefined}
+    >
+      <>
+        {settingsComponent && (
+          <PluginContainer id={plugin.id} component={settingsComponent} />
+        )}
 
-      {isOpen && (
-        <CardBody>
-          <CardTitle onClick={toggleIsOpen}>
-            <h4>{name}</h4>
-          </CardTitle>
+        <CardLink
+          href="#"
+          onClick={() => {
+            if (configOpen === Config.NONE) setConfigOpen(configPrimary);
+            else setConfigOpen(Config.NONE);
+          }}
+        >
+          {configOpen === Config.NONE ? 'Open' : 'Close'} {configPrimary}{' '}
+          Settings
+        </CardLink>
 
-          {settingsComponent && (
-            <PluginContainer id={plugin.id} component={settingsComponent} />
-          )}
+        <CardLink className="float-right" onClick={dropdownToggle}>
+          <Icon name="more-vertical" />
+        </CardLink>
 
-          <CardLink
-            href="#"
+        <DropdownMenu style={{ display: dropdown ? 'none' : 'block' }} right>
+          <DropdownItem
             onClick={() => {
-              if (configOpen === Config.NONE) setConfigOpen(configPrimary);
-              else setConfigOpen(Config.NONE);
+              const nextPrimary =
+                configPrimary === Config.FONT ? Config.DISPLAY : Config.FONT;
+
+              setConfigPrimary(nextPrimary);
+              setConfigOpen(nextPrimary);
+
+              dropdownToggle();
             }}
           >
-            {configOpen === Config.NONE ? 'Open' : 'Close'} {configPrimary}{' '}
-            Settings
-          </CardLink>
+            Open {configPrimary === Config.FONT ? 'Display' : 'Font'} Settings
+          </DropdownItem>
+          <DropdownItem onClick={onRemove}>Delete</DropdownItem>
+        </DropdownMenu>
 
-          <CardLink className="float-right" onClick={dropdownToggle}>
-            <Icon name="more-vertical" />
-          </CardLink>
+        <Collapse isOpen={configOpen === Config.DISPLAY}>
+          <WidgetDisplay display={plugin.display} onChange={boundSetDisplay} />
+        </Collapse>
 
-          <DropdownMenu style={{ display: dropdown ? 'none' : 'block' }} right>
-            <DropdownItem
-              onClick={() => {
-                const nextPrimary =
-                  configPrimary === Config.FONT ? Config.DISPLAY : Config.FONT;
+        <Collapse isOpen={configOpen === Config.FONT}>
+          <InputGroup
+            type="text"
+            value={plugin.display.fontFamily}
+            onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+              boundSetDisplay({ fontFamily: event.target.value })
+            }
+          >
+            Font
+          </InputGroup>
 
-                setConfigPrimary(nextPrimary);
-                setConfigOpen(nextPrimary);
-
-                dropdownToggle();
-              }}
-            >
-              Open {configPrimary === Config.FONT ? 'Display' : 'Font'} Settings
-            </DropdownItem>
-            <DropdownItem onClick={onRemove}>Delete</DropdownItem>
-          </DropdownMenu>
-
-          <Collapse isOpen={configOpen === Config.DISPLAY}>
-            <WidgetDisplay
-              display={plugin.display}
-              onChange={boundSetDisplay}
-            />
-          </Collapse>
-
-          <Collapse isOpen={configOpen === Config.FONT}>
-            <FormGroup>
-              <Label>Font</Label>
-              <Input
-                type="text"
-                value={plugin.display.fontFamily}
-                onChange={event =>
-                  boundSetDisplay({ fontFamily: event.target.value })
-                }
-              />
-            </FormGroup>
-
-            <FormGroup>
-              <Label>Colour</Label>
-              <Input
-                type="color"
-                value={plugin.display.colour}
-                onChange={event =>
-                  boundSetDisplay({ colour: event.target.value })
-                }
-              />
-            </FormGroup>
-          </Collapse>
-        </CardBody>
-      )}
-    </Card>
+          <InputGroup
+            type="color"
+            value={plugin.display.colour}
+            onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+              boundSetDisplay({ colour: event.target.value })
+            }
+          >
+            Colour
+          </InputGroup>
+        </Collapse>
+      </>
+    </ToggleCard>
   );
 };
 

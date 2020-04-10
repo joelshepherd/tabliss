@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 
 import { Props, defaultData } from './types';
-import { Label, Input } from 'reactstrap';
+import { Input } from 'reactstrap';
 
 const MessageSettings: FC<Props> = ({ data = defaultData, setData }) => (
   <div className="MessageSettings">

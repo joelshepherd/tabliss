@@ -1,7 +1,8 @@
 import React, { FC, useState } from 'react';
+import { Alert, Button } from 'reactstrap';
 
-import { Props, defaultData } from './types';
-import { Label, Input, Button, Alert } from 'reactstrap';
+import InputGroup from '../../../views/shared/bootstrap/InputGroup';
+import { defaultData, Props } from './types';
 
 const JsSettings: FC<Props> = ({ data = defaultData, setData }) => {
   const [input, setInput] = useState(data.input);
@@ -16,14 +17,15 @@ const JsSettings: FC<Props> = ({ data = defaultData, setData }) => {
         editing the snippet.
       </Alert>
 
-      <Label>JavaScript Snippet</Label>
-      <Input
+      <InputGroup
         type="textarea"
         rows={3}
         style={{ fontFamily: 'monospace' }}
         value={input}
         onChange={event => setInput(event.target.value)}
-      />
+      >
+        JavaScript Snippet
+      </InputGroup>
 
       <Button onClick={handleSave}>Apply</Button>
     </div>

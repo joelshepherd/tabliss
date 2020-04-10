@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
+import { CustomInput } from 'reactstrap';
 
-import { Props, defaultData } from './types';
 import LocationInput from './LocationInput';
-import { CustomInput, CardLink } from 'reactstrap';
+import { defaultData, Props } from './types';
 
 const WeatherSettings: FC<Props> = ({ data = defaultData, setData }) => (
   <>

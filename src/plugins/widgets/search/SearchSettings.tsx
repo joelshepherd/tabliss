@@ -1,8 +1,9 @@
 import React, { FC } from 'react';
+import { CustomInput, FormGroup, Label } from 'reactstrap';
 
+import InputGroup from '../../../views/shared/bootstrap/InputGroup';
 import { engines } from './engines';
-import { Props, defaultData } from './types';
-import { FormGroup, Label, CustomInput, Input } from 'reactstrap';
+import { defaultData, Props } from './types';
 
 const SearchSettings: FC<Props> = ({ data = defaultData, setData }) => (
   <div className="SearchSettings">
@@ -50,21 +51,20 @@ const SearchSettings: FC<Props> = ({ data = defaultData, setData }) => (
     )}
 
     {data.suggestionsEngine && (
-      <FormGroup>
-        <Label>Suggestion Quantity</Label>
-        <Input
-          type="number"
-          min="1"
-          max="10"
-          value={data.suggestionsQuantity}
-          onChange={event =>
-            setData({
-              ...data,
-              suggestionsQuantity: Number(event.target.value),
-            })
-          }
-        />
-      </FormGroup>
+      <InputGroup
+        type="number"
+        min="1"
+        max="10"
+        value={data.suggestionsQuantity}
+        onChange={event =>
+          setData({
+            ...data,
+            suggestionsQuantity: Number(event.target.value),
+          })
+        }
+      >
+        Suggestion Quantity
+      </InputGroup>
     )}
   </div>
 );

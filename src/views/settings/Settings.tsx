@@ -28,12 +28,19 @@ const Settings: FC = () => {
 
       <div className="plane">
         <Logo />
+
         <Background />
+
         <Widgets />
+
         <Feedback />
-        <System />
+
         {process.env.BUILD_TARGET === 'firefox' && <Homepage />}
+
+        <System />
+
         <br />
+
         <div>
           <a
             href="https://www.paypal.me/tabliss"

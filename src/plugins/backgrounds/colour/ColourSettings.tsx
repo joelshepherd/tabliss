@@ -1,18 +1,17 @@
 import React, { FC } from 'react';
+import InputGroup from '../../../views/shared/bootstrap/InputGroup';
+import { defaultData, Props } from './types';
 
-import { Props, defaultData } from './types';
-import { FormGroup, Label, Input } from 'reactstrap';
 
 const ColourSettings: FC<Props> = ({ data = defaultData, setData }) => (
-  <FormGroup>
-    <Label htmlFor="backgroundColorSelector">Colour</Label>
-    <Input
-      id="backgroundColorSelector"
-      type="color"
-      value={data.colour}
-      onChange={event => setData({ colour: event.target.value })}
-    />
-  </FormGroup>
+  <InputGroup
+    id="backgroundColorSelector"
+    type="color"
+    value={data.colour}
+    onChange={event => setData({ colour: event.target.value })}
+  >
+    Colour
+  </InputGroup>
 );
 
 export default ColourSettings;

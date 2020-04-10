@@ -1,41 +1,35 @@
 import React, { FC } from 'react';
+import InputGroup from '../../../views/shared/bootstrap/InputGroup';
 
-import { Props, defaultData } from './types';
-import { FormGroup, Label, Input } from 'reactstrap';
+import { defaultData, Props } from './types';
 
 const GradientSettings: FC<Props> = ({ data = defaultData, setData }) => (
   <div className="GradientSettings">
-    <FormGroup>
-      <Label>From Colour</Label>
+    <InputGroup
+      type="color"
+      value={data.from}
+      onChange={event => setData({ ...data, from: event.target.value })}
+    >
+      From Colour
+    </InputGroup>
 
-      <Input
-        type="color"
-        value={data.from}
-        onChange={event => setData({ ...data, from: event.target.value })}
-      />
-    </FormGroup>
+    <InputGroup
+      type="color"
+      value={data.to}
+      onChange={event => setData({ ...data, to: event.target.value })}
+    >
+      To Colour
+    </InputGroup>
 
-    <FormGroup>
-      <Label>To Colour</Label>
-
-      <Input
-        type="color"
-        value={data.to}
-        onChange={event => setData({ ...data, to: event.target.value })}
-      />
-    </FormGroup>
-
-    <FormGroup>
-      <Label>Angle (0-360)</Label>
-
-      <Input
-        type="number"
-        value={data.angle}
-        onChange={event =>
-          setData({ ...data, angle: Number(event.target.value) })
-        }
-      />
-    </FormGroup>
+    <InputGroup
+      type="number"
+      value={data.angle}
+      onChange={event =>
+        setData({ ...data, angle: Number(event.target.value) })
+      }
+    >
+      Angle (0-360)
+    </InputGroup>
   </div>
 );
 

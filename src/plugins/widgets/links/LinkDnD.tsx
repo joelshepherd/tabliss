@@ -1,13 +1,8 @@
 import React, { FC } from 'react';
-import {
-  DragDropContext,
-  DropResult,
-  Droppable,
-  Draggable,
-} from 'react-beautiful-dnd';
 
-import LinkInput from './Input';
 import { Link } from './types';
+import DnD from '../../../views/shared/DnD';
+import LinkInput from './Input';
 
 interface DnDProps {
   data: Link[];
@@ -17,46 +12,27 @@ interface DnDProps {
 }
 
 export const LinkDnD: FC<DnDProps> = ({ data, move, remove, change }) => {
-  const onDragEnd = (result: DropResult) => {
-    if (!result || !result.destination) return;
-
-    const { draggableId, destination } = result;
-
-    move(draggableId, destination.index);
-  };
+  const items = data.map((item, i) => {
+    return {
+      ...item,
+      id: i,
+    };
+  });
 
   return (
-    <DragDropContext onDragEnd={onDragEnd}>
-      <Droppable droppableId="widget-droppable">
-        {(provided, snapshot) => (
-          <div {...provided.droppableProps} ref={provided.innerRef}>
-            {data.map((link, index) => (
-              <Draggable
-                key={index}
-                draggableId={index.toString()}
-                index={index}
-              >
-                {(provided, snapshot) => (
-                  <div
-                    ref={provided.innerRef}
-                    {...provided.draggableProps}
-                    {...provided.dragHandleProps}
-                  >
-                    <LinkInput
-                      {...link}
-                      key={index}
-                      number={index + 1}
-                      onChange={values => change(index, link, values)}
-                      onRemove={() => remove(index.toString())}
-                    />
-                  </div>
-                )}
-              </Draggable>
-            ))}
-          </div>
-        )}
-      </Droppable>
-    </DragDropContext>
+    <DnD
+      move={move}
+      items={items}
+      template={item => (
+        <LinkInput
+          {...item}
+          key={item.id}
+          number={item.id + 1}
+          onChange={values => change(item.id, item, values)}
+          onRemove={() => remove(item.id.toString())}
+        />
+      )}
+    />
   );
 };
 

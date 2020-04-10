@@ -1,27 +1,18 @@
 import React, { FC } from 'react';
 
-import { useToggle } from '../../hooks';
+import ToggleCard from '../shared/bootstrap/ToggleCard';
 
-const Homepage: FC = () => {
-  const [isOpen, toggleIsOpen] = useToggle();
+const Homepage: FC = () => (
+  <ToggleCard title="Open Tabliss when Firefox starts">
+    <>
+      <p>
+        Tabliss no longer controls your homepage. If you would like Tabliss to
+        open when you start Firefox, set your homepage to:
+      </p>
 
-  return (
-    <div>
-      {!isOpen && (
-        <p>
-          <a onClick={toggleIsOpen}>Open Tabliss when Firefox starts</a>
-        </p>
-      )}
-
-      {isOpen && (
-        <p>
-          Tabliss no longer controls your homepage. If you would like Tabliss to
-          open when you start Firefox, set your homepage to:
-          <input type="text" value={window.location.href} readOnly />
-        </p>
-      )}
-    </div>
-  );
-};
+      <code>{window.location.href}</code>
+    </>
+  </ToggleCard>
+);
 
 export default Homepage;

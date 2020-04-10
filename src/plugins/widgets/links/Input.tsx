@@ -1,28 +1,20 @@
 import icons from 'feather-icons/dist/icons.json';
 import React, { FC, useState } from 'react';
-
 import {
-  IconButton,
-  RemoveIcon,
-  DownIcon,
-  UpIcon,
-  Icon,
-} from '../../../views/shared';
-import { Link } from './types';
-import {
+  ButtonDropdown,
   Card,
   CardBody,
-  Label,
-  Input,
-  ButtonDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-  Row,
-  Col,
   CardLink,
+  DropdownItem,
+  DropdownMenu,
+  DropdownToggle,
+  Input,
 } from 'reactstrap';
+
 import { useToggle } from '../../../hooks';
+import { Icon } from '../../../views/shared';
+import InputGroup from '../../../views/shared/bootstrap/InputGroup';
+import { Link } from './types';
 
 type Props = Link & {
   number: number;
@@ -48,21 +40,21 @@ const LinkInput: FC<Props> = props => {
               : 'Shortcut'}
           </h5>
 
-          <Label>URL</Label>
-          <Input
+          <InputGroup
             type="url"
             value={props.url}
             onChange={event => props.onChange({ url: event.target.value })}
-          />
+          >
+            URL
+          </InputGroup>
 
-          <Label>
-            Name <span className="text-secondary">(optional)</span>
-          </Label>
-          <Input
+          <InputGroup
             type="text"
             value={props.name}
             onChange={event => props.onChange({ name: event.target.value })}
-          />
+          >
+            Name <span className="text-secondary">(optional)</span>
+          </InputGroup>
 
           <ButtonDropdown
             isOpen={iconDropdown}

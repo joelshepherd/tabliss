@@ -10,14 +10,12 @@ import {
   CardLink,
   Collapse,
   Label,
-  Input,
 } from 'reactstrap';
 
 import { backgroundConfigs, getConfig } from '../../plugins';
 import { useSelector } from '../../store';
 import { setBackground, setBackgroundDisplay } from '../../store/actions/data';
 import Plugin from '../shared/Plugin';
-import ToggleSection from '../shared/ToggleSection';
 import { useToggle } from '../../hooks';
 
 const Background: FC = () => {

@@ -1,16 +1,17 @@
 import React, { FC } from 'react';
 
-import { Props, defaultData } from './types';
-import { Label, Input } from 'reactstrap';
+import InputGroup from '../../../views/shared/bootstrap/InputGroup';
+import { defaultData, Props } from './types';
 
 const GreetingSettings: FC<Props> = ({ data = defaultData, setData }) => (
   <div className="GreetingSettings">
-    <Label>Name</Label>
-    <Input
+    <InputGroup
       type="text"
       value={data.name}
       onChange={event => setData({ name: event.target.value })}
-    />
+    >
+      Name
+    </InputGroup>
   </div>
 );
 

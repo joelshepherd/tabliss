@@ -1,19 +1,19 @@
 import React, { FC } from 'react';
+import { CustomInput, FormGroup } from 'reactstrap';
 
-import { Props, defaultData } from './types';
-import { FormGroup, Input, Label, CustomInput } from 'reactstrap';
+import InputGroup from '../../../views/shared/bootstrap/InputGroup';
+import { defaultData, Props } from './types';
 
 const GiphySettings: FC<Props> = ({ data = defaultData, setData }) => (
   <div className="GiphySettings">
-    <FormGroup>
-      <Label for="giphyTag">Tag</Label>
-      <Input
-        id="giphyTag"
-        type="text"
-        value={data.tag}
-        onChange={event => setData({ ...data, tag: event.target.value })}
-      />
-    </FormGroup>
+    <InputGroup
+      id="giphyTag"
+      type="text"
+      value={data.tag}
+      onChange={event => setData({ ...data, tag: event.target.value })}
+    >
+      Tag
+    </InputGroup>
 
     <FormGroup>
       <CustomInput

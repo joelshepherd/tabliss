@@ -1,7 +1,8 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 
-import { CardBody, Card, Input, Button, CardText, CardTitle } from 'reactstrap';
+import { Input, Button } from 'reactstrap';
+import ToggleCard from '../shared/bootstrap/ToggleCard';
 
 interface State {
   body: string;
@@ -29,50 +30,32 @@ class Feedback extends React.PureComponent<{}, State> {
           />
         </h2>
 
-        <Card>
-          <CardBody onClick={this.toggle}>
-            <CardTitle>
-              <h4>Send feedback or suggestions</h4>
-            </CardTitle>
+        <ToggleCard title="Send feedback or suggestions">
+          <>
+            <Input
+              type="email"
+              value={this.state.email}
+              onChange={event => this.setState({ email: event.target.value })}
+              placeholder="Your email (optional)"
+            />
 
-            {!this.state.open && (
-              <CardText>
-                Send us an idea or bug. You can also open an issue on Github.
-              </CardText>
-            )}
+            <Input
+              type="textarea"
+              value={this.state.body}
+              rows={3}
+              onChange={event => this.setState({ body: event.target.value })}
+              placeholder="Your feedback or suggestion"
+            />
 
-            {this.state.open && (
-              <>
-                <Input
-                  type="email"
-                  value={this.state.email}
-                  onChange={event =>
-                    this.setState({ email: event.target.value })
-                  }
-                  placeholder="Your email (optional)"
-                />
-
-                <Input
-                  type="textarea"
-                  value={this.state.body}
-                  rows={3}
-                  onChange={event =>
-                    this.setState({ body: event.target.value })
-                  }
-                  placeholder="Your feedback or suggestion"
-                />
-
-                <Button
-                  color="primary"
-                  disabled={this.state.pending}
-                  onClick={this.send}
-                >
-                  Send
-                </Button>
-              </>
-            )}
-          </CardBody>
-        </Card>
+            <Button
+              color="primary"
+              disabled={this.state.pending}
+              onClick={this.send}
+            >
+              Send
+            </Button>
+          </>
+        </ToggleCard>
       </>
     );
   }

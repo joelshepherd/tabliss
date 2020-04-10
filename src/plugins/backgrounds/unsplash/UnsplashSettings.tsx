@@ -2,6 +2,7 @@ import React, { FC } from 'react';
 
 import { Props, defaultData } from './types';
 import { FormGroup, Label, CustomInput, Input } from 'reactstrap';
+import InputGroup from '../../../views/shared/bootstrap/InputGroup';
 
 const UnsplashSettings: FC<Props> = ({ data = defaultData, setData }) => (
   <div className="UnsplashSettings">
@@ -42,18 +43,12 @@ const UnsplashSettings: FC<Props> = ({ data = defaultData, setData }) => (
       />
 
       {data.by === 'collections' && (
-        <FormGroup>
-          <Label>Collection</Label>
-
-          <Input
-            type="text"
-            value={data.collections}
-            placeholder="Collection ID number"
-            onChange={event =>
-              setData({ ...data, collections: event.target.value })
-            }
-          />
-        </FormGroup>
+        <InputGroup type="text"
+        value={data.collections}
+        placeholder="Collection ID number"
+        onChange={event =>
+          setData({ ...data, collections: event.target.value })
+        }>Collection</InputGroup>
       )}
 
       <CustomInput

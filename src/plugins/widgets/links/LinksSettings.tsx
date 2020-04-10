@@ -1,13 +1,13 @@
 import React, { FC } from 'react';
+import { CardLink, CustomInput } from 'reactstrap';
 
 import { useSavedReducer } from '../../../hooks';
+import InputGroup from '../../../views/shared/bootstrap/InputGroup';
 import { addLink, removeLink, reorderLink, updateLink } from './actions';
-import { reducer } from './reducer';
-import { Link, Props, defaultData } from './types';
-import { Label, Input, CustomInput, CardLink } from 'reactstrap';
 import { LinkDnD } from './LinkDnD';
-
 import './LinksSettings.sass';
+import { reducer } from './reducer';
+import { defaultData, Link, Props } from './types';
 
 const LinksSettings: FC<Props> = ({ data = defaultData, setData }) => {
   const saveLinks = (links: Link[]) => setData({ ...data, links });
@@ -15,15 +15,16 @@ const LinksSettings: FC<Props> = ({ data = defaultData, setData }) => {
 
   return (
     <>
-      <Label>Number of columns</Label>
-      <Input
+      <InputGroup
         type="number"
         value={data.columns}
         onChange={event =>
           setData({ ...data, columns: Number(event.target.value) })
         }
         min={1}
-      />
+      >
+        Number of columns
+      </InputGroup>
 
       <CustomInput
         type="checkbox"

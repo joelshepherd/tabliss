@@ -1,22 +1,19 @@
 import React, { FC } from 'react';
 
-import { Props, defaultData } from './types';
-import { FormGroup, Label, Input } from 'reactstrap';
+import InputGroup from '../../../views/shared/bootstrap/InputGroup';
+import { defaultData, Props } from './types';
 
 const TodoSettings: FC<Props> = ({ data = defaultData, setData }) => (
   <div className="SearchSettings">
-    <FormGroup>
-      <Label>Tasks to show</Label>
-      <Input
-        type="number"
-        min="0"
-        onChange={event =>
-          setData({ ...data, show: Number(event.target.value) })
-        }
-        placeholder="Number of todo items to show"
-        value={data.show}
-      />
-    </FormGroup>
+    <InputGroup
+      type="number"
+      min="0"
+      onChange={event => setData({ ...data, show: Number(event.target.value) })}
+      placeholder="Number of todo items to show"
+      value={data.show}
+    >
+      Tasks to show
+    </InputGroup>
   </div>
 );
 
