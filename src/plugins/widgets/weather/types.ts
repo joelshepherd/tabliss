@@ -32,7 +32,6 @@ export interface Conditions {
   temperatureLow: number;
   precipType?: number;
   units: string;
-  name?: string;
 }
 
 export type Data = Coordinates & {

@@ -1,19 +1,9 @@
-import React, { FC, useState, useEffect } from 'react';
+import React, { FC } from 'react';
 
-import { useDebounce } from '../../../hooks';
 import { Props, defaultData } from './types';
 import LocationInput from './LocationInput';
 
 const WeatherSettings: FC<Props> = ({ data = defaultData, setData }) => {
-  const [customName, setCustomName] = useState(data.name || '');
-  const debouncedName = useDebounce(customName, 500);
-
-  useEffect(() => {
-    if (debouncedName) {
-      setData({ ...data, name: debouncedName });
-    }
-  }, [debouncedName]);
-
   return (
     <div className="WeatherSettings">
       <LocationInput
@@ -26,9 +16,9 @@ const WeatherSettings: FC<Props> = ({ data = defaultData, setData }) => {
         Name
         <input
           type="text"
-          value={customName}
+          value={data.name}
           placeholder="Optional name"
-          onChange={event => setCustomName(event.target.value)}
+          onChange={event => setData({ ...data, name: event.target.value })}
         />
       </label>
 

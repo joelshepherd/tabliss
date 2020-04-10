@@ -19,7 +19,7 @@ const Weather: FC<Props> = ({
       getForecast(data, loader).then(setCache);
     },
     cache ? cache.expiresAt : 0,
-    [data.latitude, data.latitude, data.units, data.name],
+    [data.latitude, data.latitude, data.units],
   );
 
   if (!cache) {
@@ -33,11 +33,11 @@ const Weather: FC<Props> = ({
         onClick={() => setData({ ...data, showDetails: !data.showDetails })}
         title="Toggle weather details"
       >
+        {data.name && <span>{data.name}</span>}
         <Icon name={weatherIcons[cache.icon]} />
         <span className="temperature">
           {cache.temperatureLow}-{cache.temperatureHigh}˚
         </span>
-        {cache.name && <dd>{cache.name}</dd>}
       </div>
 
       {data.showDetails && (

@@ -7,7 +7,7 @@ const geocodeEndpoint = 'https://nominatim.openstreetmap.org';
 type Config = Pick<Data, 'latitude' | 'longitude' | 'units' | 'name'>;
 
 export async function getForecast(
-  { latitude, longitude, name, units }: Config,
+  { latitude, longitude, units, name }: Config,
   loader: API['loader'],
 ): Promise<Conditions | undefined> {
   if (!latitude || !longitude) {
