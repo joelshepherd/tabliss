@@ -1,10 +1,12 @@
 import React, { FC } from 'react';
+import { FormattedMessage } from 'react-intl';
 import { useDispatch } from 'react-redux';
 
 import { defaultLocale } from '../../locales';
 import { useSelector } from '../../store';
 import { setLocale, setTimeZone } from '../../store/actions';
 import TimeZoneInput from '../shared/timeZone/TimeZoneInput';
+
 
 const System: FC = () => {
   const locale = useSelector(state => state.data.locale || defaultLocale);
@@ -18,6 +20,14 @@ const System: FC = () => {
 
   return (
     <div>
+      <h2>
+        <FormattedMessage
+          id="settings"
+          defaultMessage="Settings"
+          description="Settings title"
+        />
+      </h2>
+
       <label
         style={{
           alignItems: 'center',
