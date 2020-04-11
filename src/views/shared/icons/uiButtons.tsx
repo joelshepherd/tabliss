@@ -2,15 +2,24 @@ import React, { FC } from 'react';
 
 import Icon from './Icon';
 
-type Props = {};
+type Props = {
+  className?: string;
+  onClick?: Function;
+};
 
 // Actions
-export const RemoveIcon: FC<Props> = () => <Icon name="trash-2" />;
+export const RemoveIcon: FC<Props> = (props) => (
+  <Icon name="trash-2" {...props} />
+);
 
 // Arrows
-export const UpIcon: FC<Props> = () => <Icon name="arrow-up" />;
-export const DownIcon: FC<Props> = () => <Icon name="arrow-down" />;
+export const UpIcon: FC<Props> = (props) => <Icon name="arrow-up" {...props} />;
+export const DownIcon: FC<Props> = (props) => (
+  <Icon name="arrow-down" {...props} />
+);
 
 // Toggles
-export const ExpandIcon: FC<Props> = () => <Icon name="plus" />;
-export const CollapseIcon: FC<Props> = () => <Icon name="minus" />;
+export const ExpandIcon: FC<Props> = (props) => <Icon name="plus" {...props} />;
+export const CollapseIcon: FC<Props> = (props) => (
+  <Icon name="minus" {...props} />
+);

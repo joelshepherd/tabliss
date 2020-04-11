@@ -3,12 +3,18 @@ import React, { FC } from 'react';
 
 type Props = {
   colour?: string;
+  className?: string;
   name: string;
   size?: number | string;
 };
 
-const Icon: FC<Props> = ({ colour = 'currentColor', name, size = 24 }) => (
-  <i>
+const Icon: FC<Props> = ({
+  colour = 'currentColor',
+  name,
+  size = 24,
+  className,
+}) => (
+  <i className={className}>
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width={size}

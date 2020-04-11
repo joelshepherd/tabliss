@@ -23,7 +23,7 @@
     "localforage": "^1.7.1",
     "normalize.css": "^8.0.0",
     "react": "^16.13.1",
-    "react-beautiful-dnd": "^12.2.0",
+    "react-beautiful-dnd": "^13.0.0",
     "react-dom": "^16.13.1",
     "react-error-boundary": "^1.2.5",
     "react-intl": "^4.3.1",

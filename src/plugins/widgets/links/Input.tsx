@@ -9,48 +9,66 @@ import {
   DropdownMenu,
   DropdownToggle,
   Input,
+  Button,
 } from 'reactstrap';
 
 import { useToggle } from '../../../hooks';
-import { Icon } from '../../../views/shared';
+import { Icon, UpIcon, DownIcon } from '../../../views/shared';
 import InputGroup from '../../../views/shared/bootstrap/InputGroup';
 import { Link } from './types';
 
 type Props = Link & {
+  index: number;
   number: number;
-  onChange: (values: Partial<Link>) => void;
+  onRemove: () => void;
   onMoveUp?: () => void;
   onMoveDown?: () => void;
-  onRemove: () => void;
+  onChange: (values: Partial<Link>) => void;
 };
 
 const iconList = Object.keys(icons);
 
-const LinkInput: FC<Props> = props => {
+const LinkInput: FC<Props> = (props) => {
   const [iconDropdown, toggleIconDropdown] = useToggle(false);
   const [iconSearchTerm, setIconSearchTerm] = useState('');
+
+  const iconDefined = !(props.icon === '' || !props.icon);
 
   return (
     <>
       <Card className="layer-0">
         <CardBody>
-          <h5>
-            {props.number <= 9
-              ? `Keyboard shortcut ${props.number}`
-              : 'Shortcut'}
-          </h5>
+          <div className="title-grid">
+            <h5>
+              {props.number <= 9
+                ? `Keyboard shortcut ${props.number}`
+                : 'Shortcut'}
+            </h5>
+            <div>
+              {props.onMoveUp && (
+                <UpIcon onClick={props.onMoveUp} className="rounded-circle" />
+              )}
+
+              {props.onMoveDown && (
+                <DownIcon
+                  onClick={props.onMoveDown}
+                  className="rounded-circle"
+                />
+              )}
+            </div>
+          </div>
 
           <InputGroup
             type="url"
             label="URL"
             value={props.url}
-            onChange={event => props.onChange({ url: event.target.value })}
+            onChange={(event) => props.onChange({ url: event.target.value })}
           />
 
           <InputGroup
             type="text"
             value={props.name}
-            onChange={event => props.onChange({ name: event.target.value })}
+            onChange={(event) => props.onChange({ name: event.target.value })}
             label={
               <span>
                 Name <span className="text-secondary">(optional)</span>
@@ -63,7 +81,10 @@ const LinkInput: FC<Props> = props => {
             toggle={toggleIconDropdown}
             style={{ width: '100%', position: 'relative' }}
           >
-            <DropdownToggle caret>Icon (optional)</DropdownToggle>
+            <DropdownToggle caret>
+              Icon {!iconDefined && '(optional)'}
+              {iconDefined && `(${props.icon})`}
+            </DropdownToggle>
             <DropdownMenu
               style={{
                 maxHeight: '300px',
@@ -76,18 +97,18 @@ const LinkInput: FC<Props> = props => {
                   type="text"
                   placeholder="Search"
                   value={iconSearchTerm}
-                  onChange={e => setIconSearchTerm(e.target.value)}
+                  onChange={(e) => setIconSearchTerm(e.target.value)}
                 />
               </DropdownItem>
 
               <DropdownItem
                 onClick={() => props.onChange({ icon: '' })}
-                active={props.icon === '' || !props.icon ? true : false}
+                active={!iconDefined}
               >
                 None
               </DropdownItem>
 
-              {iconList.map(key => {
+              {iconList.map((key) => {
                 if (key.indexOf(iconSearchTerm) > -1)
                   return (
                     <DropdownItem

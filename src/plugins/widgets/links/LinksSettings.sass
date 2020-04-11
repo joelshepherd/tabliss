@@ -2,3 +2,29 @@
   display: grid
   grid-template-columns: 1fr 6fr
   grid-column-gap: 10px
+
+.title-grid
+  display: grid
+  grid-template-columns: auto auto
+
+  h5
+    widht: 100%
+
+  div
+    justify-self: end
+    display: grid
+    grid-template-columns: auto auto
+    gap: 0.5rem
+
+  i
+    cursor: pointer
+    display: inline-block
+    background-color: var(--layer-1)
+    width: 24px
+    height: 24px
+    display: flex
+    justify-content: center
+    align-items: center
+
+    &:hover
+      opacity: 0.8
