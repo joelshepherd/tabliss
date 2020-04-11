@@ -28,3 +28,5 @@ export const widgetConfigs = [
 if (process.env.BUILD_TARGET === 'web') {
   widgetConfigs.push(js);
 }
+
+widgetConfigs.sort((a, b) => a.name.localeCompare(b.name));

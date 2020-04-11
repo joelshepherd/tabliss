@@ -1,5 +1,7 @@
 const fs = require('fs');
-const { promisify } = require('util');
+const {
+  promisify
+} = require('util');
 const glob = promisify(require('glob'));
 const manageTranslations = require('react-intl-translations-manager').default;
 const parser = require('typescript-react-intl').default;
@@ -8,8 +10,10 @@ const parser = require('typescript-react-intl').default;
 // `xx` and `xx-XX` formats are accepted (e.g. 'en' or 'en-AU')
 // Then run `npm run translations` to create your language files!
 const languages = [
+  'ca-ES',
   'cs',
   'de',
+  'el',
   'en-AU',
   'en-GB',
   'es',
@@ -25,6 +29,7 @@ const languages = [
   'no',
   'pl',
   'pt',
+  'pt-BR',
   'ro',
   'ru',
   'sk',
@@ -33,6 +38,7 @@ const languages = [
   'vi',
   'zh-CN',
   'zh-TW',
+  'uk',
 ];
 
 async function main() {

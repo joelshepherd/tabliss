@@ -11,8 +11,9 @@ const GiphySettings: FC<Props> = ({ data = defaultData, setData }) => (
       label="Tag"
       id="giphyTag"
       value={data.tag}
-      onChange={event => setData({ ...data, tag: event.target.value })}
+      onChange={(event) => setData({ ...data, tag: event.target.value })}
     />
+    <p className="text-secondary">Separate multiple tags with a commas</p>
 
     <FormGroup>
       <CustomInput

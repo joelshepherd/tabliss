@@ -1,8 +1,10 @@
 import { pick } from 'in-browser-language';
 
 export const messages: Record<string, Record<string, string>> = {
+  'ca-ES': require('./lang/ca-ES.json'),
   cs: require('./lang/cs.json'),
   de: require('./lang/de.json'),
+  el: require('./lang/el.json'),
   en: {},
   'en-AU': require('./lang/en-AU.json'),
   'en-GB': require('./lang/en-GB.json'),
@@ -22,12 +24,15 @@ export const messages: Record<string, Record<string, string>> = {
   sk: require('./lang/sk.json'),
   sv: require('./lang/sv.json'),
   pl: require('./lang/pl.json'),
-  pt: require('./lang/pt.json'),
+  pt: {},
+  'pt-PT': require('./lang/pt-PT.json'),
+  'pt-BR': require('./lang/pt-BR.json'),
   tr: require('./lang/tr.json'),
   vi: require('./lang/vi.json'),
   zh: {},
   'zh-CN': require('./lang/zh-CN.json'),
   'zh-TW': require('./lang/zh-TW.json'),
+  uk: require('./lang/uk.json'),
 };
 
 export const locales = Object.keys(messages);
