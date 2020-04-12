@@ -11,6 +11,7 @@
   "plugins.links.standardHint": "Zum Aufrufen klicken",
   "plugins.search.placeholder": "Suche eingeben",
   "plugins.unsplash.photoLink": "Photo",
+  "settings": "Settings",
   "settings.translationCredits": " ",
   "widgets": "Widgets"
 }

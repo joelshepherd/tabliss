@@ -11,6 +11,7 @@
   "plugins.links.standardHint": "클릭하여 이동",
   "plugins.search.placeholder": "검색어를 입력하세요",
   "plugins.unsplash.photoLink": "사진",
+  "settings": "Settings",
   "settings.translationCredits": "Korean translations by 심심한누군가",
   "widgets": "Widgets"
 }

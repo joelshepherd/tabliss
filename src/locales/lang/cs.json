@@ -11,6 +11,7 @@
   "plugins.links.standardHint": "Kliněte pro navštívení",
   "plugins.search.placeholder": "Hledat..",
   "plugins.unsplash.photoLink": "Fotografie",
+  "settings": "Settings",
   "settings.translationCredits": "Czech translation by Petr Schmidt",
   "widgets": "Widgets"
 }

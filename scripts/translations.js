@@ -1,7 +1,5 @@
 const fs = require('fs');
-const {
-  promisify
-} = require('util');
+const { promisify } = require('util');
 const glob = promisify(require('glob'));
 const manageTranslations = require('react-intl-translations-manager').default;
 const parser = require('typescript-react-intl').default;
@@ -68,4 +66,4 @@ async function main() {
 
 // Go go go!
 // https://www.youtube.com/watch?v=H9dzpBa73_8
-main();
+main().catch(console.error);
