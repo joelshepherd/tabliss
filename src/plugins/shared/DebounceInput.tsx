@@ -3,18 +3,21 @@ import { useDebounce } from '../../hooks';
 
 interface Props
   extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'onChange'> {
-  wait: number;
   onChange: (value: string) => void;
+  value?: string;
+  wait?: number;
 }
 
-export const DebounceInput: FC<Props> = ({ wait, onChange, ...props }) => {
-  const [newValue, setNewValue] = useState(props.value as string | undefined);
+export const DebounceInput: FC<Props> = ({
+  wait = 1000,
+  onChange,
+  ...props
+}) => {
+  const [newValue, setNewValue] = useState(props.value || '');
   const debouncedValue = useDebounce(newValue, wait);
 
   useEffect(() => {
-    if (typeof debouncedValue === 'string' && onChange) {
-      onChange(debouncedValue);
-    }
+    onChange(debouncedValue);
   }, [debouncedValue]);
 
   return (
