@@ -33,6 +33,7 @@ const Weather: FC<Props> = ({
         onClick={() => setData({ ...data, showDetails: !data.showDetails })}
         title="Toggle weather details"
       >
+        {data.name && <span>{data.name}</span>}
         <Icon name={weatherIcons[cache.icon]} />
         <span className="temperature">
           {cache.temperatureLow}-{cache.temperatureHigh}˚

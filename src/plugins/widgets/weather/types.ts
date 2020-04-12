@@ -35,6 +35,7 @@ export interface Conditions {
 }
 
 export type Data = Coordinates & {
+  name?: string;
   showDetails: boolean;
   units: string;
 };
