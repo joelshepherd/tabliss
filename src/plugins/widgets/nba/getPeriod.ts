@@ -1,13 +1,11 @@
 import { format } from 'date-fns';
 import { utcToZonedTime } from 'date-fns-tz';
 import { Game } from './types';
-import { useSelector } from '../../../store';
 
-export function getPeriod(game: Game) {
+export function getPeriod(game: Game, timeZone?: string) {
   const period = game.period;
   let periodDate = new Date(game.startTimeUTC);
 
-  const timeZone = useSelector(state => state.data.timeZone);
   if (timeZone) {
     periodDate = utcToZonedTime(new Date(game.startTimeUTC), timeZone);
   }
