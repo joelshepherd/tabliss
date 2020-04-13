@@ -61,7 +61,7 @@ const Widgets: FC = () => {
           <Widget
             key={widget.id}
             plugin={widget}
-            onRemove={() => dispatch(removeWidget(id))}
+            onRemove={() => dispatch(removeWidget(widget.id))}
           />
         )}
       />
