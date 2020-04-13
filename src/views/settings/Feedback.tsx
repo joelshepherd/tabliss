@@ -30,12 +30,15 @@ class Feedback extends React.PureComponent<{}, State> {
           />
         </h2>
 
-        <ToggleCard title="Send feedback or suggestions">
+        <ToggleCard
+          title="Send feedback or suggestions"
+          description="Feel free to send us feedback! You can also open an issue on our Github page."
+        >
           <>
             <Input
               type="email"
               value={this.state.email}
-              onChange={event => this.setState({ email: event.target.value })}
+              onChange={(event) => this.setState({ email: event.target.value })}
               placeholder="Your email (optional)"
             />
 
@@ -43,7 +46,7 @@ class Feedback extends React.PureComponent<{}, State> {
               type="textarea"
               value={this.state.body}
               rows={3}
-              onChange={event => this.setState({ body: event.target.value })}
+              onChange={(event) => this.setState({ body: event.target.value })}
               placeholder="Your feedback or suggestion"
             />
 
@@ -82,7 +85,7 @@ class Feedback extends React.PureComponent<{}, State> {
     });
 
     fetch(request)
-      .then(res => {
+      .then((res) => {
         if (!res.ok) {
           throw new Error('Feedback API request was not successful');
         }

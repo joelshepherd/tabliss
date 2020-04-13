@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 
-import InputGroup from '../../../views/shared/bootstrap/InputGroup';
+import { InputGroup } from '../../../views/shared';
 import { defaultData, Props } from './types';
 
 const GreetingSettings: FC<Props> = ({ data = defaultData, setData }) => (

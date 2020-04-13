@@ -9,12 +9,11 @@ import {
   DropdownMenu,
   DropdownToggle,
   Input,
-  Button,
 } from 'reactstrap';
 
 import { useToggle } from '../../../hooks';
 import { Icon, UpIcon, DownIcon } from '../../../views/shared';
-import InputGroup from '../../../views/shared/bootstrap/InputGroup';
+import { InputGroup } from '../../../views/shared';
 import { Link } from './types';
 
 type Props = Link & {

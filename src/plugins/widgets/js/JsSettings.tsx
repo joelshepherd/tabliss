@@ -1,7 +1,7 @@
 import React, { FC, useState } from 'react';
 import { Alert, Button } from 'reactstrap';
 
-import InputGroup from '../../../views/shared/bootstrap/InputGroup';
+import { InputGroup } from '../../../views/shared';
 import { defaultData, Props } from './types';
 
 const JsSettings: FC<Props> = ({ data = defaultData, setData }) => {

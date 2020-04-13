@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { CustomInput, FormGroup, Label } from 'reactstrap';
 
-import InputGroup from '../../../views/shared/bootstrap/InputGroup';
+import { InputGroup } from '../../../views/shared';
 import { engines } from './engines';
 import { defaultData, Props } from './types';
 
@@ -12,7 +12,7 @@ const SearchSettings: FC<Props> = ({ data = defaultData, setData }) => (
       <CustomInput
         type="select"
         id="searchProviderSelect"
-        onChange={event =>
+        onChange={(event) =>
           setData({ ...data, searchEngine: event.target.value })
         }
         value={data.searchEngine}
@@ -31,7 +31,7 @@ const SearchSettings: FC<Props> = ({ data = defaultData, setData }) => (
 
         <CustomInput
           type="select"
-          onChange={event =>
+          onChange={(event) =>
             setData({ ...data, suggestionsEngine: event.target.value })
           }
           value={data.suggestionsEngine}
@@ -57,7 +57,7 @@ const SearchSettings: FC<Props> = ({ data = defaultData, setData }) => (
         type="number"
         label="Suggestion Quantity"
         value={data.suggestionsQuantity}
-        onChange={event =>
+        onChange={(event) =>
           setData({
             ...data,
             suggestionsQuantity: Number(event.target.value),

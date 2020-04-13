@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import { CardLink, CustomInput } from 'reactstrap';
 
 import { useSavedReducer } from '../../../hooks';
-import InputGroup from '../../../views/shared/bootstrap/InputGroup';
+import { InputGroup } from '../../../views/shared';
 import { addLink, removeLink, reorderLink, updateLink } from './actions';
 import { reducer } from './reducer';
 import { defaultData, Link, Props } from './types';

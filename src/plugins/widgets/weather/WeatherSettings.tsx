@@ -3,7 +3,7 @@ import { CustomInput } from 'reactstrap';
 
 import LocationInput from './LocationInput';
 import { defaultData, Props } from './types';
-import InputGroup from '../../../views/shared/bootstrap/InputGroup';
+import { InputGroup } from '../../../views/shared';
 
 const WeatherSettings: FC<Props> = ({ data = defaultData, setData }) => (
   <>
