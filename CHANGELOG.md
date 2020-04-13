@@ -3,25 +3,40 @@
 All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
-## [Unreleased]
+## [2.0.0] - 2020-04-13
 
 Tabliss has essentially been rewritten from scratch to be faster, more modern, and easier to contribute too.
 
 ### Added
 
-- Widget positioning! You can now place widgets in different areas of the screen.
-- Syncing of your settings! You can now sync your Tabliss settings with Firefox or Chrome sync.
-- Widgets automatically update without needing to refresh the page.
-- Have the same widget multiple times.
+- **Move widgets around the screen!**
+- **Add a widget multiple times!**
+- **Sync your settings!** via Firefox or Chrome account sync.
+- Backgrounds and widgets now automatically update without needing to refresh the page.
+- You can now add the same widget multiple times.
+- New live NBA scores plugin - thanks @gonzalrick
+- Swedish translations - thanks @Vecopotryx
+- Hindi and Gujarati translations - thanks @ashishpanchal
+- Japanese transations - thanks @kodaka
+- Ukranian translations - thanks @aquaminer
+- Greek transations - thanks @Damian96
+- Brazilian Portuguese translations - thanks @adilsonfsantos
+- Catalan transations - thanks @mnguerra
 
 ### Changed
 
-- Tabliss is even faster!
-- Various small changes and improvements throughout the different plugins.
+- The weather widget now shows the forecast for the day, instead of the current conditions.
+- GIHPY background now accepts a comma-separated list of tags - thanks @yuannan
+- Various changes and improvements throughout the different widgets and backgrounds.
+- Performance improvements in load time and elsewhere.
+- Small adjustments to existing translations.
+- Some polish to the settings UI.
 
 ### Fixed
 
 - Settings not saving if using "always browse in private mode" in Firefox.
+- Search with non URI-encodable characters - thanks @Thanaen
+- Various bug fixes across Tabliss.
 
 ### Remove
 
