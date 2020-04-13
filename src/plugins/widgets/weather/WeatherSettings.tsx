@@ -3,24 +3,23 @@ import { CustomInput } from 'reactstrap';
 
 import LocationInput from './LocationInput';
 import { defaultData, Props } from './types';
+import InputGroup from '../../../views/shared/bootstrap/InputGroup';
 
 const WeatherSettings: FC<Props> = ({ data = defaultData, setData }) => (
   <>
     <LocationInput
       latitude={data.latitude}
       longitude={data.longitude}
-      onChange={location => setData({ ...data, ...location })}
+      onChange={(location) => setData({ ...data, ...location })}
     />
 
-    <label>
-      Name
-      <input
-        type="text"
-        value={data.name}
-        placeholder="Optional name"
-        onChange={event => setData({ ...data, name: event.target.value })}
-      />
-    </label>
+    <InputGroup
+      type="text"
+      label="name"
+      value={data.name}
+      placeholder="Optional name"
+      onChange={(event) => setData({ ...data, name: event.target.value })}
+    />
 
     <hr />
 

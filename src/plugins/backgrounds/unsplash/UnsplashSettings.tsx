@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 
 import { Props, defaultData } from './types';
-import { FormGroup, Label, CustomInput, Input } from 'reactstrap';
+import { FormGroup, Label, CustomInput } from 'reactstrap';
 import { DebounceInput } from '../../shared';
 
 const UnsplashSettings: FC<Props> = ({ data = defaultData, setData }) => (
