@@ -53,24 +53,32 @@ const WelcomeTo2: FC = () => {
   return (
     <Modal>
       <Logo />
-      <h2>Welcome to Tabliss 2!</h2>
-
-      <p>
-        Hot new features, straight out of the <del>kitchen</del> code:
-      </p>
-      <ul>
-        <li>Reposition your widgets around the screen</li>
-        <li>Sync your settings between computers</li>
-        <li>Add the same widget twice</li>
-      </ul>
-
-      <p>
-        As part of the update, you will need to transfer your old settings from
-        Tabliss 1 to Tabliss 2.
-      </p>
-
-      <button onClick={handleMigrate}>Transfer your old settings</button>
-      <button onClick={handleClear}>Start again, fresh</button>
+      <div className="Settings">
+        <h2 style={{ textAlign: 'center' }}>Welcome to Tabliss 2!</h2>
+        <div style={{ fontSize: '1.1em' }}>
+          <p>One year in the making, some new feature highlights:</p>
+          <ul style={{ color: '#212121' }}>
+            <li>Move widgets around the screen</li>
+            <li>Add a widget multiple times</li>
+            <li>Sync your settings</li>
+            <li>Updates without refreshing</li>
+            <li>New widgets and translations</li>
+          </ul>
+          <p>
+            Your settings need to be migrated to Tabliss 2. Not everything
+            <br />
+            is 100% compatible, so I apologise if there is anything missing.
+            <br />
+            However I have tried my best to keep everything!
+          </p>
+          <button className="button--primary" onClick={handleMigrate}>
+            Migrate your old settings
+          </button>{' '}
+          <button className="button--primary" onClick={handleClear}>
+            Delete and start fresh
+          </button>
+        </div>
+      </div>
     </Modal>
   );
 };
