@@ -11,6 +11,7 @@
   "plugins.links.standardHint": "Кликните для открытия",
   "plugins.search.placeholder": "Введите запрос",
   "plugins.unsplash.photoLink": "Фото",
+  "settings": "Settings",
   "settings.translationCredits": "Перевёл на русский Илья Бирюков",
   "widgets": "Widgets"
 }

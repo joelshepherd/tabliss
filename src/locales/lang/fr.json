@@ -11,6 +11,7 @@
   "plugins.links.standardHint": "Cliquez pour consulter le site",
   "plugins.search.placeholder": "Taper pour rechercher",
   "plugins.unsplash.photoLink": "Photo",
+  "settings": "Settings",
   "settings.translationCredits": "Traduction française par Orfaon",
   "widgets": "Widgets"
 }

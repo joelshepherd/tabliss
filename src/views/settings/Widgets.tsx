@@ -9,11 +9,12 @@ import {
   removeWidget,
   reorderWidget,
 } from '../../store/actions/data';
-import WidgetsDnD from './WidgetsDnD';
 import { CustomInput, FormGroup } from 'reactstrap';
+import DnD from '../shared/DnD';
+import Widget from './Widget';
 
 const Widgets: FC = () => {
-  const active = useSelector(state => state.data.widgets);
+  const active = useSelector((state) => state.data.widgets);
 
   const dispatch = useDispatch();
   const boundReorderWidget = useCallback(
@@ -45,7 +46,7 @@ const Widgets: FC = () => {
           <option disabled value="">
             Add a new widget
           </option>
-          {widgetConfigs.map(plugin => (
+          {widgetConfigs.map((plugin) => (
             <option key={plugin.key} value={plugin.key}>
               {plugin.name}
             </option>
@@ -53,11 +54,16 @@ const Widgets: FC = () => {
         </CustomInput>
       </FormGroup>
 
-      {active.length === 0 && <p className="my-3">No widgets added.</p>}
-      <WidgetsDnD
-        widgets={active}
-        moveWidget={boundReorderWidget}
-        removeWidget={id => dispatch(removeWidget(id))}
+      <DnD
+        move={boundReorderWidget}
+        items={active}
+        template={(widget) => (
+          <Widget
+            key={widget.id}
+            plugin={widget}
+            onRemove={() => dispatch(removeWidget(id))}
+          />
+        )}
       />
     </div>
   );

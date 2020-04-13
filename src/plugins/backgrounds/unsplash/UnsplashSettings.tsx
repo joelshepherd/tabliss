@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 
 import { Props, defaultData } from './types';
 import { FormGroup, Label, CustomInput, Input } from 'reactstrap';
-import InputGroup from '../../../views/shared/bootstrap/InputGroup';
+import { DebounceInput } from '../../shared';
 
 const UnsplashSettings: FC<Props> = ({ data = defaultData, setData }) => (
   <div className="UnsplashSettings">
@@ -13,7 +13,7 @@ const UnsplashSettings: FC<Props> = ({ data = defaultData, setData }) => (
         id="unsplashSelect"
         className="layer-0"
         value={data.timeout}
-        onChange={event =>
+        onChange={(event) =>
           setData({ ...data, timeout: Number(event.target.value) })
         }
       >
@@ -44,13 +44,12 @@ const UnsplashSettings: FC<Props> = ({ data = defaultData, setData }) => (
       />
 
       {data.by === 'collections' && (
-        <InputGroup
+        <DebounceInput
           type="text"
           value={data.collections}
           placeholder="Collection ID number"
-          onChange={event =>
-            setData({ ...data, collections: event.target.value })
-          }
+          onChange={(value) => setData({ ...data, collections: value })}
+          wait={500}
           label="Collection"
         />
       )}
@@ -64,14 +63,14 @@ const UnsplashSettings: FC<Props> = ({ data = defaultData, setData }) => (
       />
 
       {data.by === 'search' && (
-        <>
-          <Label>Tags</Label>
-
-          <Input
+        <div>
+          <DebounceInput
             type="text"
             value={data.search}
             placeholder="Try landscapes or animals..."
-            onChange={event => setData({ ...data, search: event.target.value })}
+            onChange={(value) => setData({ ...data, search: value })}
+            wait={500}
+            label="Tags"
           />
 
           <CustomInput
@@ -79,9 +78,9 @@ const UnsplashSettings: FC<Props> = ({ data = defaultData, setData }) => (
             id="onlyFeaturedImages"
             checked={data.featured}
             label="Only featured images"
-            onChange={event => setData({ ...data, featured: !data.featured })}
+            onChange={(event) => setData({ ...data, featured: !data.featured })}
           />
-        </>
+        </div>
       )}
     </FormGroup>
   </div>

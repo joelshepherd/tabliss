@@ -11,6 +11,7 @@
   "plugins.links.standardHint": "Klik om te bezoeken",
   "plugins.search.placeholder": "Typ om te zoeken",
   "plugins.unsplash.photoLink": "Foto",
+  "settings": "Settings",
   "settings.translationCredits": "Translations by Rick",
   "widgets": "Widgets"
 }

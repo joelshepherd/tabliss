@@ -11,6 +11,7 @@
   "plugins.links.standardHint": "Clique para visitar",
   "plugins.search.placeholder": "Pesquisar",
   "plugins.unsplash.photoLink": "Foto",
+  "settings": "Settings",
   "settings.translationCredits": "Traduzido por Tiago Carneiro",
   "widgets": "Widgets"
 }

@@ -11,6 +11,7 @@
   "plugins.links.standardHint": "Gitmek için tıkla",
   "plugins.search.placeholder": "Aramak için yaz",
   "plugins.unsplash.photoLink": "Fotoğraf",
+  "settings": "Settings",
   "settings.translationCredits": " ",
   "widgets": "Widgets"
 }

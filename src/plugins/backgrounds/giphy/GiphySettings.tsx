@@ -1,19 +1,20 @@
 import React, { FC } from 'react';
 import { CustomInput, FormGroup } from 'reactstrap';
 
-import InputGroup from '../../../views/shared/bootstrap/InputGroup';
-import { defaultData, Props } from './types';
+import { Props, defaultData } from './types';
+import { DebounceInput } from '../../shared';
 
 const GiphySettings: FC<Props> = ({ data = defaultData, setData }) => (
   <div className="GiphySettings">
-    <InputGroup
+    <DebounceInput
       type="text"
       label="Tag"
       id="giphyTag"
       value={data.tag}
-      onChange={(event) => setData({ ...data, tag: event.target.value })}
+      onChange={(value) => setData({ ...data, tag: value })}
+      wait={500}
     />
-    <p className="text-secondary">Separate multiple tags with a commas</p>
+    <p className="info">Separate multiple tags with a commas</p>
 
     <FormGroup>
       <CustomInput
