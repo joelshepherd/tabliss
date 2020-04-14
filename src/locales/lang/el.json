@@ -11,6 +11,8 @@
   "plugins.links.standardHint": "Κάντε κλικ για να επισκεφθείτε",
   "plugins.search.placeholder": "Πληκτρολογήστε για να αναζητήσετε",
   "plugins.unsplash.photoLink": "Φωτογραφία",
+  "plugins.weather.high": "High",
+  "plugins.weather.low": "Low",
   "settings": "Settings",
   "settings.translationCredits": "Greek Translation by @Damian96",
   "widgets": "Widgets"

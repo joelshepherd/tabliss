@@ -11,6 +11,8 @@
   "plugins.links.standardHint": "點擊開啟",
   "plugins.search.placeholder": "輸入關鍵字進行搜尋",
   "plugins.unsplash.photoLink": "圖片來源",
+  "plugins.weather.high": "High",
+  "plugins.weather.low": "Low",
   "settings": "設定",
   "settings.translationCredits": "Traditional Chinese by Peter Chen (petercpg)",
   "widgets": "小工具"

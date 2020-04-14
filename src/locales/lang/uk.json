@@ -11,6 +11,8 @@
   "plugins.links.standardHint": "Клікніть щоб відкрити",
   "plugins.search.placeholder": "Введіть запит",
   "plugins.unsplash.photoLink": "Фото",
+  "plugins.weather.high": "High",
+  "plugins.weather.low": "Low",
   "settings": "Settings",
   "settings.translationCredits": "Перевів на українську Олексій Лозов'ягін",
   "widgets": "Віджети"

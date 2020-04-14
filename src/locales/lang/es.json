@@ -11,6 +11,8 @@
   "plugins.links.standardHint": "Click para ir al sitio",
   "plugins.search.placeholder": "Escribe aquí para buscar",
   "plugins.unsplash.photoLink": "Foto",
+  "plugins.weather.high": "High",
+  "plugins.weather.low": "Low",
   "settings": "Settings",
   "settings.translationCredits": "Spanish translation by Gastón Alegre Stotzer",
   "widgets": "Widgets"

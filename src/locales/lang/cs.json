@@ -11,6 +11,8 @@
   "plugins.links.standardHint": "Kliněte pro navštívení",
   "plugins.search.placeholder": "Hledat..",
   "plugins.unsplash.photoLink": "Fotografie",
+  "plugins.weather.high": "High",
+  "plugins.weather.low": "Low",
   "settings": "Settings",
   "settings.translationCredits": "Czech translation by Petr Schmidt",
   "widgets": "Widgets"

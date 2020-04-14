@@ -11,6 +11,8 @@
   "plugins.links.standardHint": "Clique para visitar",
   "plugins.search.placeholder": "Pesquisar",
   "plugins.unsplash.photoLink": "Foto",
+  "plugins.weather.high": "High",
+  "plugins.weather.low": "Low",
   "settings": "Settings",
   "settings.translationCredits": "Traduzido por Tiago Carneiro",
   "widgets": "Widgets"

@@ -11,6 +11,8 @@
   "plugins.links.standardHint": "点击以访问",
   "plugins.search.placeholder": "输入要搜索的关键字",
   "plugins.unsplash.photoLink": "本图片链接",
+  "plugins.weather.high": "High",
+  "plugins.weather.low": "Low",
   "settings": "Settings",
   "settings.translationCredits": " ",
   "widgets": "Widgets"

@@ -11,6 +11,8 @@
   "plugins.links.standardHint": "Kattintson ide megtekintéséhez",
   "plugins.search.placeholder": "Gépeld be a keresést",
   "plugins.unsplash.photoLink": "Fotó",
+  "plugins.weather.high": "High",
+  "plugins.weather.low": "Low",
   "settings": "Settings",
   "settings.translationCredits": " ",
   "widgets": "Widgets"

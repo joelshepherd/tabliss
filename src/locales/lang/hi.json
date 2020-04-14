@@ -11,6 +11,8 @@
   "plugins.links.standardHint": "साइट पर जाने के लिए यहाँ क्लिक करें",
   "plugins.search.placeholder": "खोजने के लिए Enter दबाएँ",
   "plugins.unsplash.photoLink": "चित्र",
+  "plugins.weather.high": "High",
+  "plugins.weather.low": "Low",
   "settings": "Settings",
   "settings.translationCredits": "हिन्दी अनुवाद आशिष के द्वारा",
   "widgets": "Widgets"

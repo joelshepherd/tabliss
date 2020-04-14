@@ -11,6 +11,8 @@
   "plugins.links.standardHint": "Klicka för att besöka",
   "plugins.search.placeholder": "Skriv för att söka",
   "plugins.unsplash.photoLink": "Foto",
+  "plugins.weather.high": "High",
+  "plugins.weather.low": "Low",
   "settings": "Settings",
   "settings.translationCredits": "Swedish translation by Vecopotryx",
   "widgets": "Widgets"

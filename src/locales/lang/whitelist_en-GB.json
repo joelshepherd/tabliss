@@ -4,9 +4,14 @@
   "plugins.links.shortcutHint",
   "plugins.links.standardHint",
   "plugins.search.placeholder",
+  "plugins.weather.high",
+  "plugins.weather.low",
   "dashboard.settingsHint",
   "dashboard.focusHint",
   "dashboard.fullscreenHint",
   "dashboard.loadingHint",
-  "settings.translationCredits"
+  "background",
+  "settings.translationCredits",
+  "settings",
+  "widgets"
 ]
