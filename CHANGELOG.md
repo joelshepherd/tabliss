@@ -9,6 +9,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
 - Added back the font weight selector - thanks @trickypr
 
+### Changes
+
+- Making the weather forecast easier to read with negative temperatures
+
 ## [2.0.0] - 2020-04-13
 
 Tabliss has essentially been rewritten from scratch to be faster, more modern, and easier to contribute too.

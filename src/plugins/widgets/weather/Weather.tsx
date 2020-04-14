@@ -36,7 +36,7 @@ const Weather: FC<Props> = ({
         {data.name && <span>{data.name}</span>}
         <Icon name={weatherIcons[cache.icon]} />
         <span className="temperature">
-          {cache.temperatureLow}-{cache.temperatureHigh}˚
+          {cache.temperatureHigh}˚{cache.temperatureLow}˚
         </span>
       </div>
 
@@ -44,7 +44,7 @@ const Weather: FC<Props> = ({
         <div className="details">
           <dl>
             <dt>
-              {cache.apparentTemperatureLow}-{cache.apparentTemperatureHigh}˚
+              {cache.apparentTemperatureHigh}˚{cache.apparentTemperatureLow}˚
             </dt>
             <dd>Feels like</dd>
           </dl>
