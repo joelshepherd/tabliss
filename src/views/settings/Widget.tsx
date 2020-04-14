@@ -92,14 +92,14 @@ const Widget: FC<Props> = ({ plugin, onMoveDown, onMoveUp, onRemove }) => {
               </label>
 
               <label>
-                Font Weight
+                Weight
                 <select
                   value={plugin.display.fontWeight}
                   onChange={(event) =>
                     boundSetDisplay({ fontWeight: Number(event.target.value) })
                   }
                 >
-                  <option value={undefined}>None</option>
+                  <option value={undefined}>Default</option>
                   <option value={100}>Thin</option>
                   <option value={300}>Light</option>
                   <option value={400}>Regular</option>
