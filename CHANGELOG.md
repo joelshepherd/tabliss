@@ -8,6 +8,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 ### Added
 
 - Added back the font weight selector - thanks @trickypr
+- Added back the slight fade in on load
 
 ### Changes
 

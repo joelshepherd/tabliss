@@ -25,6 +25,7 @@ const Image: FC<Props> = ({ cache = defaultCache }) => {
   return (
     <Backdrop
       className="Image fullscreen"
+      ready={Boolean(url)}
       style={{ backgroundImage: url && `url(${url})` }}
     />
   );
