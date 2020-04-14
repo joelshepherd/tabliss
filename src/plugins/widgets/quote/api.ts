@@ -79,8 +79,12 @@ export async function getQuote(
   const threeDots = new RegExp(/\.{3,}/, 'g');
   quote.quote = quote.quote.replace(threeDots, '…');
 
+  // We replace all series of spaces by a single one.
+  const spaces = new RegExp(/\s{2,}/, 'g');
+  quote.quote = quote.quote.replace(spaces, ' ');
+
   // We replace all dashes between whitespace characters by a proper em dash (—).
-  const dash = new RegExp(/\s+-\s+/, 'g');
+  const dash = new RegExp(/\s-\s/, 'g');
   quote.quote = quote.quote.replace(dash, '—');
 
   // We add a period at the end of the quote if need be.
