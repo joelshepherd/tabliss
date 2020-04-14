@@ -5,9 +5,13 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
-## Added
+### Added
 
-- Labels for the tempurates in the weather widget
+- Labels for the temperatures in the weather widget
+
+### Fixed
+
+- Styling of quick links on small screens (and in general)
 
 ## [2.0.1] - 2020-04-14
 

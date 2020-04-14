@@ -22,7 +22,10 @@ const Links: FC<Props> = ({ data = defaultData }) => {
   return (
     <div
       className="Links"
-      style={{ gridTemplateColumns: '1fr '.repeat(data.columns) }}
+      style={{
+        gridTemplateColumns: '1fr '.repeat(data.columns),
+        textAlign: data.columns > 1 ? 'left' : 'inherit',
+      }}
     >
       {data.visible || visible ? (
         data.links.map((link, index) => (
