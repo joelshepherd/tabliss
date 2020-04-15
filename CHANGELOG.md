@@ -7,6 +7,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
 ### Fixed
 
+- An interactions between the cache and custom time zones that would refresh the background constantly
 - Added more spacing to temperatures in weather widget to be less confusing
 
 ## [2.0.2] - 2020-04-14
