@@ -52,7 +52,7 @@ const Weather: FC<Props> = ({
         {data.name && <span>{data.name}</span>}
         <Icon name={weatherIcons[cache.icon]} />
         <span className="temperature">
-          <span title={translated.high}>{cache.temperatureHigh}˚</span>
+          <span title={translated.high}>{cache.temperatureHigh}˚</span>{' '}
           <span title={translated.low}>{cache.temperatureLow}˚</span>
         </span>
       </div>
@@ -63,7 +63,7 @@ const Weather: FC<Props> = ({
             <dt>
               <span title={translated.high}>
                 {cache.apparentTemperatureHigh}˚
-              </span>
+              </span>{' '}
               <span title={translated.low}>
                 {cache.apparentTemperatureLow}˚
               </span>

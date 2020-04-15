@@ -14,7 +14,7 @@ const GiphySettings: FC<Props> = ({ data = defaultData, setData }) => (
         wait={500}
       />
     </label>
-    <p className="info">Separate multiple tags with a commas</p>
+    <p className="info">Separate multiple tags with a comma</p>
 
     <label>
       <input
