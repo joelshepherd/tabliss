@@ -22,8 +22,8 @@ export async function getCurrentGames(loader: API['loader']) {
     },
     body: JSON.stringify({ query: query(getEstString(new Date())) }),
   })
-    .then(res => res.json())
+    .then((res) => res.json())
     .finally(() => loader.pop());
 
-  return data ? data.schedule : [];
+  return { timestamp: Date.now(), games: data ? data.schedule : [] };
 }

@@ -26,7 +26,7 @@ const StoreError: FC<Props> = ({ error }) => {
         too large.
       </p>
       <p>
-        Resetting Tabliss to default may help. Otherwise contact{' '}
+        Resetting to default or reinstalling Tabliss may help. Otherwise contact{' '}
         <a href="mailto:support@tabliss.io">support@tabliss.io</a> if you are
         unable to solve the issue.
       </p>

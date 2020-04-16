@@ -10,7 +10,7 @@ export function useCachedEffect(
   expires: Date | number,
   deps: unknown[],
 ) {
-  const time = useTime();
+  const time = useTime('absolute');
   const prevDeps = useRef(deps);
   const prevExpires = useRef<Date | number>();
 
@@ -63,7 +63,7 @@ export function useRotatingCache<T>(
   }, [timeout]);
 
   // Rotate cache on timeout
-  const time = useTime().getTime();
+  const time = useTime('absolute').getTime();
   useEffect(() => {
     if (cache && timeout !== 0 && time > cache.rotated + timeout) {
       rotateCache();

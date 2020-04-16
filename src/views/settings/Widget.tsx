@@ -85,21 +85,21 @@ const Widget: FC<Props> = ({ plugin, onMoveDown, onMoveUp, onRemove }) => {
                 <input
                   type="text"
                   value={plugin.display.fontFamily}
-                  onChange={event =>
+                  onChange={(event) =>
                     boundSetDisplay({ fontFamily: event.target.value })
                   }
                 />
               </label>
 
-              {/* <label>
-                Font Weight
+              <label>
+                Weight
                 <select
                   value={plugin.display.fontWeight}
-                  onChange={event =>
+                  onChange={(event) =>
                     boundSetDisplay({ fontWeight: Number(event.target.value) })
                   }
                 >
-                  <option value={undefined}>None</option>
+                  <option value={undefined}>Default</option>
                   <option value={100}>Thin</option>
                   <option value={300}>Light</option>
                   <option value={400}>Regular</option>
@@ -107,14 +107,14 @@ const Widget: FC<Props> = ({ plugin, onMoveDown, onMoveUp, onRemove }) => {
                   <option value={700}>Bold</option>
                   <option value={900}>Black</option>
                 </select>
-              </label> */}
+              </label>
 
               <label>
                 Colour
                 <input
                   type="color"
                   value={plugin.display.colour}
-                  onChange={event =>
+                  onChange={(event) =>
                     boundSetDisplay({ colour: event.target.value })
                   }
                 />

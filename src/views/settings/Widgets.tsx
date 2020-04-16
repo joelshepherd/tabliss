@@ -47,7 +47,6 @@ const Widgets: FC = () => {
         </select>
       </label>
 
-      {active.length === 0 && <p>No widgets selected.</p>}
       {active.map((plugin, index) => (
         <Widget
           key={plugin.id}

@@ -42,6 +42,7 @@ const Display: FC<Props> = ({ icon, name, number, url }) => {
   return (
     <a href={url} rel="noopener noreferrer" title={title}>
       {icon && <Icon name={icon} />}
+      {icon && name && ' '}
       {name}
       {!name && !icon && displayUrl(url)}
     </a>

@@ -22,17 +22,20 @@ export interface Conditions {
     title: string;
     description: string;
   }[];
-  apparentTemperature: number;
+  apparentTemperatureHigh: number;
+  apparentTemperatureLow: number;
+  expiresAt: number;
   humidity: number;
   icon: ConditionIcon;
   precipProbability: number;
-  temperature: number;
+  temperatureHigh: number;
+  temperatureLow: number;
   precipType?: number;
-  timestamp: number;
   units: string;
 }
 
 export type Data = Coordinates & {
+  name?: string;
   showDetails: boolean;
   units: string;
 };

@@ -11,6 +11,9 @@
   "plugins.links.standardHint": "Cliqueu per visitar",
   "plugins.search.placeholder": "Escriviu la cerca",
   "plugins.unsplash.photoLink": "Foto",
+  "plugins.weather.high": "High",
+  "plugins.weather.low": "Low",
+  "settings": "Settings",
   "settings.translationCredits": " ",
   "widgets": "Ginys"
 }

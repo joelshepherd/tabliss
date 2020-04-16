@@ -3,16 +3,20 @@ import { utcToZonedTime } from 'date-fns-tz';
 
 import { useSelector } from '../store';
 
-function getTime(timeZone?: string) {
-  if (timeZone) {
-    return utcToZonedTime(new Date(), timeZone);
-  }
+type Time = {
+  absolute: Date;
+  zoned: Date;
+};
 
-  return new Date();
+function getTime(timeZone?: string): Time {
+  const absolute = new Date();
+  const zoned = timeZone ? utcToZonedTime(absolute, timeZone) : absolute;
+
+  return { absolute, zoned };
 }
 
 // `defaultValue` here is irrelevant as it will be replaced in the provider
-export const TimeContext = createContext(new Date());
+export const TimeContext = createContext(getTime());
 
 const TimeProvider: FC = ({ children }) => {
   const timeZone = useSelector(state => state.data.timeZone);

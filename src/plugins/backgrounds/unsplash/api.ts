@@ -2,8 +2,10 @@ import { API } from '../../types';
 import { officialCollection, UNSPLASH_API_KEY } from './constants';
 import { Image, Data } from './types';
 
-export const getImage = async function(
-  settings: Pick<Data, 'by' | 'collections' | 'featured' | 'search'>,
+type Config = Pick<Data, 'by' | 'collections' | 'featured' | 'search'>;
+
+export async function getImage(
+  settings: Config,
   loader: API['loader'],
 ): Promise<Image> {
   // Setup
@@ -42,4 +44,4 @@ export const getImage = async function(
     user_name: res.user.name,
     user_link: res.user.links.html,
   };
-};
+}
