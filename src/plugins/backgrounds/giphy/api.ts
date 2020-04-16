@@ -12,7 +12,7 @@ export async function getGif(
   { tag, nsfw }: Config,
   loader: API['loader'],
 ): Promise<Gif> {
-  const tags = tag.split(',').map(t => t.trim());
+  const tags = tag.split(',').map((t) => t.trim());
   const randomTag = tags[Math.floor(Math.random() * tags.length)];
 
   const request = new Request(
@@ -20,7 +20,7 @@ export async function getGif(
       `?api_key=${GIPHY_API_KEY}` +
       '&rating=' +
       (nsfw ? 'r' : 'g') +
-      (randomTag ? `&tag=${randomTag}` : ''),
+      (randomTag ? `&tag=${encodeURIComponent(randomTag)}` : ''),
   );
 
   loader.push();
