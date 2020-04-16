@@ -45,10 +45,10 @@ const ImageSettings: FC<Props> = ({ cache = defaultCache, setCache }) => {
       </div>
 
       {largeImages && (
-        <p className="info">Large images may affect performance</p>
+        <p className="info">Large images may affect performance.</p>
       )}
 
-      <p className="info">Images do not sync between browers.</p>
+      <p className="info">Images do not sync between browsers.</p>
     </div>
   );
 };
