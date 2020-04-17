@@ -18,6 +18,10 @@ const TodoItem: FC<Props> = ({ item, onDelete, onUpdate, onToggle }) => {
   useLayoutEffect(() => {
     if (ref.current) {
       ref.current.innerText = item.contents;
+
+      if (item.contents === '') {
+        ref.current.focus();
+      }
     }
   }, [item.contents]);
 

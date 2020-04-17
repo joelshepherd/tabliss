@@ -5,6 +5,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+## Changed
+
+- Simplifying add todo interface
+
 ## Fixed
 
 - Alignment of multi-column quick links when they are narrower than other widgets in their slot

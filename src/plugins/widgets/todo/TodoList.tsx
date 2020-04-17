@@ -12,9 +12,15 @@ interface Props {
   onRemove(id: string): void;
 }
 
-const TodoList: FC<Props> = ({ items, onToggle, onUpdate, onRemove, show }) => (
+const TodoList: FC<Props> = ({
+  items,
+  onToggle,
+  onUpdate,
+  onRemove,
+  show = 0,
+}) => (
   <div className="TodoList">
-    {items.slice(0, show).map(item => (
+    {items.slice(-show).map((item) => (
       <TodoItem
         key={item.id}
         item={item}
