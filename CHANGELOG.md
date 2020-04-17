@@ -12,6 +12,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 ## Fixed
 
 - Alignment of multi-column quick links when they are narrower than other widgets in their slot
+- Search box now properly respects light mode
 
 ## [2.0.3] - 2020-04-15
 
