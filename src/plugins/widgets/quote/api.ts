@@ -62,6 +62,36 @@ export async function getQuote(
 
   loader.pop();
 
+  // We remove whitespaces at the beginning and the end of the quote.
+  quote.quote = quote.quote.trim();
+
+  // We change all straight quotes (' and ") following a non-whitespace character by
+  // a closing curvy quote (’).
+  const singleStraightQuote = new RegExp(/(\S)'|"/, 'g');
+  quote.quote = quote.quote.replace(singleStraightQuote, '$1’');
+
+  // We now change all remaining straight quotes (all following a whitespace
+  // character) by an opening curvy quote (‘).
+  const openingStraightQuote = new RegExp(/(^|\s)'|"/, 'g');
+  quote.quote = quote.quote.replace(openingStraightQuote, '$1‘');
+
+  // We replace all series of three dots or more by a proper ellipsis (…).
+  const threeDots = new RegExp(/\.{3,}/, 'g');
+  quote.quote = quote.quote.replace(threeDots, '…');
+
+  // We replace all series of spaces by a single one.
+  const spaces = new RegExp(/\s{2,}/, 'g');
+  quote.quote = quote.quote.replace(spaces, ' ');
+
+  // We replace all dashes between whitespace characters by a proper em dash (—).
+  const dash = new RegExp(/\s-\s/, 'g');
+  quote.quote = quote.quote.replace(dash, '—');
+
+  // We add a period at the end of the quote if need be.
+  const closingPunctuation = new RegExp(/[.\?!…’]$/);
+  if (!quote.quote.match(closingPunctuation))
+    quote.quote = quote.quote + '.';
+
   return {
     ...quote,
     timestamp: Date.now(),
