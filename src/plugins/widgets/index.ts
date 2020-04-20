@@ -7,6 +7,7 @@ import message from './message';
 import nba from './nba';
 import quote from './quote';
 import search from './search';
+import rss from './rss';
 import time from './time';
 import todo from './todo';
 import weather from './weather';
@@ -20,6 +21,7 @@ export const widgetConfigs = [
   nba,
   quote,
   search,
+  rss,
   time,
   todo,
   weather,

@@ -29,6 +29,7 @@
     "redux": "^4.0.5",
     "redux-persist": "^6.0.0",
     "redux-persist-webextension-storage": "^1.0.2",
+    "rss-parser": "^3.7.6",
     "tlds": "^1.207.0",
     "uuid": "^7.0.3"
   },
