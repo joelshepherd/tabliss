@@ -9,10 +9,10 @@ type Props = {
   time: Date;
 };
 
-const Digital: FC<Props> = ({ time, hour12, showMinutes, showSeconds }) => (
+const Digital: FC<Props> = (props) => (
   <div className="Time Digital">
     <h1>
-      <IntlTime time={time} hour12={hour12} showMinutes={showMinutes} showSeconds={showSeconds} />
+      <IntlTime {...props} />
     </h1>
   </div>
 );
