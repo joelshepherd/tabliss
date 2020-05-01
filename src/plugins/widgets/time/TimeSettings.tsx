@@ -1,10 +1,27 @@
 import React, { FC } from 'react';
 
 import { Props, defaultData } from './types';
+import TimeZoneInput from '../../../views/shared/timeZone/TimeZoneInput';
 
 const TimeSettings: FC<Props> = ({ data = defaultData, setData }) => (
   <div className="TimeSettings">
     <label>
+      Name
+      <input
+        type="text"
+        value={data.name}
+        placeholder="Optional name"
+        onChange={(event) => setData({ ...data, name: event.target.value })}
+      />
+    </label>
+    <label>
+      <label>
+        Time Zone
+        <TimeZoneInput
+          timeZone={data.timeZone}
+          onChange={(timeZone) => setData({ ...data, timeZone })}
+        />
+      </label>
       <input
         type="radio"
         checked={data.mode === 'analogue'}
