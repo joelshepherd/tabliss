@@ -18,10 +18,10 @@ const Time: FC<Props> = ({ data = defaultData }) => {
     showSeconds,
     timeZone,
   } = data;
-  let time = useTime();
+  let time = useTime(timeZone ? 'absolute' : 'zoned');
 
   if (timeZone) {
-    time = utcToZonedTime(new Date(time), timeZone);
+    time = utcToZonedTime(time, timeZone);
   }
 
   return (
