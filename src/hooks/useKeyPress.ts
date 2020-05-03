@@ -17,7 +17,8 @@ export function useKeyPress(
   const handler = (event: KeyboardEvent) => {
     if (
       detectKeys.includes(event.key) &&
-      !(ignoreInputEvents && isInputEvent(event))
+      !(ignoreInputEvents && isInputEvent(event)) &&
+      !(event.ctrlKey || event.metaKey || event.altKey)
     ) {
       callback(event);
     }
