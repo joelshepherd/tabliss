@@ -15,6 +15,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 - Alignment of multi-column quick links when they are narrower than other widgets in their slot
 - Search box now properly respects light mode
 - Midnight showing as "24:00" in Chrome when using 24-hour time - thanks @trickypr!
+- Ignore keyboard shortcuts including meta, control or alt keys
 
 ## [2.0.3] - 2020-04-15
 
