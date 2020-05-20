@@ -9,6 +9,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
 - Improved typography in quotes - thanks @apollisa
 - Simplifying add todo interface
+- Toggle AM / PM for 24 hour time
 
 ## Fixed
 
