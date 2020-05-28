@@ -45,7 +45,7 @@ const Input: FC<Props> = props => (
       URL
       <input
         type="url"
-        value={props.url}
+        defaultValue={props.url}
         onChange={event => props.onChange({ url: event.target.value })}
       />
     </label>
@@ -54,7 +54,7 @@ const Input: FC<Props> = props => (
       Name <span className="text--grey">(optional)</span>
       <input
         type="text"
-        value={props.name}
+        defaultValue={props.name}
         onChange={event => props.onChange({ name: event.target.value })}
       />
     </label>
