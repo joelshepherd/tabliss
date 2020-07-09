@@ -45,11 +45,9 @@ const Timer: FC<Props> = ({ data = defaultData }) => {
   return (
     <div>
       <h4>
-        {data.name} :
+        {data.name}
       </h4>
-      <h5>
-        {timerComponents.length ? timerComponents : <span>Time's up!</span>}
-      </h5>
+      {timerComponents.length ? timerComponents : <span>Time's up!</span>}
     </div>
   );
 };
