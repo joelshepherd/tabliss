@@ -4,6 +4,8 @@ import { useDispatch } from 'react-redux';
 
 import { useKeyPress } from '../../hooks';
 import { resetStore, toggleSettings } from '../../store/actions';
+import { dataStorage } from '../../store/storage';
+import { DataState } from '../../store/reducers/types';
 import { Icon } from '../shared';
 import Logo from '../shared/Logo';
 import Background from './Background';
@@ -19,6 +21,37 @@ const Settings: FC = () => {
     dispatch,
   ]);
   const handleReset = useCallback(() => dispatch(resetStore()), [dispatch]);
+  const handleExport = async () => {
+    const data = await dataStorage.getItem('persist:data');
+    const jsonData = JSON.stringify(data);
+    const url = URL.createObjectURL(new Blob([jsonData], { type: 'octet/stream' }));
+    const a = document.createElement('a');
+    document.body.appendChild(a);
+    a.style.display = 'none';
+    a.href = url;
+    a.download = 'tabliss.json';
+    a.click();
+    window.URL.revokeObjectURL(url);
+  }
+  const handleImport = () => {
+    const input = document.createElement('input');
+    document.body.appendChild(input);
+    input.type = 'file';
+    input.addEventListener('change', function () {
+      if (this.files) {
+        const file = this.files[0];
+        const reader = new FileReader();
+        reader.addEventListener('load', (event) => {
+          if (event && event.target && event.target.result) {
+            const state: DataState = JSON.parse(event.target.result as string);
+            dispatch(resetStore(state));
+          }
+        });
+        reader.readAsText(file);
+      }
+    });
+    input.click();
+  }
 
   useKeyPress(handleToggleSettings, ['Escape']);
 
@@ -47,6 +80,14 @@ const Settings: FC = () => {
           >
             Love Tabliss? Donate 😍
           </a>
+        </p>
+
+        <p>
+          <a onClick={handleExport}>Export settings</a>
+        </p>
+
+        <p>
+          <a onClick={handleImport}>Import settings</a>
         </p>
 
         <p>
