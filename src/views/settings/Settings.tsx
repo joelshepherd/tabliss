@@ -22,7 +22,7 @@ const Settings: FC = () => {
   ]);
   const handleReset = useCallback(() => dispatch(resetStore()), [dispatch]);
   const handleExport = async () => {
-    const data = await dataStorage.getItem('persist:data');
+  const { data } = useSelector((state) => state);
     const jsonData = JSON.stringify(data);
     const url = URL.createObjectURL(new Blob([jsonData], { type: 'octet/stream' }));
     const a = document.createElement('a');
