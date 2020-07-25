@@ -6,6 +6,7 @@ type Data = {
   showDate: boolean;
   showMinutes: boolean;
   showSeconds: boolean;
+  showDayPeriod?: boolean;
   timeZone?: string;
   name?: string;
 };
@@ -18,4 +19,5 @@ export const defaultData: Data = {
   showDate: false,
   showMinutes: true,
   showSeconds: false,
+  showDayPeriod: true,
 };

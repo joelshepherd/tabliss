@@ -17,6 +17,7 @@ const Time: FC<Props> = ({ data = defaultData }) => {
     showMinutes,
     showSeconds,
     timeZone,
+    showDayPeriod = true,
   } = data;
   let time = useTime(timeZone ? 'absolute' : 'zoned');
 
@@ -38,6 +39,7 @@ const Time: FC<Props> = ({ data = defaultData }) => {
           hour12={hour12}
           showMinutes={showMinutes}
           showSeconds={showSeconds}
+          showDayPeriod={showDayPeriod}
         />
       )}
       {name && <h2>{name}</h2>}
