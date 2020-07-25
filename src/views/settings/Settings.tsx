@@ -1,6 +1,6 @@
 import React, { FC, memo, useCallback } from 'react';
 import { FormattedMessage } from 'react-intl';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { useKeyPress } from '../../hooks';
 import { resetStore, toggleSettings } from '../../store/actions';
@@ -22,7 +22,7 @@ const Settings: FC = () => {
   ]);
   const handleReset = useCallback(() => dispatch(resetStore()), [dispatch]);
   const handleExport = async () => {
-  const { data } = useSelector((state) => state);
+    const { data } = useSelector((state) => state);
     const jsonData = JSON.stringify(data);
     const url = URL.createObjectURL(new Blob([jsonData], { type: 'octet/stream' }));
     const a = document.createElement('a');
