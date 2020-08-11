@@ -29,7 +29,7 @@ const Links: FC<Props> = ({ data = defaultData }) => {
     >
       {data.visible || visible ? (
         data.links.map((link, index) => (
-          <Display key={index} number={index + 1} {...link} />
+          <Display key={index} number={index + 1} linkOpenStyle={data.linkOpenStyle} {...link} />
         ))
       ) : (
         <a onClick={toggleVisible} title="Show quick links">

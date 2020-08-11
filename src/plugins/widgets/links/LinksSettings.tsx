@@ -33,6 +33,15 @@ const LinksSettings: FC<Props> = ({ data = defaultData, setData }) => {
         Links are always visible
       </label>
 
+      <label>
+        <input
+          type="checkbox"
+          checked={data.linkOpenStyle}
+          onChange={() => setData({ ...data, linkOpenStyle: !data.linkOpenStyle })}
+        />
+        Links open in a new tab
+      </label>
+
       <hr />
 
       {data.links.map((link, index) => (
