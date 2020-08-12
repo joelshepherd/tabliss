@@ -1,6 +1,6 @@
 {
   "app.pageTitle": "Новая вкладка",
-  "background": "Background",
+  "background": "Фон",
   "dashboard.focusHint": "Видимость виджетов",
   "dashboard.fullscreenHint": "Полный экран",
   "dashboard.loadingHint": "Загрузка нового контента",
@@ -11,9 +11,9 @@
   "plugins.links.standardHint": "Кликните для открытия",
   "plugins.search.placeholder": "Введите запрос",
   "plugins.unsplash.photoLink": "Фото",
-  "plugins.weather.high": "High",
-  "plugins.weather.low": "Low",
-  "settings": "Settings",
+  "plugins.weather.high": "Максимум",
+  "plugins.weather.low": "Минимум",
+  "settings": "Настройки",
   "settings.translationCredits": "Перевёл на русский Илья Бирюков",
-  "widgets": "Widgets"
+  "widgets": "Виджеты"
 }
