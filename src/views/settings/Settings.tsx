@@ -1,10 +1,9 @@
 import React, { FC, memo, useCallback } from 'react';
 import { FormattedMessage } from 'react-intl';
-import { useDispatch, useSelector } from 'react-redux';
-
+import { useDispatch } from 'react-redux';
+import { useSelector } from '../../store'
 import { useKeyPress } from '../../hooks';
 import { resetStore, toggleSettings } from '../../store/actions';
-import { dataStorage } from '../../store/storage';
 import { DataState } from '../../store/reducers/types';
 import { Icon } from '../shared';
 import Logo from '../shared/Logo';
@@ -21,8 +20,7 @@ const Settings: FC = () => {
     dispatch,
   ]);
   const handleReset = useCallback(() => dispatch(resetStore()), [dispatch]);
-  const handleExport = async () => {
-    const { data } = useSelector((state) => state);
+  const handleExport = useSelector(({ data }) => () => {
     const jsonData = JSON.stringify(data);
     const url = URL.createObjectURL(new Blob([jsonData], { type: 'octet/stream' }));
     const a = document.createElement('a');
@@ -32,7 +30,7 @@ const Settings: FC = () => {
     a.download = 'tabliss.json';
     a.click();
     window.URL.revokeObjectURL(url);
-  }
+  });
   const handleImport = () => {
     const input = document.createElement('input');
     document.body.appendChild(input);
