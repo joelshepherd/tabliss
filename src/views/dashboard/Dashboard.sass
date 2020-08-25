@@ -7,6 +7,12 @@
     a
         color: inherit
 
+    input
+        color: inherit
+        &::placeholder
+            color: inherit
+            opacity: 0.5
+
     &.light
         background-color: white
         color: #111
@@ -14,6 +20,8 @@
             fill: #111
         .theme-stroke
             stroke: #111
+        input
+            border-color: #111
 
     &.dark
         background-color: black
@@ -22,3 +30,5 @@
             fill: white
         .theme-stroke
             stroke: white
+        input
+            border-color: white

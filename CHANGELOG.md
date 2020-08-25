@@ -5,9 +5,17 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+## Changed
+
+- Improved typography in quotes - thanks @apollisa
+- Simplifying add todo interface
+- Toggle AM / PM for 12 hour time
+
 ## Fixed
 
 - Alignment of multi-column quick links when they are narrower than other widgets in their slot
+- Search box now properly respects light mode
+- Midnight showing as "24:00" in Chrome when using 24-hour time - thanks @trickypr!
 
 ## [2.0.3] - 2020-04-15
 

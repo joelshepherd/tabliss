@@ -1,12 +1,11 @@
 import React, { FC } from 'react';
 
 import { useSavedReducer, useToggle } from '../../../hooks';
-import { DownIcon, Icon, UpIcon } from '../../../views/shared';
+import { DownIcon, Icon, UpIcon, ExpandIcon } from '../../../views/shared';
 import { addTodo, removeTodo, toggleTodo, updateTodo } from './actions';
 import { reducer, State } from './reducer';
-import { Props, defaultData } from './types';
-import TodoInput from './TodoInput';
 import TodoList from './TodoList';
+import { defaultData, Props } from './types';
 
 const Todo: FC<Props> = ({ data = defaultData, setData }) => {
   const [showCompleted, toggleShowCompleted] = useToggle();
@@ -29,7 +28,9 @@ const Todo: FC<Props> = ({ data = defaultData, setData }) => {
       />
 
       <div>
-        <TodoInput onCreate={(...args) => dispatch(addTodo(...args))} />{' '}
+        <a onClick={() => dispatch(addTodo())}>
+          <ExpandIcon />
+        </a>{' '}
         <a onClick={toggleShowCompleted}>
           <Icon name={showCompleted ? 'check-circle' : 'circle'} />
         </a>{' '}

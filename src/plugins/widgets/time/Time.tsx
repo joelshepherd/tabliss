@@ -6,10 +6,24 @@ import Analogue from './Analogue';
 import Digital from './Digital';
 import { Props, defaultData } from './types';
 import './Time.sass';
+import { utcToZonedTime } from 'date-fns-tz';
 
 const Time: FC<Props> = ({ data = defaultData }) => {
-  const { hour12, mode, showDate, showMinutes, showSeconds } = data;
-  const time = useTime();
+  const {
+    hour12,
+    mode,
+    name,
+    showDate,
+    showMinutes,
+    showSeconds,
+    timeZone,
+    showDayPeriod = true,
+  } = data;
+  let time = useTime(timeZone ? 'absolute' : 'zoned');
+
+  if (timeZone) {
+    time = utcToZonedTime(time, timeZone);
+  }
 
   return (
     <div className="Time">
@@ -25,8 +39,10 @@ const Time: FC<Props> = ({ data = defaultData }) => {
           hour12={hour12}
           showMinutes={showMinutes}
           showSeconds={showSeconds}
+          showDayPeriod={showDayPeriod}
         />
       )}
+      {name && <h2>{name}</h2>}
 
       {showDate && (
         <>

@@ -24,6 +24,10 @@ export function reducer(state: State, action: Action) {
       );
 
     case 'UPDATE_TODO':
+      if (action.data.contents === '') {
+        return state.filter(todo => todo.id !== action.data.id);
+      }
+
       return state.map(todo =>
         todo.id === action.data.id
           ? { ...todo, contents: action.data.contents }
