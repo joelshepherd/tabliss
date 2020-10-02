@@ -1,0 +1,16 @@
+{
+  "app.pageTitle": "Taba ùr",
+  "background": "Cùl-fraon",
+  "dashboard.focusHint": "Toglaich widgets",
+  "dashboard.fullscreenHint": "Toglaich làn-sgrìn",
+  "dashboard.loadingHint": "Ag luchdachadh subsaint ùr",
+  "dashboard.settingsHint": "Gnàthaich Tabliss",
+  "plugin.greeting.withName": "{hour, select,\n      0 {Cadal math dhut, a {name}!}\n      1 {Cadal math dhut, a {name}!}\n      2 {Cadal math dhut, a {name}!}\n      3 {Dùisg, a {name}}\n      4 {Dùisg, a {name}}\n      5 {Dùisg, a {name}}\n      6 {Madainn mhath, a {name}}\n      7 {Madainn mhath, a {name}}\n      8 {Madainn mhath, a {name}}\n      9 {Madainn mhath, a {name}}\n      10 {Halò, a {name}}\n      11 {Halò, a {name}}\n      12 {Halò, a {name}}\n      13 {Halò, a {name}}\n      14 {Feasgar math, a {name}}\n      15 {Feasgar math, a {name}}\n      16 {Feasgar math, a {name}}\n      17 {Feasgar math, a {name}}\n      18 {Feasgar math, a {name}}\n      19 {Feasgar math, a {name}}\n      20 {Feasgar math, a {name}}\n      21 {Feasgar math, a {name}}\n      22 {Oidhche mhath, a {name}}\n      23 {Oidhche math, a {name}}\n    }",
+  "plugin.greeting.withoutName": "{hour, select,\n      0 {Cadal math dhut!}\n      1 {Cadal math dhut!}\n      2 {Cadal math dhut!}\n      3 {Dùisg}\n      4 {Dùisg}\n      5 {Dùisg}\n      6 {Madainn mhath}\n      7 {Madainn mhath}\n      8 {Madainn mhath}\n      9 {Madainn mhath}\n      10 {Halò}\n      11 {Halò}\n      12 {Halò}\n      13 {Halò}\n      14 {Feasgar math}\n      15 {Feasgar math}\n      16 {Feasgar math}\n      17 {Feasgar math}\n      18 {Feasgar math}\n      19 {Feasgar math}\n      20 {Feasgar math}\n      21 {Feasgar math}\n      22 {Oidhche mhath}\n      23 {Oidhche mhath}\n    }",
+  "plugins.links.shortcutHint": "Put air {number} no briog air do tadhal",
+  "plugins.links.standardHint": "Briog air do tadhal",
+  "plugins.search.placeholder": "Cuir do lorg",
+  "plugins.unsplash.photoLink": "Dealbh",
+  "settings.translationCredits": "Eadar-theangachadh le pruadh agus le talondearg",
+  "widgets": "Widgets"
+}
