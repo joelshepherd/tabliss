@@ -62,10 +62,9 @@ const config = {
   },
   plugins: [
     new CleanWebpackPlugin(),
-    new CopyWebpackPlugin([
-      { from: 'target/shared' },
-      { from: `target/${buildTarget}` },
-    ]),
+    new CopyWebpackPlugin({
+      patterns: [{ from: 'target/shared' }, { from: `target/${buildTarget}` }],
+    }),
     new HtmlWebpackPlugin({
       template: `./target/${buildTarget}/index.html`,
     }),
