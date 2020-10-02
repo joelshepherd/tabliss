@@ -115,6 +115,9 @@ const System: FC = () => {
           <option value="sv" title="Swedish">
             Svenska
           </option>
+          <option value="ta" title="Tamil">
+            தமிழ்
+          </option>
           <option value="tr" title="Turkish">
             Türkçe
           </option>
