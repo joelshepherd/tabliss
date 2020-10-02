@@ -2,11 +2,24 @@ import React, { FC, HTMLAttributes } from 'react';
 
 import { useSelector } from '../../store';
 
-type Props = HTMLAttributes<HTMLDivElement>;
+type Props = HTMLAttributes<HTMLDivElement> & {
+  ready?: boolean;
+};
 
-const Backdrop: FC<Props> = ({ children, style = {}, ...rest }) => {
-  const background = useSelector(state =>
-    state.data.backgrounds.find(plugin => plugin.active),
+const Backdrop: FC<Props> = ({
+  children,
+  ready = true,
+  style = {},
+  ...rest
+}) => {
+  // Lag one frame behind to show the animation
+  const [show, setShow] = React.useState(ready);
+  React.useLayoutEffect(() => {
+    setImmediate(() => setShow(ready));
+  }, [ready]);
+
+  const background = useSelector((state) =>
+    state.data.backgrounds.find((plugin) => plugin.active),
   );
 
   if (!background) {
@@ -16,6 +29,8 @@ const Backdrop: FC<Props> = ({ children, style = {}, ...rest }) => {
   const {
     display: { blur, luminosity },
   } = background;
+
+  style = { ...style };
 
   if (blur) {
     style['filter'] = `blur(${blur}px)`;
@@ -29,7 +44,11 @@ const Backdrop: FC<Props> = ({ children, style = {}, ...rest }) => {
   return (
     <div
       className="fullscreen"
-      style={{ backgroundColor: luminosity > 0 ? 'white' : 'black' }}
+      style={{
+        backgroundColor: luminosity > 0 ? 'white' : 'black',
+        opacity: show ? 1 : 0,
+        transition: 'opacity 200ms ease-in-out',
+      }}
     >
       <div style={style} {...rest}>
         {children}

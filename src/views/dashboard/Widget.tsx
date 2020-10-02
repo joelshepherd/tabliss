@@ -7,10 +7,10 @@ const Widget: FC<WidgetDisplay> = ({
   colour,
   fontFamily,
   fontSize = 24,
-  fontWeight = 400,
+  fontWeight,
 }) => (
   <div
-    className="Widget"
+    className={`Widget ${fontWeight ? 'weight-override' : ''}`}
     style={{
       color: colour,
       fontFamily,

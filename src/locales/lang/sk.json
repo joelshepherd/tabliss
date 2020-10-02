@@ -11,6 +11,9 @@
   "plugins.links.standardHint": "Kliknite pre navštívenie",
   "plugins.search.placeholder": "Hľadať",
   "plugins.unsplash.photoLink": "Fotografia",
+  "plugins.weather.high": "High",
+  "plugins.weather.low": "Low",
+  "settings": "Settings",
   "settings.translationCredits": "Slovak translation by Marko Řeháček",
   "widgets": "Widgets"
 }

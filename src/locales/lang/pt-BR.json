@@ -1,0 +1,19 @@
+{
+  "app.pageTitle": "Nova Aba",
+  "background": "Background",
+  "dashboard.focusHint": "Mostrar/Esconder widgets",
+  "dashboard.fullscreenHint": "Tela cheia",
+  "dashboard.loadingHint": "Carregar conteúdo novo",
+  "dashboard.settingsHint": "Personalizar Tabliss",
+  "plugin.greeting.withName": "{hour, select,\n      0 {Durma bem, {name}}\n      1 {Durma bem, {name}}\n      2 {Durma bem, {name}}\n      3 {Vamos levantar, {name}}\n      4 {Vamos levantar, {name}}\n      5 {Vamos levantar, {name}}\n      6 {Bom dia, {name}}\n      7 {Bom dia, {name}}\n      8 {Bom dia, {name}}\n      9 {Bom dia, {name}}\n      10 {Olá, {name}}\n      11 {Olá, {name}}\n      12 {Olá, {name}}\n      13 {Olá, {name}}\n      14 {Boa tarde, {name}}\n      15 {Boa tarde, {name}}\n      16 {Boa tarde, {name}}\n      17 {Boa tarde, {name}}\n      18 {Boa noite, {name}}\n      19 {Boa noite, {name}}\n      20 {Boa noite, {name}}\n      21 {Boa noite, {name}}\n      22 {Boa noite, {name}}\n      23 {Boa noite, {name}}\n    }",
+  "plugin.greeting.withoutName": "{hour, select,\n      0 {Durma bem}\n      1 {Durma bem}\n      2 {Durma bem}\n      3 {Vamos levantar}\n      4 {Vamos levantar}\n      5 {Vamos levantar}\n      6 {Bom dia}\n      7 {Bom dia}\n      8 {Bom dia}\n      9 {Bom dia}\n      10 {Olá}\n      11 {Olá}\n      12 {Olá}\n      13 {Olá}\n      14 {Boa tarde}\n      15 {Boa tarde}\n      16 {Boa tarde}\n      17 {Boa tarde}\n      18 {Boa noite}\n      19 {Boa noite}\n      20 {Boa noite}\n      21 {Boa noite}\n      22 {Boa noite}\n      23 {Boa noite}\n    }",
+  "plugins.links.shortcutHint": "Aperte {number} ou clique para visitar",
+  "plugins.links.standardHint": "Clique para visitar",
+  "plugins.search.placeholder": "Digite para pesquisar",
+  "plugins.unsplash.photoLink": "Foto",
+  "plugins.weather.high": "High",
+  "plugins.weather.low": "Low",
+  "settings": "Settings",
+  "settings.translationCredits": "Traduzido por Adilson Santos",
+  "widgets": "Widgets"
+}

@@ -1,6 +1,6 @@
 import { v4 as generateId } from 'uuid';
 
-export function addTodo(contents: string) {
+export function addTodo(contents = '') {
   return {
     type: 'ADD_TODO',
     data: {

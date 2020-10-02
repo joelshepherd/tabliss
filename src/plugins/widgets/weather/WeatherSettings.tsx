@@ -11,6 +11,16 @@ const WeatherSettings: FC<Props> = ({ data = defaultData, setData }) => (
       onChange={location => setData({ ...data, ...location })}
     />
 
+    <label>
+      Name
+      <input
+        type="text"
+        value={data.name}
+        placeholder="Optional name"
+        onChange={event => setData({ ...data, name: event.target.value })}
+      />
+    </label>
+
     <hr />
 
     <label>

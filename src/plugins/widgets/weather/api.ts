@@ -24,11 +24,12 @@ export async function getForecast(
 
   return {
     ...body.data,
-    apparentTemperature: Math.round(body.data.apparentTemperature),
+    apparentTemperatureHigh: Math.round(body.data.apparentTemperatureHigh),
+    apparentTemperatureLow: Math.round(body.data.apparentTemperatureLow),
     humidity: Math.round(body.data.humidity * 100),
     precipProbability: Math.round(body.data.precipProbability * 100),
-    temperature: Math.round(body.data.temperature),
-    timestamp: Date.now(),
+    temperatureHigh: Math.round(body.data.temperatureHigh),
+    temperatureLow: Math.round(body.data.temperatureLow),
   };
 }
 

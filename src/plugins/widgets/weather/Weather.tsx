@@ -1,13 +1,25 @@
 import React, { FC } from 'react';
+import { defineMessages } from 'react-intl';
 
-import { useCachedEffect } from '../../../hooks';
+import { useCachedEffect, useFormatMessages } from '../../../hooks';
 import { Icon } from '../../../views/shared';
 import { getForecast } from './api';
 import { weatherIcons } from './icons';
-import { Props, defaultData } from './types';
+import { defaultData, Props } from './types';
 import './Weather.sass';
 
-const EXPIRE_IN = 15 * 60 * 1000; // 15 minutes
+const messages = defineMessages({
+  high: {
+    id: 'plugins.weather.high',
+    description: 'High for temperature high',
+    defaultMessage: 'High',
+  },
+  low: {
+    id: 'plugins.weather.low',
+    description: 'Low for temperature low',
+    defaultMessage: 'Low',
+  },
+});
 
 const Weather: FC<Props> = ({
   cache,
@@ -16,11 +28,13 @@ const Weather: FC<Props> = ({
   setCache,
   setData,
 }) => {
+  const translated = useFormatMessages(messages);
+
   useCachedEffect(
     () => {
       getForecast(data, loader).then(setCache);
     },
-    cache ? cache.timestamp + EXPIRE_IN : 0,
+    cache ? cache.expiresAt : 0,
     [data.latitude, data.latitude, data.units],
   );
 
@@ -35,12 +49,31 @@ const Weather: FC<Props> = ({
         onClick={() => setData({ ...data, showDetails: !data.showDetails })}
         title="Toggle weather details"
       >
+        {data.name && <span>{data.name}</span>}
         <Icon name={weatherIcons[cache.icon]} />
-        <span className="temperature">{cache.temperature}˚</span>
+        <span className="temperature">
+          <span title={translated.high} className="high">
+            {cache.temperatureHigh}˚
+          </span>{' '}
+          <span title={translated.low} className="low">
+            {cache.temperatureLow}˚
+          </span>
+        </span>
       </div>
 
       {data.showDetails && (
         <div className="details">
+          <dl>
+            <dt>
+              <span title={translated.high} className="high">
+                {cache.apparentTemperatureHigh}˚
+              </span>{' '}
+              <span title={translated.low} className="low">
+                {cache.apparentTemperatureLow}˚
+              </span>
+            </dt>
+            <dd>Feels like</dd>
+          </dl>
           <dl>
             <dt>{cache.humidity}%</dt>
             <dd>Humidity</dd>
@@ -48,10 +81,6 @@ const Weather: FC<Props> = ({
           <dl>
             <dt>{cache.precipProbability}%</dt>
             <dd>Chance of {cache.precipType || 'rain'}</dd>
-          </dl>
-          <dl>
-            <dt>{cache.apparentTemperature}˚</dt>
-            <dd>Feels like</dd>
           </dl>
         </div>
       )}

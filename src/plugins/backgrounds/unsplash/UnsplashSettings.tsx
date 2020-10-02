@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 
 import { Props, defaultData } from './types';
+import { DebounceInput } from '../../shared';
 
 const UnsplashSettings: FC<Props> = ({ data = defaultData, setData }) => (
   <div className="UnsplashSettings">
@@ -42,13 +43,12 @@ const UnsplashSettings: FC<Props> = ({ data = defaultData, setData }) => (
     {data.by === 'collections' && (
       <label>
         Collection
-        <input
-          placeholder="Collection ID number"
+        <DebounceInput
           type="text"
           value={data.collections}
-          onChange={event =>
-            setData({ ...data, collections: event.target.value })
-          }
+          placeholder="Collection ID number"
+          onChange={value => setData({ ...data, collections: value })}
+          wait={500}
         />
       </label>
     )}
@@ -66,11 +66,12 @@ const UnsplashSettings: FC<Props> = ({ data = defaultData, setData }) => (
       <div>
         <label>
           Tags
-          <input
-            placeholder="Try landscapes or animals..."
+          <DebounceInput
             type="text"
             value={data.search}
-            onChange={event => setData({ ...data, search: event.target.value })}
+            placeholder="Try landscapes or animals..."
+            onChange={value => setData({ ...data, search: value })}
+            wait={500}
           />
         </label>
 

@@ -1,10 +1,12 @@
 import React, { FC } from 'react';
+import { FormattedMessage } from 'react-intl';
 import { useDispatch } from 'react-redux';
 
 import { defaultLocale } from '../../locales';
 import { useSelector } from '../../store';
 import { setLocale, setTimeZone } from '../../store/actions';
 import TimeZoneInput from '../shared/timeZone/TimeZoneInput';
+
 
 const System: FC = () => {
   const locale = useSelector(state => state.data.locale || defaultLocale);
@@ -18,6 +20,14 @@ const System: FC = () => {
 
   return (
     <div>
+      <h2>
+        <FormattedMessage
+          id="settings"
+          defaultMessage="Settings"
+          description="Settings title"
+        />
+      </h2>
+
       <label
         style={{
           alignItems: 'center',
@@ -30,11 +40,17 @@ const System: FC = () => {
       >
         <span>Language</span>
         <select value={locale} onChange={handleSetLocale}>
+          <option value="ca-ES" title="Catalan">
+            Català
+          </option>
           <option value="cs" title="Czech">
             Čeština
           </option>
           <option value="de" title="German">
             Deutsch
+          </option>
+          <option value="el" title="Greek">
+            Ελληνικά
           </option>
           <option value="en-AU" title="English (Australian)">
             English (AU)
@@ -69,6 +85,9 @@ const System: FC = () => {
           <option value="ko" title="Korean">
             한국어
           </option>
+          <option value="lt" title="Lithuanian">
+            Lietuvių k.
+          </option>
           <option value="nl" title="Dutch">
             Nederlands
           </option>
@@ -78,8 +97,11 @@ const System: FC = () => {
           <option value="pl" title="Polish">
             Polski
           </option>
-          <option value="pt" title="Portuguese">
-            Português
+          <option value="pt-BR" title="Portuguese (Brazil)">
+            Português do Brasil
+          </option>
+          <option value="pt" title="Portuguese (Portugal)">
+            Português de Portugal
           </option>
           <option value="ro" title="Romanian">
             Română
@@ -110,6 +132,9 @@ const System: FC = () => {
           </option>
           <option value="gu" title="Gujarati">
             ગુજરાતી
+          </option>
+          <option value="uk" title="Ukrainian">
+            Українська
           </option>
         </select>
       </label>

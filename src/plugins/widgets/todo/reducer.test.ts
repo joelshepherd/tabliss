@@ -166,6 +166,32 @@ describe('todo/reducer', () => {
     ]);
   });
 
+  it('should delete on empty update', () => {
+    expect(
+      reducer(
+        [
+          {
+            id: '1234',
+            contents: 'Existing todo',
+            completed: true,
+          },
+          {
+            id: '5678',
+            contents: 'Second existing todo',
+            completed: false,
+          },
+        ],
+        updateTodo('5678', ''),
+      ),
+    ).toEqual([
+      {
+        id: '1234',
+        contents: 'Existing todo',
+        completed: true,
+      },
+    ]);
+  });
+
   it('should throw on unknown action', () => {
     expect(() => reducer([], { type: 'UNKNOWN' } as any)).toThrow();
   });
