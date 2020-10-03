@@ -1,8 +1,22 @@
 import { API } from '../../types';
 import { officialCollection, UNSPLASH_API_KEY } from './constants';
-import { Image, Data } from './types';
+import { Data, Image } from './types';
 
 type Config = Pick<Data, 'by' | 'collections' | 'featured' | 'search'>;
+
+async function fetchImageFromImgIX(url: string) {
+  const MAX_IMAGE_WIDTH_SUPPORTED = 8192;
+  const OUTPUT_QUALITY = 85; // range [0-100]
+  const OUTPUT_WIDTH = window.screen.availWidth > MAX_IMAGE_WIDTH_SUPPORTED ?
+    MAX_IMAGE_WIDTH_SUPPORTED : window.screen.availWidth;
+
+  let params = new URLSearchParams({
+    q: String(OUTPUT_QUALITY),
+    w: String(OUTPUT_WIDTH)
+  });
+
+  return await (await fetch(url + params)).blob();
+}
 
 export async function getImage(
   settings: Config,
@@ -34,7 +48,7 @@ export async function getImage(
   // Fetch from API
   loader.push();
   const res = await (await fetch(url, { headers })).json();
-  const data = await (await fetch(res.urls.raw + '?q=85&w=1920')).blob();
+  const data = await fetchImageFromImgIX(res.urls.raw);
   loader.pop();
 
   return {
