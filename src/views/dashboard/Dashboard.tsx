@@ -17,8 +17,8 @@ const Dashboard: FC = () => {
   return (
     <div className={`Dashboard fullscreen ${theme}`}>
       <Background />
-      <Overlay />
       <Widgets />
+      <Overlay />
     </div>
   );
 };
