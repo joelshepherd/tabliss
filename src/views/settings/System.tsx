@@ -64,12 +64,15 @@ const System: FC = () => {
           <option value="es" title="Spanish">
             Español
           </option>
+          <option value="fa" title="French">
+            پارسی
+          </option>
           <option value="fr" title="French">
             Français
           </option>
-	  <option value="gd" title="Scottish Gaelic">
-	    Gàidhlig
-	  </option>
+          <option value="gd" title="Scottish Gaelic">
+            Gàidhlig
+          </option>
           <option value="hu" title="Hungarian">
             Magyar
           </option>
