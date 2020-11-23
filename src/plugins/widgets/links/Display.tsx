@@ -26,9 +26,9 @@ const messages = defineMessages({
   },
 });
 
-type Props = Link & { number: number };
+type Props = Link & { number: number, linkOpenStyle: boolean };
 
-const Display: FC<Props> = ({ icon, name, number, url }) => {
+const Display: FC<Props> = ({ icon, name, number, url, linkOpenStyle }) => {
   const intl = useIntl();
 
   const title = useMemo(
@@ -40,7 +40,7 @@ const Display: FC<Props> = ({ icon, name, number, url }) => {
   );
 
   return (
-    <a href={url} rel="noopener noreferrer" title={title}>
+    <a href={url} rel="noopener noreferrer" target={linkOpenStyle ? "_blank" : "_self"} title={title}>
       {icon && <Icon name={icon} />}
       {icon && name && ' '}
       {name}
