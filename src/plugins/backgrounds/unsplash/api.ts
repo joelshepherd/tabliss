@@ -4,50 +4,14 @@ import { Data, Image } from './types';
 
 type Config = Pick<Data, 'by' | 'collections' | 'featured' | 'search'>;
 
-async function fetchImageFromImgIX(url: string) {
-  const MAX_IMAGE_WIDTH_SUPPORTED = 8192;
-  const OUTPUT_QUALITY = 85; // range [0-100]
-  const OUTPUT_WIDTH = Math.min(window.screen.availWidth, MAX_IMAGE_WIDTH_SUPPORTED);
-
-  const params = new URLSearchParams({
-    q: String(OUTPUT_QUALITY),
-    w: String(OUTPUT_WIDTH)
-  });
-
-  return await (await fetch(url + params)).blob();
-}
-
 export async function getImage(
-  settings: Config,
+  config: Config,
   loader: API['loader'],
 ): Promise<Image> {
-  // Setup
-  const { by, collections, featured, search } = settings;
-  const headers = new Headers();
-  headers.append('Authorization', `Client-ID ${UNSPLASH_API_KEY}`);
-
-  // Build search url
-  let url = 'https://api.unsplash.com/photos/random?';
-  switch (by) {
-    case 'collections':
-      url += `collections=${collections}`;
-      break;
-
-    case 'search':
-      url +=
-        'orientation=landscape' +
-        (featured ? '&featured=true' : '') +
-        (search ? `&query=${search}` : '');
-      break;
-
-    default:
-      url += `collections=${officialCollection}`;
-  }
-
-  // Fetch from API
+  // Fetch random image
   loader.push();
-  const res = await (await fetch(url, { headers })).json();
-  const data = await fetchImageFromImgIX(res.urls.raw);
+  const res = await fetchImageMeta(config);
+  const data = await fetchImageData(res.urls.raw);
   loader.pop();
 
   return {
@@ -57,4 +21,43 @@ export async function getImage(
     user_name: res.user.name,
     user_link: res.user.links.html,
   };
+}
+
+async function fetchImageMeta({ by, collections, featured, search }: Config) {
+  const url = 'https://api.unsplash.com/photos/random';
+  const params = new URLSearchParams();
+  const headers = new Headers({
+    Authorization: `Client-ID ${UNSPLASH_API_KEY}`,
+  });
+
+  switch (by) {
+    case 'collections':
+      params.set('collections', collections);
+      break;
+
+    case 'search':
+      params.set('orientation', 'landscape');
+      if (featured) params.set('featured', 'true');
+      if (search) params.set('query', search);
+      break;
+
+    default:
+      params.set('collections', String(officialCollection));
+  }
+
+  const res = await fetch(`${url}?${params}`, { headers });
+  return res.json();
+}
+
+async function fetchImageData(url: string) {
+  const quality = 85; // range [0-100]
+  const screenWidth = window.screen.availWidth || 1920;
+  const width = Math.min(screenWidth, 3840);
+
+  const params = new URLSearchParams({
+    q: String(quality),
+    w: String(width),
+  });
+
+  return await (await fetch(url + params)).blob();
 }
