@@ -7,10 +7,9 @@ type Config = Pick<Data, 'by' | 'collections' | 'featured' | 'search'>;
 async function fetchImageFromImgIX(url: string) {
   const MAX_IMAGE_WIDTH_SUPPORTED = 8192;
   const OUTPUT_QUALITY = 85; // range [0-100]
-  const OUTPUT_WIDTH = window.screen.availWidth > MAX_IMAGE_WIDTH_SUPPORTED ?
-    MAX_IMAGE_WIDTH_SUPPORTED : window.screen.availWidth;
+  const OUTPUT_WIDTH = Math.min(window.screen.availWidth, MAX_IMAGE_WIDTH_SUPPORTED);
 
-  let params = new URLSearchParams({
+  const params = new URLSearchParams({
     q: String(OUTPUT_QUALITY),
     w: String(OUTPUT_WIDTH)
   });
