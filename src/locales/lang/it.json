@@ -1,6 +1,6 @@
 {
   "app.pageTitle": "Nuova scheda",
-  "background": "Background",
+  "background": "Sfondo",
   "dashboard.focusHint": "Escludi i widgets",
   "dashboard.fullscreenHint": "Commuta a schermo intero",
   "dashboard.loadingHint": "Carica nuovi contenuti",
@@ -11,9 +11,9 @@
   "plugins.links.standardHint": "Clicca per visitare",
   "plugins.search.placeholder": "Scrivi qui per cercare",
   "plugins.unsplash.photoLink": "Foto",
-  "plugins.weather.high": "High",
-  "plugins.weather.low": "Low",
-  "settings": "Settings",
-  "settings.translationCredits": "Italian translations by Gianni",
+  "plugins.weather.high": "Massima",
+  "plugins.weather.low": "Minima",
+  "settings": "Impostazioni",
+  "settings.translationCredits": "Italian translations by Gianni and Blackcat-917",
   "widgets": "Widgets"
 }
