@@ -5,18 +5,35 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+## Added
+
+- Labels and timezone to the clock widget
+- Settings can now be exported and imported to/from a JSON file - thanks @jlave-dev
+- Links can now be set to open in a new tab - thanks @CraftyDH
+- Lithuanian translations - thanks @TheOnlyGhostwolf
+- Scottish Gaelic translations - thanks @fenrisulfr94
+- Tamil translations - thanks @RamyaChinnadurai
+- Farsi translations - thanks @sarended
+
 ## Changed
 
 - Improved typography in quotes - thanks @apollisa
-- Simplifying add todo interface
+- Simplifying add todo interface - thanks @trickypr
 - Toggle AM / PM for 12 hour time
+- Ukranian translations - thanks @aquaminer, @p182
+- Hungarian translations - thanks @qcz
+- Russian translations - thanks @alexesprit
+- Spanish translations - thanks @TheFireRed
+- Portuguese (Brazil) translations - thanks @adilsonfsantos
+- Italian translations - thanks @blackcat-917
 
 ## Fixed
 
 - Alignment of multi-column quick links when they are narrower than other widgets in their slot
 - Search box now properly respects light mode
 - Midnight showing as "24:00" in Chrome when using 24-hour time - thanks @trickypr!
-- Ignore keyboard shortcuts including meta, control or alt keys
+- Ignore keyboard shortcuts including meta, control or alt keys - thanks @trickypr
+- Improved typography for quites - thanks @apollisa
 
 ## [2.0.3] - 2020-04-15
 
