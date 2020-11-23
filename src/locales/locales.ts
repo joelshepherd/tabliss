@@ -9,6 +9,7 @@ export const messages: Record<string, Record<string, string>> = {
   'en-AU': require('./lang/en-AU.json'),
   'en-GB': require('./lang/en-GB.json'),
   es: require('./lang/es.json'),
+  fa: require('./lang/fa.json'),
   fr: require('./lang/fr.json'),
   gd: require('./lang/gd.json'),
   gu: require('./lang/gu.json'),
