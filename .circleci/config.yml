@@ -1,6 +1,6 @@
 defaults: &defaults
   docker:
-    - image: node:9
+    - image: node:14
   working_directory: ~/build
 
 version: 2
