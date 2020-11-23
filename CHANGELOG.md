@@ -10,6 +10,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 - Labels and timezone to the clock widget
 - Settings can now be exported and imported to/from a JSON file - thanks @jlave-dev
 - Links can now be set to open in a new tab - thanks @CraftyDH
+- Higher-resolution images for users with larger monitors - thanks @thekaleidoscope
 - Lithuanian translations - thanks @TheOnlyGhostwolf
 - Scottish Gaelic translations - thanks @fenrisulfr94
 - Tamil translations - thanks @RamyaChinnadurai
