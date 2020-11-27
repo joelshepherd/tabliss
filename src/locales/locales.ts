@@ -20,7 +20,7 @@ export const messages: Record<string, Record<string, string>> = {
   ja: require('./lang/ja.json'),
   ko: require('./lang/ko.json'),
   lt: require('./lang/lt.json'),
-  lu: require('./lang/lu.json'),
+  lb: require('./lang/lb.json'),
   nl: require('./lang/nl.json'),
   no: require('./lang/no.json'),
   ro: require('./lang/ro.json'),
