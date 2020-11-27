@@ -91,6 +91,9 @@ const System: FC = () => {
           <option value="lt" title="Lithuanian">
             Lietuvių k.
           </option>
+          <option value="lu" title="Luxembourgish">
+            Lëtzebuergesch
+          </option>
           <option value="nl" title="Dutch">
             Nederlands
           </option>
