@@ -79,7 +79,7 @@ const Widget: FC<Props> = ({ plugin, onMoveDown, onMoveUp, onRemove }) => {
           </ToggleSection>
 
           <ToggleSection name="Font Settings">
-            <>
+            <div>
               <label>
                 Font
                 <input
@@ -119,8 +119,38 @@ const Widget: FC<Props> = ({ plugin, onMoveDown, onMoveUp, onRemove }) => {
                   }
                 />
               </label>
-            </>
-          </ToggleSection>
+            <label>
+                Outline Colour
+                <input
+                  type="color"
+                  value={plugin.display.outlineColour}
+                  onChange={(event) =>
+                    boundSetDisplay({ outlineColour: event.target.value })
+                  }
+              />
+              </label>
+              <label>Outline Opacity
+                 <input type="range" 
+                 value={plugin.display.outlineOpacity} 
+                 min="0" 
+                 max="100"
+                 onChange={(event) =>
+                  boundSetDisplay({ outlineOpacity: Number(event.target.value) })
+                }/>
+                </label>
+              <label>Outline Width
+                 <input type="range" 
+                 value={plugin.display.outlineWidth} 
+                 min="0" 
+                 max="5" 
+                 step="0.1"
+                 onChange={(event) =>
+                  boundSetDisplay({ outlineWidth: Number(event.target.value) })
+                }
+                 />
+            </label>
+            </div>
+         </ToggleSection>
         </div>
       )}
     </fieldset>
