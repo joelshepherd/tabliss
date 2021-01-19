@@ -1,6 +1,6 @@
 {
   "app.pageTitle": "Nouvel onglet",
-  "background": "Background",
+  "background": "Image de fond",
   "dashboard.focusHint": "Afficher les composants",
   "dashboard.fullscreenHint": "Plein écran",
   "dashboard.loadingHint": "Chargement du nouveau contenu",
@@ -11,9 +11,9 @@
   "plugins.links.standardHint": "Cliquez pour consulter le site",
   "plugins.search.placeholder": "Taper pour rechercher",
   "plugins.unsplash.photoLink": "Photo",
-  "plugins.weather.high": "High",
-  "plugins.weather.low": "Low",
-  "settings": "Settings",
-  "settings.translationCredits": "Traduction française par Orfaon",
-  "widgets": "Widgets"
+  "plugins.weather.high": "Max",
+  "plugins.weather.low": "Min",
+  "settings": "Préférence",
+  "settings.translationCredits": "Traduction française par Orfaon/ernest33",
+  "widgets": "Gadgets"
 }
