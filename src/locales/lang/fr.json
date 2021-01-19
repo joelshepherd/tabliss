@@ -13,7 +13,7 @@
   "plugins.unsplash.photoLink": "Photo",
   "plugins.weather.high": "Max",
   "plugins.weather.low": "Min",
-  "settings": "Préférence",
+  "settings": "Préférences",
   "settings.translationCredits": "Traduction française par Orfaon/ernest33",
   "widgets": "Gadgets"
 }
