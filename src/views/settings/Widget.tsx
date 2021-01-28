@@ -1,4 +1,4 @@
-import React, { FC, useCallback } from 'react';
+import React, { FC, useCallback, useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { useToggle } from '../../hooks';
@@ -11,8 +11,11 @@ import {
 import PluginContainer from '../shared/Plugin';
 import { DownIcon, IconButton, RemoveIcon, UpIcon, Icon } from '../shared';
 import ToggleSection from '../shared/ToggleSection';
+/*import ToggleSetting from '../shared/ToggleSetting';*/
 import WidgetDisplay from './WidgetDisplay';
 import './Widget.sass';
+import { settings } from 'cluster';
+
 
 interface Props {
   plugin: WidgetState;
@@ -23,8 +26,13 @@ interface Props {
 
 const Widget: FC<Props> = ({ plugin, onMoveDown, onMoveUp, onRemove }) => {
   const [isOpen, toggleIsOpen] = useToggle(onRemove === undefined);
-
+  const [isOutlined, toggleOutline] = useToggle();
   const { description, name, settingsComponent } = getConfig(plugin.key);
+  const [outlineSettings, setOutline] = useState({
+    colour: '',
+    opacity: '',
+    width: ''
+  });
 
   const dispatch = useDispatch();
   const boundSetDisplay = useCallback(
@@ -119,41 +127,66 @@ const Widget: FC<Props> = ({ plugin, onMoveDown, onMoveUp, onRemove }) => {
                   }
                 />
               </label>
-            <label>
-                Outline Colour
-                <input
-                  type="color"
-                  value={plugin.display.outlineColour}
-                  onChange={(event) =>
-                    boundSetDisplay({ outlineColour: event.target.value })
-                  }
-              />
+
+              <label className="switch">
+                <input type="checkbox" onClick={() => {
+                  toggleOutline();
+                  setOutline(isOutlined ? outlineSettings : {
+                    colour: '',
+                    opacity: '',
+                    width: ''
+                  });
+                }} />
+                <span className="slider"></span>
+                     Activate Outline
               </label>
-              <label>Outline Opacity
-                 <input type="range" 
-                 value={plugin.display.outlineOpacity} 
-                 min="0" 
-                 max="100"
-                 onChange={(event) =>
-                  boundSetDisplay({ outlineOpacity: Number(event.target.value) })
-                }/>
-                </label>
-              <label>Outline Width
-                 <input type="range" 
-                 value={plugin.display.outlineWidth} 
-                 min="0" 
-                 max="5" 
-                 step="0.1"
-                 onChange={(event) =>
-                  boundSetDisplay({ outlineWidth: Number(event.target.value) })
-                }
-                 />
-            </label>
+
+
+              {isOutlined && (
+                <div>
+                  < label >
+                    Outline Colour
+                <input
+                      type="color"
+                      value={plugin.display.outlineColour}
+                      onChange={(event) => {
+                        setOutline({ opacity: outlineSettings.opacity, width: outlineSettings.width, colour: event.target.value });
+                        boundSetDisplay({ outlineColour: outlineSettings.colour })
+                      }
+                      }
+                    />
+
+                  </label>
+                  <label>Outline Opacity
+                 <input type="range"
+                      value={plugin.display.outlineOpacity}
+                      min="0"
+                      max="255"
+                      onChange={(event) => {
+                        setOutline({ opacity: event.target.value, width: outlineSettings.width, colour: outlineSettings.colour });
+                        boundSetDisplay({ outlineOpacity: Number(outlineSettings.opacity) })
+                      }}
+                    />
+                  </label>
+                  <label>Outline Width
+                 <input type="range"
+                      value={plugin.display.outlineWidth}
+                      min="0"
+                      max="5"
+                      step="0.1"
+                      onChange={(event) => {
+                        setOutline({ opacity: outlineSettings.width, width: event.target.value, colour: outlineSettings.colour });
+                        boundSetDisplay({ outlineWidth: Number(outlineSettings.width) })
+                      }}
+                    />
+                  </label>
+                </div>)}
             </div>
-         </ToggleSection>
+          </ToggleSection>
         </div>
-      )}
-    </fieldset>
+      )
+      }
+    </fieldset >
   );
 };
 
