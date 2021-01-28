@@ -51,8 +51,7 @@ async function fetchImageMeta({ by, collections, featured, search }: Config) {
 
 async function fetchImageData(url: string) {
   const quality = 85; // range [0-100]
-  const screenWidth = window.screen.availWidth || 1920;
-  const width = Math.min(screenWidth, 3840);
+  const width = calculateWidth(window.innerWidth);
 
   const params = new URLSearchParams({
     q: String(quality),
@@ -60,4 +59,15 @@ async function fetchImageData(url: string) {
   });
 
   return await (await fetch(url + params)).blob();
+}
+
+/**
+ * Calculate width to fetch image, tuned for Unsplash cache performance.
+ */
+export function calculateWidth(screenWidth: number = 1920): number {
+  // Consider a minimum resolution too
+  screenWidth = Math.max(screenWidth, 1920); // Lower limit at 1920
+  screenWidth = Math.min(screenWidth, 3840); // Upper limit at 4K
+  screenWidth = Math.ceil(screenWidth / 240) * 240; // Snap up to nearest 240px for improved caching
+  return screenWidth;
 }
