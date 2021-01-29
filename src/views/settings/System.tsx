@@ -70,6 +70,9 @@ const System: FC = () => {
           <option value="fr" title="French">
             Français
           </option>
+          <option value="ga" title="Gaeilge">
+            Gaeilge
+          </option>
           <option value="gd" title="Scottish Gaelic">
             Gàidhlig
           </option>
