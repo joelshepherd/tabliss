@@ -118,7 +118,7 @@ const System: FC = () => {
           <option value="sk" title="Slovak">
             Slovenčina
           </option>
-	  <option value="fi" title="Finnish">
+	        <option value="fi" title="Finnish">
             Suomi
           </option>
           <option value="sv" title="Swedish">
