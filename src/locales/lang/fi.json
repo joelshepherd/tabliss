@@ -1,7 +1,7 @@
 {
   "app.pageTitle": "Uusi välilehti",
   "background": "Tausta",
-  "dashboard.focusHint": "Näkyvyys",
+  "dashboard.focusHint": "Widget näkyvyys",
   "dashboard.fullscreenHint": "Kokoruutu",
   "dashboard.loadingHint": "Ladataan uutta sisältöä",
   "dashboard.settingsHint": "Tabliss-asetukset",
@@ -15,5 +15,5 @@
   "plugins.weather.low": "Alin",
   "settings": "Asetukset",
   "settings.translationCredits": " ",
-  "widgets": "Moduulit"
+  "widgets": "Widgetit"
 }
