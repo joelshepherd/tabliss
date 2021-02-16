@@ -1,6 +1,6 @@
 {
   "app.pageTitle": "新标签页",
-  "background": "Background",
+  "background": "背景",
   "dashboard.focusHint": "切换部件可视性",
   "dashboard.fullscreenHint": "切换图片全屏",
   "dashboard.loadingHint": "正在加载……",
@@ -11,9 +11,9 @@
   "plugins.links.standardHint": "点击以访问",
   "plugins.search.placeholder": "输入要搜索的关键字",
   "plugins.unsplash.photoLink": "本图片链接",
-  "plugins.weather.high": "High",
-  "plugins.weather.low": "Low",
-  "settings": "Settings",
+  "plugins.weather.high": "高",
+  "plugins.weather.low": "低",
+  "settings": "设置",
   "settings.translationCredits": " ",
-  "widgets": "Widgets"
+  "widgets": "组件"
 }
