@@ -1,5 +1,6 @@
 import css from './css';
 import greeting from './greeting';
+import ipInfo from './ipInfo';
 import links from './links';
 import literatureClock from './literatureClock';
 import js from './js';
@@ -14,6 +15,7 @@ import weather from './weather';
 export const widgetConfigs = [
   css,
   greeting,
+  ipInfo,
   links,
   literatureClock,
   message,
