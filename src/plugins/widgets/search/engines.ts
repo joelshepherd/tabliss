@@ -60,4 +60,8 @@ export const engines: Engine[] = [
     name: 'Поиск Mail.Ru',
     search_url: 'https://go.mail.ru/search?q={searchTerms}',
   },
+  {
+    key: 'searx',
+    name: 'SearX',
+    search_url: 'https://searx.laquadrature.net/search?q={searchTerms}',
 ];
