@@ -1,0 +1,20 @@
+.theme-toggle-btn
+    &[data-theme="dark"]
+        --toggle-background-color: #3498db
+        --toggle-circle-x-pos: 12px
+
+    &[data-theme="light"]
+        --toggle-background-color: #ddd
+        --toggle-circle-x-pos: 0px
+
+    &
+        all: unset
+        cursor: pointer
+
+    svg
+        transition: all 0.25s ease-in
+        fill: var(--toggle-background-color)
+
+        .circle
+            transition: all 0.25s ease-in
+            transform: translateX(var(--toggle-circle-x-pos))

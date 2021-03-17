@@ -11,11 +11,11 @@ import ToggleSection from '../shared/ToggleSection';
 const Background: FC = () => {
   const dispatch = useDispatch();
 
-  const background = useSelector(state =>
-    state.data.backgrounds.find(plugin => plugin.active),
-  );
-  const plugin = background ? getConfig(background.key) : undefined;
+  const data = useSelector((state) => state.data);
+  const background = data.backgrounds.find((plugin) => plugin.active);
+  const theme = data.theme;
 
+  const plugin = background ? getConfig(background.key) : undefined;
   return (
     <div>
       <h2>
@@ -29,14 +29,14 @@ const Background: FC = () => {
       <label>
         <select
           value={background && background.key}
-          onChange={event =>
+          onChange={(event) =>
             dispatch(
               setBackground(event.target.value, background && background.id),
             )
           }
           className="primary"
         >
-          {backgroundConfigs.map(plugin => (
+          {backgroundConfigs.map((plugin) => (
             <option key={plugin.key} value={plugin.key}>
               {plugin.name}
             </option>
@@ -45,7 +45,7 @@ const Background: FC = () => {
       </label>
 
       {background && plugin && (
-        <div className="Widget">
+        <div className="Widget" data-theme={theme}>
           <h4>{plugin.name}</h4>
 
           {plugin.settingsComponent && (
@@ -66,7 +66,7 @@ const Background: FC = () => {
                     max="50"
                     step="2"
                     value={background.display.blur}
-                    onChange={event =>
+                    onChange={(event) =>
                       dispatch(
                         setBackgroundDisplay({
                           blur: Number(event.target.value),
@@ -89,7 +89,7 @@ const Background: FC = () => {
                     max="1"
                     step="0.1"
                     value={background.display.luminosity}
-                    onChange={event =>
+                    onChange={(event) =>
                       dispatch(
                         setBackgroundDisplay({
                           luminosity: Number(event.target.value),

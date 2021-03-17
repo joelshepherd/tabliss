@@ -1,9 +1,16 @@
 .Settings .Widget
-    border: none
-    border-radius: 0.5rem
-    background: #ecf0f1
-    margin: 1em 0
-    padding: 1em
+    &[data-theme="dark"]
+        --background-color: #3f3f3f
+
+    &[data-theme="light"]
+        --background-color: #ecf0f1
+
+    &
+        border: none
+        border-radius: 0.5rem
+        background: var(--background-color,#ecf0f1)
+        margin: 1em 0
+        padding: 1em
 
     h4
         margin: 0
@@ -19,7 +26,7 @@
     .settings
         margin: 1.5rem 0
 
-    p:last-child 
+    p:last-child
         margin-bottom: 0
 
     .button--icon

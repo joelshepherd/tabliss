@@ -63,6 +63,13 @@ export function setWidgetDisplay(id: string, display: Partial<WidgetDisplay>) {
   } as const;
 }
 
+export function setTheme(theme='light'){
+  return {
+    type: 'SET_THEME',
+    data: {theme},
+  } as const;
+}
+
 export type DataActions =
   | ReturnType<typeof setBackground>
   | ReturnType<typeof addWidget>
@@ -72,4 +79,5 @@ export type DataActions =
   | ReturnType<typeof setBackgroundDisplay>
   | ReturnType<typeof setLocale>
   | ReturnType<typeof setTimeZone>
-  | ReturnType<typeof setWidgetDisplay>;
+  | ReturnType<typeof setWidgetDisplay>
+  | ReturnType<typeof setTheme>;

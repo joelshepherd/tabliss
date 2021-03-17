@@ -49,6 +49,7 @@ export type DataState = {
   };
   locale?: string;
   timeZone?: string;
+  theme?: string;
 };
 
 export type UiState = {

@@ -1,4 +1,12 @@
 .Settings
+    &[data-theme="dark"]
+        --background-color: #2f2f2f
+        --text-color: white
+
+    &[data-theme="light"]
+        --background-color: white
+        --text-color: black
+
     h1
         margin: 2rem 0
 
@@ -6,16 +14,22 @@
             fill: #3498db
             width: 100%
 
+    .justify-center
+        display: flex
+        justify-content: center
+
     h2, h3, h4
-        color: #212121
-    
+        color: var(--text-color,#000)
+
     h2
         margin-bottom: 0
 
     .plane
         border-radius: 0 1rem 1rem 0
         box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.25)
-        background-color: white
+        background-color: var(--background-color,#fff)
+        transition: all 0.2s ease-in
+        color: var(--text-color)
         max-width: 100%
         height: 100%
         overflow-y: auto
@@ -44,7 +58,7 @@
     select
         border: 1px solid #bdc3c7
         border-radius: 0.2em
-        color: inherit
+        color: parent
         display: block
         margin: 0.5em 0
         padding: 0.5em

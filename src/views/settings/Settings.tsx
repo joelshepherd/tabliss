@@ -1,6 +1,7 @@
 import React, { FC, memo, useCallback } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { useDispatch } from 'react-redux';
+
 import { useKeyPress } from '../../hooks';
 import { useSelector } from '../../store';
 import { resetStore, toggleSettings } from '../../store/actions';
@@ -13,6 +14,7 @@ import Homepage from './Homepage';
 import './Settings.sass';
 import System from './System';
 import Widgets from './Widgets';
+import ThemeToggler from './ThemeToggler';
 
 const Settings: FC = () => {
   const dispatch = useDispatch();
@@ -62,11 +64,15 @@ const Settings: FC = () => {
   useKeyPress(handleToggleSettings, ['Escape']);
 
   return (
-    <div className="Settings">
+    <div className="Settings" data-theme={data.theme}>
       <a onClick={handleToggleSettings} className="fullscreen" />
 
       <div className="plane">
         <Logo />
+
+        <div className="justify-center">
+          <ThemeToggler />
+        </div>
 
         <Background />
 
