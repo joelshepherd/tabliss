@@ -63,7 +63,7 @@ export function setWidgetDisplay(id: string, display: Partial<WidgetDisplay>) {
   } as const;
 }
 
-export function setTheme(theme='light'){
+export function setTheme(theme:string){
   return {
     type: 'SET_THEME',
     data: {theme},

@@ -1,7 +1,7 @@
 import React, { FC, useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { useToggle } from '../../hooks';
+import { useTheme, useToggle } from '../../hooks';
 import { getConfig } from '../../plugins';
 import { useSelector } from '../../store';
 import { setWidgetDisplay } from '../../store/actions';
@@ -24,7 +24,7 @@ interface Props {
 
 const Widget: FC<Props> = ({ plugin, onMoveDown, onMoveUp, onRemove }) => {
   const [isOpen, toggleIsOpen] = useToggle(onRemove === undefined);
-  const theme = useSelector((state) => state.data.theme);
+  const { theme } = useTheme();
   const { description, name, settingsComponent } = getConfig(plugin.key);
 
   const dispatch = useDispatch();

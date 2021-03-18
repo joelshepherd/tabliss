@@ -1,17 +1,11 @@
-import React, { FC, useCallback } from 'react';
-import { useDispatch } from 'react-redux';
-
-import { useSelector } from '../../store';
-import { setTheme } from '../../store/actions/data';
+import React, { FC } from 'react';
+import { useTheme } from '../../hooks';
 import './ThemeToggler.sass';
 
 const ThemeToggler: FC = () => {
-  const dispatch = useDispatch();
-  const theme = useSelector((state) => state.data.theme);
-
-  const handleThemeToggle = useCallback(() => {
-    theme === 'dark' ? dispatch(setTheme('light')) : dispatch(setTheme('dark'));
-  }, [dispatch, theme]);
+  const { theme, setTheme } = useTheme();
+  const handleThemeToggle = () =>
+    theme === 'dark' ? setTheme('light') : setTheme('dark');
 
   return (
     <button

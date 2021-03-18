@@ -1,4 +1,10 @@
-import { addWidget, removeWidget, setLocale, setTimeZone } from '../actions';
+import {
+  addWidget,
+  removeWidget,
+  setLocale,
+  setTimeZone,
+  setTheme,
+} from '../actions';
 import { data } from './data';
 import { DataState, WidgetState } from './types';
 
@@ -58,6 +64,13 @@ describe('data() reducer', () => {
     expect(data(state, setTimeZone('Australia/Brisbane'))).toEqual({
       ...state,
       timeZone: 'Australia/Brisbane',
+    });
+  });
+
+  it('should set theme', () => {
+    expect(data(state, setTheme('dark'))).toEqual({
+      ...state,
+      theme: 'dark',
     });
   });
 });
