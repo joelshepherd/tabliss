@@ -35,19 +35,10 @@ const WeatherSettings: FC<Props> = ({ data = defaultData, setData }) => (
     <label>
       <input
         type="radio"
-        checked={data.units === 'auto'}
-        onChange={() => setData({ ...data, units: 'auto' })}
-      />{' '}
-      Automatic units (based on location)
-    </label>
-
-    <label>
-      <input
-        type="radio"
         checked={data.units === 'si'}
         onChange={() => setData({ ...data, units: 'si' })}
       />{' '}
-      Metric units
+      Metric units (Fahrenheit)
     </label>
 
     <label>
@@ -56,16 +47,25 @@ const WeatherSettings: FC<Props> = ({ data = defaultData, setData }) => (
         checked={data.units === 'us'}
         onChange={() => setData({ ...data, units: 'us' })}
       />{' '}
-      Imperial units
+      Imperial units (Celsius)
+    </label>
+
+    <label>
+      <input
+        type="radio"
+        checked={data.units === 'standard'}
+        onChange={() => setData({ ...data, units: 'standard' })}
+      />{' '}
+      Kelvin 
     </label>
 
     <p>
       <a
-        href="https://darksky.net/poweredby/"
+        href="https://openweathermap.org/"
         target="_blank"
         rel="noopener noreferrer"
       >
-        Powered by Dark Sky
+        Powered by OpenWeather
       </a>
     </p>
   </div>

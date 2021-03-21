@@ -14,9 +14,19 @@ export async function getForecast(
     return;
   }
 
+  if(units == "si"){
+    units = "metric";
+  } else if( units == "us") {
+    units = "imperial";
+  } else if( units == "standard" ) {
+    units = "standard";
+  } else {
+    units = "metric";
+  }
+
   loader.push();
 
-  const url = `${apiEndpoint}/forecast?latitude=${latitude}&longitude=${longitude}&units=${units}`;
+  const url = `api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=${units}&exclude=minutely,hourly,daily,alerts&appid=${apiEndpoint}`;
   const res = await fetch(url);
   const body = await res.json();
 
@@ -24,12 +34,12 @@ export async function getForecast(
 
   return {
     ...body.data,
-    apparentTemperatureHigh: Math.round(body.data.apparentTemperatureHigh),
-    apparentTemperatureLow: Math.round(body.data.apparentTemperatureLow),
-    humidity: Math.round(body.data.humidity * 100),
-    precipProbability: Math.round(body.data.precipProbability * 100),
-    temperatureHigh: Math.round(body.data.temperatureHigh),
-    temperatureLow: Math.round(body.data.temperatureLow),
+    apparentTemperatureHigh: Math.round(body.data.feels_like.day),
+    apparentTemperatureLow: Math.round(body.data.feels_like.night),
+    humidity: Math.round(body.data.humidity),
+    precipProbability: Math.round(body.data.pop),
+    temperatureHigh: Math.round(body.data.temp.day),
+    temperatureLow: Math.round(body.data.temp.night),
   };
 }
 
