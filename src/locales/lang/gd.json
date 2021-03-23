@@ -11,6 +11,9 @@
   "plugins.links.standardHint": "Briog air do tadhal",
   "plugins.search.placeholder": "Cuir do lorg",
   "plugins.unsplash.photoLink": "Dealbh",
+  "plugins.weather.high": "High",
+  "plugins.weather.low": "Low",
+  "settings": "Settings",
   "settings.translationCredits": "Eadar-theangachadh le pruadh agus le talondearg",
   "widgets": "Widgets"
 }
