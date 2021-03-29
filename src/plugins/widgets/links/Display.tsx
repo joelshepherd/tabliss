@@ -43,8 +43,10 @@ const Display: FC<Props> = ({ icon, name, number, url, linkOpenStyle }) => {
     <a href={url} rel="noopener noreferrer" target={linkOpenStyle ? "_blank" : "_self"} title={title}>
       {icon && <Icon name={icon} />}
       {icon && name && ' '}
-      {name}
-      {!name && !icon && displayUrl(url)}
+      <span className="LinkText">
+        {name}
+        {!name && !icon && displayUrl(url)}
+      </span>
     </a>
   );
 };
