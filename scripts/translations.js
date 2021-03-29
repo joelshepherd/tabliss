@@ -38,6 +38,7 @@ const languages = [
   'sk',
   'sv',
   'ta',
+  'th',
   'tr',
   'vi',
   'zh-CN',
