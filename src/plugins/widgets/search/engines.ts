@@ -60,4 +60,9 @@ export const engines: Engine[] = [
     name: 'Поиск Mail.Ru',
     search_url: 'https://go.mail.ru/search?q={searchTerms}',
   },
+  {
+    key: 'metager',
+    name: 'MetaGer',
+    search_url: 'https://metager.de/meta/meta.ger3?eingabe={searchTerms}',
+  },
 ];
