@@ -2,7 +2,7 @@ import React, { FC, memo, useCallback } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { useDispatch } from 'react-redux';
 
-import { useKeyPress, useTheme } from '../../hooks';
+import { useKeyPress } from '../../hooks';
 import { useSelector } from '../../store';
 import { resetStore, toggleSettings } from '../../store/actions';
 import { DataState } from '../../store/reducers/types';
@@ -19,7 +19,6 @@ import ThemeToggler from './ThemeToggler';
 const Settings: FC = () => {
   const dispatch = useDispatch();
   const data = useSelector((state) => state.data);
-  const { theme } = useTheme();
   const handleToggleSettings = useCallback(() => dispatch(toggleSettings()), [
     dispatch,
   ]);
@@ -65,7 +64,7 @@ const Settings: FC = () => {
   useKeyPress(handleToggleSettings, ['Escape']);
 
   return (
-    <div className="Settings" data-theme={theme}>
+    <div className="Settings">
       <a onClick={handleToggleSettings} className="fullscreen" />
 
       <div className="plane">

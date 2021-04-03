@@ -1,16 +1,11 @@
+@import '../../styles/config/_helpers'
+
 .Settings .Widget
-    &[data-theme="dark"]
-        --background-color: #3f3f3f
-
-    &[data-theme="light"]
-        --background-color: #ecf0f1
-
-    &
-        border: none
-        border-radius: 0.5rem
-        background: var(--background-color,#ecf0f1)
-        margin: 1em 0
-        padding: 1em
+    border: none
+    border-radius: 0.5rem
+    background-color: cssvar(widgets-theme-bkg-color)
+    margin: 1em 0
+    padding: 1em
 
     h4
         margin: 0

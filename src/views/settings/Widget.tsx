@@ -1,9 +1,8 @@
 import React, { FC, useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { useTheme, useToggle } from '../../hooks';
+import { useToggle } from '../../hooks';
 import { getConfig } from '../../plugins';
-import { useSelector } from '../../store';
 import { setWidgetDisplay } from '../../store/actions';
 import {
   WidgetDisplay as WidgetDisplayInterface,
@@ -24,7 +23,6 @@ interface Props {
 
 const Widget: FC<Props> = ({ plugin, onMoveDown, onMoveUp, onRemove }) => {
   const [isOpen, toggleIsOpen] = useToggle(onRemove === undefined);
-  const { theme } = useTheme();
   const { description, name, settingsComponent } = getConfig(plugin.key);
 
   const dispatch = useDispatch();
@@ -35,7 +33,7 @@ const Widget: FC<Props> = ({ plugin, onMoveDown, onMoveUp, onRemove }) => {
   );
 
   return (
-    <fieldset className="Widget" data-theme={theme}>
+    <fieldset className="Widget">
       <div className="title--buttons">
         <IconButton onClick={onRemove} title="Remove widget">
           <RemoveIcon />

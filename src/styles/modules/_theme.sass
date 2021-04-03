@@ -1,0 +1,20 @@
+@import './config/_helpers'
+@import './config/_vars'
+
+/**
+ * Set the theme variables for selected theme
+ * i.e. `dark` or `light` theme.
+ */
+@mixin theme($themeName)
+    $bkg-c: #fff
+    $txt-c: #000
+    $widgets-bkg-c: #ecf0f1
+
+    @if $themeName == 'dark'
+        $bkg-c: #2f2f2f
+        $txt-c: #fff
+        $widgets-bkg-c: #3f3f3f
+
+    @include cssvar(theme-bkg-color, $bkg-c)
+    @include cssvar(theme-text-color,$txt-c)
+    @include cssvar(widgets-theme-bkg-color, $widgets-bkg-c)

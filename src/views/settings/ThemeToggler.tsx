@@ -1,17 +1,28 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import { useTheme } from '../../hooks';
 import './ThemeToggler.sass';
 
 const ThemeToggler: FC = () => {
   const { theme, setTheme } = useTheme();
-  const handleThemeToggle = () =>
+
+  useEffect(() => {
+    // Initially when app load first time we set the theme based on
+    // theme used by user OS.
+    if (theme === null) {
+      if (window.matchMedia('(prefers-color-scheme: dark)').matches)
+        setTheme('dark');
+      else setTheme('light');
+    }
+  }, []);
+
+  const _toggleTheme = (theme: string | null) =>
     theme === 'dark' ? setTheme('light') : setTheme('dark');
 
   return (
     <button
       className="theme-toggle-btn"
       data-theme={theme}
-      onClick={handleThemeToggle}
+      onClick={() => _toggleTheme(theme)}
       title={theme === 'dark' ? 'Enable light mode' : 'Enable dark mode'}
     >
       <svg

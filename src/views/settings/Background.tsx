@@ -4,7 +4,6 @@ import { useDispatch } from 'react-redux';
 
 import { backgroundConfigs, getConfig } from '../../plugins';
 import { useSelector } from '../../store';
-import { useTheme } from '../../hooks';
 import { setBackground, setBackgroundDisplay } from '../../store/actions/data';
 import Plugin from '../shared/Plugin';
 import ToggleSection from '../shared/ToggleSection';
@@ -14,7 +13,6 @@ const Background: FC = () => {
 
   const data = useSelector((state) => state.data);
   const background = data.backgrounds.find((plugin) => plugin.active);
-  const { theme } = useTheme();
 
   const plugin = background ? getConfig(background.key) : undefined;
   return (
@@ -46,7 +44,7 @@ const Background: FC = () => {
       </label>
 
       {background && plugin && (
-        <div className="Widget" data-theme={theme}>
+        <div className="Widget">
           <h4>{plugin.name}</h4>
 
           {plugin.settingsComponent && (

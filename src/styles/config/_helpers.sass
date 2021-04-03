@@ -1,0 +1,61 @@
+/**
+ * Use this mixin to create a set of CSS custom properties i.e globally scoped
+ * 
+ * Usage:
+ * 
+ * @include cssvars((
+ *  base-font-size: 65.5%,
+ *  font-family: #{"HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif},
+ *  primary-color: #33b5e5,
+ *  secondary-color: #ff500a,
+ * ))
+ * 
+ *  Will result in 
+ *    
+ *  :root {
+ *    --var-name: value,
+ *    --var-name: value
+ *  }
+ *
+ */
+@mixin cssvars($css_variables)
+    \:root
+        @each $name, $value in $css_variables
+            --#{$name}: #{$value}
+
+/**
+ * Use this mixin to overide or create a single CSS custom property i.e locally scoped
+ * 
+ * Usage:
+ * 
+ * .selector{
+ *      @include cssvar(theme-text-color,#fff)
+ * }
+ *
+ *  Will result in 
+ *    
+ *  .selector {
+ *    --theme-text-color: #fff
+ *  }
+ *
+ */
+@mixin cssvar($name,$value:'')
+    --#{$name}: #{$value}
+
+/**
+ * Retreive a css variable value
+ * 
+ * Usage
+ * 
+ * .selector{
+ *    background: cssvar(theme-bkg-color)
+ *  }
+ * 
+ *  Will result in 
+ * 
+ *  .selector{
+ *    background: cssvar(--theme-bkg-color)
+ *  }
+ */
+@function cssvar($name)
+    @return var(--#{$name})
