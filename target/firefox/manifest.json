@@ -19,5 +19,6 @@
     "96": "icons/96.png",
     "128": "icons/128.png"
   },
-  "permissions": ["storage"]
+  "permissions": ["storage"],
+  "optional_permissions": ["topSites"]
 }

@@ -33,6 +33,7 @@
   },
   "devDependencies": {
     "@types/chrome": "0.0.103",
+    "@types/firefox-webext-browser": "^82.0.0",
     "@types/jest": "^25.1.5",
     "@types/node": "^13.11.0",
     "@types/react": "^16.9.32",
