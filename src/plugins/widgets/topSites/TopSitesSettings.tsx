@@ -1,9 +1,9 @@
 import React, { FC } from 'react';
 
-import { Props, defaultData } from './types';
+import { Props } from './types';
 
 const TopSitesSettings: FC<Props> = ({
-    data = defaultData,
+    data = { onePerDomain: false },
     setData,
 }) => (
         <div className="TopSitesSettings">

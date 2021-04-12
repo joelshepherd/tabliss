@@ -9,3 +9,7 @@ export type Cache = {
 }
 
 export type Props = API<Data, Cache>;
+
+export type TopSite = browser.topSites.MostVisitedURL;
+
+export type TopSitesList = Array<TopSite>;
