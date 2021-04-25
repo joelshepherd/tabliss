@@ -14,8 +14,8 @@ const UnsplashCredit: FC<Props> = ({ image }) => (
 
     <a
       href={image.image_link + UNSPLASH_UTM}
-      rel="noopener noreferrer"
-      target="_blank"
+      rel="noopener noreferrer" 
+      /*target="_blank"*/ // Commenting out this line makes Unsplash open in the foreground.
     >
       <FormattedMessage
         id="plugins.unsplash.photoLink"
@@ -27,7 +27,7 @@ const UnsplashCredit: FC<Props> = ({ image }) => (
     <a
       href={image.user_link + UNSPLASH_UTM}
       rel="noopener noreferrer"
-      target="_blank"
+      /*target="_blank"*/ // Commenting out this line makes Unsplash open in the foreground.
     >
       {image.user_name}
     </a>
@@ -35,7 +35,7 @@ const UnsplashCredit: FC<Props> = ({ image }) => (
     <a
       href={'https://unsplash.com/' + UNSPLASH_UTM}
       rel="noopener noreferrer"
-      target="_blank"
+      /*target="_blank"*/ // Commenting out this line makes Unsplash open in the foreground.
     >
       Unsplash
     </a>
