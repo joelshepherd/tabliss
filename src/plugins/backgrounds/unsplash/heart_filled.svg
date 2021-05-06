@@ -1,0 +1,10 @@
+<!--
+    SVG Icons are from Microsoft Fluent UI System Icons:
+    https://github.com/microsoft/fluentui-system-icons
+    Under the MIT License:
+    https://github.com/microsoft/fluentui-system-icons/blob/master/LICENSE
+-->
+<svg id="heart_filled" width="100%" height="100%" viewBox="0 0 14 14"
+    xmlns="http://www.w3.org/2000/svg">
+    <path d="M6.541,2.76C5.27,1.488 3.212,1.482 1.946,2.748C0.68,4.015 0.686,6.072 1.958,7.344L6.665,12.051C6.86,12.246 7.177,12.246 7.372,12.051L12.055,7.371C13.319,6.101 13.315,4.049 12.043,2.777C10.769,1.503 8.71,1.497 7.442,2.765L6.995,3.213L6.541,2.76Z"/>
+</svg>

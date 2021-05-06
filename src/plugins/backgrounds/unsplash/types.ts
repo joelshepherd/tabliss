@@ -13,10 +13,16 @@ export interface Data {
 
 export interface Image {
   data: Blob;
+  image_id: string;
   image_link: string;
+  download_link: string;
+  download_string: string;
   location_title?: string;
   user_name: string;
   user_link: string;
+  liked_by_client: boolean;
+  liked_string: string;
+  liked_color: string;
 }
 
 type Cache = RotatingCache<Image>;
