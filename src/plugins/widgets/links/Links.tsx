@@ -13,7 +13,9 @@ const Links: FC<Props> = ({ data = defaultData }) => {
     ({ key }) => {
       const index = Number(key) - 1;
       if (data.links[index]) {
-        window.location.assign(data.links[index].url);
+        data.linkOpenStyle
+          ? window.open(data.links[index].url, '_blank')
+          : window.location.assign(data.links[index].url);
       }
     },
     ['1', '2', '3', '4', '5', '6', '7', '8', '9'],
@@ -29,7 +31,12 @@ const Links: FC<Props> = ({ data = defaultData }) => {
     >
       {data.visible || visible ? (
         data.links.map((link, index) => (
-          <Display key={index} number={index + 1} linkOpenStyle={data.linkOpenStyle} {...link} />
+          <Display
+            key={index}
+            number={index + 1}
+            linkOpenStyle={data.linkOpenStyle}
+            {...link}
+          />
         ))
       ) : (
         <a onClick={toggleVisible} title="Show quick links">
