@@ -18,7 +18,7 @@ const Unsplash: FC<Props> = ({
     () => getImage(data, loader),
     cacheArea,
     data.timeout * 1000,
-    [data.by, data.collections, data.featured, data.search],
+    [data.by, data.collections, data.featured, data.search, data.topics],
   );
 
   const url = useObjectUrl(image && image.data);

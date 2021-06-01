@@ -1,13 +1,14 @@
 import { RotatingCache } from '../../../hooks';
 import { API } from '../../types';
 
-type By = 'official' | 'collections' | 'search';
+type By = 'official' | 'collections' | 'search' | 'topics';
 
 export interface Data {
   by: By;
   collections: string;
   featured: boolean;
   search: string;
+  topics: string;
   timeout: number;
 }
 
@@ -28,5 +29,6 @@ export const defaultData: Data = {
   collections: '',
   featured: false,
   search: '',
+  topics: '',
   timeout: 900,
 };
