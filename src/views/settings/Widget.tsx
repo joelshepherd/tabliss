@@ -23,7 +23,6 @@ interface Props {
 
 const Widget: FC<Props> = ({ plugin, onMoveDown, onMoveUp, onRemove }) => {
   const [isOpen, toggleIsOpen] = useToggle(onRemove === undefined);
-
   const { description, name, settingsComponent } = getConfig(plugin.key);
 
   const dispatch = useDispatch();

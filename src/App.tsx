@@ -2,6 +2,7 @@ import React, { FC, useEffect } from 'react';
 import { defineMessages, useIntl } from 'react-intl';
 
 import { useSelector } from './store';
+import { useTheme } from './hooks';
 import { Dashboard } from './views/dashboard';
 import { Settings } from './views/settings';
 import StoreError from './views/shared/StoreError';
@@ -16,8 +17,9 @@ const messages = defineMessages({
 });
 
 const Root: FC = () => {
-  const showSettings = useSelector(state => state.ui.settings);
-  const storeError = useSelector(state => state.ui.storeError);
+  const showSettings = useSelector((state) => state.ui.settings);
+  const storeError = useSelector((state) => state.ui.storeError);
+  const { theme } = useTheme();
 
   const intl = useIntl();
   useEffect(() => {
@@ -26,10 +28,12 @@ const Root: FC = () => {
 
   return (
     <>
-      <Dashboard />
-      {showSettings && <Settings />}
-      {storeError && <StoreError error={storeError} />}
-      <WelcomeTo2 />
+      <div className="app" data-theme={theme}>
+        <Dashboard />
+        {showSettings && <Settings />}
+        {storeError && <StoreError error={storeError} />}
+        <WelcomeTo2 />
+      </div>
     </>
   );
 };

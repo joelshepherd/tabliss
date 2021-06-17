@@ -15,7 +15,7 @@ const version = require('./package.json').version;
 
 const config = {
   entry: {
-    main: ['normalize.css', './src/styles.sass', './src/main.tsx'],
+    main: ['normalize.css', './src/styles/styles.sass', './src/main.tsx'],
   },
   output: {
     path: path.resolve('./dist'),

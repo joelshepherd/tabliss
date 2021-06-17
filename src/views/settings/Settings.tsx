@@ -1,6 +1,7 @@
 import React, { FC, memo, useCallback } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { useDispatch } from 'react-redux';
+
 import { useKeyPress } from '../../hooks';
 import { useSelector } from '../../store';
 import { resetStore, toggleSettings } from '../../store/actions';
@@ -12,14 +13,15 @@ import Feedback from './Feedback';
 import './Settings.sass';
 import System from './System';
 import Widgets from './Widgets';
+import ThemeToggler from './ThemeToggler';
 
 const Settings: FC = () => {
   const dispatch = useDispatch();
+  const data = useSelector((state) => state.data);
   const handleToggleSettings = useCallback(() => dispatch(toggleSettings()), [
     dispatch,
   ]);
   const handleReset = useCallback(() => dispatch(resetStore()), [dispatch]);
-  const data = useSelector((state) => state.data);
 
   const handleExport = () => {
     const json = JSON.stringify(data);
@@ -66,6 +68,10 @@ const Settings: FC = () => {
 
       <div className="plane">
         <Logo />
+
+        <div className="justify-center">
+          <ThemeToggler />
+        </div>
 
         <Background />
 

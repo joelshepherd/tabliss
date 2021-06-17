@@ -121,6 +121,12 @@ export function data(state = initialState, action: Actions): DataState {
         timeZone: action.data.timeZone,
       };
 
+    case 'SET_THEME':
+      return {
+        ...state,
+        theme: action.data.theme,
+      };
+
     default:
       return state;
   }
