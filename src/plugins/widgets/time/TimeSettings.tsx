@@ -14,14 +14,16 @@ const TimeSettings: FC<Props> = ({ data = defaultData, setData }) => (
         onChange={(event) => setData({ ...data, name: event.target.value })}
       />
     </label>
+
     <label>
-      <label>
-        Time Zone
-        <TimeZoneInput
-          timeZone={data.timeZone}
-          onChange={(timeZone) => setData({ ...data, timeZone })}
-        />
-      </label>
+      Time Zone
+      <TimeZoneInput
+        timeZone={data.timeZone}
+        onChange={(timeZone) => setData({ ...data, timeZone })}
+      />
+    </label>
+
+    <label>
       <input
         type="radio"
         checked={data.mode === 'analogue'}
