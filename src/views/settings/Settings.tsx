@@ -9,7 +9,6 @@ import { Icon } from '../shared';
 import Logo from '../shared/Logo';
 import Background from './Background';
 import Feedback from './Feedback';
-import Homepage from './Homepage';
 import './Settings.sass';
 import System from './System';
 import Widgets from './Widgets';
@@ -73,8 +72,6 @@ const Settings: FC = () => {
         <Widgets />
 
         <System />
-
-        {process.env.BUILD_TARGET === 'firefox' && <Homepage />}
 
         <Feedback />
 
