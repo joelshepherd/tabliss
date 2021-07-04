@@ -5,9 +5,9 @@
   "private": true,
   "scripts": {
     "build": "npm run-script build:web",
-    "build:chromium": "NODE_ENV=production BUILD_TARGET=chromium webpack",
-    "build:firefox": "NODE_ENV=production BUILD_TARGET=firefox webpack",
-    "build:web": "NODE_ENV=production BUILD_TARGET=web webpack",
+    "build:chromium": "cross-env NODE_ENV=production BUILD_TARGET=chromium webpack",
+    "build:firefox": "cross-env NODE_ENV=production BUILD_TARGET=firefox webpack",
+    "build:web": "cross-env NODE_ENV=production BUILD_TARGET=web webpack",
     "start": "webpack-dev-server",
     "test": "jest --config jest.json",
     "translations": "node ./scripts/translations.js"
@@ -33,6 +33,7 @@
   },
   "devDependencies": {
     "@types/chrome": "0.0.103",
+    "@types/firefox-webext-browser": "^82.0.0",
     "@types/jest": "^25.1.5",
     "@types/node": "^13.11.0",
     "@types/react": "^16.9.32",
@@ -42,6 +43,7 @@
     "@types/uuid": "^7.0.2",
     "clean-webpack-plugin": "^3.0.0",
     "copy-webpack-plugin": "^6.1.1",
+    "cross-env": "^7.0.3",
     "css-loader": "^3.4.2",
     "dotenv": "^8.2.0",
     "file-loader": "^6.0.0",
