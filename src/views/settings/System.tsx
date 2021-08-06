@@ -149,7 +149,7 @@ const System: FC = () => {
             ગુજરાતી
           </option>
           <option value="rs" title="Српски">
-            Українська
+            Српски
           </option>
           <option value="uk" title="Ukrainian">
             Українська
