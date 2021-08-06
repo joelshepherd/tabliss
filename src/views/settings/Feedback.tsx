@@ -1,6 +1,6 @@
-import React from 'react';
+import React from "react";
 
-import { CollapseIcon, IconButton } from '../shared';
+import { CollapseIcon, IconButton } from "../shared";
 
 interface State {
   body: string;
@@ -11,8 +11,8 @@ interface State {
 
 class Feedback extends React.PureComponent<{}, State> {
   state: State = {
-    body: '',
-    email: '',
+    body: "",
+    email: "",
     open: false,
     pending: false,
   };
@@ -31,18 +31,18 @@ class Feedback extends React.PureComponent<{}, State> {
             <input
               type="email"
               value={this.state.email}
-              onChange={event => this.setState({ email: event.target.value })}
+              onChange={(event) => this.setState({ email: event.target.value })}
               placeholder="Your email (optional)"
             />
 
             <textarea
               value={this.state.body}
               rows={3}
-              onChange={event => this.setState({ body: event.target.value })}
+              onChange={(event) => this.setState({ body: event.target.value })}
               placeholder="Your feedback or suggestion"
             />
 
-            <div style={{ float: 'right' }}>
+            <div style={{ float: "right" }}>
               <IconButton onClick={this.toggle} title="Close feedback form">
                 <CollapseIcon />
               </IconButton>
@@ -73,8 +73,8 @@ class Feedback extends React.PureComponent<{}, State> {
     this.setState({ pending: true });
 
     const request = new Request(`${process.env.API_ENDPOINT}/feedback`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         email: this.state.email || undefined,
         feedback: this.state.body,
@@ -82,20 +82,20 @@ class Feedback extends React.PureComponent<{}, State> {
     });
 
     fetch(request)
-      .then(res => {
+      .then((res) => {
         if (!res.ok) {
-          throw new Error('Feedback API request was not successful');
+          throw new Error("Feedback API request was not successful");
         }
 
-        alert('Thank you for your feedback!');
+        alert("Thank you for your feedback!");
         this.setState({
-          body: '',
+          body: "",
           pending: false,
         });
       })
       .catch(() => {
         alert(
-          'Sorry, we were unable to send your feedback :( Please email your feedback to feedback@tabliss instead.',
+          "Sorry, we were unable to send your feedback :( Please email your feedback to feedback@tabliss instead.",
         );
         this.setState({ pending: false });
       });

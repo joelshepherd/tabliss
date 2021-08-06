@@ -1,6 +1,6 @@
-import React, { FC } from 'react';
+import React, { FC } from "react";
 
-import { useSelector } from '../../../store';
+import { useSelector } from "../../../store";
 
 type Props = {
   hour12: boolean;
@@ -32,10 +32,10 @@ const IntlTime: FC<Props> = ({
   // Time formatter config
   const formater = Intl.DateTimeFormat(locale, {
     hour12,
-    hour: 'numeric',
-    hourCycle: hour12 ? 'h12' : 'h23',
-    minute: showMinutes ? 'numeric' : undefined,
-    second: showSeconds ? 'numeric' : undefined,
+    hour: "numeric",
+    hourCycle: hour12 ? "h12" : "h23",
+    minute: showMinutes ? "numeric" : undefined,
+    second: showSeconds ? "numeric" : undefined,
   });
 
   let formatedTime: String;
@@ -49,9 +49,9 @@ const IntlTime: FC<Props> = ({
     const dateParts = formater.formatToParts(time);
 
     formatedTime = dateParts
-      .filter((part) => part.type !== 'dayPeriod') // Removes day period from the array
+      .filter((part) => part.type !== "dayPeriod") // Removes day period from the array
       .map((part) => part.value) // Converts array of objects to array of strings
-      .join('');
+      .join("");
   }
 
   return <>{formatedTime}</>;

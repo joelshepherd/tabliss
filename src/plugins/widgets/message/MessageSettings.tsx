@@ -1,6 +1,6 @@
-import React, { FC } from 'react';
+import React, { FC } from "react";
 
-import { Props, defaultData } from './types';
+import { Props, defaultData } from "./types";
 
 const MessageSettings: FC<Props> = ({ data = defaultData, setData }) => (
   <div className="MessageSettings">
@@ -9,7 +9,7 @@ const MessageSettings: FC<Props> = ({ data = defaultData, setData }) => (
       <textarea
         rows={3}
         value={data.messages[0]}
-        onChange={event => setData({ messages: [event.target.value] })}
+        onChange={(event) => setData({ messages: [event.target.value] })}
       />
     </label>
   </div>

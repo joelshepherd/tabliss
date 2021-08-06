@@ -1,18 +1,18 @@
-import React, { FC } from 'react';
-import { FormattedMessage } from 'react-intl';
-import { useDispatch } from 'react-redux';
+import React, { FC } from "react";
+import { FormattedMessage } from "react-intl";
+import { useDispatch } from "react-redux";
 
-import { backgroundConfigs, getConfig } from '../../plugins';
-import { useSelector } from '../../store';
-import { setBackground, setBackgroundDisplay } from '../../store/actions/data';
-import Plugin from '../shared/Plugin';
-import ToggleSection from '../shared/ToggleSection';
+import { backgroundConfigs, getConfig } from "../../plugins";
+import { useSelector } from "../../store";
+import { setBackground, setBackgroundDisplay } from "../../store/actions/data";
+import Plugin from "../shared/Plugin";
+import ToggleSection from "../shared/ToggleSection";
 
 const Background: FC = () => {
   const dispatch = useDispatch();
 
-  const background = useSelector(state =>
-    state.data.backgrounds.find(plugin => plugin.active),
+  const background = useSelector((state) =>
+    state.data.backgrounds.find((plugin) => plugin.active),
   );
   const plugin = background ? getConfig(background.key) : undefined;
 
@@ -29,14 +29,14 @@ const Background: FC = () => {
       <label>
         <select
           value={background && background.key}
-          onChange={event =>
+          onChange={(event) =>
             dispatch(
               setBackground(event.target.value, background && background.id),
             )
           }
           className="primary"
         >
-          {backgroundConfigs.map(plugin => (
+          {backgroundConfigs.map((plugin) => (
             <option key={plugin.key} value={plugin.key}>
               {plugin.name}
             </option>
@@ -66,7 +66,7 @@ const Background: FC = () => {
                     max="50"
                     step="2"
                     value={background.display.blur}
-                    onChange={event =>
+                    onChange={(event) =>
                       dispatch(
                         setBackgroundDisplay({
                           blur: Number(event.target.value),
@@ -89,7 +89,7 @@ const Background: FC = () => {
                     max="1"
                     step="0.1"
                     value={background.display.luminosity}
-                    onChange={event =>
+                    onChange={(event) =>
                       dispatch(
                         setBackgroundDisplay({
                           luminosity: Number(event.target.value),

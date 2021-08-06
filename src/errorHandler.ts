@@ -1,4 +1,4 @@
-import { init, captureException } from '@sentry/browser';
+import { init, captureException } from "@sentry/browser/dist";
 
 export function register() {
   init({
@@ -13,13 +13,13 @@ export function capture(error: Error) {
     // Replace firefox extension URLs
     error.stack = error.stack.replace(
       /moz-extension:\/\/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/g,
-      'resource://tabliss-extension',
+      "resource://tabliss-extension",
     );
 
     // Replace chrome extension URLs
     error.stack = error.stack.replace(
       /chrome-extension:\/\/hipekcciheckooncpjeljhnekcoolahp/g,
-      'resource://tabliss-extension',
+      "resource://tabliss-extension",
     );
   }
 

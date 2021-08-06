@@ -1,8 +1,8 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useEffect, useState } from "react";
 
-import Backdrop from '../../../views/shared/Backdrop';
-import { Props, defaultCache } from './types';
-import './Image.sass';
+import Backdrop from "../../../views/shared/Backdrop";
+import { Props, defaultCache } from "./types";
+import "./Image.sass";
 
 function pickItem(items: unknown[]) {
   return items[Math.floor(Math.random() * items.length)];

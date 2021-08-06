@@ -1,5 +1,5 @@
-import { API } from '../../types';
-import { State } from './reducer';
+import { API } from "../../types";
+import { State } from "./reducer";
 
 export type Data = {
   items: State;

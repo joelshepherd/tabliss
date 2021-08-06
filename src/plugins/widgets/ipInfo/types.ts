@@ -1,19 +1,19 @@
-import { API } from '../../types';
+import { API } from "../../types";
 
 type Data = {
-  ip: string,
-  city: string,
-  country: string,
-  displayCity: boolean,
-  displayCountry: boolean,
-  refreshInterval: number
+  ip: string;
+  city: string;
+  country: string;
+  displayCity: boolean;
+  displayCountry: boolean;
+  refreshInterval: number;
 };
 
 export type IpData = {
-  ip: string,
-  city: string,
-  country: string,
-  timestamp: number
+  ip: string;
+  city: string;
+  country: string;
+  timestamp: number;
 };
 
 type Cache = IpData;
@@ -26,5 +26,5 @@ export const defaultData: Data = {
   country: "",
   displayCity: true,
   displayCountry: true,
-  refreshInterval: 5
+  refreshInterval: 5,
 };

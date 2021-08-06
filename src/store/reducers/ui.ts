@@ -1,5 +1,5 @@
-import { Actions } from '../actions';
-import { UiState } from './types';
+import { Actions } from "../actions";
+import { UiState } from "./types";
 
 const initialState: UiState = {
   focus: false,
@@ -9,31 +9,31 @@ const initialState: UiState = {
 
 export function ui(state = initialState, action: Actions): UiState {
   switch (action.type) {
-    case 'PUSH_LOADER':
+    case "PUSH_LOADER":
       return {
         ...state,
         loaders: state.loaders + 1,
       };
 
-    case 'POP_LOADER':
+    case "POP_LOADER":
       return {
         ...state,
         loaders: state.loaders - 1,
       };
 
-    case 'SET_STORE_ERROR':
+    case "SET_STORE_ERROR":
       return {
         ...state,
         storeError: action.data.storeError,
       };
 
-    case 'TOGGLE_FOCUS':
+    case "TOGGLE_FOCUS":
       return {
         ...state,
         focus: !state.focus,
       };
 
-    case 'TOGGLE_SETTINGS':
+    case "TOGGLE_SETTINGS":
       return {
         ...state,
         settings: !state.settings,

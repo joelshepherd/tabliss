@@ -1,8 +1,8 @@
-import { defineMessages } from 'react-intl';
+import { defineMessages } from "react-intl";
 
 export const messages = defineMessages({
   greeting: {
-    id: 'plugin.greeting.withoutName',
+    id: "plugin.greeting.withoutName",
     defaultMessage: `{hour, select,
       0 {Sleep well}
       1 {Sleep well}
@@ -29,10 +29,10 @@ export const messages = defineMessages({
       22 {Good night}
       23 {Good night}
     }`,
-    description: 'Greetings per time of day',
+    description: "Greetings per time of day",
   },
   greetingWithName: {
-    id: 'plugin.greeting.withName',
+    id: "plugin.greeting.withName",
     defaultMessage: `{hour, select,
       0 {Sleep well, {name}}
       1 {Sleep well, {name}}
@@ -59,6 +59,6 @@ export const messages = defineMessages({
       22 {Good night, {name}}
       23 {Good night, {name}}
     }`,
-    description: 'Greetings per time of day with names',
+    description: "Greetings per time of day with names",
   },
 });

@@ -1,13 +1,13 @@
-import React, { FC } from 'react';
+import React, { FC } from "react";
 
-import { useSelector } from '../../store';
-import { WidgetPosition, WidgetState } from '../../store/reducers/types';
-import Slot from './Slot';
-import './Widgets.sass';
+import { useSelector } from "../../store";
+import { WidgetPosition, WidgetState } from "../../store/reducers/types";
+import Slot from "./Slot";
+import "./Widgets.sass";
 
 const Widgets: FC = () => {
-  const focus = useSelector(state => state.ui.focus);
-  const widgets = useSelector(state => state.data.widgets);
+  const focus = useSelector((state) => state.ui.focus);
+  const widgets = useSelector((state) => state.data.widgets);
 
   const grouped = widgets.reduce<Record<string, WidgetState[]>>(
     (carry, widget) => ({

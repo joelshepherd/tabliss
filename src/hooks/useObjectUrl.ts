@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 
 export function useObjectUrl(data?: Blob) {
   const [url, setUrl] = useState<string>();

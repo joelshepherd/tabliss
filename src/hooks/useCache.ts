@@ -1,6 +1,6 @@
-import { EffectCallback, useEffect, useRef } from 'react';
-import { useTime } from './useTime';
-import { Cache } from '../plugins';
+import { EffectCallback, useEffect, useRef } from "react";
+import { useTime } from "./useTime";
+import { Cache } from "../plugins";
 
 /**
  * A cached effect that automatically reruns after the expires time or on deps change.
@@ -10,7 +10,7 @@ export function useCachedEffect(
   expires: Date | number,
   deps: unknown[],
 ) {
-  const time = useTime('absolute');
+  const time = useTime("absolute");
   const prevDeps = useRef(deps);
   const prevExpires = useRef<Date | number>();
 
@@ -52,7 +52,9 @@ export function useRotatingCache<T>(
     };
     setCache(rotatedCache);
 
-    Promise.resolve(create()).then(next => setCache({ ...rotatedCache, next }));
+    Promise.resolve(create()).then((next) =>
+      setCache({ ...rotatedCache, next }),
+    );
   };
 
   // Special case for changing every new tab
@@ -63,7 +65,7 @@ export function useRotatingCache<T>(
   }, [timeout]);
 
   // Rotate cache on timeout
-  const time = useTime('absolute').getTime();
+  const time = useTime("absolute").getTime();
   useEffect(() => {
     if (cache && timeout !== 0 && time > cache.rotated + timeout) {
       rotateCache();

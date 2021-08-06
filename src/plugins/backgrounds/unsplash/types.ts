@@ -1,7 +1,7 @@
-import { RotatingCache } from '../../../hooks';
-import { API } from '../../types';
+import { RotatingCache } from "../../../hooks";
+import { API } from "../../types";
 
-type By = 'official' | 'collections' | 'search';
+type By = "official" | "collections" | "search";
 
 export interface Data {
   by: By;
@@ -24,9 +24,9 @@ type Cache = RotatingCache<Image>;
 export type Props = API<Data, Cache>;
 
 export const defaultData: Data = {
-  by: 'official',
-  collections: '',
+  by: "official",
+  collections: "",
   featured: false,
-  search: '',
+  search: "",
   timeout: 900,
 };
