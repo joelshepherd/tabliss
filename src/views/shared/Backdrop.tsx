@@ -15,7 +15,7 @@ const Backdrop: FC<Props> = ({
   // Lag one frame behind to show the animation
   const [show, setShow] = React.useState(ready);
   React.useLayoutEffect(() => {
-    setImmediate(() => setShow(ready));
+    setTimeout(() => setShow(ready), 0);
   }, [ready]);
 
   const background = useSelector((state) =>

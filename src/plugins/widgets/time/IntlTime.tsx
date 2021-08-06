@@ -29,24 +29,14 @@ const IntlTime: FC<Props> = ({
 }) => {
   const locale = useSelector((state) => state.data.locale);
 
-  // Typescript types for Intl.DateTimeFormat do not include hourCycle
-  const options: {
-    hour?: string;
-    minute?: string;
-    second?: string;
-    hour12?: boolean;
-    timeZone?: string;
-    hourCycle?: string;
-  } = {
+  // Time formatter config
+  const formater = Intl.DateTimeFormat(locale, {
     hour12,
     hour: 'numeric',
     hourCycle: hour12 ? 'h12' : 'h23',
     minute: showMinutes ? 'numeric' : undefined,
     second: showSeconds ? 'numeric' : undefined,
-  };
-
-  // Time formatter config
-  const formater = Intl.DateTimeFormat(locale, options);
+  });
 
   let formatedTime: String;
 
