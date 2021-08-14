@@ -1,5 +1,5 @@
 import { Config } from "../../types";
-import Colour from "./Colour";
+import { Colour, createReloader } from "./Colour";
 import ColourSettings from "./ColourSettings";
 
 const config: Config = {
@@ -7,6 +7,7 @@ const config: Config = {
   name: "Solid Colour",
   description: "Add a splash of colour.",
   dashboardComponent: Colour,
+  reloader: createReloader,
   settingsComponent: ColourSettings,
 };
 
