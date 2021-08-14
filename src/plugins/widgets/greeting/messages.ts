@@ -28,6 +28,7 @@ export const messages = defineMessages({
       21 {Good evening}
       22 {Good night}
       23 {Good night}
+      other {Unknown}
     }`,
     description: "Greetings per time of day",
   },
@@ -58,6 +59,7 @@ export const messages = defineMessages({
       21 {Good evening, {name}}
       22 {Good night, {name}}
       23 {Good night, {name}}
+      other {Unknown}
     }`,
     description: "Greetings per time of day with names",
   },
