@@ -10,17 +10,20 @@ export async function getImage(
 ): Promise<Image> {
   // Fetch random image
   loader.push();
-  const res = await fetchImageMeta(config);
-  const data = await fetchImageData(res.urls.raw);
-  loader.pop();
+  try {
+    const res = await fetchImageMeta(config);
+    const data = await fetchImageData(res.urls.raw);
 
-  return {
-    data,
-    image_link: res.links.html,
-    location_title: res.location ? res.location.title : null,
-    user_name: res.user.name,
-    user_link: res.user.links.html,
-  };
+    return {
+      data,
+      image_link: res.links.html,
+      location_title: res.location ? res.location.title : null,
+      user_name: res.user.name,
+      user_link: res.user.links.html,
+    };
+  } finally {
+    loader.pop();
+  }
 }
 
 async function fetchImageMeta({ by, collections, featured, search }: Config) {
@@ -46,7 +49,10 @@ async function fetchImageMeta({ by, collections, featured, search }: Config) {
   }
 
   const res = await fetch(`${url}?${params}`, { headers });
+  if (!res.ok)
+    throw new Error(`Failed to fetch image meta: ${res.statusText} ${await res.text()}`)
   return res.json();
+
 }
 
 async function fetchImageData(url: string) {
