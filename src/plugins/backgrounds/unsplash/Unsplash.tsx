@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useState, useEffect } from "react";
 
 import { useObjectUrl, useRotatingCache, getCacheRotator } from "../../../hooks";
 import Backdrop from "../../../views/shared/Backdrop";
@@ -40,20 +40,34 @@ const Unsplash: FC<Props> = ({
   );
 };
 
-export function createReloader(title: string, iconName: string) {
+export function createReloader(title: string, iconName: string, delay: number = 3000) {
   const UnsplashReloader: FC<Props> = ({
     cache,
     data = defaultData,
     loader,
     setCache,
   }) => {
-    const rotateCache = getCacheRotator(() => getImage(data, loader), { cache, setCache })
+    // Do not allow click more frequent than once in `delay` ms
+    const [reloadClickable, setReloadClickable] = useState(false);
+
+    const rotateCache = getCacheRotator(() => {
+      setReloadClickable(false);
+      return getImage(data, loader)
+    }, { cache, setCache })
+
+    useEffect(() => {
+      const timer = setTimeout(() => {
+        setReloadClickable(true);
+      }, delay);
+      return () => clearTimeout(timer);
+    }, []);
 
     return (
       <a
         className="on-hover"
-        onClick={rotateCache}
+        onClick={reloadClickable ? rotateCache : undefined}
         title={title}
+        style={{ filter: reloadClickable ? '' : 'brightness(70%)', }}
       >
         <Icon name={iconName} />
       </a>
