@@ -3,9 +3,12 @@ import { defineMessages } from "react-intl";
 import { useDispatch } from "react-redux";
 
 import { useFormatMessages, useFullscreen, useKeyPress } from "../../hooks";
+import Plugin from "../shared/Plugin";
 import { useSelector } from "../../store";
 import { toggleFocus, toggleSettings } from "../../store/actions";
 import { Icon } from "../shared";
+import { getConfig } from "../../plugins";
+
 import "./Overlay.sass";
 
 const messages = defineMessages({
@@ -13,6 +16,11 @@ const messages = defineMessages({
     id: "dashboard.settingsHint",
     defaultMessage: "Customise Tabliss",
     description: "Hover hint text for the settings icon",
+  },
+  reloadImgHint: {
+    id: "dashboard.reloadImgHint",
+    defaultMessage: "Reload background",
+    description: "Reload background image",
   },
   focusHint: {
     id: "dashboard.focusHint",
@@ -48,6 +56,18 @@ const Overlay: FC = () => {
   const [isFullscreen, handleToggleFullscreen] = useFullscreen();
   if (handleToggleFullscreen) useKeyPress(handleToggleFullscreen, ["f"]);
 
+  const backgroundReloader = useSelector((state) => {
+    let background = state.data.backgrounds.find((plugin) => plugin.active);
+    if (!background)
+      return null;
+
+    const bgPlugin = getConfig(background.key);
+    if (!bgPlugin?.reloader)
+      return null;
+
+    return <Plugin id={background.id} component={bgPlugin.reloader(`${translated.reloadImgHint}`, "refresh-cw")} />
+  });
+
   return (
     <div className="Overlay">
       <a
@@ -62,6 +82,8 @@ const Overlay: FC = () => {
           <Icon name="zap" />
         </span>
       )}
+
+      {!pending && backgroundReloader}
 
       <a
         className="on-hover"
@@ -80,6 +102,7 @@ const Overlay: FC = () => {
           <Icon name={isFullscreen ? "minimize-2" : "maximize-2"} />
         </a>
       )}
+
     </div>
   );
 };

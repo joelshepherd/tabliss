@@ -33,17 +33,10 @@ export type RotatingCache<Item> = {
   deps: unknown[];
 };
 
-/**
- * It's complicated.
- * Essentially is uses a create function and a cache to return a precached object that rotates on a timeout.
- * See: Unsplash plugin
- */
-export function useRotatingCache<T>(
+export function getCacheRotator<T>(
   create: () => T | Promise<T>,
   { cache, setCache }: Cache<RotatingCache<T>>,
-  timeout: number,
-  deps: unknown[],
-): T | undefined {
+) {
   const rotateCache = () => {
     const rotatedCache = {
       ...cache!,
@@ -56,6 +49,21 @@ export function useRotatingCache<T>(
       setCache({ ...rotatedCache, next }),
     );
   };
+  return rotateCache
+}
+
+/**
+ * It's complicated.
+ * Essentially is uses a create function and a cache to return a precached object that rotates on a timeout.
+ * See: Unsplash plugin
+ */
+export function useRotatingCache<T>(
+  create: () => T | Promise<T>,
+  { cache, setCache }: Cache<RotatingCache<T>>,
+  timeout: number,
+  deps: unknown[],
+): T | undefined {
+  const rotateCache = getCacheRotator(create, { cache, setCache })
 
   // Special case for changing every new tab
   useEffect(() => {

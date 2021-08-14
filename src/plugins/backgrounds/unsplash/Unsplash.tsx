@@ -1,11 +1,15 @@
 import React, { FC } from "react";
 
-import { useObjectUrl, useRotatingCache } from "../../../hooks";
+import { useObjectUrl, useRotatingCache, getCacheRotator } from "../../../hooks";
 import Backdrop from "../../../views/shared/Backdrop";
 import { getImage } from "./api";
 import { Props, defaultData } from "./types";
 import UnsplashCredit from "./UnsplashCredit";
+import { Icon } from "../../../views/shared";
+import { useSelector } from "../../../store";
+
 import "./Unsplash.sass";
+
 
 const Unsplash: FC<Props> = ({
   cache,
@@ -36,4 +40,27 @@ const Unsplash: FC<Props> = ({
   );
 };
 
-export default Unsplash;
+export function createReloader(title: string, iconName: string) {
+  const UnsplashReloader: FC<Props> = ({
+    cache,
+    data = defaultData,
+    loader,
+    setCache,
+  }) => {
+    const rotateCache = getCacheRotator(() => getImage(data, loader), { cache, setCache })
+
+    return (
+      <a
+        className="on-hover"
+        onClick={rotateCache}
+        title={title}
+      >
+        <Icon name={iconName} />
+      </a>
+    );
+  };
+
+  return UnsplashReloader;
+}
+
+export { Unsplash };
