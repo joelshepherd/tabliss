@@ -9,19 +9,23 @@ const WorkHours: FC<Props> = ({data = defaultData}) => {
 
  return (
    <div className="WorkHours">
-     <h2>{hoursProgress(time, start, end)}</h2>
+     { isWorkDay(data.days) &&
+      <>
+          <h2>{hoursProgress(time, start, end)}%</h2>
+      </>
+    }
    </div>
  )
 }
 
-const hoursProgress = (current: Date, start: Date, end: Date): string => {
-  if(current < start) return '0%';
-  if(current > end) return '100%';
+const hoursProgress = (current: Date, start: Date, end: Date): number => {
+  if(current < start) return 0;
+  if(current > end) return 100;
 
   const total = end.getTime() - start.getTime();
   const progress = current.getTime() - start.getTime();
 
-  return `${Math.round((progress/total)*100)}%`;
+  return Math.floor((progress/total)*100);
 }
 
 const buildDateTime = (time: string): Date => {
@@ -32,5 +36,8 @@ const buildDateTime = (time: string): Date => {
   dateTime.setSeconds(0);
   return dateTime;
 }
+
+const isWorkDay = (days: number[]): boolean =>
+  days.includes(new Date().getDay())
 
 export default WorkHours;
