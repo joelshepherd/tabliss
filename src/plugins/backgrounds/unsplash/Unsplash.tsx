@@ -1,4 +1,4 @@
-import React, { FC, useState, useEffect } from "react";
+import React, { FC, useState } from "react";
 
 import { useObjectUrl, useRotatingCache, getCacheRotator } from "../../../hooks";
 import Backdrop from "../../../views/shared/Backdrop";
@@ -6,7 +6,6 @@ import { getImage } from "./api";
 import { Props, defaultData } from "./types";
 import UnsplashCredit from "./UnsplashCredit";
 import { Icon } from "../../../views/shared";
-import { useSelector } from "../../../store";
 
 import "./Unsplash.sass";
 
@@ -48,26 +47,28 @@ export function createReloader(title: string, iconName: string, delay: number = 
     setCache,
   }) => {
     // Do not allow click more frequent than once in `delay` ms
-    const [reloadClickable, setReloadClickable] = useState(false);
+    const [activeButton, setActiveButton] = useState(true);
 
-    const rotateCache = getCacheRotator(() => {
-      setReloadClickable(false);
-      return getImage(data, loader)
-    }, { cache, setCache })
+    const debounseButton = () => {
+      setActiveButton(false);
+      setTimeout(() => setActiveButton(true), delay);
+    };
 
-    useEffect(() => {
-      const timer = setTimeout(() => {
-        setReloadClickable(true);
-      }, delay);
-      return () => clearTimeout(timer);
-    }, []);
+    const rotateCache = getCacheRotator(() => getImage(data, loader), { cache, setCache })
+
+    const onClick = () => {
+      if (activeButton) {
+        debounseButton();
+        rotateCache();
+      }
+    };
 
     return (
       <a
         className="on-hover"
-        onClick={reloadClickable ? rotateCache : undefined}
+        onClick={onClick}
         title={title}
-        style={{ filter: reloadClickable ? '' : 'brightness(70%)', }}
+        style={{ filter: activeButton ? '' : 'brightness(70%)', }}
       >
         <Icon name={iconName} />
       </a>

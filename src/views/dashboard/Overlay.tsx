@@ -69,40 +69,41 @@ const Overlay: FC = () => {
   });
 
   return (
-    <div className="Overlay">
-      <a
-        onClick={handleToggleSettings}
-        title={`${translated.settingsHint} (S)`}
-      >
-        <Icon name="settings" />
-      </a>
+    <div>
+      <div className="Overlay">
+        <a
+          onClick={handleToggleSettings}
+          title={`${translated.settingsHint} (S)`}
+        >
+          <Icon name="settings" />
+        </a>
 
-      {pending && (
-        <span title={translated.loadingHint}>
-          <Icon name="zap" />
-        </span>
-      )}
-
-      {!pending && backgroundReloader}
-
-      <a
-        className="on-hover"
-        onClick={handleToggleFocus}
-        title={`${translated.focusHint} (W)`}
-      >
-        <Icon name={focus ? "eye-off" : "eye"} />
-      </a>
-
-      {handleToggleFullscreen && (
         <a
           className="on-hover"
-          onClick={handleToggleFullscreen}
-          title={`${translated.fullscreenHint} (F)`}
+          onClick={handleToggleFocus}
+          title={`${translated.focusHint} (W)`}
         >
-          <Icon name={isFullscreen ? "minimize-2" : "maximize-2"} />
+          <Icon name={focus ? "eye-off" : "eye"} />
         </a>
-      )}
 
+        {handleToggleFullscreen && (
+          <a
+            className="on-hover"
+            onClick={handleToggleFullscreen}
+            title={`${translated.fullscreenHint} (F)`}
+          >
+            <Icon name={isFullscreen ? "minimize-2" : "maximize-2"} />
+          </a>
+        )}
+        {backgroundReloader}
+      </div>
+      <div className="OverlayRight">
+        {pending && (
+          <span title={translated.loadingHint}>
+            <Icon name="zap" />
+          </span>
+        )}
+      </div>
     </div>
   );
 };
