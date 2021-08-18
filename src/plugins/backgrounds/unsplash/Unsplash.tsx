@@ -6,6 +6,7 @@ import { getImage } from "./api";
 import { Props, defaultData } from "./types";
 import UnsplashCredit from "./UnsplashCredit";
 import { Icon } from "../../../views/shared";
+import { useDebounceToggle } from "../../../hooks"
 
 import "./Unsplash.sass";
 
@@ -47,12 +48,7 @@ export function createReloader(title: string, iconName: string, delay: number = 
     setCache,
   }) => {
     // Do not allow click more frequent than once in `delay` ms
-    const [activeButton, setActiveButton] = useState(true);
-
-    const debounseButton = () => {
-      setActiveButton(false);
-      setTimeout(() => setActiveButton(true), delay);
-    };
+    const [activeButton, debounseButton] = useDebounceToggle(true, delay);
 
     const rotateCache = getCacheRotator(() => getImage(data, loader), { cache, setCache })
 
