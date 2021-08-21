@@ -1,18 +1,18 @@
-import React, { FC, useCallback, ChangeEvent } from 'react';
-import { FormattedMessage } from 'react-intl';
-import { useDispatch } from 'react-redux';
+import React, { FC, useCallback, ChangeEvent } from "react";
+import { FormattedMessage } from "react-intl";
+import { useDispatch } from "react-redux";
 
-import { widgetConfigs } from '../../plugins';
-import { useSelector } from '../../store';
+import { widgetConfigs } from "../../plugins";
+import { useSelector } from "../../store";
 import {
   addWidget,
   removeWidget,
   reorderWidget,
-} from '../../store/actions/data';
-import Widget from './Widget';
+} from "../../store/actions/data";
+import Widget from "./Widget";
 
 const Widgets: FC = () => {
-  const active = useSelector(state => state.data.widgets);
+  const active = useSelector((state) => state.data.widgets);
 
   const dispatch = useDispatch();
   const boundReorderWidget = useCallback(
@@ -39,7 +39,7 @@ const Widgets: FC = () => {
           <option disabled value="">
             Add a new widget
           </option>
-          {widgetConfigs.map(plugin => (
+          {widgetConfigs.map((plugin) => (
             <option key={plugin.key} value={plugin.key}>
               {plugin.name}
             </option>

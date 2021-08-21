@@ -1,5 +1,6 @@
 import css from './css';
 import greeting from './greeting';
+import ipInfo from "./ipInfo";
 import links from './links';
 import literatureClock from './literatureClock';
 import js from './js';
@@ -12,9 +13,11 @@ import todo from './todo';
 import weather from './weather';
 import timer from './timer';
 
+
 export const widgetConfigs = [
   css,
   greeting,
+  ipInfo,
   links,
   literatureClock,
   message,
@@ -27,7 +30,7 @@ export const widgetConfigs = [
   timer,
 ];
 
-if (process.env.BUILD_TARGET === 'web') {
+if (process.env.BUILD_TARGET === "web") {
   widgetConfigs.push(js);
 }
 

@@ -1,16 +1,15 @@
-import React, { FC } from 'react';
-import { FormattedMessage } from 'react-intl';
-import { useDispatch } from 'react-redux';
+import React, { FC } from "react";
+import { FormattedMessage } from "react-intl";
+import { useDispatch } from "react-redux";
 
-import { defaultLocale } from '../../locales';
-import { useSelector } from '../../store';
-import { setLocale, setTimeZone } from '../../store/actions';
-import TimeZoneInput from '../shared/timeZone/TimeZoneInput';
-
+import { defaultLocale } from "../../locales";
+import { useSelector } from "../../store";
+import { setLocale, setTimeZone } from "../../store/actions";
+import TimeZoneInput from "../shared/timeZone/TimeZoneInput";
 
 const System: FC = () => {
-  const locale = useSelector(state => state.data.locale || defaultLocale);
-  const timeZone = useSelector(state => state.data.timeZone || '');
+  const locale = useSelector((state) => state.data.locale || defaultLocale);
+  const timeZone = useSelector((state) => state.data.timeZone || "");
 
   const dispatch = useDispatch();
   const handleSetLocale = (event: React.ChangeEvent<HTMLSelectElement>) =>
@@ -30,11 +29,11 @@ const System: FC = () => {
 
       <label
         style={{
-          alignItems: 'center',
-          display: 'grid',
-          gridGap: '0 0.5rem',
-          gridTemplateColumns: '1fr 2fr',
-          width: '100%',
+          alignItems: "center",
+          display: "grid",
+          gridGap: "0 0.5rem",
+          gridTemplateColumns: "1fr 2fr",
+          width: "100%",
           margin: 0,
         }}
       >
@@ -64,8 +63,14 @@ const System: FC = () => {
           <option value="es" title="Spanish">
             Español
           </option>
+          <option value="fa" title="French">
+            پارسی
+          </option>
           <option value="fr" title="French">
             Français
+          </option>
+          <option value="gd" title="Scottish Gaelic">
+            Gàidhlig
           </option>
           <option value="hu" title="Hungarian">
             Magyar
@@ -81,6 +86,12 @@ const System: FC = () => {
           </option>
           <option value="ko" title="Korean">
             한국어
+          </option>
+          <option value="lb" title="Luxembourgish">
+            Lëtzebuergesch
+          </option>
+          <option value="lt" title="Lithuanian">
+            Lietuvių k.
           </option>
           <option value="nl" title="Dutch">
             Nederlands
@@ -106,8 +117,17 @@ const System: FC = () => {
           <option value="sk" title="Slovak">
             Slovenčina
           </option>
+          <option value="fi" title="Finnish">
+            Suomi
+          </option>
           <option value="sv" title="Swedish">
             Svenska
+          </option>
+          <option value="ta" title="Tamil">
+            தமிழ்
+          </option>
+          <option value="th" title="Thai">
+            ไทย
           </option>
           <option value="tr" title="Turkish">
             Türkçe
@@ -135,11 +155,11 @@ const System: FC = () => {
 
       <label
         style={{
-          alignItems: 'center',
-          display: 'grid',
-          gridGap: '0 0.5rem',
-          gridTemplateColumns: '1fr 2fr',
-          width: '100%',
+          alignItems: "center",
+          display: "grid",
+          gridGap: "0 0.5rem",
+          gridTemplateColumns: "1fr 2fr",
+          width: "100%",
           margin: 0,
         }}
       >

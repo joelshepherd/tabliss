@@ -1,9 +1,9 @@
-import React, { FC } from 'react';
+import React, { FC } from "react";
 
-import { useObjectUrls } from '../../../hooks';
-import { IconButton, RemoveIcon } from '../../../views/shared';
-import { Props, defaultCache } from './types';
-import './ImageSettings.sass';
+import { useObjectUrls } from "../../../hooks";
+import { IconButton, RemoveIcon } from "../../../views/shared";
+import { Props, defaultCache } from "./types";
+import "./ImageSettings.sass";
 
 const ImageSettings: FC<Props> = ({ cache = defaultCache, setCache }) => {
   const urls = useObjectUrls(cache);
@@ -14,7 +14,7 @@ const ImageSettings: FC<Props> = ({ cache = defaultCache, setCache }) => {
   const removeImage = (index: number) =>
     setCache(cache.filter((_, i) => index !== i));
 
-  const largeImages = cache.some(image => image.size > 2097152);
+  const largeImages = cache.some((image) => image.size > 2097152);
 
   return (
     <div className="ImageSettings">
@@ -22,7 +22,7 @@ const ImageSettings: FC<Props> = ({ cache = defaultCache, setCache }) => {
         <input
           accept="image/*"
           multiple={true}
-          onChange={event =>
+          onChange={(event) =>
             event.target.files && addImages(event.target.files)
           }
           type="file"

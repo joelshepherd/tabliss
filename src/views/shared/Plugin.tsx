@@ -1,10 +1,10 @@
-import React, { FC } from 'react';
-import { withErrorBoundary } from 'react-error-boundary';
+import React, { FC } from "react";
+import { withErrorBoundary } from "react-error-boundary";
 
-import { capture as captureException } from '../../errorHandler';
-import { useApi } from '../../hooks';
-import { API } from '../../plugins';
-import Crashed from './Crashed';
+import { capture as captureException } from "../../errorHandler";
+import { useApi } from "../../hooks";
+import { API } from "../../plugins";
+import Crashed from "./Crashed";
 
 type Props = {
   id: string;
@@ -18,4 +18,7 @@ const Plugin: FC<Props> = ({ id, component: Component }) => {
   return <Component {...api} />;
 };
 
-export default withErrorBoundary(Plugin, Crashed, captureException);
+export default withErrorBoundary(Plugin, {
+  FallbackComponent: Crashed,
+  onError: captureException,
+});

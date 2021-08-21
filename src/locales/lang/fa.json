@@ -1,0 +1,19 @@
+{
+  "app.pageTitle": "زبانه جدید",
+  "background": "پس‌زمینه",
+  "dashboard.focusHint": "ابزارک‌ها",
+  "dashboard.fullscreenHint": "تمام صفحه",
+  "dashboard.loadingHint": "بارگذاری محتوا",
+  "dashboard.settingsHint": "شخصی‌سازی تبلیس",
+  "plugin.greeting.withName": "{hour, select,\n      0 {وقت بخیر, {name}}\n      1 {وقت بخیر, {name}}\n      2 {وقت بخیر, {name}}\n      3 {وقت بخیر, {name}}\n      4 {وقت بخیر, {name}}\n      5 {صبح بخیر, {name}}\n      6 {صبح بخیر, {name}}\n      7 {صبح بخیر, {name}}\n      8 {صبح بخیر, {name}}\n      9 {صبح بخیر, {name}}\n      10 {ظهر بخیر, {name}}\n      11 {ظهر بخیر, {name}}\n      12 {ظهر بخیر, {name}}\n      13 {ظهر بخیر, {name}}\n      14 {ظهر بخیر, {name}}\n      15 {عصر بخیر, {name}}\n      16 {عصر بخیر, {name}}\n      17 {عصر بخیر, {name}}\n      18 {عصر بخیر, {name}}\n      19 {شب بخیر, {name}}\n      20 {شب بخیر, {name}}\n      21 {شب بخیر, {name}}\n      22 {شب خوش, {name}}\n      23 {شب خوش, {name}}\n    other {Unknown}}",
+  "plugin.greeting.withoutName": "{hour, select,\n      0 {وقت بخیر}\n      1 {وقت بخیر}\n      2 {وقت بخیر}\n      3 {وقت بخیر}\n      4 {وقت بخیر}\n      5 {صبح بخیر}\n      6 {صبح بخیر}\n      7 {صبح بخیر}\n      8 {صبح بخیر}\n      9 {صبح بخیر}\n      10 {ظهر بخیر}\n      11 {ظهر بخیر}\n      12 {ظهر بخیر}\n      13 {ظهر بخیر}\n      14 {ظهر بخیر}\n      15 {عصر بخیر}\n      16 {عصر بخیر}\n      17 {عصر بخیر}\n      18 {عصر بخیر}\n      19 {شب بخیر}\n      20 {شب بخیر}\n      21 {شب بخیر}\n      22 {شب خوش}\n      23 {شب خوش}\n    other {Unknown}}",
+  "plugins.links.shortcutHint": "برای مشاهده کلید {number} را فشار دهید یا بر روی لینک کلیک کنید",
+  "plugins.links.standardHint": "کلیک کنید",
+  "plugins.search.placeholder": "برای جستوجو تایپ کنید",
+  "plugins.unsplash.photoLink": "تصویر",
+  "plugins.weather.high": "بالا",
+  "plugins.weather.low": "پایین",
+  "settings": "تنظیمات",
+  "settings.translationCredits": "پارسی شده توسط سرندد",
+  "widgets": "ابزارک‌ها"
+}

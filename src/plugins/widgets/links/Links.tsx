@@ -1,10 +1,10 @@
-import React, { FC } from 'react';
+import React, { FC } from "react";
 
-import { useKeyPress, useToggle } from '../../../hooks';
-import { Icon } from '../../../views/shared';
-import Display from './Display';
-import { Props, defaultData } from './types';
-import './Links.sass';
+import { useKeyPress, useToggle } from "../../../hooks";
+import { Icon } from "../../../views/shared";
+import Display from "./Display";
+import { Props, defaultData } from "./types";
+import "./Links.sass";
 
 const Links: FC<Props> = ({ data = defaultData }) => {
   const [visible, toggleVisible] = useToggle();
@@ -13,27 +13,34 @@ const Links: FC<Props> = ({ data = defaultData }) => {
     ({ key }) => {
       const index = Number(key) - 1;
       if (data.links[index]) {
-        window.location.assign(data.links[index].url);
+        data.linkOpenStyle
+          ? window.open(data.links[index].url, "_blank")
+          : window.location.assign(data.links[index].url);
       }
     },
-    ['1', '2', '3', '4', '5', '6', '7', '8', '9'],
+    ["1", "2", "3", "4", "5", "6", "7", "8", "9"],
   );
 
   return (
     <div
       className="Links"
       style={{
-        gridTemplateColumns: '1fr '.repeat(data.columns),
-        textAlign: data.columns > 1 ? 'left' : 'inherit',
+        gridTemplateColumns: "1fr ".repeat(data.columns),
+        textAlign: data.columns > 1 ? "left" : "inherit",
       }}
     >
       {data.visible || visible ? (
         data.links.map((link, index) => (
-          <Display key={index} number={index + 1} {...link} />
+          <Display
+            key={index}
+            number={index + 1}
+            linkOpenStyle={data.linkOpenStyle}
+            {...link}
+          />
         ))
       ) : (
         <a onClick={toggleVisible} title="Show quick links">
-          <Icon name={'link-2'} />
+          <Icon name={"link-2"} />
         </a>
       )}
     </div>

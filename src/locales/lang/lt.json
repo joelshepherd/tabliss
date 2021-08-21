@@ -1,0 +1,19 @@
+{
+  "app.pageTitle": "Naujas skirtukas",
+  "background": "Fonas",
+  "dashboard.focusHint": "Tvarkyti valdiklius",
+  "dashboard.fullscreenHint": "Įjungti/išjungti pilnojo ekrano režimą",
+  "dashboard.loadingHint": "Kraunamas naujas turinys",
+  "dashboard.settingsHint": "Pritaikyti Tabliss",
+  "plugin.greeting.withName": "{hour, select,\n      0 {Saldžių sapnų, {name}}\n      1 {Saldžių sapnų, {name}}\n      2 {Saldžių sapnų, {name}}\n      3 {Pabudome ir kelkimės, {name}}\n      4 {Pabudome ir kelkimės, {name}}\n      5 {Pabudome ir kelkimės, {name}}\n      6 {Labas rytas, {name}}\n      7 {Labas rytas, {name}}\n      8 {Labas rytas, {name}}\n      9 {Labas rytas, {name}}\n      10 {Sveiki, {name}}\n      11 {Sveiki, {name}}\n      12 {Sveiki, {name}}\n      13 {Sveiki, {name}}\n      14 {Laba diena, {name}}\n      15 {Laba diena, {name}}\n      16 {Laba diena, {name}}\n      17 {Laba diena, {name}}\n      18 {Labas vakaras, {name}}\n      19 {Labas vakaras, {name}}\n      20 {Labas vakaras, {name}}\n      21 {Labas vakaras, {name}}\n      22 {Labos nakties, {name}}\n      23 {Labos nakties, {name}}\n    other {Unknown}}",
+  "plugin.greeting.withoutName": "{hour, select,\n      0 {Saldžių sapnų}\n      1 {Saldžių sapnų}\n      2 {Saldžių sapnų}\n      3 {Pabudome ir kelkimės}\n      4 {Pabudome ir kelkimės}\n      5 {Pabudome ir kelkimės}\n      6 {Labas rytas}\n      7 {Labas rytas}\n      8 {Labas rytas}\n      9 {Labas rytas}\n      10 {Sveiki}\n      11 {Sveiki}\n      12 {Sveiki}\n      13 {Sveiki}\n      14 {Laba diena}\n      15 {Laba diena}\n      16 {Laba diena}\n      17 {Laba diena}\n      18 {Labas vakaras}\n      19 {Labas vakaras}\n      20 {Labas vakaras}\n      21 {Labas vakaras}\n      22 {Labos nakties}\n      23 {Labos nakties}\n    other {Unknown}}",
+  "plugins.links.shortcutHint": "Nuspausk skaičių {number} arba nuspausk šią nuorodą",
+  "plugins.links.standardHint": "Nuspausk, kad apsilankytum",
+  "plugins.search.placeholder": "Įrašykite paieškos terminą",
+  "plugins.unsplash.photoLink": "Nuotrauka",
+  "plugins.weather.high": "Didžiausia",
+  "plugins.weather.low": "Mažiausia",
+  "settings": "Nustatymai",
+  "settings.translationCredits": "Į lietuvių kalbą išvertė Paulius Gečas",
+  "widgets": "Valdikliai"
+}

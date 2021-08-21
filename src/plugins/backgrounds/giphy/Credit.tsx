@@ -1,6 +1,6 @@
-import React, { FC } from 'react';
+import React, { FC } from "react";
 
-const giphyLogo = require('./giphy-logo.png').default;
+const giphyLogo = require("./giphy-logo.png").default;
 
 type Props = {
   link?: string;
@@ -9,7 +9,7 @@ type Props = {
 const Credit: FC<Props> = ({ link }) => (
   <div className="credit">
     <a
-      href={link || 'https://giphy.com/'}
+      href={link || "https://giphy.com/"}
       target="_blank"
       rel="noopener noreferrer"
     >

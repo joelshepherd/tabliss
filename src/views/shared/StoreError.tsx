@@ -1,8 +1,8 @@
-import React, { FC, useCallback } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { FC, useCallback } from "react";
+import { useDispatch } from "react-redux";
 
-import { resetStore, setStoreError } from '../../store/actions';
-import Modal from './modal/Modal';
+import { resetStore, setStoreError } from "../../store/actions";
+import Modal from "./modal/Modal";
 
 type Props = {
   error: Error;
@@ -26,7 +26,7 @@ const StoreError: FC<Props> = ({ error }) => {
         too large.
       </p>
       <p>
-        Resetting to default or reinstalling Tabliss may help. Otherwise contact{' '}
+        Resetting to default or reinstalling Tabliss may help. Otherwise contact{" "}
         <a href="mailto:support@tabliss.io">support@tabliss.io</a> if you are
         unable to solve the issue.
       </p>

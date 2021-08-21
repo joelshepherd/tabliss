@@ -1,2 +1,2 @@
-export * from './locales';
-export { default as IntlProvider } from './IntlProvider';
+export * from "./locales";
+export { default as IntlProvider } from "./IntlProvider";

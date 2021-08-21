@@ -1,18 +1,18 @@
-import React, { FC, useCallback } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { FC, useCallback } from "react";
+import { useDispatch } from "react-redux";
 
-import { useToggle } from '../../hooks';
-import { getConfig } from '../../plugins';
-import { setWidgetDisplay } from '../../store/actions';
+import { useToggle } from "../../hooks";
+import { getConfig } from "../../plugins";
+import { setWidgetDisplay } from "../../store/actions";
 import {
   WidgetDisplay as WidgetDisplayInterface,
   WidgetState,
-} from '../../store/reducers/types';
-import PluginContainer from '../shared/Plugin';
-import { DownIcon, IconButton, RemoveIcon, UpIcon, Icon } from '../shared';
-import ToggleSection from '../shared/ToggleSection';
-import WidgetDisplay from './WidgetDisplay';
-import './Widget.sass';
+} from "../../store/reducers/types";
+import PluginContainer from "../shared/Plugin";
+import { DownIcon, IconButton, RemoveIcon, UpIcon, Icon } from "../shared";
+import ToggleSection from "../shared/ToggleSection";
+import WidgetDisplay from "./WidgetDisplay";
+import "./Widget.sass";
 
 interface Props {
   plugin: WidgetState;
@@ -42,7 +42,7 @@ const Widget: FC<Props> = ({ plugin, onMoveDown, onMoveUp, onRemove }) => {
 
         <IconButton
           onClick={toggleIsOpen}
-          title={`${isOpen ? 'Close' : 'Edit'} widget settings`}
+          title={`${isOpen ? "Close" : "Edit"} widget settings`}
         >
           <Icon name="settings" />
         </IconButton>

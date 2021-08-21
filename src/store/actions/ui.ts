@@ -1,24 +1,24 @@
 export function popLoader() {
   return {
-    type: 'POP_LOADER',
+    type: "POP_LOADER",
   } as const;
 }
 
 export function pushLoader() {
   return {
-    type: 'PUSH_LOADER',
+    type: "PUSH_LOADER",
   } as const;
 }
 
 export function toggleFocus() {
   return {
-    type: 'TOGGLE_FOCUS',
+    type: "TOGGLE_FOCUS",
   } as const;
 }
 
 export function toggleSettings() {
   return {
-    type: 'TOGGLE_SETTINGS',
+    type: "TOGGLE_SETTINGS",
   } as const;
 }
 

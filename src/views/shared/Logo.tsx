@@ -1,8 +1,8 @@
-import React, { FC } from 'react';
+import React, { FC } from "react";
 
-import './Logo.css';
+import "./Logo.css";
 
-const tablissLogo = require('./tabliss.svg');
+const tablissLogo = require("./tabliss.svg");
 
 const Logo: FC = () => (
   <h1 className="Logo">

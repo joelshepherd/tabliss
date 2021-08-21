@@ -1,9 +1,9 @@
-import React, { FC } from 'react';
+import React, { FC } from "react";
 
-import { useCachedEffect } from '../../../hooks';
-import { getQuote } from './api';
-import { Props, defaultData } from './types';
-import './Quote.sass';
+import { useCachedEffect } from "../../../hooks";
+import { getQuote } from "./api";
+import { Props, defaultData } from "./types";
+import "./Quote.sass";
 
 const EXPIRE_IN = 60 * 60 * 1000; // 1 hour
 

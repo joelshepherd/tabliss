@@ -1,0 +1,19 @@
+{
+  "app.pageTitle": "Néien Tab",
+  "background": "Hannergrond",
+  "dashboard.focusHint": "Zougrëffselementer ëmschalten",
+  "dashboard.fullscreenHint": "Vollbildmodus ëmschalten",
+  "dashboard.loadingHint": "Néie Contenu gëtt gelueden",
+  "dashboard.settingsHint": "Tabliss upassen",
+  "plugin.greeting.withName": "{hour, select, 0 {Schlof gutt, {name}} 1 {Schlof gutt, {name}} 2 {Schlof gutt, {name}} 3 {Eraus aus de Fiederen, {name}} 4 {Eraus aus de Fiederen, {name}} 5 {Eraus aus de Fiederen, {name}} 6 {Gudde Moien, {name}} 7 {Gudde Moien, {name}} 8 {Gudde Moien, {name}} 9 {Gudde Moien, {name}} 10 {Moien {name}} 11 {Moien {name}} 12 {Moien {name}} 13 {Moien {name}} 14 {Guten Tag, {name}} 15 {Gudde Moien, {name}} 16 {Gudde Moien, {name}} 17 {Gudde Moien, {name}} 18 {Gudden Owend, {name}} 19 {Gudden Owend, {name}} 20 {Gudden Owend, {name}} 21 {Gudden Owend, {name}} 22 {Gutt Nuecht, {name}} 23 {Gutt Nuecht, {name}} other {Unknown}}",
+  "plugin.greeting.withoutName": "{hour, select, 0 {Schlof gutt} 1 {Schlof gutt} 2 {Schlof gutt} 3 {Eraus aus de Fiederen} 4 {Eraus aus de Fiederen} 5 {Eraus aus de Fiederen} 6 {Gudde Moien} 7 {Gudde Moien} 8 {Gudde Moien} 9 {Gudde Moien} 10 {Moien} 11 {Moien} 12 {Moien} 13 {Moien} 14 {Gudde Moien} 15 {Gudde Moien} 16 {Gudde Moien} 17 {Gudde Moien} 18 {Gudden Owend} 19 {Gudden Owend} 20 {Gudden Owend} 21 {Gudden Owend} 22 {Gutt Nuecht} 23 {Gutt Nuecht} other {Unknown}}",
+  "plugins.links.shortcutHint": "Fir opzeruffen {number} drécken oder klicken",
+  "plugins.links.standardHint": "Fir opzeruffen klicken",
+  "plugins.search.placeholder": "Sich aginn",
+  "plugins.unsplash.photoLink": "Foto",
+  "plugins.weather.high": "Héich",
+  "plugins.weather.low": "Niddereg",
+  "settings": "Astellungen",
+  "settings.translationCredits": "Lëtzebuergesch Iwwersetzung vum Louis Jacoby",
+  "widgets": "Widgets"
+}

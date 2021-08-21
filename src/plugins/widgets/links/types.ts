@@ -1,4 +1,4 @@
-import { API } from '../../types';
+import { API } from "../../types";
 
 export type Link = {
   name?: string;
@@ -10,12 +10,14 @@ export type Data = {
   columns: number;
   links: Link[];
   visible: boolean;
+  linkOpenStyle: boolean;
 };
 
 export type Props = API<Data>;
 
 export const defaultData = {
   columns: 1,
-  links: [{ url: 'https://tabliss.io' }],
+  links: [{ url: "https://tabliss.io" }],
   visible: false,
+  linkOpenStyle: false,
 };

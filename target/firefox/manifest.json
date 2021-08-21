@@ -2,13 +2,19 @@
   "manifest_version": 2,
   "name": "Tabliss",
   "short_name": "Tabliss",
-  "version": "2.0.3",
+  "version": "2.1.0",
   "description": "A beautiful New Tab page with many customisable backgrounds and widgets that does not require any permissions.",
   "applications": {
     "gecko": {
       "id": "extension@tabliss.io",
       "strict_min_version": "54.0"
     }
+  },
+  "background": {
+    "scripts": ["background.js"]
+  },
+  "chrome_settings_overrides": {
+    "homepage": "index.html"
   },
   "chrome_url_overrides": {
     "newtab": "index.html"

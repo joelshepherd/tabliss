@@ -1,6 +1,6 @@
-import React, { FC } from 'react';
+import React, { FC } from "react";
 
-import './Modal.css';
+import "./Modal.css";
 
 const Modal: FC = ({ children }) => {
   return (

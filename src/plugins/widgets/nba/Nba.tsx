@@ -1,11 +1,11 @@
-import React, { FC } from 'react';
+import React, { FC } from "react";
 
-import { useCachedEffect } from '../../../hooks';
-import { useSelector } from '../../../store';
-import { getCurrentGames } from './api';
-import { Props, defaultData } from './types';
-import { getPeriod } from './getPeriod';
-import './Nba.sass';
+import { useCachedEffect } from "../../../hooks";
+import { useSelector } from "../../../store";
+import { getCurrentGames } from "./api";
+import { Props, defaultData } from "./types";
+import { getPeriod } from "./getPeriod";
+import "./Nba.sass";
 
 const EXPIRE_IN = 60 * 1000; // 1 minute
 const Nba: FC<Props> = ({ cache, data = defaultData, setCache, loader }) => {
