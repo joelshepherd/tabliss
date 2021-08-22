@@ -17,11 +17,6 @@ const messages = defineMessages({
     defaultMessage: "Customise Tabliss",
     description: "Hover hint text for the settings icon",
   },
-  reloadImgHint: {
-    id: "dashboard.reloadImgHint",
-    defaultMessage: "Reload background",
-    description: "Reload background image",
-  },
   focusHint: {
     id: "dashboard.focusHint",
     defaultMessage: "Toggle widgets",
@@ -65,7 +60,7 @@ const Overlay: FC = () => {
     if (!bgPlugin?.reloader)
       return null;
 
-    return <Plugin id={background.id} component={bgPlugin.reloader(`${translated.reloadImgHint}`, "refresh-cw")} />
+    return <Plugin id={background.id} component={bgPlugin.reloader} />
   });
 
   return (

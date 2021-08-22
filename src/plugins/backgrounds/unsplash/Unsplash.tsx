@@ -7,6 +7,8 @@ import { Props, defaultData } from "./types";
 import UnsplashCredit from "./UnsplashCredit";
 import { Icon } from "../../../views/shared";
 import { useDebounceToggle } from "../../../hooks"
+import { useFormatMessages } from "../../../hooks";
+import { messages, reloadIconName } from "../common";
 
 import "./Unsplash.sass";
 
@@ -40,38 +42,37 @@ const Unsplash: FC<Props> = ({
   );
 };
 
-export function createReloader(title: string, iconName: string, delay: number = 3000) {
-  const UnsplashReloader: FC<Props> = ({
-    cache,
-    data = defaultData,
-    loader,
-    setCache,
-  }) => {
-    // Do not allow click more frequent than once in `delay` ms
-    const [activeButton, debounseButton] = useDebounceToggle(true, delay);
+const UnsplashReloader: FC<Props> = ({
+  cache,
+  data = defaultData,
+  loader,
+  setCache,
+}) => {
+  const translated = useFormatMessages(messages);
 
-    const rotateCache = getCacheRotator(() => getImage(data, loader), { cache, setCache })
+  // Do not allow click more frequent than once in `delay` ms
+  const [activeButton, debounseButton] = useDebounceToggle(true, 3000);
 
-    const onClick = () => {
-      if (activeButton) {
-        debounseButton();
-        rotateCache();
-      }
-    };
+  const rotateCache = getCacheRotator(() => getImage(data, loader), { cache, setCache })
 
-    return (
-      <a
-        className="on-hover"
-        onClick={onClick}
-        title={title}
-        style={{ filter: activeButton ? '' : 'brightness(70%)', }}
-      >
-        <Icon name={iconName} />
-      </a>
-    );
+  const onClick = () => {
+    if (activeButton) {
+      debounseButton();
+      rotateCache();
+    }
   };
 
-  return UnsplashReloader;
-}
+  return (
+    <a
+      className="on-hover"
+      onClick={onClick}
+      title={translated.reloadImgHint}
+      style={{ filter: activeButton ? '' : 'brightness(70%)', }}
+    >
+      <Icon name={reloadIconName} />
+    </a>
+  );
+};
 
-export { Unsplash };
+
+export { Unsplash, UnsplashReloader };

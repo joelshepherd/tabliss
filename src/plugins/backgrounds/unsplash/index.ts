@@ -1,6 +1,7 @@
 import { Config } from "../../types";
-import { Unsplash, createReloader } from "./Unsplash";
+import { Unsplash, UnsplashReloader } from "./Unsplash";
 import UnsplashSettings from "./UnsplashSettings";
+
 
 const config: Config = {
   key: "background/unsplash",
@@ -8,7 +9,7 @@ const config: Config = {
   description: "Who has time to find their own images.",
   dashboardComponent: Unsplash,
   settingsComponent: UnsplashSettings,
-  reloader: createReloader,
+  reloader: UnsplashReloader,
   supportsBackdrop: true,
 };
 

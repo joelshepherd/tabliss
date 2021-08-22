@@ -43,6 +43,6 @@ export type Config = {
   readonly description: string;
   readonly dashboardComponent: ComponentType<API<any, any>>;
   readonly settingsComponent?: ComponentType<API<any, any>>;
-  readonly reloader?: (title: string, iconName: string) => ComponentType<API<any, any>>;
+  readonly reloader?: ComponentType<API<any, any>>;
   readonly supportsBackdrop?: boolean;
 };
