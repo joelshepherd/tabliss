@@ -5,6 +5,7 @@ import links from "./links";
 import literatureClock from "./literatureClock";
 import js from "./js";
 import message from "./message";
+import randomMessage from "./randomMessage";
 import nba from "./nba";
 import quote from "./quote";
 import search from "./search";
@@ -19,6 +20,7 @@ export const widgetConfigs = [
   links,
   literatureClock,
   message,
+  randomMessage,
   nba,
   quote,
   search,
