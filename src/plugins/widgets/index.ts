@@ -1,9 +1,10 @@
 import css from "./css";
+import github from "./github";
 import greeting from "./greeting";
 import ipInfo from "./ipInfo";
+import js from "./js";
 import links from "./links";
 import literatureClock from "./literatureClock";
-import js from "./js";
 import message from "./message";
 import nba from "./nba";
 import quote from "./quote";
@@ -15,6 +16,7 @@ import workHours from "./workHours";
 
 export const widgetConfigs = [
   css,
+  github,
   greeting,
   ipInfo,
   links,

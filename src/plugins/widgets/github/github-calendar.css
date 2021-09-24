@@ -1,0 +1,21 @@
+:root {
+  --color-calendar-graph-day-bg: #ebedf0;
+  --color-calendar-graph-day-L1-bg: #9be9a8;
+  --color-calendar-graph-day-L2-bg: #40c463;
+  --color-calendar-graph-day-L3-bg: #30a14e;
+  --color-calendar-graph-day-L4-bg: #216e39;
+}
+
+.js-calendar-graph-svg + div {
+  display: none;
+  font-size: 14px;
+}
+
+text.ContributionCalendar-label {
+  fill: var(--color-calendar-graph-day-bg);
+  font-size: 10px;
+}
+
+.contrib-number {
+  color: var(--color-calendar-graph-day-bg);
+}
