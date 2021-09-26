@@ -3,9 +3,11 @@ import React, { FC } from "react";
 import { useCachedEffect } from "../../../hooks";
 import { getQuote } from "./api";
 import { Props, defaultData } from "./types";
+import { HOURS } from "../../../utils"
+
 import "./Quote.sass";
 
-const EXPIRE_IN = 60 * 60 * 1000; // 1 hour
+const EXPIRE_IN = 1 * HOURS;
 
 const Quote: FC<Props> = ({ cache, data = defaultData, setCache, loader }) => {
   useCachedEffect(
