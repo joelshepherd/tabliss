@@ -28,6 +28,7 @@ const languages = [
   "ko",
   "lb",
   "lt",
+  "ne",
   "nl",
   "no",
   "pl",
