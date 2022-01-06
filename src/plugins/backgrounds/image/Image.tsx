@@ -4,7 +4,7 @@ import Backdrop from "../../../views/shared/Backdrop";
 import { Props, defaultCache } from "./types";
 import "./Image.sass";
 
-function pickItem(items: unknown[]) {
+function pickItem<T>(items: T[]): T {
   return items[Math.floor(Math.random() * items.length)];
 }
 
