@@ -87,9 +87,6 @@ const config = {
       VERSION: version,
     }),
   ],
-  devServer: {
-    overlay: true,
-  },
   devtool: isWeb ? "source-map" : false,
   stats: {
     warnings: false,
