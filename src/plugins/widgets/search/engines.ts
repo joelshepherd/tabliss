@@ -65,4 +65,10 @@ export const engines: Engine[] = [
     name: "MetaGer",
     search_url: "https://metager.de/meta/meta.ger3?eingabe={searchTerms}",
   },
+  {
+    key: "brave",
+    name: "Brave",
+    search_url: "https://search.brave.com/search?q={searchTerms}",
+  },
 ];
+
