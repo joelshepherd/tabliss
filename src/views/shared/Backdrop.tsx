@@ -1,6 +1,6 @@
-import React, { FC, HTMLAttributes } from 'react';
+import React, { FC, HTMLAttributes } from "react";
 
-import { useSelector } from '../../store';
+import { useSelector } from "../../store";
 
 type Props = HTMLAttributes<HTMLDivElement> & {
   ready?: boolean;
@@ -15,7 +15,7 @@ const Backdrop: FC<Props> = ({
   // Lag one frame behind to show the animation
   const [show, setShow] = React.useState(ready);
   React.useLayoutEffect(() => {
-    setImmediate(() => setShow(ready));
+    setTimeout(() => setShow(ready), 0);
   }, [ready]);
 
   const background = useSelector((state) =>
@@ -33,21 +33,21 @@ const Backdrop: FC<Props> = ({
   style = { ...style };
 
   if (blur) {
-    style['filter'] = `blur(${blur}px)`;
-    style['transform'] = `scale(${blur / 500 + 1})`;
+    style["filter"] = `blur(${blur}px)`;
+    style["transform"] = `scale(${blur / 500 + 1})`;
   }
 
   if (luminosity) {
-    style['opacity'] = 1 - Math.abs(luminosity);
+    style["opacity"] = 1 - Math.abs(luminosity);
   }
 
   return (
     <div
       className="fullscreen"
       style={{
-        backgroundColor: luminosity > 0 ? 'white' : 'black',
+        backgroundColor: luminosity > 0 ? "white" : "black",
         opacity: show ? 1 : 0,
-        transition: 'opacity 200ms ease-in-out',
+        transition: "opacity 200ms ease-in-out",
       }}
     >
       <div style={style} {...rest}>

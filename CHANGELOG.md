@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
+## [Unreleased]
+
+## Added
+
+- Tabliss is now selectable as your homepage in Firefox
+
+## Fixed
+
+- Link keyboard shortcut not respecting link opening style - thanks @cwils021
+- Time zone selection label dispaly issue - thanks @jn64
+- Typo in the Scottish Gaelic localisation - thanks @fenrisulfr94
+
 ## [2.1.0] - 2021-01-28
 
 ## Added

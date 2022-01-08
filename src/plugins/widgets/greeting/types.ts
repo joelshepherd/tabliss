@@ -1,4 +1,4 @@
-import { API } from '../../types';
+import { API } from "../../types";
 
 export type Data = {
   name: string;
@@ -7,5 +7,5 @@ export type Data = {
 export type Props = API<Data>;
 
 export const defaultData: Data = {
-  name: '',
+  name: "",
 };

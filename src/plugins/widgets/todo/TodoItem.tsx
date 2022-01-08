@@ -1,9 +1,9 @@
-import React, { FC, useLayoutEffect, useRef } from 'react';
+import React, { FC, useLayoutEffect, useRef } from "react";
 
-import { useKeyPress } from '../../../hooks';
-import { Icon, RemoveIcon } from '../../../views/shared';
-import { State } from './reducer';
-import './TodoItem.sass';
+import { useKeyPress } from "../../../hooks";
+import { Icon, RemoveIcon } from "../../../views/shared";
+import { State } from "./reducer";
+import "./TodoItem.sass";
 
 interface Props {
   item: State[number];
@@ -19,14 +19,14 @@ const TodoItem: FC<Props> = ({ item, onDelete, onUpdate, onToggle }) => {
     if (ref.current) {
       ref.current.innerText = item.contents;
 
-      if (item.contents === '') {
+      if (item.contents === "") {
         ref.current.focus();
       }
     }
   }, [item.contents]);
 
   useKeyPress(
-    event => {
+    (event) => {
       if (event.target === ref.current) {
         event.preventDefault();
 
@@ -35,12 +35,12 @@ const TodoItem: FC<Props> = ({ item, onDelete, onUpdate, onToggle }) => {
         }
       }
     },
-    ['Enter'],
+    ["Enter"],
     false,
   );
 
   useKeyPress(
-    event => {
+    (event) => {
       if (event.target === ref.current) {
         event.preventDefault();
 
@@ -51,7 +51,7 @@ const TodoItem: FC<Props> = ({ item, onDelete, onUpdate, onToggle }) => {
         }
       }
     },
-    ['Escape'],
+    ["Escape"],
     false,
   );
 
@@ -60,11 +60,11 @@ const TodoItem: FC<Props> = ({ item, onDelete, onUpdate, onToggle }) => {
       <span
         ref={ref}
         contentEditable={true}
-        onBlur={event => onUpdate(event.currentTarget.innerText)}
+        onBlur={(event) => onUpdate(event.currentTarget.innerText)}
       />
 
       <a onMouseDown={onToggle} className="complete">
-        <Icon name={item.completed ? 'check-circle' : 'circle'} />
+        <Icon name={item.completed ? "check-circle" : "circle"} />
       </a>
       <a onMouseDown={onDelete} className="delete">
         <RemoveIcon />

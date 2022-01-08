@@ -1,4 +1,4 @@
-import { Reducer, ReducerState, useEffect, useReducer } from 'react';
+import { Reducer, ReducerState, useEffect, useReducer } from "react";
 
 export function useSavedReducer<R extends Reducer<any, any>>(
   reducer: R,

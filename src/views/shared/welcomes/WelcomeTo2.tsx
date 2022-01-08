@@ -1,16 +1,16 @@
-import localForage from 'localforage';
-import React, { FC, useLayoutEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import localForage from "localforage";
+import React, { FC, useLayoutEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 
-import { resetStore } from '../../../store/actions';
-import Modal from '../modal/Modal';
-import { Version1Config, migrateVersion1 } from './migrate';
-import Logo from '../Logo';
+import { resetStore } from "../../../store/actions";
+import Modal from "../modal/Modal";
+import { Version1Config, migrateVersion1 } from "./migrate";
+import Logo from "../Logo";
 
 function getOldStore() {
   return localForage.createInstance({
-    name: 'tabliss',
-    storeName: 'state',
+    name: "tabliss",
+    storeName: "state",
   });
 }
 
@@ -23,9 +23,9 @@ const WelcomeTo2: FC = () => {
     const oldStore = getOldStore();
 
     Promise.all([
-      oldStore.getItem('dashboard'),
-      oldStore.getItem('settings'),
-      oldStore.getItem('storage'),
+      oldStore.getItem("dashboard"),
+      oldStore.getItem("settings"),
+      oldStore.getItem("storage"),
     ]).then(([dashboard, settings, storage]) => {
       if (dashboard && settings && storage) {
         setV1Config({ dashboard, settings, storage } as any);
@@ -54,10 +54,10 @@ const WelcomeTo2: FC = () => {
     <Modal>
       <Logo />
       <div className="Settings">
-        <h2 style={{ textAlign: 'center' }}>Welcome to Tabliss 2!</h2>
-        <div style={{ fontSize: '1.1em' }}>
+        <h2 style={{ textAlign: "center" }}>Welcome to Tabliss 2!</h2>
+        <div style={{ fontSize: "1.1em" }}>
           <p>One year in the making, some new feature highlights:</p>
-          <ul style={{ color: '#212121' }}>
+          <ul style={{ color: "#212121" }}>
             <li>Move widgets around the screen</li>
             <li>Add a widget multiple times</li>
             <li>Sync your settings</li>
@@ -73,7 +73,7 @@ const WelcomeTo2: FC = () => {
           </p>
           <button className="button--primary" onClick={handleMigrate}>
             Migrate your old settings
-          </button>{' '}
+          </button>{" "}
           <button className="button--primary" onClick={handleClear}>
             Delete and start fresh
           </button>

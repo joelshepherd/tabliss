@@ -1,6 +1,6 @@
-import React, { FC } from 'react';
+import React, { FC } from "react";
 
-import Icon from './Icon';
+import Icon from "./Icon";
 
 type Props = {};
 

@@ -8,15 +8,15 @@ export type BackgroundDisplay = {
 };
 
 export type WidgetPosition =
-  | 'topLeft'
-  | 'topCentre'
-  | 'topRight'
-  | 'middleLeft'
-  | 'middleCentre'
-  | 'middleRight'
-  | 'bottomLeft'
-  | 'bottomCentre'
-  | 'bottomRight';
+  | "topLeft"
+  | "topCentre"
+  | "topRight"
+  | "middleLeft"
+  | "middleCentre"
+  | "middleRight"
+  | "bottomLeft"
+  | "bottomCentre"
+  | "bottomRight";
 
 export type WidgetDisplay = {
   colour?: string;

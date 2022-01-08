@@ -1,4 +1,4 @@
-import { API } from '../../types';
+import { API } from "../../types";
 
 export type Coordinates = {
   latitude?: number;
@@ -6,16 +6,16 @@ export type Coordinates = {
 };
 
 type ConditionIcon =
-  | 'clear-day'
-  | 'clear-night'
-  | 'rain'
-  | 'snow'
-  | 'sleet'
-  | 'wind'
-  | 'fog'
-  | 'cloudy'
-  | 'partly-cloudy-day'
-  | 'partly-cloudy-night';
+  | "clear-day"
+  | "clear-night"
+  | "rain"
+  | "snow"
+  | "sleet"
+  | "wind"
+  | "fog"
+  | "cloudy"
+  | "partly-cloudy-day"
+  | "partly-cloudy-night";
 
 export interface Conditions {
   alerts: {
@@ -46,5 +46,5 @@ export type Props = API<Data, Cache>;
 
 export const defaultData: Data = {
   showDetails: false,
-  units: 'auto',
+  units: "auto",
 };

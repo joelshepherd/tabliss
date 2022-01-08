@@ -1,13 +1,13 @@
-import { combineReducers } from 'redux';
-import { persistReducer, Storage } from 'redux-persist';
+import { combineReducers } from "redux";
+import { persistReducer, Storage } from "redux-persist";
 
-import { capture as captureException } from '../../errorHandler';
-import { setStoreError } from '../actions';
-import { cacheStorage, dataStorage } from '../storage';
-import { store } from '../store';
-import { cache } from './cache';
-import { data } from './data';
-import { ui } from './ui';
+import { capture as captureException } from "../../errorHandler";
+import { setStoreError } from "../actions";
+import { cacheStorage, dataStorage } from "../storage";
+import { store } from "../store";
+import { cache } from "./cache";
+import { data } from "./data";
+import { ui } from "./ui";
 
 function writeFailHandler(err: Error) {
   captureException(err);
@@ -20,11 +20,11 @@ const config = (key: string, storage: Storage) => ({
   deserialize: false,
   serialize: false,
   throttle: 250,
-  writeFailHandler: key !== 'cache' ? writeFailHandler : undefined,
+  writeFailHandler: key !== "cache" ? writeFailHandler : undefined,
 });
 
 export default combineReducers({
   ui,
-  cache: persistReducer(config('cache', cacheStorage), cache),
-  data: persistReducer(config('data', dataStorage), data),
+  cache: persistReducer(config("cache", cacheStorage), cache),
+  data: persistReducer(config("data", dataStorage), data),
 });

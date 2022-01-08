@@ -1,14 +1,14 @@
-import { API } from '../../types';
-import { Data, Conditions, Coordinates } from './types';
+import { API } from "../../types";
+import { Data, Conditions, Coordinates } from "./types";
 
 const apiEndpoint = process.env.API_ENDPOINT!;
-const geocodeEndpoint = 'https://nominatim.openstreetmap.org';
+const geocodeEndpoint = "https://nominatim.openstreetmap.org";
 
-type Config = Pick<Data, 'latitude' | 'longitude' | 'units'>;
+type Config = Pick<Data, "latitude" | "longitude" | "units">;
 
 export async function getForecast(
   { latitude, longitude, units }: Config,
-  loader: API['loader'],
+  loader: API["loader"],
 ): Promise<Conditions | undefined> {
   if (!latitude || !longitude) {
     return;

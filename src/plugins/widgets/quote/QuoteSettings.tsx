@@ -1,7 +1,7 @@
-import React, { FC } from 'react';
+import React, { FC } from "react";
 
-import categories from './categories';
-import { Props, defaultData } from './types';
+import categories from "./categories";
+import { Props, defaultData } from "./types";
 
 const QuoteSettings: FC<Props> = ({ data = defaultData, setData }) => (
   <div className="QuoteSettings">
@@ -10,23 +10,23 @@ const QuoteSettings: FC<Props> = ({ data = defaultData, setData }) => (
         type="radio"
         checked={data.category === undefined}
         onChange={() => setData({ category: undefined })}
-      />{' '}
+      />{" "}
       All Categories
     </label>
 
-    {categories.map(category => (
+    {categories.map((category) => (
       <label key={category.key}>
         <input
           type="radio"
           checked={data.category === category.key}
           onChange={() => setData({ category: category.key })}
-        />{' '}
+        />{" "}
         {category.name}
       </label>
     ))}
 
     <p>
-      Powered by{' '}
+      Powered by{" "}
       <a
         href="https://theysaidso.com/"
         target="_blank"
@@ -34,7 +34,7 @@ const QuoteSettings: FC<Props> = ({ data = defaultData, setData }) => (
       >
         They Said So
       </a>
-      {' and '}
+      {" and "}
       <a
         href="http://www.developerexcuses.com/"
         target="_blank"

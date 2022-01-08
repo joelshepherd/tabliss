@@ -1,6 +1,6 @@
-import React, { FC } from 'react';
+import React, { FC } from "react";
 
-import IntlTime from './IntlTime';
+import IntlTime from "./IntlTime";
 
 type Props = {
   hour12: boolean;

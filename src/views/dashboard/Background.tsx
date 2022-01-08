@@ -1,12 +1,12 @@
-import React, { FC } from 'react';
+import React, { FC } from "react";
 
-import { getConfig } from '../../plugins';
-import { useSelector } from '../../store';
-import Plugin from '../shared/Plugin';
+import { getConfig } from "../../plugins";
+import { useSelector } from "../../store";
+import Plugin from "../shared/Plugin";
 
 const Background: FC = () => {
-  const background = useSelector(state =>
-    state.data.backgrounds.find(plugin => plugin.active),
+  const background = useSelector((state) =>
+    state.data.backgrounds.find((plugin) => plugin.active),
   );
 
   if (!background) return null;

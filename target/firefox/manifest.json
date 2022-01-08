@@ -10,6 +10,12 @@
       "strict_min_version": "54.0"
     }
   },
+  "background": {
+    "scripts": ["background.js"]
+  },
+  "chrome_settings_overrides": {
+    "homepage": "index.html"
+  },
   "chrome_url_overrides": {
     "newtab": "index.html"
   },

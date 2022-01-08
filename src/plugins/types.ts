@@ -1,4 +1,4 @@
-import { ComponentType } from 'react';
+import { ComponentType } from "react";
 
 export type Cache<Shape = {}> = {
   /**

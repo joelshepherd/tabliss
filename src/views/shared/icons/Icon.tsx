@@ -1,5 +1,5 @@
-import icons from 'feather-icons/dist/icons.json';
-import React, { FC } from 'react';
+import icons from "feather-icons/dist/icons.json";
+import React, { FC } from "react";
 
 type Props = {
   colour?: string;
@@ -7,7 +7,7 @@ type Props = {
   size?: number | string;
 };
 
-const Icon: FC<Props> = ({ colour = 'currentColor', name, size = 24 }) => (
+const Icon: FC<Props> = ({ colour = "currentColor", name, size = 24 }) => (
   <i>
     <svg
       xmlns="http://www.w3.org/2000/svg"

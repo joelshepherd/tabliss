@@ -1,6 +1,6 @@
-import React, { FC } from 'react';
+import React, { FC } from "react";
 
-import './Suggestions.sass';
+import "./Suggestions.sass";
 
 type Props = {
   active?: number;
@@ -21,7 +21,7 @@ const Suggestions: FC<Props> = ({
         <input
           type="button"
           key={index}
-          className={index === active ? 'active' : ''}
+          className={index === active ? "active" : ""}
           value={suggestion}
           onClick={() => onSelect(suggestion)}
           onMouseEnter={() => setActive(index)}
