@@ -28,7 +28,7 @@ const Unsplash: FC<Props> = ({
       <Backdrop
         className="image fullscreen"
         ready={Boolean(url)}
-        style={{ background: url && `linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.7)), url(${url})` }}
+        style={{ backgroundImage: url && `url(${url})` }}
       />
 
       {cache && <UnsplashCredit image={cache.now} />}

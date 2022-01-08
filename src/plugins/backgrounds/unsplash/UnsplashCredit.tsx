@@ -12,11 +12,7 @@ const UnsplashCredit: FC<Props> = ({ image }) => (
   <div className="credit">
     <span style={{ float: "right" }}>{image.location_title}</span>
 
-    <a
-      href={image.image_link + UNSPLASH_UTM}
-      rel="noopener noreferrer" 
-      /*target="_blank"*/ // Commenting out this line makes Unsplash open in the foreground.
-    >
+    <a href={image.image_link + UNSPLASH_UTM} rel="noopener noreferrer">
       <FormattedMessage
         id="plugins.unsplash.photoLink"
         description="Photo link text"
@@ -24,19 +20,11 @@ const UnsplashCredit: FC<Props> = ({ image }) => (
       />
     </a>
     {" / "}
-    <a
-      href={image.user_link + UNSPLASH_UTM}
-      rel="noopener noreferrer"
-      /*target="_blank"*/ // Commenting out this line makes Unsplash open in the foreground.
-    >
+    <a href={image.user_link + UNSPLASH_UTM} rel="noopener noreferrer">
       {image.user_name}
     </a>
     {" / "}
-    <a
-      href={"https://unsplash.com/" + UNSPLASH_UTM}
-      rel="noopener noreferrer"
-      /*target="_blank"*/ // Commenting out this line makes Unsplash open in the foreground.
-    >
+    <a href={"https://unsplash.com/" + UNSPLASH_UTM} rel="noopener noreferrer">
       Unsplash
     </a>
   </div>

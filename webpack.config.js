@@ -118,7 +118,7 @@ if (!isWeb && !isProduction) {
   );
 }
 
-if (isWeb) {
+if (isWeb && isProduction) {
   config.plugins.push(
     new workbox.GenerateSW({
       cacheId: "tabliss-cache",
