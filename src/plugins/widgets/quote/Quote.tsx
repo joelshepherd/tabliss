@@ -21,15 +21,17 @@ const Quote: FC<Props> = ({ cache, data = defaultData, setCache, loader }) => {
   }
 
   return (
-    <h4 className="Quote">
-      “{cache.quote}”
-      {cache.author && (
-        <sub>
-          <br />
-          &mdash; {cache.author}
-        </sub>
-      )}
-    </h4>
+    <div className="Quote">
+      <h4 className="QuoteContent">
+        “{cache.quote}”
+        {cache.author && (
+          <sub>
+            <br />
+            &mdash; {cache.author}
+          </sub>
+        )}
+      </h4>
+    </div>
   );
 };
 
