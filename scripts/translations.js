@@ -34,6 +34,7 @@ const languages = [
   "pt",
   "pt-BR",
   "ro",
+  "rs",
   "ru",
   "sk",
   "sv",

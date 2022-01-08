@@ -147,6 +147,9 @@ const System: FC = () => {
           <option value="gu" title="Gujarati">
             ગુજરાતી
           </option>
+          <option value="rs" title="Српски">
+            Српски
+          </option>
           <option value="uk" title="Ukrainian">
             Українська
           </option>
