@@ -1,23 +1,23 @@
-import React, { FC } from 'react';
-import { defineMessages } from 'react-intl';
+import React, { FC } from "react";
+import { defineMessages } from "react-intl";
 
-import { useCachedEffect, useFormatMessages } from '../../../hooks';
-import { Icon } from '../../../views/shared';
-import { getForecast } from './api';
-import { weatherIcons } from './icons';
-import { defaultData, Props } from './types';
-import './Weather.sass';
+import { useCachedEffect, useFormatMessages } from "../../../hooks";
+import { Icon } from "../../../views/shared";
+import { getForecast } from "./api";
+import { weatherIcons } from "./icons";
+import { defaultData, Props } from "./types";
+import "./Weather.sass";
 
 const messages = defineMessages({
   high: {
-    id: 'plugins.weather.high',
-    description: 'High for temperature high',
-    defaultMessage: 'High',
+    id: "plugins.weather.high",
+    description: "High for temperature high",
+    defaultMessage: "High",
   },
   low: {
-    id: 'plugins.weather.low',
-    description: 'Low for temperature low',
-    defaultMessage: 'Low',
+    id: "plugins.weather.low",
+    description: "Low for temperature low",
+    defaultMessage: "Low",
   },
 });
 
@@ -54,7 +54,7 @@ const Weather: FC<Props> = ({
         <span className="temperature">
           <span title={translated.high} className="high">
             {cache.temperatureHigh}˚
-          </span>{' '}
+          </span>{" "}
           <span title={translated.low} className="low">
             {cache.temperatureLow}˚
           </span>
@@ -67,7 +67,7 @@ const Weather: FC<Props> = ({
             <dt>
               <span title={translated.high} className="high">
                 {cache.apparentTemperatureHigh}˚
-              </span>{' '}
+              </span>{" "}
               <span title={translated.low} className="low">
                 {cache.apparentTemperatureLow}˚
               </span>
@@ -80,7 +80,7 @@ const Weather: FC<Props> = ({
           </dl>
           <dl>
             <dt>{cache.precipProbability}%</dt>
-            <dd>Chance of {cache.precipType || 'rain'}</dd>
+            <dd>Chance of {cache.precipType || "rain"}</dd>
           </dl>
         </div>
       )}

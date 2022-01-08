@@ -1,12 +1,12 @@
-import { API } from '../../types';
-import { officialCollection, UNSPLASH_API_KEY } from './constants';
-import { Data, Image } from './types';
+import { API } from "../../types";
+import { officialCollection, UNSPLASH_API_KEY } from "./constants";
+import { Data, Image } from "./types";
 
-type Config = Pick<Data, 'by' | 'collections' | 'featured' | 'search'>;
+type Config = Pick<Data, "by" | "collections" | "featured" | "search">;
 
 export async function getImage(
   config: Config,
-  loader: API['loader'],
+  loader: API["loader"],
 ): Promise<Image> {
   // Fetch random image
   loader.push();
@@ -24,25 +24,25 @@ export async function getImage(
 }
 
 async function fetchImageMeta({ by, collections, featured, search }: Config) {
-  const url = 'https://api.unsplash.com/photos/random';
+  const url = "https://api.unsplash.com/photos/random";
   const params = new URLSearchParams();
   const headers = new Headers({
     Authorization: `Client-ID ${UNSPLASH_API_KEY}`,
   });
 
   switch (by) {
-    case 'collections':
-      params.set('collections', collections);
+    case "collections":
+      params.set("collections", collections);
       break;
 
-    case 'search':
-      params.set('orientation', 'landscape');
-      if (featured) params.set('featured', 'true');
-      if (search) params.set('query', search);
+    case "search":
+      params.set("orientation", "landscape");
+      if (featured) params.set("featured", "true");
+      if (search) params.set("query", search);
       break;
 
     default:
-      params.set('collections', String(officialCollection));
+      params.set("collections", String(officialCollection));
   }
 
   const res = await fetch(`${url}?${params}`, { headers });

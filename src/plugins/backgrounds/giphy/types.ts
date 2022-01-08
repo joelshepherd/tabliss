@@ -1,4 +1,4 @@
-import { API } from '../../types';
+import { API } from "../../types";
 
 export type Gif = {
   data: Blob;
@@ -18,5 +18,5 @@ export type Props = API<Data, Cache>;
 export const defaultData: Data = {
   expand: false,
   nsfw: false,
-  tag: 'pattern',
+  tag: "pattern",
 };

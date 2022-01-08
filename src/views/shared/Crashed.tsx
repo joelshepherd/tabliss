@@ -1,7 +1,7 @@
-import React, { FC } from 'react';
-import { FallbackProps } from 'react-error-boundary';
+import React, { FC } from "react";
+import { FallbackProps } from "react-error-boundary";
 
-import { Icon } from './icons';
+import { Icon } from "./icons";
 
 const Crashed: FC<FallbackProps> = () => (
   <div className="Crashed">

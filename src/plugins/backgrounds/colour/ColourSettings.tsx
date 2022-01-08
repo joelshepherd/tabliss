@@ -1,6 +1,6 @@
-import React, { FC } from 'react';
+import React, { FC } from "react";
 
-import { Props, defaultData } from './types';
+import { Props, defaultData } from "./types";
 
 const ColourSettings: FC<Props> = ({ data = defaultData, setData }) => (
   <div className="ColourSettings">
@@ -9,7 +9,7 @@ const ColourSettings: FC<Props> = ({ data = defaultData, setData }) => (
       <input
         type="color"
         value={data.colour}
-        onChange={event => setData({ colour: event.target.value })}
+        onChange={(event) => setData({ colour: event.target.value })}
       />
     </label>
   </div>

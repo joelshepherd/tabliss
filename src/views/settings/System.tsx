@@ -1,16 +1,15 @@
-import React, { FC } from 'react';
-import { FormattedMessage } from 'react-intl';
-import { useDispatch } from 'react-redux';
+import React, { FC } from "react";
+import { FormattedMessage } from "react-intl";
+import { useDispatch } from "react-redux";
 
-import { defaultLocale } from '../../locales';
-import { useSelector } from '../../store';
-import { setLocale, setTimeZone } from '../../store/actions';
-import TimeZoneInput from '../shared/timeZone/TimeZoneInput';
-
+import { defaultLocale } from "../../locales";
+import { useSelector } from "../../store";
+import { setLocale, setTimeZone } from "../../store/actions";
+import TimeZoneInput from "../shared/timeZone/TimeZoneInput";
 
 const System: FC = () => {
-  const locale = useSelector(state => state.data.locale || defaultLocale);
-  const timeZone = useSelector(state => state.data.timeZone || '');
+  const locale = useSelector((state) => state.data.locale || defaultLocale);
+  const timeZone = useSelector((state) => state.data.timeZone || "");
 
   const dispatch = useDispatch();
   const handleSetLocale = (event: React.ChangeEvent<HTMLSelectElement>) =>
@@ -30,11 +29,11 @@ const System: FC = () => {
 
       <label
         style={{
-          alignItems: 'center',
-          display: 'grid',
-          gridGap: '0 0.5rem',
-          gridTemplateColumns: '1fr 2fr',
-          width: '100%',
+          alignItems: "center",
+          display: "grid",
+          gridGap: "0 0.5rem",
+          gridTemplateColumns: "1fr 2fr",
+          width: "100%",
           margin: 0,
         }}
       >
@@ -159,11 +158,11 @@ const System: FC = () => {
 
       <label
         style={{
-          alignItems: 'center',
-          display: 'grid',
-          gridGap: '0 0.5rem',
-          gridTemplateColumns: '1fr 2fr',
-          width: '100%',
+          alignItems: "center",
+          display: "grid",
+          gridGap: "0 0.5rem",
+          gridTemplateColumns: "1fr 2fr",
+          width: "100%",
           margin: 0,
         }}
       >

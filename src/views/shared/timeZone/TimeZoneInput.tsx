@@ -1,7 +1,7 @@
-import { utcToZonedTime } from 'date-fns-tz';
-import React, { FC, useEffect, useState } from 'react';
+import { utcToZonedTime } from "date-fns-tz";
+import React, { FC, useEffect, useState } from "react";
 
-import timeZones from './timeZones';
+import timeZones from "./timeZones";
 
 let cachedSupportedTimeZones: string[] | undefined;
 
@@ -18,7 +18,7 @@ const TimeZoneInput: FC<Props> = ({ timeZone, onChange }) => {
   useEffect(() => {
     if (!supportedTimeZones) {
       // Generate supported timezones
-      cachedSupportedTimeZones = timeZones.filter(timeZone => {
+      cachedSupportedTimeZones = timeZones.filter((timeZone) => {
         try {
           utcToZonedTime(new Date(), timeZone);
         } catch {
@@ -34,12 +34,12 @@ const TimeZoneInput: FC<Props> = ({ timeZone, onChange }) => {
   return (
     <select
       value={timeZone}
-      onChange={event => onChange(event.target.value || undefined)}
+      onChange={(event) => onChange(event.target.value || undefined)}
     >
       <option value="">Automatic</option>
 
       {supportedTimeZones &&
-        supportedTimeZones.map(timeZone => (
+        supportedTimeZones.map((timeZone) => (
           <option key={timeZone}>{timeZone}</option>
         ))}
 

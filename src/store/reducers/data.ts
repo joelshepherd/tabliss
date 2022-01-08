@@ -1,13 +1,13 @@
-import { v4 as generateId } from 'uuid';
+import { v4 as generateId } from "uuid";
 
-import { Actions } from '../actions';
-import { DataState } from './types';
+import { Actions } from "../actions";
+import { DataState } from "./types";
 
 export const initialState: DataState = {
   backgrounds: [
     {
       id: generateId(),
-      key: 'background/unsplash',
+      key: "background/unsplash",
       active: true,
       display: { luminosity: -0.1, blur: 0 },
     },
@@ -15,15 +15,15 @@ export const initialState: DataState = {
   widgets: [
     {
       id: generateId(),
-      key: 'widget/time',
+      key: "widget/time",
       active: true,
-      display: { position: 'middleCentre' },
+      display: { position: "middleCentre" },
     },
     {
       id: generateId(),
-      key: 'widget/greeting',
+      key: "widget/greeting",
       active: true,
-      display: { position: 'middleCentre' },
+      display: { position: "middleCentre" },
     },
   ],
   data: {},
@@ -31,10 +31,10 @@ export const initialState: DataState = {
 
 export function data(state = initialState, action: Actions): DataState {
   switch (action.type) {
-    case 'RESET_STORE':
+    case "RESET_STORE":
       return action.data.state || initialState;
 
-    case 'SET_BACKGROUND':
+    case "SET_BACKGROUND":
       return {
         ...state,
         backgrounds: [
@@ -47,26 +47,26 @@ export function data(state = initialState, action: Actions): DataState {
         ],
       };
 
-    case 'ADD_WIDGET':
+    case "ADD_WIDGET":
       return {
         ...state,
         widgets: state.widgets.concat({
           id: generateId(),
           key: action.data.key,
           active: true,
-          display: { position: 'middleCentre' },
+          display: { position: "middleCentre" },
         }),
       };
 
-    case 'REMOVE_WIDGET':
+    case "REMOVE_WIDGET":
       return {
         ...state,
-        widgets: state.widgets.filter(plugin => plugin.id !== action.data.id),
+        widgets: state.widgets.filter((plugin) => plugin.id !== action.data.id),
       };
 
-    case 'REORDER_WIDGET':
+    case "REORDER_WIDGET":
       const widgets = [...state.widgets];
-      const index = widgets.findIndex(widget => widget.id === action.data.id);
+      const index = widgets.findIndex((widget) => widget.id === action.data.id);
       widgets.splice(action.data.to, 0, widgets.splice(index, 1)[0]);
 
       return {
@@ -74,7 +74,7 @@ export function data(state = initialState, action: Actions): DataState {
         widgets,
       };
 
-    case 'SET_DATA':
+    case "SET_DATA":
       return {
         ...state,
         data: {
@@ -83,10 +83,10 @@ export function data(state = initialState, action: Actions): DataState {
         },
       };
 
-    case 'SET_BACKGROUND_DISPLAY':
+    case "SET_BACKGROUND_DISPLAY":
       return {
         ...state,
-        backgrounds: state.backgrounds.map(plugin =>
+        backgrounds: state.backgrounds.map((plugin) =>
           plugin.active
             ? {
                 ...plugin,
@@ -96,10 +96,10 @@ export function data(state = initialState, action: Actions): DataState {
         ),
       };
 
-    case 'SET_WIDGET_DISPLAY':
+    case "SET_WIDGET_DISPLAY":
       return {
         ...state,
-        widgets: state.widgets.map(plugin =>
+        widgets: state.widgets.map((plugin) =>
           plugin.id === action.data.id
             ? {
                 ...plugin,
@@ -109,13 +109,13 @@ export function data(state = initialState, action: Actions): DataState {
         ),
       };
 
-    case 'SET_LOCALE':
+    case "SET_LOCALE":
       return {
         ...state,
         locale: action.data.locale,
       };
 
-    case 'SET_TIME_ZONE':
+    case "SET_TIME_ZONE":
       return {
         ...state,
         timeZone: action.data.timeZone,

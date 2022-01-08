@@ -1,7 +1,7 @@
-import React, { FC, createContext, useEffect, useState } from 'react';
-import { utcToZonedTime } from 'date-fns-tz';
+import React, { FC, createContext, useEffect, useState } from "react";
+import { utcToZonedTime } from "date-fns-tz";
 
-import { useSelector } from '../store';
+import { useSelector } from "../store";
 
 type Time = {
   absolute: Date;
@@ -19,7 +19,7 @@ function getTime(timeZone?: string): Time {
 export const TimeContext = createContext(getTime());
 
 const TimeProvider: FC = ({ children }) => {
-  const timeZone = useSelector(state => state.data.timeZone);
+  const timeZone = useSelector((state) => state.data.timeZone);
 
   const [time, setTime] = useState(getTime(timeZone));
 

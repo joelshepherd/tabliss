@@ -1,10 +1,10 @@
-import React, { FC } from 'react';
+import React, { FC } from "react";
 
-import { getConfig } from '../../plugins';
-import { WidgetPosition, WidgetState } from '../../store/reducers/types';
-import Plugin from '../shared/Plugin';
-import Widget from './Widget';
-import './Slot.sass';
+import { getConfig } from "../../plugins";
+import { WidgetPosition, WidgetState } from "../../store/reducers/types";
+import Plugin from "../shared/Plugin";
+import Widget from "./Widget";
+import "./Slot.sass";
 
 type Props = {
   position: WidgetPosition;

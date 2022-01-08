@@ -1,9 +1,9 @@
-import React, { FC } from 'react';
+import React, { FC } from "react";
 
-import { useCachedEffect } from '../../../hooks';
-import { getQuote } from './api';
-import { Props, defaultData } from './types';
-import './Quote.sass';
+import { useCachedEffect } from "../../../hooks";
+import { getQuote } from "./api";
+import { Props, defaultData } from "./types";
+import "./Quote.sass";
 
 const EXPIRE_IN = 60 * 60 * 1000; // 1 hour
 
@@ -21,15 +21,17 @@ const Quote: FC<Props> = ({ cache, data = defaultData, setCache, loader }) => {
   }
 
   return (
-    <h4 className="Quote">
-      “{cache.quote}”
-      {cache.author && (
-        <sub>
-          <br />
-          &mdash; {cache.author}
-        </sub>
-      )}
-    </h4>
+    <div className="Quote">
+      <h4 className="QuoteContent">
+        “{cache.quote}”
+        {cache.author && (
+          <sub>
+            <br />
+            &mdash; {cache.author}
+          </sub>
+        )}
+      </h4>
+    </div>
   );
 };
 

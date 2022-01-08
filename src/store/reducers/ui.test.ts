@@ -4,8 +4,8 @@ import {
   setStoreError,
   toggleFocus,
   toggleSettings,
-} from '../actions';
-import { ui } from './ui';
+} from "../actions";
+import { ui } from "./ui";
 
 const state = {
   focus: false,
@@ -13,8 +13,8 @@ const state = {
   settings: false,
 };
 
-describe('ui() reducer', () => {
-  it('should toggle focus', () => {
+describe("ui() reducer", () => {
+  it("should toggle focus", () => {
     expect(ui({ ...state, focus: false }, toggleFocus())).toEqual({
       ...state,
       focus: true,
@@ -26,7 +26,7 @@ describe('ui() reducer', () => {
     });
   });
 
-  it('should toggle settings', () => {
+  it("should toggle settings", () => {
     expect(ui({ ...state, settings: false }, toggleSettings())).toEqual({
       ...state,
       settings: true,
@@ -38,7 +38,7 @@ describe('ui() reducer', () => {
     });
   });
 
-  it('should increment and decrement loader', () => {
+  it("should increment and decrement loader", () => {
     expect(ui({ ...state, loaders: 0 }, pushLoader())).toEqual({
       ...state,
       loaders: 1,
@@ -50,8 +50,8 @@ describe('ui() reducer', () => {
     });
   });
 
-  it('should set store error', () => {
-    const error = new Error('Test message');
+  it("should set store error", () => {
+    const error = new Error("Test message");
 
     expect(ui(state, setStoreError(error))).toEqual({
       ...state,

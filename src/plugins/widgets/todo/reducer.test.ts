@@ -1,12 +1,12 @@
-import { reducer } from './reducer';
-import { addTodo, removeTodo, toggleTodo, updateTodo } from './actions';
+import { reducer } from "./reducer";
+import { addTodo, removeTodo, toggleTodo, updateTodo } from "./actions";
 
-describe('todo/reducer', () => {
-  it('should add todo', () => {
-    expect(reducer([], addTodo('Test todo'))).toEqual([
+describe("todo/reducer", () => {
+  it("should add todo", () => {
+    expect(reducer([], addTodo("Test todo"))).toEqual([
       {
         id: expect.any(String),
-        contents: 'Test todo',
+        contents: "Test todo",
         completed: false,
       },
     ]);
@@ -15,38 +15,38 @@ describe('todo/reducer', () => {
       reducer(
         [
           {
-            id: '1234',
-            contents: 'Existing todo',
+            id: "1234",
+            contents: "Existing todo",
             completed: true,
           },
         ],
-        addTodo('Test todo'),
+        addTodo("Test todo"),
       ),
     ).toEqual([
       {
-        id: '1234',
-        contents: 'Existing todo',
+        id: "1234",
+        contents: "Existing todo",
         completed: true,
       },
       {
         id: expect.any(String),
-        contents: 'Test todo',
+        contents: "Test todo",
         completed: false,
       },
     ]);
   });
 
-  it('should remove todo', () => {
+  it("should remove todo", () => {
     expect(
       reducer(
         [
           {
-            id: '1234',
-            contents: 'Existing todo',
+            id: "1234",
+            contents: "Existing todo",
             completed: true,
           },
         ],
-        removeTodo('1234'),
+        removeTodo("1234"),
       ),
     ).toEqual([]);
 
@@ -54,53 +54,53 @@ describe('todo/reducer', () => {
       reducer(
         [
           {
-            id: '1234',
-            contents: 'Existing todo',
+            id: "1234",
+            contents: "Existing todo",
             completed: true,
           },
           {
-            id: '5678',
-            contents: 'Second existing todo',
+            id: "5678",
+            contents: "Second existing todo",
             completed: false,
           },
         ],
-        removeTodo('1234'),
+        removeTodo("1234"),
       ),
     ).toEqual([
       {
-        id: '5678',
-        contents: 'Second existing todo',
+        id: "5678",
+        contents: "Second existing todo",
         completed: false,
       },
     ]);
   });
 
-  it('should toggle todo', () => {
+  it("should toggle todo", () => {
     expect(
       reducer(
         [
           {
-            id: '1234',
-            contents: 'Existing todo',
+            id: "1234",
+            contents: "Existing todo",
             completed: true,
           },
           {
-            id: '5678',
-            contents: 'Second existing todo',
+            id: "5678",
+            contents: "Second existing todo",
             completed: false,
           },
         ],
-        toggleTodo('1234'),
+        toggleTodo("1234"),
       ),
     ).toEqual([
       {
-        id: '1234',
-        contents: 'Existing todo',
+        id: "1234",
+        contents: "Existing todo",
         completed: false,
       },
       {
-        id: '5678',
-        contents: 'Second existing todo',
+        id: "5678",
+        contents: "Second existing todo",
         completed: false,
       },
     ]);
@@ -109,90 +109,90 @@ describe('todo/reducer', () => {
       reducer(
         [
           {
-            id: '1234',
-            contents: 'Existing todo',
+            id: "1234",
+            contents: "Existing todo",
             completed: true,
           },
           {
-            id: '5678',
-            contents: 'Second existing todo',
+            id: "5678",
+            contents: "Second existing todo",
             completed: false,
           },
         ],
-        toggleTodo('5678'),
+        toggleTodo("5678"),
       ),
     ).toEqual([
       {
-        id: '1234',
-        contents: 'Existing todo',
+        id: "1234",
+        contents: "Existing todo",
         completed: true,
       },
       {
-        id: '5678',
-        contents: 'Second existing todo',
+        id: "5678",
+        contents: "Second existing todo",
         completed: true,
       },
     ]);
   });
 
-  it('should update todo', () => {
+  it("should update todo", () => {
     expect(
       reducer(
         [
           {
-            id: '1234',
-            contents: 'Existing todo',
+            id: "1234",
+            contents: "Existing todo",
             completed: true,
           },
           {
-            id: '5678',
-            contents: 'Second existing todo',
+            id: "5678",
+            contents: "Second existing todo",
             completed: false,
           },
         ],
-        updateTodo('1234', 'Existing todo: edited'),
+        updateTodo("1234", "Existing todo: edited"),
       ),
     ).toEqual([
       {
-        id: '1234',
-        contents: 'Existing todo: edited',
+        id: "1234",
+        contents: "Existing todo: edited",
         completed: true,
       },
       {
-        id: '5678',
-        contents: 'Second existing todo',
+        id: "5678",
+        contents: "Second existing todo",
         completed: false,
       },
     ]);
   });
 
-  it('should delete on empty update', () => {
+  it("should delete on empty update", () => {
     expect(
       reducer(
         [
           {
-            id: '1234',
-            contents: 'Existing todo',
+            id: "1234",
+            contents: "Existing todo",
             completed: true,
           },
           {
-            id: '5678',
-            contents: 'Second existing todo',
+            id: "5678",
+            contents: "Second existing todo",
             completed: false,
           },
         ],
-        updateTodo('5678', ''),
+        updateTodo("5678", ""),
       ),
     ).toEqual([
       {
-        id: '1234',
-        contents: 'Existing todo',
+        id: "1234",
+        contents: "Existing todo",
         completed: true,
       },
     ]);
   });
 
-  it('should throw on unknown action', () => {
-    expect(() => reducer([], { type: 'UNKNOWN' } as any)).toThrow();
+  it("should throw on unknown action", () => {
+    expect(() => reducer([], { type: "UNKNOWN" } as any)).toThrow();
   });
 });

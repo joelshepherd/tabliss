@@ -1,20 +1,20 @@
-import { Actions } from '../actions';
-import { CacheState } from './types';
+import { Actions } from "../actions";
+import { CacheState } from "./types";
 
 const initialState: CacheState = {};
 
 export function cache(state = initialState, action: Actions): CacheState {
   switch (action.type) {
-    case 'REMOVE_WIDGET':
+    case "REMOVE_WIDGET":
       return {
         ...state,
         [action.data.id]: undefined,
       };
 
-    case 'RESET_STORE':
+    case "RESET_STORE":
       return initialState;
 
-    case 'SET_BACKGROUND':
+    case "SET_BACKGROUND":
       return action.data.from
         ? {
             ...state,
@@ -22,7 +22,7 @@ export function cache(state = initialState, action: Actions): CacheState {
           }
         : state;
 
-    case 'SET_CACHE':
+    case "SET_CACHE":
       return {
         ...state,
         [action.payload.id]: action.payload.cache,
