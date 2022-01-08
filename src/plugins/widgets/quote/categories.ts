@@ -35,4 +35,8 @@ export default [
     key: "developerexcuses",
     name: "Developer Excuses",
   },
+  {
+    key: "bible",
+    name: "Bible Verses",
+  },
 ];

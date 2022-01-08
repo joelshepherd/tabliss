@@ -49,6 +49,37 @@ async function getQuoteOfTheDay(category?: string) {
   };
 }
 
+// Get bible verse of the day
+async function getBibleVerse() {
+  const res = await fetch(
+    'https://quotes.rest/bible/vod.json',
+  );
+
+  const body = await res.json();
+
+  if (res.status === 429) {
+    return {
+      author: body.error.message.split('.')[1] + '.',
+      quote: 'Too many requests this hour.',
+    };
+  }
+  
+  if (
+    body &&
+    body.contents
+  ) {
+    return {
+      author: body.contents.book + ' ' + body.contents.chapter + ':' + body.contents.number,
+      quote: body.contents.verse,
+    };
+  }
+
+  return {
+    author: null,
+    quote: null,
+  };
+}
+
 export async function getQuote(
   loader: API["loader"],
   category?: string,
@@ -58,6 +89,8 @@ export async function getQuote(
   const data =
     category === "developerexcuses"
       ? await getDeveloperExcuse()
+      : category === 'bible'
+      ? await getBibleVerse()
       : await getQuoteOfTheDay(category);
 
   loader.pop();
