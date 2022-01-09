@@ -5,9 +5,11 @@ import { useSelector } from "../../../store";
 import { getCurrentGames } from "./api";
 import { Props, defaultData } from "./types";
 import { getPeriod } from "./getPeriod";
+import { MINUTES } from "../../../utils"
 import "./Nba.sass";
 
-const EXPIRE_IN = 60 * 1000; // 1 minute
+const EXPIRE_IN = 1 * MINUTES;
+
 const Nba: FC<Props> = ({ cache, data = defaultData, setCache, loader }) => {
   const timeZone = useSelector((state) => state.data.timeZone);
   useCachedEffect(
