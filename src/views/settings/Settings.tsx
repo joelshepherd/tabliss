@@ -74,8 +74,6 @@ const Settings: FC = () => {
 
         <System />
 
-        <Feedback />
-
         <p>
           <a
             href="https://www.paypal.me/tabliss"
