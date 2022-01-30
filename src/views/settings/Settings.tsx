@@ -8,7 +8,6 @@ import { DataState } from "../../store/reducers/types";
 import { Icon } from "../shared";
 import Logo from "../shared/Logo";
 import Background from "./Background";
-import Feedback from "./Feedback";
 import "./Settings.sass";
 import System from "./System";
 import Widgets from "./Widgets";
