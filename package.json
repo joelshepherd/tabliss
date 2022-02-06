@@ -22,6 +22,7 @@
     "feather-icons": "^4.28.0",
     "in-browser-language": "^1.0.3",
     "localforage": "^1.10.0",
+    "nanoid": "^3.1.30",
     "normalize.css": "^8.0.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -29,10 +30,7 @@
     "react-intl": "^5.24.1",
     "react-redux": "^7.2.6",
     "redux": "^4.1.2",
-    "redux-persist": "^6.0.0",
-    "redux-persist-webextension-storage": "^1.0.2",
-    "tlds": "^1.228.0",
-    "uuid": "^8.3.2"
+    "tlds": "^1.228.0"
   },
   "devDependencies": {
     "@types/chrome": "^0.0.174",
@@ -42,7 +40,6 @@
     "@types/react-dom": "^17.0.11",
     "@types/react-redux": "^7.1.21",
     "@types/tlds": "^1.199.0",
-    "@types/uuid": "^8.3.4",
     "clean-webpack-plugin": "^4.0.0",
     "copy-webpack-plugin": "^10.2.0",
     "css-loader": "^6.5.1",

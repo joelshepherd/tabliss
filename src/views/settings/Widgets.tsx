@@ -1,27 +1,22 @@
-import React, { FC, useCallback, ChangeEvent } from "react";
+import React from "react";
 import { FormattedMessage } from "react-intl";
-import { useDispatch } from "react-redux";
-
+import { addWidget, removeWidget, reorderWidget } from "../../actions";
+import { useSelector } from "../../lib/db/react";
 import { widgetConfigs } from "../../plugins";
-import { useSelector } from "../../store";
-import {
-  addWidget,
-  removeWidget,
-  reorderWidget,
-} from "../../store/actions/data";
+import { db } from "../../state";
 import Widget from "./Widget";
 
-const Widgets: FC = () => {
-  const active = useSelector((state) => state.data.widgets);
-
-  const dispatch = useDispatch();
-  const boundReorderWidget = useCallback(
-    (id: string, to: number) => dispatch(reorderWidget(id, to)),
-    [dispatch],
+const Widgets: React.FC = () => {
+  const widgets = useSelector(db, (get) =>
+    get("widgets").flatMap((id) => {
+      const data = get(`data/${id}`);
+      // TODO: handle missing data, possibly remove id from array
+      return data ? [data] : [];
+    }),
   );
 
-  const handleAddWidget = (event: ChangeEvent<HTMLSelectElement>) => {
-    dispatch(addWidget(event.target.value));
+  const handleAddWidget = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    addWidget(event.target.value);
   };
 
   return (
@@ -47,21 +42,19 @@ const Widgets: FC = () => {
         </select>
       </label>
 
-      {active.map((plugin, index) => (
+      {widgets.map((widget, index) => (
         <Widget
-          key={plugin.id}
-          plugin={plugin}
+          key={widget.id}
+          plugin={widget as any} // TODO: display types
           onMoveUp={
-            index !== 0
-              ? () => boundReorderWidget(plugin.id, index - 1)
-              : undefined
+            index > 0 ? () => reorderWidget(widget.id, index - 1) : undefined
           }
           onMoveDown={
-            index !== active.length - 1
-              ? () => boundReorderWidget(plugin.id, index + 1)
+            index < widgets.length - 1
+              ? () => reorderWidget(widget.id, index + 1)
               : undefined
           }
-          onRemove={() => dispatch(removeWidget(plugin.id))}
+          onRemove={() => removeWidget(widget.id)}
         />
       ))}
     </div>

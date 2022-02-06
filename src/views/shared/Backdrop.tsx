@@ -1,6 +1,6 @@
 import React, { FC, HTMLAttributes } from "react";
-
-import { useSelector } from "../../store";
+import { useSelector } from "../../lib/db/react";
+import { BackgroundDisplay, db } from "../../state";
 
 type Props = HTMLAttributes<HTMLDivElement> & {
   ready?: boolean;
@@ -18,17 +18,12 @@ const Backdrop: FC<Props> = ({
     setTimeout(() => setShow(ready), 0);
   }, [ready]);
 
-  const background = useSelector((state) =>
-    state.data.backgrounds.find((plugin) => plugin.active),
-  );
+  // TODO: Consider passing this in via prop
+  const background = useSelector(db, (get) => get(`data/${get("background")}`));
+  if (!background) return null;
 
-  if (!background) {
-    return null;
-  }
-
-  const {
-    display: { blur, luminosity },
-  } = background;
+  // TODO: display types
+  const { blur, luminosity = 0 } = background.display as BackgroundDisplay;
 
   style = { ...style };
 
@@ -45,7 +40,7 @@ const Backdrop: FC<Props> = ({
     <div
       className="fullscreen"
       style={{
-        backgroundColor: luminosity > 0 ? "white" : "black",
+        color: luminosity > 0 ? "white" : "black",
         opacity: show ? 1 : 0,
         transition: "opacity 200ms ease-in-out",
       }}

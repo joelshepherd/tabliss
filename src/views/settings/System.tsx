@@ -1,21 +1,15 @@
 import React, { FC } from "react";
 import { FormattedMessage } from "react-intl";
-import { useDispatch } from "react-redux";
-
-import { defaultLocale } from "../../locales";
-import { useSelector } from "../../store";
-import { setLocale, setTimeZone } from "../../store/actions";
+import { useKey } from "../../lib/db/react";
+import { db } from "../../state";
 import TimeZoneInput from "../shared/timeZone/TimeZoneInput";
 
 const System: FC = () => {
-  const locale = useSelector((state) => state.data.locale || defaultLocale);
-  const timeZone = useSelector((state) => state.data.timeZone || "");
+  const [locale, setLocale] = useKey(db, "locale");
+  const [timeZone, setTimeZone] = useKey(db, "timeZone");
 
-  const dispatch = useDispatch();
   const handleSetLocale = (event: React.ChangeEvent<HTMLSelectElement>) =>
-    dispatch(setLocale(event.target.value));
-  const handleSetTimeZone = (timeZone?: string) =>
-    dispatch(setTimeZone(timeZone));
+    setLocale(event.target.value);
 
   return (
     <div>
@@ -170,7 +164,7 @@ const System: FC = () => {
         }}
       >
         Time Zone
-        <TimeZoneInput timeZone={timeZone} onChange={handleSetTimeZone} />
+        <TimeZoneInput timeZone={timeZone} onChange={setTimeZone} />
       </label>
     </div>
   );

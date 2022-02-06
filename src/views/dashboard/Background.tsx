@@ -1,21 +1,20 @@
 import React, { FC } from "react";
-
+import { useKey } from "../../lib/db/react";
 import { getConfig } from "../../plugins";
-import { useSelector } from "../../store";
+import { db } from "../../state";
 import Plugin from "../shared/Plugin";
 
 const Background: FC = () => {
-  const background = useSelector((state) =>
-    state.data.backgrounds.find((plugin) => plugin.active),
-  );
+  const [id] = useKey(db, "background");
+  const [background] = useKey(db, `data/${id}`);
 
-  if (!background) return null;
+  if (!id || !background) return null;
 
   const { dashboardComponent } = getConfig(background.key);
 
   return (
     <div className="Background">
-      <Plugin id={background.id} component={dashboardComponent} />
+      <Plugin id={id} component={dashboardComponent} />
     </div>
   );
 };

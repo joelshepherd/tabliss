@@ -1,14 +1,14 @@
-import React, { FC, createContext, useEffect, useState } from "react";
 import { utcToZonedTime } from "date-fns-tz";
-
-import { useSelector } from "../store";
+import React, { createContext, FC, useEffect, useState } from "react";
+import { useKey } from "../lib/db/react";
+import { db } from "../state";
 
 type Time = {
   absolute: Date;
   zoned: Date;
 };
 
-function getTime(timeZone?: string): Time {
+function getTime(timeZone: string | null = null): Time {
   const absolute = new Date();
   const zoned = timeZone ? utcToZonedTime(absolute, timeZone) : absolute;
 
@@ -19,8 +19,7 @@ function getTime(timeZone?: string): Time {
 export const TimeContext = createContext(getTime());
 
 const TimeProvider: FC = ({ children }) => {
-  const timeZone = useSelector((state) => state.data.timeZone);
-
+  const [timeZone] = useKey(db, "timeZone");
   const [time, setTime] = useState(getTime(timeZone));
 
   useEffect(() => {

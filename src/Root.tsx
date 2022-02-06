@@ -1,19 +1,18 @@
 import React, { FC, StrictMode } from "react";
-
-import TimeProvider from "./contexts/time";
-import IntlProvider from "./locales/IntlProvider";
-import StoreProvider from "./store/StoreProvider";
 import App from "./App";
+import TimeProvider from "./contexts/time";
+import UiProvider from "./contexts/ui";
+import IntlProvider from "./locales/IntlProvider";
 
 const Root: FC = () => (
   <StrictMode>
-    <StoreProvider>
+    <UiProvider>
       <IntlProvider>
         <TimeProvider>
           <App />
         </TimeProvider>
       </IntlProvider>
-    </StoreProvider>
+    </UiProvider>
   </StrictMode>
 );
 

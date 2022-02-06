@@ -1,6 +1,6 @@
 import React, { FC } from "react";
-
-import { useSelector } from "../../../store";
+import { useKey } from "../../../lib/db/react";
+import { db } from "../../../state";
 
 type Props = {
   hour12: boolean;
@@ -27,7 +27,7 @@ const IntlTime: FC<Props> = ({
   showDayPeriod = true,
   time,
 }) => {
-  const locale = useSelector((state) => state.data.locale);
+  const [locale] = useKey(db, "locale");
 
   // Time formatter config
   const formater = Intl.DateTimeFormat(locale, {

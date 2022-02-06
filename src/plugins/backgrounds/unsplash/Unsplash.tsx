@@ -1,13 +1,12 @@
-import React, { FC } from "react";
-
+import React from "react";
 import { useObjectUrl, useRotatingCache } from "../../../hooks";
 import Backdrop from "../../../views/shared/Backdrop";
 import { getImage } from "./api";
-import { Props, defaultData } from "./types";
-import UnsplashCredit from "./UnsplashCredit";
+import { defaultData, Props } from "./types";
 import "./Unsplash.sass";
+import UnsplashCredit from "./UnsplashCredit";
 
-const Unsplash: FC<Props> = ({
+const Unsplash: React.FC<Props> = ({
   cache,
   data = defaultData,
   loader,

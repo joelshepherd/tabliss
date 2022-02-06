@@ -1,18 +1,16 @@
-import React, { FC, memo } from "react";
-
-import { useSelector } from "../../store";
+import React from "react";
+import { useSelector } from "../../lib/db/react";
+import { db } from "../../state";
 import Background from "./Background";
+import "./Dashboard.sass";
 import Overlay from "./Overlay";
 import Widgets from "./Widgets";
-import "./Dashboard.sass";
 
-const Dashboard: FC = () => {
-  const background = useSelector((state) =>
-    state.data.backgrounds.find((plugin) => plugin.active),
-  );
+const Dashboard: React.FC = () => {
+  const background = useSelector(db, (get) => get(`data/${get("background")}`));
 
   const theme =
-    background && background.display.luminosity > 0 ? "light" : "dark";
+    background && (background.display.luminosity ?? 0) > 0 ? "light" : "dark";
 
   return (
     <div className={`Dashboard fullscreen ${theme}`}>
@@ -23,4 +21,4 @@ const Dashboard: FC = () => {
   );
 };
 
-export default memo(Dashboard);
+export default React.memo(Dashboard);

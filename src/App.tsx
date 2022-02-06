@@ -1,11 +1,8 @@
-import React, { FC, useEffect } from "react";
+import React from "react";
 import { defineMessages, useIntl } from "react-intl";
-
-import { useSelector } from "./store";
+import { UiContext } from "./contexts/ui";
 import { Dashboard } from "./views/dashboard";
 import { Settings } from "./views/settings";
-import StoreError from "./views/shared/StoreError";
-import WelcomeTo2 from "./views/shared/welcomes/WelcomeTo2";
 
 const messages = defineMessages({
   pageTitle: {
@@ -15,21 +12,18 @@ const messages = defineMessages({
   },
 });
 
-const Root: FC = () => {
-  const showSettings = useSelector((state) => state.ui.settings);
-  const storeError = useSelector((state) => state.ui.storeError);
+const Root: React.FC = () => {
+  const { settings } = React.useContext(UiContext);
 
   const intl = useIntl();
-  useEffect(() => {
+  React.useEffect(() => {
     document.title = intl.formatMessage(messages.pageTitle);
   }, [intl]);
 
   return (
     <>
       <Dashboard />
-      {showSettings && <Settings />}
-      {storeError && <StoreError error={storeError} />}
-      <WelcomeTo2 />
+      {settings && <Settings />}
     </>
   );
 };

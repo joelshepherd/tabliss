@@ -1,41 +1,29 @@
-import { useCallback, useMemo } from "react";
-import { useDispatch } from "react-redux";
-
+import { useContext } from "react";
+import { UiContext } from "../contexts/ui";
+import { useKey } from "../lib/db/react";
 import { API } from "../plugins";
-import { useSelector } from "../store";
-import { pushLoader, popLoader, setData, setCache } from "../store/actions";
+import { cache as cacheDb, db } from "../state";
 
 export function useApi(id: string): API {
-  const dispatch = useDispatch();
-
   // Cache
-  const cache = useSelector((state) => state.cache[id]);
-  const boundSetCache = useCallback(
-    (cache: object) => dispatch(setCache(id, cache)),
-    [dispatch, id],
-  );
+  const [cache, setCache] = useKey(cacheDb, id);
 
   // Data
-  const data = useSelector((state) => state.data.data[id]);
-  const boundSetData = useCallback(
-    (data: object) => dispatch(setData(id, data)),
-    [dispatch, id],
-  );
+  // TODO: Fix types
+  const [row, setRow] = useKey(db, `data/${id}`);
+  if (!row) throw new Error("Cannot find data with ID: " + id);
+  const data = row.settings;
+  const setData = (settings: {}) => setRow({ ...row, settings });
 
   // Loader
-  const loader = useMemo(
-    () => ({
-      push: () => dispatch(pushLoader()),
-      pop: () => dispatch(popLoader()),
-    }),
-    [dispatch],
-  );
+  const { pushLoader, popLoader } = useContext(UiContext);
+  const loader = { push: pushLoader, pop: popLoader };
 
   return {
     cache,
     data,
     loader,
-    setCache: boundSetCache,
-    setData: boundSetData,
+    setCache,
+    setData,
   };
 }

@@ -1,6 +1,4 @@
-import { v4 as generateId } from "uuid";
-
-import { DataState } from "../../../store/reducers/types";
+import { nanoid as generateId } from "nanoid";
 import { defaultData as defaultGiphyData } from "../../../plugins/backgrounds/giphy/types";
 import { defaultData as defaultGradientData } from "../../../plugins/backgrounds/gradient/types";
 import { defaultData as defaultUnsplashData } from "../../../plugins/backgrounds/unsplash/types";
@@ -26,15 +24,58 @@ export interface Version1Config {
   };
 }
 
+type BackgroundDisplay = {
+  blur: number;
+  luminosity: number;
+};
+type WidgetPosition =
+  | "topLeft"
+  | "topCentre"
+  | "topRight"
+  | "middleLeft"
+  | "middleCentre"
+  | "middleRight"
+  | "bottomLeft"
+  | "bottomCentre"
+  | "bottomRight";
+type WidgetDisplay = {
+  colour?: string;
+  fontFamily?: string;
+  fontSize?: number;
+  fontWeight?: number;
+  position: WidgetPosition;
+};
+type PluginState<Display> = {
+  id: string;
+  /**
+   * May not exactly match plugin keys.
+   * Keys of removed plugins may still exist in a browser's storage for instance
+   */
+  key: string;
+  active: boolean;
+  display: Display;
+};
+type BackgroundState = PluginState<BackgroundDisplay>;
+type WidgetState = PluginState<WidgetDisplay>;
+type Version2Config = {
+  backgrounds: BackgroundState[];
+  widgets: WidgetState[];
+  data: {
+    [id: string]: object;
+  };
+  locale?: string;
+  timeZone?: string;
+};
+
 /**
  * Migrate Tabliss v1 config to v2
  */
-export function migrateVersion1(config: Version1Config): DataState {
+export function migrateVersion1(config: Version1Config): Version2Config {
   // Data
-  const data: DataState["data"] = {};
+  const data: Version2Config["data"] = {};
 
   // Backgrounds
-  const backgrounds: DataState["backgrounds"] = [
+  const backgrounds: Version2Config["backgrounds"] = [
     {
       id: generateId(),
       key: translateKey(config.dashboard.background) || "background/unsplash",
@@ -57,7 +98,7 @@ export function migrateVersion1(config: Version1Config): DataState {
       }
     : {};
 
-  const widgets: DataState["widgets"] = config.dashboard.widgets
+  const widgets: Version2Config["widgets"] = config.dashboard.widgets
     .filter(translateKey)
     .map((previousType) => {
       const id = generateId();
