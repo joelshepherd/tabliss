@@ -3,20 +3,16 @@ import { FormattedMessage } from "react-intl";
 import { setBackground } from "../../actions";
 import { useKey } from "../../lib/db/react";
 import { backgroundConfigs, getConfig } from "../../plugins";
-import { db } from "../../state";
+import { BackgroundDisplay, db } from "../../state";
 import Plugin from "../shared/Plugin";
 import ToggleSection from "../shared/ToggleSection";
 
 const Background: React.FC = () => {
-  const [id] = useKey(db, "background");
-  const [data, setData] = useKey(db, `data/${id}`);
-
-  if (!id || !data) return null;
+  const [data, setData] = useKey(db, "background");
 
   const plugin = getConfig(data.key);
 
-  // TODO: display types in general
-  const setBackgroundDisplay = (display: any): void => {
+  const setBackgroundDisplay = (display: BackgroundDisplay): void => {
     setData({ ...data, display: { ...data.display, ...display } });
   };
 
@@ -50,7 +46,7 @@ const Background: React.FC = () => {
 
           {plugin.settingsComponent && (
             <div className="settings">
-              <Plugin id={id} component={plugin.settingsComponent} />
+              <Plugin id={data.id} component={plugin.settingsComponent} />
             </div>
           )}
 

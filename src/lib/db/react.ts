@@ -18,6 +18,14 @@ export const useKey = <T, K extends keyof T>(
   return [state, (val) => DB.put(db, key, val)];
 };
 
+export const useValue = <T, K extends keyof T>(
+  db: DB.Database<T>,
+  key: K,
+): T[K] => {
+  const [value] = useKey(db, key);
+  return value;
+};
+
 export const useSelector = <
   T,
   S extends (get: <K extends keyof T>(key: K) => T[K]) => any,

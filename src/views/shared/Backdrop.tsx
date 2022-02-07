@@ -1,12 +1,12 @@
-import React, { FC, HTMLAttributes } from "react";
-import { useSelector } from "../../lib/db/react";
-import { BackgroundDisplay, db } from "../../state";
+import React from "react";
+import { useValue } from "../../lib/db/react";
+import { db } from "../../state";
 
-type Props = HTMLAttributes<HTMLDivElement> & {
+type Props = React.HTMLAttributes<HTMLDivElement> & {
   ready?: boolean;
 };
 
-const Backdrop: FC<Props> = ({
+const Backdrop: React.FC<Props> = ({
   children,
   ready = true,
   style = {},
@@ -18,12 +18,9 @@ const Backdrop: FC<Props> = ({
     setTimeout(() => setShow(ready), 0);
   }, [ready]);
 
-  // TODO: Consider passing this in via prop
-  const background = useSelector(db, (get) => get(`data/${get("background")}`));
-  if (!background) return null;
-
-  // TODO: display types
-  const { blur, luminosity = 0 } = background.display as BackgroundDisplay;
+  // TODO: Consider passing display in via prop
+  const background = useValue(db, "background");
+  const { blur, luminosity = 0 } = background.display;
 
   style = { ...style };
 

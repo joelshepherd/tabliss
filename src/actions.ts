@@ -1,6 +1,6 @@
 import { nanoid } from "nanoid";
 import { DB } from "./lib";
-import { db } from "./state";
+import { db, WidgetDisplay } from "./state";
 
 // Actions
 // TODO: Move elsewhere
@@ -12,35 +12,34 @@ export const exportStore = (): void => {};
 
 // TODO: transaction
 export const setBackground = (key: string): void => {
-  const oldId = DB.get(db, "background");
-  const id = createId();
-  DB.put(db, `data/${id}`, {
-    id,
+  const prev = DB.get(db, "background");
+  DB.put(db, "background", {
+    id: createId(),
     key,
     display: { blur: 0, luminosity: -0.1 },
   });
-  DB.put(db, "background", id);
-  DB.del(db, `data/${oldId}`);
+  DB.del(db, `data/${prev.id}`);
 };
 
 // TODO: conflict resolution
 export const addWidget = (key: string): void => {
-  const id = createId();
-  DB.put(db, `data/${id}`, {
-    id,
-    key,
-    display: { position: "middleCentre" },
-  });
-  DB.put(db, "widgets", Array.from(DB.get(db, "widgets")).concat(id));
+  DB.put(
+    db,
+    "widgets",
+    DB.get(db, "widgets").concat({
+      id: createId(),
+      key,
+      display: { position: "middleCentre" },
+    }),
+  );
 };
 
 // TODO: conflict resolution
 export const removeWidget = (id: string): void => {
-  const widgets = DB.get(db, "widgets");
   DB.put(
     db,
     "widgets",
-    widgets.filter((i) => i !== id),
+    DB.get(db, "widgets").filter((widget) => widget.id !== id),
   );
   DB.del(db, `data/${id}`);
 };
@@ -48,9 +47,25 @@ export const removeWidget = (id: string): void => {
 // TODO: conflict resolution
 export const reorderWidget = (id: string, to: number) => {
   const widgets = Array.from(DB.get(db, "widgets"));
-  const index = widgets.findIndex((widget) => widget === id);
+  const index = widgets.findIndex((widget) => widget.id === id);
   widgets.splice(to, 0, widgets.splice(index, 1)[0]);
   DB.put(db, "widgets", widgets);
+};
+
+// TODO: conflict resolution
+export const setWidgetDisplay = (
+  id: string,
+  display: Partial<WidgetDisplay>,
+) => {
+  DB.put(
+    db,
+    "widgets",
+    DB.get(db, "widgets").map((widget) =>
+      widget.id === id
+        ? { ...widget, display: { ...widget.display, ...display } }
+        : widget,
+    ),
+  );
 };
 
 export const toggleFocus = () => {

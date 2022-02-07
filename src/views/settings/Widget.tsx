@@ -1,8 +1,9 @@
 import React from "react";
+import { setWidgetDisplay } from "../../actions";
 import { useToggle } from "../../hooks";
 import { DB } from "../../lib";
 import { getConfig } from "../../plugins";
-import { db, WidgetData } from "../../state";
+import { db, WidgetState } from "../../state";
 import { DownIcon, Icon, IconButton, RemoveIcon, UpIcon } from "../shared";
 import PluginContainer from "../shared/Plugin";
 import ToggleSection from "../shared/ToggleSection";
@@ -10,7 +11,7 @@ import "./Widget.sass";
 import WidgetDisplay from "./WidgetDisplay";
 
 interface Props {
-  plugin: WidgetData;
+  plugin: WidgetState;
   onMoveUp?: () => void;
   onMoveDown?: () => void;
   onRemove: () => void;
@@ -26,13 +27,7 @@ const Widget: React.FC<Props> = ({
 
   const { description, name, settingsComponent } = getConfig(plugin.key);
 
-  // TODO: display types
-  const setDisplay = (display: any): void => {
-    DB.put(db, `data/${plugin.id}`, {
-      ...plugin,
-      display: { ...plugin.display, ...display },
-    });
-  };
+  const setDisplay = setWidgetDisplay.bind(null, plugin.id);
 
   return (
     <fieldset className="Widget">
