@@ -2,7 +2,7 @@
 
 ## todo
 
-- [ ] test cases for broken things
+- [x] test cases for broken things
 - [ ] measure performance (esp. vs redux-persist)
 - [ ] handle atomic transactions
 - [ ] handle conflicts

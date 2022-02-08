@@ -21,5 +21,5 @@ test("storage restore with invalid data", () => {
   localStorage.setItem("test/invalid/json", "undefined");
   const db = DB.init();
   Storage.local(db, "test");
-  expect(DB.get(db, "invalid/json")).toBeNull();
+  expect(DB.get(db, "invalid json")).toBeNull();
 });

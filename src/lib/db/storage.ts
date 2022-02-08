@@ -1,5 +1,6 @@
 import { Database, put, listen } from "./db";
 import LocalForage from "localforage";
+import { storage } from "webextension-polyfill";
 
 /**
  * LocalStorage adapter for database.
@@ -57,5 +58,48 @@ export const localForage = (db: Database, instance: LocalForage) => {
   listen(db, ([key, val]) => {
     if (val === null) instance.removeItem(key);
     else instance.setItem(key, val);
+  });
+};
+
+export const extension = (
+  db: Database,
+  name: string,
+  area: "local" | "sync" | "managed",
+): void => {
+  // load from storage on init
+  // TODO: the promise causes the db to use blank data to begin with
+  //       need some sort of ready indicator
+  storage[area]
+    .get()
+    .then((stored) =>
+      Object.keys(stored)
+        .filter((key) => key.startsWith(name))
+        .forEach((key) => put(db, key.substring(name.length + 1), stored[key])),
+    )
+    .catch((err) => {
+      // TODO: error handling
+      throw err;
+    });
+
+  // watch for storage changes
+  storage.onChanged.addListener((changes, areaName) => {
+    if (area === areaName)
+      Object.keys(changes)
+        .filter((key) => key.startsWith(name))
+        .forEach((key) =>
+          put(db, key.substring(name.length + 1), changes[key].newValue),
+        );
+  });
+
+  // listen to db changes
+  listen(db, ([key, val]) => {
+    if (val === null)
+      storage[area].remove(name + "/" + key).catch((err) => {
+        throw err;
+      });
+    else
+      storage[area].set({ [name + "/" + key]: val }).catch((err) => {
+        throw err;
+      });
   });
 };

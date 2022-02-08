@@ -89,15 +89,10 @@ const initData: State = {
 
 // Database storage
 export const db = DB.init<State>(initData);
-Storage.local(db, "tabliss");
+if (process.env.BUILD_TARGET === "web") Storage.local(db, "tabliss/data");
+else Storage.extension(db, "tabliss-config", "sync");
 
 // Cache storage
 export const cache = DB.init<Record<string, {} | undefined>>();
-Storage.localForage(
-  cache,
-  localForage.createInstance({
-    name: "tabliss",
-    driver: localForage.INDEXEDDB,
-    storeName: "cache",
-  }),
-);
+if (process.env.BUILD_TARGET === "web") Storage.local(db, "tabliss/cache");
+else Storage.extension(cache, "tabliss-cache", "local");
