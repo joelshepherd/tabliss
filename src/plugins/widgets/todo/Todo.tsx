@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 
-import { useSavedReducer, useToggle } from "../../../hooks";
+import { useKeyPress, useSavedReducer, useToggle } from "../../../hooks";
 import { DownIcon, Icon, UpIcon, ExpandIcon } from "../../../views/shared";
 import { addTodo, removeTodo, toggleTodo, updateTodo } from "./actions";
 import { reducer, State } from "./reducer";
@@ -16,6 +16,11 @@ const Todo: FC<Props> = ({ data = defaultData, setData }) => {
 
   const items = data.items.filter((item) => !item.completed || showCompleted);
   const show = !showMore ? data.show : undefined;
+
+  useKeyPress(
+    () => dispatch(addTodo()),
+    ["n", "N"],
+  );
 
   return (
     <div className="Todo">
