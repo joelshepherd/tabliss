@@ -6,9 +6,24 @@ import { db, WidgetDisplay } from "./state";
 // TODO: Move elsewhere
 const createId = () => nanoid(8);
 
-export const resetStore = (): void => {};
-export const importStore = (dump: any): void => {};
-export const exportStore = (): void => {};
+export const resetStore = (): void => {
+  // TODO: iteration helpers
+  // TODO: must reinstate `initData` after doing this
+  for (const [key] of DB.prefix(db, "")) {
+    DB.del(db, key);
+  }
+};
+
+export const importStore = (dump: unknown): void => {
+  // TODO: validate
+  if (typeof dump === "object" && dump !== null)
+    Object.entries(dump).forEach(([key, val]) => DB.put(db, key as any, val));
+  else alert("nope");
+};
+
+export const exportStore = (): string => {
+  return JSON.stringify(Object.fromEntries(DB.prefix(db, "")));
+};
 
 // TODO: transaction
 export const setBackground = (key: string): void => {

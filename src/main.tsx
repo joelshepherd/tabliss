@@ -1,9 +1,8 @@
 import React from "react";
 import { render } from "react-dom";
-
-import Root from "./Root";
 import { register as registerErrorHandler } from "./errorHandler";
 import { register as registerServiceWorker } from "./serviceWorker";
+import Root from "./views/Root";
 
 // Register error handler
 if (process.env.NODE_ENV === "production") {

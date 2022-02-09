@@ -1,11 +1,10 @@
-import localForage from "localforage";
 import { DB, Storage } from "./lib";
 import { defaultLocale } from "./locales";
 
 /**
  * Database state
  */
-interface State {
+export interface State {
   /** Background state */
   background: BackgroundState;
   /** Widget state */
@@ -89,10 +88,15 @@ const initData: State = {
 
 // Database storage
 export const db = DB.init<State>(initData);
-if (process.env.BUILD_TARGET === "web") Storage.local(db, "tabliss/data");
-else Storage.extension(db, "tabliss-config", "sync");
 
 // Cache storage
-export const cache = DB.init<Record<string, {} | undefined>>();
-if (process.env.BUILD_TARGET === "web") Storage.local(db, "tabliss/cache");
-else Storage.extension(cache, "tabliss-cache", "local");
+export const cache = DB.init<Record<string, unknown | undefined>>();
+
+// Persistence
+if (process.env.BUILD_TARGET === "web") {
+  Storage.local(db, "tabliss/config");
+  Storage.local(cache, "tabliss/cache");
+} else {
+  Storage.extension(db, "tabliss/config", "sync");
+  Storage.extension(cache, "tabliss/cache", "local");
+}

@@ -1,8 +1,8 @@
 import React from "react";
 import { defineMessages, useIntl } from "react-intl";
-import { UiContext } from "./contexts/ui";
-import { Dashboard } from "./views/dashboard";
-import { Settings } from "./views/settings";
+import { UiContext } from "../contexts/ui";
+import { Dashboard } from "./dashboard";
+import { Settings } from "./settings";
 
 const messages = defineMessages({
   pageTitle: {

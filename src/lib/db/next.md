@@ -3,6 +3,7 @@
 ## todo
 
 - [x] test cases for broken things
+- [ ] prefix iteration function
 - [ ] measure performance (esp. vs redux-persist)
 - [ ] handle atomic transactions
 - [ ] handle conflicts

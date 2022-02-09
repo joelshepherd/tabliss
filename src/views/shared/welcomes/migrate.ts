@@ -57,7 +57,7 @@ type PluginState<Display> = {
 };
 type BackgroundState = PluginState<BackgroundDisplay>;
 type WidgetState = PluginState<WidgetDisplay>;
-type Version2Config = {
+export type Version2Config = {
   backgrounds: BackgroundState[];
   widgets: WidgetState[];
   data: {

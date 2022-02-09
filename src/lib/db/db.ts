@@ -32,6 +32,40 @@ export const get = <T, K extends keyof T>(db: Database<T>, key: K): T[K] => {
   return (db.cache.get(key as string) ?? null) as T[K];
 };
 
+type Prefix<T> = T extends `${infer P}${infer K}`
+  ? K extends ""
+    ? P
+    : P | `${P}${Prefix<K>}`
+  : string;
+type KeyWithPrefix<T, P extends string> = T extends `${P}${infer K}`
+  ? `${P}${K}`
+  : never;
+type KeyToTuple<T, K> = K extends keyof T ? [K, T[K]] : never;
+
+/**
+ * Iterate over key-value pairs for keys beginning with the prefix.
+ */
+export const prefix = <T, P extends Prefix<keyof T> | "">(
+  db: Database<T>,
+  prefix: P,
+): IterableIterator<KeyToTuple<T, KeyWithPrefix<keyof T, P>>> => {
+  // TODO: use with upcoming iterator helpers instead
+  const iterator = db.cache[Symbol.iterator]();
+  return {
+    next: () => {
+      let next: ReturnType<typeof iterator.next>;
+      do {
+        next = iterator.next();
+        if (next.done) return next;
+      } while (!next.value[0].startsWith(prefix));
+      return { ...next, value: [next.value[0], next.value[1]] as any }; // TODO: types, maybe
+    },
+    [Symbol.iterator]() {
+      return this;
+    },
+  };
+};
+
 /**
  * Put a value into a key in the database.
  */

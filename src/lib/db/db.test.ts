@@ -15,6 +15,18 @@ test("database get", () => {
   expect(DB.get(db, "test")).toBe("test");
 });
 
+test("database prefix", () => {
+  const db = DB.init();
+  DB.put(db, "prefix/a", "a");
+  DB.put(db, "prefix/b", "b");
+  DB.put(db, "ignore", "c");
+  const result = Array.from(DB.prefix(db, "prefix/"));
+  expect(result).toHaveLength(2);
+  expect(result).toContainEqual(["prefix/a", "a"]);
+  expect(result).toContainEqual(["prefix/b", "b"]);
+  expect(result).not.toContainEqual(["ignore", "c"]);
+});
+
 test("database del", () => {
   const db = DB.init();
   DB.put(db, "test", "test");

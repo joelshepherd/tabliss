@@ -1,6 +1,9 @@
 import { Database, put, listen } from "./db";
 import LocalForage from "localforage";
-import { storage } from "webextension-polyfill";
+import { Browser } from "webextension-polyfill";
+
+if (false) {
+}
 
 /**
  * LocalStorage adapter for database.
@@ -18,12 +21,10 @@ export const local = (db: Database, name: string) => {
   };
 
   Object.keys(localStorage)
-    .map((key: string) => key.split("/"))
-    .filter(([prefix]) => prefix === name)
-    .map(([, ...parts]) => parts.join("/"))
+    .filter((key) => key.startsWith(name))
     .map(
       (key) =>
-        [key, localStorage.getItem(name + "/" + key)] as [
+        [key.substring(name.length + 1), localStorage.getItem(key)] as [
           string,
           string | null,
         ],
@@ -64,12 +65,15 @@ export const localForage = (db: Database, instance: LocalForage) => {
 export const extension = (
   db: Database,
   name: string,
-  area: "local" | "sync" | "managed",
+  areaName: "local" | "sync" | "managed",
 ): void => {
+  const browser = require("webextension-polyfill") as Browser;
+  const area = browser.storage[areaName];
+
   // load from storage on init
   // TODO: the promise causes the db to use blank data to begin with
   //       need some sort of ready indicator
-  storage[area]
+  area
     .get()
     .then((stored) =>
       Object.keys(stored)
@@ -82,8 +86,8 @@ export const extension = (
     });
 
   // watch for storage changes
-  storage.onChanged.addListener((changes, areaName) => {
-    if (area === areaName)
+  browser.storage.onChanged.addListener((changes, changeArea) => {
+    if (changeArea === areaName)
       Object.keys(changes)
         .filter((key) => key.startsWith(name))
         .forEach((key) =>
@@ -94,11 +98,11 @@ export const extension = (
   // listen to db changes
   listen(db, ([key, val]) => {
     if (val === null)
-      storage[area].remove(name + "/" + key).catch((err) => {
+      area.remove(name + "/" + key).catch((err) => {
         throw err;
       });
     else
-      storage[area].set({ [name + "/" + key]: val }).catch((err) => {
+      area.set({ [name + "/" + key]: val }).catch((err) => {
         throw err;
       });
   });

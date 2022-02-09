@@ -17,7 +17,7 @@ const Settings: React.FC = () => {
   const handleReset = () => resetStore();
   // TODO: Export
   const handleExport = () => {
-    const json = JSON.stringify(exportStore());
+    const json = exportStore();
     const url = URL.createObjectURL(
       new Blob([json], { type: "application/json" }),
     );
