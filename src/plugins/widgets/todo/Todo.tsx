@@ -19,7 +19,7 @@ const Todo: FC<Props> = ({ data = defaultData, setData }) => {
 
   useKeyPress(
     () => dispatch(addTodo()),
-    ["n", "N"],
+    [data.keyBind.toUpperCase(), data.keyBind.toLowerCase()],
   );
 
   return (
