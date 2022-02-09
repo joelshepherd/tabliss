@@ -42,6 +42,12 @@ export function setBackgroundDisplay(display: Partial<BackgroundDisplay>) {
   } as const;
 }
 
+export function toggleBlur() {
+  return {
+    type: "TOGGLE_BLUR",
+  } as const;
+}
+
 export function setLocale(locale: string) {
   return {
     type: "SET_LOCALE",
@@ -70,6 +76,7 @@ export type DataActions =
   | ReturnType<typeof reorderWidget>
   | ReturnType<typeof setData>
   | ReturnType<typeof setBackgroundDisplay>
+  | ReturnType<typeof toggleBlur>
   | ReturnType<typeof setLocale>
   | ReturnType<typeof setTimeZone>
   | ReturnType<typeof setWidgetDisplay>;

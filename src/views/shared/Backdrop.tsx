@@ -27,12 +27,12 @@ const Backdrop: FC<Props> = ({
   }
 
   const {
-    display: { blur, luminosity },
+    display: { blur, luminosity, enableBlur },
   } = background;
 
   style = { ...style };
 
-  if (blur) {
+  if (blur && enableBlur) {
     style["filter"] = `blur(${blur}px)`;
     style["transform"] = `scale(${blur / 500 + 1})`;
   }

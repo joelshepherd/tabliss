@@ -39,7 +39,7 @@ export function migrateVersion1(config: Version1Config): DataState {
       id: generateId(),
       key: translateKey(config.dashboard.background) || "background/unsplash",
       active: true,
-      display: { blur: 0, luminosity: 0 },
+      display: { blur: 0, luminosity: 0, enableBlur: true },
     },
   ];
   data[backgrounds[0].id] = translateData(
@@ -51,10 +51,10 @@ export function migrateVersion1(config: Version1Config): DataState {
   const fontSettings = config.storage["core/widgets/font"];
   const fontDisplay = fontSettings
     ? {
-        colour: fontSettings.settings.colour || "#ffffff",
-        fontFamily: fontSettings.settings.family,
-        fontSize: fontSettings.settings.size || 28,
-      }
+      colour: fontSettings.settings.colour || "#ffffff",
+      fontFamily: fontSettings.settings.family,
+      fontSize: fontSettings.settings.size || 28,
+    }
     : {};
 
   const widgets: DataState["widgets"] = config.dashboard.widgets
@@ -158,20 +158,20 @@ function translateData(type: string, storage?: Storage) {
     case "widgets/todo":
       return storage
         ? {
-            ...defaultTodoData,
-            ...storage.settings,
-            ...storage.local, // Move into data
-          }
+          ...defaultTodoData,
+          ...storage.settings,
+          ...storage.local, // Move into data
+        }
         : undefined;
 
     case "extra/widgets/weather":
       return storage
         ? {
-            showDetails: storage.local.details || false, // Move into data
-            latitude: storage.settings.latitude,
-            longitude: storage.settings.longitude,
-            units: storage.settings.units || "auto",
-          }
+          showDetails: storage.local.details || false, // Move into data
+          latitude: storage.settings.latitude,
+          longitude: storage.settings.longitude,
+          units: storage.settings.units || "auto",
+        }
         : undefined;
 
     default:
