@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 
 import { useFormatMessages, useFullscreen, useKeyPress } from "../../hooks";
 import { useSelector } from "../../store";
-import { toggleFocus, toggleSettings, toggleBlur } from "../../store/actions";
+import { toggleFocus, toggleSettings, toggleDisplay } from "../../store/actions";
 import { Icon } from "../shared";
 import "./Overlay.sass";
 
@@ -42,7 +42,7 @@ const Overlay: FC = () => {
 
   const dispatch = useDispatch();
   const handleToggleFocus = () => {
-    background && dispatch(toggleBlur());
+    background && dispatch(toggleDisplay());
     dispatch(toggleFocus());
   };
   const handleToggleSettings = () => dispatch(toggleSettings());
