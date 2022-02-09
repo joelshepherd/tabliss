@@ -5,7 +5,6 @@ export type CacheState = {
 export type BackgroundDisplay = {
   blur: number;
   luminosity: number;
-  enableDisplay: boolean;
 };
 
 export type WidgetPosition =

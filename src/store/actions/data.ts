@@ -42,12 +42,6 @@ export function setBackgroundDisplay(display: Partial<BackgroundDisplay>) {
   } as const;
 }
 
-export function toggleDisplay() {
-  return {
-    type: "TOGGLE_DISPLAY",
-  } as const;
-}
-
 export function setLocale(locale: string) {
   return {
     type: "SET_LOCALE",
@@ -76,7 +70,6 @@ export type DataActions =
   | ReturnType<typeof reorderWidget>
   | ReturnType<typeof setData>
   | ReturnType<typeof setBackgroundDisplay>
-  | ReturnType<typeof toggleDisplay>
   | ReturnType<typeof setLocale>
   | ReturnType<typeof setTimeZone>
   | ReturnType<typeof setWidgetDisplay>;

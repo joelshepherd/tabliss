@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 
 import { useFormatMessages, useFullscreen, useKeyPress } from "../../hooks";
 import { useSelector } from "../../store";
-import { toggleFocus, toggleSettings, toggleDisplay } from "../../store/actions";
+import { toggleFocus, toggleSettings } from "../../store/actions";
 import { Icon } from "../shared";
 import "./Overlay.sass";
 
@@ -36,15 +36,9 @@ const Overlay: FC = () => {
   const translated = useFormatMessages(messages);
   const focus = useSelector((state) => state.ui.focus);
   const pending = useSelector((state) => state.ui.loaders > 0);
-  const background = useSelector((state) =>
-    state.data.backgrounds.find((plugin) => plugin.active),
-  );
 
   const dispatch = useDispatch();
-  const handleToggleFocus = () => {
-    background && dispatch(toggleDisplay());
-    dispatch(toggleFocus());
-  };
+  const handleToggleFocus = () => dispatch(toggleFocus());
   const handleToggleSettings = () => dispatch(toggleSettings());
 
   useKeyPress(handleToggleFocus, ["w"]);

@@ -39,7 +39,7 @@ export function migrateVersion1(config: Version1Config): DataState {
       id: generateId(),
       key: translateKey(config.dashboard.background) || "background/unsplash",
       active: true,
-      display: { blur: 0, luminosity: 0, enableDisplay: true },
+      display: { blur: 0, luminosity: 0 },
     },
   ];
   data[backgrounds[0].id] = translateData(

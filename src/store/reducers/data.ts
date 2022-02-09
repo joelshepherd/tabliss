@@ -9,7 +9,7 @@ export const initialState: DataState = {
       id: generateId(),
       key: "background/unsplash",
       active: true,
-      display: { luminosity: -0.1, blur: 0, enableDisplay: true },
+      display: { luminosity: -0.1, blur: 0 },
     },
   ],
   widgets: [
@@ -42,7 +42,7 @@ export function data(state = initialState, action: Actions): DataState {
             id: generateId(),
             key: action.data.key,
             active: true,
-            display: { luminosity: 0, blur: 0, enableDisplay: true },
+            display: { luminosity: 0, blur: 0 },
           },
         ],
       };
@@ -91,19 +91,6 @@ export function data(state = initialState, action: Actions): DataState {
             ? {
               ...plugin,
               display: { ...plugin.display, ...action.data.display },
-            }
-            : plugin,
-        ),
-      };
-
-    case "TOGGLE_DISPLAY":
-      return {
-        ...state,
-        backgrounds: state.backgrounds.map((plugin) =>
-          plugin.active
-            ? {
-              ...plugin,
-              display: { ...plugin.display, enableDisplay: !plugin.display.enableDisplay },
             }
             : plugin,
         ),
