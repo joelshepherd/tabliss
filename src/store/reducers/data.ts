@@ -89,9 +89,9 @@ export function data(state = initialState, action: Actions): DataState {
         backgrounds: state.backgrounds.map((plugin) =>
           plugin.active
             ? {
-              ...plugin,
-              display: { ...plugin.display, ...action.data.display },
-            }
+                ...plugin,
+                display: { ...plugin.display, ...action.data.display },
+              }
             : plugin,
         ),
       };
@@ -102,9 +102,9 @@ export function data(state = initialState, action: Actions): DataState {
         widgets: state.widgets.map((plugin) =>
           plugin.id === action.data.id
             ? {
-              ...plugin,
-              display: { ...plugin.display, ...action.data.display },
-            }
+                ...plugin,
+                display: { ...plugin.display, ...action.data.display },
+              }
             : plugin,
         ),
       };
