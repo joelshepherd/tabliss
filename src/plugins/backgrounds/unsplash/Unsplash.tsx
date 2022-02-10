@@ -27,7 +27,7 @@ const Unsplash: React.FC<Props> = ({
       <Backdrop
         className="image fullscreen"
         ready={Boolean(url)}
-        style={{ backgroundImage: url && `url(${url})` }}
+        style={{ backgroundImage: url ? `url(${url})` : undefined }}
       />
 
       {cache && <UnsplashCredit image={cache.now} />}

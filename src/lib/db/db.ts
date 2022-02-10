@@ -1,6 +1,6 @@
 type Key = string;
 type Val = unknown;
-type Change = [key: Key, val: Val];
+export type Change = [key: Key, val: Val];
 type Listener = (change: Change) => void;
 type Unsubscribe = () => void;
 
@@ -93,4 +93,29 @@ export const del = <T, K extends keyof T>(db: Database<T>, key: K): void => {
 export const listen = (db: Database, listener: Listener): Unsubscribe => {
   db.listeners.add(listener);
   return () => db.listeners.delete(listener);
+};
+
+/**
+ * @experimental
+ * this is almost certainly not the final form
+ */
+export const flush = (db: Database, changes: Change[]): void => {
+  const keys = new Set<Key>();
+  changes.forEach(([key, val]) => {
+    if (val === null) db.cache.delete(key as string);
+    else db.cache.set(key as string, val);
+    keys.add(key);
+  });
+  // TODO: does this help? bonus is cache is populated before listeners fire, but does this help?
+  // keys.forEach(key =>
+};
+/**
+ * @experimental
+ * get/set/etc would need to accept `Database|Transaction` for this to work
+ * but i guess its good, cos listen shouldn't be available on a `Transaction`
+ */
+export const atomic = (db: Database, fn: (trx: Database) => void): void => {
+  const trx = init();
+  fn(trx);
+  flush(db, Object.entries(trx.cache));
 };

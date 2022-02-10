@@ -5,16 +5,16 @@ export const useKey = <T, K extends keyof T>(
   db: DB.Database<T>,
   key: K,
 ): [T[K], (val: T[K]) => void] => {
-  // TODO: Use react's state apis and do not duplicate memory
-  const [state, setState] = React.useState(DB.get(db, key));
-  React.useEffect(() => {
-    setState(DB.get(db, key));
-    return DB.listen(db, ([changeKey, val]) => {
-      if (key === changeKey) {
-        setState(val as T[K]);
-      }
-    });
-  }, [db, key]);
+  const state = (React as any).useSyncExternalStore(
+    React.useCallback(
+      (listener: () => void) =>
+        DB.listen(db, ([changeKey]) => {
+          if (changeKey === key) listener();
+        }),
+      [key],
+    ),
+    () => DB.get(db, key),
+  );
   return [state, (val) => DB.put(db, key, val)];
 };
 

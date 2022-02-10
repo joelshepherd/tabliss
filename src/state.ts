@@ -94,9 +94,18 @@ export const cache = DB.init<Record<string, unknown | undefined>>();
 
 // Persistence
 if (process.env.BUILD_TARGET === "web") {
-  Storage.local(db, "tabliss/config");
-  Storage.local(cache, "tabliss/cache");
+  Storage.indexeddb(db, "tabliss/config");
+  Storage.indexeddb(cache, "tabliss/cache");
 } else {
   Storage.extension(db, "tabliss/config", "sync");
   Storage.extension(cache, "tabliss/cache", "local");
 }
+
+// TODO: Consider asking for persistence
+// navigator.storage.persist().then((persistent) => {
+//   console.log(persistent);
+//   if (!persistent)
+//     console.log(
+//       "Your browser may delete your setting under various conditions if you do not allow persistent storage.",
+//     );
+// });

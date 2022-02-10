@@ -5,7 +5,7 @@ import UiProvider from "../contexts/ui";
 import IntlProvider from "../locales/IntlProvider";
 
 const Root: FC = () => (
-  <StrictMode>
+  // <StrictMode>
     <UiProvider>
       <IntlProvider>
         <TimeProvider>
@@ -13,7 +13,7 @@ const Root: FC = () => (
         </TimeProvider>
       </IntlProvider>
     </UiProvider>
-  </StrictMode>
+  // </StrictMode>
 );
 
 export default Root;

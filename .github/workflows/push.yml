@@ -1,0 +1,33 @@
+name: Push
+on: push
+
+jobs:
+  test:
+    name: Run tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 16
+          cache: npm
+      - run: npm ci
+      - run: npm test
+  build:
+    name: Build ${{ matrix.build_target }}
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        build_target:
+          - chromium
+          - firefox
+          - web
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 16
+          cache: npm
+      - run: npm ci
+      - run: npm run build:${{ matrix.build_target }}
+      # TODO: if tag and firefox build, sign build

@@ -1,10 +1,10 @@
-import React, { FC } from "react";
+import React from "react";
 import { FormattedMessage } from "react-intl";
 import { useKey } from "../../lib/db/react";
 import { db } from "../../state";
 import TimeZoneInput from "../shared/timeZone/TimeZoneInput";
 
-const System: FC = () => {
+const System: React.FC = () => {
   const [locale, setLocale] = useKey(db, "locale");
   const [timeZone, setTimeZone] = useKey(db, "timeZone");
 

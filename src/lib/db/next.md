@@ -3,13 +3,16 @@
 ## todo
 
 - [x] test cases for broken things
-- [ ] prefix iteration function
+- [x] prefix iteration function
+- [x] add indexeddb storage
 - [ ] measure performance (esp. vs redux-persist)
-- [ ] handle atomic transactions
+- [o] handle atomic transactions
+- [ ] wait for storage to populate db
 - [ ] handle conflicts
 - [ ] \(way later) handle schemas
 - [ ] fix react integration (stop duplicating state, remove hacks, etc.)
 
 minor:
+
 - [ ] debounce storage events
 - [ ] possibly use a broadcastchannel to sync changes cross tabs?

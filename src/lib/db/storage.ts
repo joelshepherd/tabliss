@@ -1,69 +1,55 @@
-import { Database, put, listen } from "./db";
-import LocalForage from "localforage";
+import equals from "fast-deep-equal/es6";
 import { Browser } from "webextension-polyfill";
+import * as DB from "./db";
 
-if (false) {
-}
-
-/**
- * LocalStorage adapter for database.
- */
-export const local = (db: Database, name: string) => {
-  // push changes from storage
-  const push = ([key, raw]: [string, string | null]) => {
-    // TODO: allow codecs
-    try {
-      const val = raw === null ? null : JSON.parse(raw);
-      put(db, key, val);
-    } catch (err) {
-      // TODO: Error reporting
-    }
+/** IndexedDB storage provider */
+export const indexeddb = (db: DB.Database, name: string): void => {
+  const open = indexedDB.open(name, 1);
+  open.onerror = (err) => {
+    // TODO: error handling
   };
+  open.onupgradeneeded = () => {
+    open.result.createObjectStore("changes");
+  };
+  open.onsuccess = () => {
+    const trx = open.result.transaction("changes");
+    trx.onerror = (err) => {
+      // TODO: error handling
+    };
+    const cursor = trx.objectStore("changes").openCursor();
+    cursor.onerror = (err) => {
+      // TODO: error handling
+    };
+    cursor.onsuccess = () => {
+      if (cursor.result) {
+        if (typeof cursor.result.key !== "string")
+          throw new Error("invalid key");
+        DB.put(db, cursor.result.key, cursor.result.value);
+        cursor.result.continue();
+      }
+    };
 
-  Object.keys(localStorage)
-    .filter((key) => key.startsWith(name))
-    .map(
-      (key) =>
-        [key.substring(name.length + 1), localStorage.getItem(key)] as [
-          string,
-          string | null,
-        ],
-    )
-    .forEach(push);
-
-  // watch for storage changes
-  addEventListener("storage", (event) => {
-    if (localStorage === localStorage && event.key) {
-      const [prefix = null, ...parts] = event.key.split("/");
-      if (prefix === name) push([parts.join("/"), event.newValue]);
-    }
-  });
-
-  // listen to db changes
-  listen(db, ([key, val]) => {
-    if (val === null) localStorage.removeItem(name + "/" + key);
-    else localStorage.setItem(name + "/" + key, JSON.stringify(val));
-  });
+    DB.listen(
+      db,
+      batch((changes) => {
+        const trx = open.result.transaction("changes", "readwrite");
+        const store = trx.objectStore("changes");
+        changes.forEach(([key, val]) => {
+          if (val === null) store.delete(key);
+          else store.put(val, key);
+        });
+        trx.oncomplete = () => {}; // nice
+        trx.onerror = () => {
+          // TODO: error handling
+        };
+      }),
+    );
+  };
 };
 
-/**
- * localForage storage adapter.
- */
-export const localForage = (db: Database, instance: LocalForage) => {
-  instance.iterate((val, key) => put(db, key, val));
-
-  // watch for storage changes
-  // TODO: Watch for changes (possibly with BroadcastChannel)
-
-  // listen to db changes
-  listen(db, ([key, val]) => {
-    if (val === null) instance.removeItem(key);
-    else instance.setItem(key, val);
-  });
-};
-
+/** Web Extension storage provider */
 export const extension = (
-  db: Database,
+  db: DB.Database,
   name: string,
   areaName: "local" | "sync" | "managed",
 ): void => {
@@ -73,12 +59,16 @@ export const extension = (
   // load from storage on init
   // TODO: the promise causes the db to use blank data to begin with
   //       need some sort of ready indicator
+  // TODO: for tabliss, config gets loaded before cache; which leads unsplash to fetch new images, rather than waiting for the cache
+  //       moving cache to the browser cache APIs might work around this problem
   area
     .get()
     .then((stored) =>
       Object.keys(stored)
         .filter((key) => key.startsWith(name))
-        .forEach((key) => put(db, key.substring(name.length + 1), stored[key])),
+        .forEach((key) =>
+          DB.put(db, key.substring(name.length + 1), stored[key]),
+        ),
     )
     .catch((err) => {
       // TODO: error handling
@@ -86,24 +76,61 @@ export const extension = (
     });
 
   // watch for storage changes
-  browser.storage.onChanged.addListener((changes, changeArea) => {
-    if (changeArea === areaName)
-      Object.keys(changes)
-        .filter((key) => key.startsWith(name))
-        .forEach((key) =>
-          put(db, key.substring(name.length + 1), changes[key].newValue),
-        );
-  });
+  // TODO: updates will be trigger on the same tab, might need more than the equals check
+  // TODO: add a test case for this
+  // browser.storage.onChanged.addListener((changes, changeArea) => {
+  //   if (changeArea === areaName)
+  //     Object.keys(changes)
+  //       .filter((key) => key.startsWith(name))
+  //       .forEach((key) => {
+  //         const val = changes[key].newValue;
+  //         const prev = changes[key].oldValue;
+  //         key = key.substring(name.length + 1);
+  //         if (equals(DB.get(db, key), prev)) DB.put(db, key, val);
+  //       });
+  // });
 
   // listen to db changes
-  listen(db, ([key, val]) => {
-    if (val === null)
-      area.remove(name + "/" + key).catch((err) => {
-        throw err;
-      });
-    else
-      area.set({ [name + "/" + key]: val }).catch((err) => {
-        throw err;
-      });
+  DB.listen(
+    db,
+    batch((changes) => {
+      const updates = Object.fromEntries(
+        changes.filter(([, val]) => val !== null),
+      );
+      const deletes = changes
+        .filter(([, val]) => val === null)
+        .map(([key]) => key);
+
+      // TODO: error handling
+      area.set(updates);
+      area.remove(deletes);
+    }),
+  );
+};
+
+const batch = <T>(
+  flush: (batch: T[]) => void,
+  timeout = 0,
+): ((val: T) => void) => {
+  let items: T[] = [];
+  let timer: any = null;
+
+  const run = () => {
+    flush(items);
+    items = [];
+    timer = null;
+  };
+
+  // If there are pending changes on browser close, flush immediately
+  window.addEventListener("beforeunload", () => {
+    if (timer) {
+      clearTimeout(timer);
+      run();
+    }
   });
+
+  return (val) => {
+    items.push(val);
+    if (!timer) timer = setTimeout(run, timeout);
+  };
 };
