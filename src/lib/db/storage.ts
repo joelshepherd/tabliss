@@ -3,65 +3,66 @@ import { Browser } from "webextension-polyfill";
 import * as DB from "./db";
 
 /** IndexedDB storage provider */
-export const indexeddb = (db: DB.Database, name: string): void => {
-  const open = indexedDB.open(name, 1);
-  open.onerror = (err) => {
-    // TODO: error handling
-  };
-  open.onupgradeneeded = () => {
-    open.result.createObjectStore("changes");
-  };
-  open.onsuccess = () => {
-    const trx = open.result.transaction("changes");
-    trx.onerror = (err) => {
+export const indexeddb = (db: DB.Database, name: string): Promise<void> => {
+  return new Promise<void>((resolve) => {
+    const open = indexedDB.open(name, 1);
+    open.onerror = (err) => {
       // TODO: error handling
     };
-    const cursor = trx.objectStore("changes").openCursor();
-    cursor.onerror = (err) => {
-      // TODO: error handling
+    open.onupgradeneeded = () => {
+      open.result.createObjectStore("changes");
     };
-    cursor.onsuccess = () => {
-      if (cursor.result) {
-        if (typeof cursor.result.key !== "string")
-          throw new Error("invalid key");
-        DB.put(db, cursor.result.key, cursor.result.value);
-        cursor.result.continue();
-      }
-    };
+    open.onsuccess = () => {
+      const trx = open.result.transaction("changes");
+      trx.onerror = (err) => {
+        // TODO: error handling
+      };
+      const cursor = trx.objectStore("changes").openCursor();
+      cursor.onerror = (err) => {
+        // TODO: error handling
+      };
+      cursor.onsuccess = () => {
+        if (cursor.result) {
+          if (typeof cursor.result.key !== "string")
+            throw new Error("invalid key");
+          DB.put(db, cursor.result.key, cursor.result.value);
+          cursor.result.continue();
+        } else {
+          // Finish proccessing
+          resolve();
+        }
+      };
 
-    DB.listen(
-      db,
-      batch((changes) => {
-        const trx = open.result.transaction("changes", "readwrite");
-        const store = trx.objectStore("changes");
-        changes.forEach(([key, val]) => {
-          if (val === null) store.delete(key);
-          else store.put(val, key);
-        });
-        trx.oncomplete = () => {}; // nice
-        trx.onerror = () => {
-          // TODO: error handling
-        };
-      }),
-    );
-  };
+      DB.listen(
+        db,
+        batch((changes) => {
+          const trx = open.result.transaction("changes", "readwrite");
+          const store = trx.objectStore("changes");
+          changes.forEach(([key, val]) => {
+            if (val === null) store.delete(key);
+            else store.put(val, key);
+          });
+          trx.oncomplete = () => {}; // nice
+          trx.onerror = () => {
+            // TODO: error handling
+          };
+        }),
+      );
+    };
+  });
 };
 
 /** Web Extension storage provider */
-export const extension = (
+export const extension = async (
   db: DB.Database,
   name: string,
   areaName: "local" | "sync" | "managed",
-): void => {
+): Promise<void> => {
   const browser = require("webextension-polyfill") as Browser;
-  const area = browser.storage[areaName];
+  const storageArea = browser.storage[areaName];
 
-  // load from storage on init
-  // TODO: the promise causes the db to use blank data to begin with
-  //       need some sort of ready indicator
-  // TODO: for tabliss, config gets loaded before cache; which leads unsplash to fetch new images, rather than waiting for the cache
-  //       moving cache to the browser cache APIs might work around this problem
-  area
+  // Populate db from storage
+  await storageArea
     .get()
     .then((stored) =>
       Object.keys(stored)
@@ -75,37 +76,22 @@ export const extension = (
       throw err;
     });
 
-  // watch for storage changes
-  // TODO: updates will be trigger on the same tab, might need more than the equals check
-  // TODO: add a test case for this
-  // browser.storage.onChanged.addListener((changes, changeArea) => {
-  //   if (changeArea === areaName)
-  //     Object.keys(changes)
-  //       .filter((key) => key.startsWith(name))
-  //       .forEach((key) => {
-  //         const val = changes[key].newValue;
-  //         const prev = changes[key].oldValue;
-  //         key = key.substring(name.length + 1);
-  //         if (equals(DB.get(db, key), prev)) DB.put(db, key, val);
-  //       });
-  // });
+  // Setup listener
+  const listener = batch<DB.Change>((changes) => {
+    const updates = Object.fromEntries(
+      changes
+        .filter(([, val]) => val !== null)
+        .map(([key, val]) => [`${name}/${key}`, val]),
+    );
+    const deletes = changes
+      .filter(([, val]) => val === null)
+      .map(([key]) => `${name}/${key}`);
 
-  // listen to db changes
-  DB.listen(
-    db,
-    batch((changes) => {
-      const updates = Object.fromEntries(
-        changes.filter(([, val]) => val !== null),
-      );
-      const deletes = changes
-        .filter(([, val]) => val === null)
-        .map(([key]) => key);
-
-      // TODO: error handling
-      area.set(updates);
-      area.remove(deletes);
-    }),
-  );
+    // TODO: error handling
+    storageArea.set(updates);
+    storageArea.remove(deletes);
+  });
+  DB.listen(db, listener);
 };
 
 const batch = <T>(

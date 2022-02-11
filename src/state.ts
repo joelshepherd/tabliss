@@ -94,11 +94,11 @@ export const cache = DB.init<Record<string, unknown | undefined>>();
 
 // Persistence
 if (process.env.BUILD_TARGET === "web") {
-  Storage.indexeddb(db, "tabliss/config");
-  Storage.indexeddb(cache, "tabliss/cache");
+  await Storage.indexeddb(cache, "tabliss/cache");
+  await Storage.indexeddb(db, "tabliss/config");
 } else {
-  Storage.extension(db, "tabliss/config", "sync");
-  Storage.extension(cache, "tabliss/cache", "local");
+  await Storage.extension(cache, "tabliss/cache", "local");
+  await Storage.extension(db, "tabliss/config", "sync");
 }
 
 // TODO: Consider asking for persistence

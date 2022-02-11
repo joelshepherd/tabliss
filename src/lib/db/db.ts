@@ -45,25 +45,14 @@ type KeyToTuple<T, K> = K extends keyof T ? [K, T[K]] : never;
 /**
  * Iterate over key-value pairs for keys beginning with the prefix.
  */
-export const prefix = <T, P extends Prefix<keyof T> | "">(
+export const prefix = function* <T, P extends Prefix<keyof T> | "">(
   db: Database<T>,
   prefix: P,
-): IterableIterator<KeyToTuple<T, KeyWithPrefix<keyof T, P>>> => {
-  // TODO: use with upcoming iterator helpers instead
-  const iterator = db.cache[Symbol.iterator]();
-  return {
-    next: () => {
-      let next: ReturnType<typeof iterator.next>;
-      do {
-        next = iterator.next();
-        if (next.done) return next;
-      } while (!next.value[0].startsWith(prefix));
-      return { ...next, value: [next.value[0], next.value[1]] as any }; // TODO: types, maybe
-    },
-    [Symbol.iterator]() {
-      return this;
-    },
-  };
+): IterableIterator<KeyToTuple<T, KeyWithPrefix<keyof T, P>>> {
+  for (const [key, val] of db.cache) {
+    // Probably a waste of time (and the ts compiler's time) to remove this `any`
+    if (key.startsWith(prefix)) yield [key, val] as any;
+  }
 };
 
 /**
@@ -111,8 +100,7 @@ export const flush = (db: Database, changes: Change[]): void => {
 };
 /**
  * @experimental
- * get/set/etc would need to accept `Database|Transaction` for this to work
- * but i guess its good, cos listen shouldn't be available on a `Transaction`
+ * TODO: consider snapshot isolation
  */
 export const atomic = (db: Database, fn: (trx: Database) => void): void => {
   const trx = init();

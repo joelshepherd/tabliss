@@ -87,9 +87,12 @@ const config = {
       VERSION: version,
     }),
   ],
-  devtool: isWeb ? "source-map" : false,
+  devtool: isWeb || !isProduction ? "source-map" : false,
   stats: {
     warnings: false,
+  },
+  experiments: {
+    topLevelAwait: true,
   },
 };
 

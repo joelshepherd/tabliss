@@ -1,11 +1,11 @@
-import React, { FC, StrictMode } from "react";
-import App from "./App";
+import React from "react";
 import TimeProvider from "../contexts/time";
 import UiProvider from "../contexts/ui";
 import IntlProvider from "../locales/IntlProvider";
+import App from "./App";
 
-const Root: FC = () => (
-  // <StrictMode>
+const Root: React.FC = () => (
+  <React.StrictMode>
     <UiProvider>
       <IntlProvider>
         <TimeProvider>
@@ -13,7 +13,7 @@ const Root: FC = () => (
         </TimeProvider>
       </IntlProvider>
     </UiProvider>
-  // </StrictMode>
+  </React.StrictMode>
 );
 
 export default Root;

@@ -7,10 +7,10 @@
 - [x] add indexeddb storage
 - [ ] measure performance (esp. vs redux-persist)
 - [o] handle atomic transactions
-- [ ] wait for storage to populate db
+- [x] wait for storage to populate db
 - [ ] handle conflicts
 - [ ] \(way later) handle schemas
-- [ ] fix react integration (stop duplicating state, remove hacks, etc.)
+- [o] fix react integration (~stop duplicating state~, remove hacks, etc.)
 
 minor:
 

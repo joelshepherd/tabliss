@@ -6,13 +6,10 @@ export const useKey = <T, K extends keyof T>(
   key: K,
 ): [T[K], (val: T[K]) => void] => {
   const state = (React as any).useSyncExternalStore(
-    React.useCallback(
-      (listener: () => void) =>
-        DB.listen(db, ([changeKey]) => {
-          if (changeKey === key) listener();
-        }),
-      [key],
-    ),
+    (listener: () => void) =>
+      DB.listen(db, ([changeKey]) => {
+        if (changeKey === key) listener();
+      }),
     () => DB.get(db, key),
   );
   return [state, (val) => DB.put(db, key, val)];
