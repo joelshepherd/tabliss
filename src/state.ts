@@ -93,13 +93,16 @@ export const db = DB.init<State>(initData);
 export const cache = DB.init<Record<string, unknown | undefined>>();
 
 // Persistence
-if (process.env.BUILD_TARGET === "web") {
-  await Storage.indexeddb(cache, "tabliss/cache");
-  await Storage.indexeddb(db, "tabliss/config");
-} else {
-  await Storage.extension(cache, "tabliss/cache", "local");
-  await Storage.extension(db, "tabliss/config", "sync");
-}
+export const storageReady =
+  process.env.BUILD_TARGET === "web"
+    ? Promise.all([
+        Storage.indexeddb(db, "tabliss/config"),
+        Storage.indexeddb(cache, "tabliss/cache"),
+      ])
+    : Promise.all([
+        Storage.extension(db, "tabliss/config", "sync"),
+        Storage.indexeddb(cache, "tabliss/cache"), // Chromium cannot store blobs in extension.local
+      ]);
 
 // TODO: Consider asking for persistence
 // navigator.storage.persist().then((persistent) => {

@@ -1,6 +1,7 @@
 import React from "react";
 import { defineMessages, useIntl } from "react-intl";
 import { UiContext } from "../contexts/ui";
+import { storageReady } from "../state";
 import { Dashboard } from "./dashboard";
 import { Settings } from "./settings";
 
@@ -19,6 +20,13 @@ const Root: React.FC = () => {
   React.useEffect(() => {
     document.title = intl.formatMessage(messages.pageTitle);
   }, [intl]);
+
+  // Wait for storage to be ready before displaying
+  const [ready, setReady] = React.useState(false);
+  React.useEffect(() => {
+    storageReady.then(() => setReady(true));
+  }, []);
+  if (!ready) return null;
 
   return (
     <>
