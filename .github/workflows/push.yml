@@ -30,4 +30,5 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run build:${{ matrix.build_target }}
-      # TODO: if tag and firefox build, sign build
+      # TODO: if tag build (and sign for firefox and chromium)
+      #       requires `web-ext` for firefox, and chromium for, well, chromium

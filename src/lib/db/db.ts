@@ -1,13 +1,15 @@
 type Key = string;
 type Val = unknown;
 export type Change = [key: Key, val: Val];
-type Listener = (change: Change) => void;
+export type Listener = (change: Change) => void;
 type Unsubscribe = () => void;
 
 type Shape = Record<Key, Val>;
 
-export interface Database<T = Shape> {
+// TODO: implement iterable interface
+export interface Database<T = any> {
   cache: Map<string, unknown>;
+  def: T;
   listeners: Set<Listener>;
 }
 
@@ -15,12 +17,12 @@ export interface Database<T = Shape> {
  * Init a new database.
  */
 export const init = <T = Shape>(def?: T): Database<T> => {
-  const cache = new Map(def ? Object.entries(def) : []);
-  const cacheListener = ([key, val]: Change) => {
-    if (val === null) cache.delete(key);
-    else cache.set(key, val);
+  const cache = new Map();
+  return {
+    cache,
+    def: def ?? ({} as T),
+    listeners: new Set(),
   };
-  return { cache, listeners: new Set([cacheListener]) };
 };
 
 /**
@@ -29,7 +31,7 @@ export const init = <T = Shape>(def?: T): Database<T> => {
 export const get = <T, K extends keyof T>(db: Database<T>, key: K): T[K] => {
   // WARNING: These types are lying to you.
   //          There could easily be invalid data saved in localstorage.
-  return (db.cache.get(key as string) ?? null) as T[K];
+  return (db.cache.get(key as string) ?? db.def[key] ?? null) as T[K];
 };
 
 type Prefix<T> = T extends `${infer P}${infer K}`

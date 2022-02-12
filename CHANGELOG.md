@@ -8,7 +8,6 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 ## Added
 
 - Tabliss is now selectable as your homepage in Firefox
-- Setting changes are now synchronised across any open Tabliss tabs
 
 ## Fixed
 

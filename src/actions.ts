@@ -1,6 +1,7 @@
 import { nanoid } from "nanoid";
 import { DB } from "./lib";
-import { db, WidgetDisplay } from "./state";
+import { db, WidgetDisplay, State } from "./state";
+import { migrate } from "./views/shared/welcomes/migrate3";
 
 // Actions
 // TODO: Move elsewhere
@@ -8,21 +9,37 @@ const createId = () => nanoid(8);
 
 export const resetStore = (): void => {
   // TODO: iteration helpers
-  // TODO: must reinstate `initData` after doing this
   for (const [key] of DB.prefix(db, "")) {
     DB.del(db, key);
   }
 };
 
 export const importStore = (dump: unknown): void => {
-  // TODO: validate
-  if (typeof dump === "object" && dump !== null)
-    Object.entries(dump).forEach(([key, val]) => DB.put(db, key as any, val));
-  else alert("nope");
+  // TODO: proper validation
+  if (typeof dump === "object" && dump !== null) {
+    let data: Partial<State> | null = null;
+    if (Object.prototype.hasOwnProperty.call(dump, "backgrounds")) {
+      // Assume v2 config
+      data = migrate(dump as any);
+    }
+    if ((dump as any).version === 3) {
+      data = dump;
+    }
+    if (data !== null) {
+      // TODO: atomic
+      resetStore();
+      Object.entries(data).forEach(([key, val]) => DB.put(db, key as any, val));
+      return;
+    }
+  }
+  alert("Invalid import data");
 };
 
 export const exportStore = (): string => {
-  return JSON.stringify(Object.fromEntries(DB.prefix(db, "")));
+  return JSON.stringify({
+    ...Object.fromEntries(DB.prefix(db, "")),
+    version: 3,
+  });
 };
 
 // TODO: transaction

@@ -1,5 +1,6 @@
 import equals from "fast-deep-equal/es6";
 import { Browser } from "webextension-polyfill";
+import { capture } from "../../errorHandler";
 import * as DB from "./db";
 
 /** IndexedDB storage provider */
@@ -38,10 +39,11 @@ export const indexeddb = (db: DB.Database, name: string): Promise<void> => {
         batch((changes) => {
           const trx = open.result.transaction("changes", "readwrite");
           const store = trx.objectStore("changes");
-          changes.forEach(([key, val]) => {
+          // TODO: iterator helpers
+          for (const [key,val] of changes) {
             if (val === null) store.delete(key);
             else store.put(val, key);
-          });
+          }
           trx.oncomplete = () => {}; // nice
           trx.onerror = () => {
             // TODO: error handling
@@ -73,37 +75,47 @@ export const extension = async (
     )
     .catch((err) => {
       // TODO: error handling
-      throw err;
+      capture(err);
+      alert("Error reading from storage on init: " + err);
     });
 
   // Setup listener
-  const listener = batch<DB.Change>((changes) => {
+  const listener = batch((changes) => {
+    // TODO: test for both updates and deletes for the same key
+    // TODO: iterator helpers
+    const changesArray = Array.from(changes);
     const updates = Object.fromEntries(
-      changes
+      changesArray
         .filter(([, val]) => val !== null)
         .map(([key, val]) => [`${name}/${key}`, val]),
     );
-    const deletes = changes
+    const deletes = changesArray
       .filter(([, val]) => val === null)
       .map(([key]) => `${name}/${key}`);
 
     // TODO: error handling
-    storageArea.set(updates);
-    storageArea.remove(deletes);
+    storageArea.set(updates).catch((err) => {
+      capture(err);
+      alert("Error writing updates to storage on change: " + err);
+    });
+    storageArea.remove(deletes).catch((err) => {
+      capture(err);
+      alert("Error writing deletes to storage on change: " + err);
+    });
   });
   DB.listen(db, listener);
 };
 
-const batch = <T>(
-  flush: (batch: T[]) => void,
+const batch = (
+  flush: (batch: Iterable<DB.Change>) => void,
   timeout = 0,
-): ((val: T) => void) => {
-  let items: T[] = [];
-  let timer: any = null;
+): DB.Listener => {
+  const changes = new Map();
+  let timer: any = null; // TODO: remove @types/node then set to number
 
   const run = () => {
-    flush(items);
-    items = [];
+    flush(changes);
+    changes.clear();
     timer = null;
   };
 
@@ -115,8 +127,8 @@ const batch = <T>(
     }
   });
 
-  return (val) => {
-    items.push(val);
+  return ([key, val]) => {
+    changes.set(key, val);
     if (!timer) timer = setTimeout(run, timeout);
   };
 };

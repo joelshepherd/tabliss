@@ -16,7 +16,7 @@
     "translations": "node ./scripts/translations.js"
   },
   "dependencies": {
-    "@sentry/browser": "^6.16.1",
+    "@sentry/browser": "^6.17.6",
     "date-fns": "^2.28.0",
     "date-fns-tz": "^1.2.2",
     "feather-icons": "^4.28.0",
@@ -37,7 +37,6 @@
     "@types/node": "^17.0.8",
     "@types/react": "^17.0.38",
     "@types/react-dom": "^17.0.11",
-    "@types/tlds": "^1.199.0",
     "@types/webextension-polyfill": "^0.8.2",
     "clean-webpack-plugin": "^4.0.0",
     "copy-webpack-plugin": "^10.2.0",
