@@ -5,8 +5,8 @@
 - [x] test cases for broken things
 - [x] prefix iteration function
 - [x] add indexeddb storage
-- [ ] measure performance (esp. vs redux-persist)
-- [o] handle atomic transactions
+- [ ] measure performance
+- [x] handle atomic transactions
 - [x] wait for storage to populate db
 - [ ] handle conflicts
 - [ ] \(way later) handle schemas

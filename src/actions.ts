@@ -7,50 +7,16 @@ import { migrate } from "./views/shared/welcomes/migrate3";
 // TODO: Move elsewhere
 const createId = () => nanoid(8);
 
-export const resetStore = (): void => {
-  // TODO: iteration helpers
-  for (const [key] of DB.prefix(db, "")) {
-    DB.del(db, key);
-  }
-};
-
-export const importStore = (dump: unknown): void => {
-  // TODO: proper validation
-  if (typeof dump === "object" && dump !== null) {
-    let data: Partial<State> | null = null;
-    if (Object.prototype.hasOwnProperty.call(dump, "backgrounds")) {
-      // Assume v2 config
-      data = migrate(dump as any);
-    }
-    if ((dump as any).version === 3) {
-      data = dump;
-    }
-    if (data !== null) {
-      // TODO: atomic
-      resetStore();
-      Object.entries(data).forEach(([key, val]) => DB.put(db, key as any, val));
-      return;
-    }
-  }
-  alert("Invalid import data");
-};
-
-export const exportStore = (): string => {
-  return JSON.stringify({
-    ...Object.fromEntries(DB.prefix(db, "")),
-    version: 3,
-  });
-};
-
-// TODO: transaction
 export const setBackground = (key: string): void => {
-  const prev = DB.get(db, "background");
-  DB.put(db, "background", {
-    id: createId(),
-    key,
-    display: { blur: 0, luminosity: -0.1 },
+  DB.atomic(db, (db) => {
+    const prev = DB.get(db, "background");
+    DB.put(db, "background", {
+      id: createId(),
+      key,
+      display: { blur: 0, luminosity: -0.2 },
+    });
+    DB.del(db, `data/${prev.id}`);
   });
-  DB.del(db, `data/${prev.id}`);
 };
 
 // TODO: conflict resolution
@@ -68,12 +34,14 @@ export const addWidget = (key: string): void => {
 
 // TODO: conflict resolution
 export const removeWidget = (id: string): void => {
-  DB.put(
-    db,
-    "widgets",
-    DB.get(db, "widgets").filter((widget) => widget.id !== id),
-  );
-  DB.del(db, `data/${id}`);
+  DB.atomic(db, (db) => {
+    DB.put(
+      db,
+      "widgets",
+      DB.get(db, "widgets").filter((widget) => widget.id !== id),
+    );
+    DB.del(db, `data/${id}`);
+  });
 };
 
 // TODO: conflict resolution
@@ -103,4 +71,43 @@ export const setWidgetDisplay = (
 export const toggleFocus = () => {
   const active = DB.get(db, "focus");
   DB.put(db, "focus", !active);
+};
+
+// Store actions
+
+export const resetStore = (): void => {
+  DB.atomic(db, (trx) => {
+    // TODO: iteration helpers
+    for (const [key] of DB.prefix(trx, "")) DB.del(trx, key);
+  });
+};
+
+export const importStore = (dump: unknown): void => {
+  // TODO: proper validation
+  if (typeof dump === "object" && dump !== null) {
+    let data: Partial<State> | null = null;
+    if (Object.prototype.hasOwnProperty.call(dump, "backgrounds")) {
+      // Assume v2 config
+      data = migrate(dump as any);
+    }
+    if ((dump as any).version === 3) {
+      data = dump;
+    }
+    if (data !== null) {
+      const changes = Object.entries(data);
+      DB.atomic(db, (trx) => {
+        for (const [key] of DB.prefix(trx, "")) DB.del(trx, key);
+        changes.forEach(([key, val]) => DB.put(db, key as any, val));
+      });
+      return;
+    }
+  }
+  alert("Invalid import data");
+};
+
+export const exportStore = (): string => {
+  return JSON.stringify({
+    ...Object.fromEntries(DB.prefix(db, "")),
+    version: 3,
+  });
 };

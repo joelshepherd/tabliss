@@ -57,3 +57,22 @@ test("database default data", () => {
 });
 
 test.todo("storage");
+
+test("database atomic writes flush", () => {
+  const db = DB.init();
+  DB.atomic(db, (trx) => {
+    DB.put(trx, "test", "test");
+  });
+  expect(DB.get(db, "test")).toBe("test");
+});
+
+test("database atomic writes do not flush on error", () => {
+  const db = DB.init();
+  expect(() =>
+    DB.atomic(db, (trx) => {
+      DB.put(trx, "test", "test");
+      throw null;
+    }),
+  ).toThrow();
+  expect(DB.get(db, "test")).toBeNull();
+});

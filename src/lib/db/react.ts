@@ -1,7 +1,7 @@
 import * as DB from "./db";
 import React from "react";
 
-export const useKey = <T, K extends keyof T>(
+export const useKey = <T, K extends DB.Key<T>>(
   db: DB.Database<T>,
   key: K,
 ): [T[K], (val: T[K]) => void] => {
@@ -15,7 +15,7 @@ export const useKey = <T, K extends keyof T>(
   return [state, (val) => DB.put(db, key, val)];
 };
 
-export const useValue = <T, K extends keyof T>(
+export const useValue = <T, K extends DB.Key<T>>(
   db: DB.Database<T>,
   key: K,
 ): T[K] => {
@@ -25,7 +25,7 @@ export const useValue = <T, K extends keyof T>(
 
 export const useSelector = <
   T,
-  S extends (get: <K extends keyof T>(key: K) => T[K]) => any,
+  S extends (get: <K extends DB.Key<T>>(key: K) => T[K]) => any,
 >(
   db: DB.Database<T>,
   selector: S,

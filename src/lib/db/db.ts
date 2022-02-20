@@ -1,54 +1,55 @@
-type Key = string;
-type Val = unknown;
+export type Key<T = any> = keyof T & string;
+export type Val = unknown;
 export type Change = [key: Key, val: Val];
 export type Listener = (change: Change) => void;
-type Unsubscribe = () => void;
+export type Unsubscribe = () => void;
 
 type Shape = Record<Key, Val>;
 
 // TODO: implement iterable interface
-export interface Database<T = any> {
-  cache: Map<string, unknown>;
-  def: T;
+export interface Database<T = any> extends Snapshot<T> {
   listeners: Set<Listener>;
+}
+
+interface Snapshot<T> {
+  cache: Map<Key, Val>;
+  parent: Snapshot<T> | null;
 }
 
 /**
  * Init a new database.
  */
 export const init = <T = Shape>(def?: T): Database<T> => {
-  const cache = new Map();
   return {
-    cache,
-    def: def ?? ({} as T),
+    cache: new Map(),
     listeners: new Set(),
+    parent: def
+      ? {
+          cache: new Map(Object.entries(def)),
+          parent: null,
+        }
+      : null,
   };
 };
 
 /**
  * Get a value from a key in the database.
+ *
+ * WARNING: These types can lie to you. Without schema support, invalid data may be saved in storage.
  */
-export const get = <T, K extends keyof T>(db: Database<T>, key: K): T[K] => {
-  // WARNING: These types are lying to you.
-  //          There could easily be invalid data saved in localstorage.
-  return (db.cache.get(key as string) ?? db.def[key] ?? null) as T[K];
+export const get = <T, K extends Key<T>>(db: Snapshot<T>, key: K): T[K] => {
+  if (db.cache.has(key)) return db.cache.get(key) as T[K];
+  if (db.parent) return get(db.parent, key);
+  return null as any;
+  // TODO: consider throwing
+  // throw new NotFoundError(key);
 };
-
-type Prefix<T> = T extends `${infer P}${infer K}`
-  ? K extends ""
-    ? P
-    : P | `${P}${Prefix<K>}`
-  : string;
-type KeyWithPrefix<T, P extends string> = T extends `${P}${infer K}`
-  ? `${P}${K}`
-  : never;
-type KeyToTuple<T, K> = K extends keyof T ? [K, T[K]] : never;
 
 /**
  * Iterate over key-value pairs for keys beginning with the prefix.
  */
 export const prefix = function* <T, P extends Prefix<keyof T> | "">(
-  db: Database<T>,
+  db: Snapshot<T>,
   prefix: P,
 ): IterableIterator<KeyToTuple<T, KeyWithPrefix<keyof T, P>>> {
   for (const [key, val] of db.cache) {
@@ -60,21 +61,21 @@ export const prefix = function* <T, P extends Prefix<keyof T> | "">(
 /**
  * Put a value into a key in the database.
  */
-export const put = <T, K extends keyof T>(
-  db: Database<T>,
+export const put = <T, K extends Key<T>>(
+  db: Snapshot<T> | Database<T>,
   key: K,
   val: T[K] | null,
 ): void => {
-  if (val === null) db.cache.delete(key as string);
-  else db.cache.set(key as string, val);
-  // TODO: Check key types
-  db.listeners.forEach((listener) => listener([key as string, val]));
+  if (val === null) db.cache.delete(key);
+  else db.cache.set(key, val);
+  if ("listeners" in db)
+    db.listeners.forEach((listener) => listener([key, val]));
 };
 
 /**
  * Delete a key from the database.
  */
-export const del = <T, K extends keyof T>(db: Database<T>, key: K): void => {
+export const del = <T, K extends Key<T>>(db: Snapshot<T>, key: K): void => {
   put(db, key, null);
 };
 
@@ -87,25 +88,37 @@ export const listen = (db: Database, listener: Listener): Unsubscribe => {
 };
 
 /**
+ * Commits all writes or none if an error is thrown in provided function.
+ * does provide atomic writes
+ * does provide write isolation
+ * does not provide read isolation
  * @experimental
- * this is almost certainly not the final form
  */
-export const flush = (db: Database, changes: Change[]): void => {
-  const keys = new Set<Key>();
-  changes.forEach(([key, val]) => {
-    if (val === null) db.cache.delete(key as string);
-    else db.cache.set(key as string, val);
-    keys.add(key);
-  });
-  // TODO: does this help? bonus is cache is populated before listeners fire, but does this help?
-  // keys.forEach(key =>
-};
-/**
- * @experimental
- * TODO: consider snapshot isolation
- */
-export const atomic = (db: Database, fn: (trx: Database) => void): void => {
-  const trx = init();
+export const atomic = <T>(
+  db: Database<T>,
+  fn: (trx: Snapshot<T>) => void,
+): void => {
+  const trx = snapshot(db);
   fn(trx);
-  flush(db, Object.entries(trx.cache));
+  commit(db, Array.from(trx.cache.entries()));
 };
+const snapshot = <T>(parent: Snapshot<T> | null = null): Snapshot<T> => {
+  return {
+    cache: new Map(),
+    parent,
+  };
+};
+const commit = (db: Database, changes: Change[]): void => {
+  changes.forEach(([key, val]) => put(db, key, val));
+};
+
+// Types for prefix function
+type Prefix<T> = T extends `${infer P}${infer K}`
+  ? K extends ""
+    ? P
+    : P | `${P}${Prefix<K>}`
+  : string;
+type KeyWithPrefix<T, P extends string> = T extends `${P}${infer K}`
+  ? `${P}${K}`
+  : never;
+type KeyToTuple<T, K> = K extends keyof T ? [K, T[K]] : never;

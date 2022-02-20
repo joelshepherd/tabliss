@@ -1,4 +1,3 @@
-import equals from "fast-deep-equal/es6";
 import { Browser } from "webextension-polyfill";
 import { capture } from "../../errorHandler";
 import * as DB from "./db";

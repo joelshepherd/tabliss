@@ -101,7 +101,11 @@ export const storageReady =
       ])
     : Promise.all([
         Storage.extension(db, "tabliss/config", "sync"),
-        Storage.indexeddb(cache, "tabliss/cache"), // Chromium cannot store blobs in extension.local
+        // Chromium cannot store blobs in extension.local
+        // Firefox cannot use indexeddb in private mode
+        process.env.BUILD_TARGET === "firefox"
+          ? Storage.extension(cache, "tabliss/cache", "local")
+          : Storage.indexeddb(cache, "tabliss/cache"),
       ]);
 
 // TODO: Consider asking for persistence
