@@ -76,3 +76,37 @@ test("database atomic writes do not flush on error", () => {
   ).toThrow();
   expect(DB.get(db, "test")).toBeNull();
 });
+
+test("database atomic flushes deletes", () => {
+  const db = DB.init();
+  DB.put(db, "test", "test");
+  DB.atomic(db, (trx) => {
+    DB.del(trx, "test");
+  });
+  expect(DB.get(db, "test")).toBeNull();
+});
+
+test.skip("database atom prefix search", () => {
+  // TODO: consider not permitting a prefix search on a snapshop
+  const db = DB.init();
+  DB.put(db, "prefix/a", "a");
+  DB.atomic(db, (trx) => {
+    DB.put(trx, "prefix/b", "b");
+    const result = Array.from(DB.prefix(trx, "prefix/"));
+    expect(result).toHaveLength(2);
+    expect(result).toContainEqual(["prefix/a", "a"]);
+    expect(result).toContainEqual(["prefix/b", "b"]);
+  });
+});
+
+test.skip("database atomic prefix search duplicate", () => {
+  // TODO: as above, consider not permitting prefix search on a snapshot
+  const db = DB.init();
+  DB.put(db, "test", "test");
+  DB.atomic(db, (trx) => {
+    DB.put(trx, "test", "atomic");
+    const result = Array.from(DB.prefix(trx, "t"));
+    expect(result).toHaveLength(1);
+    expect(result).toContainEqual(["test", "atomic"]);
+  });
+});

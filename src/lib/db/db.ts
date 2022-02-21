@@ -50,11 +50,11 @@ export const get = <T, K extends Key<T>>(db: Snapshot<T>, key: K): T[K] => {
  */
 export const prefix = function* <T, P extends Prefix<keyof T> | "">(
   db: Snapshot<T>,
-  prefix: P,
+  path: P,
 ): IterableIterator<KeyToTuple<T, KeyWithPrefix<keyof T, P>>> {
   for (const [key, val] of db.cache) {
     // Probably a waste of time (and the ts compiler's time) to remove this `any`
-    if (key.startsWith(prefix)) yield [key, val] as any;
+    if (key.startsWith(path)) yield [key, val] as any;
   }
 };
 
@@ -66,7 +66,8 @@ export const put = <T, K extends Key<T>>(
   key: K,
   val: T[K] | null,
 ): void => {
-  if (val === null) db.cache.delete(key);
+  // TODO: fix this listeners hack, probably need to properly investigate a tombstone or a change log
+  if (val === null && "listeners" in db) db.cache.delete(key);
   else db.cache.set(key, val);
   if ("listeners" in db)
     db.listeners.forEach((listener) => listener([key, val]));

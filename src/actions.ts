@@ -78,7 +78,8 @@ export const toggleFocus = () => {
 export const resetStore = (): void => {
   DB.atomic(db, (trx) => {
     // TODO: iteration helpers
-    for (const [key] of DB.prefix(trx, "")) DB.del(trx, key);
+    // TODO: decide on prefix iterators on snapshots
+    for (const [key] of DB.prefix(db, "")) DB.del(trx, key);
   });
 };
 
