@@ -53,7 +53,7 @@
     "sass-loader": "^12.4.0",
     "ts-jest": "^27.1.2",
     "ts-loader": "^9.2.6",
-    "typescript": "^4.5.4",
+    "typescript": "^4.6.1-rc",
     "typescript-react-intl": "^0.4.1",
     "url-loader": "^4.1.1",
     "webpack": "^5.65.0",

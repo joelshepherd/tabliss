@@ -6,7 +6,7 @@
 - [x] prefix iteration function
 - [x] add indexeddb storage
 - [ ] measure performance
-- [x] handle atomic transactions
+- [x] handle atomic writes
 - [x] wait for storage to populate db
 - [ ] handle conflicts
 - [ ] \(way later) handle schemas
@@ -14,5 +14,6 @@
 
 minor:
 
-- [ ] debounce storage events
+- [x] debounce storage events
+  - [ ] consider a debounce time
 - [ ] possibly use a broadcastchannel to sync changes cross tabs?

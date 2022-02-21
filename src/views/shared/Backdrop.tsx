@@ -13,9 +13,9 @@ const Backdrop: React.FC<Props> = ({
   ...rest
 }) => {
   // Lag one frame behind to show the animation
-  const [show, setShow] = React.useState(ready);
-  React.useLayoutEffect(() => {
-    setTimeout(() => setShow(ready), 0);
+  const [show, setShow] = React.useState(false);
+  React.useEffect(() => {
+    setShow(ready);
   }, [ready]);
 
   // TODO: Consider passing display in via prop
@@ -39,7 +39,7 @@ const Backdrop: React.FC<Props> = ({
       style={{
         color: luminosity > 0 ? "white" : "black",
         opacity: show ? 1 : 0,
-        transition: "opacity 200ms ease-in-out",
+        transition: "opacity 150ms ease-in-out",
       }}
     >
       <div style={style} {...rest}>

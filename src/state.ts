@@ -93,7 +93,7 @@ export const db = DB.init<State>(initData);
 export const cache = DB.init<Record<string, unknown | undefined>>();
 
 // Persistence
-export const storageReady =
+export const ready =
   process.env.BUILD_TARGET === "web"
     ? Promise.all([
         Storage.indexeddb(db, "tabliss/config"),

@@ -24,7 +24,6 @@ const Giphy: FC<Props> = ({ cache, data = defaultData, setCache, loader }) => {
     <div className="Giphy fullscreen">
       <Backdrop
         className="gif fullscreen"
-        ready={Boolean(url)}
         style={{
           backgroundImage: url ? `url(${url})` : undefined,
           backgroundSize: data.expand ? "cover" : undefined,

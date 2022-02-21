@@ -1,34 +1,44 @@
 import { Browser } from "webextension-polyfill";
-import { capture } from "../../errorHandler";
 import * as DB from "./db";
 
 /** IndexedDB storage provider */
 export const indexeddb = (db: DB.Database, name: string): Promise<void> => {
-  return new Promise<void>((resolve) => {
-    const open = indexedDB.open(name, 1);
-    open.onerror = (err) => {
-      // TODO: error handling
+  return new Promise<void>((resolve, reject) => {
+    // Map idb errors to a standard format
+    const mapError = (message: string) => (err: unknown) => {
+      const cause =
+        err instanceof Event &&
+        err.target instanceof IDBRequest &&
+        err.target.error instanceof Error
+          ? err.target.error
+          : undefined;
+      reject(new Error(`StorageError: IndexedDB: ${message}`, { cause }));
     };
+
+    const open = indexedDB.open(name, 1);
+    open.onerror = mapError("Cannot open storage");
     open.onupgradeneeded = () => {
       open.result.createObjectStore("changes");
     };
     open.onsuccess = () => {
-      const trx = open.result.transaction("changes");
-      trx.onerror = (err) => {
-        // TODO: error handling
-      };
+      const conn = open.result;
+
+      const trx = conn.transaction("changes");
+      trx.oncomplete = () => {}; // nice
+      trx.onerror = mapError("Cannot read changes from storage");
+
+      const changes: DB.Change[] = [];
       const cursor = trx.objectStore("changes").openCursor();
-      cursor.onerror = (err) => {
-        // TODO: error handling
-      };
       cursor.onsuccess = () => {
         if (cursor.result) {
-          if (typeof cursor.result.key !== "string")
-            throw new Error("invalid key");
-          DB.put(db, cursor.result.key, cursor.result.value);
+          if (typeof cursor.result.key === "string")
+            changes.push([cursor.result.key, cursor.result.value]);
           cursor.result.continue();
         } else {
-          // Finish proccessing
+          // Finished loading
+          DB.atomic(db, (trx) => {
+            changes.forEach(([key, val]) => DB.put(trx, key, val));
+          });
           resolve();
         }
       };
@@ -36,17 +46,16 @@ export const indexeddb = (db: DB.Database, name: string): Promise<void> => {
       DB.listen(
         db,
         batch((changes) => {
-          const trx = open.result.transaction("changes", "readwrite");
+          const trx = conn.transaction("changes", "readwrite");
+          trx.oncomplete = () => {}; // nice
+          trx.onerror = mapError("Cannot write changes to storage");
+
           const store = trx.objectStore("changes");
           // TODO: iterator helpers
-          for (const [key,val] of changes) {
+          for (const [key, val] of changes) {
             if (val === null) store.delete(key);
             else store.put(val, key);
           }
-          trx.oncomplete = () => {}; // nice
-          trx.onerror = () => {
-            // TODO: error handling
-          };
         }),
       );
     };
@@ -59,6 +68,12 @@ export const extension = async (
   name: string,
   areaName: "local" | "sync" | "managed",
 ): Promise<void> => {
+  // Map errors to a standard format
+  const mapError = (message: string) => (err: unknown) => {
+    const cause = err instanceof Error ? err : undefined;
+    throw new Error(`StorageError: ${message}`, { cause });
+  };
+
   const browser = require("webextension-polyfill") as Browser;
   const storageArea = browser.storage[areaName];
 
@@ -72,11 +87,7 @@ export const extension = async (
           DB.put(db, key.substring(name.length + 1), stored[key]),
         ),
     )
-    .catch((err) => {
-      // TODO: error handling
-      capture(err);
-      alert("Error reading from storage on init: " + err);
-    });
+    .catch(mapError("Cannot read changes from storage"));
 
   // Setup listener
   const listener = batch((changes) => {
@@ -92,15 +103,10 @@ export const extension = async (
       .filter(([, val]) => val === null)
       .map(([key]) => `${name}/${key}`);
 
-    // TODO: error handling
-    storageArea.set(updates).catch((err) => {
-      capture(err);
-      alert("Error writing updates to storage on change: " + err);
-    });
-    storageArea.remove(deletes).catch((err) => {
-      capture(err);
-      alert("Error writing deletes to storage on change: " + err);
-    });
+    storageArea.set(updates).catch(mapError("Cannot write updates to storage"));
+    storageArea
+      .remove(deletes)
+      .catch(mapError("Cannot write deletes to storage"));
   });
   DB.listen(db, listener);
 };
