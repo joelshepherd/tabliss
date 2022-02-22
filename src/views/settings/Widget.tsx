@@ -1,9 +1,8 @@
 import React from "react";
 import { setWidgetDisplay } from "../../actions";
 import { useToggle } from "../../hooks";
-import { DB } from "../../lib";
 import { getConfig } from "../../plugins";
-import { db, WidgetState } from "../../state";
+import { WidgetState } from "../../state";
 import { DownIcon, Icon, IconButton, RemoveIcon, UpIcon } from "../shared";
 import PluginContainer from "../shared/Plugin";
 import ToggleSection from "../shared/ToggleSection";

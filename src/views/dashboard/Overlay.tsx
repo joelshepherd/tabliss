@@ -3,7 +3,7 @@ import { defineMessages } from "react-intl";
 import { toggleFocus } from "../../actions";
 import { UiContext } from "../../contexts/ui";
 import { useFormatMessages, useFullscreen, useKeyPress } from "../../hooks";
-import { useKey } from "../../lib/db/react";
+import { useValue } from "../../lib/db/react";
 import { db } from "../../state";
 import { Icon } from "../shared";
 import "./Overlay.sass";
@@ -34,7 +34,7 @@ const messages = defineMessages({
 
 const Overlay: React.FC = () => {
   const translated = useFormatMessages(messages);
-  const [focus] = useKey(db, "focus");
+  const focus = useValue(db, "focus");
   const { pending, toggleSettings } = React.useContext(UiContext);
 
   useKeyPress(toggleFocus, ["w"]);

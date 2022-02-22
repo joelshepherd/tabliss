@@ -15,7 +15,7 @@ const Settings: React.FC = () => {
   const { toggleSettings } = React.useContext(UiContext);
 
   const handleReset = () => resetStore();
-  // TODO: Export
+
   const handleExport = () => {
     const json = exportStore();
     const url = URL.createObjectURL(
@@ -31,6 +31,7 @@ const Settings: React.FC = () => {
     window.URL.revokeObjectURL(url);
     document.body.removeChild(a);
   };
+
   const handleImport = () => {
     const input = document.createElement("input");
     document.body.appendChild(input);

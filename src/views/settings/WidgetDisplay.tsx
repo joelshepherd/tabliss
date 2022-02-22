@@ -1,11 +1,11 @@
 import React from "react";
-import { WidgetDisplay as IWidgetDisplay } from "../../state";
+import { WidgetDisplay as WidgetDisplayType } from "../../state";
 import PositionInput from "./PositionInput";
 import "./WidgetDisplay.css";
 
 type Props = {
-  display: IWidgetDisplay;
-  onChange: (display: Partial<IWidgetDisplay>) => void;
+  display: WidgetDisplayType;
+  onChange: (display: Partial<WidgetDisplayType>) => void;
 };
 
 const WidgetDisplay: React.FC<Props> = ({ display, onChange }) => {

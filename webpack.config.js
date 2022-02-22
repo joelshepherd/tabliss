@@ -91,9 +91,6 @@ const config = {
   stats: {
     warnings: false,
   },
-  experiments: {
-    topLevelAwait: true,
-  },
 };
 
 if (isProduction) {

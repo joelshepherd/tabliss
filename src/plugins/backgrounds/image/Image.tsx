@@ -1,10 +1,10 @@
-import React, { FC } from "react";
+import React from "react";
 import { useObjectUrl } from "../../../hooks";
 import Backdrop from "../../../views/shared/Backdrop";
 import "./Image.sass";
 import { defaultCache, Props } from "./types";
 
-const Image: FC<Props> = ({ cache = defaultCache }) => {
+const Image: React.FC<Props> = ({ cache = defaultCache }) => {
   if (!cache.length) {
     return <div className="Image default fullscreen" />;
   }

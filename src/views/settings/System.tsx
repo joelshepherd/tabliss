@@ -8,9 +8,6 @@ const System: React.FC = () => {
   const [locale, setLocale] = useKey(db, "locale");
   const [timeZone, setTimeZone] = useKey(db, "timeZone");
 
-  const handleSetLocale = (event: React.ChangeEvent<HTMLSelectElement>) =>
-    setLocale(event.target.value);
-
   return (
     <div>
       <h2>
@@ -32,7 +29,10 @@ const System: React.FC = () => {
         }}
       >
         <span>Language</span>
-        <select value={locale} onChange={handleSetLocale}>
+        <select
+          value={locale}
+          onChange={(event) => setLocale(event.target.value)}
+        >
           <option value="ca-ES" title="Catalan">
             Català
           </option>

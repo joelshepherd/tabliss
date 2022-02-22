@@ -1,5 +1,5 @@
-import React, { FC } from "react";
-import { useKey } from "../../../lib/db/react";
+import React from "react";
+import { useValue } from "../../../lib/db/react";
 import { db } from "../../../state";
 
 type Props = {
@@ -20,14 +20,14 @@ type Props = {
  * Code based on: https://github.com/mattermost/mattermost-webapp/pull/5138
  * Tabliss issue: https://github.com/joelshepherd/tabliss/issues/231
  */
-const IntlTime: FC<Props> = ({
+const IntlTime: React.FC<Props> = ({
   hour12,
   showMinutes,
   showSeconds,
   showDayPeriod = true,
   time,
 }) => {
-  const [locale] = useKey(db, "locale");
+  const locale = useValue(db, "locale");
 
   // Time formatter config
   const formater = Intl.DateTimeFormat(locale, {

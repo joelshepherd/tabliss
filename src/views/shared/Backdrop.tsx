@@ -37,7 +37,7 @@ const Backdrop: React.FC<Props> = ({
     <div
       className="fullscreen"
       style={{
-        color: luminosity > 0 ? "white" : "black",
+        backgroundColor: luminosity > 0 ? "white" : "black",
         opacity: show ? 1 : 0,
         transition: "opacity 150ms ease-in-out",
       }}

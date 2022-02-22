@@ -3,8 +3,9 @@ import { useEffect, useMemo, useState } from "react";
 export function useObjectUrl(data?: Blob) {
   // Separating these allows clean up + eagerly calculating the first one
   const url = useMemo(() => (data ? URL.createObjectURL(data) : null), [data]);
+
   useEffect(() => {
-    let prev = url;
+    const prev = url;
     () => {
       if (prev) URL.revokeObjectURL(prev);
     };

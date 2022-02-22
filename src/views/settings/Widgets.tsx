@@ -9,10 +9,6 @@ import Widget from "./Widget";
 const Widgets: React.FC = () => {
   const widgets = useValue(db, "widgets");
 
-  const handleAddWidget = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    addWidget(event.target.value);
-  };
-
   return (
     <div>
       <h2>
@@ -24,7 +20,11 @@ const Widgets: React.FC = () => {
       </h2>
 
       <label>
-        <select value="" onChange={handleAddWidget} className="primary">
+        <select
+          value=""
+          onChange={(event) => addWidget(event.target.value)}
+          className="primary"
+        >
           <option disabled value="">
             Add a new widget
           </option>

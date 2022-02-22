@@ -71,7 +71,9 @@ export const extension = async (
   // Map errors to a standard format
   const mapError = (message: string) => (err: unknown) => {
     const cause = err instanceof Error ? err : undefined;
-    throw new Error(`StorageError: ${message}`, { cause });
+    throw new Error(`StorageError: Extension[${areaName}]: ${message}`, {
+      cause,
+    });
   };
 
   const browser = require("webextension-polyfill") as Browser;
