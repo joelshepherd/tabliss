@@ -11,5 +11,6 @@
     "typeRoots": ["node_modules/@types", "src/@types"],
     "allowSyntheticDefaultImports": true
   },
-  "include": ["src"]
+  "include": ["src"],
+  "exclude": ["**/*.test"]
 }

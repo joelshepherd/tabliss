@@ -12,7 +12,7 @@
     "dev:chromium": "BUILD_TARGET=chromium webpack --watch",
     "dev:firefox": "BUILD_TARGET=firefox webpack --watch",
     "dev:web": "BUILD_TARGET=web webpack serve",
-    "test": "jest",
+    "test": "tsc -p tsconfig.test.json && jest",
     "translations": "node ./scripts/translations.js"
   },
   "dependencies": {
@@ -21,7 +21,6 @@
     "date-fns-tz": "^1.2.2",
     "feather-icons": "^4.28.0",
     "in-browser-language": "^1.0.3",
-    "localforage": "^1.10.0",
     "nanoid": "^3.2.0",
     "normalize.css": "^8.0.1",
     "react": "^18.0.0-rc.0",
@@ -51,7 +50,6 @@
     "raw-loader": "^4.0.2",
     "react-intl-translations-manager": "^5.0.3",
     "sass-loader": "^12.4.0",
-    "ts-jest": "^27.1.2",
     "ts-loader": "^9.2.6",
     "typescript": "^4.6.1-rc",
     "typescript-react-intl": "^0.4.1",
