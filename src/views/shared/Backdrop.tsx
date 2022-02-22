@@ -26,18 +26,20 @@ const Backdrop: FC<Props> = ({
     return null;
   }
 
+  const focus = useSelector((state) => state.ui.focus);
+
   const {
     display: { blur, luminosity },
   } = background;
 
   style = { ...style };
 
-  if (blur) {
+  if (blur && !focus) {
     style["filter"] = `blur(${blur}px)`;
     style["transform"] = `scale(${blur / 500 + 1})`;
   }
 
-  if (luminosity) {
+  if (luminosity && !focus) {
     style["opacity"] = 1 - Math.abs(luminosity);
   }
 
