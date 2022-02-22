@@ -1,13 +1,13 @@
 import React from "react";
 import { FormattedMessage } from "react-intl";
 import { addWidget, removeWidget, reorderWidget } from "../../actions";
-import { useValue } from "../../lib/db/react";
+import { useSelector } from "../../lib/db/react";
 import { widgetConfigs } from "../../plugins";
-import { db } from "../../state";
+import { db, widgetSelector } from "../../state";
 import Widget from "./Widget";
 
 const Widgets: React.FC = () => {
-  const widgets = useValue(db, "widgets");
+  const widgets = useSelector(db, React.useCallback(widgetSelector, []));
 
   return (
     <div>

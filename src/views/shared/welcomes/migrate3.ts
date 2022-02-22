@@ -2,14 +2,16 @@ import { State } from "../../../state";
 import { Version2Config } from "./migrate";
 
 export function migrate(version2Config: Version2Config): Partial<State> {
-  const background = version2Config.backgrounds.find(
-    (background) => background.active,
-  );
-  if (!background) throw "TODO";
   return {
-    focus: false,
-    background,
-    widgets: version2Config.widgets,
+    background: version2Config.backgrounds.find(
+      (background) => background.active,
+    ),
+    ...Object.fromEntries(
+      version2Config.widgets.map((widget, index) => [
+        `widget/${widget.id}`,
+        { ...widget, order: index },
+      ]),
+    ),
     ...Object.fromEntries(
       Object.entries(version2Config.data).map(([key, val]) => [
         `data/${key}`,
@@ -18,5 +20,6 @@ export function migrate(version2Config: Version2Config): Partial<State> {
     ),
     ...(version2Config.locale ? { locale: version2Config.locale } : {}),
     timeZone: version2Config.timeZone ?? null,
+    focus: false,
   };
 }

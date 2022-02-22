@@ -1,6 +1,6 @@
-import React, { FC } from "react";
+import React from "react";
 import { useCachedEffect } from "../../../hooks";
-import { useKey } from "../../../lib/db/react";
+import { useValue } from "../../../lib/db/react";
 import { db } from "../../../state";
 import { MINUTES } from "../../../utils";
 import { getCurrentGames } from "./api";
@@ -10,9 +10,14 @@ import { defaultData, Props } from "./types";
 
 const EXPIRE_IN = 1 * MINUTES;
 
-const Nba: FC<Props> = ({ cache, data = defaultData, setCache, loader }) => {
-  // TODO: Check timeZone usage
-  const [timeZone] = useKey(db, "timeZone");
+const Nba: React.FC<Props> = ({
+  cache,
+  data = defaultData,
+  setCache,
+  loader,
+}) => {
+  const timeZone = useValue(db, "timeZone");
+
   useCachedEffect(
     () => {
       getCurrentGames(loader).then(setCache);

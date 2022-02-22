@@ -53,7 +53,7 @@ export const indexeddb = (db: DB.Database, name: string): Promise<void> => {
           const store = trx.objectStore("changes");
           // TODO: iterator helpers
           for (const [key, val] of changes) {
-            if (val === null) store.delete(key);
+            if (val === undefined) store.delete(key);
             else store.put(val, key);
           }
         }),
@@ -98,11 +98,11 @@ export const extension = async (
     const changesArray = Array.from(changes);
     const updates = Object.fromEntries(
       changesArray
-        .filter(([, val]) => val !== null)
+        .filter(([, val]) => val !== undefined)
         .map(([key, val]) => [`${name}/${key}`, val]),
     );
     const deletes = changesArray
-      .filter(([, val]) => val === null)
+      .filter(([, val]) => val === undefined)
       .map(([key]) => `${name}/${key}`);
 
     storageArea.set(updates).catch(mapError("Cannot write updates to storage"));

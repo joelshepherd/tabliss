@@ -1,6 +1,6 @@
 import { utcToZonedTime } from "date-fns-tz";
-import React, { createContext, FC, useEffect, useState } from "react";
-import { useKey } from "../lib/db/react";
+import React from "react";
+import { useValue } from "../lib/db/react";
 import { db } from "../state";
 
 type Time = {
@@ -16,13 +16,13 @@ function getTime(timeZone: string | null = null): Time {
 }
 
 // `defaultValue` here is irrelevant as it will be replaced in the provider
-export const TimeContext = createContext(getTime());
+export const TimeContext = React.createContext(getTime());
 
-const TimeProvider: FC = ({ children }) => {
-  const [timeZone] = useKey(db, "timeZone");
-  const [time, setTime] = useState(getTime(timeZone));
+const TimeProvider: React.FC = ({ children }) => {
+  const timeZone = useValue(db, "timeZone");
+  const [time, setTime] = React.useState(getTime(timeZone));
 
-  useEffect(() => {
+  React.useEffect(() => {
     const interval = setInterval(() => setTime(getTime(timeZone)), 1000);
     return () => clearInterval(interval);
   }, [timeZone]);

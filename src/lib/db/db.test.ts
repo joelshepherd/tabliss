@@ -56,8 +56,6 @@ test("database default data", () => {
   expect(DB.get(db, "test")).toBe("test");
 });
 
-test.todo("storage");
-
 test("database atomic writes flush", () => {
   const db = DB.init();
   DB.atomic(db, (trx) => {
@@ -86,7 +84,7 @@ test("database atomic flushes deletes", () => {
   expect(DB.get(db, "test")).toBeNull();
 });
 
-test.skip("database atom prefix search", () => {
+test("database atom prefix search", () => {
   // TODO: consider not permitting a prefix search on a snapshop
   const db = DB.init();
   DB.put(db, "prefix/a", "a");
@@ -99,7 +97,7 @@ test.skip("database atom prefix search", () => {
   });
 });
 
-test.skip("database atomic prefix search duplicate", () => {
+test("database atomic prefix search duplicate", () => {
   // TODO: as above, consider not permitting prefix search on a snapshot
   const db = DB.init();
   DB.put(db, "test", "test");

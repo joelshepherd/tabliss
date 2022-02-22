@@ -9,6 +9,7 @@
 - [x] handle atomic writes
 - [x] wait for storage to populate db
 - [ ] handle conflicts
+- [ ] tombstone investigation
 - [ ] \(way later) handle schemas
 - [x] fix react integration (stop duplicating state, remove hacks, etc.)
 

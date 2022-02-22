@@ -8,9 +8,9 @@ export interface State {
   /** Background state */
   background: BackgroundState;
   /** Widget state */
-  widgets: WidgetState[];
+  [key: `widget/${string}`]: WidgetState | null;
   /** Plugin data */
-  [id: `data/${string}`]: unknown | undefined;
+  [key: `data/${string}`]: unknown;
   /** Whether focus has been activated */
   focus: boolean;
   /** Locale selected */
@@ -33,6 +33,7 @@ export interface BackgroundDisplay {
 export interface WidgetState {
   id: string;
   key: string;
+  order: number;
   display: WidgetDisplay;
 }
 
@@ -65,22 +66,22 @@ const initData: State = {
       blur: 0,
     },
   },
-  widgets: [
-    {
-      id: "default-time",
-      key: "widget/time",
-      display: {
-        position: "middleCentre",
-      },
+  "widget/default-time": {
+    id: "default-time",
+    key: "widget/time",
+    order: 0,
+    display: {
+      position: "middleCentre",
     },
-    {
-      id: "default-greeting",
-      key: "widget/greeting",
-      display: {
-        position: "middleCentre",
-      },
+  },
+  "widget/default-greeting": {
+    id: "default-greeting",
+    key: "widget/greeting",
+    order: 1,
+    display: {
+      position: "middleCentre",
     },
-  ],
+  },
   focus: false,
   locale: defaultLocale,
   timeZone: null,
@@ -116,3 +117,11 @@ export const ready =
 //       "Your browser may delete your setting under various conditions if you do not allow persistent storage.",
 //     );
 // });
+
+/** Select widgets from database */
+export const widgetSelector = (): WidgetState[] => {
+  return Array.from(DB.prefix(db, "widget/"))
+    .map(([, val]) => val)
+    .filter((val): val is WidgetState => val !== null)
+    .sort((a, b) => a.order - b.order);
+};
