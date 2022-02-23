@@ -3,11 +3,11 @@ import { FormattedMessage } from "react-intl";
 import { addWidget, removeWidget, reorderWidget } from "../../actions";
 import { useSelector } from "../../lib/db/react";
 import { widgetConfigs } from "../../plugins";
-import { db, widgetSelector } from "../../state";
+import { db, selectWidgets } from "../../state";
 import Widget from "./Widget";
 
 const Widgets: React.FC = () => {
-  const widgets = useSelector(db, React.useCallback(widgetSelector, []));
+  const widgets = useSelector(db, selectWidgets);
 
   return (
     <div>
@@ -41,11 +41,11 @@ const Widgets: React.FC = () => {
           key={widget.id}
           plugin={widget}
           onMoveUp={
-            index > 0 ? () => reorderWidget(widget.id, index - 1) : undefined
+            index > 0 ? () => reorderWidget(index, index - 1) : undefined
           }
           onMoveDown={
             index < widgets.length - 1
-              ? () => reorderWidget(widget.id, index + 1)
+              ? () => reorderWidget(index, index + 1)
               : undefined
           }
           onRemove={() => removeWidget(widget.id)}

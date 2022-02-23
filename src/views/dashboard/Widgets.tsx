@@ -1,12 +1,12 @@
 import React from "react";
 import { useSelector, useValue } from "../../lib/db/react";
-import { db, WidgetPosition, widgetSelector, WidgetState } from "../../state";
+import { db, WidgetPosition, selectWidgets, WidgetState } from "../../state";
 import Slot from "./Slot";
 import "./Widgets.sass";
 
 const Widgets: React.FC = () => {
   const focus = useValue(db, "focus");
-  const widgets = useSelector(db, React.useCallback(widgetSelector, []));
+  const widgets = useSelector(db, selectWidgets);
 
   // TODO: one day we'll have `Array.groupBy` accepted by tc39
   const grouped = widgets.reduce<

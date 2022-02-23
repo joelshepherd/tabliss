@@ -119,7 +119,7 @@ export const ready =
 // });
 
 /** Select widgets from database */
-export const widgetSelector = (): WidgetState[] => {
+export const selectWidgets = (): WidgetState[] => {
   return Array.from(DB.prefix(db, "widget/"))
     .map(([, val]) => val)
     .filter((val): val is WidgetState => val !== null)

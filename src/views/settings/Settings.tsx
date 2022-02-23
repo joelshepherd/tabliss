@@ -43,8 +43,12 @@ const Settings: React.FC = () => {
         const reader = new FileReader();
         reader.addEventListener("load", (event) => {
           if (event.target && event.target.result) {
-            const state = JSON.parse(event.target.result as string);
-            importStore(state);
+            try {
+              const state = JSON.parse(event.target.result as string);
+              importStore(state);
+            } catch {
+              alert("Invalid import file");
+            }
           }
         });
         reader.readAsText(file);

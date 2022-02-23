@@ -6,12 +6,11 @@ export type Unsubscribe = () => void;
 
 type Shape = Record<Key, Val>;
 
-// TODO: implement iterable interface
 export interface Database<T = any> extends Snapshot<T> {
   listeners: Set<Listener>;
 }
 
-interface Snapshot<T> {
+interface Snapshot<T> extends Iterable<[Key, Val]> {
   cache: Map<Key, Val>;
   parent: Snapshot<T> | null;
 }
@@ -21,14 +20,8 @@ interface Snapshot<T> {
  */
 export const init = <T = Shape>(def?: T): Database<T> => {
   return {
-    cache: new Map(),
     listeners: new Set(),
-    parent: def
-      ? {
-          cache: new Map(Object.entries(def)),
-          parent: null,
-        }
-      : null,
+    ...snapshot(def ? snapshot(null, Object.entries(def)) : null),
   };
 };
 
@@ -37,9 +30,11 @@ export const init = <T = Shape>(def?: T): Database<T> => {
  * WARNING: These types can lie to you. Without schema support, invalid data may be saved in storage.
  */
 export const get = <T, K extends Key<T>>(db: Snapshot<T>, key: K): T[K] => {
-  if (db.cache.has(key)) return db.cache.get(key) as any;
+  // @ts-ignore
+  if (db.cache.has(key)) return db.cache.get(key);
   if (db.parent) return get(db.parent, key);
-  return undefined as any;
+  // @ts-ignore
+  return undefined;
   // TODO: consider throwing, may require tombstones to work correctly
   // throw new NotFoundError(key);
 };
@@ -51,14 +46,13 @@ export const prefix = function* <T, P extends Prefix<keyof T> | "">(
   db: Snapshot<T>,
   path: P,
   seen: Set<string> = new Set(),
-): IterableIterator<KeyToTuple<T, KeyWithPrefix<keyof T, P>>> {
+): Generator<PrefixEntries<T, P>> {
   for (const [key, val] of db.cache) {
     if (key.startsWith(path)) {
-      if (!seen.has(key)) {
-        seen.add(key);
-        // Probably a waste of time (and the ts compiler's time) to remove this `any`
-        yield [key, val] as any;
-      }
+      if (seen.has(key)) continue;
+      seen.add(key);
+      // @ts-ignore
+      yield [key, val];
     }
   }
   if (db.parent) yield* prefix(db.parent, path, seen);
@@ -72,8 +66,7 @@ export const put = <T, K extends Key<T>>(
   key: K,
   val: T[K] | undefined,
 ): void => {
-  if (val === undefined && "listeners" in db) db.cache.delete(key);
-  else db.cache.set(key, val);
+  db.cache.set(key, val);
   if ("listeners" in db)
     db.listeners.forEach((listener) => listener([key, val]));
 };
@@ -85,7 +78,13 @@ export const del = <T, K extends Key<T>>(
   db: Snapshot<T> | Database<T>,
   key: K,
 ): void => {
-  put(db, key, undefined);
+  if ("listeners" in db) {
+    // TODO: This is here because of the interaction with def data, consider changing
+    db.cache.delete(key);
+    db.listeners.forEach((listener) => listener([key, undefined]));
+  } else {
+    db.cache.set(key, undefined);
+  }
 };
 
 /**
@@ -105,21 +104,26 @@ export const listen = (db: Database, listener: Listener): Unsubscribe => {
  */
 export const atomic = <T>(
   db: Database<T>,
-  fn: (trx: Snapshot<T>) => void,
+  fn: (snap: Snapshot<T>) => void,
 ): void => {
-  const trx = snapshot(db);
-  fn(trx);
-  commit(db, trx.cache.entries());
+  const snap = snapshot(db);
+  fn(snap);
+  commit(db, snap.cache.entries());
 };
 
-const snapshot = <T>(parent: Snapshot<T> | null = null): Snapshot<T> => {
+const snapshot = <T>(
+  parent: Snapshot<T> | null = null,
+  changes?: Iterable<Change>,
+): Snapshot<T> => {
+  const cache = new Map(changes);
   return {
-    cache: new Map(),
+    cache,
     parent,
+    [Symbol.iterator]: cache[Symbol.iterator],
   };
 };
 
-const commit = (db: Database, changes: IterableIterator<Change>): void => {
+const commit = (db: Database, changes: Iterable<Change>): void => {
   for (const [key, val] of changes) {
     put(db, key, val);
   }
@@ -131,8 +135,11 @@ type Prefix<T> = T extends `${infer P}${infer K}`
     ? P
     : P | `${P}${Prefix<K>}`
   : string;
-type KeyWithPrefix<T, P extends string> = T extends `${P}${infer K}`
+type PrefixKeys<T, P extends string> = T extends `${P}${infer K}`
   ? `${P}${K}`
   : never;
-type KeyToTuple<T, K> = K extends keyof T ? [K, NoUndefined<T[K]>] : never;
-type NoUndefined<T> = T extends undefined ? never : T;
+type KeyEntries<T, K> = K extends keyof T ? [K, T[K]] : never;
+type PrefixEntries<T, P extends Prefix<keyof T> | ""> = KeyEntries<
+  T,
+  PrefixKeys<keyof T, P>
+>;

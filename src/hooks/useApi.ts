@@ -18,8 +18,8 @@ export function useApi(id: string): API {
   const loader = { push: pushLoader, pop: popLoader };
 
   return {
-    cache: cache ?? undefined,
-    data: data ?? undefined,
+    cache,
+    data,
     loader,
     setCache,
     setData,

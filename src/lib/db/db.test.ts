@@ -31,7 +31,7 @@ test("database del", () => {
   const db = DB.init();
   DB.put(db, "test", "test");
   DB.del(db, "test");
-  expect(DB.get(db, "test")).toBeNull();
+  expect(DB.get(db, "test")).toBeUndefined();
 });
 
 test("database listen", () => {
@@ -72,7 +72,7 @@ test("database atomic writes do not flush on error", () => {
       throw null;
     }),
   ).toThrow();
-  expect(DB.get(db, "test")).toBeNull();
+  expect(DB.get(db, "test")).toBeUndefined();
 });
 
 test("database atomic flushes deletes", () => {
@@ -81,11 +81,10 @@ test("database atomic flushes deletes", () => {
   DB.atomic(db, (trx) => {
     DB.del(trx, "test");
   });
-  expect(DB.get(db, "test")).toBeNull();
+  expect(DB.get(db, "test")).toBeUndefined();
 });
 
 test("database atom prefix search", () => {
-  // TODO: consider not permitting a prefix search on a snapshop
   const db = DB.init();
   DB.put(db, "prefix/a", "a");
   DB.atomic(db, (trx) => {
@@ -98,7 +97,6 @@ test("database atom prefix search", () => {
 });
 
 test("database atomic prefix search duplicate", () => {
-  // TODO: as above, consider not permitting prefix search on a snapshot
   const db = DB.init();
   DB.put(db, "test", "test");
   DB.atomic(db, (trx) => {
