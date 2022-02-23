@@ -1,32 +1,24 @@
-import React, { FC, useEffect, useState } from "react";
-
+import React from "react";
+import { useObjectUrl } from "../../../hooks";
 import Backdrop from "../../../views/shared/Backdrop";
-import { Props, defaultCache } from "./types";
 import "./Image.sass";
+import { defaultCache, Props } from "./types";
 
-function pickItem<T>(items: T[]): T {
-  return items[Math.floor(Math.random() * items.length)];
-}
-
-const Image: FC<Props> = ({ cache = defaultCache }) => {
+const Image: React.FC<Props> = ({ cache = defaultCache }) => {
   if (!cache.length) {
     return <div className="Image default fullscreen" />;
   }
 
-  const [url, setUrl] = useState<string>();
-  useEffect(() => {
-    setUrl(URL.createObjectURL(pickItem(cache)));
-
-    return () => {
-      if (url) URL.revokeObjectURL(url);
-    };
-  }, [cache]);
+  const index = React.useMemo(
+    () => Math.floor(Math.random() * cache.length),
+    [cache.length],
+  );
+  const url = useObjectUrl(cache[index]);
 
   return (
     <Backdrop
       className="Image fullscreen"
-      ready={Boolean(url)}
-      style={{ backgroundImage: url && `url(${url})` }}
+      style={{ backgroundImage: url ? `url(${url})` : undefined }}
     />
   );
 };

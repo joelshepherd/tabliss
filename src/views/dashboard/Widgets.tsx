@@ -1,37 +1,36 @@
-import React, { FC } from "react";
-
-import { useSelector } from "../../store";
-import { WidgetPosition, WidgetState } from "../../store/reducers/types";
+import React from "react";
+import { selectWidgets } from "../../db/select";
+import { db, WidgetPosition, WidgetState } from "../../db/state";
+import { useSelector, useValue } from "../../lib/db/react";
 import Slot from "./Slot";
 import "./Widgets.sass";
 
-const Widgets: FC = () => {
-  const focus = useSelector((state) => state.ui.focus);
-  const widgets = useSelector((state) => state.data.widgets);
+const Widgets: React.FC = () => {
+  const focus = useValue(db, "focus");
+  const widgets = useSelector(db, selectWidgets);
 
-  const grouped = widgets.reduce<Record<string, WidgetState[]>>(
+  // TODO: one day we'll have `Array.groupBy` accepted by tc39
+  const grouped = widgets.reduce<
+    Partial<Record<WidgetPosition, WidgetState[]>>
+  >(
     (carry, widget) => ({
       ...carry,
       [widget.display.position]: [
-        ...(carry[widget.display.position] || []),
+        ...(carry[widget.display.position] ?? []),
         widget,
       ],
     }),
     {},
   );
 
-  const slots = Object.entries(grouped);
+  const slots = Object.entries(grouped) as [WidgetPosition, WidgetState[]][];
 
   return (
     <div className="Widgets fullscreen">
       <div className="container">
         {!focus &&
           slots.map(([position, widgets]) => (
-            <Slot
-              key={position}
-              position={position as WidgetPosition}
-              widgets={widgets}
-            />
+            <Slot key={position} position={position} widgets={widgets} />
           ))}
       </div>
     </div>

@@ -1,11 +1,11 @@
-import React, { FC } from "react";
+import React from "react";
 import { IntlProvider as ReactIntlProvider } from "react-intl";
+import { db } from "../db/state";
+import { useValue } from "../lib/db/react";
+import { messages } from "./locales";
 
-import { useSelector } from "../store";
-import { defaultLocale, messages } from "./locales";
-
-const IntlProvider: FC = ({ children }) => {
-  const locale = useSelector((state) => state.data.locale || defaultLocale);
+const IntlProvider: React.FC = ({ children }) => {
+  const locale = useValue(db, "locale");
 
   return (
     <ReactIntlProvider locale={locale} key={locale} messages={messages[locale]}>
