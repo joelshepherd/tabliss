@@ -1,14 +1,12 @@
-import { v4 as generateId } from "uuid";
+import { nanoid as generateId } from "nanoid";
+import { defaultData as defaultGiphyData } from "../../plugins/backgrounds/giphy/types";
+import { defaultData as defaultGradientData } from "../../plugins/backgrounds/gradient/types";
+import { defaultData as defaultUnsplashData } from "../../plugins/backgrounds/unsplash/types";
+import { defaultData as defaultSearchData } from "../../plugins/widgets/search/types";
+import { defaultData as defaultTimeData } from "../../plugins/widgets/time/types";
+import { defaultData as defaultTodoData } from "../../plugins/widgets/todo/types";
 
-import { DataState } from "../../../store/reducers/types";
-import { defaultData as defaultGiphyData } from "../../../plugins/backgrounds/giphy/types";
-import { defaultData as defaultGradientData } from "../../../plugins/backgrounds/gradient/types";
-import { defaultData as defaultUnsplashData } from "../../../plugins/backgrounds/unsplash/types";
-import { defaultData as defaultSearchData } from "../../../plugins/widgets/search/types";
-import { defaultData as defaultTimeData } from "../../../plugins/widgets/time/types";
-import { defaultData as defaultTodoData } from "../../../plugins/widgets/todo/types";
-
-// Root state
+// From:
 export interface Version1Config {
   dashboard: {
     background: keyof typeof keyMap;
@@ -26,29 +24,66 @@ export interface Version1Config {
   };
 }
 
-/**
- * Migrate Tabliss v1 config to v2
- */
-export function migrateVersion1(config: Version1Config): DataState {
+// To:
+export type Version2Config = {
+  backgrounds: BackgroundState[];
+  widgets: WidgetState[];
+  data: {
+    [id: string]: object;
+  };
+  locale?: string;
+  timeZone?: string;
+};
+type BackgroundState = PluginState<BackgroundDisplay>;
+type WidgetState = PluginState<WidgetDisplay>;
+type PluginState<Display> = {
+  id: string;
+  key: string;
+  active: boolean;
+  display: Display;
+};
+type BackgroundDisplay = {
+  blur: number;
+  luminosity: number;
+};
+type WidgetPosition =
+  | "topLeft"
+  | "topCentre"
+  | "topRight"
+  | "middleLeft"
+  | "middleCentre"
+  | "middleRight"
+  | "bottomLeft"
+  | "bottomCentre"
+  | "bottomRight";
+type WidgetDisplay = {
+  colour?: string;
+  fontFamily?: string;
+  fontSize?: number;
+  fontWeight?: number;
+  position: WidgetPosition;
+};
+
+export default function (input: Version1Config): Version2Config {
   // Data
-  const data: DataState["data"] = {};
+  const data: Version2Config["data"] = {};
 
   // Backgrounds
-  const backgrounds: DataState["backgrounds"] = [
+  const backgrounds: Version2Config["backgrounds"] = [
     {
       id: generateId(),
-      key: translateKey(config.dashboard.background) || "background/unsplash",
+      key: translateKey(input.dashboard.background) || "background/unsplash",
       active: true,
       display: { blur: 0, luminosity: 0 },
     },
   ];
   data[backgrounds[0].id] = translateData(
-    config.dashboard.background,
-    config.storage[config.dashboard.background],
+    input.dashboard.background,
+    input.storage[input.dashboard.background],
   ) as object;
 
   // Widgets
-  const fontSettings = config.storage["core/widgets/font"];
+  const fontSettings = input.storage["core/widgets/font"];
   const fontDisplay = fontSettings
     ? {
         colour: fontSettings.settings.colour || "#ffffff",
@@ -57,14 +92,14 @@ export function migrateVersion1(config: Version1Config): DataState {
       }
     : {};
 
-  const widgets: DataState["widgets"] = config.dashboard.widgets
+  const widgets: Version2Config["widgets"] = input.dashboard.widgets
     .filter(translateKey)
     .map((previousType) => {
       const id = generateId();
       const key = translateKey(previousType) as string; // false is removed in filter
       data[id] = translateData(
         previousType,
-        config.storage[previousType],
+        input.storage[previousType],
       ) as object;
 
       return {
@@ -82,8 +117,8 @@ export function migrateVersion1(config: Version1Config): DataState {
     backgrounds,
     data,
     widgets,
-    locale: config.settings.locale,
-    timeZone: config.settings.timezone,
+    locale: input.settings.locale,
+    timeZone: input.settings.timezone,
   };
 }
 

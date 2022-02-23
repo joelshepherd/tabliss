@@ -1,10 +1,8 @@
-import React, { FC, memo, useCallback } from "react";
+import React from "react";
 import { FormattedMessage } from "react-intl";
-import { useDispatch } from "react-redux";
+import { UiContext } from "../../contexts/ui";
+import { exportStore, importStore, resetStore } from "../../db/action";
 import { useKeyPress } from "../../hooks";
-import { useSelector } from "../../store";
-import { resetStore, toggleSettings } from "../../store/actions";
-import { DataState } from "../../store/reducers/types";
 import { Icon } from "../shared";
 import Logo from "../shared/Logo";
 import Background from "./Background";
@@ -12,17 +10,13 @@ import "./Settings.sass";
 import System from "./System";
 import Widgets from "./Widgets";
 
-const Settings: FC = () => {
-  const dispatch = useDispatch();
-  const handleToggleSettings = useCallback(
-    () => dispatch(toggleSettings()),
-    [dispatch],
-  );
-  const handleReset = useCallback(() => dispatch(resetStore()), [dispatch]);
-  const data = useSelector((state) => state.data);
+const Settings: React.FC = () => {
+  const { toggleSettings } = React.useContext(UiContext);
+
+  const handleReset = () => resetStore();
 
   const handleExport = () => {
-    const json = JSON.stringify(data);
+    const json = exportStore();
     const url = URL.createObjectURL(
       new Blob([json], { type: "application/json" }),
     );
@@ -36,6 +30,7 @@ const Settings: FC = () => {
     window.URL.revokeObjectURL(url);
     document.body.removeChild(a);
   };
+
   const handleImport = () => {
     const input = document.createElement("input");
     document.body.appendChild(input);
@@ -47,8 +42,12 @@ const Settings: FC = () => {
         const reader = new FileReader();
         reader.addEventListener("load", (event) => {
           if (event.target && event.target.result) {
-            const state: DataState = JSON.parse(event.target.result as string);
-            dispatch(resetStore(state));
+            try {
+              const state = JSON.parse(event.target.result as string);
+              importStore(state);
+            } catch {
+              alert("Invalid import file");
+            }
           }
         });
         reader.readAsText(file);
@@ -58,11 +57,11 @@ const Settings: FC = () => {
     input.click();
   };
 
-  useKeyPress(handleToggleSettings, ["Escape"]);
+  useKeyPress(toggleSettings, ["Escape"]);
 
   return (
     <div className="Settings">
-      <a onClick={handleToggleSettings} className="fullscreen" />
+      <a onClick={toggleSettings} className="fullscreen" />
 
       <div className="plane">
         <Logo />
@@ -122,4 +121,4 @@ const Settings: FC = () => {
   );
 };
 
-export default memo(Settings);
+export default React.memo(Settings);

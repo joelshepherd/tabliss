@@ -6,8 +6,8 @@ import timeZones from "./timeZones";
 let cachedSupportedTimeZones: string[] | undefined;
 
 type Props = {
-  timeZone?: string;
-  onChange: (timeZone?: string) => void;
+  timeZone: string | null;
+  onChange: (timeZone: string | null) => void;
 };
 
 const TimeZoneInput: FC<Props> = ({ timeZone, onChange }) => {
@@ -33,8 +33,8 @@ const TimeZoneInput: FC<Props> = ({ timeZone, onChange }) => {
 
   return (
     <select
-      value={timeZone}
-      onChange={(event) => onChange(event.target.value || undefined)}
+      value={timeZone || ""}
+      onChange={(event) => onChange(event.target.value || null)}
     >
       <option value="">Automatic</option>
 

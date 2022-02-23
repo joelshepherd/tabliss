@@ -1,7 +1,6 @@
-import React, { FC } from "react";
-
-import { WidgetPosition } from "../../store/reducers/types";
-import { IconButton, Icon } from "../shared";
+import React from "react";
+import { WidgetPosition } from "../../db/state";
+import { Icon, IconButton } from "../shared";
 import "./PositionInput.css";
 
 const positions = [
@@ -48,7 +47,7 @@ type Props = {
   onChange: (value: WidgetPosition) => void;
 };
 
-const PositionInput: FC<Props> = ({ value, onChange }) => (
+const PositionInput: React.FC<Props> = ({ value, onChange }) => (
   <div className="PositionInput">
     <label>Position</label>
 

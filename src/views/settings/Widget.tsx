@@ -1,18 +1,13 @@
-import React, { FC, useCallback } from "react";
-import { useDispatch } from "react-redux";
-
+import React from "react";
+import { setWidgetDisplay } from "../../db/action";
+import { WidgetState } from "../../db/state";
 import { useToggle } from "../../hooks";
 import { getConfig } from "../../plugins";
-import { setWidgetDisplay } from "../../store/actions";
-import {
-  WidgetDisplay as WidgetDisplayInterface,
-  WidgetState,
-} from "../../store/reducers/types";
+import { DownIcon, Icon, IconButton, RemoveIcon, UpIcon } from "../shared";
 import PluginContainer from "../shared/Plugin";
-import { DownIcon, IconButton, RemoveIcon, UpIcon, Icon } from "../shared";
 import ToggleSection from "../shared/ToggleSection";
-import WidgetDisplay from "./WidgetDisplay";
 import "./Widget.sass";
+import WidgetDisplay from "./WidgetDisplay";
 
 interface Props {
   plugin: WidgetState;
@@ -21,17 +16,17 @@ interface Props {
   onRemove: () => void;
 }
 
-const Widget: FC<Props> = ({ plugin, onMoveDown, onMoveUp, onRemove }) => {
+const Widget: React.FC<Props> = ({
+  plugin,
+  onMoveDown,
+  onMoveUp,
+  onRemove,
+}) => {
   const [isOpen, toggleIsOpen] = useToggle(onRemove === undefined);
 
   const { description, name, settingsComponent } = getConfig(plugin.key);
 
-  const dispatch = useDispatch();
-  const boundSetDisplay = useCallback(
-    (display: Partial<WidgetDisplayInterface>) =>
-      dispatch(setWidgetDisplay(plugin.id, display)),
-    [dispatch, plugin.id],
-  );
+  const setDisplay = setWidgetDisplay.bind(null, plugin.id);
 
   return (
     <fieldset className="Widget">
@@ -72,10 +67,7 @@ const Widget: FC<Props> = ({ plugin, onMoveDown, onMoveUp, onRemove }) => {
           )}
 
           <ToggleSection name="Display Settings">
-            <WidgetDisplay
-              display={plugin.display}
-              onChange={boundSetDisplay}
-            />
+            <WidgetDisplay display={plugin.display} onChange={setDisplay} />
           </ToggleSection>
 
           <ToggleSection name="Font Settings">
@@ -86,7 +78,7 @@ const Widget: FC<Props> = ({ plugin, onMoveDown, onMoveUp, onRemove }) => {
                   type="text"
                   value={plugin.display.fontFamily}
                   onChange={(event) =>
-                    boundSetDisplay({ fontFamily: event.target.value })
+                    setDisplay({ fontFamily: event.target.value })
                   }
                 />
               </label>
@@ -96,7 +88,7 @@ const Widget: FC<Props> = ({ plugin, onMoveDown, onMoveUp, onRemove }) => {
                 <select
                   value={plugin.display.fontWeight}
                   onChange={(event) =>
-                    boundSetDisplay({ fontWeight: Number(event.target.value) })
+                    setDisplay({ fontWeight: Number(event.target.value) })
                   }
                 >
                   <option value={undefined}>Default</option>
@@ -115,7 +107,7 @@ const Widget: FC<Props> = ({ plugin, onMoveDown, onMoveUp, onRemove }) => {
                   type="color"
                   value={plugin.display.colour}
                   onChange={(event) =>
-                    boundSetDisplay({ colour: event.target.value })
+                    setDisplay({ colour: event.target.value })
                   }
                 />
               </label>

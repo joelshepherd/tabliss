@@ -1,20 +1,20 @@
-import React, { FC } from "react";
+import React from "react";
 import { FormattedMessage } from "react-intl";
-import { useDispatch } from "react-redux";
-
+import { setBackground } from "../../db/action";
+import { BackgroundDisplay, db } from "../../db/state";
+import { useKey } from "../../lib/db/react";
 import { backgroundConfigs, getConfig } from "../../plugins";
-import { useSelector } from "../../store";
-import { setBackground, setBackgroundDisplay } from "../../store/actions/data";
 import Plugin from "../shared/Plugin";
 import ToggleSection from "../shared/ToggleSection";
 
-const Background: FC = () => {
-  const dispatch = useDispatch();
+const Background: React.FC = () => {
+  const [data, setData] = useKey(db, "background");
 
-  const background = useSelector((state) =>
-    state.data.backgrounds.find((plugin) => plugin.active),
-  );
-  const plugin = background ? getConfig(background.key) : undefined;
+  const plugin = getConfig(data.key);
+
+  const setBackgroundDisplay = (display: BackgroundDisplay): void => {
+    setData({ ...data, display: { ...data.display, ...display } });
+  };
 
   return (
     <div>
@@ -28,12 +28,8 @@ const Background: FC = () => {
 
       <label>
         <select
-          value={background && background.key}
-          onChange={(event) =>
-            dispatch(
-              setBackground(event.target.value, background && background.id),
-            )
-          }
+          value={data.key}
+          onChange={(event) => setBackground(event.target.value)}
           className="primary"
         >
           {backgroundConfigs.map((plugin) => (
@@ -44,13 +40,13 @@ const Background: FC = () => {
         </select>
       </label>
 
-      {background && plugin && (
+      {plugin && (
         <div className="Widget">
           <h4>{plugin.name}</h4>
 
           {plugin.settingsComponent && (
             <div className="settings">
-              <Plugin id={background.id} component={plugin.settingsComponent} />
+              <Plugin id={data.id} component={plugin.settingsComponent} />
             </div>
           )}
 
@@ -65,13 +61,11 @@ const Background: FC = () => {
                     min="0"
                     max="50"
                     step="2"
-                    value={background.display.blur}
+                    value={data.display.blur}
                     onChange={(event) =>
-                      dispatch(
-                        setBackgroundDisplay({
-                          blur: Number(event.target.value),
-                        }),
-                      )
+                      setBackgroundDisplay({
+                        blur: Number(event.target.value),
+                      })
                     }
                   />
                   <datalist id="blur-markers">
@@ -88,13 +82,11 @@ const Background: FC = () => {
                     min="-1"
                     max="1"
                     step="0.1"
-                    value={background.display.luminosity}
+                    value={data.display.luminosity}
                     onChange={(event) =>
-                      dispatch(
-                        setBackgroundDisplay({
-                          luminosity: Number(event.target.value),
-                        }),
-                      )
+                      setBackgroundDisplay({
+                        luminosity: Number(event.target.value),
+                      })
                     }
                   />
                   <datalist id="luminosity-markers">

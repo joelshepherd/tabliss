@@ -1,21 +1,12 @@
-import React, { FC } from "react";
+import React from "react";
 import { FormattedMessage } from "react-intl";
-import { useDispatch } from "react-redux";
-
-import { defaultLocale } from "../../locales";
-import { useSelector } from "../../store";
-import { setLocale, setTimeZone } from "../../store/actions";
+import { db } from "../../db/state";
+import { useKey } from "../../lib/db/react";
 import TimeZoneInput from "../shared/timeZone/TimeZoneInput";
 
-const System: FC = () => {
-  const locale = useSelector((state) => state.data.locale || defaultLocale);
-  const timeZone = useSelector((state) => state.data.timeZone || "");
-
-  const dispatch = useDispatch();
-  const handleSetLocale = (event: React.ChangeEvent<HTMLSelectElement>) =>
-    dispatch(setLocale(event.target.value));
-  const handleSetTimeZone = (timeZone?: string) =>
-    dispatch(setTimeZone(timeZone));
+const System: React.FC = () => {
+  const [locale, setLocale] = useKey(db, "locale");
+  const [timeZone, setTimeZone] = useKey(db, "timeZone");
 
   return (
     <div>
@@ -38,7 +29,10 @@ const System: FC = () => {
         }}
       >
         <span>Language</span>
-        <select value={locale} onChange={handleSetLocale}>
+        <select
+          value={locale}
+          onChange={(event) => setLocale(event.target.value)}
+        >
           <option value="ca-ES" title="Catalan">
             Català
           </option>
@@ -170,7 +164,7 @@ const System: FC = () => {
         }}
       >
         Time Zone
-        <TimeZoneInput timeZone={timeZone} onChange={handleSetTimeZone} />
+        <TimeZoneInput timeZone={timeZone} onChange={setTimeZone} />
       </label>
     </div>
   );

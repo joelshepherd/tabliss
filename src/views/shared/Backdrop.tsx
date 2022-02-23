@@ -1,36 +1,27 @@
-import React, { FC, HTMLAttributes } from "react";
+import React from "react";
+import { db } from "../../db/state";
+import { useValue } from "../../lib/db/react";
 
-import { useSelector } from "../../store";
-
-type Props = HTMLAttributes<HTMLDivElement> & {
+type Props = React.HTMLAttributes<HTMLDivElement> & {
   ready?: boolean;
 };
 
-const Backdrop: FC<Props> = ({
+const Backdrop: React.FC<Props> = ({
   children,
   ready = true,
   style = {},
   ...rest
 }) => {
   // Lag one frame behind to show the animation
-  const [show, setShow] = React.useState(ready);
-  React.useLayoutEffect(() => {
-    setTimeout(() => setShow(ready), 0);
+  const [show, setShow] = React.useState(false);
+  React.useEffect(() => {
+    setShow(ready);
   }, [ready]);
 
-  const background = useSelector((state) =>
-    state.data.backgrounds.find((plugin) => plugin.active),
-  );
-
-  if (!background) {
-    return null;
-  }
-
-  const focus = useSelector((state) => state.ui.focus);
-
-  const {
-    display: { blur, luminosity },
-  } = background;
+  const focus = useValue(db, "focus");
+  // TODO: Consider passing display in via prop
+  const background = useValue(db, "background");
+  const { blur, luminosity = 0 } = background.display;
 
   style = { ...style };
 
@@ -49,7 +40,7 @@ const Backdrop: FC<Props> = ({
       style={{
         backgroundColor: luminosity > 0 ? "white" : "black",
         opacity: show ? 1 : 0,
-        transition: "opacity 200ms ease-in-out",
+        transition: "opacity 150ms ease-in-out",
       }}
     >
       <div style={style} {...rest}>

@@ -1,17 +1,23 @@
-import React, { FC } from "react";
-
+import React from "react";
+import { db } from "../../../db/state";
 import { useCachedEffect } from "../../../hooks";
-import { useSelector } from "../../../store";
+import { useValue } from "../../../lib/db/react";
+import { MINUTES } from "../../../utils";
 import { getCurrentGames } from "./api";
-import { Props, defaultData } from "./types";
 import { getPeriod } from "./getPeriod";
-import { MINUTES } from "../../../utils"
 import "./Nba.sass";
+import { defaultData, Props } from "./types";
 
 const EXPIRE_IN = 1 * MINUTES;
 
-const Nba: FC<Props> = ({ cache, data = defaultData, setCache, loader }) => {
-  const timeZone = useSelector((state) => state.data.timeZone);
+const Nba: React.FC<Props> = ({
+  cache,
+  data = defaultData,
+  setCache,
+  loader,
+}) => {
+  const timeZone = useValue(db, "timeZone");
+
   useCachedEffect(
     () => {
       getCurrentGames(loader).then(setCache);
