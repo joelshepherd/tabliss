@@ -25,7 +25,7 @@ export async function getGif(
 
   loader.push();
   const res = await (await fetch(request)).json();
-  const data = await (await fetch(res.data.images.original.url)).blob();
+  const data = await (await fetch(res.data.images.original.webp)).blob();
   loader.pop();
 
   return {
