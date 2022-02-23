@@ -1,7 +1,8 @@
 import { nanoid } from "nanoid";
 import { DB } from "../lib";
 import migrateFrom2 from "./migrations/migrate2";
-import { cache, db, selectWidgets, WidgetDisplay } from "./state";
+import { selectWidgets } from "./select";
+import { cache, db, WidgetDisplay } from "./state";
 
 export const createId = (): string => nanoid(12);
 

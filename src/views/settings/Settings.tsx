@@ -1,7 +1,7 @@
 import React from "react";
 import { FormattedMessage } from "react-intl";
 import { UiContext } from "../../contexts/ui";
-import { exportStore, importStore, resetStore } from "../../db/actions";
+import { exportStore, importStore, resetStore } from "../../db/action";
 import { useKeyPress } from "../../hooks";
 import { Icon } from "../shared";
 import Logo from "../shared/Logo";

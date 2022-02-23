@@ -117,11 +117,3 @@ export const ready =
 //       "Your browser may delete your setting under various conditions if you do not allow persistent storage.",
 //     );
 // });
-
-/** Select widgets from database */
-export const selectWidgets = (): WidgetState[] => {
-  return Array.from(DB.prefix(db, "widget/"))
-    .map(([, val]) => val)
-    .filter((val): val is WidgetState => val !== null)
-    .sort((a, b) => a.order - b.order);
-};

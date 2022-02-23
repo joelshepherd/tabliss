@@ -1,7 +1,7 @@
 import React from "react";
 import { defineMessages } from "react-intl";
 import { UiContext } from "../../contexts/ui";
-import { toggleFocus } from "../../db/actions";
+import { toggleFocus } from "../../db/action";
 import { db } from "../../db/state";
 import { useFormatMessages, useFullscreen, useKeyPress } from "../../hooks";
 import { useValue } from "../../lib/db/react";

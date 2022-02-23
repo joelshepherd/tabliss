@@ -1,6 +1,6 @@
 import { Browser } from "webextension-polyfill";
 import { DB } from "../lib";
-import { importStore } from "./actions";
+import { importStore } from "./action";
 import { db, ready } from "./state";
 
 /** Check and migrate data */

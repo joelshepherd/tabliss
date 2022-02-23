@@ -1,5 +1,5 @@
 import React from "react";
-import { setWidgetDisplay } from "../../db/actions";
+import { setWidgetDisplay } from "../../db/action";
 import { WidgetState } from "../../db/state";
 import { useToggle } from "../../hooks";
 import { getConfig } from "../../plugins";

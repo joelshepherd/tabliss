@@ -1,6 +1,6 @@
 import React from "react";
 import { FormattedMessage } from "react-intl";
-import { setBackground } from "../../db/actions";
+import { setBackground } from "../../db/action";
 import { BackgroundDisplay, db } from "../../db/state";
 import { useKey } from "../../lib/db/react";
 import { backgroundConfigs, getConfig } from "../../plugins";
