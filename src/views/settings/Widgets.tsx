@@ -1,9 +1,9 @@
 import React from "react";
 import { FormattedMessage } from "react-intl";
-import { addWidget, removeWidget, reorderWidget } from "../../actions";
+import { addWidget, removeWidget, reorderWidget } from "../../db/actions";
 import { useSelector } from "../../lib/db/react";
 import { widgetConfigs } from "../../plugins";
-import { db, selectWidgets } from "../../state";
+import { db, selectWidgets } from "../../db/state";
 import Widget from "./Widget";
 
 const Widgets: React.FC = () => {

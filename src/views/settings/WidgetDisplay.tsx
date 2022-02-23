@@ -1,5 +1,5 @@
 import React from "react";
-import { WidgetDisplay as WidgetDisplayType } from "../../state";
+import { WidgetDisplay as WidgetDisplayType } from "../../db/state";
 import PositionInput from "./PositionInput";
 import "./WidgetDisplay.css";
 

@@ -1,7 +1,7 @@
 import React from "react";
 import { defineMessages, useIntl } from "react-intl";
 import { UiContext } from "../contexts/ui";
-import { ready } from "../state";
+import { ready } from "../db/state";
 import { Dashboard } from "./dashboard";
 import { Settings } from "./settings";
 import StoreError from "./shared/StoreError";

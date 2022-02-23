@@ -1,8 +1,8 @@
 import { useContext } from "react";
 import { UiContext } from "../contexts/ui";
+import { cache as cacheDb, db } from "../db/state";
 import { useKey } from "../lib/db/react";
 import { API } from "../plugins";
-import { cache as cacheDb, db } from "../state";
 
 // TODO: consider alternative ways to supply api that isn't eager loading
 //       the entire object for every plugin

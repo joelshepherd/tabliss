@@ -1,10 +1,10 @@
 import React from "react";
 import { defineMessages } from "react-intl";
-import { toggleFocus } from "../../actions";
 import { UiContext } from "../../contexts/ui";
+import { toggleFocus } from "../../db/actions";
+import { db } from "../../db/state";
 import { useFormatMessages, useFullscreen, useKeyPress } from "../../hooks";
 import { useValue } from "../../lib/db/react";
-import { db } from "../../state";
 import { Icon } from "../shared";
 import "./Overlay.sass";
 

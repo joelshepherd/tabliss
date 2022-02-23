@@ -1,7 +1,7 @@
 import React from "react";
+import { db } from "../../../db/state";
 import { useCachedEffect } from "../../../hooks";
 import { useValue } from "../../../lib/db/react";
-import { db } from "../../../state";
 import { MINUTES } from "../../../utils";
 import { getCurrentGames } from "./api";
 import { getPeriod } from "./getPeriod";

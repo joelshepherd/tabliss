@@ -1,5 +1,5 @@
-import { DB, Storage } from "./lib";
-import { defaultLocale } from "./locales";
+import { DB, Storage } from "../lib";
+import { defaultLocale } from "../locales";
 
 /**
  * Database state
@@ -93,7 +93,7 @@ export const db = DB.init<State>(initData);
 // Cache storage
 export const cache = DB.init<Record<string, unknown | undefined>>();
 
-// Persistence
+// Persist data
 export const ready =
   process.env.BUILD_TARGET === "web"
     ? Promise.all([

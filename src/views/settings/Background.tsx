@@ -1,9 +1,9 @@
 import React from "react";
 import { FormattedMessage } from "react-intl";
-import { setBackground } from "../../actions";
+import { setBackground } from "../../db/actions";
+import { BackgroundDisplay, db } from "../../db/state";
 import { useKey } from "../../lib/db/react";
 import { backgroundConfigs, getConfig } from "../../plugins";
-import { BackgroundDisplay, db } from "../../state";
 import Plugin from "../shared/Plugin";
 import ToggleSection from "../shared/ToggleSection";
 

@@ -1,7 +1,7 @@
 import React from "react";
+import { db } from "../../db/state";
 import { useValue } from "../../lib/db/react";
 import { getConfig } from "../../plugins";
-import { db } from "../../state";
 import Plugin from "../shared/Plugin";
 
 const Background: React.FC = () => {

@@ -1,5 +1,5 @@
 import React from "react";
-import { WidgetDisplay } from "../../state";
+import { WidgetDisplay } from "../../db/state";
 
 const Widget: React.FC<WidgetDisplay> = ({
   children,

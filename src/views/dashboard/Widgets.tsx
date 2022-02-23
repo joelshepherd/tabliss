@@ -1,6 +1,6 @@
 import React from "react";
+import { db, selectWidgets, WidgetPosition, WidgetState } from "../../db/state";
 import { useSelector, useValue } from "../../lib/db/react";
-import { db, WidgetPosition, selectWidgets, WidgetState } from "../../state";
 import Slot from "./Slot";
 import "./Widgets.sass";
 

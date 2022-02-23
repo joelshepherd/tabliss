@@ -1,6 +1,6 @@
 import React from "react";
+import { WidgetPosition, WidgetState } from "../../db/state";
 import { getConfig } from "../../plugins";
-import { WidgetState, WidgetPosition } from "../../state";
 import Plugin from "../shared/Plugin";
 import "./Slot.sass";
 import Widget from "./Widget";

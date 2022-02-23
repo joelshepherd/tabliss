@@ -1,5 +1,5 @@
 import React from "react";
-import { WidgetPosition } from "../../state";
+import { WidgetPosition } from "../../db/state";
 import { Icon, IconButton } from "../shared";
 import "./PositionInput.css";
 

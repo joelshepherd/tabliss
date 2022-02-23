@@ -1,6 +1,6 @@
 import React from "react";
+import { db } from "../../../db/state";
 import { useValue } from "../../../lib/db/react";
-import { db } from "../../../state";
 
 type Props = {
   hour12: boolean;

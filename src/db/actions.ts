@@ -1,7 +1,7 @@
 import { nanoid } from "nanoid";
-import { DB } from "./lib";
-import { cache, db, selectWidgets, State, WidgetDisplay } from "./state";
-import { migrate } from "./views/shared/welcomes/migrate3";
+import { DB } from "../lib";
+import migrateFrom2 from "./migrations/migrate2";
+import { cache, db, selectWidgets, WidgetDisplay } from "./state";
 
 export const createId = (): string => nanoid(12);
 
@@ -84,7 +84,7 @@ export const importStore = (dump: unknown): void => {
     DB.put(db, `widget/default-time`, null);
     DB.put(db, `widget/default-greeting`, null);
     // @ts-ignore
-    dump = migrate(dump);
+    dump = migrateFrom2(dump);
   }
   // @ts-ignore
   Object.entries(dump).forEach(([key, val]) => DB.put(db, key, val));
