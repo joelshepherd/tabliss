@@ -18,18 +18,19 @@ const Backdrop: React.FC<Props> = ({
     setShow(ready);
   }, [ready]);
 
+  const focus = useValue(db, "focus");
   // TODO: Consider passing display in via prop
   const background = useValue(db, "background");
   const { blur, luminosity = 0 } = background.display;
 
   style = { ...style };
 
-  if (blur) {
+  if (blur && !focus) {
     style["filter"] = `blur(${blur}px)`;
     style["transform"] = `scale(${blur / 500 + 1})`;
   }
 
-  if (luminosity) {
+  if (luminosity && !focus) {
     style["opacity"] = 1 - Math.abs(luminosity);
   }
 
