@@ -1,7 +1,6 @@
 import { API } from "../../types";
-import { Data, Conditions, Coordinates } from "./types";
+import { Conditions, Coordinates, Data } from "./types";
 
-const apiEndpoint = process.env.API_ENDPOINT!;
 const geocodeEndpoint = "https://nominatim.openstreetmap.org";
 
 type Config = Pick<Data, "latitude" | "longitude" | "units">;
@@ -16,7 +15,7 @@ export async function getForecast(
 
   loader.push();
 
-  const url = `${apiEndpoint}/forecast?latitude=${latitude}&longitude=${longitude}&units=${units}`;
+  const url = `${""}/forecast?latitude=${latitude}&longitude=${longitude}&units=${units}`;
   const res = await fetch(url);
   const body = await res.json();
 

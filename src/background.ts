@@ -1,15 +1,13 @@
-function openNewTab() {
-  chrome.tabs.create({
-    url: "chrome://newtab",
-  });
-}
+import browser from "webextension-polyfill";
 
-if (process.env.BUILD_TARGET === "chromium") {
+if (BUILD_TARGET === "chromium") {
+  const openNewTab = () => browser.tabs.create({ url: "chrome://newtab" });
+
   // Browser action click event
-  chrome.browserAction.onClicked.addListener(openNewTab);
+  browser.browserAction.onClicked.addListener(openNewTab);
 
   // Extension install event
-  chrome.runtime.onInstalled.addListener((details) => {
+  browser.runtime.onInstalled.addListener((details) => {
     if (details && details.reason && details.reason == "install") openNewTab();
   });
 }

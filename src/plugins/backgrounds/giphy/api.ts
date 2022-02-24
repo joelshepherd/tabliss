@@ -1,8 +1,6 @@
 import { API } from "../../types";
 import { Gif } from "./types";
 
-const GIPHY_API_KEY = process.env.GIPHY_API_KEY;
-
 type Config = {
   tag: string;
   nsfw: boolean;

@@ -5,15 +5,14 @@ import { db, ready } from "./state";
 
 /** Check and migrate data */
 export const migrate = (): void => {
-  ready.then(
-    process.env.BUILD_TARGET === "web" ? migrateWeb : migrateExtension,
-  );
+  ready.then(BUILD_TARGET === "web" ? migrateWeb : migrateExtension);
 };
 
 /** Migrate extension data */
 const migrateExtension = async () => {
   const key = "persist:data";
-  const browser = require("webextension-polyfill") as Browser;
+  // @ts-ignore
+  const browser: Browser = require("webextension-polyfill");
   const stored = await browser.storage.sync.get(key);
   if (stored[key]) {
     // Migrate if new database is empty

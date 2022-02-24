@@ -1,12 +1,11 @@
-import React, { FC } from "react";
-
-const giphyLogo = require("./giphy-logo.png").default;
+import React from "react";
+import giphyLogo from "./giphy-logo.png";
 
 type Props = {
   link?: string;
 };
 
-const Credit: FC<Props> = ({ link }) => (
+const Credit: React.FC<Props> = ({ link }) => (
   <div className="credit">
     <a
       href={link || "https://giphy.com/"}

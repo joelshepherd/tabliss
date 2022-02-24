@@ -95,7 +95,7 @@ export const cache = DB.init<Record<string, unknown | undefined>>();
 
 // Persist data
 export const ready =
-  process.env.BUILD_TARGET === "web"
+  BUILD_TARGET === "web"
     ? Promise.all([
         Storage.indexeddb(db, "tabliss/config"),
         Storage.indexeddb(cache, "tabliss/cache"),
@@ -104,7 +104,7 @@ export const ready =
         Storage.extension(db, "tabliss/config", "sync"),
         // Chromium cannot store blobs in extension.local
         // Firefox cannot use indexeddb in private mode
-        process.env.BUILD_TARGET === "firefox"
+        BUILD_TARGET === "firefox"
           ? Storage.extension(cache, "tabliss/cache", "local")
           : Storage.indexeddb(cache, "tabliss/cache"),
       ]);

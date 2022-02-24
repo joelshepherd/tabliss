@@ -1,14 +1,15 @@
-import React, { FC, memo } from "react";
+import React from "react";
 import { FormattedMessage } from "react-intl";
-
-import { UNSPLASH_UTM } from "./constants";
 import { Image } from "./types";
+
+export const UNSPLASH_UTM =
+  "?utm_source=Start&utm_medium=referral&utm_campaign=api-credit";
 
 interface Props {
   image: Image;
 }
 
-const UnsplashCredit: FC<Props> = ({ image }) => (
+const UnsplashCredit: React.FC<Props> = ({ image }) => (
   <div className="credit">
     <span style={{ float: "right" }}>{image.location_title}</span>
 
@@ -30,4 +31,4 @@ const UnsplashCredit: FC<Props> = ({ image }) => (
   </div>
 );
 
-export default memo(UnsplashCredit);
+export default React.memo(UnsplashCredit);

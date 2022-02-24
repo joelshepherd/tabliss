@@ -76,7 +76,8 @@ export const extension = async (
     });
   };
 
-  const browser = require("webextension-polyfill") as Browser;
+  // @ts-ignore
+  const browser: Browser = require("webextension-polyfill");
   const storageArea = browser.storage[areaName];
 
   // Populate db from storage

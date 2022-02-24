@@ -4,7 +4,7 @@ import { Quote } from "./types";
 // Get developer excuse
 async function getDeveloperExcuse() {
   try {
-    const res = await fetch(`${process.env.API_ENDPOINT}/developer-excuses`);
+    const res = await fetch("https://api.tabliss.io/v1/developer-excuses");
     const body = await res.json();
 
     return {

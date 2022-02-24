@@ -9,6 +9,7 @@
     "sourceMap": true,
     "strict": true,
     "target": "esnext",
+    "types": ["jest", "react", "react-dom", "webextension-polyfill"],
     "typeRoots": ["node_modules/@types", "src/@types"]
   },
   "include": ["src"],

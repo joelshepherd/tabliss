@@ -78,13 +78,12 @@ const config = {
     new MiniCssExtractPlugin({
       filename: isWeb ? "[name].[contenthash:12].css" : "[name].css",
     }),
-    new webpack.EnvironmentPlugin({
-      BUILD_TARGET: "web",
-      API_ENDPOINT: "https://api.tabliss.io/v1",
-      SENTRY_PUBLIC_DSN: null,
-      GIPHY_API_KEY: null,
-      UNSPLASH_API_KEY: null,
-      VERSION: version,
+    new webpack.DefinePlugin({
+      BUILD_TARGET: JSON.stringify(buildTarget),
+      DEV: JSON.stringify(!isProduction),
+      GIPHY_API_KEY: JSON.stringify(process.env.GIPHY_API_KEY),
+      VERSION: JSON.stringify(version),
+      UNSPLASH_API_KEY: JSON.stringify(process.env.UNSPLASH_API_KEY),
     }),
   ],
   devtool: isWeb || !isProduction ? "source-map" : false,

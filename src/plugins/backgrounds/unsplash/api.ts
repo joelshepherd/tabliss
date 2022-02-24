@@ -1,6 +1,7 @@
 import { API } from "../../types";
-import { officialCollection, UNSPLASH_API_KEY } from "./constants";
 import { Data, Image } from "./types";
+
+export const officialCollection = 1053828;
 
 type Config = Pick<Data, "by" | "collections" | "featured" | "search">;
 

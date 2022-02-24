@@ -10,7 +10,7 @@ import type {} from "react/next";
 import type {} from "react-dom/next";
 
 // Register error handler
-if (process.env.NODE_ENV === "production") {
+if (!DEV) {
   registerErrorHandler();
 }
 
@@ -21,9 +21,6 @@ migrate();
 ReactDOM.createRoot(document.getElementById("root")!).render(<Root />);
 
 // Register service worker on web
-if (
-  process.env.NODE_ENV === "production" &&
-  process.env.BUILD_TARGET === "web"
-) {
+if (!DEV && BUILD_TARGET === "web") {
   registerServiceWorker();
 }

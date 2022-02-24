@@ -27,7 +27,7 @@ export const widgetConfigs = [
   weather,
 ];
 
-if (process.env.BUILD_TARGET === "web") {
+if (BUILD_TARGET === "web") {
   widgetConfigs.push(js);
 }
 
