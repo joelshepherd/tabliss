@@ -1,15 +1,15 @@
 {
   "compilerOptions": {
-    "target": "esnext",
-    "module": "esnext",
-    "moduleResolution": "node",
     "esModuleInterop": true,
     "jsx": "react",
     "lib": ["esnext", "dom"],
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
     "sourceMap": true,
     "strict": true,
-    "typeRoots": ["node_modules/@types", "src/@types"],
-    "allowSyntheticDefaultImports": true
+    "target": "esnext",
+    "typeRoots": ["node_modules/@types", "src/@types"]
   },
   "include": ["src"],
   "exclude": ["**/*.test"]
