@@ -1,10 +1,10 @@
-import React, { FC } from "react";
+import React from "react";
 import { defineMessages } from "react-intl";
-
-import { useCachedEffect, useFormatMessages } from "../../../hooks";
+import { useCachedEffect, useFormatMessages, useTime } from "../../../hooks";
+import { HOURS } from "../../../utils";
 import { Icon } from "../../../views/shared";
 import { getForecast } from "./api";
-import { weatherIcons } from "./icons";
+import { weatherCodes } from "./icons";
 import { defaultData, Props } from "./types";
 import "./Weather.sass";
 
@@ -19,26 +19,60 @@ const messages = defineMessages({
     description: "Low for temperature low",
     defaultMessage: "Low",
   },
+  apparent: {
+    id: "plugins.weather.apparent",
+    description: "Apparent/Feels like tempurature",
+    defaultMessage: "Feels like",
+  },
+  humidity: {
+    id: "plugins.weather.humidity",
+    description: "Humidity",
+    defaultMessage: "Humidity",
+  },
 });
 
-const Weather: FC<Props> = ({
+const Weather: React.FC<Props> = ({
   cache,
   data = defaultData,
   loader,
   setCache,
   setData,
 }) => {
+  const time = useTime("absolute");
   const translated = useFormatMessages(messages);
 
   useCachedEffect(
     () => {
       getForecast(data, loader).then(setCache);
     },
-    cache ? cache.expiresAt : 0,
+    cache ? cache.timestamp + 6 * HOURS : 0,
     [data.latitude, data.latitude, data.units],
   );
 
-  if (!cache) {
+  // `cache.conditions` check is to guard the version upgrade
+  if (!cache || !cache.conditions) {
+    return <div className="Weather">-</div>;
+  }
+
+  // Find conditions for the current time
+  const now = time.getTime() / 1000;
+  const conditions = cache.conditions
+    .slice()
+    .reverse()
+    .find((condition) => now >= condition.timestamp);
+
+  // Calculate 24 hours of precipitation
+  const rain = Math.round(
+    cache.conditions
+      .filter(
+        (condition) =>
+          condition.timestamp > now &&
+          condition.timestamp < now + (24 * HOURS) / 1000,
+      )
+      .reduce((count, condition) => count + condition.precipitation, 0),
+  );
+
+  if (!conditions) {
     return <div className="Weather">-</div>;
   }
 
@@ -50,37 +84,23 @@ const Weather: FC<Props> = ({
         title="Toggle weather details"
       >
         {data.name && <span>{data.name}</span>}
-        <Icon name={weatherIcons[cache.icon]} />
-        <span className="temperature">
-          <span title={translated.high} className="high">
-            {cache.temperatureHigh}˚
-          </span>{" "}
-          <span title={translated.low} className="low">
-            {cache.temperatureLow}˚
-          </span>
-        </span>
+        <Icon name={weatherCodes[conditions.weathercode]} />
+        <span className="temperature">{conditions.temperature}˚</span>
       </div>
 
       {data.showDetails && (
         <div className="details">
           <dl>
-            <dt>
-              <span title={translated.high} className="high">
-                {cache.apparentTemperatureHigh}˚
-              </span>{" "}
-              <span title={translated.low} className="low">
-                {cache.apparentTemperatureLow}˚
-              </span>
-            </dt>
-            <dd>Feels like</dd>
+            <dt>{conditions.apparentTemperature}˚</dt>
+            <dd>{translated.apparent}</dd>
           </dl>
           <dl>
-            <dt>{cache.humidity}%</dt>
-            <dd>Humidity</dd>
+            <dt>{conditions.humidity}%</dt>
+            <dd>{translated.humidity}</dd>
           </dl>
           <dl>
-            <dt>{cache.precipProbability}%</dt>
-            <dd>Chance of {cache.precipType || "rain"}</dd>
+            <dt>{rain}mm</dt>
+            <dd>Rain next 24 hours</dd>
           </dl>
         </div>
       )}

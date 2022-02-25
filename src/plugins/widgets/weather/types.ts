@@ -5,39 +5,22 @@ export type Coordinates = {
   longitude?: number;
 };
 
-type ConditionIcon =
-  | "clear-day"
-  | "clear-night"
-  | "rain"
-  | "snow"
-  | "sleet"
-  | "wind"
-  | "fog"
-  | "cloudy"
-  | "partly-cloudy-day"
-  | "partly-cloudy-night";
-
 export interface Conditions {
-  alerts: {
-    title: string;
-    description: string;
+  timestamp: number;
+  conditions: {
+    timestamp: number;
+    temperature: number;
+    apparentTemperature: number;
+    humidity: number;
+    precipitation: number;
+    weathercode: number;
   }[];
-  apparentTemperatureHigh: number;
-  apparentTemperatureLow: number;
-  expiresAt: number;
-  humidity: number;
-  icon: ConditionIcon;
-  precipProbability: number;
-  temperatureHigh: number;
-  temperatureLow: number;
-  precipType?: number;
-  units: string;
 }
 
 export type Data = Coordinates & {
   name?: string;
   showDetails: boolean;
-  units: string;
+  units: "auto" | "si" | "us"; // `auto` has been removed, but may still be present in settings
 };
 
 export type Cache = Conditions | undefined;

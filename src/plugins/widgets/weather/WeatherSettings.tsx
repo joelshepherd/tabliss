@@ -35,15 +35,6 @@ const WeatherSettings: FC<Props> = ({ data = defaultData, setData }) => (
     <label>
       <input
         type="radio"
-        checked={data.units === "auto"}
-        onChange={() => setData({ ...data, units: "auto" })}
-      />{" "}
-      Automatic units (based on location)
-    </label>
-
-    <label>
-      <input
-        type="radio"
         checked={data.units === "si"}
         onChange={() => setData({ ...data, units: "si" })}
       />{" "}
@@ -61,11 +52,11 @@ const WeatherSettings: FC<Props> = ({ data = defaultData, setData }) => (
 
     <p>
       <a
-        href="https://darksky.net/poweredby/"
-        target="_blank"
+        href="https://open-meteo.com/"
         rel="noopener noreferrer"
+        target="_blank"
       >
-        Powered by Dark Sky
+        Weather data by Open-Meteo.com
       </a>
     </p>
   </div>
