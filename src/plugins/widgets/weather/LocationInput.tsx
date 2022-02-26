@@ -1,10 +1,9 @@
-import React, { FC, FormEvent, useState } from "react";
-
+import React from "react";
 import { useToggle } from "../../../hooks";
 import { Icon } from "../../../views/shared";
-import { geocodeLocation, getCurrentLocation } from "./api";
-import { Coordinates } from "./types";
+import { geocodeLocation, requestLocation } from "./api";
 import "./LocationInput.sass";
+import { Coordinates } from "./types";
 
 type Props = {
   latitude?: number;
@@ -12,16 +11,15 @@ type Props = {
   onChange: (coords: Coordinates) => void;
 };
 
-const GeocodeInput: FC<Props> = ({ onChange }) => {
-  const [query, setQuery] = useState("");
+const GeocodeInput: React.FC<Props> = ({ onChange }) => {
+  const [query, setQuery] = React.useState("");
 
-  const handleGeocode = (event: FormEvent<HTMLFormElement>) => {
+  const handleGeocode = (event: React.FormEvent) => {
     event.preventDefault();
-
     geocodeLocation(query)
       .then(onChange)
       .catch(() => {
-        alert("Unable to find location. Please try again later.");
+        alert("Unable to find location. Please try again.");
       });
   };
 
@@ -50,9 +48,13 @@ const GeocodeInput: FC<Props> = ({ onChange }) => {
 
 const geolocationAvailable = "geolocation" in navigator;
 
-const CoordinateInput: FC<Props> = ({ latitude, longitude, onChange }) => {
+const CoordinateInput: React.FC<Props> = ({
+  latitude,
+  longitude,
+  onChange,
+}) => {
   const handleLocate = () => {
-    getCurrentLocation()
+    requestLocation()
       .then(onChange)
       .catch((err) => alert(`Cannot determine your location: ${err.message}`));
   };
@@ -104,7 +106,7 @@ const CoordinateInput: FC<Props> = ({ latitude, longitude, onChange }) => {
   );
 };
 
-const LocationInput: FC<Props> = ({ onChange, ...props }) => {
+const LocationInput: React.FC<Props> = ({ onChange, ...props }) => {
   const hasCoordinates = props.longitude && props.latitude;
   const [lookUp, toggleLookUp] = useToggle(!hasCoordinates);
 

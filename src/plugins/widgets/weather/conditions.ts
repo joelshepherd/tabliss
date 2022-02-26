@@ -1,4 +1,24 @@
-export const weatherCodes:Record<number, string> = {
+/** Weather conditions for a point in time */
+export interface Conditions {
+  timestamp: number;
+  temperature: number;
+  apparentTemperature: number;
+  humidity: number;
+  weatherCode: number;
+}
+
+/** Find conditions for the current time */
+export const findCurrent = (
+  conditions: Conditions[],
+  now: number,
+): Conditions | null =>
+  conditions
+    .slice()
+    .reverse()
+    .find((condition) => now >= condition.timestamp) ?? null;
+
+/** Map of weatherCodes to icons */
+export const weatherCodes: Record<number, string> = {
   0: "sun", // clear sky // TODO: or moon
   1: "sun", // mainly clear // TODO: or moon
   2: "cloud", // party cloudy
