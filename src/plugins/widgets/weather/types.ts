@@ -23,5 +23,5 @@ export type Props = API<Data, Cache>;
 
 export const defaultData: Data = {
   showDetails: false,
-  units: "auto",
+  units: "si",
 };
