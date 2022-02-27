@@ -13,7 +13,14 @@ import Widgets from "./Widgets";
 const Settings: React.FC = () => {
   const { toggleSettings } = React.useContext(UiContext);
 
-  const handleReset = () => resetStore();
+  const handleReset = () => {
+    if (
+      confirm(
+        "Are you sure you want to delete all of your Tabliss settings? This cannot be undone.",
+      )
+    )
+      resetStore();
+  };
 
   const handleExport = () => {
     const json = exportStore();
@@ -73,40 +80,42 @@ const Settings: React.FC = () => {
         <System />
 
         <p>
-          <a
-            href="https://www.paypal.me/tabliss"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Love Tabliss? Donate 😍
-          </a>
-        </p>
-
-        <p>
           <a onClick={handleImport}>Import</a>,{" "}
           <a onClick={handleExport}>export</a> or{" "}
           <a onClick={handleReset}>reset</a> settings
         </p>
 
+        <h3>Support Tabliss</h3>
+        <p>
+          <a
+            href="https://www.paypal.me/tabliss"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="button button--primary"
+          >
+            <Icon name="coffee" /> Donate a coffee 😍
+          </a>
+          <a
+            style={{ marginTop: "0.5em" }}
+            href="https://github.com/joelshepherd/tabliss"
+            rel="noopener noreferrer"
+            target="_blank"
+            className="button button--primary"
+          >
+            <Icon name="github" /> Star on GitHub
+          </a>
+        </p>
         <p>
           <a href="https://tabliss.io/" target="_blank">
-            <Icon name="globe" />
+            <Icon name="globe" /> Website
           </a>
           &nbsp;&nbsp;
           <a
             href="https://twitter.com/tabliss"
-            target="_blank"
             rel="noopener noreferrer"
-          >
-            <Icon name="twitter" />
-          </a>
-          &nbsp;&nbsp;
-          <a
-            href="https://github.com/joelshepherd/tabliss"
             target="_blank"
-            rel="noopener noreferrer"
           >
-            <Icon name="github" />
+            <Icon name="twitter" /> Twitter
           </a>
         </p>
 
