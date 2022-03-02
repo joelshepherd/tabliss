@@ -11,6 +11,7 @@ import search from "./search";
 import time from "./time";
 import todo from "./todo";
 import weather from "./weather";
+import workHours from "./workHours";
 
 export const widgetConfigs = [
   css,
@@ -25,6 +26,7 @@ export const widgetConfigs = [
   time,
   todo,
   weather,
+  workHours
 ];
 
 if (BUILD_TARGET === "web") {

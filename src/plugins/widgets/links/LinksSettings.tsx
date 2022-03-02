@@ -69,7 +69,10 @@ const LinksSettings: FC<Props> = ({ data = defaultData, setData }) => {
       ))}
 
       <p style={{ marginTop: "0.5rem" }}>
-        <button className="button--primary" onClick={() => dispatch(addLink())}>
+        <button
+          className="button button--primary"
+          onClick={() => dispatch(addLink())}
+        >
           Add link
         </button>
       </p>

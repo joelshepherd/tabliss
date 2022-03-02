@@ -56,6 +56,28 @@ const UnsplashSettings: FC<Props> = ({ data = defaultData, setData }) => (
     <label>
       <input
         type="radio"
+        checked={data.by === "topics"}
+        onChange={() => setData({ ...data, by: "topics" })}
+      />{" "}
+      Custom topic
+    </label>
+
+    {data.by === "topics" && (
+      <label>
+        Topic
+        <DebounceInput
+          type="text"
+          value={data.topics}
+          placeholder="Topic ID number"
+          onChange={value => setData({ ...data, topics: value })}
+          wait={500}
+        />
+      </label>
+    )}
+
+    <label>
+      <input
+        type="radio"
         checked={data.by === "search"}
         onChange={() => setData({ ...data, by: "search" })}
       />{" "}
