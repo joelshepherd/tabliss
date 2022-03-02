@@ -12,7 +12,8 @@ import Widgets from "./Widgets";
 
 const Settings: React.FC = () => {
   const { toggleSettings } = React.useContext(UiContext);
-
+  const { maximizeSettings } = React.useContext(UiContext);
+  const {maxsettings} = React.useContext(UiContext)
   const handleReset = () => {
     if (
       confirm(
@@ -70,9 +71,11 @@ const Settings: React.FC = () => {
     <div className="Settings">
       <a onClick={toggleSettings} className="fullscreen" />
 
-      <div className="plane">
+      <div className={`plane ${!maxsettings ? 'classname' : 'maximized'}`}
+      
+      >
         <Logo />
-
+        <a onClick={maximizeSettings}>maximize</a>
         <Background />
 
         <Widgets />
