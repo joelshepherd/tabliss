@@ -3,7 +3,10 @@ import { Data, Image } from "./types";
 
 export const officialCollection = 1053828;
 
-type Config = Pick<Data, "by" | "collections" | "featured" | "search" | "topics">;
+type Config = Pick<
+  Data,
+  "by" | "collections" | "featured" | "search" | "topics"
+>;
 
 export async function getImage(
   config: Config,
@@ -24,7 +27,13 @@ export async function getImage(
   };
 }
 
-async function fetchImageMeta({ by, collections, topics, featured, search }: Config) {
+async function fetchImageMeta({
+  by,
+  collections,
+  topics,
+  featured,
+  search,
+}: Config) {
   const url = "https://api.unsplash.com/photos/random";
   const params = new URLSearchParams();
   const headers = new Headers({
@@ -64,6 +73,23 @@ async function fetchImageData(url: string) {
   });
 
   return await (await fetch(url + params)).blob();
+}
+
+export interface Topic {
+  id: string;
+  title: string;
+}
+
+/** Fetch the list of topics from unsplash */
+export async function fetchTopics(): Promise<Topic[]> {
+  const res = await fetch("https://api.unsplash.com/topics?per_page=25&order_by=featured", {
+    headers: {
+      Authorization: `Client-ID ${UNSPLASH_API_KEY}`,
+    },
+  });
+  const body = await res.json();
+
+  return body;
 }
 
 /**
