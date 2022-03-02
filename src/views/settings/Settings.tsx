@@ -88,7 +88,7 @@ const Settings: React.FC = () => {
         <h3>Support Tabliss</h3>
         <p>
           <a
-            href="https://www.paypal.me/tabliss"
+            href="https://www.paypal.com/donate/?hosted_button_id=FK7VRWS9A2EW4"
             target="_blank"
             rel="noopener noreferrer"
             className="button button--primary"
