@@ -3,7 +3,7 @@ import { Data, Image } from "./types";
 
 export const officialCollection = 1053828;
 
-type Config = Pick<Data, "by" | "collections" | "featured" | "search">;
+type Config = Pick<Data, "by" | "collections" | "featured" | "search" | "topics">;
 
 export async function getImage(
   config: Config,
@@ -24,7 +24,7 @@ export async function getImage(
   };
 }
 
-async function fetchImageMeta({ by, collections, featured, search }: Config) {
+async function fetchImageMeta({ by, collections, topics, featured, search }: Config) {
   const url = "https://api.unsplash.com/photos/random";
   const params = new URLSearchParams();
   const headers = new Headers({
@@ -34,6 +34,10 @@ async function fetchImageMeta({ by, collections, featured, search }: Config) {
   switch (by) {
     case "collections":
       params.set("collections", collections);
+      break;
+
+    case "topics":
+      params.set("topics", topics);
       break;
 
     case "search":
