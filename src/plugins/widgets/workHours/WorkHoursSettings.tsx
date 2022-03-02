@@ -2,7 +2,15 @@ import React, { FC } from "react";
 
 import { Props, defaultData } from "./types";
 
-const daysList = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+const daysList = [
+  "Sunday",
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+];
 
 const WorkHoursSettings: FC<Props> = ({ data = defaultData, setData }) => (
   <div className="WorkHoursSettings">
@@ -11,7 +19,9 @@ const WorkHoursSettings: FC<Props> = ({ data = defaultData, setData }) => (
       <input
         type="time"
         value={data.startTime}
-        onChange={(event) => setData({ ...data, startTime: event.target.value})}
+        onChange={(event) =>
+          setData({ ...data, startTime: event.target.value })
+        }
       />
     </label>
     <label>
@@ -23,25 +33,25 @@ const WorkHoursSettings: FC<Props> = ({ data = defaultData, setData }) => (
       />
     </label>
     <label>Work days:</label>
-    {daysList.map((day, index) =>
+    {daysList.map((day, index) => (
       <div key={day}>
         <label>
-          <input type="checkbox"
-          checked={data.days.includes(index)}
-          onChange={
-            event =>
+          <input
+            type="checkbox"
+            checked={data.days.includes(index)}
+            onChange={(event) =>
               setData({
                 ...data,
-                days: event.target.checked ?
-                  [...data.days, index] :
-                  data.days.filter(day => day !== index)
+                days: event.target.checked
+                  ? [...data.days, index]
+                  : data.days.filter((day) => day !== index),
               })
             }
           />
           {day}
         </label>
       </div>
-    )}
+    ))}
   </div>
 );
 
