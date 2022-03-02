@@ -1,10 +1,9 @@
-import React, { FC, FormEvent, useState } from 'react';
-
-import { useToggle } from '../../../hooks';
-import { Icon } from '../../../views/shared';
-import { geocodeLocation, getCurrentLocation } from './api';
-import { Coordinates } from './types';
-import './LocationInput.sass';
+import React from "react";
+import { useToggle } from "../../../hooks";
+import { Icon } from "../../../views/shared";
+import { geocodeLocation, requestLocation } from "./api";
+import "./LocationInput.sass";
+import { Coordinates } from "./types";
 
 type Props = {
   latitude?: number;
@@ -12,22 +11,21 @@ type Props = {
   onChange: (coords: Coordinates) => void;
 };
 
-const GeocodeInput: FC<Props> = ({ onChange }) => {
-  const [query, setQuery] = useState('');
+const GeocodeInput: React.FC<Props> = ({ onChange }) => {
+  const [query, setQuery] = React.useState("");
 
-  const handleGeocode = (event: FormEvent<HTMLFormElement>) => {
+  const handleGeocode = (event: React.FormEvent) => {
     event.preventDefault();
-
     geocodeLocation(query)
       .then(onChange)
       .catch(() => {
-        alert('Unable to find location. Please try again later.');
+        alert("Unable to find location. Please try again.");
       });
   };
 
   return (
     <form onSubmit={handleGeocode}>
-      <div className="grid" style={{ gridTemplateColumns: '1fr auto' }}>
+      <div className="grid" style={{ gridTemplateColumns: "1fr auto" }}>
         <label htmlFor="LocationInput__query">Search for city</label>
 
         <div />
@@ -37,7 +35,7 @@ const GeocodeInput: FC<Props> = ({ onChange }) => {
           placeholder="City or location"
           type="text"
           value={query}
-          onChange={event => setQuery(event.target.value)}
+          onChange={(event) => setQuery(event.target.value)}
         />
 
         <button type="submit" className="button--primary button--icon">
@@ -48,13 +46,17 @@ const GeocodeInput: FC<Props> = ({ onChange }) => {
   );
 };
 
-const geolocationAvailable = 'geolocation' in navigator;
+const geolocationAvailable = "geolocation" in navigator;
 
-const CoordinateInput: FC<Props> = ({ latitude, longitude, onChange }) => {
+const CoordinateInput: React.FC<Props> = ({
+  latitude,
+  longitude,
+  onChange,
+}) => {
   const handleLocate = () => {
-    getCurrentLocation()
+    requestLocation()
       .then(onChange)
-      .catch(err => alert(`Cannot determine your location: ${err.message}`));
+      .catch((err) => alert(`Cannot determine your location: ${err.message}`));
   };
 
   return (
@@ -63,8 +65,8 @@ const CoordinateInput: FC<Props> = ({ latitude, longitude, onChange }) => {
         className="grid"
         style={{
           gridTemplateColumns: geolocationAvailable
-            ? '1fr 1fr auto'
-            : '1fr 1fr',
+            ? "1fr 1fr auto"
+            : "1fr 1fr",
         }}
       >
         <label htmlFor="LocationInput__latitude">Latitude</label>
@@ -77,14 +79,16 @@ const CoordinateInput: FC<Props> = ({ latitude, longitude, onChange }) => {
           id="LocationInput__latitude"
           type="text"
           value={latitude}
-          onChange={event => onChange({ latitude: Number(event.target.value) })}
+          onChange={(event) =>
+            onChange({ latitude: Number(event.target.value) })
+          }
         />
 
         <input
           id="LocationInput__longitude"
           type="text"
           value={longitude}
-          onChange={event =>
+          onChange={(event) =>
             onChange({ longitude: Number(event.target.value) })
           }
         />
@@ -102,7 +106,7 @@ const CoordinateInput: FC<Props> = ({ latitude, longitude, onChange }) => {
   );
 };
 
-const LocationInput: FC<Props> = ({ onChange, ...props }) => {
+const LocationInput: React.FC<Props> = ({ onChange, ...props }) => {
   const hasCoordinates = props.longitude && props.latitude;
   const [lookUp, toggleLookUp] = useToggle(!hasCoordinates);
 
@@ -120,7 +124,7 @@ const LocationInput: FC<Props> = ({ onChange, ...props }) => {
       )}
 
       <a onClick={toggleLookUp}>
-        {lookUp ? 'Enter coordinates' : 'Search for city'}
+        {lookUp ? "Enter coordinates" : "Search for city"}
       </a>
     </div>
   );

@@ -1,0 +1,19 @@
+{
+  "app.pageTitle": "नयाँ ट्याब",
+  "background": "ब्याक्गराउन्ड",
+  "dashboard.focusHint": "विजेट स्विच गरौ",
+  "dashboard.fullscreenHint": "फुलस्क्रीन मोड स्विच गरौ",
+  "dashboard.loadingHint": "नयाँ सामग्री लोड हुँदै छ",
+  "dashboard.settingsHint": "ट्याब्लिस को सेटिंग्स बदलौ",
+  "plugin.greeting.withName": "{hour, select,\n      0 {शुभ रात्री, {name}}\n      1 {शुभ रात्री, {name}}\n      2 {शुभ रात्री, {name}}\n      3 {उठ्ने बेला भयो, {name}}\n      4 {उठ्ने बेला भयो, {name}}\n      5 {उठ्ने बेला भयो, {name}}\n      6 {शुभ प्रभात, {name}}\n      7 {शुभ प्रभात, {name}}\n      8 {शुभ प्रभात, {name}}\n      9 {शुभ प्रभात, {name}}\n      10 { नमस्कार, {name}}\n      11 { नमस्कार, {name}}\n      12 { नमस्कार, {name}}\n      13 { नमस्कार, {name}}\n      14 {शुभ दिन, {name}}\n      15 {शुभ दिन, {name}}\n      16 {शुभ दिन, {name}}\n      17 {शुभ दिन, {name}}\n      18 {शुभ सन्ध्या, {name}}\n      19 {शुभ सन्ध्या, {name}}\n      20 {शुभ सन्ध्या, {name}}\n      21 {शुभ सन्ध्या, {name}}\n      22 {शुभ रात्री, {name}}\n      23 {शुभ रात्री, {name}}\n      other {Unknown}\n    }",
+  "plugin.greeting.withoutName": "{hour, select,\n      0 {शुभ रात्री}\n      1 {शुभ रात्री}\n      2 {शुभ रात्री}\n      3 {उठ्ने बेला भयो}\n      4 {उठ्ने बेला भयो}\n      5 {उठ्ने बेला भयो}\n      6 {शुभ प्रभात}\n      7 {शुभ प्रभात}\n      8 {शुभ प्रभात}\n      9 {शुभ प्रभात}\n      10 { नमस्कार}\n      11 { नमस्कार}\n      12 { नमस्कार}\n      13 { नमस्कार}\n      14 {शुभ दिन}\n      15 {शुभ दिन}\n      16 {शुभ दिन}\n      17 {शुभ दिन}\n      18 {शुभ सन्ध्या}\n      19 {शुभ सन्ध्या}\n      20 {शुभ सन्ध्या}\n      21 {शुभ सन्ध्या}\n      22 {शुभ रात्री}\n      23 {शुभ रात्री}\n      other {Unknown}\n    }",
+  "plugins.links.shortcutHint": "साइटमा जानको लागि {number} किलिक गर्नुहोस ",
+  "plugins.links.standardHint": "साइटमा जानको लागि यहाँ किलिक गर्नुहोस ",
+  "plugins.search.placeholder": "खोज्नलाई Enter दबाउ",
+  "plugins.unsplash.photoLink": "चित्र",
+  "plugins.weather.high": "High",
+  "plugins.weather.low": "Low",
+  "settings": "सेटिंग्स",
+  "settings.translationCredits": "sidbelbase ले अनुबाद गरेको",
+  "widgets": "विजेट्स"
+}

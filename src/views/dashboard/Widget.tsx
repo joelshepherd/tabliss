@@ -1,8 +1,7 @@
-import React, { FC } from 'react';
+import React from "react";
+import { WidgetDisplay } from "../../db/state";
 
-import { WidgetDisplay } from '../../store/reducers/types';
-
-const Widget: FC<WidgetDisplay> = ({
+const Widget: React.FC<WidgetDisplay> = ({
   children,
   colour,
   fontFamily,
@@ -10,7 +9,7 @@ const Widget: FC<WidgetDisplay> = ({
   fontWeight,
 }) => (
   <div
-    className={`Widget ${fontWeight ? 'weight-override' : ''}`}
+    className={`Widget ${fontWeight ? "weight-override" : ""}`}
     style={{
       color: colour,
       fontFamily,

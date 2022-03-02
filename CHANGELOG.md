@@ -3,6 +3,39 @@
 All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
+## [Unreleased]
+
+## Added
+
+- Added IP Info widget - thanks @bkis
+- Current weather conditions are back thanks to Open-Meteo
+- Tabliss is now selectable as your homepage in Firefox
+- Added MetaGer search engine - thanks @teknowledgist
+- Added bible verses as an option for quotes - thanks @Staubgeborener
+- Finnish translations - thanks @Nonecaster
+- Nepali translations - thanks @sidbelbase
+- Serbian translations - thanks @ZaDavanje
+- Thai translations - thanks @NeneNeko
+
+## Changed
+
+- New settings storage engine to reduce instances of Tabliss loosing your settings
+- Tabliss will now remember if you have hidden your widgets
+- Background blur is now disabled when widgets are hidden
+- Unsplash links now open in the same window - thanks @elsiehupp
+- Chinese translation updates - thanks @mysmlz
+- French translation updates - thanks @ernest33
+- German translation updates - thanks @M123-dev
+- Scottish Gaelic updates - thanks @fenrisulfr94
+- Spanish translation updates - thanks @husseinalkasake
+
+## Fixed
+
+- GIPHY background has been fixed - thanks @OneComputerGuy
+- Long quotes no longer break the UI - thanks @CoderOO7
+- Link keyboard shortcut not respecting link opening style - thanks @cwils021
+- Time zone selection label dispaly issue - thanks @jn64
+
 ## [2.1.0] - 2021-01-28
 
 ## Added

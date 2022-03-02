@@ -1,4 +1,4 @@
-import { API } from '../../types';
+import { API } from "../../types";
 
 export type Data = {
   colour?: string;
@@ -7,5 +7,5 @@ export type Data = {
 export type Props = API<Data>;
 
 export const defaultData: Data = {
-  colour: '#3498db',
+  colour: "#3498db",
 };

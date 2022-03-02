@@ -1,11 +1,11 @@
-import React, { FC } from 'react';
+import React, { FC } from "react";
 
-import { useSavedReducer, useToggle } from '../../../hooks';
-import { DownIcon, Icon, UpIcon, ExpandIcon } from '../../../views/shared';
-import { addTodo, removeTodo, toggleTodo, updateTodo } from './actions';
-import { reducer, State } from './reducer';
-import TodoList from './TodoList';
-import { defaultData, Props } from './types';
+import { useSavedReducer, useToggle } from "../../../hooks";
+import { DownIcon, Icon, UpIcon, ExpandIcon } from "../../../views/shared";
+import { addTodo, removeTodo, toggleTodo, updateTodo } from "./actions";
+import { reducer, State } from "./reducer";
+import TodoList from "./TodoList";
+import { defaultData, Props } from "./types";
 
 const Todo: FC<Props> = ({ data = defaultData, setData }) => {
   const [showCompleted, toggleShowCompleted] = useToggle();
@@ -14,7 +14,7 @@ const Todo: FC<Props> = ({ data = defaultData, setData }) => {
   const setItems = (items: State) => setData({ ...data, items });
   const dispatch = useSavedReducer(reducer, data.items, setItems);
 
-  const items = data.items.filter(item => !item.completed || showCompleted);
+  const items = data.items.filter((item) => !item.completed || showCompleted);
   const show = !showMore ? data.show : undefined;
 
   return (
@@ -30,10 +30,10 @@ const Todo: FC<Props> = ({ data = defaultData, setData }) => {
       <div>
         <a onClick={() => dispatch(addTodo())}>
           <ExpandIcon />
-        </a>{' '}
+        </a>{" "}
         <a onClick={toggleShowCompleted}>
-          <Icon name={showCompleted ? 'check-circle' : 'circle'} />
-        </a>{' '}
+          <Icon name={showCompleted ? "check-circle" : "circle"} />
+        </a>{" "}
         {items.length > data.show && (
           <a onClick={toggleShowMore}>{showMore ? <UpIcon /> : <DownIcon />}</a>
         )}

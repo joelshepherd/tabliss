@@ -1,13 +1,13 @@
-import icons from 'feather-icons/dist/icons.json';
-import React, { FC } from 'react';
+import icons from "feather-icons/dist/icons.json";
+import React, { FC } from "react";
 
 import {
   IconButton,
   RemoveIcon,
   DownIcon,
   UpIcon,
-} from '../../../views/shared';
-import { Link } from './types';
+} from "../../../views/shared";
+import { Link } from "./types";
 
 type Props = Link & {
   number: number;
@@ -19,7 +19,7 @@ type Props = Link & {
 
 const iconList = Object.keys(icons);
 
-const Input: FC<Props> = props => (
+const Input: FC<Props> = (props) => (
   <div className="LinkInput">
     <h5>
       <div className="title--buttons">
@@ -38,7 +38,7 @@ const Input: FC<Props> = props => (
         )}
       </div>
 
-      {props.number <= 9 ? `Keyboard shortcut ${props.number}` : 'Shortcut'}
+      {props.number <= 9 ? `Keyboard shortcut ${props.number}` : "Shortcut"}
     </h5>
 
     <label>
@@ -46,7 +46,7 @@ const Input: FC<Props> = props => (
       <input
         type="url"
         value={props.url}
-        onChange={event => props.onChange({ url: event.target.value })}
+        onChange={(event) => props.onChange({ url: event.target.value })}
       />
     </label>
 
@@ -55,7 +55,7 @@ const Input: FC<Props> = props => (
       <input
         type="text"
         value={props.name}
-        onChange={event => props.onChange({ name: event.target.value })}
+        onChange={(event) => props.onChange({ name: event.target.value })}
       />
     </label>
 
@@ -63,10 +63,10 @@ const Input: FC<Props> = props => (
       Icon <span className="text--grey">(optional)</span>
       <select
         value={props.icon}
-        onChange={event => props.onChange({ icon: event.target.value })}
+        onChange={(event) => props.onChange({ icon: event.target.value })}
       >
-        <option value={''}>None</option>
-        {iconList.map(key => (
+        <option value={""}>None</option>
+        {iconList.map((key) => (
           <option key={key}>{key}</option>
         ))}
       </select>

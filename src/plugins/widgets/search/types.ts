@@ -1,4 +1,4 @@
-import { API } from '../../types';
+import { API } from "../../types";
 
 type Data = {
   searchEngine: string;
@@ -9,6 +9,6 @@ type Data = {
 export type Props = API<Data>;
 
 export const defaultData: Data = {
-  searchEngine: 'google',
+  searchEngine: "google",
   suggestionsQuantity: 4,
 };

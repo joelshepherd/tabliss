@@ -1,8 +1,8 @@
-import React, { FC, useState, useEffect } from 'react';
-import { useDebounce } from '../../hooks';
+import React, { FC, useState, useEffect } from "react";
+import { useDebounce } from "../../hooks";
 
 interface Props
-  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'onChange'> {
+  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "onChange"> {
   onChange: (value: string) => void;
   value?: string;
   wait?: number;
@@ -13,7 +13,7 @@ export const DebounceInput: FC<Props> = ({
   onChange,
   ...props
 }) => {
-  const [newValue, setNewValue] = useState(props.value || '');
+  const [newValue, setNewValue] = useState(props.value || "");
   const debouncedValue = useDebounce(newValue, wait);
 
   useEffect(() => {
@@ -24,7 +24,7 @@ export const DebounceInput: FC<Props> = ({
     <input
       {...props}
       value={newValue}
-      onChange={event => setNewValue(event.target.value)}
+      onChange={(event) => setNewValue(event.target.value)}
     />
   );
 };

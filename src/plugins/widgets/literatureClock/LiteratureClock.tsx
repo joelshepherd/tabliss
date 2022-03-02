@@ -1,9 +1,9 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC, useEffect } from "react";
 
-import { useTime } from '../../../hooks';
-import { getTimeCode, getQuoteByTimeCode } from './api';
-import { Props, defaultData } from './types';
-import './LiteratureClock.sass';
+import { useTime } from "../../../hooks";
+import { getTimeCode, getQuoteByTimeCode } from "./api";
+import { Props, defaultData } from "./types";
+import "./LiteratureClock.sass";
 
 const LiteratureClock: FC<Props> = ({
   cache,
@@ -22,7 +22,7 @@ const LiteratureClock: FC<Props> = ({
   }
 
   return (
-    <div className={`LiteratureClock ${data.centerText ? 'center' : ''}`}>
+    <div className={`LiteratureClock ${data.centerText ? "center" : ""}`}>
       <blockquote>
         <span className="quote_first">{cache.quote_first}</span>
         <strong className="quote_time_case">{cache.quote_time_case}</strong>
@@ -33,7 +33,7 @@ const LiteratureClock: FC<Props> = ({
         <cite>
           &mdash;
           <span id="book">{cache.title}</span>
-          {', '}
+          {", "}
           <span id="author">{cache.author}</span>
         </cite>
       )}

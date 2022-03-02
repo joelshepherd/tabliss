@@ -1,5 +1,5 @@
-import React, { FC } from 'react';
-import './Analogue.sass';
+import React, { FC } from "react";
+import "./Analogue.sass";
 
 type Props = {
   showMinutes: boolean;

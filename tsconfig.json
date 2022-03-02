@@ -1,16 +1,17 @@
 {
   "compilerOptions": {
-    "outDir": "dist",
-    "target": "es5",
-    "module": "es6",
-    "moduleResolution": "node",
     "esModuleInterop": true,
     "jsx": "react",
     "lib": ["esnext", "dom"],
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
     "sourceMap": true,
     "strict": true,
-    "typeRoots": ["node_modules/@types", "types"],
-    "allowSyntheticDefaultImports": true
+    "target": "esnext",
+    "types": ["jest", "react", "react-dom", "webextension-polyfill"],
+    "typeRoots": ["node_modules/@types", "src/@types"]
   },
-  "exclude": ["node_modules", "dist"]
+  "include": ["src"],
+  "exclude": ["**/*.test"]
 }
