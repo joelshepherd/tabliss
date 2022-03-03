@@ -3,8 +3,8 @@ import React, { FC } from "react";
 import { Props, defaultData } from "./types";
 
 const GradientSettings: FC<Props> = ({ data = defaultData, setData }) => (
-  <div className="GradientSettings">
-    <label>
+  <div className="GradientSettings grid-container">
+    <label className="cell-7">
       From Colour
       <input
         type="color"
@@ -13,7 +13,7 @@ const GradientSettings: FC<Props> = ({ data = defaultData, setData }) => (
       />
     </label>
 
-    <label>
+    <label className="cell-7">
       To Colour
       <input
         type="color"
@@ -22,7 +22,7 @@ const GradientSettings: FC<Props> = ({ data = defaultData, setData }) => (
       />
     </label>
 
-    <label>
+    <label className="cell-7">
       Angle (0-360)
       <input
         type="number"

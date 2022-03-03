@@ -11,8 +11,8 @@ const LinksSettings: FC<Props> = ({ data = defaultData, setData }) => {
   const dispatch = useSavedReducer(reducer, data.links, saveLinks);
 
   return (
-    <div className="LinksSettings">
-      <label>
+    <div className="LinksSettings grid-container">
+      <label className="cell-2">
         Number of columns
         <input
           type="number"
@@ -23,27 +23,27 @@ const LinksSettings: FC<Props> = ({ data = defaultData, setData }) => {
           min={1}
         />
       </label>
+      <div className="cell-2">
+        <label>
+          <input
+            type="checkbox"
+            checked={data.visible}
+            onChange={() => setData({ ...data, visible: !data.visible })}
+          />
+          Links are always visible
+        </label>
 
-      <label>
-        <input
-          type="checkbox"
-          checked={data.visible}
-          onChange={() => setData({ ...data, visible: !data.visible })}
-        />
-        Links are always visible
-      </label>
-
-      <label>
-        <input
-          type="checkbox"
-          checked={data.linkOpenStyle}
-          onChange={() =>
-            setData({ ...data, linkOpenStyle: !data.linkOpenStyle })
-          }
-        />
-        Links open in a new tab
-      </label>
-
+        <label>
+          <input
+            type="checkbox"
+            checked={data.linkOpenStyle}
+            onChange={() =>
+              setData({ ...data, linkOpenStyle: !data.linkOpenStyle })
+            }
+          />
+          Links open in a new tab
+        </label>
+      </div>
       <hr />
 
       {data.links.map((link, index) => (
@@ -68,7 +68,7 @@ const LinksSettings: FC<Props> = ({ data = defaultData, setData }) => {
         />
       ))}
 
-      <p style={{ marginTop: "0.5rem" }}>
+      <p className="cell-1" style={{ marginTop: "0.5rem" }}>
         <button
           className="button button--primary"
           onClick={() => dispatch(addLink())}

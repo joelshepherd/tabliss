@@ -1,4 +1,5 @@
 import React from "react";
+import { UiContext } from "../../contexts/ui";
 import { setWidgetDisplay } from "../../db/action";
 import { WidgetState } from "../../db/state";
 import { useToggle } from "../../hooks";
@@ -28,8 +29,10 @@ const Widget: React.FC<Props> = ({
 
   const setDisplay = setWidgetDisplay.bind(null, plugin.id);
 
+  const { maxsettings } = React.useContext(UiContext);
+
   return (
-    <fieldset className="Widget">
+    <fieldset className={`Widget ${!maxsettings ? "classname" : "maximized"}`}>
       <div className="title--buttons">
         <IconButton onClick={onRemove} title="Remove widget">
           <RemoveIcon />
@@ -72,45 +75,51 @@ const Widget: React.FC<Props> = ({
 
           <ToggleSection name="Font Settings">
             <>
-              <label>
-                Font
-                <input
-                  type="text"
-                  value={plugin.display.fontFamily}
-                  onChange={(event) =>
-                    setDisplay({ fontFamily: event.target.value })
-                  }
-                />
-              </label>
-
-              <label>
-                Weight
-                <select
-                  value={plugin.display.fontWeight}
-                  onChange={(event) =>
-                    setDisplay({ fontWeight: Number(event.target.value) })
-                  }
-                >
-                  <option value={undefined}>Default</option>
-                  <option value={100}>Thin</option>
-                  <option value={300}>Light</option>
-                  <option value={400}>Regular</option>
-                  <option value={500}>Medium</option>
-                  <option value={700}>Bold</option>
-                  <option value={900}>Black</option>
-                </select>
-              </label>
-
-              <label>
-                Colour
-                <input
-                  type="color"
-                  value={plugin.display.colour}
-                  onChange={(event) =>
-                    setDisplay({ colour: event.target.value })
-                  }
-                />
-              </label>
+              <div className="grid-container">
+                <div className="cell-2 grid-container">
+                  <div className="cell-1-1">
+                    <label>
+                      Font
+                      <input
+                        type="text"
+                        value={plugin.display.fontFamily}
+                        onChange={(event) =>
+                          setDisplay({ fontFamily: event.target.value })
+                        }
+                      />
+                    </label>
+                    <label>
+                      Colour
+                      <input
+                        type="color"
+                        value={plugin.display.colour}
+                        onChange={(event) =>
+                          setDisplay({ colour: event.target.value })
+                        }
+                      />
+                    </label>
+                  </div>
+                </div>
+                <div className="cell-2">
+                  <label>
+                    Weight
+                    <select
+                      value={plugin.display.fontWeight}
+                      onChange={(event) =>
+                        setDisplay({ fontWeight: Number(event.target.value) })
+                      }
+                    >
+                      <option value={undefined}>Default</option>
+                      <option value={100}>Thin</option>
+                      <option value={300}>Light</option>
+                      <option value={400}>Regular</option>
+                      <option value={500}>Medium</option>
+                      <option value={700}>Bold</option>
+                      <option value={900}>Black</option>
+                    </select>
+                  </label>
+                </div>
+              </div>
             </>
           </ToggleSection>
         </div>

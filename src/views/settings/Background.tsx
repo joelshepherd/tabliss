@@ -1,5 +1,6 @@
 import React from "react";
 import { FormattedMessage } from "react-intl";
+import { UiContext } from "../../contexts/ui";
 import { setBackground } from "../../db/action";
 import { BackgroundDisplay, db } from "../../db/state";
 import { useKey } from "../../lib/db/react";
@@ -15,7 +16,7 @@ const Background: React.FC = () => {
   const setBackgroundDisplay = (display: BackgroundDisplay): void => {
     setData({ ...data, display: { ...data.display, ...display } });
   };
-
+  const { maxsettings } = React.useContext(UiContext);
   return (
     <div>
       <h2>
@@ -41,7 +42,7 @@ const Background: React.FC = () => {
       </label>
 
       {plugin && (
-        <div className="Widget">
+        <div className={`Widget ${!maxsettings ? "" : "maximized"}`}>
           <h4>{plugin.name}</h4>
 
           {plugin.settingsComponent && (

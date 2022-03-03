@@ -4,8 +4,8 @@ import { Props, defaultData } from "./types";
 import { DebounceInput } from "../../shared";
 
 const UnsplashSettings: FC<Props> = ({ data = defaultData, setData }) => (
-  <div className="UnsplashSettings">
-    <label>
+  <div className="UnsplashSettings grid-container">
+    <label className="cell-1">
       Show a new photo
       <select
         value={data.timeout}
@@ -22,7 +22,7 @@ const UnsplashSettings: FC<Props> = ({ data = defaultData, setData }) => (
       </select>
     </label>
 
-    <label>
+    <label className="cell-4">
       <input
         type="radio"
         checked={data.by === "official"}
@@ -31,7 +31,7 @@ const UnsplashSettings: FC<Props> = ({ data = defaultData, setData }) => (
       Official collection
     </label>
 
-    <label>
+    <label className="cell-4">
       <input
         type="radio"
         checked={data.by === "collections"}
@@ -40,20 +40,7 @@ const UnsplashSettings: FC<Props> = ({ data = defaultData, setData }) => (
       Custom collection
     </label>
 
-    {data.by === "collections" && (
-      <label>
-        Collection
-        <DebounceInput
-          type="text"
-          value={data.collections}
-          placeholder="Collection ID number"
-          onChange={(value) => setData({ ...data, collections: value })}
-          wait={500}
-        />
-      </label>
-    )}
-
-    <label>
+    <label className="cell-4">
       <input
         type="radio"
         checked={data.by === "topics"}
@@ -62,20 +49,7 @@ const UnsplashSettings: FC<Props> = ({ data = defaultData, setData }) => (
       Custom topic
     </label>
 
-    {data.by === "topics" && (
-      <label>
-        Topic
-        <DebounceInput
-          type="text"
-          value={data.topics}
-          placeholder="Topic ID number"
-          onChange={value => setData({ ...data, topics: value })}
-          wait={500}
-        />
-      </label>
-    )}
-
-    <label>
+    <label className="cell-4">
       <input
         type="radio"
         checked={data.by === "search"}
@@ -83,30 +57,57 @@ const UnsplashSettings: FC<Props> = ({ data = defaultData, setData }) => (
       />{" "}
       Custom search
     </label>
-
-    {data.by === "search" && (
-      <div>
+    <div className="cell-7">
+      {data.by === "collections" && (
         <label>
-          Tags
+          Collection
           <DebounceInput
             type="text"
-            value={data.search}
-            placeholder="Try landscapes or animals..."
-            onChange={(value) => setData({ ...data, search: value })}
+            value={data.collections}
+            placeholder="Collection ID number"
+            onChange={(value) => setData({ ...data, collections: value })}
             wait={500}
           />
         </label>
-
+      )}
+      {data.by === "topics" && (
         <label>
-          <input
-            type="checkbox"
-            checked={data.featured}
-            onChange={(event) => setData({ ...data, featured: !data.featured })}
-          />{" "}
-          Only featured images
+          Topic
+          <DebounceInput
+            type="text"
+            value={data.topics}
+            placeholder="Topic ID number"
+            onChange={(value) => setData({ ...data, topics: value })}
+            wait={500}
+          />
         </label>
-      </div>
-    )}
+      )}
+      {data.by === "search" && (
+        <div>
+          <label>
+            Tags
+            <DebounceInput
+              type="text"
+              value={data.search}
+              placeholder="Try landscapes or animals..."
+              onChange={(value) => setData({ ...data, search: value })}
+              wait={500}
+            />
+          </label>
+
+          <label>
+            <input
+              type="checkbox"
+              checked={data.featured}
+              onChange={(event) =>
+                setData({ ...data, featured: !data.featured })
+              }
+            />{" "}
+            Only featured images
+          </label>
+        </div>
+      )}
+    </div>
   </div>
 );
 

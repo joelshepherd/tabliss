@@ -4,8 +4,8 @@ import { engines } from "./engines";
 import { Props, defaultData } from "./types";
 
 const SearchSettings: FC<Props> = ({ data = defaultData, setData }) => (
-  <div className="SearchSettings">
-    <label>
+  <div className="SearchSettings grid-container">
+    <label className="cell-2">
       Search Provider
       <select
         onChange={(event) =>
@@ -22,7 +22,7 @@ const SearchSettings: FC<Props> = ({ data = defaultData, setData }) => (
     </label>
 
     {BUILD_TARGET !== "firefox" && (
-      <label>
+      <label className="cell-2">
         Suggestions Provider
         <select
           onChange={(event) =>

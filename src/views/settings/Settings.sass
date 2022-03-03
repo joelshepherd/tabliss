@@ -1,5 +1,15 @@
 .Settings
-    
+    .maximize-button-container
+        position: sticky
+        top: 1rem
+        display: block
+        text-align: right
+        .maximize-button
+            background: #ecf0f1
+            padding: .3rem .4rem
+            border-radius: 3px
+            height: 1.2em
+            width: auto
     h1
         margin: 2rem 0
 
@@ -24,6 +34,7 @@
         position: absolute
         width: 330px
         transition: transform 0.15s ease-out
+        transition: width .3s
         &.maximized
             width: 100%
     label
@@ -42,6 +53,7 @@
     input[type=number],
     input[type=text],
     input[type=url],
+    input[type=time],
     textarea,
     select
         border: 1px solid #bdc3c7
@@ -69,6 +81,7 @@
 
     input[type=color]
         display: block
+        margin-top: 0.8em
 
     .button
         border: 0
@@ -108,7 +121,6 @@
         &:hover
             background-color: #bdc3c700
 
-
 .button--icon
     background-color: #ecf0f1
     border: none
@@ -132,5 +144,3 @@
 
         &:hover
             background-color: darken(#3498db, 20%) !important
-
-
