@@ -10,7 +10,7 @@ const ToggleSection: FC<Props> = ({ name, children }) => {
 
   return (
     <>
-      <p>
+      <p  className="cell-1">
         <a onClick={toggleOpen}>
           {isOpen ? "Close" : "Open"} {name}
         </a>

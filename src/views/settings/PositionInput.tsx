@@ -48,7 +48,7 @@ type Props = {
 };
 
 const PositionInput: React.FC<Props> = ({ value, onChange }) => (
-  <div className="PositionInput cell-2">
+  <div className="PositionInput cell-7">
     <label>Position</label>
 
     <div className="grid">

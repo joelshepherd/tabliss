@@ -73,8 +73,9 @@ const Settings: React.FC = () => {
 
       <div className={`plane ${!maxsettings ? "" : "maximized"}`}>
         <Logo />
-        <div className="maximize-button-container">
-          <a className="maximize-button" onClick={maximizeSettings}>{maxsettings ? <Icon name="chevrons-left" /> : <Icon name="chevrons-right" />  }</a>
+        <div className="plane-management-buttons">
+          <a className="button--icon" onClick={toggleSettings}><Icon name="x"/></a>
+          <a className="button--icon" onClick={maximizeSettings}>{maxsettings ? <Icon name="chevrons-left" /> : <Icon name="chevrons-right" />  }</a>
         </div>
         <Background />
 

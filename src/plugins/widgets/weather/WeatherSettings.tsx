@@ -4,7 +4,7 @@ import { Props, defaultData } from "./types";
 import LocationInput from "./LocationInput";
 
 const WeatherSettings: FC<Props> = ({ data = defaultData, setData }) => (
-  <div className="WeatherSettings grid-container">
+  <div className="WeatherSettings grid-container labels-no-margin">
     <LocationInput
       latitude={data.latitude}
       longitude={data.longitude}

@@ -1,15 +1,11 @@
 .Settings
-    .maximize-button-container
+    .plane-management-buttons
         position: sticky
         top: 1rem
         display: block
         text-align: right
-        .maximize-button
-            background: #ecf0f1
-            padding: .3rem .4rem
-            border-radius: 3px
-            height: 1.2em
-            width: auto
+        .button--icon
+            margin: -0.25em 0 0 0.5em;
     h1
         margin: 2rem 0
 
@@ -33,9 +29,9 @@
         padding: 0 1rem
         position: absolute
         width: 330px
-        transition: transform 0.15s ease-out
-        transition: width .3s
+        transition: all .3s ease
         &.maximized
+            max-width: 100%
             width: 100%
     label
         display: block
@@ -81,7 +77,7 @@
 
     input[type=color]
         display: block
-        margin-top: 0.8em
+        margin-top: 0.5em
 
     .button
         border: 0

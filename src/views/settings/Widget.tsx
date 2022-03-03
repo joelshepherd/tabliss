@@ -76,31 +76,29 @@ const Widget: React.FC<Props> = ({
           <ToggleSection name="Font Settings">
             <>
               <div className="grid-container">
-                <div className="cell-2 grid-container">
-                  <div className="cell-1-1">
-                    <label>
-                      Font
-                      <input
-                        type="text"
-                        value={plugin.display.fontFamily}
-                        onChange={(event) =>
-                          setDisplay({ fontFamily: event.target.value })
-                        }
-                      />
-                    </label>
-                    <label>
-                      Colour
-                      <input
-                        type="color"
-                        value={plugin.display.colour}
-                        onChange={(event) =>
-                          setDisplay({ colour: event.target.value })
-                        }
-                      />
-                    </label>
-                  </div>
+                <div className="cell cell-2 grid-container">
+                  <label className="cell cell-1-1">
+                    Font
+                    <input
+                      type="text"
+                      value={plugin.display.fontFamily}
+                      onChange={(event) =>
+                        setDisplay({ fontFamily: event.target.value })
+                      }
+                    />
+                  </label>
+                  <label>
+                    Colour
+                    <input
+                      type="color"
+                      value={plugin.display.colour}
+                      onChange={(event) =>
+                        setDisplay({ colour: event.target.value })
+                      }
+                    />
+                  </label>
                 </div>
-                <div className="cell-2">
+                <div className="cell cell-2">
                   <label>
                     Weight
                     <select

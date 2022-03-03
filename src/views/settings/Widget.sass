@@ -18,58 +18,44 @@
 
     .settings
         margin: 1.5rem 0
-            
-    p:last-child 
+
+    p:last-child
         margin-bottom: 0
 
     .button--icon
         background-color: white
 
-    &.maximized .grid-container
+    &.maximized
+        .labels-no-margin label
+            margin: 0
+        .grid-container
             display: flex
             flex-wrap: wrap
             padding: 0 2px
             margin: 0 16px 16px 16px
-            .cell-3
+            justify-content: center
+
+            .cell-1,.cell-2,.cell-3,.cell-4,.cell-5,.cell-6,.cell-7
                 padding: 10px
-                width: 30%
                 word-wrap: break-word
                 box-sizing: border-box
-                // border: 1px solid #ccc
+                &.cell-bg
+                    background-color: hsl(0, 0%, 90.2%)
+                    border: 1px solid hsl(0, 0.9%, 78.2%)
+            .cell-7
+                width: 12.2%
+                margin: 0
+            .cell-4
+                width: 23%
+                margin: .3%
+            .cell-3
+                width: 30%
                 margin: 1%
             .cell-2
-                padding: 10px 
                 width: 45%
-                word-wrap: break-word
-                box-sizing: border-box
-                // border: 1px solid #ccc
                 margin: 1%
             .cell-1
-                padding: 10px
                 width: 98%
-                word-wrap: break-word
-                box-sizing: border-box
-                // border: 1px solid #ccc
-                margin: 1% 
-            .cell-4
-                padding: 10px
-                width: 23%
-                word-wrap: break-word
-                box-sizing: border-box
-                // border: 1px solid #ccc
-                margin: 1% 
-            .cell-7
-                padding: 10px
-                width: 12.2%
-                word-wrap: break-word
-                box-sizing: border-box
-                // border: 1px solid #ccc
-                margin: 1% 
+                margin: 1%
             .cell-1-1
-                padding: 10px
                 width: 80%
-                word-wrap: break-word
-                box-sizing: border-box
-                // border: 1px solid #ccc
-                margin: 1% 
-            

@@ -20,7 +20,7 @@ type Props = Link & {
 const iconList = Object.keys(icons);
 
 const Input: FC<Props> = (props) => (
-  <div className="LinkInput cell-3">
+  <div className="LinkInput cell-3  cell-bg">
     <h5>
       <div className="title--buttons">
         <IconButton onClick={props.onRemove} title="Remove link">

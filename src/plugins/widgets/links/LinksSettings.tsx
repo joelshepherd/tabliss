@@ -12,37 +12,39 @@ const LinksSettings: FC<Props> = ({ data = defaultData, setData }) => {
 
   return (
     <div className="LinksSettings grid-container">
-      <label className="cell-2">
-        Number of columns
-        <input
-          type="number"
-          value={data.columns}
-          onChange={(event) =>
-            setData({ ...data, columns: Number(event.target.value) })
-          }
-          min={1}
-        />
-      </label>
-      <div className="cell-2">
-        <label>
+      <div className="grid-container cell-1 cell-bg">
+        <label className="cell-3 ">
+          Number of columns
           <input
-            type="checkbox"
-            checked={data.visible}
-            onChange={() => setData({ ...data, visible: !data.visible })}
-          />
-          Links are always visible
-        </label>
-
-        <label>
-          <input
-            type="checkbox"
-            checked={data.linkOpenStyle}
-            onChange={() =>
-              setData({ ...data, linkOpenStyle: !data.linkOpenStyle })
+            type="number"
+            value={data.columns}
+            onChange={(event) =>
+              setData({ ...data, columns: Number(event.target.value) })
             }
+            min={1}
           />
-          Links open in a new tab
         </label>
+        <div className="cell-4">
+          <label>
+            <input
+              type="checkbox"
+              checked={data.visible}
+              onChange={() => setData({ ...data, visible: !data.visible })}
+            />
+            Links are always visible
+          </label>
+
+          <label>
+            <input
+              type="checkbox"
+              checked={data.linkOpenStyle}
+              onChange={() =>
+                setData({ ...data, linkOpenStyle: !data.linkOpenStyle })
+              }
+            />
+            Links open in a new tab
+          </label>
+        </div>
       </div>
       <hr />
 
