@@ -12,7 +12,8 @@ import Widgets from "./Widgets";
 
 const Settings: React.FC = () => {
   const { toggleSettings } = React.useContext(UiContext);
-
+  const { maximizeSettings } = React.useContext(UiContext);
+  const { maxsettings } = React.useContext(UiContext);
   const handleReset = () => {
     if (
       confirm(
@@ -70,9 +71,12 @@ const Settings: React.FC = () => {
     <div className="Settings">
       <a onClick={toggleSettings} className="fullscreen" />
 
-      <div className="plane">
+      <div className={`plane ${!maxsettings ? "" : "maximized"}`}>
         <Logo />
-
+        <div className="plane-management-buttons">
+          <a className="button--icon" onClick={toggleSettings}><Icon name="x"/></a>
+          <a className="button--icon" onClick={maximizeSettings}>{maxsettings ? <Icon name="chevrons-left" /> : <Icon name="chevrons-right" />  }</a>
+        </div>
         <Background />
 
         <Widgets />
@@ -82,7 +86,7 @@ const Settings: React.FC = () => {
         <p>
           <a onClick={handleImport}>Import</a>,{" "}
           <a onClick={handleExport}>export</a> or{" "}
-          <a onClick={handleReset}>reset</a> settings
+          <a onClick={handleReset}>reset</a>
         </p>
 
         <h3>Support Tabliss</h3>

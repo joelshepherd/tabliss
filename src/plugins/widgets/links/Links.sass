@@ -1,15 +1,23 @@
 .Links
     column-gap: 1em
     display: inline-grid
-
+    width: 100%
     a
         display: block
-        margin: 0.25em
         white-space: nowrap
-
+        .itemCont
+            text-align: center
+            border-radius: 3px
+            background-color:#38383880
+            padding: 0.25em
+            margin-top: .5rem
+            transition: background-color .2s
+            overflow: hidden
+            i
+                display: block
         &:hover
             text-decoration: none
-
-        &:hover
-            .LinkText
-                text-decoration: underline
+            .itemCont
+                background-color: #474747b3
+            
+                

@@ -11,39 +11,41 @@ const LinksSettings: FC<Props> = ({ data = defaultData, setData }) => {
   const dispatch = useSavedReducer(reducer, data.links, saveLinks);
 
   return (
-    <div className="LinksSettings">
-      <label>
-        Number of columns
-        <input
-          type="number"
-          value={data.columns}
-          onChange={(event) =>
-            setData({ ...data, columns: Number(event.target.value) })
-          }
-          min={1}
-        />
-      </label>
+    <div className="LinksSettings grid-container">
+      <div className="grid-container cell-1 cell-bg">
+        <label className="cell-3 ">
+          Number of columns
+          <input
+            type="number"
+            value={data.columns}
+            onChange={(event) =>
+              setData({ ...data, columns: Number(event.target.value) })
+            }
+            min={1}
+          />
+        </label>
+        <div className="cell-4">
+          <label>
+            <input
+              type="checkbox"
+              checked={data.visible}
+              onChange={() => setData({ ...data, visible: !data.visible })}
+            />
+            Links are always visible
+          </label>
 
-      <label>
-        <input
-          type="checkbox"
-          checked={data.visible}
-          onChange={() => setData({ ...data, visible: !data.visible })}
-        />
-        Links are always visible
-      </label>
-
-      <label>
-        <input
-          type="checkbox"
-          checked={data.linkOpenStyle}
-          onChange={() =>
-            setData({ ...data, linkOpenStyle: !data.linkOpenStyle })
-          }
-        />
-        Links open in a new tab
-      </label>
-
+          <label>
+            <input
+              type="checkbox"
+              checked={data.linkOpenStyle}
+              onChange={() =>
+                setData({ ...data, linkOpenStyle: !data.linkOpenStyle })
+              }
+            />
+            Links open in a new tab
+          </label>
+        </div>
+      </div>
       <hr />
 
       {data.links.map((link, index) => (
@@ -68,7 +70,7 @@ const LinksSettings: FC<Props> = ({ data = defaultData, setData }) => {
         />
       ))}
 
-      <p style={{ marginTop: "0.5rem" }}>
+      <p className="cell-1" style={{ marginTop: "0.5rem" }}>
         <button
           className="button button--primary"
           onClick={() => dispatch(addLink())}
