@@ -10,8 +10,10 @@ const UnsplashSettings: React.FC<Props> = ({ data = defaultData, setData }) => {
   }, []);
 
   return (
-    <div className="UnsplashSettings">
-      <label>
+
+    <div className="UnsplashSettings grid-container">
+      <label  className="cell-1">
+
         Show a new photo
         <select
           value={data.timeout}
@@ -28,7 +30,8 @@ const UnsplashSettings: React.FC<Props> = ({ data = defaultData, setData }) => {
         </select>
       </label>
 
-      <label>
+      <label className="cell-4">
+
         <input
           type="radio"
           checked={data.by === "official"}
@@ -37,7 +40,9 @@ const UnsplashSettings: React.FC<Props> = ({ data = defaultData, setData }) => {
         Official Collection
       </label>
 
-      <label>
+
+      <label className="cell-4">
+
         <input
           type="radio"
           checked={data.by === "topics"}
@@ -68,7 +73,9 @@ const UnsplashSettings: React.FC<Props> = ({ data = defaultData, setData }) => {
         </label>
       )}
 
-      <label>
+
+      <label className="cell-4">
+
         <input
           type="radio"
           checked={data.by === "search"}
@@ -90,6 +97,7 @@ const UnsplashSettings: React.FC<Props> = ({ data = defaultData, setData }) => {
             />
           </label>
 
+
           <label>
             <input
               type="checkbox"
@@ -103,7 +111,8 @@ const UnsplashSettings: React.FC<Props> = ({ data = defaultData, setData }) => {
         </div>
       )}
 
-      <label>
+      <label className="cell-4">
+
         <input
           type="radio"
           checked={data.by === "collections"}
@@ -128,4 +137,6 @@ const UnsplashSettings: React.FC<Props> = ({ data = defaultData, setData }) => {
   );
 };
 
+
 export default UnsplashSettings;
+

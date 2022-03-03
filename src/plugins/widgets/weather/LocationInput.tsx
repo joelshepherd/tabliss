@@ -116,7 +116,7 @@ const LocationInput: React.FC<Props> = ({ onChange, ...props }) => {
   };
 
   return (
-    <div className="LocationInput">
+    <div className="LocationInput cell-2">
       {lookUp ? (
         <GeocodeInput {...props} onChange={handleChange} />
       ) : (

@@ -4,18 +4,20 @@ import { Props, defaultData } from "./types";
 import { DebounceInput } from "../../shared";
 
 const GiphySettings: FC<Props> = ({ data = defaultData, setData }) => (
-  <div className="GiphySettings">
-    <label>
-      Tag
-      <DebounceInput
-        type="text"
-        value={data.tag}
-        onChange={(value) => setData({ ...data, tag: value })}
-        wait={500}
-      />
-    </label>
-    <p className="info">Separate multiple tags with a comma</p>
-
+  <div className="GiphySettings grid-container">
+    <div className="cell-2">
+      <label>
+        Tag
+        <DebounceInput
+          type="text"
+          value={data.tag}
+          onChange={(value) => setData({ ...data, tag: value })}
+          wait={500}
+        />
+      </label>
+      <p className="info">Separate multiple tags with a comma</p>
+    </div>
+    <div className="cell-2">
     <label>
       <input
         type="checkbox"
@@ -33,6 +35,7 @@ const GiphySettings: FC<Props> = ({ data = defaultData, setData }) => (
       />{" "}
       Stretch to fill screen
     </label>
+    </div>
   </div>
 );
 

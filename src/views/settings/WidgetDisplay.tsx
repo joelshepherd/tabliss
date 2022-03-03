@@ -10,13 +10,13 @@ type Props = {
 
 const WidgetDisplay: React.FC<Props> = ({ display, onChange }) => {
   return (
-    <div className="WidgetDisplay">
+    <div className="WidgetDisplay grid-container">
       <PositionInput
         value={display.position}
         onChange={(position) => onChange({ position })}
       />
 
-      <label>
+      <label className="cell cell-7">
         Size
         <br />
         <input

@@ -46,12 +46,14 @@ const Display: FC<Props> = ({ icon, name, number, url, linkOpenStyle }) => {
       target={linkOpenStyle ? "_blank" : "_self"}
       title={title}
     >
+      <div className="itemCont">
       {icon && <Icon name={icon} />}
       {icon && name && " "}
       <span className="LinkText">
         {name}
         {!name && !icon && displayUrl(url)}
       </span>
+      </div>
     </a>
   );
 };

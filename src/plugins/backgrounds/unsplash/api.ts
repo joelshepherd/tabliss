@@ -15,6 +15,7 @@ export async function getImage(
   // Fetch random image
   loader.push();
   const res = await fetchImageMeta(config);
+  console.log(res)
   const data = await fetchImageData(res.urls.raw);
   loader.pop();
 
@@ -39,7 +40,7 @@ async function fetchImageMeta({
   const headers = new Headers({
     Authorization: `Client-ID ${UNSPLASH_API_KEY}`,
   });
-
+  console.log(UNSPLASH_API_KEY)
   switch (by) {
     case "collections":
       params.set("collections", collections);

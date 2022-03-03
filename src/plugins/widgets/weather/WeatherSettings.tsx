@@ -4,14 +4,14 @@ import { Props, defaultData } from "./types";
 import LocationInput from "./LocationInput";
 
 const WeatherSettings: FC<Props> = ({ data = defaultData, setData }) => (
-  <div className="WeatherSettings">
+  <div className="WeatherSettings grid-container labels-no-margin">
     <LocationInput
       latitude={data.latitude}
       longitude={data.longitude}
       onChange={(location) => setData({ ...data, ...location })}
     />
 
-    <label>
+    <label className="cell-2">
       Name
       <input
         type="text"
@@ -23,7 +23,7 @@ const WeatherSettings: FC<Props> = ({ data = defaultData, setData }) => (
 
     <hr />
 
-    <label>
+    <label  className="cell-3">
       <input
         type="checkbox"
         checked={data.showDetails}
@@ -32,7 +32,7 @@ const WeatherSettings: FC<Props> = ({ data = defaultData, setData }) => (
       Show extended details
     </label>
 
-    <label>
+    <label  className="cell-3">
       <input
         type="radio"
         checked={data.units === "si"}
@@ -41,7 +41,7 @@ const WeatherSettings: FC<Props> = ({ data = defaultData, setData }) => (
       Metric units
     </label>
 
-    <label>
+    <label   className="cell-3">
       <input
         type="radio"
         checked={data.units === "us"}
