@@ -9,6 +9,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
 - Added IP Info widget - thanks @bkis
 - Current weather conditions are back thanks to Open-Meteo
+- Unsplash now supports selecting a topic for background - thanks @betatim
 - Tabliss is now selectable as your homepage in Firefox
 - Added MetaGer search engine - thanks @teknowledgist
 - Added bible verses as an option for quotes - thanks @Staubgeborener

@@ -60,9 +60,9 @@ export type WidgetPosition =
 const initData: State = {
   background: {
     id: "default-unsplash",
-    key: "background/colour",
+    key: "background/unsplash",
     display: {
-      luminosity: 0,
+      luminosity: -0.2,
       blur: 0,
     },
   },

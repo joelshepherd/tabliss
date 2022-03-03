@@ -1,10 +1,10 @@
-# Tabliss
+<h1 align="center">Tabliss</h1>
 
-A beautiful, customisable New Tab page for Firefox and Chrome. Written in React and TypeScript.
+<p align="center">A beautiful, customisable New Tab page for Firefox and Chrome.</p>
 
 ![Tabliss Screenshot](screenshot.png)
 
-[https://tabliss.io](https://tabliss.io)
+<p align="center"><a href="https://tabliss.io">https://tabliss.io</a></p>
 
 ## Usage
 
