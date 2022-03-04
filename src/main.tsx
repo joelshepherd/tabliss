@@ -1,5 +1,5 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import { createRoot } from "react-dom/client";
 import { migrate } from "./db/migrate";
 import { register as registerErrorHandler } from "./errorHandler";
 import { register as registerServiceWorker } from "./serviceWorker";
@@ -18,7 +18,7 @@ if (!DEV) {
 migrate();
 
 // Render app into root element
-ReactDOM.createRoot(document.getElementById("root")!).render(<Root />);
+createRoot(document.getElementById("root")!).render(<Root />);
 
 // Register service worker on web
 if (!DEV && BUILD_TARGET === "web") {
