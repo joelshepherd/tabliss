@@ -31,12 +31,14 @@ const Search: FC<Props> = ({ data = defaultData }) => {
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     previousValue.current = event.target.value;
 
-    const suggestUrl = getSuggestUrl(data.suggestionsEngine);
-    if (suggestUrl) {
-      getSuggestions(event.target.value, suggestUrl).then((suggestions) => {
-        setSuggestions(suggestions.slice(0, data.suggestionsQuantity));
-        setActive(undefined);
-      });
+    if (BUILD_TARGET === "web") {
+      const suggestUrl = getSuggestUrl(data.suggestionsEngine);
+      if (suggestUrl) {
+        getSuggestions(event.target.value, suggestUrl).then((suggestions) => {
+          setSuggestions(suggestions.slice(0, data.suggestionsQuantity));
+          setActive(undefined);
+        });
+      }
     }
   };
 

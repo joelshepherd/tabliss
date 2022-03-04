@@ -37,6 +37,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 - Link keyboard shortcut not respecting link opening style - thanks @cwils021
 - Time zone selection label dispaly issue - thanks @jn64
 
+## Removed
+
+- Search suggestions from all extension builds, due to browser extension policies
+
 ## [2.1.0] - 2021-01-28
 
 ## Added

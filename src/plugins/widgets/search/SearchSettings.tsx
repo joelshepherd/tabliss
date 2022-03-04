@@ -21,7 +21,7 @@ const SearchSettings: FC<Props> = ({ data = defaultData, setData }) => (
       </select>
     </label>
 
-    {BUILD_TARGET !== "firefox" && (
+    {BUILD_TARGET === "web" && (
       <label>
         Suggestions Provider
         <select

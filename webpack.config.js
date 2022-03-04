@@ -101,16 +101,11 @@ if (isProduction) {
   );
 }
 
-if (!isWeb) {
-  config.entry.background = "./src/background.ts";
-}
-
 if (!isWeb && !isProduction) {
   config.plugins.push(
     new ExtensionReloader({
       reloadPage: true,
       entries: {
-        background: "background",
         extensionPage: "main",
       },
     }),
