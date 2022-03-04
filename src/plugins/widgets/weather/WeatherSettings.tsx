@@ -17,7 +17,9 @@ const WeatherSettings: FC<Props> = ({ data = defaultData, setData }) => (
         type="text"
         value={data.name || ""}
         placeholder="Optional name"
-        onChange={(event) => setData({ ...data, name: event.target.value || undefined })}
+        onChange={(event) =>
+          setData({ ...data, name: event.target.value || undefined })
+        }
       />
     </label>
 

@@ -3,7 +3,7 @@ import React, { FC } from "react";
 import { useCachedEffect } from "../../../hooks";
 import { getQuote } from "./api";
 import { Props, defaultData } from "./types";
-import { HOURS } from "../../../utils"
+import { HOURS } from "../../../utils";
 
 import "./Quote.sass";
 

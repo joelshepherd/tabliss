@@ -4,7 +4,7 @@ import { useCachedEffect } from "../../../hooks";
 
 import { Props, defaultData } from "./types";
 import { getIpInfo } from "./api";
-import { MINUTES } from "../../../utils"
+import { MINUTES } from "../../../utils";
 
 const IpInfo: FC<Props> = ({ cache, data = defaultData, setCache, loader }) => {
   const refreshInterval = data.refreshInterval * MINUTES;

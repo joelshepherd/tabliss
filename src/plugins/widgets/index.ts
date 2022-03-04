@@ -26,7 +26,7 @@ export const widgetConfigs = [
   time,
   todo,
   weather,
-  workHours
+  workHours,
 ];
 
 if (BUILD_TARGET === "web") {
