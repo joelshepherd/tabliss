@@ -8,7 +8,7 @@ import { Coordinates } from "./types";
 type Props = {
   latitude?: number;
   longitude?: number;
-  onChange: (coords: Coordinates) => void;
+  onChange: (location: Coordinates & { name?: string }) => void;
 };
 
 const GeocodeInput: React.FC<Props> = ({ onChange }) => {
@@ -17,7 +17,7 @@ const GeocodeInput: React.FC<Props> = ({ onChange }) => {
   const handleGeocode = (event: React.FormEvent) => {
     event.preventDefault();
     geocodeLocation(query)
-      .then(onChange)
+      .then((coords) => onChange({ ...coords, name: query }))
       .catch(() => {
         alert("Unable to find location. Please try again.");
       });
