@@ -12,7 +12,7 @@ const Giphy: FC<Props> = ({ cache, data = defaultData, setCache, loader }) => {
 
   useEffect(() => {
     const config = { tag: data.tag, nsfw: data.nsfw };
-    if (url) getGif(config, loader).then(setGif);
+    if (!gif) getGif(config, loader).then(setGif);
     getGif(config, loader).then(setCache);
   }, [data.tag, data.nsfw]);
 
