@@ -82,7 +82,7 @@ async function getBibleVerse() {
 
 export async function getQuote(
   loader: API["loader"],
-  category?: string,
+  category: string,
 ): Promise<Quote> {
   loader.push();
 

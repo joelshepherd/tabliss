@@ -12,7 +12,7 @@ const EXPIRE_IN = 1 * HOURS;
 const Quote: FC<Props> = ({ cache, data = defaultData, setCache, loader }) => {
   useCachedEffect(
     () => {
-      getQuote(loader, data.category).then(setCache);
+      getQuote(loader, data.category ?? "inspire").then(setCache);
     },
     cache ? cache.timestamp + EXPIRE_IN : 0,
     [data.category],

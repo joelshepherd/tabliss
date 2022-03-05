@@ -119,7 +119,7 @@ const batch = (
   timeout = 0,
 ): DB.Listener => {
   const changes = new Map();
-  let timer: any = null; // TODO: remove @types/node then set to number
+  let timer: number | null = null;
 
   const run = () => {
     flush(changes);
