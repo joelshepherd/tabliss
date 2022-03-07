@@ -119,7 +119,7 @@ const snapshot = <T>(
   return {
     cache,
     parent,
-    [Symbol.iterator]: cache[Symbol.iterator],
+    [Symbol.iterator]: cache[Symbol.iterator].bind(cache),
   };
 };
 

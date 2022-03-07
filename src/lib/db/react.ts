@@ -28,7 +28,12 @@ export const useSelector = <T>(db: DB.Database, selector: () => T): T => {
   //   selector,
   // );
   const [state, setState] = React.useState(selector);
-  React.useEffect(() => DB.listen(db, () => setState(selector())), [selector]);
+  React.useEffect(() => {
+    setState(selector());
+    return DB.listen(db, () => {
+      setState(selector());
+    });
+  }, [db, selector, setState]);
   return state;
 };
 

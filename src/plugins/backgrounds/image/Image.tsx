@@ -5,15 +5,13 @@ import "./Image.sass";
 import { defaultCache, Props } from "./types";
 
 const Image: React.FC<Props> = ({ cache = defaultCache }) => {
-  if (!cache.length) {
-    return <div className="Image default fullscreen" />;
-  }
-
   const index = React.useMemo(
     () => Math.floor(Math.random() * cache.length),
     [cache.length],
   );
   const url = useObjectUrl(cache[index]);
+
+  if (!url) return <div className="Image default fullscreen" />;
 
   return (
     <Backdrop
