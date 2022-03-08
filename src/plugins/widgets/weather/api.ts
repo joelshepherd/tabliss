@@ -22,7 +22,7 @@ export async function getForecast(
     "hourly=relativehumidity_2m&" +
     "hourly=weathercode&" +
     "timeformat=unixtime&" +
-    `temperature_unit${units === "us" ? "fahrenheit" : "celsius"}`;
+    `temperature_unit=${units === "us" ? "fahrenheit" : "celsius"}`;
   const res = await fetch(url);
   const body = await res.json();
   loader.pop();

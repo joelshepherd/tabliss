@@ -82,42 +82,43 @@ const Settings: React.FC = () => {
         <p>
           <a onClick={handleImport}>Import</a>,{" "}
           <a onClick={handleExport}>export</a> or{" "}
-          <a onClick={handleReset}>reset</a> settings
+          <a onClick={handleReset}>reset</a> your settings
         </p>
 
-        <h3>Support Tabliss</h3>
-        <p>
-          <a
-            href="https://www.paypal.com/donate/?hosted_button_id=FK7VRWS9A2EW4"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="button button--primary"
-          >
-            <Icon name="coffee" /> Donate a coffee 😍
-          </a>
-          <a
-            style={{ marginTop: "0.5em" }}
-            href="https://github.com/joelshepherd/tabliss"
-            rel="noopener noreferrer"
-            target="_blank"
-            className="button button--primary"
-          >
-            <Icon name="github" /> Star on GitHub
-          </a>
-        </p>
-        <p>
-          <a href="https://tabliss.io/" target="_blank">
-            <Icon name="globe" /> Website
-          </a>
-          &nbsp;&nbsp;
-          <a
-            href="https://twitter.com/tabliss"
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            <Icon name="twitter" /> Twitter
-          </a>
-        </p>
+        <div style={{ textAlign: "center", marginTop: "2rem" }} className="Widget">
+          <h4>Support Tabliss</h4>
+          <p>
+            <a
+              href="https://www.paypal.com/donate/?hosted_button_id=FK7VRWS9A2EW4"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="button button--primary"
+            >
+              <Icon name="coffee" /> Donate a coffee 😍
+            </a>
+          </p>
+          <p>
+            <a href="https://tabliss.io/" target="_blank">
+              <Icon name="globe" /> Website
+            </a>
+            &nbsp;&nbsp;
+            <a
+              href="https://twitter.com/tabliss"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              <Icon name="twitter" /> Twitter
+            </a>
+            &nbsp;&nbsp;
+            <a
+              href="https://github.com/joelshepherd/tabliss"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              <Icon name="github" /> GitHub
+            </a>
+          </p>
+        </div>
 
         <FormattedMessage
           id="settings.translationCredits"

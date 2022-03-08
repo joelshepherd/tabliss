@@ -44,13 +44,15 @@ const Weather: React.FC<Props> = ({
       >
         {data.name ? <span>{data.name}</span> : null}
         <Icon name={weatherCodes[conditions.weatherCode]} />
-        <span className="temperature">{conditions.temperature}˚</span>
+        <span className="temperature">
+          {Math.round(conditions.temperature)}˚
+        </span>
       </div>
 
       {data.showDetails ? (
         <div className="details">
           <dl>
-            <dt>{conditions.apparentTemperature}˚</dt>
+            <dt>{Math.round(conditions.apparentTemperature)}˚</dt>
             <dd>{translated.apparent}</dd>
           </dl>
           <dl>
