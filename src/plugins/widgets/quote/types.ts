@@ -14,4 +14,6 @@ type Cache = Quote;
 
 export type Props = API<Data, Cache>;
 
-export const defaultData: Data = {};
+export const defaultData: Data = {
+  category: "inspire",
+};

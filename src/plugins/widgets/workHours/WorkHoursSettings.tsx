@@ -15,7 +15,7 @@ const daysList = [
 const WorkHoursSettings: FC<Props> = ({ data = defaultData, setData }) => (
   <div className="WorkHoursSettings">
     <label>
-      Start Time
+      Start time
       <input
         type="time"
         value={data.startTime}
@@ -25,14 +25,13 @@ const WorkHoursSettings: FC<Props> = ({ data = defaultData, setData }) => (
       />
     </label>
     <label>
-      End Time
+      End time
       <input
         type="time"
         value={data.endTime}
         onChange={(event) => setData({ ...data, endTime: event.target.value })}
       />
     </label>
-    <label>Work days:</label>
     {daysList.map((day, index) => (
       <div key={day}>
         <label>

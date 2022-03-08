@@ -47,8 +47,8 @@ export function requestLocation(): Promise<Coordinates> {
     navigator.geolocation.getCurrentPosition(
       ({ coords }) =>
         resolve({
-          latitude: coords.latitude,
-          longitude: coords.longitude,
+          latitude: round(coords.latitude),
+          longitude: round(coords.longitude),
         }),
       reject,
     ),

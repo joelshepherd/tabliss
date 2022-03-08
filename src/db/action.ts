@@ -27,7 +27,7 @@ export const setBackground = (key: string): void => {
 export const addWidget = (key: string): void => {
   const id = createId();
   const widgets = selectWidgets();
-  const order = widgets[widgets.length - 1].order + 1;
+  const order = widgets.length > 0 ? widgets[widgets.length - 1].order + 1 : 0;
   DB.put(db, `widget/${id}`, {
     id,
     key,

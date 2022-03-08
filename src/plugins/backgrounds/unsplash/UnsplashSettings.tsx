@@ -55,6 +55,9 @@ const UnsplashSettings: React.FC<Props> = ({ data = defaultData, setData }) => {
               setData({ ...data, topics: event.target.value })
             }
           >
+            <option disabled value="">
+              Select a topic
+            </option>
             {topics === null ? (
               <option disabled>Loading...</option>
             ) : (

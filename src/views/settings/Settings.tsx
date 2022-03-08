@@ -85,7 +85,10 @@ const Settings: React.FC = () => {
           <a onClick={handleReset}>reset</a> your settings
         </p>
 
-        <div style={{ textAlign: "center", marginTop: "2rem" }} className="Widget">
+        <div
+          style={{ textAlign: "center", marginTop: "2rem" }}
+          className="Widget"
+        >
           <h4>Support Tabliss</h4>
           <p>
             <a
@@ -93,6 +96,7 @@ const Settings: React.FC = () => {
               target="_blank"
               rel="noopener noreferrer"
               className="button button--primary"
+              title="I do love coffee"
             >
               <Icon name="coffee" /> Donate a coffee 😍
             </a>

@@ -88,16 +88,20 @@ const Widget: React.FC<Props> = ({
                 <select
                   value={plugin.display.fontWeight}
                   onChange={(event) =>
-                    setDisplay({ fontWeight: Number(event.target.value) })
+                    setDisplay({
+                      fontWeight: event.target.value
+                        ? Number(event.target.value)
+                        : undefined,
+                    })
                   }
                 >
-                  <option value={undefined}>Default</option>
-                  <option value={100}>Thin</option>
-                  <option value={300}>Light</option>
-                  <option value={400}>Regular</option>
-                  <option value={500}>Medium</option>
-                  <option value={700}>Bold</option>
-                  <option value={900}>Black</option>
+                  <option value="">Default</option>
+                  <option value="100">Thin</option>
+                  <option value="300">Light</option>
+                  <option value="400">Regular</option>
+                  <option value="500">Medium</option>
+                  <option value="700">Bold</option>
+                  <option value="900">Black</option>
                 </select>
               </label>
 
@@ -105,7 +109,7 @@ const Widget: React.FC<Props> = ({
                 Colour
                 <input
                   type="color"
-                  value={plugin.display.colour}
+                  value={plugin.display.colour ?? "#ffffff"}
                   onChange={(event) =>
                     setDisplay({ colour: event.target.value })
                   }

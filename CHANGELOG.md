@@ -36,6 +36,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 - Long quotes no longer break the UI - thanks @CoderOO7
 - Link keyboard shortcut not respecting link opening style - thanks @cwils021
 - Time zone selection label dispaly issue - thanks @jn64
+- Any many more minor bug fixes and tweaks
 
 ## Removed
 

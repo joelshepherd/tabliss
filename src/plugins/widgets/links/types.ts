@@ -18,6 +18,6 @@ export type Props = API<Data>;
 export const defaultData = {
   columns: 1,
   links: [{ url: "https://tabliss.io" }],
-  visible: false,
+  visible: true,
   linkOpenStyle: false,
 };

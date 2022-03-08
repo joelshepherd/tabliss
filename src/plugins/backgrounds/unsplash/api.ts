@@ -47,6 +47,7 @@ async function fetchImageMeta({
 
     case "topics":
       params.set("topics", topics);
+      params.set("orientation", "landscape");
       break;
 
     case "search":
@@ -67,12 +68,11 @@ async function fetchImageData(url: string) {
   const quality = 85; // range [0-100]
   const width = calculateWidth(window.innerWidth);
 
-  const params = new URLSearchParams({
-    q: String(quality),
-    w: String(width),
-  });
+  const parsed = new URL(url);
+  parsed.searchParams.set("q", String(quality));
+  parsed.searchParams.set("w", String(width));
 
-  return await (await fetch(url + params)).blob();
+  return await (await fetch(parsed.toString())).blob();
 }
 
 export interface Topic {

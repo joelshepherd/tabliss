@@ -3,7 +3,7 @@ import React, { FC } from "react";
 import categories from "./categories";
 import { Props, defaultData } from "./types";
 
-const QuoteSettings: FC<Props> = ({ data = defaultData, setData }) => (
+const QuoteSettings: React.FC<Props> = ({ data = defaultData, setData }) => (
   <div className="QuoteSettings">
     <h5>Daily Quotes</h5>
     {categories.map((category) => (

@@ -1,15 +1,18 @@
-import React, { FC } from "react";
-
+import React from "react";
 import { useCachedEffect } from "../../../hooks";
-import { getQuote } from "./api";
-import { Props, defaultData } from "./types";
 import { HOURS } from "../../../utils";
-
+import { getQuote } from "./api";
 import "./Quote.sass";
+import { defaultData, Props } from "./types";
 
 const EXPIRE_IN = 1 * HOURS;
 
-const Quote: FC<Props> = ({ cache, data = defaultData, setCache, loader }) => {
+const Quote: React.FC<Props> = ({
+  cache,
+  data = defaultData,
+  setCache,
+  loader,
+}) => {
   useCachedEffect(
     () => {
       getQuote(loader, data.category ?? "inspire").then(setCache);
