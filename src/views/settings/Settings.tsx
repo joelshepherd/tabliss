@@ -52,8 +52,12 @@ const Settings: React.FC = () => {
             try {
               const state = JSON.parse(event.target.result as string);
               importStore(state);
-            } catch {
-              alert("Invalid import file");
+            } catch (error) {
+              alert(
+                `Invalid import file: ${
+                  error instanceof Error ? error.message : "Uknown error"
+                }`,
+              );
             }
           }
         });

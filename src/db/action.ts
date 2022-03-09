@@ -75,17 +75,26 @@ export const toggleFocus = () => {
 // Store actions
 
 /** Import database from a dump */
-export const importStore = (dump: unknown): void => {
+export const importStore = (dump: any): void => {
   // TODO: Add proper schema validation
-  if (typeof dump !== "object" || dump === null) throw new TypeError();
+  if (typeof dump !== "object" || dump === null)
+    throw new TypeError("Unexpected format");
 
   resetStore();
-  // Detect v2 config
   if ("backgrounds" in dump) {
+    // Version 2 config
     DB.put(db, `widget/default-time`, null);
     DB.put(db, `widget/default-greeting`, null);
-    // @ts-ignore
     dump = migrateFrom2(dump);
+  } else if (dump.version === 3) {
+    // Version 3 config
+    delete dump.version;
+  } else if (dump.version > 3) {
+    // Future version
+    throw new TypeError("Settings exported from an newer version of Tabliss");
+  } else {
+    // Unknown version
+    throw new TypeError("Unknown settings version");
   }
   // @ts-ignore
   Object.entries(dump).forEach(([key, val]) => DB.put(db, key, val));
