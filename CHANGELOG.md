@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
+## [Unreleased]
+
+## Fixed
+
+- No longer shows "24:00+" in Chrome in "en-US" locale
+
 ## [2.2.0] - 2022-03-10
 
 ## Added

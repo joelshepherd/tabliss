@@ -30,31 +30,33 @@ const IntlTime: React.FC<Props> = ({
   const locale = useValue(db, "locale");
 
   // Time formatter config
-  const formater = Intl.DateTimeFormat(locale, {
-    hour12,
-    hour: "numeric",
-    hourCycle: hour12 ? "h12" : "h23",
-    minute: showMinutes ? "numeric" : undefined,
-    second: showSeconds ? "numeric" : undefined,
-  });
-
-  let formatedTime: String;
+  const formater = React.useMemo(
+    () =>
+      Intl.DateTimeFormat(locale, {
+        hour: "numeric",
+        hourCycle: hour12 ? "h12" : "h23",
+        minute: showMinutes ? "numeric" : undefined,
+        second: showSeconds ? "numeric" : undefined,
+      }),
+    [locale, hour12, showMinutes, showSeconds],
+  );
 
   if (showDayPeriod) {
     // Return normal time if showing timePeriod
-    formatedTime = formater.format(time);
+    return <>{formater.format(time)}</>;
   } else {
     // Remove timePeriod from string
     // Returns the date broken down into parts
-    const dateParts = formater.formatToParts(time);
-
-    formatedTime = dateParts
-      .filter((part) => part.type !== "dayPeriod") // Removes day period from the array
-      .map((part) => part.value) // Converts array of objects to array of strings
-      .join("");
+    return (
+      <>
+        {formater
+          .formatToParts(time)
+          .filter((part) => part.type !== "dayPeriod") // Removes day period from the array
+          .map((part) => part.value) // Converts array of objects to array of strings
+          .join("")}
+      </>
+    );
   }
-
-  return <>{formatedTime}</>;
 };
 
 export default IntlTime;
