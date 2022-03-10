@@ -3,14 +3,14 @@
 All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
-## [Unreleased]
+## [2.2.0] - 2022-03-10
 
 ## Added
 
 - Added IP Info widget - thanks @bkis
 - Current weather conditions are back thanks to Open-Meteo
+- Tabliss can now be displayed as your homepage in Firefox
 - Unsplash now supports selecting a topic for background - thanks @betatim
-- Tabliss is now selectable as your homepage in Firefox
 - Added MetaGer search engine - thanks @teknowledgist
 - Added bible verses as an option for quotes - thanks @Staubgeborener
 - Finnish translations - thanks @Nonecaster
@@ -36,7 +36,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 - Long quotes no longer break the UI - thanks @CoderOO7
 - Link keyboard shortcut not respecting link opening style - thanks @cwils021
 - Time zone selection label dispaly issue - thanks @jn64
-- Any many more minor bug fixes and tweaks
+- And many more minor bug fixes and tweaks
 
 ## Removed
 

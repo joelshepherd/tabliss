@@ -48,6 +48,7 @@ export const indexeddb = (db: DB.Database, name: string): Promise<void> => {
         batch((changes) => {
           const trx = conn.transaction("changes", "readwrite");
           trx.oncomplete = () => {}; // nice
+          // TODO: this error will not display, because the promise has already resolved
           trx.onerror = mapError("Cannot write changes to storage");
 
           const store = trx.objectStore("changes");
