@@ -5,6 +5,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+## Added
+
+- Added GitHub Calender widget - thanks @vdimir
+- Irish translations - thanks @tsirona
+
 ## Fixed
 
 - Added missing time zones
