@@ -1,15 +1,15 @@
-import React, { FC } from "react";
+import React from "react";
+import { DebounceInput } from "../../shared";
+import { defaultData, Props } from "./types";
 
-import { Props, defaultData } from "./types";
-
-const GitHubSettings: FC<Props> = ({ data = defaultData, setData }) => (
+const GitHubSettings: React.FC<Props> = ({ data = defaultData, setData }) => (
   <div className="MessageSettings">
     <label>
       UserName
-      <input
+      <DebounceInput
         type="text"
         value={data.username}
-        onChange={(event) => setData({ ...data, username: event.target.value })}
+        onChange={(username) => setData({ ...data, username })}
       />
       <label>
         <input
