@@ -1,7 +1,7 @@
-import React, { FC } from 'react';
+import React, { FC } from "react";
 
-import { Props, defaultData } from './types';
-import { DebounceInput } from '../../shared';
+import { Props, defaultData } from "./types";
+import { DebounceInput } from "../../shared";
 
 const GiphySettings: FC<Props> = ({ data = defaultData, setData }) => (
   <div className="GiphySettings">
@@ -10,7 +10,7 @@ const GiphySettings: FC<Props> = ({ data = defaultData, setData }) => (
       <DebounceInput
         type="text"
         value={data.tag}
-        onChange={value => setData({ ...data, tag: value })}
+        onChange={(value) => setData({ ...data, tag: value })}
         wait={500}
       />
     </label>
@@ -19,19 +19,19 @@ const GiphySettings: FC<Props> = ({ data = defaultData, setData }) => (
     <label>
       <input
         type="checkbox"
-        checked={data.nsfw}
-        onChange={event => setData({ ...data, nsfw: !data.nsfw })}
-      />{' '}
-      Allow NSFW
+        checked={data.expand}
+        onChange={(event) => setData({ ...data, expand: !data.expand })}
+      />{" "}
+      Stretch to fill screen
     </label>
 
     <label>
       <input
         type="checkbox"
-        checked={data.expand}
-        onChange={event => setData({ ...data, expand: !data.expand })}
-      />{' '}
-      Stretch to fill screen
+        checked={!data.nsfw}
+        onChange={(event) => setData({ ...data, nsfw: !data.nsfw })}
+      />{" "}
+      Safe Search
     </label>
   </div>
 );

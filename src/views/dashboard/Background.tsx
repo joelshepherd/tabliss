@@ -1,15 +1,11 @@
-import React, { FC } from 'react';
+import React from "react";
+import { db } from "../../db/state";
+import { useValue } from "../../lib/db/react";
+import { getConfig } from "../../plugins";
+import Plugin from "../shared/Plugin";
 
-import { getConfig } from '../../plugins';
-import { useSelector } from '../../store';
-import Plugin from '../shared/Plugin';
-
-const Background: FC = () => {
-  const background = useSelector(state =>
-    state.data.backgrounds.find(plugin => plugin.active),
-  );
-
-  if (!background) return null;
+const Background: React.FC = () => {
+  const background = useValue(db, "background");
 
   const { dashboardComponent } = getConfig(background.key);
 

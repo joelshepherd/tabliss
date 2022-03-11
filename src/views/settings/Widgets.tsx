@@ -1,28 +1,14 @@
-import React, { FC, useCallback, ChangeEvent } from 'react';
-import { FormattedMessage } from 'react-intl';
-import { useDispatch } from 'react-redux';
+import React from "react";
+import { FormattedMessage } from "react-intl";
+import { addWidget, removeWidget, reorderWidget } from "../../db/action";
+import { selectWidgets } from "../../db/select";
+import { db } from "../../db/state";
+import { useSelector } from "../../lib/db/react";
+import { widgetConfigs } from "../../plugins";
+import Widget from "./Widget";
 
-import { widgetConfigs } from '../../plugins';
-import { useSelector } from '../../store';
-import {
-  addWidget,
-  removeWidget,
-  reorderWidget,
-} from '../../store/actions/data';
-import Widget from './Widget';
-
-const Widgets: FC = () => {
-  const active = useSelector(state => state.data.widgets);
-
-  const dispatch = useDispatch();
-  const boundReorderWidget = useCallback(
-    (id: string, to: number) => dispatch(reorderWidget(id, to)),
-    [dispatch],
-  );
-
-  const handleAddWidget = (event: ChangeEvent<HTMLSelectElement>) => {
-    dispatch(addWidget(event.target.value));
-  };
+const Widgets: React.FC = () => {
+  const widgets = useSelector(db, selectWidgets);
 
   return (
     <div>
@@ -35,11 +21,15 @@ const Widgets: FC = () => {
       </h2>
 
       <label>
-        <select value="" onChange={handleAddWidget} className="primary">
+        <select
+          value=""
+          onChange={(event) => addWidget(event.target.value)}
+          className="primary"
+        >
           <option disabled value="">
             Add a new widget
           </option>
-          {widgetConfigs.map(plugin => (
+          {widgetConfigs.map((plugin) => (
             <option key={plugin.key} value={plugin.key}>
               {plugin.name}
             </option>
@@ -47,21 +37,19 @@ const Widgets: FC = () => {
         </select>
       </label>
 
-      {active.map((plugin, index) => (
+      {widgets.map((widget, index) => (
         <Widget
-          key={plugin.id}
-          plugin={plugin}
+          key={widget.id}
+          plugin={widget}
           onMoveUp={
-            index !== 0
-              ? () => boundReorderWidget(plugin.id, index - 1)
-              : undefined
+            index > 0 ? () => reorderWidget(index, index - 1) : undefined
           }
           onMoveDown={
-            index !== active.length - 1
-              ? () => boundReorderWidget(plugin.id, index + 1)
+            index < widgets.length - 1
+              ? () => reorderWidget(index, index + 1)
               : undefined
           }
-          onRemove={() => dispatch(removeWidget(plugin.id))}
+          onRemove={() => removeWidget(widget.id)}
         />
       ))}
     </div>

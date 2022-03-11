@@ -1,10 +1,10 @@
-import React, { FC } from 'react';
+import React, { FC } from "react";
 
-import { useSavedReducer } from '../../../hooks';
-import Input from './Input';
-import { addLink, removeLink, reorderLink, updateLink } from './actions';
-import { reducer } from './reducer';
-import { Link, Props, defaultData } from './types';
+import { useSavedReducer } from "../../../hooks";
+import Input from "./Input";
+import { addLink, removeLink, reorderLink, updateLink } from "./actions";
+import { reducer } from "./reducer";
+import { Link, Props, defaultData } from "./types";
 
 const LinksSettings: FC<Props> = ({ data = defaultData, setData }) => {
   const saveLinks = (links: Link[]) => setData({ ...data, links });
@@ -17,7 +17,7 @@ const LinksSettings: FC<Props> = ({ data = defaultData, setData }) => {
         <input
           type="number"
           value={data.columns}
-          onChange={event =>
+          onChange={(event) =>
             setData({ ...data, columns: Number(event.target.value) })
           }
           min={1}
@@ -37,7 +37,9 @@ const LinksSettings: FC<Props> = ({ data = defaultData, setData }) => {
         <input
           type="checkbox"
           checked={data.linkOpenStyle}
-          onChange={() => setData({ ...data, linkOpenStyle: !data.linkOpenStyle })}
+          onChange={() =>
+            setData({ ...data, linkOpenStyle: !data.linkOpenStyle })
+          }
         />
         Links open in a new tab
       </label>
@@ -49,7 +51,7 @@ const LinksSettings: FC<Props> = ({ data = defaultData, setData }) => {
           {...link}
           key={index}
           number={index + 1}
-          onChange={values =>
+          onChange={(values) =>
             dispatch(updateLink(index, { ...link, ...values }))
           }
           onMoveUp={
@@ -66,8 +68,11 @@ const LinksSettings: FC<Props> = ({ data = defaultData, setData }) => {
         />
       ))}
 
-      <p style={{ marginTop: '0.5rem' }}>
-        <button className="button--primary" onClick={() => dispatch(addLink())}>
+      <p style={{ marginTop: "0.5rem" }}>
+        <button
+          className="button button--primary"
+          onClick={() => dispatch(addLink())}
+        >
           Add link
         </button>
       </p>

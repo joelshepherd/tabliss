@@ -1,8 +1,8 @@
-import React, { FC } from 'react';
+import React, { FC } from "react";
 
-import { State } from './reducer';
-import TodoItem from './TodoItem';
-import './TodoList.sass';
+import { State } from "./reducer";
+import TodoItem from "./TodoItem";
+import "./TodoList.sass";
 
 interface Props {
   items: State;
@@ -25,7 +25,7 @@ const TodoList: FC<Props> = ({
         key={item.id}
         item={item}
         onToggle={() => onToggle(item.id)}
-        onUpdate={contents => onUpdate(item.id, contents)}
+        onUpdate={(contents) => onUpdate(item.id, contents)}
         onDelete={() => onRemove(item.id)}
       />
     ))}

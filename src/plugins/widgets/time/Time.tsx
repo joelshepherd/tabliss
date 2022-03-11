@@ -1,12 +1,12 @@
-import React, { FC } from 'react';
-import { FormattedDate } from 'react-intl';
+import React, { FC } from "react";
+import { FormattedDate } from "react-intl";
 
-import { useTime } from '../../../hooks';
-import Analogue from './Analogue';
-import Digital from './Digital';
-import { Props, defaultData } from './types';
-import './Time.sass';
-import { utcToZonedTime } from 'date-fns-tz';
+import { useTime } from "../../../hooks";
+import Analogue from "./Analogue";
+import Digital from "./Digital";
+import { Props, defaultData } from "./types";
+import "./Time.sass";
+import { utcToZonedTime } from "date-fns-tz";
 
 const Time: FC<Props> = ({ data = defaultData }) => {
   const {
@@ -19,7 +19,7 @@ const Time: FC<Props> = ({ data = defaultData }) => {
     timeZone,
     showDayPeriod = true,
   } = data;
-  let time = useTime(timeZone ? 'absolute' : 'zoned');
+  let time = useTime(timeZone ? "absolute" : "zoned");
 
   if (timeZone) {
     time = utcToZonedTime(time, timeZone);
@@ -27,7 +27,7 @@ const Time: FC<Props> = ({ data = defaultData }) => {
 
   return (
     <div className="Time">
-      {mode === 'analogue' ? (
+      {mode === "analogue" ? (
         <Analogue
           time={time}
           showMinutes={showMinutes}

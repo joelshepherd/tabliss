@@ -1,12 +1,16 @@
-import { API } from '../../types';
-import { officialCollection, UNSPLASH_API_KEY } from './constants';
-import { Data, Image } from './types';
+import { API } from "../../types";
+import { Data, Image } from "./types";
 
-type Config = Pick<Data, 'by' | 'collections' | 'featured' | 'search'>;
+export const officialCollection = 1053828;
+
+type Config = Pick<
+  Data,
+  "by" | "collections" | "featured" | "search" | "topics"
+>;
 
 export async function getImage(
   config: Config,
-  loader: API['loader'],
+  loader: API["loader"],
 ): Promise<Image> {
   // Fetch random image
   loader.push();
@@ -23,26 +27,37 @@ export async function getImage(
   };
 }
 
-async function fetchImageMeta({ by, collections, featured, search }: Config) {
-  const url = 'https://api.unsplash.com/photos/random';
+async function fetchImageMeta({
+  by,
+  collections,
+  topics,
+  featured,
+  search,
+}: Config) {
+  const url = "https://api.unsplash.com/photos/random";
   const params = new URLSearchParams();
   const headers = new Headers({
     Authorization: `Client-ID ${UNSPLASH_API_KEY}`,
   });
 
   switch (by) {
-    case 'collections':
-      params.set('collections', collections);
+    case "collections":
+      params.set("collections", collections);
       break;
 
-    case 'search':
-      params.set('orientation', 'landscape');
-      if (featured) params.set('featured', 'true');
-      if (search) params.set('query', search);
+    case "topics":
+      params.set("topics", topics);
+      params.set("orientation", "landscape");
+      break;
+
+    case "search":
+      params.set("orientation", "landscape");
+      if (featured) params.set("featured", "true");
+      if (search) params.set("query", search);
       break;
 
     default:
-      params.set('collections', String(officialCollection));
+      params.set("collections", String(officialCollection));
   }
 
   const res = await fetch(`${url}?${params}`, { headers });
@@ -53,12 +68,27 @@ async function fetchImageData(url: string) {
   const quality = 85; // range [0-100]
   const width = calculateWidth(window.innerWidth);
 
-  const params = new URLSearchParams({
-    q: String(quality),
-    w: String(width),
-  });
+  const parsed = new URL(url);
+  parsed.searchParams.set("q", String(quality));
+  parsed.searchParams.set("w", String(width));
 
-  return await (await fetch(url + params)).blob();
+  return await (await fetch(parsed.toString())).blob();
+}
+
+export interface Topic {
+  id: string;
+  title: string;
+}
+
+/** Fetch the list of topics from unsplash */
+export async function fetchTopics(): Promise<Topic[]> {
+  const res = await fetch(
+    "https://api.unsplash.com/topics?per_page=25&order_by=featured",
+    { headers: { Authorization: `Client-ID ${UNSPLASH_API_KEY}` } },
+  );
+  const body = await res.json();
+
+  return body;
 }
 
 /**

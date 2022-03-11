@@ -1,18 +1,13 @@
-import React, { FC, useCallback } from 'react';
-import { useDispatch } from 'react-redux';
-
-import { useToggle } from '../../hooks';
-import { getConfig } from '../../plugins';
-import { setWidgetDisplay } from '../../store/actions';
-import {
-  WidgetDisplay as WidgetDisplayInterface,
-  WidgetState,
-} from '../../store/reducers/types';
-import PluginContainer from '../shared/Plugin';
-import { DownIcon, IconButton, RemoveIcon, UpIcon, Icon } from '../shared';
-import ToggleSection from '../shared/ToggleSection';
-import WidgetDisplay from './WidgetDisplay';
-import './Widget.sass';
+import React from "react";
+import { setWidgetDisplay } from "../../db/action";
+import { WidgetState } from "../../db/state";
+import { useToggle } from "../../hooks";
+import { getConfig } from "../../plugins";
+import { DownIcon, Icon, IconButton, RemoveIcon, UpIcon } from "../shared";
+import PluginContainer from "../shared/Plugin";
+import ToggleSection from "../shared/ToggleSection";
+import "./Widget.sass";
+import WidgetDisplay from "./WidgetDisplay";
 
 interface Props {
   plugin: WidgetState;
@@ -21,17 +16,17 @@ interface Props {
   onRemove: () => void;
 }
 
-const Widget: FC<Props> = ({ plugin, onMoveDown, onMoveUp, onRemove }) => {
+const Widget: React.FC<Props> = ({
+  plugin,
+  onMoveDown,
+  onMoveUp,
+  onRemove,
+}) => {
   const [isOpen, toggleIsOpen] = useToggle(onRemove === undefined);
 
   const { description, name, settingsComponent } = getConfig(plugin.key);
 
-  const dispatch = useDispatch();
-  const boundSetDisplay = useCallback(
-    (display: Partial<WidgetDisplayInterface>) =>
-      dispatch(setWidgetDisplay(plugin.id, display)),
-    [dispatch, plugin.id],
-  );
+  const setDisplay = setWidgetDisplay.bind(null, plugin.id);
 
   return (
     <fieldset className="Widget">
@@ -42,7 +37,7 @@ const Widget: FC<Props> = ({ plugin, onMoveDown, onMoveUp, onRemove }) => {
 
         <IconButton
           onClick={toggleIsOpen}
-          title={`${isOpen ? 'Close' : 'Edit'} widget settings`}
+          title={`${isOpen ? "Close" : "Edit"} widget settings`}
         >
           <Icon name="settings" />
         </IconButton>
@@ -72,10 +67,7 @@ const Widget: FC<Props> = ({ plugin, onMoveDown, onMoveUp, onRemove }) => {
           )}
 
           <ToggleSection name="Display Settings">
-            <WidgetDisplay
-              display={plugin.display}
-              onChange={boundSetDisplay}
-            />
+            <WidgetDisplay display={plugin.display} onChange={setDisplay} />
           </ToggleSection>
 
           <ToggleSection name="Font Settings">
@@ -86,7 +78,7 @@ const Widget: FC<Props> = ({ plugin, onMoveDown, onMoveUp, onRemove }) => {
                   type="text"
                   value={plugin.display.fontFamily}
                   onChange={(event) =>
-                    boundSetDisplay({ fontFamily: event.target.value })
+                    setDisplay({ fontFamily: event.target.value })
                   }
                 />
               </label>
@@ -96,16 +88,20 @@ const Widget: FC<Props> = ({ plugin, onMoveDown, onMoveUp, onRemove }) => {
                 <select
                   value={plugin.display.fontWeight}
                   onChange={(event) =>
-                    boundSetDisplay({ fontWeight: Number(event.target.value) })
+                    setDisplay({
+                      fontWeight: event.target.value
+                        ? Number(event.target.value)
+                        : undefined,
+                    })
                   }
                 >
-                  <option value={undefined}>Default</option>
-                  <option value={100}>Thin</option>
-                  <option value={300}>Light</option>
-                  <option value={400}>Regular</option>
-                  <option value={500}>Medium</option>
-                  <option value={700}>Bold</option>
-                  <option value={900}>Black</option>
+                  <option value="">Default</option>
+                  <option value="100">Thin</option>
+                  <option value="300">Light</option>
+                  <option value="400">Regular</option>
+                  <option value="500">Medium</option>
+                  <option value="700">Bold</option>
+                  <option value="900">Black</option>
                 </select>
               </label>
 
@@ -113,9 +109,9 @@ const Widget: FC<Props> = ({ plugin, onMoveDown, onMoveUp, onRemove }) => {
                 Colour
                 <input
                   type="color"
-                  value={plugin.display.colour}
+                  value={plugin.display.colour ?? "#ffffff"}
                   onChange={(event) =>
-                    boundSetDisplay({ colour: event.target.value })
+                    setDisplay({ colour: event.target.value })
                   }
                 />
               </label>

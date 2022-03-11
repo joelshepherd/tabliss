@@ -1,58 +1,72 @@
-import { API } from '../../types';
-import { Data, Conditions, Coordinates } from './types';
+import { API } from "../../types";
+import { Cache, Coordinates, Data } from "./types";
 
-const apiEndpoint = process.env.API_ENDPOINT!;
-const geocodeEndpoint = 'https://nominatim.openstreetmap.org';
+type Config = Pick<Data, "latitude" | "longitude" | "units">;
 
-type Config = Pick<Data, 'latitude' | 'longitude' | 'units'>;
-
+/** Get current forecast for a location */
 export async function getForecast(
   { latitude, longitude, units }: Config,
-  loader: API['loader'],
-): Promise<Conditions | undefined> {
+  loader: API["loader"],
+): Promise<Cache> {
   if (!latitude || !longitude) {
     return;
   }
 
   loader.push();
-
-  const url = `${apiEndpoint}/forecast?latitude=${latitude}&longitude=${longitude}&units=${units}`;
+  const url =
+    "https://api.open-meteo.com/v1/forecast?" +
+    `latitude=${latitude}&` +
+    `longitude=${longitude}&` +
+    "hourly=temperature_2m&" +
+    "hourly=apparent_temperature&" +
+    "hourly=relativehumidity_2m&" +
+    "hourly=weathercode&" +
+    "timeformat=unixtime&" +
+    `temperature_unit=${units === "us" ? "fahrenheit" : "celsius"}`;
   const res = await fetch(url);
   const body = await res.json();
-
   loader.pop();
 
+  // Process results
+  // TODO: validate response
   return {
-    ...body.data,
-    apparentTemperatureHigh: Math.round(body.data.apparentTemperatureHigh),
-    apparentTemperatureLow: Math.round(body.data.apparentTemperatureLow),
-    humidity: Math.round(body.data.humidity * 100),
-    precipProbability: Math.round(body.data.precipProbability * 100),
-    temperatureHigh: Math.round(body.data.temperatureHigh),
-    temperatureLow: Math.round(body.data.temperatureLow),
+    timestamp: Date.now(),
+    conditions: body.hourly.time.map((time: number, i: number) => ({
+      timestamp: time * 1000, // convert to ms
+      temperature: body.hourly.temperature_2m[i],
+      apparentTemperature: body.hourly.apparent_temperature[i],
+      humidity: body.hourly.relativehumidity_2m[i],
+      weatherCode: body.hourly.weathercode[i],
+    })),
   };
 }
 
-export async function geocodeLocation(query: string): Promise<Coordinates> {
-  const url = `${geocodeEndpoint}/search.php?format=json&q=${query}`;
-  const res = await fetch(url);
-  const data = await res.json();
-
-  return {
-    latitude: Number(data[0].lat),
-    longitude: Number(data[0].lon),
-  };
-}
-
-export function getCurrentLocation(): Promise<Coordinates> {
+/** Request current location from the browser */
+export function requestLocation(): Promise<Coordinates> {
   return new Promise((resolve, reject) =>
     navigator.geolocation.getCurrentPosition(
       ({ coords }) =>
         resolve({
-          latitude: coords.latitude,
-          longitude: coords.longitude,
+          latitude: round(coords.latitude),
+          longitude: round(coords.longitude),
         }),
       reject,
     ),
   );
+}
+
+/** Perform geocoding lookup on query string */
+export async function geocodeLocation(query: string): Promise<Coordinates> {
+  const url = `https://geocoding-api.open-meteo.com/v1/search?name=${query}&count=1`;
+  const res = await fetch(url);
+  const data = await res.json();
+
+  return {
+    latitude: round(data.results[0].latitude),
+    longitude: round(data.results[0].longitude),
+  };
+}
+
+function round(x: number, precision = 4): number {
+  return Math.round(x * 10 ** precision) / 10 ** precision;
 }

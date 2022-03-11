@@ -1,0 +1,21 @@
+{
+  "app.pageTitle": "แท็บใหม่",
+  "background": "พื้นหลัง",
+  "dashboard.focusHint": "สลับวิดเจ็ต",
+  "dashboard.fullscreenHint": "สลับโหมดเต็มหน้าจอ",
+  "dashboard.loadingHint": "กำลังโหลดเนื้อหาใหม่",
+  "dashboard.settingsHint": "ปรับแต่ง Tabliss",
+  "plugin.greeting.withName": "{hour, select,\n      0 {ฝันดี {name}}\n      1 {ฝันดี {name}}\n      2 {ฝันดี {name}}\n      3 {ตื่นแต่เช้าอย่างสดใส {name}}\n      4 {ตื่นแต่เช้าอย่างสดใส {name}}\n      5 {ตื่นแต่เช้าอย่างสดใส {name}}\n      6 {สวัสดีตอนเช้า {name}}\n      7 {สวัสดีตอนเช้า {name}}\n      8 {สวัสดีตอนเช้า {name}}\n      9 {สวัสดีตอนเช้า {name}}\n      10 {สวัสดี {name}}\n      11 {สวัสดี {name}}\n      12 {สวัสดี {name}}\n      13 {สวัสดี {name}}\n      14 {สวัสดีตอนบ่าย {name}}\n      15 {สวัสดีตอนบ่าย {name}}\n      16 {สวัสดีตอนบ่าย {name}}\n      17 {สวัสดีตอนบ่าย {name}}\n      18 {สวัสดีตอนเย็น {name}}\n      19 {สวัสดีตอนเย็น {name}}\n      20 {สวัสดีตอนเย็น {name}}\n      21 {สวัสดีตอนเย็น {name}}\n      22 {ราตรีสวัสดิ์ {name}}\n      23 {ราตรีสวัสดิ์ {name}}\n    other {Unknown}}",
+  "plugin.greeting.withoutName": "{hour, select,\n      0 {ฝันดี}\n      1 {ฝันดี}\n      2 {ฝันดี}\n      3 {ตื่นแต่เช้าอย่างสดใส}\n      4 {ตื่นแต่เช้าอย่างสดใส}\n      5 {ตื่นแต่เช้าอย่างสดใส}\n      6 {สวัสดีตอนเช้า}\n      7 {สวัสดีตอนเช้า}\n      8 {สวัสดีตอนเช้า}\n      9 {สวัสดีตอนเช้า}\n      10 {สวัสดี}\n      11 {สวัสดี}\n      12 {สวัสดี}\n      13 {สวัสดี}\n      14 {สวัสดีตอนบ่าย}\n      15 {สวัสดีตอนบ่าย}\n      16 {สวัสดีตอนบ่าย}\n      17 {สวัสดีตอนบ่าย}\n      18 {สวัสดีตอนเย็น}\n      19 {สวัสดีตอนเย็น}\n      20 {สวัสดีตอนเย็น}\n      21 {สวัสดีตอนเย็น}\n      22 {ราตรีสวัสดิ์}\n      23 {ราตรีสวัสดิ์}\n    other {Unknown}}",
+  "plugins.links.shortcutHint": "กด {number} หรือคลิกเพื่อเยี่ยมชม",
+  "plugins.links.standardHint": "คลิกเพื่อเยี่ยมชม",
+  "plugins.search.placeholder": "พิมพ์เพื่อค้นหา",
+  "plugins.unsplash.photoLink": "ภาพถ่าย",
+  "plugins.weather.apparent": "Feels like",
+  "plugins.weather.high": "สูงสุด",
+  "plugins.weather.humidity": "Humidity",
+  "plugins.weather.low": "ต่ำสุด",
+  "settings": "การตั้งค่า",
+  "settings.translationCredits": "แปลไทยโดย NeneNeko",
+  "widgets": "วิดเจ็ต"
+}

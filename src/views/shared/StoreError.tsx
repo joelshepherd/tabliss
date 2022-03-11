@@ -1,41 +1,38 @@
-import React, { FC, useCallback } from 'react';
-import { useDispatch } from 'react-redux';
-
-import { resetStore, setStoreError } from '../../store/actions';
-import Modal from './modal/Modal';
+import React from "react";
+import Button from "./Button";
+import Modal from "./modal/Modal";
 
 type Props = {
-  error: Error;
+  onClose: () => void;
 };
 
-const StoreError: FC<Props> = ({ error }) => {
-  const dispatch = useDispatch();
-  const handleAccept = useCallback(() => dispatch(setStoreError()), [dispatch]);
-  const handleReset = useCallback(
-    () => dispatch(resetStore()) && handleAccept(),
-    [dispatch],
-  );
-
+const StoreError: React.FC<Props> = ({ onClose }) => {
   return (
     <Modal>
-      <h2>Storage Error</h2>
+      <div className="Settings">
+        <h2 style={{ margin: 0 }}>Storage Error</h2>
 
-      <p>
-        Tabliss is unable to save your settings. This may happen because Tabliss
-        does not have permission to store data, or that your settings data is
-        too large.
-      </p>
-      <p>
-        Resetting to default or reinstalling Tabliss may help. Otherwise contact{' '}
-        <a href="mailto:support@tabliss.io">support@tabliss.io</a> if you are
-        unable to solve the issue.
-      </p>
-      <pre>
-        <strong>Error Reason:</strong> {error.message}
-      </pre>
+        <p>
+          Tabliss is unable to load or save settings. This is most commonly
+          caused by private browsing mode, but permissions or disk space can
+          also be an issue.
+        </p>
+        <p>
+          If you have settings saved with Tabliss, this might be a temporary
+          issue. Try restarting your browser and seeing if your settings return.
+        </p>
+        <p>
+          Contact <a href="mailto:support@tabliss.io">support@tabliss.io</a> if
+          you are unable to solve the issue. Extra technical information is
+          available in the browser console.
+        </p>
 
-      <button onClick={handleAccept}>Okay</button>
-      <button onClick={handleReset}>Reset Tabliss</button>
+        <div className="Modal-footer">
+          <Button primary onClick={onClose}>
+            Close
+          </Button>
+        </div>
+      </div>
     </Modal>
   );
 };
