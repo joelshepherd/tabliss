@@ -7,7 +7,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
 ## Fixed
 
-- No longer shows "24:00+" in Chrome in "en-US" locale
+- Added missing time zones
+- Fixed displaying "24:XX" in some locales in Chrome
 
 ## [2.2.0] - 2022-03-10
 
