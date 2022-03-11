@@ -9,6 +9,7 @@ import es from "./lang/es.json";
 import fa from "./lang/fa.json";
 import fi from "./lang/fi.json";
 import fr from "./lang/fr.json";
+import ga from "./lang/ga.json";
 import gd from "./lang/gd.json";
 import gu from "./lang/gu.json";
 import hi from "./lang/hi.json";
@@ -50,6 +51,7 @@ export const messages: Record<string, Record<string, string>> = {
   fa: fa,
   fi: fi,
   fr: fr,
+  ga: ga,
   gd: gd,
   gu: gu,
   hi: hi,
