@@ -7,10 +7,22 @@ type Props = {
   onChange: (timeZone: string | null) => void;
 };
 
+type ZoneOption = {
+  id: string;
+  name: string;
+  offset: number;
+};
+
+let cachedZoneOptions: ZoneOption[] | null = null;
+
 const TimeZoneInput: React.FC<Props> = ({ timeZone, onChange }) => {
-  const timeZones = React.useMemo(() => {
+  const [zoneOptions, setZoneOptions] = React.useState(cachedZoneOptions);
+
+  React.useEffect(() => {
+    if (zoneOptions !== null) return;
+
     const date = new Date();
-    return zones
+    cachedZoneOptions = zones
       .flatMap((zone) => {
         try {
           const offset = getTimezoneOffset(zone, date) / 3_600_000;
@@ -29,6 +41,7 @@ const TimeZoneInput: React.FC<Props> = ({ timeZone, onChange }) => {
         const delta = a.offset - b.offset;
         return delta === 0 ? a.name.localeCompare(b.name) : delta;
       });
+    setZoneOptions(cachedZoneOptions);
   }, []);
 
   return (
@@ -37,11 +50,15 @@ const TimeZoneInput: React.FC<Props> = ({ timeZone, onChange }) => {
       onChange={(event) => onChange(event.target.value || null)}
     >
       <option value="">Automatic</option>
-      {timeZones.map((timeZone) => (
-        <option key={timeZone.id} value={timeZone.id}>
-          {timeZone.name}
-        </option>
-      ))}
+      {zoneOptions ? (
+        zoneOptions.map((option) => (
+          <option key={option.id} value={option.id}>
+            {option.name}
+          </option>
+        ))
+      ) : (
+        <option disabled>Loading...</option>
+      )}
     </select>
   );
 };

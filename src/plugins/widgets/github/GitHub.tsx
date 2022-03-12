@@ -5,7 +5,6 @@ import { Props, defaultData } from "./types";
 import "github-calendar/dist/github-calendar.css";
 import "./github-calendar.css";
 
-// TODO: Debounce lookup
 // TODO: Inherit size and colour
 
 const GitHubCalendarWidget: FC<Props> = ({ data = defaultData, loader }) => {
