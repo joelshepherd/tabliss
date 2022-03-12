@@ -57,7 +57,7 @@ const System: React.FC = () => {
           <option value="es" title="Spanish">
             Español
           </option>
-          <option value="fa" title="French">
+          <option value="fa" title="Persian">
             پارسی
           </option>
           <option value="fr" title="French">
@@ -68,6 +68,15 @@ const System: React.FC = () => {
           </option>
           <option value="gd" title="Scottish Gaelic">
             Gàidhlig
+          </option>
+          <option value="gl" title="Galician">
+            Galego
+          </option>
+          <option value="gu" title="Gujarati">
+            ગુજરાતી
+          </option>
+          <option value="hi" title="Hindi">
+            हिन्दी
           </option>
           <option value="hu" title="Hungarian">
             Magyar
@@ -117,6 +126,9 @@ const System: React.FC = () => {
           <option value="sk" title="Slovak">
             Slovenčina
           </option>
+          <option value="sr" title="Serbian">
+            Српски
+          </option>
           <option value="fi" title="Finnish">
             Suomi
           </option>
@@ -140,15 +152,6 @@ const System: React.FC = () => {
           </option>
           <option value="zh-TW" title="Traditional Chinese (Taiwan)">
             中文（台灣）
-          </option>
-          <option value="hi" title="Hindi">
-            हिन्दी
-          </option>
-          <option value="gu" title="Gujarati">
-            ગુજરાતી
-          </option>
-          <option value="sr" title="Serbian">
-            Српски
           </option>
           <option value="uk" title="Ukrainian">
             Українська

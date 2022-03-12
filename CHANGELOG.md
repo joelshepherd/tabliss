@@ -8,6 +8,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 ## Added
 
 - Added GitHub Calender widget - thanks @vdimir
+- Galician translations - thanks Daniel González Portela
 - Irish translations - thanks @tsirona
 
 ## Fixed
