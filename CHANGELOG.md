@@ -15,6 +15,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 - Added missing time zones
 - Fixed displaying "24:XX" in some locales in Chrome
 - Spacing at the bottom of the Quote widget has returned to normal
+- Icons now have correct vertical alignment again
 
 ## [2.2.0] - 2022-03-10
 
