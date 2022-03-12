@@ -14,10 +14,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
 - Added missing time zones
 - Fixed displaying "24:XX" in some locales in Chrome
+- Spacing at the bottom of the Quote widget has returned to normal
 
 ## [2.2.0] - 2022-03-10
 
-## Added
+### Added
 
 - Added IP Info widget - thanks @bkis
 - Current weather conditions are back thanks to Open-Meteo
@@ -30,7 +31,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 - Serbian translations - thanks @ZaDavanje
 - Thai translations - thanks @NeneNeko
 
-## Changed
+### Changed
 
 - New settings storage engine to reduce instances of Tabliss loosing your settings
 - Tabliss will now remember if you have hidden your widgets
@@ -42,7 +43,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 - Scottish Gaelic updates - thanks @fenrisulfr94
 - Spanish translation updates - thanks @husseinalkasake
 
-## Fixed
+### Fixed
 
 - GIPHY background has been fixed - thanks @OneComputerGuy
 - Long quotes no longer break the UI - thanks @CoderOO7
@@ -50,13 +51,13 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 - Time zone selection label dispaly issue - thanks @jn64
 - And many more minor bug fixes and tweaks
 
-## Removed
+### Removed
 
 - Search suggestions from all extension builds, due to browser extension policies
 
 ## [2.1.0] - 2021-01-28
 
-## Added
+### Added
 
 - Labels and timezone to the clock widget
 - Settings can now be exported and imported to/from a JSON file - thanks @jlave-dev
@@ -68,7 +69,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 - Farsi translations - thanks @sarended
 - Luxembourgish translations - thanks @jaclo187
 
-## Changed
+### Changed
 
 - Improved typography in quotes - thanks @apollisa
 - Simplifying add todo interface - thanks @trickypr
@@ -80,7 +81,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 - Portuguese (Brazil) translations - thanks @adilsonfsantos
 - Italian translations - thanks @blackcat-917
 
-## Fixed
+### Fixed
 
 - Alignment of multi-column quick links when they are narrower than other widgets in their slot
 - Search box now properly respects light mode
