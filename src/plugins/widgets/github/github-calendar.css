@@ -4,7 +4,7 @@
   /* --color-calendar-graph-day-L2-bg: #40c463; */
   /* --color-calendar-graph-day-L3-bg: #30a14e; */
   /* --color-calendar-graph-day-L4-bg: #216e39; */
-  --color-calendar-graph-day-bg: #fff3;
+  --color-calendar-graph-day-bg: #bbb3;
   --color-calendar-graph-day-L1-bg: #9be9a8;
   --color-calendar-graph-day-L2-bg: #40c463;
   --color-calendar-graph-day-L3-bg: #30a14e;
@@ -21,4 +21,8 @@ text.ContributionCalendar-label {
 
 .contrib-number {
   color: inherit;
+}
+
+.Dashboard .GitHub svg {
+  filter: none;
 }

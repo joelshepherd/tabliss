@@ -8,6 +8,6 @@ type Data = {
 export type Props = API<Data>;
 
 export const defaultData: Data = {
-  username: "joelshepherd",
+  username: "",
   showSummary: false,
 };
