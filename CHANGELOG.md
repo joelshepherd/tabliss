@@ -3,16 +3,16 @@
 All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
-## [Unreleased]
+## [2.3.0] - 2022-03-14
 
-## Added
+### Added
 
 - Added GitHub Calender widget - thanks @vdimir
 - Galician translations - thanks Daniel González Portela
 - Irish translations - thanks @tsirona
 - Canadian English locale
 
-## Fixed
+### Fixed
 
 - Added missing time zones
 - Fixed displaying "24:XX" in some locales in Chrome
