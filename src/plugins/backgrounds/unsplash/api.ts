@@ -75,22 +75,6 @@ async function fetchImageData(url: string) {
   return await (await fetch(parsed.toString())).blob();
 }
 
-export interface Topic {
-  id: string;
-  title: string;
-}
-
-/** Fetch the list of topics from unsplash */
-export async function fetchTopics(): Promise<Topic[]> {
-  const res = await fetch(
-    "https://api.unsplash.com/topics?per_page=25&order_by=featured",
-    { headers: { Authorization: `Client-ID ${UNSPLASH_API_KEY}` } },
-  );
-  const body = await res.json();
-
-  return body;
-}
-
 /**
  * Calculate width to fetch image, tuned for Unsplash cache performance.
  */

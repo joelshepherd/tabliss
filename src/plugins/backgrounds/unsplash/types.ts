@@ -29,6 +29,6 @@ export const defaultData: Data = {
   collections: "",
   featured: false,
   search: "",
-  topics: "",
+  topics: "bo8jQKTaE0Y",
   timeout: 900,
 };
