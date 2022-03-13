@@ -5,6 +5,8 @@
   "plugins.search.placeholder",
   "plugins.weather.high",
   "plugins.weather.low",
+  "plugins.weather.apparent",
+  "plugins.weather.humidity",
   "app.pageTitle",
   "dashboard.settingsHint",
   "dashboard.focusHint",

@@ -13,6 +13,7 @@ const languages = [
   "de",
   "el",
   "en-AU",
+  "en-CA",
   "en-GB",
   "es",
   "fa",

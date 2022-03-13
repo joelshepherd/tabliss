@@ -4,6 +4,7 @@ import cs from "./lang/cs.json";
 import de from "./lang/de.json";
 import el from "./lang/el.json";
 import enAU from "./lang/en-AU.json";
+import enCA from "./lang/en-CA.json";
 import enGB from "./lang/en-GB.json";
 import es from "./lang/es.json";
 import fa from "./lang/fa.json";
@@ -47,6 +48,7 @@ export const messages: Record<string, Record<string, string>> = {
   el: el,
   en: {},
   "en-AU": enAU,
+  "en-CA": enCA,
   "en-GB": enGB,
   es: es,
   fa: fa,

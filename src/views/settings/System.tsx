@@ -48,6 +48,9 @@ const System: React.FC = () => {
           <option value="en-AU" title="English (Australian)">
             English (AU)
           </option>
+          <option value="en-CA" title="English (Canadian)">
+            English (CA)
+          </option>
           <option value="en-GB" title="English (British)">
             English (GB)
           </option>
