@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
+## [Unreleased]
+
+### Fixed
+
+- Unsplash's "change every new tab" setting is no longer every second new tab!
+
 ## [2.3.0] - 2022-03-14
 
 ### Added

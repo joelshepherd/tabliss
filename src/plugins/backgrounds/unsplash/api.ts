@@ -60,7 +60,7 @@ async function fetchImageMeta({
       params.set("collections", String(officialCollection));
   }
 
-  const res = await fetch(`${url}?${params}`, { headers });
+  const res = await fetch(`${url}?${params}`, { headers, cache: "no-cache" });
   return res.json();
 }
 

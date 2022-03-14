@@ -4,9 +4,6 @@
   "short_name": "Tabliss",
   "version": "2.3.0",
   "description": "A beautiful New Tab page with many customisable backgrounds and widgets that does not require any permissions.",
-  "action": {
-    "default_title": "Tabliss"
-  },
   "chrome_url_overrides": {
     "newtab": "index.html"
   },
