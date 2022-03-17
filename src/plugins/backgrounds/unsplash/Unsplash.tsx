@@ -1,7 +1,7 @@
 import React from "react";
-import { useObjectUrl, useRotatingCache } from "../../../hooks";
+import { useRotatingCache } from "../../../hooks";
 import Backdrop from "../../../views/shared/Backdrop";
-import { getImage } from "./api";
+import { buildLink, fetchImages } from "./api";
 import { defaultData, Props } from "./types";
 import "./Unsplash.sass";
 import UnsplashCredit from "./UnsplashCredit";
@@ -12,15 +12,35 @@ const Unsplash: React.FC<Props> = ({
   loader,
   setCache,
 }) => {
+  // If legacy cache design, clear and let the new cache take over
+  // Unfortunately, without the imaeg src being stored, I cannot migrate the old cache
+  if (cache && "now" in cache) {
+    cache = undefined;
+  }
+
   const cacheArea = { cache, setCache };
-  const image = useRotatingCache(
-    () => getImage(data, loader),
+  const item = useRotatingCache(
+    () => fetchImages(data),
     cacheArea,
     data.timeout * 1000,
     [data.by, data.collections, data.featured, data.search, data.topics],
   );
 
-  const url = useObjectUrl(image && image.data);
+  const url = item ? buildLink(item.image.src) : null;
+  const nextUrl =
+    cache && cache.items[cache.cursor + 1]
+      ? buildLink(cache.items[cache.cursor + 1].image.src)
+      : null;
+
+  const go = (amount: number) =>
+    cache && cache.items[cache.cursor + amount]
+      ? () =>
+          setCache({
+            ...cache!,
+            cursor: cache!.cursor + amount,
+            rotated: Date.now(),
+          })
+      : null;
 
   return (
     <div className="Unsplash fullscreen">
@@ -30,7 +50,19 @@ const Unsplash: React.FC<Props> = ({
         style={{ backgroundImage: url ? `url(${url})` : undefined }}
       />
 
-      {cache && <UnsplashCredit image={cache.now} />}
+      {nextUrl && (
+        <link
+          rel="prefetch"
+          as="image"
+          href={nextUrl}
+          onError={console.error}
+          onLoad={() => console.log("loaded")}
+        />
+      )}
+
+      {item ? (
+        <UnsplashCredit image={item} onPrev={go(-1)} onNext={go(1)} />
+      ) : null}
     </div>
   );
 };

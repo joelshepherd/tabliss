@@ -1,4 +1,3 @@
-import { API } from "../../types";
 import { Data, Image } from "./types";
 
 export const officialCollection = 1053828;
@@ -8,37 +7,20 @@ type Config = Pick<
   "by" | "collections" | "featured" | "search" | "topics"
 >;
 
-export async function getImage(
-  config: Config,
-  loader: API["loader"],
-): Promise<Image> {
-  // Fetch random image
-  loader.push();
-  const res = await fetchImageMeta(config);
-  const data = await fetchImageData(res.urls.raw);
-  loader.pop();
-
-  return {
-    data,
-    image_link: res.links.html,
-    location_title: res.location ? res.location.title : null,
-    user_name: res.user.name,
-    user_link: res.user.links.html,
-  };
-}
-
-async function fetchImageMeta({
+export const fetchImages = async ({
   by,
   collections,
   topics,
   featured,
   search,
-}: Config) {
+}: Config): Promise<Image[]> => {
   const url = "https://api.unsplash.com/photos/random";
   const params = new URLSearchParams();
   const headers = new Headers({
     Authorization: `Client-ID ${UNSPLASH_API_KEY}`,
   });
+
+  params.set("count", "10");
 
   switch (by) {
     case "collections":
@@ -61,19 +43,33 @@ async function fetchImageMeta({
   }
 
   const res = await fetch(`${url}?${params}`, { headers, cache: "no-cache" });
-  return res.json();
-}
+  const body = await res.json();
 
-async function fetchImageData(url: string) {
-  const quality = 85; // range [0-100]
-  const width = calculateWidth(window.innerWidth);
+  // TODO: validate types
 
-  const parsed = new URL(url);
-  parsed.searchParams.set("q", String(quality));
-  parsed.searchParams.set("w", String(width));
+  return body.map((item: any) => ({
+    image: {
+      src: item.urls.raw,
+      link: item.links.html,
+    },
+    credit: {
+      location: item.location ? item.location.title : null,
+      userName: item.user.name,
+      userLink: item.user.links.html,
+    },
+  }));
+};
 
-  return await (await fetch(parsed.toString())).blob();
-}
+/**
+ * Build image link from raw
+ * TODO: allow quality to be adjustable, possibly in combination with size
+ */
+export const buildLink = (src: string): string => {
+  const url = new URL(src);
+  url.searchParams.set("q", "85");
+  url.searchParams.set("w", String(calculateWidth(window.innerWidth)));
+  return String(url);
+};
 
 /**
  * Calculate width to fetch image, tuned for Unsplash cache performance.
