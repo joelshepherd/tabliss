@@ -35,6 +35,8 @@ const Root: React.FC = () => {
       .then(() => setState(State.Ready))
       .catch((err) => {
         console.error(err);
+        // Chromium does not log cause with error
+        if (BUILD_TARGET !== "firefox") console.error("Caused by:", err.cause);
         setState(State.Error);
       });
   }, []);

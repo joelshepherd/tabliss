@@ -50,15 +50,7 @@ const Unsplash: React.FC<Props> = ({
         style={{ backgroundImage: url ? `url(${url})` : undefined }}
       />
 
-      {nextUrl && (
-        <link
-          rel="prefetch"
-          as="image"
-          href={nextUrl}
-          onError={console.error}
-          onLoad={() => console.log("loaded")}
-        />
-      )}
+      {nextUrl && <link rel="prefetch" as="image" href={nextUrl} />}
 
       {item ? (
         <UnsplashCredit image={item} onPrev={go(-1)} onNext={go(1)} />
