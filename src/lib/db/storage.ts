@@ -2,6 +2,7 @@ import { Browser } from "webextension-polyfill";
 import * as DB from "./db";
 
 /** IndexedDB storage provider */
+// TODO: clean up indexeddb usage, convert to promises and double check error handling
 export const indexeddb = (db: DB.Database, name: string): Promise<void> => {
   return new Promise<void>((resolve, reject) => {
     // Map idb errors to a standard format
@@ -23,7 +24,7 @@ export const indexeddb = (db: DB.Database, name: string): Promise<void> => {
     open.onsuccess = () => {
       const conn = open.result;
 
-      const trx = conn.transaction("changes");
+      const trx = conn.transaction("changes", "readonly");
       trx.oncomplete = () => {}; // nice
       trx.onerror = mapError("Cannot read changes from storage");
 
@@ -40,25 +41,28 @@ export const indexeddb = (db: DB.Database, name: string): Promise<void> => {
             changes.forEach(([key, val]) => DB.put(trx, key, val));
           });
           resolve();
+
+          // Setup changes listener
+          DB.listen(
+            db,
+            batch((changes) => {
+              if (DEV) console.log("Storage: saving changes:", changes);
+
+              const trx = conn.transaction("changes", "readwrite");
+              trx.oncomplete = () => {}; // nice
+              // TODO: this error will not display anywhere, because the promise has already resolved
+              trx.onerror = mapError("Cannot write changes to storage");
+
+              const store = trx.objectStore("changes");
+              // TODO: iterator helpers
+              for (const [key, val] of changes) {
+                if (val === undefined) store.delete(key);
+                else store.put(val, key);
+              }
+            }),
+          );
         }
       };
-
-      DB.listen(
-        db,
-        batch((changes) => {
-          const trx = conn.transaction("changes", "readwrite");
-          trx.oncomplete = () => {}; // nice
-          // TODO: this error will not display, because the promise has already resolved
-          trx.onerror = mapError("Cannot write changes to storage");
-
-          const store = trx.objectStore("changes");
-          // TODO: iterator helpers
-          for (const [key, val] of changes) {
-            if (val === undefined) store.delete(key);
-            else store.put(val, key);
-          }
-        }),
-      );
     };
   });
 };

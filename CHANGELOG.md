@@ -8,6 +8,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 ### Fixed
 
 - Unsplash's "change every new tab" setting is no longer every second new tab!
+- Backgrounds sometimes breaking after restarting Safari
 
 ## [2.3.0] - 2022-03-14
 
