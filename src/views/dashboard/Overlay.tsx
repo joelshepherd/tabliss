@@ -57,7 +57,7 @@ const Overlay: React.FC = () => {
       ) : null}
 
       <a
-        className="on-hover"
+        className={focus ? "" : "on-hover"}
         onClick={toggleFocus}
         title={`${translated.focusHint} (W)`}
       >
