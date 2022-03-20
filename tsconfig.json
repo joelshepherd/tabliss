@@ -8,7 +8,7 @@
     "resolveJsonModule": true,
     "sourceMap": true,
     "strict": true,
-    "target": "esnext",
+    "target": "es2017",
     "types": ["jest", "react", "react-dom", "webextension-polyfill"],
     "typeRoots": ["node_modules/@types", "src/@types"]
   },
