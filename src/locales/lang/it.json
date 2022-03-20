@@ -1,14 +1,14 @@
 {
   "app.pageTitle": "Nuova scheda",
   "background": "Sfondo",
-  "dashboard.focusHint": "Escludi i widgets",
-  "dashboard.fullscreenHint": "Attiva a schermo intero",
+  "dashboard.focusHint": "Escludi i widget",
+  "dashboard.fullscreenHint": "Passa a schermo intero",
   "dashboard.loadingHint": "Carica nuovi contenuti",
   "dashboard.settingsHint": "Personalizza Tabliss",
   "plugin.greeting.withName": "{hour, select, 0 {Sogni d’oro, {name}} 1 {Sogni d’oro, {name}} 2 {Sogni d’oro, {name}} 3 {È ora di alzarsi, {name}} 4 {È ora di alzarsi, {name}} 5 {È ora di alzarsi, {name}} 6 {Buongiorno, {name}} 7 {Buongiorno, {name}} 8 {Buongiorno, {name}} 9 {Buongiorno, {name}} 10 {Ciao, {name}} 11 {Ciao, {name}} 12 {Ciao, {name}} 13 {Ciao, {name}} 14 {Buon pomeriggio, {name}} 15 {Buon pomeriggio, {name}} 16 {Buon pomeriggio, {name}} 17 {Buon pomeriggio, {name}} 18 {Buonasera, {name}} 19 {Buonasera, {name}} 20 {Buonasera, {name}} 21 {Buonasera, {name}} 22 {Buonanotte, {name}} 23 {Buonanotte, {name}} other {Unknown}}",
   "plugin.greeting.withoutName": "{hour, select, 0 {Sogni d’oro} 1 {Sogni d’oro} 2 {Sogni d’oro} 3 {È ora di alzarsi} 4 {È ora di alzarsi} 5 {È ora di alzarsi} 6 {Buongiorno} 7 {Buongiorno} 8 {Buongiorno} 9 {Buongiorno} 10 {Ciao} 11 {Ciao} 12 {Ciao} 13 {Ciao} 14 {Buon pomeriggio} 15 {Buon pomeriggio} 16 {Buon pomeriggio} 17 {Buon pomeriggio} 18 {Buonasera} 19 {Buonasera} 20 {Buonasera} 21 {Buonasera} 22 {Buonanotte} 23 {Buonanotte} other {Unknown}}",
-  "plugins.links.shortcutHint": "Premi {number} o clicca per visitare",
-  "plugins.links.standardHint": "Clicca per visitare",
+  "plugins.links.shortcutHint": "Premi {number} o fai clic per visitare",
+  "plugins.links.standardHint": "Fai clic per visitare",
   "plugins.search.placeholder": "Scrivi qui per cercare",
   "plugins.unsplash.photoLink": "Foto",
   "plugins.weather.apparent": "Temperatura percepita",
@@ -17,5 +17,5 @@
   "plugins.weather.low": "Minima",
   "settings": "Impostazioni",
   "settings.translationCredits": "Italian translations by Gianni, Blackcat-917 and Gioxx",
-  "widgets": "Widgets"
+  "widgets": "Widget"
 }
