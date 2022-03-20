@@ -18,19 +18,29 @@ const Unsplash: React.FC<Props> = ({
     cache = undefined;
   }
 
-  const cacheArea = { cache, setCache };
+  // Get current item from rotating cache
   const item = useRotatingCache(
-    () => fetchImages(data),
-    cacheArea,
+    () => {
+      loader.push();
+      return fetchImages(data).finally(loader.pop);
+    },
+    { cache, setCache },
     data.timeout * 1000,
     [data.by, data.collections, data.featured, data.search, data.topics],
   );
 
-  const url = item ? buildLink(item.image.src) : null;
-  const nextUrl =
-    cache && cache.items[cache.cursor + 1]
-      ? buildLink(cache.items[cache.cursor + 1].image.src)
-      : null;
+  // Populate cache with the next image
+  React.useEffect(() => {
+    if (cache && cache.items[cache.cursor + 1]) {
+      const next = new Image();
+      next.src = buildLink(cache.items[cache.cursor + 1].src);
+      next.onload = loader.pop;
+      next.onerror = loader.pop;
+      loader.push();
+    }
+  }, [cache]);
+
+  const url = item ? buildLink(item.src) : null;
 
   const go = (amount: number) =>
     cache && cache.items[cache.cursor + amount]
@@ -50,10 +60,8 @@ const Unsplash: React.FC<Props> = ({
         style={{ backgroundImage: url ? `url(${url})` : undefined }}
       />
 
-      {nextUrl && <link rel="prefetch" as="image" href={nextUrl} />}
-
       {item ? (
-        <UnsplashCredit image={item} onPrev={go(-1)} onNext={go(1)} />
+        <UnsplashCredit credit={item.credit} onPrev={go(-1)} onNext={go(1)} />
       ) : null}
     </div>
   );

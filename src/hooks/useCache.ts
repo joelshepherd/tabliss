@@ -56,6 +56,7 @@ export function useRotatingCache<T>(
         boot.current = false;
         return cursor;
       }
+      boot.current = false;
       return cache.cursor;
     }
     return 0;

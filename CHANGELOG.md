@@ -5,6 +5,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+### Added
+
+- Previous or next buttons to change the Unsplash background
+
 ### Fixed
 
 - Unsplash's "change every new tab" setting is no longer every second new tab!

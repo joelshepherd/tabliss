@@ -7,14 +7,14 @@ export const UTM =
   "?utm_source=Start&utm_medium=referral&utm_campaign=api-credit";
 
 interface Props {
-  image: Image;
+  credit: Image["credit"];
   onPrev: (() => void) | null;
   onNext: (() => void) | null;
 }
 
-const UnsplashCredit: React.FC<Props> = ({ image, onPrev, onNext }) => (
+const UnsplashCredit: React.FC<Props> = ({ credit, onPrev, onNext }) => (
   <div className="credit">
-    <span style={{ float: "right" }}>{image.credit.location}</span>{" "}
+    <span style={{ float: "right" }}>{credit.location}</span>{" "}
     {onPrev ? (
       <a onClick={onPrev}>
         <Icon name="arrow-left" />
@@ -25,7 +25,7 @@ const UnsplashCredit: React.FC<Props> = ({ image, onPrev, onNext }) => (
         <Icon name="arrow-right" />
       </a>
     ) : null}{" "}
-    <a href={image.image.link + UTM} rel="noopener noreferrer">
+    <a href={credit.imageLink + UTM} rel="noopener noreferrer">
       <FormattedMessage
         id="plugins.unsplash.photoLink"
         description="Photo link text"
@@ -33,8 +33,8 @@ const UnsplashCredit: React.FC<Props> = ({ image, onPrev, onNext }) => (
       />
     </a>
     {", "}
-    <a href={image.credit.userLink + UTM} rel="noopener noreferrer">
-      {image.credit.userName}
+    <a href={credit.userLink + UTM} rel="noopener noreferrer">
+      {credit.userName}
     </a>
     {", "}
     <a href={"https://unsplash.com/" + UTM} rel="noopener noreferrer">

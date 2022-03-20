@@ -12,6 +12,16 @@ export interface Data {
   timeout: number;
 }
 
+export interface Image {
+  src: string;
+  credit: {
+    imageLink: string;
+    location?: string;
+    userName: string;
+    userLink: string;
+  };
+}
+
 type Cache = RotatingCache<Image>;
 
 export type Props = API<Data, Cache>;
@@ -23,16 +33,4 @@ export const defaultData: Data = {
   search: "",
   topics: "bo8jQKTaE0Y",
   timeout: 900,
-};
-
-export type Image = {
-  image: {
-    src: string;
-    link: string;
-  };
-  credit: {
-    location?: string;
-    userName: string;
-    userLink: string;
-  };
 };

@@ -48,11 +48,9 @@ export const fetchImages = async ({
   // TODO: validate types
 
   return body.map((item: any) => ({
-    image: {
-      src: item.urls.raw,
-      link: item.links.html,
-    },
+    src: item.urls.raw,
     credit: {
+      imageLink: item.links.html,
       location: item.location ? item.location.title : null,
       userName: item.user.name,
       userLink: item.user.links.html,
