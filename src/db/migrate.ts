@@ -1,12 +1,7 @@
 import { Browser } from "webextension-polyfill";
 import { DB } from "../lib";
 import { importStore } from "./action";
-import { cache, db, ready } from "./state";
-
-/** Check and migrate data */
-export const migrate = (): void => {
-  ready.then(BUILD_TARGET === "web" ? migrateWeb : migrateExtension);
-};
+import { cache, db } from "./state";
 
 /** Migrate extension data */
 const migrateExtension = async (): Promise<void> => {
@@ -41,6 +36,9 @@ const migrateWeb = async (): Promise<void> => {
     localStorage.removeItem(key);
   }
 };
+
+/** Check and migrate data */
+export const migrate = BUILD_TARGET === "web" ? migrateWeb : migrateExtension;
 
 /** Migrate cache data */
 const migrateCache = (): void => {

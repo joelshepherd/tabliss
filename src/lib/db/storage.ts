@@ -3,8 +3,12 @@ import * as DB from "./db";
 
 /** IndexedDB storage provider */
 // TODO: clean up indexeddb usage, convert to promises and double check error handling
-export const indexeddb = (db: DB.Database, name: string): Promise<void> => {
-  return new Promise<void>((resolve, reject) => {
+export const indexeddb = (
+  db: DB.Database,
+  name: string,
+  onError: (error: Error) => void,
+): Promise<void> => {
+  return new Promise((resolve) => {
     // Map idb errors to a standard format
     const mapError = (message: string) => (err: unknown) => {
       const cause =
@@ -13,7 +17,7 @@ export const indexeddb = (db: DB.Database, name: string): Promise<void> => {
         err.target.error instanceof Error
           ? err.target.error
           : undefined;
-      reject(new Error(`StorageError: IndexedDB: ${message}`, { cause }));
+      onError(new Error(`StorageError: IndexedDB: ${message}`, { cause }));
     };
 
     const open = indexedDB.open(name, 1);
@@ -43,6 +47,7 @@ export const indexeddb = (db: DB.Database, name: string): Promise<void> => {
           resolve();
 
           // Setup changes listener
+          // TODO: should listen be set up even if the cursor fails?
           DB.listen(
             db,
             batch((changes) => {
@@ -72,13 +77,14 @@ export const extension = async (
   db: DB.Database,
   name: string,
   areaName: "local" | "sync" | "managed",
+  onError: (error: Error) => void,
 ): Promise<void> => {
   // Map errors to a standard format
   const mapError = (message: string) => (err: unknown) => {
     const cause = err instanceof Error ? err : undefined;
-    throw new Error(`StorageError: Extension[${areaName}]: ${message}`, {
-      cause,
-    });
+    onError(
+      new Error(`StorageError: Extension[${areaName}]: ${message}`, { cause }),
+    );
   };
 
   // @ts-ignore
@@ -99,6 +105,8 @@ export const extension = async (
 
   // Setup listener
   const listener = batch((changes) => {
+    if (DEV) console.log("Storage: saving changes:", changes);
+
     // TODO: test for both updates and deletes for the same key
     // TODO: iterator helpers
     const changesArray = Array.from(changes);

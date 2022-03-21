@@ -94,20 +94,15 @@ export const db = DB.init<State>(initData);
 export const cache = DB.init<Record<string, unknown | undefined>>();
 
 // Persist data
-export const ready =
+export const initDb = (onError: (error: Error) => void): Promise<void> =>
   BUILD_TARGET === "web"
-    ? Promise.all([
-        Storage.indexeddb(db, "tabliss/config"),
-        Storage.indexeddb(cache, "tabliss/cache"),
-      ])
-    : Promise.all([
-        Storage.extension(db, "tabliss/config", "sync"),
-        // Chromium cannot store blobs in extension.local
-        // Firefox cannot use indexeddb in private mode
-        BUILD_TARGET === "firefox"
-          ? Storage.extension(cache, "tabliss/cache", "local")
-          : Storage.indexeddb(cache, "tabliss/cache"),
-      ]);
+    ? Storage.indexeddb(db, "tabliss/config", onError)
+    : Storage.extension(db, "tabliss/config", "sync", onError);
+
+export const initCache = (onError: (error: Error) => void): Promise<void> =>
+  BUILD_TARGET === "firefox"
+    ? Storage.extension(cache, "tabliss/cache", "local", onError)
+    : Storage.indexeddb(cache, "tabliss/cache", onError);
 
 // TODO: Consider asking for persistence
 // navigator.storage.persist().then((persistent) => {

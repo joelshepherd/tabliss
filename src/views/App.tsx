@@ -1,9 +1,13 @@
 import React from "react";
 import { defineMessages, useIntl } from "react-intl";
+import { usePushError } from "../api";
 import { UiContext } from "../contexts/ui";
-import { ready } from "../db/state";
+import { migrate } from "../db/migrate";
+import { cache, initCache, initDb } from "../db/state";
 import { Dashboard } from "./dashboard";
 import { Settings } from "./settings";
+import Errors from "./shared/Errors";
+import Modal from "./shared/modal/Modal";
 import StoreError from "./shared/StoreError";
 
 const messages = defineMessages({
@@ -14,14 +18,11 @@ const messages = defineMessages({
   },
 });
 
-enum State {
-  Pending,
-  Ready,
-  Error,
-}
+let inited = false;
 
 const Root: React.FC = () => {
-  const { settings } = React.useContext(UiContext);
+  const { errors, settings, toggleErrors } = React.useContext(UiContext);
+  const pushError = usePushError();
 
   const intl = useIntl();
   React.useEffect(() => {
@@ -29,29 +30,45 @@ const Root: React.FC = () => {
   }, [intl]);
 
   // Wait for storage to be ready before displaying
-  const [state, setState] = React.useState(State.Pending);
+  const [ready, setReady] = React.useState(false);
+  const [error, setError] = React.useState(false);
   React.useEffect(() => {
-    ready
-      .then(() => setState(State.Ready))
-      .catch((err) => {
-        console.error(err);
-        // Chromium does not log cause with error
-        if (BUILD_TARGET !== "firefox") console.error("Caused by:", err.cause);
-        setState(State.Error);
+    if (!inited) {
+      inited = true;
+      Promise.allSettled([
+        initDb((error) => {
+          setError(true);
+          pushError({
+            message:
+              "Cannot open database. Settings cannot be saved or loaded.",
+          });
+          console.error(error);
+          console.error("Caused by:", error.cause);
+        }),
+        initCache((error) => {
+          pushError({
+            message: "Cannot open cache. Start up performance may be degraded.",
+          });
+          console.error(error);
+          console.error("Caused by:", error.cause);
+        }),
+      ]).then(() => {
+        migrate();
+        setReady(true);
       });
+    }
   }, []);
 
-  if (state === State.Pending) return null;
+  if (!ready) return null;
 
   return (
     <>
       <Dashboard />
-      {settings && <Settings />}
-      {state === State.Error ? (
-        <StoreError onClose={() => setState(State.Ready)} />
-      ) : null}
+      {settings ? <Settings /> : null}
+      {errors ? <Errors onClose={toggleErrors} /> : null}
+      {error ? <StoreError onClose={() => setError(false)} /> : null}
     </>
   );
 };
 
-export default Root;
+export default React.memo(Root);

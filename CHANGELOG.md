@@ -8,11 +8,13 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 ### Added
 
 - Previous or next buttons to change the Unsplash background
+- New UI to display errors
 
 ### Fixed
 
 - Unsplash's "change every new tab" setting is no longer every second new tab!
 - Backgrounds sometimes breaking after restarting Safari
+- Cache errors no longer trigger the "Storage Error" modal
 
 ## [2.3.0] - 2022-03-14
 

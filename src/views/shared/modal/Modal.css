@@ -15,6 +15,7 @@
   background: white;
   border-radius: 1rem 1rem 0 0;
   padding: 2rem;
+  min-width: 300px;
   max-width: 500px;
 }
 

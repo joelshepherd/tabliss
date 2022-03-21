@@ -1,6 +1,5 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
-import { migrate } from "./db/migrate";
 import { register as registerErrorHandler } from "./errorHandler";
 import { register as registerServiceWorker } from "./serviceWorker";
 import Root from "./views/Root";
@@ -13,9 +12,6 @@ import type {} from "react-dom/next";
 if (!DEV) {
   registerErrorHandler();
 }
-
-// Check and migrate data
-migrate();
 
 // Render app into root element
 createRoot(document.getElementById("root")!).render(<Root />);

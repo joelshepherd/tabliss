@@ -1,5 +1,6 @@
 import React from "react";
 import { defineMessages } from "react-intl";
+import { ErrorContext } from "../../contexts/error";
 import { UiContext } from "../../contexts/ui";
 import { toggleFocus } from "../../db/action";
 import { db } from "../../db/state";
@@ -30,12 +31,18 @@ const messages = defineMessages({
     description:
       "Hover hint text for the loading indicator icon (the lightning bolt)",
   },
+  errorHint: {
+    id: "dashboard.errorHint",
+    defaultMessage: "Show errors",
+    description: "Hover hint text for the error indicator icon",
+  },
 });
 
 const Overlay: React.FC = () => {
   const translated = useFormatMessages(messages);
   const focus = useValue(db, "focus");
-  const { pending, toggleSettings } = React.useContext(UiContext);
+  const { errors } = React.useContext(ErrorContext);
+  const { pending, toggleErrors, toggleSettings } = React.useContext(UiContext);
 
   useKeyPress(toggleFocus, ["w"]);
   useKeyPress(toggleSettings, ["s"]);
@@ -49,6 +56,12 @@ const Overlay: React.FC = () => {
       <a onClick={toggleSettings} title={`${translated.settingsHint} (S)`}>
         <Icon name="settings" />
       </a>
+
+      {errors.length > 0 ? (
+        <a onClick={toggleErrors} title={translated.errorHint}>
+          <Icon name="alert-triangle" />
+        </a>
+      ) : null}
 
       {pending > 0 ? (
         <span title={translated.loadingHint}>
