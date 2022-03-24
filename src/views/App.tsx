@@ -17,8 +17,6 @@ const messages = defineMessages({
   },
 });
 
-let inited = false;
-
 const Root: React.FC = () => {
   const { errors, settings, toggleErrors } = React.useContext(UiContext);
   const pushError = usePushError();
@@ -32,30 +30,26 @@ const Root: React.FC = () => {
   const [ready, setReady] = React.useState(false);
   const [error, setError] = React.useState(false);
   React.useEffect(() => {
-    if (!inited) {
-      inited = true;
-      Promise.all([
-        initDb((error) => {
-          setError(true);
-          pushError({
-            message:
-              "Cannot open storage. Settings cannot be saved or loaded.",
-          });
-          console.error(error);
-          console.error("Caused by:", error.cause);
-        }).catch(console.error), // Should not hit here
-        initCache((error) => {
-          pushError({
-            message: "Cannot open cache. Start up performance may be degraded.",
-          });
-          console.error(error);
-          console.error("Caused by:", error.cause);
-        }).catch(console.error), // Should not hit here
-      ]).then(() => {
-        migrate();
-        setReady(true);
-      });
-    }
+    Promise.all([
+      initDb((error) => {
+        setError(true);
+        pushError({
+          message: "Cannot open storage. Settings cannot be saved or loaded.",
+        });
+        console.error(error);
+        console.error("Caused by:", error.cause);
+      }).catch(console.error), // Should not hit here
+      initCache((error) => {
+        pushError({
+          message: "Cannot open cache. Start up performance may be degraded.",
+        });
+        console.error(error);
+        console.error("Caused by:", error.cause);
+      }).catch(console.error), // Should not hit here
+    ]).then(() => {
+      migrate();
+      setReady(true);
+    });
   }, []);
 
   if (!ready) return null;
@@ -70,4 +64,4 @@ const Root: React.FC = () => {
   );
 };
 
-export default React.memo(Root);
+export default Root;
