@@ -65,16 +65,19 @@ export const fetchImages = async ({
 export const buildLink = (src: string): string => {
   const url = new URL(src);
   url.searchParams.set("q", "85");
-  url.searchParams.set("w", String(calculateWidth(window.innerWidth)));
+  url.searchParams.set(
+    "w",
+    String(calculateWidth(window.innerWidth, window.devicePixelRatio)),
+  );
   return String(url);
 };
 
 /**
  * Calculate width to fetch image, tuned for Unsplash cache performance.
  */
-export function calculateWidth(screenWidth: number = 1920): number {
+export function calculateWidth(screenWidth = 1920, pixelRatio = 1): number {
   // Consider a minimum resolution too
-  screenWidth = screenWidth * window.devicePixelRatio; // Find true resolution
+  screenWidth = screenWidth * pixelRatio; // Find true resolution
   screenWidth = Math.max(screenWidth, 1920); // Lower limit at 1920
   screenWidth = Math.min(screenWidth, 3840); // Upper limit at 4K
   screenWidth = Math.ceil(screenWidth / 240) * 240; // Snap up to nearest 240px for improved caching
