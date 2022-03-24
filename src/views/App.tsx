@@ -3,11 +3,10 @@ import { defineMessages, useIntl } from "react-intl";
 import { usePushError } from "../api";
 import { UiContext } from "../contexts/ui";
 import { migrate } from "../db/migrate";
-import { cache, initCache, initDb } from "../db/state";
+import { initCache, initDb } from "../db/state";
 import { Dashboard } from "./dashboard";
 import { Settings } from "./settings";
 import Errors from "./shared/Errors";
-import Modal from "./shared/modal/Modal";
 import StoreError from "./shared/StoreError";
 
 const messages = defineMessages({
@@ -35,23 +34,23 @@ const Root: React.FC = () => {
   React.useEffect(() => {
     if (!inited) {
       inited = true;
-      Promise.allSettled([
+      Promise.all([
         initDb((error) => {
           setError(true);
           pushError({
             message:
-              "Cannot open database. Settings cannot be saved or loaded.",
+              "Cannot open storage. Settings cannot be saved or loaded.",
           });
           console.error(error);
           console.error("Caused by:", error.cause);
-        }),
+        }).catch(console.error), // Should not hit here
         initCache((error) => {
           pushError({
             message: "Cannot open cache. Start up performance may be degraded.",
           });
           console.error(error);
           console.error("Caused by:", error.cause);
-        }),
+        }).catch(console.error), // Should not hit here
       ]).then(() => {
         migrate();
         setReady(true);
