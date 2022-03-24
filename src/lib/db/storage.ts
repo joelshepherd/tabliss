@@ -55,7 +55,6 @@ export const indexeddb = (
 
               const trx = conn.transaction("changes", "readwrite");
               trx.oncomplete = () => {}; // nice
-              // TODO: this error will not display anywhere, because the promise has already resolved
               trx.onerror = mapError("Cannot write changes to storage");
 
               const store = trx.objectStore("changes");

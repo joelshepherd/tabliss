@@ -10,6 +10,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 - Previous or next buttons to change the Unsplash background
 - New UI to display errors
 
+### Changed
+
+- Screen pixel density is now consider for background quanlity
+- German translation updates - thanks @dreadwarrior
+- Italian translation updates - thanks @gioxx
+
 ### Fixed
 
 - Unsplash's "change every new tab" setting is no longer every second new tab!

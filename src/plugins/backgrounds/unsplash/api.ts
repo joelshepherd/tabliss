@@ -74,6 +74,7 @@ export const buildLink = (src: string): string => {
  */
 export function calculateWidth(screenWidth: number = 1920): number {
   // Consider a minimum resolution too
+  screenWidth = screenWidth * window.devicePixelRatio; // Find true resolution
   screenWidth = Math.max(screenWidth, 1920); // Lower limit at 1920
   screenWidth = Math.min(screenWidth, 3840); // Upper limit at 4K
   screenWidth = Math.ceil(screenWidth / 240) * 240; // Snap up to nearest 240px for improved caching
