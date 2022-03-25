@@ -94,15 +94,15 @@ export const db = DB.init<State>(initData);
 export const cache = DB.init<Record<string, unknown | undefined>>();
 
 // Persist data
-export const initDb = (onError: (error: Error) => void): Promise<void> =>
+export const dbStorage =
   BUILD_TARGET === "web"
-    ? Storage.indexeddb(db, "tabliss/config", onError)
-    : Storage.extension(db, "tabliss/config", "sync", onError);
+    ? Storage.indexeddb(db, "tabliss/config")
+    : Storage.extension(db, "tabliss/config", "sync");
 
-export const initCache = (onError: (error: Error) => void): Promise<void> =>
+export const cacheStorage =
   BUILD_TARGET === "firefox"
-    ? Storage.extension(cache, "tabliss/cache", "local", onError)
-    : Storage.indexeddb(cache, "tabliss/cache", onError);
+    ? Storage.extension(cache, "tabliss/cache", "local")
+    : Storage.indexeddb(cache, "tabliss/cache");
 
 // TODO: Consider asking for persistence
 // navigator.storage.persist().then((persistent) => {

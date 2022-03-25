@@ -1,27 +1,31 @@
 import { Browser } from "webextension-polyfill";
 import * as DB from "./db";
+import * as Stream from "./stream";
 
 /** IndexedDB storage provider */
 // TODO: clean up indexeddb usage, convert to promises and double check error handling
 export const indexeddb = (
   db: DB.Database,
   name: string,
-  onError: (error: Error) => void,
-): Promise<void> => {
-  return new Promise((resolve) => {
-    // Map idb errors to a standard format
-    const mapError = (message: string) => (err: unknown) => {
-      const cause =
-        err instanceof Event &&
-        err.target instanceof IDBRequest &&
-        err.target.error instanceof Error
-          ? err.target.error
-          : undefined;
-      onError(new Error(`StorageError: IndexedDB: ${message}`, { cause }));
+): Promise<Stream.Stream<StorageError>> => {
+  // Map idb errors to a standard format
+  const mapError = (message: string, err: unknown): StorageError => {
+    const cause =
+      err instanceof Event &&
+      err.target instanceof IDBRequest &&
+      err.target.error instanceof Error
+        ? err.target.error
+        : undefined;
+    return new StorageError(`IndexedDB: ${name}: ${message}`, { cause });
+  };
+
+  return new Promise((resolve, reject) => {
+    const rejectError = (message: string) => (err: unknown) => {
+      reject(mapError(message, err));
     };
 
     const open = indexedDB.open(name, 1);
-    open.onerror = mapError("Cannot open storage");
+    open.onerror = rejectError("Cannot open database");
     open.onupgradeneeded = () => {
       open.result.createObjectStore("changes");
     };
@@ -29,8 +33,7 @@ export const indexeddb = (
       const conn = open.result;
 
       const trx = conn.transaction("changes", "readonly");
-      trx.oncomplete = () => {}; // nice
-      trx.onerror = mapError("Cannot read changes from storage");
+      trx.onerror = rejectError("Cannot read changes from store");
 
       const changes: DB.Change[] = [];
       const cursor = trx.objectStore("changes").openCursor();
@@ -44,10 +47,9 @@ export const indexeddb = (
           DB.atomic(db, (trx) => {
             changes.forEach(([key, val]) => DB.put(trx, key, val));
           });
-          resolve();
 
-          // Setup changes listener
-          // TODO: should listen be set up even if the cursor fails?
+          // Write
+          const errors = Stream.init<StorageError>();
           DB.listen(
             db,
             batch((changes) => {
@@ -55,7 +57,11 @@ export const indexeddb = (
 
               const trx = conn.transaction("changes", "readwrite");
               trx.oncomplete = () => {}; // nice
-              trx.onerror = mapError("Cannot write changes to storage");
+              trx.onerror = (error) =>
+                Stream.publish(
+                  errors,
+                  mapError("Cannot write changes to store", error),
+                );
 
               const store = trx.objectStore("changes");
               // TODO: iterator helpers
@@ -65,6 +71,7 @@ export const indexeddb = (
               }
             }),
           );
+          resolve(errors);
         }
       };
     };
@@ -75,22 +82,19 @@ export const indexeddb = (
 export const extension = async (
   db: DB.Database,
   name: string,
-  areaName: "local" | "sync" | "managed",
-  onError: (error: Error) => void,
-): Promise<void> => {
+  area: "local" | "sync" | "managed",
+): Promise<Stream.Stream<StorageError>> => {
   // Map errors to a standard format
-  const mapError = (message: string) => (err: unknown) => {
-    const cause = err instanceof Error ? err : undefined;
-    onError(
-      new Error(`StorageError: Extension[${areaName}]: ${message}`, { cause }),
-    );
-  };
+  const mapError = (message: string, err: unknown) =>
+    new StorageError(`Extension[${area}]: ${name}: ${message}`, {
+      cause: err instanceof Error ? err : undefined,
+    });
 
   // @ts-ignore
   const browser: Browser = require("webextension-polyfill");
-  const storageArea = browser.storage[areaName];
+  const storageArea = browser.storage[area];
 
-  // Populate db from storage
+  // Pull
   await storageArea
     .get()
     .then((stored) =>
@@ -100,30 +104,42 @@ export const extension = async (
           DB.put(db, key.substring(name.length + 1), stored[key]),
         ),
     )
-    .catch(mapError("Cannot read changes from storage"));
+    .catch((error) => {
+      throw mapError("Cannot read from storage", error);
+    });
 
-  // Setup listener
-  const listener = batch((changes) => {
-    if (DEV) console.log("Storage: saving changes:", changes);
+  // Push
+  const errors = Stream.init<StorageError>();
+  const handleError = (message: string) => (err: unknown) => {
+    Stream.publish(errors, mapError(message, err));
+  };
+  DB.listen(
+    db,
+    batch((changes) => {
+      if (DEV) console.log("Storage: saving changes:", changes);
 
-    // TODO: test for both updates and deletes for the same key
-    // TODO: iterator helpers
-    const changesArray = Array.from(changes);
-    const updates = Object.fromEntries(
-      changesArray
-        .filter(([, val]) => val !== undefined)
-        .map(([key, val]) => [`${name}/${key}`, val]),
-    );
-    const deletes = changesArray
-      .filter(([, val]) => val === undefined)
-      .map(([key]) => `${name}/${key}`);
+      // TODO: test for both updates and deletes for the same key
+      // TODO: iterator helpers
+      const changesArray = Array.from(changes);
+      const updates = Object.fromEntries(
+        changesArray
+          .filter(([, val]) => val !== undefined)
+          .map(([key, val]) => [`${name}/${key}`, val]),
+      );
+      const deletes = changesArray
+        .filter(([, val]) => val === undefined)
+        .map(([key]) => `${name}/${key}`);
 
-    storageArea.set(updates).catch(mapError("Cannot write updates to storage"));
-    storageArea
-      .remove(deletes)
-      .catch(mapError("Cannot write deletes to storage"));
-  });
-  DB.listen(db, listener);
+      storageArea
+        .set(updates)
+        .catch(handleError("Cannot write updates to storage"));
+      storageArea
+        .remove(deletes)
+        .catch(handleError("Cannot write deletes to storage"));
+    }),
+  );
+
+  return errors;
 };
 
 const batch = (
@@ -152,3 +168,12 @@ const batch = (
     if (!timer) timer = setTimeout(run, timeout);
   };
 };
+
+/** Storage Error */
+class StorageError extends Error {
+  constructor(message: string, options: ErrorOptions) {
+    super(`StorageError: ${message}`, options);
+    // Ensure cause is set on older browsers
+    this.cause = options.cause;
+  }
+}
