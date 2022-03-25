@@ -23,6 +23,7 @@ const TimeProvider: React.FC = ({ children }) => {
   const [time, setTime] = React.useState(getTime(timeZone));
 
   React.useEffect(() => {
+    setTime(getTime(timeZone));
     const interval = setInterval(() => setTime(getTime(timeZone)), 1000);
     return () => clearInterval(interval);
   }, [timeZone]);
