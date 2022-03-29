@@ -7,6 +7,7 @@ import links from "./links";
 import literatureClock from "./literatureClock";
 import message from "./message";
 import nba from "./nba";
+import notes from "./notes";
 import quote from "./quote";
 import search from "./search";
 import time from "./time";
@@ -23,6 +24,7 @@ export const widgetConfigs = [
   literatureClock,
   message,
   nba,
+  notes,
   quote,
   search,
   time,
