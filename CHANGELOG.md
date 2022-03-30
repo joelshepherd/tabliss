@@ -9,6 +9,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
 - New Notes widget
 
+### Fixed
+
+- Compatibility for older versions of Firefox (54-57)
+
 ## [2.4.2] - 2022-03-26
 
 ### Fixed

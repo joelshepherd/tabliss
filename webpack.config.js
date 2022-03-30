@@ -16,6 +16,7 @@ const version = require("./package.json").version;
 
 const config = {
   entry: {
+    polyfills: "./src/polyfills.ts",
     main: ["normalize.css", "./src/styles.sass", "./src/main.tsx"],
   },
   output: {

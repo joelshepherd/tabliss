@@ -171,9 +171,5 @@ const batch = (
 
 /** Storage Error */
 class StorageError extends Error {
-  constructor(message: string, options: ErrorOptions) {
-    super(`StorageError: ${message}`, options);
-    // Ensure cause is set on older browsers
-    this.cause = options.cause;
-  }
+  override name = "StorageError";
 }
