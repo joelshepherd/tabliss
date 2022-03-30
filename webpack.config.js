@@ -102,6 +102,14 @@ if (isProduction) {
   );
 }
 
+if (!isWeb) {
+  config.plugins.push(
+    new webpack.ProvidePlugin({
+      browser: "webextension-polyfill",
+    }),
+  );
+}
+
 if (!isWeb && !isProduction) {
   config.plugins.push(
     new ExtensionReloader({

@@ -1,4 +1,3 @@
-import { Browser } from "webextension-polyfill";
 import { DB } from "../lib";
 import { importStore } from "./action";
 import { cache, db } from "./state";
@@ -6,8 +5,6 @@ import { cache, db } from "./state";
 /** Migrate extension data */
 const migrateExtension = async (): Promise<void> => {
   const key = "persist:data";
-  // @ts-ignore
-  const browser: Browser = require("webextension-polyfill");
   const stored = await browser.storage.sync.get(key);
   if (stored[key]) {
     // Migrate if new database is empty

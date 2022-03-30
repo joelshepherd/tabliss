@@ -18,9 +18,9 @@ const Input: React.FC<Props> = ({ onChange, value, ...props }) => {
 
   useKeyPress(
     (event) => {
-      if (event.target === span.current) {
+      if (event.target === span.current && span.current) {
         event.preventDefault();
-        if (span.current) span.current.blur();
+        span.current.blur();
       }
     },
     ["Escape"],

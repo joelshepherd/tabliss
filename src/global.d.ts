@@ -1,15 +1,11 @@
-declare const BUILD_TARGET: "chromium" | "firefox" | "web";
-declare const DEV: boolean;
-declare const GIPHY_API_KEY: string;
-declare const UNSPLASH_API_KEY: string;
-declare const VERSION: string;
+import type { Browser } from "webextension-polyfill";
 
-declare module "*.png" {
-  const content: string;
-  export default content;
-}
+declare global {
+  const BUILD_TARGET: "chromium" | "firefox" | "web";
+  const DEV: boolean;
+  const GIPHY_API_KEY: string;
+  const UNSPLASH_API_KEY: string;
+  const VERSION: string;
 
-declare module "*.svg" {
-  const content: string;
-  export default content;
+  const browser: Browser;
 }

@@ -90,8 +90,6 @@ export const extension = async (
       cause: err instanceof Error ? err : undefined,
     });
 
-  // @ts-ignore
-  const browser: Browser = require("webextension-polyfill");
   const storageArea = browser.storage[area];
 
   // Pull
