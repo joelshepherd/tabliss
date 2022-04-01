@@ -78,24 +78,21 @@ const Settings: React.FC = () => {
       <div className="plane">
         <Logo />
 
-        <Persist />
-
         <Background />
 
         <Widgets />
 
         <System />
 
-        <p>
+        <p style={{ marginBottom: "2rem" }}>
           <a onClick={handleImport}>Import</a>,{" "}
           <a onClick={handleExport}>export</a> or{" "}
           <a onClick={handleReset}>reset</a> your settings
         </p>
 
-        <div
-          style={{ textAlign: "center", marginTop: "2rem" }}
-          className="Widget"
-        >
+        <Persist />
+
+        <div style={{ textAlign: "center" }} className="Widget">
           <h4>Support Tabliss</h4>
           <p>
             <a

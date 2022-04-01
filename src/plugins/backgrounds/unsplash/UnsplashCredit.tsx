@@ -14,32 +14,34 @@ interface Props {
 
 const UnsplashCredit: React.FC<Props> = ({ credit, onPrev, onNext }) => (
   <div className="credit">
-    <span style={{ float: "right" }}>{credit.location}</span>{" "}
-    {onPrev ? (
-      <a onClick={onPrev}>
+    <div className="photo">
+      <a href={credit.imageLink + UTM} rel="noopener noreferrer">
+        <FormattedMessage
+          id="plugins.unsplash.photoLink"
+          description="Photo link text"
+          defaultMessage="Photo"
+        />
+      </a>
+      {", "}
+      <a href={credit.userLink + UTM} rel="noopener noreferrer">
+        {credit.userName}
+      </a>
+      {", "}
+      <a href={"https://unsplash.com/" + UTM} rel="noopener noreferrer">
+        Unsplash
+      </a>
+    </div>
+
+    <div className="controls">
+      <a className={onPrev ? "" : "hidden"} onClick={onPrev ?? undefined}>
         <Icon name="arrow-left" />
       </a>
-    ) : null}
-    {onNext ? (
-      <a onClick={onNext}>
+      <a className={onNext ? "" : "hidden"} onClick={onNext ?? undefined}>
         <Icon name="arrow-right" />
       </a>
-    ) : null}{" "}
-    <a href={credit.imageLink + UTM} rel="noopener noreferrer">
-      <FormattedMessage
-        id="plugins.unsplash.photoLink"
-        description="Photo link text"
-        defaultMessage="Photo"
-      />
-    </a>
-    {", "}
-    <a href={credit.userLink + UTM} rel="noopener noreferrer">
-      {credit.userName}
-    </a>
-    {", "}
-    <a href={"https://unsplash.com/" + UTM} rel="noopener noreferrer">
-      Unsplash
-    </a>
+    </div>
+
+    <div className="location">{credit.location}</div>
   </div>
 );
 
