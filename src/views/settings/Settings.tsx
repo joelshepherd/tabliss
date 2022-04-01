@@ -6,6 +6,7 @@ import { useKeyPress } from "../../hooks";
 import { Icon } from "../shared";
 import Logo from "../shared/Logo";
 import Background from "./Background";
+import Persist from "./Persist";
 import "./Settings.sass";
 import System from "./System";
 import Widgets from "./Widgets";
@@ -76,6 +77,8 @@ const Settings: React.FC = () => {
 
       <div className="plane">
         <Logo />
+
+        <Persist />
 
         <Background />
 
