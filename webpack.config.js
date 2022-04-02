@@ -7,7 +7,6 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const workbox = require("workbox-webpack-plugin");
 const webpack = require("webpack");
-const ExtensionReloader = require("webpack-ext-reloader");
 
 const buildTarget = process.env.BUILD_TARGET || "web";
 const isProduction = process.env.NODE_ENV === "production";
@@ -41,11 +40,6 @@ const config = {
           limit: 10000,
           name: isWeb ? "[name].[contenthash:12].[ext]" : "[name].[ext]",
         },
-      },
-      {
-        // Thanks, `react-intl`
-        test: /\.mjs$/,
-        type: "javascript/auto",
       },
       {
         test: /\.sass$/,
@@ -106,17 +100,6 @@ if (!isWeb) {
   config.plugins.push(
     new webpack.ProvidePlugin({
       browser: "webextension-polyfill",
-    }),
-  );
-}
-
-if (!isWeb && !isProduction) {
-  config.plugins.push(
-    new ExtensionReloader({
-      reloadPage: true,
-      entries: {
-        extensionPage: "main",
-      },
     }),
   );
 }

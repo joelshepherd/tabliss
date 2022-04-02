@@ -1,4 +1,4 @@
-import { init, captureException } from "@sentry/browser";
+import { init, captureException, setTag } from "@sentry/browser";
 
 export function register() {
   init({
@@ -7,6 +7,7 @@ export function register() {
     enabled: !DEV,
     release: VERSION,
   });
+  setTag("target", BUILD_TARGET);
 }
 
 export function capture(error: Error) {
