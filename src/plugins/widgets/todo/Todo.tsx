@@ -17,9 +17,10 @@ const Todo: FC<Props> = ({ data = defaultData, setData }) => {
   const items = data.items.filter((item) => !item.completed || showCompleted);
   const show = !showMore ? data.show : undefined;
 
+  const keyBind = data.keyBind ?? "T";
   useKeyPress(
     () => dispatch(addTodo()),
-    [data.keyBind.toUpperCase(), data.keyBind.toLowerCase()],
+    [keyBind.toUpperCase(), keyBind.toLowerCase()],
   );
 
   return (

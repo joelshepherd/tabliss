@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
+## [2.5.1] - 2022-04-02
+
+### Fixed
+
+- Migration error that would cause the todo widget to crash
+
 ## [2.5.0] - 2022-04-02
 
 ### Added

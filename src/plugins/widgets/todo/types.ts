@@ -4,7 +4,7 @@ import { State } from "./reducer";
 export type Data = {
   items: State;
   show: number;
-  keyBind: string;
+  keyBind?: string;
 };
 
 export type Props = API<Data>;
