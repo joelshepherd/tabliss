@@ -12,5 +12,5 @@ export type Props = API<Data>;
 export const defaultData: Data = {
   items: [],
   show: 3,
-  keyBind: "N",
+  keyBind: "T",
 };

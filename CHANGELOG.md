@@ -8,8 +8,13 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 ### Added
 
 - New Notes widget
+- Keyboard shortcut to create a new todo - thanks @noah-curran
 - Option to request persistent storage permission from the browser
 - Option for weekly Unsplash image rotation
+
+## Changed
+
+- Japanese translation updates - thanks @kodaka
 
 ### Fixed
 

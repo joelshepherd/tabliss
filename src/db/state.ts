@@ -103,12 +103,3 @@ export const cacheStorage =
   BUILD_TARGET === "firefox"
     ? Storage.extension(cache, "tabliss/cache", "local")
     : Storage.indexeddb(cache, "tabliss/cache");
-
-// TODO: Consider asking for persistence
-// navigator.storage.persist().then((persistent) => {
-//   console.log(persistent);
-//   if (!persistent)
-//     console.log(
-//       "Your browser may delete your setting under various conditions if you do not allow persistent storage.",
-//     );
-// });
