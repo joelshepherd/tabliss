@@ -13,6 +13,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
 ### Fixed
 
+- Custom CSS now loads _before_ the first render, savings eyes everywhere
 - Compatibility for older versions of Firefox (54-57)
 
 ## [2.4.2] - 2022-03-26
@@ -52,7 +53,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
 ### Added
 
-- Added GitHub Calender widget - thanks @vdimir
+- Added GitHub Calendar widget - thanks @vdimir
 - Galician translations - thanks Daniel González Portela
 - Irish translations - thanks @tsirona
 - Canadian English locale
