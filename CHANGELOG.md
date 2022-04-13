@@ -24,7 +24,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 - Option to request persistent storage permission from the browser
 - Option for weekly Unsplash image rotation
 
-## Changed
+### Changed
 
 - Japanese translation updates - thanks @kodaka
 
