@@ -8,11 +8,19 @@ export const UTM =
 
 interface Props {
   credit: Image["credit"];
+  paused: boolean;
+  onPause: () => void;
   onPrev: (() => void) | null;
   onNext: (() => void) | null;
 }
 
-const UnsplashCredit: React.FC<Props> = ({ credit, onPrev, onNext }) => (
+const UnsplashCredit: React.FC<Props> = ({
+  credit,
+  paused,
+  onPause,
+  onPrev,
+  onNext,
+}) => (
   <div className="credit">
     <div className="photo">
       <a href={credit.imageLink + UTM} rel="noopener noreferrer">
@@ -35,7 +43,10 @@ const UnsplashCredit: React.FC<Props> = ({ credit, onPrev, onNext }) => (
     <div className="controls">
       <a className={onPrev ? "" : "hidden"} onClick={onPrev ?? undefined}>
         <Icon name="arrow-left" />
-      </a>
+      </a>{" "}
+      <a onClick={onPause}>
+        <Icon name={paused ? "play" : "pause"} />
+      </a>{" "}
       <a className={onNext ? "" : "hidden"} onClick={onNext ?? undefined}>
         <Icon name="arrow-right" />
       </a>

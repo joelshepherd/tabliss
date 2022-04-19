@@ -11,12 +11,24 @@ const Unsplash: React.FC<Props> = ({
   data = defaultData,
   loader,
   setCache,
+  setData,
 }) => {
   // If legacy cache design, clear and let the new cache take over
   // Unfortunately, without the imaeg src being stored, I cannot migrate the old cache
   if (cache && "now" in cache) {
     cache = undefined;
   }
+
+  // Migrate old pause setting
+  React.useEffect(() => {
+    if (data.timeout === Number.MAX_SAFE_INTEGER) {
+      setData({
+        ...data,
+        paused: true,
+        timeout: defaultData.timeout,
+      });
+    }
+  });
 
   // Get current item from rotating cache
   const item = useRotatingCache(
@@ -25,7 +37,7 @@ const Unsplash: React.FC<Props> = ({
       return fetchImages(data).finally(loader.pop);
     },
     { cache, setCache },
-    data.timeout * 1000,
+    data.paused ? Number.MAX_SAFE_INTEGER : data.timeout * 1000,
     [data.by, data.collections, data.featured, data.search, data.topics],
   );
 
@@ -52,6 +64,13 @@ const Unsplash: React.FC<Props> = ({
           })
       : null;
 
+  const handlePause = () => {
+    setData({
+      ...data,
+      paused: !data.paused,
+    });
+  };
+
   return (
     <div className="Unsplash fullscreen">
       <Backdrop
@@ -61,7 +80,13 @@ const Unsplash: React.FC<Props> = ({
       />
 
       {item ? (
-        <UnsplashCredit credit={item.credit} onPrev={go(-1)} onNext={go(1)} />
+        <UnsplashCredit
+          credit={item.credit}
+          paused={data.paused ?? false}
+          onPause={handlePause}
+          onPrev={go(-1)}
+          onNext={go(1)}
+        />
       ) : null}
     </div>
   );

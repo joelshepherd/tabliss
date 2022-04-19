@@ -7,6 +7,7 @@ export interface Data {
   by: By;
   collections: string;
   featured: boolean;
+  paused?: boolean;
   search: string;
   topics: string;
   timeout: number;
@@ -30,6 +31,7 @@ export const defaultData: Data = {
   by: "official",
   collections: "",
   featured: false,
+  paused: false,
   search: "",
   topics: "bo8jQKTaE0Y",
   timeout: 900,

@@ -6,6 +6,7 @@ import { defaultData, Props } from "./types";
 const UnsplashSettings: React.FC<Props> = ({ data = defaultData, setData }) => (
   <div className="UnsplashSettings">
     <label>
+      {data.paused ? <span style={{ float: "right" }}>(Paused)</span> : null}
       Show a new photo
       <select
         value={data.timeout}
@@ -19,7 +20,6 @@ const UnsplashSettings: React.FC<Props> = ({ data = defaultData, setData }) => (
         <option value="3600">Every hour</option>
         <option value="86400">Every day</option>
         <option value="604800">Every week</option>
-        <option value={Number.MAX_SAFE_INTEGER}>Pause</option>
       </select>
     </label>
 

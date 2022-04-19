@@ -5,6 +5,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+### Added
+
+- New play and pause buttons for Unsplash background rotation
+
 ### Fixed
 
 - Initial flash of black before settings load if using a light theme
