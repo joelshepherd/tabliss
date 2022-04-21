@@ -19,7 +19,10 @@ const Todo: FC<Props> = ({ data = defaultData, setData }) => {
 
   const keyBind = data.keyBind ?? "T";
   useKeyPress(
-    () => dispatch(addTodo()),
+    (event: KeyboardEvent) => {
+      event.preventDefault();
+      dispatch(addTodo());
+    },
     [keyBind.toUpperCase(), keyBind.toLowerCase()],
   );
 
