@@ -12,6 +12,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 ### Fixed
 
 - Initial flash of black before settings load if using a light theme
+- Create todo keyboard shortcut was included in the todo
 
 ## [2.5.1] - 2022-04-02
 
