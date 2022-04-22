@@ -14,7 +14,7 @@ const Unsplash: React.FC<Props> = ({
   setData,
 }) => {
   // If legacy cache design, clear and let the new cache take over
-  // Unfortunately, without the imaeg src being stored, I cannot migrate the old cache
+  // Unfortunately, without the image src being stored, I cannot migrate the old cache
   if (cache && "now" in cache) {
     cache = undefined;
   }
@@ -28,7 +28,7 @@ const Unsplash: React.FC<Props> = ({
         timeout: defaultData.timeout,
       });
     }
-  });
+  }, []);
 
   // Get current item from rotating cache
   const item = useRotatingCache(
@@ -41,7 +41,7 @@ const Unsplash: React.FC<Props> = ({
     [data.by, data.collections, data.featured, data.search, data.topics],
   );
 
-  // Populate cache with the next image
+  // Populate browser cache with the next image
   React.useEffect(() => {
     if (cache && cache.items[cache.cursor + 1]) {
       const next = new Image();
@@ -75,7 +75,7 @@ const Unsplash: React.FC<Props> = ({
     <div className="Unsplash fullscreen">
       <Backdrop
         className="image fullscreen"
-        ready={Boolean(url)}
+        ready={url !== null}
         style={{ backgroundImage: url ? `url(${url})` : undefined }}
       />
 

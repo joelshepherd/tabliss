@@ -1,4 +1,5 @@
 import React from "react";
+import { Icon } from "../../../views/shared";
 import { DebounceInput } from "../../shared";
 import topics from "./topics.json";
 import { defaultData, Props } from "./types";
@@ -6,7 +7,12 @@ import { defaultData, Props } from "./types";
 const UnsplashSettings: React.FC<Props> = ({ data = defaultData, setData }) => (
   <div className="UnsplashSettings">
     <label>
-      {data.paused ? <span style={{ float: "right" }}>(Paused)</span> : null}
+      <span style={{ float: "right" }}>
+        {data.paused ? <span className="text--grey">(Paused) </span> : null}
+        <a onClick={() => setData({ ...data, paused: !data.paused })}>
+          <Icon name={data.paused ? "play" : "pause"} />
+        </a>
+      </span>
       Show a new photo
       <select
         value={data.timeout}
