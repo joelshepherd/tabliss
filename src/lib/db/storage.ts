@@ -1,4 +1,3 @@
-import { Browser } from "webextension-polyfill";
 import * as DB from "./db";
 import * as Stream from "./stream";
 

@@ -2,6 +2,7 @@ import React from "react";
 import "./Modal.css";
 
 type Props = {
+  children: React.ReactNode;
   onClose: () => void;
 };
 

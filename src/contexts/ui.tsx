@@ -15,7 +15,7 @@ type UiContext = UiState & {
 
 export const UiContext = React.createContext({} as unknown as UiContext);
 
-const UiProvider: React.FC = ({ children }) => {
+const UiProvider: React.FC<React.PropsWithChildren<{}>> = ({ children }) => {
   const [state, setState] = React.useState<UiState>({
     errors: false,
     pending: 0,

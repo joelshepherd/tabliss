@@ -1,7 +1,7 @@
 import React from "react";
 import { WidgetDisplay } from "../../db/state";
 
-const Widget: React.FC<WidgetDisplay> = ({
+const Widget: React.FC<React.PropsWithChildren<WidgetDisplay>> = ({
   children,
   colour,
   fontFamily,

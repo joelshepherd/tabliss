@@ -13,7 +13,7 @@ const migrateExtension = async (): Promise<void> => {
       migrateCache();
       clearDangling();
     }
-    browser.storage.sync.remove(key);
+    await browser.storage.sync.remove(key);
   }
 };
 

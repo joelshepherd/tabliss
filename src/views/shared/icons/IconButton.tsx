@@ -1,6 +1,7 @@
 import React, { FC } from "react";
 
 interface Props {
+  children: React.ReactNode;
   onClick: () => void;
   primary?: boolean;
   title?: string;

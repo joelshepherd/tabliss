@@ -4,7 +4,7 @@ import { db } from "../db/state";
 import { useValue } from "../lib/db/react";
 import { messages } from "./locales";
 
-const IntlProvider: React.FC = ({ children }) => {
+const IntlProvider: React.FC<React.PropsWithChildren<{}>> = ({ children }) => {
   const locale = useValue(db, "locale");
 
   return (
