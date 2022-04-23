@@ -7,6 +7,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
 ### Added
 
+- Option to use the website icon for Quick Links
 - New play and pause buttons for Unsplash background rotation
 
 ### Fixed
