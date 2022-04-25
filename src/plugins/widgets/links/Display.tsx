@@ -59,10 +59,12 @@ const Display: FC<Props> = ({ icon, name, number, url, linkOpenStyle }) => {
     >
       {icon === "_favicon" ? (
         domain ? (
-          <img
-            alt={domain}
-            src={`https://icons.duckduckgo.com/ip3/${domain}.ico`}
-          />
+          <i>
+            <img
+              alt={domain}
+              src={`https://icons.duckduckgo.com/ip3/${domain}.ico`}
+            />
+          </i>
         ) : null
       ) : icon ? (
         <Icon name={icon} />
