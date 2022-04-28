@@ -1,36 +1,28 @@
-import React, { FC } from "react";
-
-import { useCachedEffect } from "../../../hooks";
-
-import { Props, defaultData } from "./types";
+import React from "react";
+import { usePushError } from "../../../api";
 import { getIpInfo } from "./api";
-import { MINUTES } from "../../../utils";
+import { defaultData, Props } from "./types";
 
-const IpInfo: FC<Props> = ({ cache, data = defaultData, setCache, loader }) => {
-  const refreshInterval = data.refreshInterval * MINUTES;
-
-  useCachedEffect(
-    () => {
-      getIpInfo(loader).then(setCache);
-    },
-    cache ? cache.timestamp + refreshInterval : 0,
-    [],
-  );
+const IpInfo: React.FC<Props> = ({
+  cache,
+  data = defaultData,
+  setCache,
+  loader,
+}) => {
+  const pushError = usePushError();
+  React.useEffect(() => {
+    getIpInfo(loader).then(setCache).catch(pushError);
+  }, []);
 
   if (!cache) {
     return null;
   }
 
-  return (
-    <div className="IpInfo">
-      {cache.ip ? cache.ip : data.ip}
+  const info = [cache.ip];
+  if (data.displayCity) info.push(cache.city);
+  if (data.displayCountry) info.push(cache.country);
 
-      {data.displayCity && (cache.city ? ", " + cache.city : data.city)}
-
-      {data.displayCountry &&
-        (cache.country ? ", " + cache.country : data.country)}
-    </div>
-  );
+  return <div className="IpInfo">{info.join(", ")}</div>;
 };
 
 export default IpInfo;

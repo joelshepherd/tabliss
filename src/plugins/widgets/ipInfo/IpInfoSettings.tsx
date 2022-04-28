@@ -1,8 +1,7 @@
-import React, { FC } from "react";
+import React from "react";
+import { defaultData, Props } from "./types";
 
-import { Props, defaultData } from "./types";
-
-const IpInfoSettings: FC<Props> = ({ data = defaultData, setData }) => (
+const IpInfoSettings: React.FC<Props> = ({ data = defaultData, setData }) => (
   <div className="IpInfoSettings">
     <label>
       <input
@@ -22,19 +21,6 @@ const IpInfoSettings: FC<Props> = ({ data = defaultData, setData }) => (
         }
       />
       Display Country
-    </label>
-
-    <label>
-      Refresh interval (minutes)
-      <input
-        type="number"
-        value={data.refreshInterval}
-        onChange={(event) =>
-          setData({ ...data, refreshInterval: Number(event.target.value) })
-        }
-        min={1}
-        max={60}
-      />
     </label>
   </div>
 );
