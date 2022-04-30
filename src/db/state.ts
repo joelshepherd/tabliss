@@ -7,6 +7,8 @@ import { defaultLocale } from "../locales";
 export interface State {
   /** Background state */
   background: BackgroundState;
+  /** BlockedImages state */
+  blockedImages: BlockedImagesState;
   /** Widget state */
   [key: `widget/${string}`]: WidgetState | null;
   /** Plugin data */
@@ -17,6 +19,10 @@ export interface State {
   locale: string;
   /** Time zone selected, if any */
   timeZone: string | null;
+}
+
+export interface BlockedImagesState {
+  imageIds: Set<string>
 }
 
 export interface BackgroundState {
@@ -65,6 +71,9 @@ const initData: State = {
       luminosity: -0.2,
       blur: 0,
     },
+  },
+  blockedImages: {
+    imageIds: new Set<string>()
   },
   "widget/default-time": {
     id: "default-time",

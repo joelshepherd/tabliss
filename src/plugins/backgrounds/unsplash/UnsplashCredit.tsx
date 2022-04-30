@@ -12,6 +12,7 @@ interface Props {
   onPause: () => void;
   onPrev: (() => void) | null;
   onNext: (() => void) | null;
+  onBlock: () => void;
 }
 
 const UnsplashCredit: React.FC<Props> = ({
@@ -20,6 +21,7 @@ const UnsplashCredit: React.FC<Props> = ({
   onPause,
   onPrev,
   onNext,
+  onBlock,
 }) => (
   <div className="credit">
     <div className="photo">
@@ -46,6 +48,9 @@ const UnsplashCredit: React.FC<Props> = ({
       </a>{" "}
       <a onClick={onPause}>
         <Icon name={paused ? "play" : "pause"} />
+      </a>{" "}
+      <a onClick={ () => onBlock() }>
+          <Icon name="x"/>
       </a>{" "}
       <a className={onNext ? "" : "hidden"} onClick={onNext ?? undefined}>
         <Icon name="arrow-right" />

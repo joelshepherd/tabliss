@@ -1,4 +1,5 @@
 import { Data, Image } from "./types";
+import { fetchBlockedImages } from "../../../db/action";
 
 export const officialCollection = 1053828;
 
@@ -43,10 +44,27 @@ export const fetchImages = async ({
   }
 
   const res = await fetch(`${url}?${params}`, { headers, cache: "no-cache" });
-  const body = await res.json();
+  var body = await res.json();
+
+  // Fetch blocked image hash-set from DB
+  const blockedImages = fetchBlockedImages();
+  
+  var newBody: any = []
+  var index  = 0
+
+  for (let item of body){
+    // Only use images which are not blocked
+    if(!blockedImages.has(item.links.html)){
+      newBody[index] = item
+      index +=1   
+     }
+  }
+
+  // Replace old body 
+  body = newBody
 
   // TODO: validate types
-
+  
   return body.map((item: any) => ({
     src: item.urls.raw,
     credit: {

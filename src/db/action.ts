@@ -21,6 +21,31 @@ export const setBackground = (key: string): void => {
   DB.del(cache, current.id);
 };
 
+// Blocked Images Actions
+
+/** Block Unsplash Image */
+
+export const blockImage = (imageID: string): void => {
+
+  //Get the current hashSet of blocked unsplash images
+  const currentBlockedImages = DB.get(db, "blockedImages").imageIds;
+  
+  // Adds the current imageID.
+  currentBlockedImages.add(imageID);
+  
+  // Replaces the blockedImageIDs with the new updated set
+  DB.put(db, "blockedImages", {
+    imageIds: currentBlockedImages    
+  });
+
+};
+
+/** Fetch Blocked Images Set */
+
+export const fetchBlockedImages = (): Set<string> => {
+  return DB.get(db, "blockedImages").imageIds;
+}
+
 // Widget actions
 
 /** Add a new widget */
