@@ -14,6 +14,7 @@ import time from "./time";
 import todo from "./todo";
 import weather from "./weather";
 import workHours from "./workHours";
+import joke from "./joke";
 
 export const widgetConfigs = [
   css,
@@ -31,6 +32,7 @@ export const widgetConfigs = [
   todo,
   weather,
   workHours,
+  joke,
 ];
 
 if (BUILD_TARGET === "web") {
