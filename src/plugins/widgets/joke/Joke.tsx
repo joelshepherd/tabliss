@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useCachedEffect } from "../../../hooks";
 import { getJoke } from "./api";
 import "./Joke.sass";
@@ -54,6 +54,10 @@ const Joke: React.FC<Props> = ({
 const TwoPartJoke: React.FC<{ joke: TwoPartJokeAPIResponse }> = ({ joke }) => {
   const isJokeAQuestion = joke.setup.slice(-1) === "?";
   const [showAnswer, setShowAnswer] = useState(false);
+
+  useEffect(() => {
+    setShowAnswer(false);
+  }, [joke]);
 
   if (!isJokeAQuestion) {
     return (

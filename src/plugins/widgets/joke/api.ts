@@ -1,4 +1,3 @@
-import { API } from "../../types";
 import { JokeAPICategory, JokeAPIResponse } from "./types";
 
 const url = "https://v2.jokeapi.dev/joke";
