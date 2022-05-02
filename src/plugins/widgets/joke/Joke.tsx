@@ -19,10 +19,13 @@ const Joke: React.FC<Props> = ({
 }) => {
   useCachedEffect(
     () => {
-      getJoke(loader, data.category, data.includeNSFW).then(setCache);
+      loader.push();
+      getJoke(data.categories, data.includeNSFW)
+        .then(setCache)
+        .finally(loader.pop);
     },
-    0,
-    [data.category],
+    cache?.timestamp ? cache.timestamp + data.timeout : 0,
+    [data.categories, data.includeNSFW],
   );
 
   if (!cache) {

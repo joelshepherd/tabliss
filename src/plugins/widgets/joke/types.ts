@@ -1,5 +1,6 @@
 import { API } from "../../types";
 import categories from "./categories";
+import { MINUTES } from "../../../utils";
 
 type JokeAPIType = "single" | "twopart";
 
@@ -18,6 +19,7 @@ type BaseJokeAPIResponse = {
   id: number;
   safe: boolean;
   lang: string;
+  timestamp: number;
 };
 
 export interface SingleJokeAPIResponse extends BaseJokeAPIResponse {
@@ -64,7 +66,8 @@ export function isJokeError(
 
 export type JokeAPICategory = typeof categories[number]["key"];
 export type Data = {
-  category: JokeAPICategory;
+  categories: Set<JokeAPICategory>;
+  timeout: number;
   includeNSFW?: boolean;
 };
 
@@ -73,6 +76,7 @@ export type Cache = JokeAPIResponse;
 export type Props = API<Data, Cache>;
 
 export const defaultData: Data = {
-  category: "any",
+  categories: new Set(["any"]),
   includeNSFW: false,
+  timeout: 5 * MINUTES,
 };
