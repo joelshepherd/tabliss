@@ -1,3 +1,4 @@
+import bitcoin from "./bitcoin";
 import css from "./css";
 import github from "./github";
 import greeting from "./greeting";
@@ -16,6 +17,7 @@ import weather from "./weather";
 import workHours from "./workHours";
 
 export const widgetConfigs = [
+  bitcoin,
   css,
   github,
   greeting,

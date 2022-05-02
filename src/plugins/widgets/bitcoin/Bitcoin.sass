@@ -1,0 +1,62 @@
+.Bitcoin
+    display: flex
+    justify-content: center
+    grid-gap: 2rem
+    padding-top: 2.5rem
+    padding-left: 20px
+    position: relative
+
+    .bitcoin-block
+        background: repeating-linear-gradient(rgb(45, 51, 72), rgb(45, 51, 72) 0.005575%, rgb(147, 57, 244) 0.005575%, rgb(16, 95, 176) 100%)
+        cursor: pointer
+        width: 125px
+        height: 125px
+        position: relative
+        transform: scale(0.9)
+
+        &::after
+            content: ""
+            width: 125px
+            height: 24px
+            position: absolute
+            top: -24px
+            left: -20px
+            background-color: #232838
+            transform: skew(40deg)
+            transform-origin: top
+
+        &::before
+            content: ""
+            width: 20px
+            height: 125px
+            position: absolute
+            top: -12px
+            left: -20px
+            background-color: #191c27
+            transform: skewY(50deg)
+            transform-origin: top
+
+    .block-body
+        display: flex
+        flex-direction: column
+        justify-content: center
+        align-items: center
+        height: 100%
+        padding: 1rem
+        text-align: center
+
+    .block-height
+        font-size: 16px
+        margin-bottom: auto
+
+    .block-size
+        font-size: 18px
+        font-weight: bold
+
+    .transaction-count
+        font-size: 10px
+        margin-top: 4px
+
+    .time-difference
+        font-size: 13px
+        margin-top: auto
