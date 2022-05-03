@@ -8,6 +8,5 @@ export async function getBlocks(loader: API["loader"]): Promise<BlockData> {
     .then((res) => res.json())
     .finally(() => loader.pop());
 
-  // get last 3 blocks only
-  return data.slice(0, 3);
+  return data;
 }

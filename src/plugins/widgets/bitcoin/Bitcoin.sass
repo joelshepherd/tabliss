@@ -2,7 +2,8 @@
     display: flex
     justify-content: center
     grid-gap: 2rem
-    padding-top: 2.5rem
+    // padding to make space for pseudo elements
+    padding-top: 20px
     padding-left: 20px
     position: relative
 
@@ -14,6 +15,9 @@
         position: relative
         transform: scale(0.9)
 
+        &--monochrome
+            background: #232838
+
         &::after
             content: ""
             width: 125px
@@ -21,7 +25,7 @@
             position: absolute
             top: -24px
             left: -20px
-            background-color: #232838
+            background: #232838
             transform: skew(40deg)
             transform-origin: top
 
@@ -32,7 +36,7 @@
             position: absolute
             top: -12px
             left: -20px
-            background-color: #191c27
+            background: #191c27
             transform: skewY(50deg)
             transform-origin: top
 

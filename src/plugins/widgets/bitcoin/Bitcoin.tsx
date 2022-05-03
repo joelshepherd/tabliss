@@ -3,10 +3,15 @@ import { formatDistance, fromUnixTime } from "date-fns";
 import { usePushError } from "../../../api";
 import { formatBytes, MINUTES } from "../../../utils";
 import { getBlocks } from "./api";
-import { Props } from "./types";
+import { defaultData, Props } from "./types";
 import "./Bitcoin.sass";
 
-const BitcoinWidget: React.FC<Props> = ({ cache, setCache, loader }) => {
+const BitcoinWidget: React.FC<Props> = ({
+  cache,
+  data = defaultData,
+  setCache,
+  loader,
+}) => {
   const pushError = usePushError();
   React.useEffect(() => {
     getBlocks(loader).then(setCache).catch(pushError);
@@ -23,12 +28,15 @@ const BitcoinWidget: React.FC<Props> = ({ cache, setCache, loader }) => {
     return null;
   }
 
+  const blocks = cache.slice(0, data.numberOfBlocks);
+  const blockColor = data.color;
+
   return (
     <div className="Bitcoin">
-      {cache.map((block) => (
+      {blocks.map((block) => (
         <div
           key={block.id}
-          className="bitcoin-block"
+          className={`bitcoin-block bitcoin-block--${blockColor}`}
           onClick={() =>
             location.assign(`https://mempool.space/block/${block.id}`)
           }
