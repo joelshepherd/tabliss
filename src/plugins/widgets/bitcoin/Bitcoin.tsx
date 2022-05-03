@@ -6,6 +6,12 @@ import { getBlocks } from "./api";
 import { defaultData, Props } from "./types";
 import "./Bitcoin.sass";
 
+const getFormattedDistance = (unixTime: number) => {
+  return formatDistance(fromUnixTime(unixTime), new Date(), {
+    addSuffix: true,
+  });
+};
+
 const BitcoinWidget: React.FC<Props> = ({
   cache,
   data = defaultData,
@@ -13,12 +19,13 @@ const BitcoinWidget: React.FC<Props> = ({
   loader,
 }) => {
   const pushError = usePushError();
+
   React.useEffect(() => {
     getBlocks(loader).then(setCache).catch(pushError);
 
     const timer = setInterval(
       () => getBlocks(loader).then(setCache).catch(pushError),
-      2 * MINUTES,
+      1 * MINUTES,
     );
 
     return () => clearInterval(timer);
@@ -48,9 +55,7 @@ const BitcoinWidget: React.FC<Props> = ({
               {block.tx_count} transactions
             </div>
             <div className="time-difference">
-              {formatDistance(fromUnixTime(block.timestamp), new Date(), {
-                addSuffix: true,
-              })}
+              {getFormattedDistance(block.timestamp)}
             </div>
           </div>
         </div>
