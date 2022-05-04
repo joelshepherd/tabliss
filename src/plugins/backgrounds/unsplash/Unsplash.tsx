@@ -5,7 +5,6 @@ import { buildLink, fetchImages } from "./api";
 import { defaultData, Props } from "./types";
 import "./Unsplash.sass";
 import UnsplashCredit from "./UnsplashCredit";
-import { blockImage,fetchBlockedImages } from "../../../db/action";
 
 const Unsplash: React.FC<Props> = ({
   cache,
@@ -67,13 +66,22 @@ const Unsplash: React.FC<Props> = ({
 
   const handleBlock = () => {
 
-    const imageID = item?.credit.imageLink
+    const imageID = item?.credit.imageID
     if(imageID == undefined){
       return;
     }
 
-    blockImage(imageID)
-    
+    if(data.lastBlockedImage == "" || data.lastBlockedImage == undefined){
+      data.lastBlockedImage = imageID
+    }
+    else{
+      if(data.blockedImages == undefined){
+        data.blockedImages = new Set<string>()
+      }
+      data.blockedImages.add(data.lastBlockedImage)
+      data.lastBlockedImage = imageID
+    }
+
     cache && cache.items[cache.cursor + 1] ?  setCache({
       ...cache!,
       cursor: cache!.cursor + 1,
