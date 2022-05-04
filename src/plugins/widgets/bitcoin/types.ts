@@ -3,7 +3,6 @@ import { API } from "../../types";
 export type Data = {
   color: "mempool" | "monochrome" | "transparent";
   numberOfBlocks: 1 | 2 | 3 | 4 | 5;
-  size: number;
 };
 
 export type BlockData = {
@@ -29,5 +28,4 @@ export type Props = API<Data, Cache>;
 export const defaultData: Data = {
   color: "mempool",
   numberOfBlocks: 3,
-  size: 0.9
 };

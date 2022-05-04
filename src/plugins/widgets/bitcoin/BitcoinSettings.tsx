@@ -47,29 +47,6 @@ const BitcoinSettings: React.FC<Props> = ({ data = defaultData, setData }) => (
         <option value="5" label="5" />
       </datalist>
     </label>
-
-    <label>
-      Size <br />
-      <input
-        type="range"
-        list="size-markers"
-        min="0.6"
-        max="1"
-        step="0.1"
-        value={data.size}
-        onChange={(event) => {
-          setData({
-            ...data,
-            size: Number(event.target.value) as Data["size"],
-          });
-        }}
-      />
-      <datalist id="size-markers">
-        <option value="0.6" label="small" />
-        <option value="0.8" label="medium" />
-        <option value="1" label="large" />
-      </datalist>
-    </label>
   </div>
 );
 

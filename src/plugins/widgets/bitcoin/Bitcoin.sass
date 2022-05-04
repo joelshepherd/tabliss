@@ -1,44 +1,44 @@
 .Bitcoin
     display: flex
     justify-content: center
-    grid-gap: 2rem
+    grid-gap: 1.5em
     // padding to make space for pseudo elements
-    padding-top: 20px
-    padding-left: 20px
+    padding-top: 0.84em
+    padding-left: 0.84em
     position: relative
 
     .bitcoin-block
         background: repeating-linear-gradient(rgb(45, 51, 72), rgb(45, 51, 72) 0.005575%, rgb(147, 57, 244) 0.005575%, rgb(16, 95, 176) 100%)
         cursor: pointer
-        width: 125px
-        height: 125px
+        width: 5.24em
+        height: 5.24em
         position: relative
         transform: scale(0.9)
 
         &::after
             content: ""
-            width: 125px
-            height: 24px
+            width: 5.24em
+            height: 1.196em
             position: absolute
-            top: -24px
-            left: -20px
+            top: -1.196em
+            left: -1em
             background: #232838
             transform: skew(40deg)
             transform-origin: top
 
         &::before
             content: ""
-            width: 20px
-            height: 125px
+            width: 1em
+            height: 5.24em
             position: absolute
-            top: -12px
-            left: -20px
+            top: -0.6em
+            left: -1em
             background: #191c27
             transform: skewY(50deg)
             transform-origin: top
 
         &--monochrome
-            background: #232838
+            background: #1f2432
 
         &--transparent
             background: var(--color-calendar-graph-day-bg)
@@ -55,21 +55,21 @@
         justify-content: center
         align-items: center
         height: 100%
-        padding: 1rem
+        padding: 0.5em
         text-align: center
 
     .block-height
-        font-size: 16px
-        margin-bottom: auto
+        font-size: 0.62em
+        margin-bottom: 0.74em
 
     .block-size
-        font-size: 18px
+        font-size: 0.75em
         font-weight: bold
 
     .transaction-count
-        font-size: 10px
-        margin-top: 4px
+        font-size: 0.42em
+        margin-top: 0.17em
 
     .time-difference
-        font-size: 13px
+        font-size: 0.5em
         margin-top: auto

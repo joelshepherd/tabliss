@@ -37,15 +37,13 @@ const BitcoinWidget: React.FC<Props> = ({
 
   const blocks = cache.slice(0, data.numberOfBlocks);
   const blockColor = data.color;
-  const blockSize = data.size;
 
   return (
-    <div className="Bitcoin" style={{ gridGap: blockSize >= 0.8 ? "2rem" : 0 }}>
+    <div className="Bitcoin">
       {blocks.map((block) => (
         <div
           key={block.id}
           className={`bitcoin-block bitcoin-block--${blockColor}`}
-          style={{ transform: `scale(${blockSize})` }}
           onClick={() =>
             location.assign(`https://mempool.space/block/${block.id}`)
           }
