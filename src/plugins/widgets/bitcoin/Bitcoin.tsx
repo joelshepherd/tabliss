@@ -1,15 +1,25 @@
 import React from "react";
-import { formatDistance, fromUnixTime } from "date-fns";
+import { formatDistanceToNowStrict, fromUnixTime } from "date-fns";
+import { db } from "../../../db/state";
+import { useValue } from "../../../lib/db/react";
 import { usePushError } from "../../../api";
 import { formatBytes, MINUTES } from "../../../utils";
 import { getBlocks } from "./api";
 import { defaultData, Props } from "./types";
 import "./Bitcoin.sass";
 
-const getFormattedDistance = (unixTime: number) => {
-  return formatDistance(fromUnixTime(unixTime), new Date(), {
-    addSuffix: true,
+const formatDistance = (unixTime: number, locale: string) => {
+  const rtf = new Intl.RelativeTimeFormat(locale, {
+    localeMatcher: "best fit",
+    style: "long",
+    numeric: "always",
   });
+
+  const diff = formatDistanceToNowStrict(fromUnixTime(unixTime));
+  const amount = Number(diff.split(" ")[0]);
+  const unit = diff.split(" ")[1] as Intl.RelativeTimeFormatUnit;
+
+  return rtf.format(-amount, unit);
 };
 
 const BitcoinWidget: React.FC<Props> = ({
@@ -19,6 +29,7 @@ const BitcoinWidget: React.FC<Props> = ({
   loader,
 }) => {
   const pushError = usePushError();
+  const locale = useValue(db, "locale");
 
   React.useEffect(() => {
     getBlocks(loader).then(setCache).catch(pushError);
@@ -51,11 +62,9 @@ const BitcoinWidget: React.FC<Props> = ({
           <div className="block-body">
             <div className="block-height">{block.height}</div>
             <div className="block-size">{formatBytes(block.size)}</div>
-            <div className="transaction-count">
-              {block.tx_count} transactions
-            </div>
+            <div className="transaction-count">{block.tx_count} txs</div>
             <div className="time-difference">
-              {getFormattedDistance(block.timestamp)}
+              {formatDistance(block.timestamp, locale)}
             </div>
           </div>
         </div>
