@@ -16,10 +16,9 @@ const formatDistance = (unixTime: number, locale: string) => {
   });
 
   const diff = formatDistanceToNowStrict(fromUnixTime(unixTime));
-  const amount = Number(diff.split(" ")[0]);
-  const unit = diff.split(" ")[1] as Intl.RelativeTimeFormatUnit;
+  const [amount, unit] = diff.split(" ");
 
-  return rtf.format(-amount, unit);
+  return rtf.format(-amount, unit as Intl.RelativeTimeFormatUnit);
 };
 
 const BitcoinWidget: React.FC<Props> = ({
