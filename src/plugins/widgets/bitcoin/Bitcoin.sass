@@ -15,9 +15,6 @@
         position: relative
         transform: scale(0.9)
 
-        &--monochrome
-            background: #232838
-
         &::after
             content: ""
             width: 125px
@@ -39,6 +36,18 @@
             background: #191c27
             transform: skewY(50deg)
             transform-origin: top
+
+        &--monochrome
+            background: #232838
+
+        &--transparent
+            background: var(--color-calendar-graph-day-bg)
+
+            &::after
+                background: #9d9d9d33
+
+            &::before
+                background: #7c7c7c33
 
     .block-body
         display: flex

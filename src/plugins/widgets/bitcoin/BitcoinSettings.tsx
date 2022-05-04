@@ -1,23 +1,27 @@
 import React from "react";
+import { capitalize } from "../../../utils";
 import { defaultData, Data, Props } from "./types";
+
+const colors = ["mempool", "monochrome", "transparent"];
 
 const BitcoinSettings: React.FC<Props> = ({ data = defaultData, setData }) => (
   <div className="MessageSettings">
-    <label>
-      <input
-        type="checkbox"
-        checked={data.color === "monochrome"}
-        onChange={(event) =>
-          setData({
-            ...data,
-            color: event.target.checked ? "monochrome" : "mempool",
-          })
-        }
-      />
-      Monochrome
-    </label>
+    <h5>Color</h5>
+    {colors.map((color) => (
+      <label key={color}>
+        <input
+          type="radio"
+          checked={data.color === color}
+          onChange={() => {
+            setData({ ...data, color: color as Data["color"] });
+          }}
+        />
+        {capitalize(color)}
+      </label>
+    ))}
 
     <label>
+      <br />
       Number of Blocks <br />
       <input
         type="range"
