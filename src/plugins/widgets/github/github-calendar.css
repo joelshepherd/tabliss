@@ -11,7 +11,7 @@
   --color-calendar-graph-day-L4-bg: #216e39;
 }
 
-.js-calendar-graph-svg + div {
+.js-calendar-graph-svg ~ div {
   display: none;
 }
 
