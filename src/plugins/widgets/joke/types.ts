@@ -68,7 +68,6 @@ export type JokeAPICategory = typeof categories[number]["key"];
 export type Data = {
   categories: Set<JokeAPICategory>;
   timeout: number;
-  includeNSFW?: boolean;
 };
 
 export type Cache = JokeAPIResponse;
@@ -77,6 +76,5 @@ export type Props = API<Data, Cache>;
 
 export const defaultData: Data = {
   categories: new Set(["any"]),
-  includeNSFW: false,
   timeout: 5 * MINUTES,
 };

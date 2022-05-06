@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useCachedEffect } from "../../../hooks";
+import { db } from "../../../db/state";
+import { useValue } from "../../../lib/db/react";
 import { getJoke } from "./api";
 import "./Joke.sass";
 import {
@@ -17,15 +19,25 @@ const Joke: React.FC<Props> = ({
   setCache,
   loader,
 }) => {
+  // Grab the user's locale
+  const locale = useValue(db, "locale");
+
+  // Map to supported language
+  const mapLocaleToJokeAPILang = (locale: string): string => {
+    const defaultLanguage = "en";
+    const supportedLanguages: string[] = ["cs", "de", "en", "es", "fr", "pt"];
+    const [lang] = locale.split("-");
+    return supportedLanguages.includes(lang) ? lang : defaultLanguage;
+  };
+
   useCachedEffect(
     () => {
       loader.push();
-      getJoke(data.categories, data.includeNSFW)
-        .then(setCache)
-        .finally(loader.pop);
+      const apiLocale = mapLocaleToJokeAPILang(locale);
+      getJoke(data.categories, apiLocale).then(setCache).finally(loader.pop);
     },
     cache?.timestamp ? cache.timestamp + data.timeout : 0,
-    [data.categories, data.includeNSFW],
+    [data.categories],
   );
 
   if (!cache) {

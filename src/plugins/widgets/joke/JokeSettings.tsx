@@ -44,8 +44,8 @@ const JokeSettings: React.FC<Props> = ({ data = defaultData, setData }) => {
             setData({ ...data, timeout: Number(event.target.value) })
           }
         >
-          <option value={5 * MINUTES * 1000}>Every 5 minutes</option>
-          <option value={15 * MINUTES * 1000}>Every 15 minutes</option>
+          <option value={5 * MINUTES}>Every 5 minutes</option>
+          <option value={15 * MINUTES}>Every 15 minutes</option>
           <option value={HOURS}>Every hour</option>
           <option value={24 * HOURS}>Every day</option>
           <option value={7 * 24 * HOURS}>Every week</option>
@@ -73,17 +73,6 @@ const JokeSettings: React.FC<Props> = ({ data = defaultData, setData }) => {
             </label>
           );
         })}
-      </label>
-
-      <label>
-        <input
-          type="checkbox"
-          checked={data.includeNSFW}
-          onChange={(event) =>
-            setData({ ...data, includeNSFW: event.target.checked })
-          }
-        />{" "}
-        NSFW
       </label>
 
       <p>

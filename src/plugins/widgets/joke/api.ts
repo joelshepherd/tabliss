@@ -4,13 +4,16 @@ const url = "https://v2.jokeapi.dev/joke";
 
 export async function getJoke(
   categories: Set<JokeAPICategory>,
-  includeNSFW?: boolean,
+  locale: string,
 ) {
-  const safeModeUrlParameter = includeNSFW ? "" : "safe-mode";
+  const languageUrlParameter = `lang=${locale}`;
+  const safeModeUrlParameter = "safe-mode";
   const categoriesUrlParameter = Array.from(categories).join(",");
 
   const res = await fetch(
-    `${url}/${categoriesUrlParameter}?${safeModeUrlParameter}`,
+    // Note: We will always ask jokeapi to return safe jokes for everyone.
+    // This is to comply with content policies (i.e. Hate speech) for all platforms.
+    `${url}/${categoriesUrlParameter}?${safeModeUrlParameter}&${languageUrlParameter}`,
   );
   const body: JokeAPIResponse = await res.json();
 

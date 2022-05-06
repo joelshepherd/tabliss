@@ -12,10 +12,6 @@ export default [
     name: "Programming",
   },
   {
-    key: "dark",
-    name: "Dark",
-  },
-  {
     key: "pun",
     name: "Pun",
   },
