@@ -75,7 +75,6 @@ const TwoPartJoke: React.FC<{ joke: TwoPartJokeAPIResponse }> = ({ joke }) => {
     return (
       <>
         <h5>{joke.setup}</h5>
-        <p>. . .</p>
         <h5>{joke.delivery}</h5>
       </>
     );
