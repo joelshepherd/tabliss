@@ -1,0 +1,22 @@
+{
+  "app.pageTitle": "لسان جديد",
+  "background": "حلفية",
+  "dashboard.errorHint": "أظهِر الاخطاء",
+  "dashboard.focusHint": "تبديل حالة العناصر",
+  "dashboard.fullscreenHint": "تبديل وضع ملئ الشاشة",
+  "dashboard.loadingHint": "جارِ تحميل المحتويات الجديدة",
+  "dashboard.settingsHint": "خصص تابلس",
+  "plugin.greeting.withName": "{hour, select,\n      0 {{name} ,نوماً هنيأً}\n      1 {{name} ,نوماً هنيأً}\n      2 {{name} ,نوماً هنيأً}\n      3 {{name} ,صبّح صبّح}\n      4 {{name} ,صبّح صبّح}\n      5 {{name} ,صبّح صبّح}\n      6 {{name}, صباح الخير}\n      7 {{name} ,صباح الخير}\n      8 {{name} ,صباح الخير}\n      9 {{name} ,صباح الخير}\n      10 {{name} ,مرحباً}\n      11 {{name} ,مرحباً}\n      12 {{name} ,مرحباً}\n      13 {{name} ,مرحباً}\n      14 {{name} ,طاب مساؤك}\n      15 {{name} ,طاب مساؤك}\n      16 {{name} ,طاب مساؤك}\n      17 {{name} ,طاب مساؤك}\n      18 {{name} ,مساء الخير}\n      19 {{name} ,مساء الخير}\n      20 {{name} ,مساء الخير}\n      21 {{name} ,مساء الخير}\n      22 {{name} ,طابت ليلتك}\n      23 {{name} ,طابت ليلتك}\n      آخر {Unknown}\n    }",
+  "plugin.greeting.withoutName": "{hour, select,\n      0 {نوماً هنيأً}\n      1 {نوماً هنيأً}\n      2 {نوماً هنيأً}\n      3 {صبّح صبّح}\n      4 {صبّح صبّح}\n      5 {صبّح صبّح}\n      6 {صباح الخير}\n      7 {صباح الخير}\n      8 {صباح الخير}\n      9 {صباح الخير}\n      10 {مرحباً}\n      11 {مرحباً}\n      12 {مرحباً}\n      13 {مرحباً}\n      14 {طاب مساؤك}\n      15 {طاب مساؤك}\n      16 {طاب مساؤك}\n      17 {طاب مساؤك}\n      18 {مساء الخير}\n      19 {مساء الخير}\n      20 {مساء الخير}\n      21 {مساء الخير}\n      22 {طابت ليلتك}\n      23 {طابت ليلتك}\n      آخر {Unknown}\n    }",
+  "plugins.links.shortcutHint": "أو انقر للزيارة {number} أضغط",
+  "plugins.links.standardHint": " أُنقر للزيارة",
+  "plugins.search.placeholder": "أُُكتب للبحث",
+  "plugins.unsplash.photoLink": "صورة",
+  "plugins.weather.apparent": "يبدو مثل",
+  "plugins.weather.high": "عالي",
+  "plugins.weather.humidity": "متوسط",
+  "plugins.weather.low": "منخفض",
+  "settings": "Settings",
+  "settings.translationCredits": "حسن عبدالله",
+  "widgets": "عناصر"
+}
