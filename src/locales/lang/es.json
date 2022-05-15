@@ -1,6 +1,7 @@
 {
   "app.pageTitle": "Nueva pestaña",
   "background": "Fondo de pantalla",
+  "dashboard.errorHint": "Show errors",
   "dashboard.focusHint": "Oculta los widgets",
   "dashboard.fullscreenHint": "Pantalla completa",
   "dashboard.loadingHint": "Cargando nuevo contenido",

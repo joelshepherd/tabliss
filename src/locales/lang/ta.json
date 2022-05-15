@@ -1,6 +1,7 @@
 {
   "app.pageTitle": "புதிய டேப்",
   "background": "பின்னணி",
+  "dashboard.errorHint": "Show errors",
   "dashboard.focusHint": "விட்ஜெட்களை மாற்று",
   "dashboard.fullscreenHint": "முழுத்திரையாக மாற்று",
   "dashboard.loadingHint": "புதிய தகவலை ஏற்றுகிறது",

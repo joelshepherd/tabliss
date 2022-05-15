@@ -1,6 +1,7 @@
 {
   "app.pageTitle": "Taba ùr",
   "background": "Cùl-fraon",
+  "dashboard.errorHint": "Show errors",
   "dashboard.focusHint": "Toglaich widgets",
   "dashboard.fullscreenHint": "Toglaich làn-sgrìn",
   "dashboard.loadingHint": "Ag luchdachadh subsaint ùr",

@@ -1,6 +1,7 @@
 {
   "app.pageTitle": "Nova Aba",
   "background": "Background",
+  "dashboard.errorHint": "Show errors",
   "dashboard.focusHint": "Mostrar/Esconder widgets",
   "dashboard.fullscreenHint": "Tela cheia",
   "dashboard.loadingHint": "Carregar conteúdo novo",

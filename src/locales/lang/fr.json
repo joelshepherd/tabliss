@@ -1,6 +1,7 @@
 {
   "app.pageTitle": "Nouvel onglet",
   "background": "Image de fond",
+  "dashboard.errorHint": "Show errors",
   "dashboard.focusHint": "Afficher les composants",
   "dashboard.fullscreenHint": "Plein écran",
   "dashboard.loadingHint": "Chargement du nouveau contenu",

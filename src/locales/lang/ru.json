@@ -1,6 +1,7 @@
 {
   "app.pageTitle": "Новая вкладка",
   "background": "Фон",
+  "dashboard.errorHint": "Show errors",
   "dashboard.focusHint": "Видимость виджетов",
   "dashboard.fullscreenHint": "Полный экран",
   "dashboard.loadingHint": "Загрузка нового контента",

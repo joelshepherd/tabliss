@@ -1,6 +1,6 @@
 {
   "app.pageTitle": "لسان جديد",
-  "background": "حلفية",
+  "background": "الخلفية",
   "dashboard.errorHint": "أظهِر الاخطاء",
   "dashboard.focusHint": "تبديل حالة العناصر",
   "dashboard.fullscreenHint": "تبديل وضع ملئ الشاشة",
@@ -16,7 +16,7 @@
   "plugins.weather.high": "عالي",
   "plugins.weather.humidity": "متوسط",
   "plugins.weather.low": "منخفض",
-  "settings": "Settings",
+  "settings": "الأِعدادات",
   "settings.translationCredits": "حسن عبدالله",
-  "widgets": "عناصر"
+  "widgets": "العناصر"
 }

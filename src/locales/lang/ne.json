@@ -1,6 +1,7 @@
 {
   "app.pageTitle": "नयाँ ट्याब",
   "background": "ब्याक्गराउन्ड",
+  "dashboard.errorHint": "Show errors",
   "dashboard.focusHint": "विजेट स्विच गरौ",
   "dashboard.fullscreenHint": "फुलस्क्रीन मोड स्विच गरौ",
   "dashboard.loadingHint": "नयाँ सामग्री लोड हुँदै छ",

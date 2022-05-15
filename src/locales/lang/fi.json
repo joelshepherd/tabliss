@@ -1,6 +1,7 @@
 {
   "app.pageTitle": "Uusi välilehti",
   "background": "Tausta",
+  "dashboard.errorHint": "Show errors",
   "dashboard.focusHint": "Widget näkyvyys",
   "dashboard.fullscreenHint": "Kokoruutu",
   "dashboard.loadingHint": "Ladataan sisältöä",
