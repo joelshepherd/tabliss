@@ -17,5 +17,9 @@
   "plugins.weather.low": "குறைந்த",
   "settings": "அமைப்புகள்",
   "settings.translationCredits": " ",
-  "widgets": "விட்ஜெட்கள்"
+  "widgets": "விட்ஜெட்கள்",
+  "plugins.timer.days": "நாட்களில்",
+  "plugins.timer.hours": "மணி",
+  "plugins.timer.minutes": "நிமிடங்கள்",
+  "plugins.timer.seconds": "வினாடிகள்"
 }

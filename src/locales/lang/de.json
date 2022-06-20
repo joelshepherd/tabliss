@@ -17,5 +17,9 @@
   "plugins.weather.low": "Niedrig",
   "settings": "Einstellungen",
   "settings.translationCredits": "Marvin M(M123-dev),",
-  "widgets": "Widgets"
+  "widgets": "Widgets",
+  "plugins.timer.days": "tage",
+  "plugins.timer.hours": "std.",
+  "plugins.timer.minutes": "protokoll",
+  "plugins.timer.seconds": "sekunden"
 }

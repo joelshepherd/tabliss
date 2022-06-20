@@ -17,5 +17,9 @@
   "plugins.weather.low": "Min",
   "settings": "Préférences",
   "settings.translationCredits": "Traduction française par Orfaon/ernest33",
-  "widgets": "Gadgets"
+  "widgets": "Gadgets",
+  "plugins.timer.days": "jours",
+  "plugins.timer.hours": "heures",
+  "plugins.timer.minutes": "minutes",
+  "plugins.timer.seconds": "secondes"
 }

@@ -17,5 +17,9 @@
   "plugins.weather.low": "پایین",
   "settings": "تنظیمات",
   "settings.translationCredits": "پارسی شده توسط سرندد",
-  "widgets": "ابزارک‌ها"
+  "widgets": "ابزارک‌ها",
+  "plugins.timer.days": "روزها",
+  "plugins.timer.hours": "ساعت ها",
+  "plugins.timer.minutes": "دقایق",
+  "plugins.timer.seconds": "ثانیه"
 }

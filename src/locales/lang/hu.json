@@ -17,5 +17,9 @@
   "plugins.weather.low": "Alacsony",
   "settings": "Beállítások",
   "settings.translationCredits": " ",
-  "widgets": "Modulok"
+  "widgets": "Modulok",
+  "plugins.timer.days": "napok",
+  "plugins.timer.hours": "órák",
+  "plugins.timer.minutes": "percek",
+  "plugins.timer.seconds": "másodpercig"
 }

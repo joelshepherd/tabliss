@@ -17,5 +17,9 @@
   "plugins.weather.low": "低",
   "settings": "设置",
   "settings.translationCredits": " ",
-  "widgets": "组件"
+  "widgets": "组件",
+  "plugins.timer.days": "天",
+  "plugins.timer.hours": "小时",
+  "plugins.timer.minutes": "分钟",
+  "plugins.timer.seconds": "秒"
 }

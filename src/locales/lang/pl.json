@@ -17,5 +17,9 @@
   "plugins.weather.low": "Low",
   "settings": "Settings",
   "settings.translationCredits": "Polish translation by achook",
-  "widgets": "Widgets"
+  "widgets": "Widgets",
+  "plugins.timer.days": "dni",
+  "plugins.timer.hours": "godziny",
+  "plugins.timer.minutes": "minuty",
+  "plugins.timer.seconds": "sekundy"
 }

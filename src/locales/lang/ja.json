@@ -17,5 +17,9 @@
   "plugins.weather.low": "最低",
   "settings": "Settings",
   "settings.translationCredits": "Japanese translation by Kodaka",
-  "widgets": "Widgets"
+  "widgets": "Widgets",
+  "plugins.timer.days": "日々",
+  "plugins.timer.hours": "時間",
+  "plugins.timer.minutes": "分",
+  "plugins.timer.seconds": "秒"
 }

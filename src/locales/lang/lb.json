@@ -17,5 +17,9 @@
   "plugins.weather.low": "Niddereg",
   "settings": "Astellungen",
   "settings.translationCredits": "Lëtzebuergesch Iwwersetzung vum Louis Jacoby",
-  "widgets": "Widgets"
+  "widgets": "Widgets",
+  "plugins.timer.days": "deeg",
+  "plugins.timer.hours": "stonnen",
+  "plugins.timer.minutes": "minutten",
+  "plugins.timer.seconds": "sekonnen"
 }

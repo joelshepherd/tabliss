@@ -17,5 +17,9 @@
   "plugins.weather.low": "Low",
   "settings": "Settings",
   "settings.translationCredits": "ગુજરાતી અનુવાદ આશિષ તરફ થી",
-  "widgets": "Widgets"
+  "widgets": "Widgets",
+  "plugins.timer.days": "દિવસો",
+  "plugins.timer.hours": "કલાક",
+  "plugins.timer.minutes": "મિનિટ",
+  "plugins.timer.seconds": "સેકન્ડ"
 }

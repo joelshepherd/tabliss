@@ -17,5 +17,9 @@
   "plugins.weather.low": "Low",
   "settings": "Settings",
   "settings.translationCredits": "Diterjemahkan oleh masbossun",
-  "widgets": "Widgets"
+  "widgets": "Widgets",
+  "plugins.timer.days": "hari",
+  "plugins.timer.hours": "jam",
+  "plugins.timer.minutes": "menit",
+  "plugins.timer.seconds": "detik"
 }
