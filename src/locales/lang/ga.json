@@ -1,0 +1,21 @@
+{
+  "app.pageTitle": "Táb Nua",
+  "background": "Cúlra",
+  "dashboard.focusHint": "Scoránaigh giuirléidí",
+  "dashboard.fullscreenHint": "Scoránaigh lánscáileán",
+  "dashboard.loadingHint": "Ag lódáil ábar nua",
+  "dashboard.settingsHint": "Oiriúnaigh Tabliss",
+  "plugin.greeting.withName": "{hour, select, 0 {Codladh go sámh, a {name}} 1 {Codladh go sámh, a {name}} 2 {Codladh go sámh, a {name}} 3 {Bígí in bhur suí, a {name}} 4 {Bígí in bhur suí, a {name}} 5 {Bígí in bhur suí, a {name}} 6 {Maidin mhaith, a {name}} 7 {Maidin mhaith, a {name}} 8 {Maidin mhaith, a {name}} 9 {Maidin mhaith, a {name}} 10 {Haló, a {name}} 11 {Haló, a {name}} 12 {Haló, a {name}} 13 {Haló, a {name}} 14 {Tráthnóna maith, a {name}} 15 {Tráthnóna maith, a {name}} 16 {Tráthnóna maith, a {name}} 17 {Tráthnóna maith, a {name}} 18 {Tráthnóna déanach maith, a {name}} 19 {Tráthnóna déanach maith, a {name}} 20 {Tráthnóna déanach maith, a {name}} 21 {Tráthnóna déanach maith, a {name}} 22 {Oíche mhaith, a {name}} 23 {Oíche mhaith, a {name}}}",
+  "plugin.greeting.withoutName": "{hour, select, 0 {Codladh go sámh} 1 {Codladh go sámh} 2 {Codladh go sámh} 3 {Bígí in bhur suí} 4 {Bígí in bhur suí} 5 {Bígí in bhur suí} 6 {Maidin mhaith} 7 {Maidin mhaith} 8 {Maidin mhaith} 9 {Maidin mhaith} 10 {Haló} 11 {Haló} 12 {Haló} 13 {Haló} 14 {Tráthnóna maith} 15 {Tráthnóna maith} 16 {Tráthnóna maith} 17 {Tráthnóna maith} 18 {Tráthnóna déanach maith} 19 {Tráthnóna déanach maith} 20 {Tráthnóna déanach maith} 21 {Tráthnóna déanach maith} 22 {Oíche mhaith} 23 {Oíche mhaith}}",
+  "plugins.links.shortcutHint": "Brú {number} nó cliceáil chun cuairt",
+  "plugins.links.standardHint": "Cliceáil chun cuairt",
+  "plugins.search.placeholder": "Clóscríobh le cuardach",
+  "plugins.unsplash.photoLink": "Grianghraf",
+  "plugins.weather.apparent": "Feels like",
+  "plugins.weather.high": "Ard",
+  "plugins.weather.humidity": "Humidity",
+  "plugins.weather.low": "Íseal",
+  "settings": "Socruithe",
+  "settings.translationCredits": "D'aistrigh Ní Ógáin go Gaeilge é seo.",
+  "widgets": "Giuirléidí"
+}

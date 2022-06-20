@@ -68,15 +68,6 @@ const TimeSettings: FC<Props> = ({ data = defaultData, setData }) => (
       Display minutes
     </label>
 
-    <label>
-      <input
-        type="checkbox"
-        checked={data.showDate}
-        onChange={() => setData({ ...data, showDate: !data.showDate })}
-      />{" "}
-      Display the date
-    </label>
-
     {data.mode === "digital" && data.hour12 && (
       <label>
         <input
@@ -86,9 +77,18 @@ const TimeSettings: FC<Props> = ({ data = defaultData, setData }) => (
             setData({ ...data, showDayPeriod: !data.showDayPeriod })
           }
         />{" "}
-        Display AM / PM
+        Display day period
       </label>
     )}
+
+    <label>
+      <input
+        type="checkbox"
+        checked={data.showDate}
+        onChange={() => setData({ ...data, showDate: !data.showDate })}
+      />{" "}
+      Display date
+    </label>
   </div>
 );
 

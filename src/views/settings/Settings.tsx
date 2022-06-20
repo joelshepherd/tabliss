@@ -1,29 +1,30 @@
-import React, { FC, memo, useCallback } from "react";
+import React from "react";
 import { FormattedMessage } from "react-intl";
-import { useDispatch } from "react-redux";
+import { UiContext } from "../../contexts/ui";
+import { exportStore, importStore, resetStore } from "../../db/action";
 import { useKeyPress } from "../../hooks";
-import { useSelector } from "../../store";
-import { resetStore, toggleSettings } from "../../store/actions";
-import { DataState } from "../../store/reducers/types";
 import { Icon } from "../shared";
 import Logo from "../shared/Logo";
 import Background from "./Background";
-import Feedback from "./Feedback";
+import Persist from "./Persist";
 import "./Settings.sass";
 import System from "./System";
 import Widgets from "./Widgets";
 
-const Settings: FC = () => {
-  const dispatch = useDispatch();
-  const handleToggleSettings = useCallback(
-    () => dispatch(toggleSettings()),
-    [dispatch],
-  );
-  const handleReset = useCallback(() => dispatch(resetStore()), [dispatch]);
-  const data = useSelector((state) => state.data);
+const Settings: React.FC = () => {
+  const { toggleSettings } = React.useContext(UiContext);
+
+  const handleReset = () => {
+    if (
+      confirm(
+        "Are you sure you want to delete all of your Tabliss settings? This cannot be undone.",
+      )
+    )
+      resetStore();
+  };
 
   const handleExport = () => {
-    const json = JSON.stringify(data);
+    const json = exportStore();
     const url = URL.createObjectURL(
       new Blob([json], { type: "application/json" }),
     );
@@ -37,6 +38,7 @@ const Settings: FC = () => {
     window.URL.revokeObjectURL(url);
     document.body.removeChild(a);
   };
+
   const handleImport = () => {
     const input = document.createElement("input");
     document.body.appendChild(input);
@@ -48,8 +50,16 @@ const Settings: FC = () => {
         const reader = new FileReader();
         reader.addEventListener("load", (event) => {
           if (event.target && event.target.result) {
-            const state: DataState = JSON.parse(event.target.result as string);
-            dispatch(resetStore(state));
+            try {
+              const state = JSON.parse(event.target.result as string);
+              importStore(state);
+            } catch (error) {
+              alert(
+                `Invalid import file: ${
+                  error instanceof Error ? error.message : "Uknown error"
+                }`,
+              );
+            }
           }
         });
         reader.readAsText(file);
@@ -59,11 +69,11 @@ const Settings: FC = () => {
     input.click();
   };
 
-  useKeyPress(handleToggleSettings, ["Escape"]);
+  useKeyPress(toggleSettings, ["Escape"]);
 
   return (
     <div className="Settings">
-      <a onClick={handleToggleSettings} className="fullscreen" />
+      <a onClick={toggleSettings} className="fullscreen" />
 
       <div className="plane">
         <Logo />
@@ -74,45 +84,49 @@ const Settings: FC = () => {
 
         <System />
 
-        <Feedback />
-
-        <p>
-          <a
-            href="https://www.paypal.me/tabliss"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Love Tabliss? Donate 😍
-          </a>
-        </p>
-
-        <p>
+        <p style={{ marginBottom: "2rem" }}>
           <a onClick={handleImport}>Import</a>,{" "}
           <a onClick={handleExport}>export</a> or{" "}
-          <a onClick={handleReset}>reset</a> settings
+          <a onClick={handleReset}>reset</a> your settings
         </p>
 
-        <p>
-          <a href="https://tabliss.io/" target="_blank">
-            <Icon name="globe" />
-          </a>
-          &nbsp;&nbsp;
-          <a
-            href="https://twitter.com/tabliss"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Icon name="twitter" />
-          </a>
-          &nbsp;&nbsp;
-          <a
-            href="https://github.com/joelshepherd/tabliss"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Icon name="github" />
-          </a>
-        </p>
+        <Persist />
+
+        <div style={{ textAlign: "center" }} className="Widget">
+          <h4>Support Tabliss</h4>
+          <p>
+            <a
+              href="https://www.paypal.com/donate/?hosted_button_id=FK7VRWS9A2EW4"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="button button--primary"
+              title="I do love coffee"
+            >
+              <Icon name="coffee" /> Donate a coffee 😍
+            </a>
+          </p>
+          <p>
+            <a href="https://tabliss.io/" target="_blank">
+              <Icon name="globe" /> Website
+            </a>
+            &nbsp;&nbsp;
+            <a
+              href="https://twitter.com/tabliss"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              <Icon name="twitter" /> Twitter
+            </a>
+            &nbsp;&nbsp;
+            <a
+              href="https://github.com/joelshepherd/tabliss"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              <Icon name="github" /> GitHub
+            </a>
+          </p>
+        </div>
 
         <FormattedMessage
           id="settings.translationCredits"
@@ -125,4 +139,4 @@ const Settings: FC = () => {
   );
 };
 
-export default memo(Settings);
+export default React.memo(Settings);

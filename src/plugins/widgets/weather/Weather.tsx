@@ -1,13 +1,71 @@
-import React, { FC } from "react";
+import React from "react";
 import { defineMessages } from "react-intl";
-
-import { useCachedEffect, useFormatMessages } from "../../../hooks";
+import { useCachedEffect, useFormatMessages, useTime } from "../../../hooks";
+import { HOURS } from "../../../utils";
 import { Icon } from "../../../views/shared";
 import { getForecast } from "./api";
-import { weatherIcons } from "./icons";
+import { findCurrent, weatherCodes } from "./conditions";
 import { defaultData, Props } from "./types";
 import "./Weather.sass";
 
+const Weather: React.FC<Props> = ({
+  cache,
+  data = defaultData,
+  loader,
+  setCache,
+  setData,
+}) => {
+  const time = useTime("absolute");
+  const translated = useFormatMessages(messages);
+
+  // Cache weather data for 6 hours
+  useCachedEffect(
+    () => {
+      getForecast(data, loader).then(setCache);
+    },
+    cache ? cache.timestamp + 6 * HOURS : 0,
+    [data.latitude, data.latitude, data.units],
+  );
+
+  const conditions =
+    cache && cache.conditions
+      ? findCurrent(cache.conditions, time.getTime())
+      : null;
+
+  // Blank or loading state
+  if (!conditions) return <div className="Weather">-</div>;
+
+  return (
+    <div className="Weather">
+      <div
+        className="summary"
+        onClick={() => setData({ ...data, showDetails: !data.showDetails })}
+        title="Toggle weather details"
+      >
+        {data.name ? <span>{data.name}</span> : null}
+        <Icon name={weatherCodes[conditions.weatherCode]} />
+        <span className="temperature">
+          {Math.round(conditions.temperature)}˚
+        </span>
+      </div>
+
+      {data.showDetails ? (
+        <div className="details">
+          <dl>
+            <dt>{Math.round(conditions.apparentTemperature)}˚</dt>
+            <dd>{translated.apparent}</dd>
+          </dl>
+          <dl>
+            <dt>{conditions.humidity}%</dt>
+            <dd>{translated.humidity}</dd>
+          </dl>
+        </div>
+      ) : null}
+    </div>
+  );
+};
+
+// Translation messages
 const messages = defineMessages({
   high: {
     id: "plugins.weather.high",
@@ -19,73 +77,16 @@ const messages = defineMessages({
     description: "Low for temperature low",
     defaultMessage: "Low",
   },
+  apparent: {
+    id: "plugins.weather.apparent",
+    description: "Apparent/Feels like tempurature",
+    defaultMessage: "Feels like",
+  },
+  humidity: {
+    id: "plugins.weather.humidity",
+    description: "Humidity",
+    defaultMessage: "Humidity",
+  },
 });
-
-const Weather: FC<Props> = ({
-  cache,
-  data = defaultData,
-  loader,
-  setCache,
-  setData,
-}) => {
-  const translated = useFormatMessages(messages);
-
-  useCachedEffect(
-    () => {
-      getForecast(data, loader).then(setCache);
-    },
-    cache ? cache.expiresAt : 0,
-    [data.latitude, data.latitude, data.units],
-  );
-
-  if (!cache) {
-    return <div className="Weather">-</div>;
-  }
-
-  return (
-    <div className="Weather">
-      <div
-        className="summary"
-        onClick={() => setData({ ...data, showDetails: !data.showDetails })}
-        title="Toggle weather details"
-      >
-        {data.name && <span>{data.name}</span>}
-        <Icon name={weatherIcons[cache.icon]} />
-        <span className="temperature">
-          <span title={translated.high} className="high">
-            {cache.temperatureHigh}˚
-          </span>{" "}
-          <span title={translated.low} className="low">
-            {cache.temperatureLow}˚
-          </span>
-        </span>
-      </div>
-
-      {data.showDetails && (
-        <div className="details">
-          <dl>
-            <dt>
-              <span title={translated.high} className="high">
-                {cache.apparentTemperatureHigh}˚
-              </span>{" "}
-              <span title={translated.low} className="low">
-                {cache.apparentTemperatureLow}˚
-              </span>
-            </dt>
-            <dd>Feels like</dd>
-          </dl>
-          <dl>
-            <dt>{cache.humidity}%</dt>
-            <dd>Humidity</dd>
-          </dl>
-          <dl>
-            <dt>{cache.precipProbability}%</dt>
-            <dd>Chance of {cache.precipType || "rain"}</dd>
-          </dl>
-        </div>
-      )}
-    </div>
-  );
-};
 
 export default Weather;

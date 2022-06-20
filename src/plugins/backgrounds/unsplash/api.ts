@@ -1,38 +1,35 @@
-import { API } from "../../types";
-import { officialCollection, UNSPLASH_API_KEY } from "./constants";
 import { Data, Image } from "./types";
 
-type Config = Pick<Data, "by" | "collections" | "featured" | "search">;
+export const officialCollection = 1053828;
 
-export async function getImage(
-  config: Config,
-  loader: API["loader"],
-): Promise<Image> {
-  // Fetch random image
-  loader.push();
-  const res = await fetchImageMeta(config);
-  const data = await fetchImageData(res.urls.raw);
-  loader.pop();
+type Config = Pick<
+  Data,
+  "by" | "collections" | "featured" | "search" | "topics"
+>;
 
-  return {
-    data,
-    image_link: res.links.html,
-    location_title: res.location ? res.location.title : null,
-    user_name: res.user.name,
-    user_link: res.user.links.html,
-  };
-}
-
-async function fetchImageMeta({ by, collections, featured, search }: Config) {
+export const fetchImages = async ({
+  by,
+  collections,
+  topics,
+  featured,
+  search,
+}: Config): Promise<Image[]> => {
   const url = "https://api.unsplash.com/photos/random";
   const params = new URLSearchParams();
   const headers = new Headers({
     Authorization: `Client-ID ${UNSPLASH_API_KEY}`,
   });
 
+  params.set("count", "10");
+
   switch (by) {
     case "collections":
       params.set("collections", collections);
+      break;
+
+    case "topics":
+      params.set("topics", topics);
+      params.set("orientation", "landscape");
       break;
 
     case "search":
@@ -45,27 +42,42 @@ async function fetchImageMeta({ by, collections, featured, search }: Config) {
       params.set("collections", String(officialCollection));
   }
 
-  const res = await fetch(`${url}?${params}`, { headers });
-  return res.json();
-}
+  const res = await fetch(`${url}?${params}`, { headers, cache: "no-cache" });
+  const body = await res.json();
 
-async function fetchImageData(url: string) {
-  const quality = 85; // range [0-100]
-  const width = calculateWidth(window.innerWidth);
+  // TODO: validate types
 
-  const params = new URLSearchParams({
-    q: String(quality),
-    w: String(width),
-  });
+  return body.map((item: any) => ({
+    src: item.urls.raw,
+    credit: {
+      imageLink: item.links.html,
+      location: item.location ? item.location.title : null,
+      userName: item.user.name,
+      userLink: item.user.links.html,
+    },
+  }));
+};
 
-  return await (await fetch(url + params)).blob();
-}
+/**
+ * Build image link from raw
+ * TODO: allow quality to be adjustable, possibly in combination with size
+ */
+export const buildLink = (src: string): string => {
+  const url = new URL(src);
+  url.searchParams.set("q", "85");
+  url.searchParams.set(
+    "w",
+    String(calculateWidth(window.innerWidth, window.devicePixelRatio)),
+  );
+  return String(url);
+};
 
 /**
  * Calculate width to fetch image, tuned for Unsplash cache performance.
  */
-export function calculateWidth(screenWidth: number = 1920): number {
+export function calculateWidth(screenWidth = 1920, pixelRatio = 1): number {
   // Consider a minimum resolution too
+  screenWidth = screenWidth * pixelRatio; // Find true resolution
   screenWidth = Math.max(screenWidth, 1920); // Lower limit at 1920
   screenWidth = Math.min(screenWidth, 3840); // Upper limit at 4K
   screenWidth = Math.ceil(screenWidth / 240) * 240; // Snap up to nearest 240px for improved caching

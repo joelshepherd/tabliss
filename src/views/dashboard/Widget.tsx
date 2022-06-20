@@ -1,8 +1,7 @@
-import React, { FC } from "react";
+import React from "react";
+import { WidgetDisplay } from "../../db/state";
 
-import { WidgetDisplay } from "../../store/reducers/types";
-
-const Widget: FC<WidgetDisplay> = ({
+const Widget: React.FC<React.PropsWithChildren<WidgetDisplay>> = ({
   children,
   colour,
   fontFamily,

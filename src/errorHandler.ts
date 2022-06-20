@@ -1,11 +1,13 @@
-import { init, captureException } from "@sentry/browser/dist";
+import { init, captureException, setTag } from "@sentry/browser";
 
 export function register() {
   init({
-    dsn: process.env.SENTRY_PUBLIC_DSN,
-    enabled: Boolean(process.env.SENTRY_PUBLIC_DSN),
-    release: process.env.VERSION,
+    autoSessionTracking: false, // Wtf sentry
+    dsn: "https://2e0e75c7477c4c3e9572ee97241e569c@o113629.ingest.sentry.io/250221",
+    enabled: !DEV,
+    release: VERSION,
   });
+  setTag("target", BUILD_TARGET);
 }
 
 export function capture(error: Error) {

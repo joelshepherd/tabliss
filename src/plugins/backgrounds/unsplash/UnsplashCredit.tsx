@@ -1,45 +1,59 @@
-import React, { FC, memo } from "react";
+import React from "react";
 import { FormattedMessage } from "react-intl";
-
-import { UNSPLASH_UTM } from "./constants";
+import { Icon } from "../../../views/shared";
 import { Image } from "./types";
 
+export const UTM =
+  "?utm_source=Start&utm_medium=referral&utm_campaign=api-credit";
+
 interface Props {
-  image: Image;
+  credit: Image["credit"];
+  paused: boolean;
+  onPause: () => void;
+  onPrev: (() => void) | null;
+  onNext: (() => void) | null;
 }
 
-const UnsplashCredit: FC<Props> = ({ image }) => (
+const UnsplashCredit: React.FC<Props> = ({
+  credit,
+  paused,
+  onPause,
+  onPrev,
+  onNext,
+}) => (
   <div className="credit">
-    <span style={{ float: "right" }}>{image.location_title}</span>
+    <div className="photo">
+      <a href={credit.imageLink + UTM} rel="noopener noreferrer">
+        <FormattedMessage
+          id="plugins.unsplash.photoLink"
+          description="Photo link text"
+          defaultMessage="Photo"
+        />
+      </a>
+      {", "}
+      <a href={credit.userLink + UTM} rel="noopener noreferrer">
+        {credit.userName}
+      </a>
+      {", "}
+      <a href={"https://unsplash.com/" + UTM} rel="noopener noreferrer">
+        Unsplash
+      </a>
+    </div>
 
-    <a
-      href={image.image_link + UNSPLASH_UTM}
-      rel="noopener noreferrer"
-      target="_blank"
-    >
-      <FormattedMessage
-        id="plugins.unsplash.photoLink"
-        description="Photo link text"
-        defaultMessage="Photo"
-      />
-    </a>
-    {" / "}
-    <a
-      href={image.user_link + UNSPLASH_UTM}
-      rel="noopener noreferrer"
-      target="_blank"
-    >
-      {image.user_name}
-    </a>
-    {" / "}
-    <a
-      href={"https://unsplash.com/" + UNSPLASH_UTM}
-      rel="noopener noreferrer"
-      target="_blank"
-    >
-      Unsplash
-    </a>
+    <div className="controls">
+      <a className={onPrev ? "" : "hidden"} onClick={onPrev ?? undefined}>
+        <Icon name="arrow-left" />
+      </a>{" "}
+      <a onClick={onPause}>
+        <Icon name={paused ? "play" : "pause"} />
+      </a>{" "}
+      <a className={onNext ? "" : "hidden"} onClick={onNext ?? undefined}>
+        <Icon name="arrow-right" />
+      </a>
+    </div>
+
+    <div className="location">{credit.location}</div>
   </div>
 );
 
-export default memo(UnsplashCredit);
+export default React.memo(UnsplashCredit);

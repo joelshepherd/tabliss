@@ -1,0 +1,21 @@
+{
+  "app.pageTitle": "Нова картица",
+  "background": "Позадина",
+  "dashboard.focusHint": "Укључите/искључите виџете",
+  "dashboard.fullscreenHint": "Укључите/искључите приказ преко целог ектрана",
+  "dashboard.loadingHint": "Учитавање новог садржаја",
+  "dashboard.settingsHint": "Прилагодите Tabliss",
+  "plugin.greeting.withName": "{hour, select, 0 {Лепо спавајте {name}} 1 {Лепо спавајте {name}} 2 {Лепо спавајте {name}} 3 {Устаните и засијајте {name}} 4 {Устаните и засијајте {name}} 5 {Устаните и засијајте {name}} 6 {Добро јутро {name}} 7 {Добро јутро {name}} 8 {Добро јутро {name}} 9 {Добро јутро {name}} 10 {Добар дан {name}} 11 {Добар дан {name}} 12 {Добар дан {name}} 13 {Добар дан {name}} 14 {Добар дан {name}} 15 {Добар дан {name}} 16 {Добар дан {name}} 17 {Добар дан {name}} 18 {Добро вече {name}} 19 {Добро вече {name}} 20 {Добро вече {name}} 21 {Добро вече {name}} 22 {Лаку ноћ {name}} 23 {Лаку ноћ {name}} other {Unknown}}",
+  "plugin.greeting.withoutName": "{hour, select, 0 {Лепо спавајте} 1 {Лепо спавајте} 2 {Лепо спавајте} 3 {Устаните и засијајте} 4 {Устаните и засијајте} 5 {Устаните и засијајте} 6 {Добро јутро} 7 {Добро јутро} 8 {Добро јутро} 9 {Добро јутро} 10 {Добар дан} 11 {Добар дан} 12 {Добар дан} 13 {Добар дан} 14 {Добар дан} 15 {Добар дан} 16 {Добар дан} 17 {Добар дан} 18 {Добро вече} 19 {Добро вече} 20 {Добро вече} 21 {Добро вече} 22 {Лаку ноћ} 23 {Лаку ноћ} other {Unknown}}",
+  "plugins.links.shortcutHint": "Притисните број {number} или кликните да би сте посетили страницу",
+  "plugins.links.standardHint": "Кликните да би сте посетили страницу",
+  "plugins.search.placeholder": "Унесите појам за претрагу",
+  "plugins.unsplash.photoLink": "Фотографија",
+  "plugins.weather.apparent": "Feels like",
+  "plugins.weather.high": "Највиша температура",
+  "plugins.weather.humidity": "Humidity",
+  "plugins.weather.low": "Најнижа температура",
+  "settings": "Подешавања",
+  "settings.translationCredits": " ",
+  "widgets": "Виџети"
+}

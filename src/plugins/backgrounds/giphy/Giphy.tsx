@@ -1,32 +1,36 @@
-import React, { FC, useEffect, useState } from "react";
-
+import React from "react";
 import { useObjectUrl } from "../../../hooks";
 import Backdrop from "../../../views/shared/Backdrop";
 import { getGif } from "./api";
-import { Props, defaultData } from "./types";
 import Credit from "./Credit";
 import "./Giphy.sass";
+import { defaultData, Props } from "./types";
 
-const Giphy: FC<Props> = ({ cache, data = defaultData, setCache, loader }) => {
-  const [gif, setGif] = useState(cache);
-
-  useEffect(() => {
+const Giphy: React.FC<Props> = ({
+  cache,
+  data = defaultData,
+  setCache,
+  loader,
+}) => {
+  const [gif, setGif] = React.useState(cache);
+  const mounted = React.useRef(false);
+  React.useEffect(() => {
     const config = { tag: data.tag, nsfw: data.nsfw };
-    if (url) getGif(config, loader).then(setGif);
     getGif(config, loader).then(setCache);
+    if (mounted.current || !gif) getGif(config, loader).then(setGif);
+    mounted.current = true;
   }, [data.tag, data.nsfw]);
 
   const url = useObjectUrl(gif && gif.data);
 
-  if (!gif) return null;
+  if (!gif || !url) return null;
 
   return (
     <div className="Giphy fullscreen">
       <Backdrop
         className="gif fullscreen"
-        ready={Boolean(url)}
         style={{
-          backgroundImage: url ? `url(${url})` : undefined,
+          backgroundImage: `url(${url})`,
           backgroundSize: data.expand ? "cover" : undefined,
         }}
       />

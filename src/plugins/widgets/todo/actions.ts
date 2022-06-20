@@ -1,4 +1,4 @@
-import { v4 as generateId } from "uuid";
+import { nanoid as generateId } from "nanoid";
 
 export function addTodo(contents = "") {
   return {

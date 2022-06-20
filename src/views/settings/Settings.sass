@@ -8,8 +8,8 @@
 
     h2, h3, h4
         color: #212121
-    
-    h2
+
+    h2, h3
         margin-bottom: 0
 
     .plane
@@ -39,6 +39,7 @@
     input[type=file],
     input[type=number],
     input[type=text],
+    input[type=time],
     input[type=url],
     textarea,
     select
@@ -68,25 +69,34 @@
     input[type=color]
         display: block
 
-    .button--primary
-        border: 1px solid rgba(0, 0, 0, 0)
-        border-bottom-width: 2px
+    .button
+        border: 0
         border-radius: 2em
-        background-color: #3498db
         color: white
         cursor: pointer
         display: inline-block
-        padding: 0.5em 2em
+        padding: 0.5em 1em
         text-decoration: none
-        transition: border-color 0.25s ease-out
-
-        &:hover
-            border-color: rgba(0, 0, 0, 0.25)
-
+        transition: background 0.25s ease-out
+        text-align: center
+        font-weight: 500
         &:disabled
             background-color: #bdc3c7
-            border-color: rgba(0, 0, 0, 0)
             cursor: default
+
+        &--primary
+            background-color: #3498db
+            &:hover
+                background: darken(#3498db, 10%)
+            &:active
+                background: darken(#3498db, 20%)
+
+        &--secondary
+            background: darken(#bdc3c7, 20%)
+            &:hover
+                background: darken(#bdc3c7, 30%)
+            &:active
+                background: darken(#bdc3c7, 40%)
 
     hr
         border: 1px solid #ecf0f1

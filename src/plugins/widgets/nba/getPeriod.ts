@@ -2,7 +2,7 @@ import { format } from "date-fns";
 import { utcToZonedTime } from "date-fns-tz";
 import { Game } from "./types";
 
-export function getPeriod(game: Game, timeZone?: string) {
+export function getPeriod(game: Game, timeZone: string | null) {
   const period = game.period;
   let periodDate = new Date(game.startTimeUTC);
 

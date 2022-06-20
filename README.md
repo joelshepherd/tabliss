@@ -1,8 +1,10 @@
-# Tabliss
+<h1 align="center">Tabliss</h1>
 
-A pluggable New Tab web extension written in TypeScript, React and Redux.
+<p align="center">A beautiful, customisable New Tab page for Firefox and Chrome.</p>
 
-[https://tabliss.io](https://tabliss.io)
+![Tabliss Screenshot](screenshot.png)
+
+<p align="center"><a href="https://tabliss.io">https://tabliss.io</a></p>
 
 ## Usage
 

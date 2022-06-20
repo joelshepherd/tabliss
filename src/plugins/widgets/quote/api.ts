@@ -4,7 +4,7 @@ import { Quote } from "./types";
 // Get developer excuse
 async function getDeveloperExcuse() {
   try {
-    const res = await fetch(`${process.env.API_ENDPOINT}/developer-excuses`);
+    const res = await fetch("https://api.tabliss.io/v1/developer-excuses");
     const body = await res.json();
 
     return {
@@ -49,15 +49,48 @@ async function getQuoteOfTheDay(category?: string) {
   };
 }
 
+// Get bible verse of the day
+async function getBibleVerse() {
+  const res = await fetch("https://quotes.rest/bible/vod.json");
+
+  const body = await res.json();
+
+  if (res.status === 429) {
+    return {
+      author: body.error.message.split(".")[1] + ".",
+      quote: "Too many requests this hour.",
+    };
+  }
+
+  if (body && body.contents) {
+    return {
+      author:
+        body.contents.book +
+        " " +
+        body.contents.chapter +
+        ":" +
+        body.contents.number,
+      quote: body.contents.verse,
+    };
+  }
+
+  return {
+    author: null,
+    quote: null,
+  };
+}
+
 export async function getQuote(
   loader: API["loader"],
-  category?: string,
+  category: string,
 ): Promise<Quote> {
   loader.push();
 
   const data =
     category === "developerexcuses"
       ? await getDeveloperExcuse()
+      : category === "bible"
+      ? await getBibleVerse()
       : await getQuoteOfTheDay(category);
 
   loader.pop();

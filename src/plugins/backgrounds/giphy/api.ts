@@ -1,8 +1,6 @@
 import { API } from "../../types";
 import { Gif } from "./types";
 
-const GIPHY_API_KEY = process.env.GIPHY_API_KEY;
-
 type Config = {
   tag: string;
   nsfw: boolean;
@@ -25,7 +23,7 @@ export async function getGif(
 
   loader.push();
   const res = await (await fetch(request)).json();
-  const data = await (await fetch(res.data.image_original_url)).blob();
+  const data = await (await fetch(res.data.images.original.webp)).blob();
   loader.pop();
 
   return {

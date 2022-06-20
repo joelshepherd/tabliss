@@ -1,11 +1,12 @@
-import React, { FC } from "react";
+import React from "react";
 import { useToggle } from "../../hooks";
 
 type Props = {
+  children: React.ReactNode;
   name: string;
 };
 
-const ToggleSection: FC<Props> = ({ name, children }) => {
+const ToggleSection: React.FC<Props> = ({ name, children }) => {
   const [isOpen, toggleOpen] = useToggle();
 
   return (

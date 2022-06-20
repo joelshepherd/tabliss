@@ -1,7 +1,7 @@
 import tlds from "tlds";
-
 import { engines } from "./engines";
 
+// TODO: Add unit tests
 export function buildUrl(query: string, engineUrl: string) {
   // See if they have started with a web scheme
   if (/^https?:\/\/\w+/.test(query)) {
@@ -9,8 +9,7 @@ export function buildUrl(query: string, engineUrl: string) {
   }
 
   // See if they have ended with a valid TLD
-  // TODO: Check it's still a URL, and not just a search time that ends in a tld like: "help site:example.com"
-  if (tlds.some((tld) => query.endsWith(`.${tld}`))) {
+  if (tlds.some((tld) => query.endsWith(`.${tld}`)) && !query.includes(" ")) {
     return `https://${query}`;
   }
 

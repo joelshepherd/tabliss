@@ -40,7 +40,7 @@ const Links: FC<Props> = ({ data = defaultData }) => {
         ))
       ) : (
         <a onClick={toggleVisible} title="Show quick links">
-          <Icon name={"link-2"} />
+          <Icon name="link-2" />
         </a>
       )}
     </div>

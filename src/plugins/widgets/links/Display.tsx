@@ -4,12 +4,21 @@ import { defineMessages, useIntl } from "react-intl";
 import { Icon } from "../../../views/shared";
 import { Link } from "./types";
 
-const displayUrl = (url: string) => {
+const displayUrl = (url: string): string => {
   try {
     const parsed = new URL(url);
     return parsed.hostname + (parsed.pathname !== "/" ? parsed.pathname : "");
   } catch (e) {
     return url;
+  }
+};
+
+const getDomain = (url: string): string | null => {
+  try {
+    const parsed = new URL(url);
+    return parsed.hostname;
+  } catch (e) {
+    return null;
   }
 };
 
@@ -39,6 +48,8 @@ const Display: FC<Props> = ({ icon, name, number, url, linkOpenStyle }) => {
     [intl, number],
   );
 
+  const domain = useMemo(() => getDomain(url), [url]);
+
   return (
     <a
       href={url}
@@ -46,7 +57,18 @@ const Display: FC<Props> = ({ icon, name, number, url, linkOpenStyle }) => {
       target={linkOpenStyle ? "_blank" : "_self"}
       title={title}
     >
-      {icon && <Icon name={icon} />}
+      {icon === "_favicon" ? (
+        domain ? (
+          <i>
+            <img
+              alt={domain}
+              src={`https://icons.duckduckgo.com/ip3/${domain}.ico`}
+            />
+          </i>
+        ) : null
+      ) : icon ? (
+        <Icon name={icon} />
+      ) : null}
       {icon && name && " "}
       <span className="LinkText">
         {name}

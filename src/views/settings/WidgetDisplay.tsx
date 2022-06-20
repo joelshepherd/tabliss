@@ -1,15 +1,14 @@
-import React, { FC } from "react";
-
-import { WidgetDisplay } from "../../store/reducers/types";
+import React from "react";
+import { WidgetDisplay as WidgetDisplayType } from "../../db/state";
 import PositionInput from "./PositionInput";
 import "./WidgetDisplay.css";
 
 type Props = {
-  display: WidgetDisplay;
-  onChange: (display: Partial<WidgetDisplay>) => void;
+  display: WidgetDisplayType;
+  onChange: (display: Partial<WidgetDisplayType>) => void;
 };
 
-const WidgetDisplay: FC<Props> = ({ display, onChange }) => {
+const WidgetDisplay: React.FC<Props> = ({ display, onChange }) => {
   return (
     <div className="WidgetDisplay">
       <PositionInput

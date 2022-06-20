@@ -11,8 +11,10 @@
   "plugins.links.standardHint": "クリックで移動",
   "plugins.search.placeholder": "検索キーワードを入力",
   "plugins.unsplash.photoLink": "Photo",
-  "plugins.weather.high": "High",
-  "plugins.weather.low": "Low",
+  "plugins.weather.apparent": "体感",
+  "plugins.weather.high": "最高",
+  "plugins.weather.humidity": "湿度",
+  "plugins.weather.low": "最低",
   "settings": "Settings",
   "settings.translationCredits": "Japanese translation by Kodaka",
   "widgets": "Widgets"

@@ -1,6 +1,6 @@
 import { ComponentType } from "react";
 
-export type Cache<Shape = {}> = {
+export type Cache<Shape = unknown> = {
   /**
    * A temporary cache for storing large or temporary objects for the plugin.
    */
@@ -11,7 +11,7 @@ export type Cache<Shape = {}> = {
   setCache: (cache: Shape) => void;
 };
 
-export type Data<Shape = {}> = {
+export type Data<Shape = unknown> = {
   /**
    * A permanent (and synced) data store for storing small items and settings for the plugin.
    * Note, the total Tabliss can store here is 100KB across all plugins.
@@ -29,7 +29,7 @@ export type Loader = {
 };
 
 /** Plugin API interface. */
-export interface API<D = {}, C = {}> extends Data<D>, Cache<C> {
+export interface API<D = unknown, C = unknown> extends Data<D>, Cache<C> {
   /**
    * Contol the loading indicator when the plugin is fetching remote data.
    */

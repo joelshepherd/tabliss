@@ -1,6 +1,6 @@
-import React, { FC } from "react";
-
-import { useSelector } from "../../../store";
+import React from "react";
+import { db } from "../../../db/state";
+import { useValue } from "../../../lib/db/react";
 
 type Props = {
   hour12: boolean;
@@ -20,41 +20,43 @@ type Props = {
  * Code based on: https://github.com/mattermost/mattermost-webapp/pull/5138
  * Tabliss issue: https://github.com/joelshepherd/tabliss/issues/231
  */
-const IntlTime: FC<Props> = ({
+const IntlTime: React.FC<Props> = ({
   hour12,
   showMinutes,
   showSeconds,
   showDayPeriod = true,
   time,
 }) => {
-  const locale = useSelector((state) => state.data.locale);
+  const locale = useValue(db, "locale");
 
   // Time formatter config
-  const formater = Intl.DateTimeFormat(locale, {
-    hour12,
-    hour: "numeric",
-    hourCycle: hour12 ? "h12" : "h23",
-    minute: showMinutes ? "numeric" : undefined,
-    second: showSeconds ? "numeric" : undefined,
-  });
-
-  let formatedTime: String;
+  const formater = React.useMemo(
+    () =>
+      Intl.DateTimeFormat(locale, {
+        hour: "numeric",
+        hourCycle: hour12 ? "h12" : "h23",
+        minute: showMinutes ? "numeric" : undefined,
+        second: showSeconds ? "numeric" : undefined,
+      }),
+    [locale, hour12, showMinutes, showSeconds],
+  );
 
   if (showDayPeriod) {
     // Return normal time if showing timePeriod
-    formatedTime = formater.format(time);
+    return <>{formater.format(time)}</>;
   } else {
     // Remove timePeriod from string
     // Returns the date broken down into parts
-    const dateParts = formater.formatToParts(time);
-
-    formatedTime = dateParts
-      .filter((part) => part.type !== "dayPeriod") // Removes day period from the array
-      .map((part) => part.value) // Converts array of objects to array of strings
-      .join("");
+    return (
+      <>
+        {formater
+          .formatToParts(time)
+          .filter((part) => part.type !== "dayPeriod") // Removes day period from the array
+          .map((part) => part.value) // Converts array of objects to array of strings
+          .join("")}
+      </>
+    );
   }
-
-  return <>{formatedTime}</>;
 };
 
 export default IntlTime;

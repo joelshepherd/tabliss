@@ -7,7 +7,6 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const workbox = require("workbox-webpack-plugin");
 const webpack = require("webpack");
-const ExtensionReloader = require("webpack-extension-reloader");
 
 const buildTarget = process.env.BUILD_TARGET || "web";
 const isProduction = process.env.NODE_ENV === "production";
@@ -16,6 +15,7 @@ const version = require("./package.json").version;
 
 const config = {
   entry: {
+    polyfills: "./src/polyfills.ts",
     main: ["normalize.css", "./src/styles.sass", "./src/main.tsx"],
   },
   output: {
@@ -40,11 +40,6 @@ const config = {
           limit: 10000,
           name: isWeb ? "[name].[contenthash:12].[ext]" : "[name].[ext]",
         },
-      },
-      {
-        // Thanks, `react-intl`
-        test: /\.mjs$/,
-        type: "javascript/auto",
       },
       {
         test: /\.sass$/,
@@ -78,19 +73,15 @@ const config = {
     new MiniCssExtractPlugin({
       filename: isWeb ? "[name].[contenthash:12].css" : "[name].css",
     }),
-    new webpack.EnvironmentPlugin({
-      BUILD_TARGET: "web",
-      API_ENDPOINT: "https://api.tabliss.io/v1",
-      SENTRY_PUBLIC_DSN: null,
-      GIPHY_API_KEY: null,
-      UNSPLASH_API_KEY: null,
-      VERSION: version,
+    new webpack.DefinePlugin({
+      BUILD_TARGET: JSON.stringify(buildTarget),
+      DEV: JSON.stringify(!isProduction),
+      GIPHY_API_KEY: JSON.stringify(process.env.GIPHY_API_KEY),
+      VERSION: JSON.stringify(version),
+      UNSPLASH_API_KEY: JSON.stringify(process.env.UNSPLASH_API_KEY),
     }),
   ],
-  devServer: {
-    overlay: true,
-  },
-  devtool: isWeb ? "source-map" : false,
+  devtool: isWeb || !isProduction ? "source-map" : false,
   stats: {
     warnings: false,
   },
@@ -106,22 +97,14 @@ if (isProduction) {
 }
 
 if (!isWeb) {
-  config.entry.background = "./src/background.ts";
-}
-
-if (!isWeb && !isProduction) {
   config.plugins.push(
-    new ExtensionReloader({
-      reloadPage: true,
-      entries: {
-        background: "background",
-        extensionPage: "main",
-      },
+    new webpack.ProvidePlugin({
+      browser: "webextension-polyfill",
     }),
   );
 }
 
-if (isWeb) {
+if (isWeb && isProduction) {
   config.plugins.push(
     new workbox.GenerateSW({
       cacheId: "tabliss-cache",

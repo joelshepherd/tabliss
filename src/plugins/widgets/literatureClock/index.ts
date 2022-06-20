@@ -13,7 +13,7 @@ import LiteratureClockSettings from "./LiteratureClockSettings";
 const config: Config = {
   key: "widget/literature-clock",
   name: "Literature Clock",
-  description: "Read the time, with class.",
+  description: "Check the time, with sophistication.",
   dashboardComponent: LiteratureClock,
   settingsComponent: LiteratureClockSettings,
 };

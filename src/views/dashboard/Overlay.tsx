@@ -1,10 +1,11 @@
-import React, { FC } from "react";
+import React from "react";
 import { defineMessages } from "react-intl";
-import { useDispatch } from "react-redux";
-
+import { ErrorContext } from "../../contexts/error";
+import { UiContext } from "../../contexts/ui";
+import { toggleFocus } from "../../db/action";
+import { db } from "../../db/state";
 import { useFormatMessages, useFullscreen, useKeyPress } from "../../hooks";
-import { useSelector } from "../../store";
-import { toggleFocus, toggleSettings } from "../../store/actions";
+import { useValue } from "../../lib/db/react";
 import { Icon } from "../shared";
 import "./Overlay.sass";
 
@@ -30,19 +31,21 @@ const messages = defineMessages({
     description:
       "Hover hint text for the loading indicator icon (the lightning bolt)",
   },
+  errorHint: {
+    id: "dashboard.errorHint",
+    defaultMessage: "Show errors",
+    description: "Hover hint text for the error indicator icon",
+  },
 });
 
-const Overlay: FC = () => {
+const Overlay: React.FC = () => {
   const translated = useFormatMessages(messages);
-  const focus = useSelector((state) => state.ui.focus);
-  const pending = useSelector((state) => state.ui.loaders > 0);
+  const focus = useValue(db, "focus");
+  const { errors } = React.useContext(ErrorContext);
+  const { pending, toggleErrors, toggleSettings } = React.useContext(UiContext);
 
-  const dispatch = useDispatch();
-  const handleToggleFocus = () => dispatch(toggleFocus());
-  const handleToggleSettings = () => dispatch(toggleSettings());
-
-  useKeyPress(handleToggleFocus, ["w"]);
-  useKeyPress(handleToggleSettings, ["s"]);
+  useKeyPress(toggleFocus, ["w"]);
+  useKeyPress(toggleSettings, ["s"]);
 
   // Hooks inside a condition? Works because the condition always resolves the same
   const [isFullscreen, handleToggleFullscreen] = useFullscreen();
@@ -50,28 +53,31 @@ const Overlay: FC = () => {
 
   return (
     <div className="Overlay">
-      <a
-        onClick={handleToggleSettings}
-        title={`${translated.settingsHint} (S)`}
-      >
+      <a onClick={toggleSettings} title={`${translated.settingsHint} (S)`}>
         <Icon name="settings" />
       </a>
 
-      {pending && (
+      {errors.length > 0 ? (
+        <a onClick={toggleErrors} title={translated.errorHint}>
+          <Icon name="alert-triangle" />
+        </a>
+      ) : null}
+
+      {pending > 0 ? (
         <span title={translated.loadingHint}>
           <Icon name="zap" />
         </span>
-      )}
+      ) : null}
 
       <a
-        className="on-hover"
-        onClick={handleToggleFocus}
+        className={focus ? "" : "on-hover"}
+        onClick={toggleFocus}
         title={`${translated.focusHint} (W)`}
       >
         <Icon name={focus ? "eye-off" : "eye"} />
       </a>
 
-      {handleToggleFullscreen && (
+      {handleToggleFullscreen ? (
         <a
           className="on-hover"
           onClick={handleToggleFullscreen}
@@ -79,7 +85,7 @@ const Overlay: FC = () => {
         >
           <Icon name={isFullscreen ? "minimize-2" : "maximize-2"} />
         </a>
-      )}
+      ) : null}
     </div>
   );
 };

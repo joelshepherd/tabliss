@@ -5,19 +5,137 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
-## Added
+### Fixed
 
-- Tabliss is now selectable as your homepage in Firefox
+- Updated IP Info widget with a more reliable service and more frequent updates
 
-## Fixed
+## [2.6.0] - 2022-04-25
 
+### Added
+
+- Option to use the website icon for Quick Links
+- New play and pause buttons for Unsplash background rotation
+
+### Fixed
+
+- Initial flash of black before settings load if using a light theme
+- Create todo keyboard shortcut was included in the todo
+
+## [2.5.1] - 2022-04-02
+
+### Fixed
+
+- Migration error that would cause the todo widget to crash
+
+## [2.5.0] - 2022-04-02
+
+### Added
+
+- New Notes widget
+- Keyboard shortcut to create a new todo - thanks @noah-curran
+- Option to request persistent storage permission from the browser
+- Option for weekly Unsplash image rotation
+
+### Changed
+
+- Japanese translation updates - thanks @kodaka
+
+### Fixed
+
+- Custom CSS now loads _before_ the first render, savings eyes everywhere
+- Compatibility for older versions of Firefox (54-57)
+
+## [2.4.2] - 2022-03-26
+
+### Fixed
+
+- Tabliss going wild when you change the language or time zone
+- Language changes no longer require Tabliss to reload
+- Time zone updates are now instant
+
+## [2.4.1] - 2022-03-25
+
+### Fixed
+
+- An init failure that could cause a blank screen on upgrade
+
+## [2.4.0] - 2022-03-25
+
+### Added
+
+- Previous or next buttons to change the Unsplash background
+- New UI to display errors
+
+### Changed
+
+- Screen pixel density is now considered for background quality
+- German translation updates - thanks @dreadwarrior
+- Italian translation updates - thanks @gioxx
+
+### Fixed
+
+- Unsplash's "change every new tab" setting is no longer every second new tab!
+- Backgrounds sometimes breaking after restarting Safari
+- Cache errors no longer trigger the "Storage Error" modal
+
+## [2.3.0] - 2022-03-14
+
+### Added
+
+- Added GitHub Calendar widget - thanks @vdimir
+- Galician translations - thanks Daniel González Portela
+- Irish translations - thanks @tsirona
+- Canadian English locale
+
+### Fixed
+
+- Added missing time zones
+- Fixed displaying "24:XX" in some locales in Chrome
+- Spacing at the bottom of the Quote widget has returned to normal
+- Icons now have correct vertical alignment again
+
+## [2.2.0] - 2022-03-10
+
+### Added
+
+- Added IP Info widget - thanks @bkis
+- Current weather conditions are back thanks to Open-Meteo
+- Tabliss can now be displayed as your homepage in Firefox
+- Unsplash now supports selecting a topic for background - thanks @betatim
+- Added MetaGer search engine - thanks @teknowledgist
+- Added bible verses as an option for quotes - thanks @Staubgeborener
+- Finnish translations - thanks @Nonecaster
+- Nepali translations - thanks @sidbelbase
+- Serbian translations - thanks @ZaDavanje
+- Thai translations - thanks @NeneNeko
+
+### Changed
+
+- New settings storage engine to reduce instances of Tabliss loosing your settings
+- Tabliss will now remember if you have hidden your widgets
+- Background blur is now disabled when widgets are hidden
+- Unsplash links now open in the same window - thanks @elsiehupp
+- Chinese translation updates - thanks @mysmlz
+- French translation updates - thanks @ernest33
+- German translation updates - thanks @M123-dev
+- Scottish Gaelic updates - thanks @fenrisulfr94
+- Spanish translation updates - thanks @husseinalkasake
+
+### Fixed
+
+- GIPHY background has been fixed - thanks @OneComputerGuy
+- Long quotes no longer break the UI - thanks @CoderOO7
 - Link keyboard shortcut not respecting link opening style - thanks @cwils021
 - Time zone selection label dispaly issue - thanks @jn64
-- Typo in the Scottish Gaelic localisation - thanks @fenrisulfr94
+- And many more minor bug fixes and tweaks
+
+### Removed
+
+- Search suggestions from all extension builds, due to browser extension policies
 
 ## [2.1.0] - 2021-01-28
 
-## Added
+### Added
 
 - Labels and timezone to the clock widget
 - Settings can now be exported and imported to/from a JSON file - thanks @jlave-dev
@@ -29,7 +147,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 - Farsi translations - thanks @sarended
 - Luxembourgish translations - thanks @jaclo187
 
-## Changed
+### Changed
 
 - Improved typography in quotes - thanks @apollisa
 - Simplifying add todo interface - thanks @trickypr
@@ -41,7 +159,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 - Portuguese (Brazil) translations - thanks @adilsonfsantos
 - Italian translations - thanks @blackcat-917
 
-## Fixed
+### Fixed
 
 - Alignment of multi-column quick links when they are narrower than other widgets in their slot
 - Search box now properly respects light mode

@@ -1,17 +1,16 @@
-import React, { FC } from "react";
-
+import React from "react";
+import { WidgetPosition, WidgetState } from "../../db/state";
 import { getConfig } from "../../plugins";
-import { WidgetPosition, WidgetState } from "../../store/reducers/types";
 import Plugin from "../shared/Plugin";
-import Widget from "./Widget";
 import "./Slot.sass";
+import Widget from "./Widget";
 
 type Props = {
   position: WidgetPosition;
   widgets: WidgetState[];
 };
 
-const Slot: FC<Props> = ({ position, widgets }) => (
+const Slot: React.FC<Props> = ({ position, widgets }) => (
   <div className={`Slot ${position}`}>
     {widgets.map(({ display, id, key }) => (
       <Widget key={id} {...display}>
