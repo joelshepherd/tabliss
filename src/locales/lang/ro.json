@@ -17,5 +17,9 @@
   "plugins.weather.low": "Low",
   "settings": "Settings",
   "settings.translationCredits": " ",
-  "widgets": "Widgets"
+  "widgets": "Widgets",
+  "plugins.timer.days": "zile",
+  "plugins.timer.hours": "ore",
+  "plugins.timer.minutes": "minute",
+  "plugins.timer.seconds": "secunde"
 }

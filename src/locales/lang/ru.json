@@ -17,5 +17,9 @@
   "plugins.weather.low": "Минимум",
   "settings": "Настройки",
   "settings.translationCredits": "Перевёл на русский Илья Бирюков",
-  "widgets": "Виджеты"
+  "widgets": "Виджеты",
+  "plugins.timer.days": "дни",
+  "plugins.timer.hours": "часы",
+  "plugins.timer.minutes": "минуты",
+  "plugins.timer.seconds": "секунды"
 }

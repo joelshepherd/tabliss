@@ -17,5 +17,9 @@
   "plugins.weather.low": "Alin",
   "settings": "Asetukset",
   "settings.translationCredits": " ",
-  "widgets": "Widgetit"
+  "widgets": "Widgetit",
+  "plugins.timer.days": "päivää",
+  "plugins.timer.hours": "tuntia",
+  "plugins.timer.minutes": "minuuttia",
+  "plugins.timer.seconds": "sekuntia"
 }

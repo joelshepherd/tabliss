@@ -1,8 +1,13 @@
-import React, { useEffect, useState, FC } from 'react';
+import React, { useEffect, useState, FC } from "react";
 
-import { Props, defaultData } from './types';
+import { useFormatMessages } from "../../../hooks";
+import { Props, defaultData } from "./types";
+import { useSelector } from "../../../store";
 
 const Timer: FC<Props> = ({ data = defaultData }) => {
+  const locale = useSelector((state) => state.data.locale);
+
+  const numberFormatter = Intl.NumberFormat(locale);
 
   const calculateTimeLeft = () => {
     const difference = +new Date(data.date) - +new Date();
@@ -10,10 +15,16 @@ const Timer: FC<Props> = ({ data = defaultData }) => {
 
     if (difference > 0) {
       timeLeft = {
-        days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-        hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
-        minutes: Math.floor((difference / 1000 / 60) % 60),
-        seconds: Math.floor((difference / 1000) % 60),
+        days: numberFormatter.format(
+          Math.floor(difference / (1000 * 60 * 60 * 24)),
+        ),
+        hours: numberFormatter.format(
+          Math.floor((difference / (1000 * 60 * 60)) % 24),
+        ),
+        minutes: numberFormatter.format(
+          Math.floor((difference / 1000 / 60) % 60),
+        ),
+        seconds: numberFormatter.format(Math.floor((difference / 1000) % 60)),
       };
     }
 

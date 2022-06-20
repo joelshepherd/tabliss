@@ -17,5 +17,9 @@
   "plugins.weather.low": "Minima",
   "settings": "Impostazioni",
   "settings.translationCredits": "Italian translations by Gianni, Blackcat-917 and Gioxx",
-  "widgets": "Widget"
+  "widgets": "Widget",
+  "plugins.timer.days": "giorni",
+  "plugins.timer.hours": "ore",
+  "plugins.timer.minutes": "minuti",
+  "plugins.timer.seconds": "secondi"
 }

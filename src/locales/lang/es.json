@@ -17,5 +17,9 @@
   "plugins.weather.low": "Mínima",
   "settings": "Opciones",
   "settings.translationCredits": "Spanish translation by Gastón Alegre Stotzer. Proofreading by Álex GM.",
-  "widgets": "Widgets"
+  "widgets": "Widgets",
+  "plugins.timer.days": "dias",
+  "plugins.timer.hours": "horas",
+  "plugins.timer.minutes": "minutos",
+  "plugins.timer.seconds": "segundos"
 }

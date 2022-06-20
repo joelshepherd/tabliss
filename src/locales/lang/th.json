@@ -17,5 +17,9 @@
   "plugins.weather.low": "ต่ำสุด",
   "settings": "การตั้งค่า",
   "settings.translationCredits": "แปลไทยโดย NeneNeko",
-  "widgets": "วิดเจ็ต"
+  "widgets": "วิดเจ็ต",
+  "plugins.timer.days": "วัน",
+  "plugins.timer.hours": "ชั่วโมง",
+  "plugins.timer.minutes": "นาที",
+  "plugins.timer.seconds": "วินาที"
 }

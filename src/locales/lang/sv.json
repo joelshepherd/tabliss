@@ -17,5 +17,9 @@
   "plugins.weather.low": "Low",
   "settings": "Settings",
   "settings.translationCredits": "Swedish translation by Vecopotryx",
-  "widgets": "Widgets"
+  "widgets": "Widgets",
+  "plugins.timer.days": "dagar",
+  "plugins.timer.hours": "timmar",
+  "plugins.timer.minutes": "minuter",
+  "plugins.timer.seconds": "sekunder"
 }

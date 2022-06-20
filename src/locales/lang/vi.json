@@ -17,5 +17,9 @@
   "plugins.weather.low": "Low",
   "settings": "Settings",
   "settings.translationCredits": "Bản dịch tiếng Việt của Phạm Ngọc Thạch",
-  "widgets": "Widgets"
+  "widgets": "Widgets",
+  "plugins.timer.days": "ngày",
+  "plugins.timer.hours": "giờ",
+  "plugins.timer.minutes": "phút",
+  "plugins.timer.seconds": "giây"
 }

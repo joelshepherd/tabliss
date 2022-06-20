@@ -17,5 +17,9 @@
   "plugins.weather.low": "Mažiausia",
   "settings": "Nustatymai",
   "settings.translationCredits": "Į lietuvių kalbą išvertė Paulius Gečas",
-  "widgets": "Valdikliai"
+  "widgets": "Valdikliai",
+  "plugins.timer.days": "dienų",
+  "plugins.timer.hours": "valandų",
+  "plugins.timer.minutes": "minučių",
+  "plugins.timer.seconds": "sekundžių"
 }

@@ -17,5 +17,9 @@
   "plugins.weather.low": "Low",
   "settings": "Settings",
   "settings.translationCredits": "Greek Translation by @Damian96",
-  "widgets": "Widgets"
+  "widgets": "Widgets",
+  "plugins.timer.days": "μέρες",
+  "plugins.timer.hours": "ώρες",
+  "plugins.timer.minutes": "λεπτά",
+  "plugins.timer.seconds": "δευτερόλεπτα"
 }

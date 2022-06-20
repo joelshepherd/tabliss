@@ -17,5 +17,9 @@
   "plugins.weather.low": "Найнижча температура",
   "settings": "Налаштування",
   "settings.translationCredits": "Переклав українською P182 на GitHub.com",
-  "widgets": "Віджети"
+  "widgets": "Віджети",
+  "plugins.timer.days": "днів",
+  "plugins.timer.hours": "годин",
+  "plugins.timer.minutes": "хвилин",
+  "plugins.timer.seconds": "секунд"
 }
