@@ -1,17 +1,47 @@
 import React, { useEffect, useState, FC } from "react";
-
-import { useFormatMessages } from "../../../hooks";
+import { defineMessages, useIntl } from "react-intl";
+import { db } from "../../../db/state";
+import { useValue } from "../../../lib/db/react";
 import { Props, defaultData } from "./types";
-import { useSelector } from "../../../store";
+
+const messages = defineMessages({
+  days: {
+    id: "plugins.timer.days",
+    description: "Days translation",
+    defaultMessage: "days",
+  },
+  hours: {
+    id: "plugins.timer.hours",
+    description: "Hours translation",
+    defaultMessage: "hours",
+  },
+  minutes: {
+    id: "plugins.timer.minutes",
+    description: "Minutes translation",
+    defaultMessage: "minutes",
+  },
+  seconds: {
+    id: "plugins.timer.seconds",
+    description: "Seconds translation",
+    defaultMessage: "seconds",
+  }
+});
+
+type TimeKeys = keyof typeof messages;
 
 const Timer: FC<Props> = ({ data = defaultData }) => {
-  const locale = useSelector((state) => state.data.locale);
-
+  const intl = useIntl();
+  const locale = useValue(db, "locale");
   const numberFormatter = Intl.NumberFormat(locale);
 
   const calculateTimeLeft = () => {
     const difference = +new Date(data.date) - +new Date();
-    let timeLeft: any = {};
+    let timeLeft: Record<TimeKeys, string> = {
+      days: "",
+      hours: "",
+      minutes: "",
+      seconds: ""
+    };
 
     if (difference > 0) {
       timeLeft = {
@@ -41,23 +71,21 @@ const Timer: FC<Props> = ({ data = defaultData }) => {
 
   const timerComponents: any[] = [];
 
-  Object.keys(timeLeft).forEach((interval) => {
+  (Object.keys(timeLeft) as TimeKeys[]).forEach((interval: TimeKeys, index: number) => {
     if (!timeLeft[interval]) {
       return;
     }
 
     timerComponents.push(
-      <span>
-        {timeLeft[interval]} {interval}{' '}
+      <span key={index}>
+        <>{timeLeft[interval]} {intl.formatMessage(messages[interval])}{" "}</>
       </span>,
     );
   });
 
   return (
     <div>
-      <h4>
-        {data.name}
-      </h4>
+      <h4>{data.name}</h4>
       {timerComponents.length ? timerComponents : <span>Time's up!</span>}
     </div>
   );

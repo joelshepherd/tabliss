@@ -13,7 +13,7 @@ const TimerSettings: FC<Props> = ({ data = defaultData, setData }) => (
       />
     </label>
     <label>
-      Timer Expiry Date
+      Timer Expiry Date{" "}
       <input
         type="date"
         min={new Date().toISOString().split("T")[0]}
