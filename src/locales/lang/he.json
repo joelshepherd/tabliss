@@ -1,0 +1,22 @@
+{
+    "app.pageTitle": "כרטיסיה חדשה",
+    "background": "רקע",
+    "dashboard.errorHint": "להראות תקלות",
+    "dashboard.focusHint": "החלף מצב האפלקציות",
+    "dashboard.fullscreenHint": "החלף מצב למסך מלא",
+    "dashboard.loadingHint": "טוען תוכן חדש",
+    "dashboard.settingsHint": "התאמה אישית של Tabliss",
+    "plugin.greeting.withName": "{hour, select,\n      0 {לילה טוב, {name}}\n      1 {לילה טוב, {name}}\n      2 {לילה טוב, {name}}\n      3 {בוקר טוב, {name}}\n      4 {בוקר טוב, {name}}\n      5 {בוקר טוב, {name}}\n      6 {בוקר טוב, {name}}\n      7 {בוקר טוב, {name}}\n      8 {בוקר טוב, {name}}\n      9 {בוקר טוב, {name}}\n      10 {שלום, {name}}\n      11 {שלום, {name}}\n      12 {שלום, {name}}\n      13 {שלום, {name}}\n      14 {צהרים טובים, {name}}\n      15 {צהרים טובים, {name}}\n      16 {צהרים טובים, {name}}\n      17 {צהרים טובים, {name}}\n      18 {ערב טוב, {name}}\n      19 {ערב טוב, {name}}\n      20 {ערב טוב, {name}}\n      21 {ערב טוב, {name}}\n      22 {לילה טוב, {name}}\n      23 {לילה טוב, {name}}\n      other {Unknown}\n    }",
+    "plugin.greeting.withoutName": "{hour, select,\n      0 {לילה טוב}\n      1 {לילה טוב}\n      2 {לילה טוב}\n      3 {בוקר טוב}\n      4 {בוקר טוב}\n      5 {בוקר טוב}\n      6 {בוקר טוב}\n      7 {בוקר טוב}\n      8 {בוקר טוב}\n      9 {בוקר טוב}\n      10 {שלום}\n      11 {שלום}\n      12 {שלום}\n      13 {שלום}\n      14 {צהרים טובים}\n      15 {צהרים טובים}\n      16 {צהרים טובים}\n      17 {צהרים טובים}\n      18 {ערב טוב}\n      19 {ערב טוב}\n      20 {ערב טוב}\n      21 {ערב טוב}\n      22 {לילה טוב}\n      23 {לילה טוב}\n      other {Unknown}\n    }",
+    "plugins.links.shortcutHint": "לחץ {number} או קליק כדי לבקר",
+    "plugins.links.standardHint": "לחץ כדי לבקר",
+    "plugins.search.placeholder": "הקלד כדי לחפש",
+    "plugins.unsplash.photoLink": "תמונה",
+    "plugins.weather.apparent": "מרגיש כמו",
+    "plugins.weather.high": "מקס׳",
+    "plugins.weather.humidity": "לחות",
+    "plugins.weather.low": "מינ׳",
+    "settings": "הגדרות",
+    "settings.translationCredits": " ",
+    "widgets": "אפלקציות"
+}
