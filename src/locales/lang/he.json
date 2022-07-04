@@ -1,0 +1,21 @@
+{
+  "app.pageTitle": "כרטיסייה חדשה",
+  "background": "רקע",
+  "dashboard.focusHint": "הפעלת/כיבוי יישומונים",
+  "dashboard.fullscreenHint": "הפעלת/כיבוי מצב מסך מלא",
+  "dashboard.loadingHint": "תוכן חדש בטעינה",
+  "dashboard.settingsHint": "התאמת Tabliss אישית",
+  "plugin.greeting.withName": "{hour, select, 0 {חלומות פז, {name}} 1 {חלומות פז, {name}} 2 {חלומות פז, {name}} 3 {עכשיו לפנות בוקר, {name}} 4 {עכשיו לפנות בוקר, {name}} 5 {עכשיו לפנות בוקר, {name}} 6 {בוקר טוב, {name}} 7 {בוקר טוב, {name}} 8 {בוקר טוב, {name}} 9 {בוקר טוב, {name}} 10 {שלום, {name}} 11 {שלום, {name}} 12 {שלום, {name}} 13 {שלום, {name}} 14 {צוהריים טובים, {name}} 15 {צוהריים טובים, {name}} 16 {צוהריים טובים, {name}} 17 {צוהריים טובים, {name}} 18 {ערב טוב, {name}} 19 {ערב טוב, {name}} 20 {לילה טוב, {name}} 21 {לילה טוב, {name}} 22 {לילה טוב, {name}} 23 {לילה טוב, {name}} other {Unknown}}",
+  "plugin.greeting.withoutName": "{hour, select, 0 {חלומות פז} 1 {חלומות פז} 2 {חלומות פז} 3 {עכשיו לפנות בוקר} 4 {עכשיו לפנות בוקר} 5 {עכשיו לפנות בוקר} 6 {בוקר טוב} 7 {בוקר טוב} 8 {בוקר טוב} 9 {בוקר טוב} 10 {שלום} 11 {שלום} 12 {שלום} 13 {שלום} 14 {צוהריים טובים} 15 {צוהריים טובים} 16 {צוהריים טובים} 17 {צוהריים טובים} 18 {ערב טוב} 19 {ערב טוב} 20 {לילה טוב} 21 {ערב טוב} 22 {לילה טוב} 23 {לילה טוב} other {Unknown}}",
+  "plugins.links.shortcutHint": "יש ללחוץ על {number} במקלדת או ללחוץ על העכבר כדי להיכנס",
+  "plugins.links.standardHint": "יש ללחוץ כדי להיכנס",
+  "plugins.search.placeholder": "יש להקליד כדי לחפש",
+  "plugins.unsplash.photoLink": "תמונה",
+  "plugins.weather.apparent": "מרגיש כמו",
+  "plugins.weather.high": "גבוהה",
+  "plugins.weather.humidity": "לחות",
+  "plugins.weather.low": "נמוכה",
+  "settings": "הגדרות",
+  "settings.translationCredits": "Omer I.S. (omeritzicschwartz@gmail.com) ",
+  "widgets": "יישומונים"
+}
