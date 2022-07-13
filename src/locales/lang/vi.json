@@ -1,6 +1,7 @@
 {
   "app.pageTitle": "Tab mới",
   "background": "Background",
+  "dashboard.errorHint": "Show errors",
   "dashboard.focusHint": "Bật/Tắt widget",
   "dashboard.fullscreenHint": "Bật/Tắt fullscreen",
   "dashboard.loadingHint": "Đang tải nội dung mới",

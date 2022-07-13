@@ -1,6 +1,7 @@
 {
   "app.pageTitle": "新标签页",
   "background": "背景",
+  "dashboard.errorHint": "Show errors",
   "dashboard.focusHint": "切换部件可视性",
   "dashboard.fullscreenHint": "切换图片全屏",
   "dashboard.loadingHint": "正在加载……",

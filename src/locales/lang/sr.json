@@ -1,6 +1,7 @@
 {
   "app.pageTitle": "Нова картица",
   "background": "Позадина",
+  "dashboard.errorHint": "Show errors",
   "dashboard.focusHint": "Укључите/искључите виџете",
   "dashboard.fullscreenHint": "Укључите/искључите приказ преко целог ектрана",
   "dashboard.loadingHint": "Учитавање новог садржаја",

@@ -1,6 +1,7 @@
 {
   "app.pageTitle": "Novo Separador",
   "background": "Background",
+  "dashboard.errorHint": "Show errors",
   "dashboard.focusHint": "Mostrar/Esconder widgets",
   "dashboard.fullscreenHint": "Ecrã inteiro",
   "dashboard.loadingHint": "Carregar novo conteúdo",

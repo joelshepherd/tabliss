@@ -1,6 +1,7 @@
 {
   "app.pageTitle": "新分頁",
   "background": "背景",
+  "dashboard.errorHint": "Show errors",
   "dashboard.focusHint": "切換顯示小工具",
   "dashboard.fullscreenHint": "切換顯示全螢幕",
   "dashboard.loadingHint": "正在載入新內容…",

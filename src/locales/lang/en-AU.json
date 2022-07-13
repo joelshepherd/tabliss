@@ -1,6 +1,7 @@
 {
   "app.pageTitle": "New Tab",
   "background": "Background",
+  "dashboard.errorHint": "Show errors",
   "dashboard.focusHint": "Toggle widgets",
   "dashboard.fullscreenHint": "Toggle fullscreen",
   "dashboard.loadingHint": "Loading new content",

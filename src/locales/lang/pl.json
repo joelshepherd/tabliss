@@ -1,6 +1,7 @@
 {
   "app.pageTitle": "Nowa karta",
   "background": "Background",
+  "dashboard.errorHint": "Show errors",
   "dashboard.focusHint": "Przełącz widżety",
   "dashboard.fullscreenHint": "Przełącz tryb pełnoekranowy",
   "dashboard.loadingHint": "Ładowanie nowej zawartości",

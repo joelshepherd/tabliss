@@ -1,6 +1,7 @@
 {
   "app.pageTitle": "Nova lapela",
   "background": "Imaxe de Fondo",
+  "dashboard.errorHint": "Show errors",
   "dashboard.focusHint": "Activar / desactivar trebellos",
   "dashboard.fullscreenHint": "Activar / desactivar pantalla completan",
   "dashboard.loadingHint": "Cargando novo contido",

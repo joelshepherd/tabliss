@@ -1,6 +1,7 @@
 {
   "app.pageTitle": "Néien Tab",
   "background": "Hannergrond",
+  "dashboard.errorHint": "Show errors",
   "dashboard.focusHint": "Zougrëffselementer ëmschalten",
   "dashboard.fullscreenHint": "Vollbildmodus ëmschalten",
   "dashboard.loadingHint": "Néie Contenu gëtt gelueden",

@@ -1,6 +1,7 @@
 {
   "app.pageTitle": "Tab Baru",
   "background": "Background",
+  "dashboard.errorHint": "Show errors",
   "dashboard.focusHint": "Muncul/Hilangkan widget",
   "dashboard.fullscreenHint": "Beralih ke layar penuh",
   "dashboard.loadingHint": "Memuat konten baru",

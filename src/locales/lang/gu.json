@@ -1,6 +1,7 @@
 {
   "app.pageTitle": "નવું ટૅબ",
   "background": "Background",
+  "dashboard.errorHint": "Show errors",
   "dashboard.focusHint": "વિજેટ બદલો",
   "dashboard.fullscreenHint": "પૂર્ણ સ્ક્રીન મોડને સ્વીચ કરો",
   "dashboard.loadingHint": "નવી સામગ્રી લોડ કરી રહ્યું છે",
