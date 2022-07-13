@@ -19,6 +19,7 @@ const languages = [
   "fa",
   "fi",
   "fr",
+  "he",
   "ga",
   "gd",
   "gl",

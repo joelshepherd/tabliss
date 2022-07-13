@@ -66,6 +66,9 @@ const System: React.FC = () => {
           <option value="fr" title="French">
             Français
           </option>
+          <option value="he" title="Hebrew">
+            עברית
+          </option>
           <option value="ga" title="Gaeilge">
             Gaeilge
           </option>
