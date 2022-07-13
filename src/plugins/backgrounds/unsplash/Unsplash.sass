@@ -1,9 +1,17 @@
 .Unsplash
     .credit
+        display: grid
+        grid-template-columns: 1fr auto 1fr
         position: absolute
         bottom: 1rem
         left: 1rem
         right: 1rem
+
+        .location
+            text-align: right
+
+        .hidden
+            visibility: hidden
 
     .image
         background-position: 50% 50%

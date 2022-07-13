@@ -1,6 +1,4 @@
 .Dashboard
-    background-color: black
-    transition: opacity 0.25s ease-out
     overflow: hidden
 
     svg
@@ -9,16 +7,28 @@
     a
         color: inherit
 
+    input
+        color: inherit
+        &::placeholder
+            color: inherit
+            opacity: 0.5
+
     &.light
+        background-color: white
         color: #111
         .theme-fill
             fill: #111
         .theme-stroke
             stroke: #111
+        input
+            border-color: #111
 
     &.dark
+        background-color: black
         color: white
         .theme-fill
             fill: white
         .theme-stroke
             stroke: white
+        input
+            border-color: white

@@ -1,41 +1,44 @@
-import React, { FC, useCallback } from 'react';
-import { useDispatch } from 'react-redux';
-
-import { resetStore, setStoreError } from '../../store/actions';
-import Modal from './modal/Modal';
+import React from "react";
+import Modal from "./modal/Modal";
 
 type Props = {
-  error: Error;
+  onClose: () => void;
 };
 
-const StoreError: FC<Props> = ({ error }) => {
-  const dispatch = useDispatch();
-  const handleAccept = useCallback(() => dispatch(setStoreError()), [dispatch]);
-  const handleReset = useCallback(
-    () => dispatch(resetStore()) && handleAccept(),
-    [dispatch],
-  );
-
+const StoreError: React.FC<Props> = ({ onClose }) => {
   return (
-    <Modal>
-      <h2>Storage Error</h2>
-
-      <p>
-        Tabliss is unable to save your settings. This may happen because Tabliss
-        does not have permission to store data, or that your settings data is
-        too large.
-      </p>
-      <p>
-        Resetting Tabliss to default may help. Otherwise contact{' '}
-        <a href="mailto:support@tabliss.io">support@tabliss.io</a> if you are
-        unable to solve the issue.
-      </p>
-      <pre>
-        <strong>Error Reason:</strong> {error.message}
-      </pre>
-
-      <button onClick={handleAccept}>Okay</button>
-      <button onClick={handleReset}>Reset Tabliss</button>
+    <Modal onClose={onClose}>
+      <div className="Settings">
+        <h2 style={{ margin: 0 }}>Storage Error</h2>
+        <p style={{ fontSize: "1.25em" }}>
+          Tabliss is unable to load or save settings. This is most commonly
+          caused by running in private browsing mode; but low disk space or a
+          corrupt browser profile can also be the problem.
+        </p>
+        <p>
+          If you have settings saved with Tabliss, it might be a temporary
+          issue. Try restarting your browser and checking if your settings
+          return.
+        </p>
+        <p>
+          If they do not return, the{" "}
+          <a href="https://tabliss.io/support.html">support guide</a> covers the
+          common causes and how to resolve them. Otherwise, contact{" "}
+          <a href="mailto:support@tabliss.io">support@tabliss.io</a> if you are
+          still unable to solve the issue.
+        </p>
+        <div className="Modal-footer">
+          <a
+            className="button button--primary"
+            href="https://tabliss.io/support.html"
+            style={{ fontSize: "1.1em" }}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            View Support Guide
+          </a>
+        </div>
+      </div>
     </Modal>
   );
 };

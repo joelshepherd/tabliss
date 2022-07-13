@@ -1,17 +1,17 @@
-# Tabliss
+<h1 align="center">Tabliss</h1>
 
-A pluggable New Tab web extension written in TypeScript, React and Redux.
+<p align="center">A beautiful, customisable New Tab page for Firefox and Chrome.</p>
 
-[https://tabliss.io](https://tabliss.io)
+![Tabliss Screenshot](screenshot.png)
+
+<p align="center"><a href="https://tabliss.io">https://tabliss.io</a></p>
 
 ## Usage
 
 Install dependencies with `npm install` before running the following scripts.
 
-- `npm start` Start webpack dev server for local development at `http://localhost:8080`
-- `npm run build` Production build for web
-- `npm run build:chromium` Production build for Chrome web extension
-- `npm run build:firefox` Production build for Firefox web extension
+- `npm run dev[:target]` Local development server
+- `npm run build[:target]` Production build
 - `npm run translations` Manage translation files
 
 To develop with external services you will additionally need to signup for your own API keys

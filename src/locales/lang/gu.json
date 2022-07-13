@@ -1,0 +1,21 @@
+{
+  "app.pageTitle": "નવું ટૅબ",
+  "background": "Background",
+  "dashboard.focusHint": "વિજેટ બદલો",
+  "dashboard.fullscreenHint": "પૂર્ણ સ્ક્રીન મોડને સ્વીચ કરો",
+  "dashboard.loadingHint": "નવી સામગ્રી લોડ કરી રહ્યું છે",
+  "dashboard.settingsHint": "ટેબ્લીસને કસ્ટમાઇઝ કરો",
+  "plugin.greeting.withName": "{hour, plural, =0 {સારુ ઉંગજો, {name}} =1 {સારુ ઉંગજો, {name}} =2 {સારુ ઉંગજો, {name}} =3 {ઉઠવાનો સમય છે, {name}} =4 {ઉઠવાનો સમય છે, {name}} =5 {ઉઠવાનો સમય છે, {name}} =6 {સુપ્રભાત, {name}} =7 {સુપ્રભાત, {name}} =8 {સુપ્રભાત, {name}} =9 {સુપ્રભાત, {name}} =10 {નમસ્તે {name}} =11 {નમસ્તે {name}} =12 {નમસ્તે {name}} =13 {નમસ્તે {name}} =14 {સુપ્રભાત, {name}} =15 {સુપ્રભાત, {name}} =16 {સુપ્રભાત, {name}} =17 {સુપ્રભાત, {name}} =18 {શુભ સંધ્યા, {name}} =19 {શુભ સંધ્યા, {name}} =20 {શુભ સંધ્યા, {name}} =21 {શુભ સંધ્યા, {name}} =22 {શુભ રાત્રિ, {name}} =23 {શુભ રાત્રિ, {name}} other {Unknown}}",
+  "plugin.greeting.withoutName": "{hour, plural, =0 {સારુ ઉંગજો} =1 {સારુ ઉંગજો} =2 {સારુ ઉંગજો} =3 {ઉઠવાનો સમય છે} =4 {ઉઠવાનો સમય છે} =5 {ઉઠવાનો સમય છે} =6 {સુપ્રભાત} =7 {સુપ્રભાત} =8 {સુપ્રભાત} =9 {સુપ્રભાત} =10 {નમસ્તે} =11 {નમસ્તે} =12 {નમસ્તે} =13 {નમસ્તે} =14 {સુપ્રભાત} =15 {સુપ્રભાત} =16 {સુપ્રભાત} =17 {સુપ્રભાત} =18 {શુભ સંધ્યા} =19 {શુભ સંધ્યા} =20 {શુભ સંધ્યા} =21 {શુભ સંધ્યા} =22 {શુભ રાત્રિ} =23 {શુભ રાત્રિ} other {Unknown}}",
+  "plugins.links.shortcutHint": "સાઇટ પર જવા માટે {number} ક્લિક કરો",
+  "plugins.links.standardHint": "સાઇટ પર જવા માટે અહીં ક્લિક કરોरें",
+  "plugins.search.placeholder": "શોધવા માટે Enter દબાવો",
+  "plugins.unsplash.photoLink": "ચિત્ર",
+  "plugins.weather.apparent": "Feels like",
+  "plugins.weather.high": "High",
+  "plugins.weather.humidity": "Humidity",
+  "plugins.weather.low": "Low",
+  "settings": "Settings",
+  "settings.translationCredits": "ગુજરાતી અનુવાદ આશિષ તરફ થી",
+  "widgets": "Widgets"
+}

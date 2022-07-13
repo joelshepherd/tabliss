@@ -1,43 +1,55 @@
-import React, { FC } from 'react';
-import { useDispatch } from 'react-redux';
+import React from "react";
+import { FormattedMessage } from "react-intl";
+import { db } from "../../db/state";
+import { useKey } from "../../lib/db/react";
+import TimeZoneInput from "../shared/timeZone/TimeZoneInput";
 
-import { defaultLocale } from '../../locales';
-import { useSelector } from '../../store';
-import { setLocale, setTimeZone } from '../../store/actions';
-import TimeZoneInput from '../shared/timeZone/TimeZoneInput';
-
-const System: FC = () => {
-  const locale = useSelector(state => state.data.locale || defaultLocale);
-  const timeZone = useSelector(state => state.data.timeZone || '');
-
-  const dispatch = useDispatch();
-  const handleSetLocale = (event: React.ChangeEvent<HTMLSelectElement>) =>
-    dispatch(setLocale(event.target.value));
-  const handleSetTimeZone = (timeZone?: string) =>
-    dispatch(setTimeZone(timeZone));
+const System: React.FC = () => {
+  const [locale, setLocale] = useKey(db, "locale");
+  const [timeZone, setTimeZone] = useKey(db, "timeZone");
 
   return (
     <div>
+      <h2>
+        <FormattedMessage
+          id="settings"
+          defaultMessage="Settings"
+          description="Settings title"
+        />
+      </h2>
+
       <label
         style={{
-          alignItems: 'center',
-          display: 'grid',
-          gridGap: '0 0.5rem',
-          gridTemplateColumns: '1fr 2fr',
-          width: '100%',
+          alignItems: "center",
+          display: "grid",
+          gridGap: "0 0.5rem",
+          gridTemplateColumns: "1fr 2fr",
+          width: "100%",
           margin: 0,
         }}
       >
         <span>Language</span>
-        <select value={locale} onChange={handleSetLocale}>
+        <select
+          value={locale}
+          onChange={(event) => setLocale(event.target.value)}
+        >
+          <option value="ca-ES" title="Catalan">
+            Català
+          </option>
           <option value="cs" title="Czech">
             Čeština
           </option>
           <option value="de" title="German">
             Deutsch
           </option>
+          <option value="el" title="Greek">
+            Ελληνικά
+          </option>
           <option value="en-AU" title="English (Australian)">
             English (AU)
+          </option>
+          <option value="en-CA" title="English (Canadian)">
+            English (CA)
           </option>
           <option value="en-GB" title="English (British)">
             English (GB)
@@ -48,8 +60,26 @@ const System: FC = () => {
           <option value="es" title="Spanish">
             Español
           </option>
+          <option value="fa" title="Persian">
+            پارسی
+          </option>
           <option value="fr" title="French">
             Français
+          </option>
+          <option value="ga" title="Gaeilge">
+            Gaeilge
+          </option>
+          <option value="gd" title="Scottish Gaelic">
+            Gàidhlig
+          </option>
+          <option value="gl" title="Galician">
+            Galego
+          </option>
+          <option value="gu" title="Gujarati">
+            ગુજરાતી
+          </option>
+          <option value="hi" title="Hindi">
+            हिन्दी
           </option>
           <option value="hu" title="Hungarian">
             Magyar
@@ -60,8 +90,20 @@ const System: FC = () => {
           <option value="it" title="Italian">
             Italiano
           </option>
+          <option value="ja" title="Japanese">
+            日本語
+          </option>
           <option value="ko" title="Korean">
             한국어
+          </option>
+          <option value="lb" title="Luxembourgish">
+            Lëtzebuergesch
+          </option>
+          <option value="lt" title="Lithuanian">
+            Lietuvių k.
+          </option>
+          <option value="ne" title="Nepali">
+            Nepali
           </option>
           <option value="nl" title="Dutch">
             Nederlands
@@ -72,8 +114,11 @@ const System: FC = () => {
           <option value="pl" title="Polish">
             Polski
           </option>
-          <option value="pt" title="Portuguese">
-            Português
+          <option value="pt-BR" title="Portuguese (Brazil)">
+            Português do Brasil
+          </option>
+          <option value="pt" title="Portuguese (Portugal)">
+            Português de Portugal
           </option>
           <option value="ro" title="Romanian">
             Română
@@ -84,8 +129,20 @@ const System: FC = () => {
           <option value="sk" title="Slovak">
             Slovenčina
           </option>
+          <option value="sr" title="Serbian">
+            Српски
+          </option>
+          <option value="fi" title="Finnish">
+            Suomi
+          </option>
           <option value="sv" title="Swedish">
             Svenska
+          </option>
+          <option value="ta" title="Tamil">
+            தமிழ்
+          </option>
+          <option value="th" title="Thai">
+            ไทย
           </option>
           <option value="tr" title="Turkish">
             Türkçe
@@ -99,21 +156,24 @@ const System: FC = () => {
           <option value="zh-TW" title="Traditional Chinese (Taiwan)">
             中文（台灣）
           </option>
+          <option value="uk" title="Ukrainian">
+            Українська
+          </option>
         </select>
       </label>
 
       <label
         style={{
-          alignItems: 'center',
-          display: 'grid',
-          gridGap: '0 0.5rem',
-          gridTemplateColumns: '1fr 2fr',
-          width: '100%',
+          alignItems: "center",
+          display: "grid",
+          gridGap: "0 0.5rem",
+          gridTemplateColumns: "1fr 2fr",
+          width: "100%",
           margin: 0,
         }}
       >
         Time Zone
-        <TimeZoneInput timeZone={timeZone} onChange={handleSetTimeZone} />
+        <TimeZoneInput timeZone={timeZone} onChange={setTimeZone} />
       </label>
     </div>
   );

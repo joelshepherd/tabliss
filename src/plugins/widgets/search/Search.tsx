@@ -1,41 +1,44 @@
-import React, { FC, useMemo, useRef, useState } from 'react';
-import { defineMessages, useIntl } from 'react-intl';
+import React, { FC, useMemo, useRef, useState } from "react";
+import { defineMessages, useIntl } from "react-intl";
 
-import { getSuggestions } from './getSuggestions';
-import Suggestions from './Suggestions';
-import { Props, defaultData } from './types';
-import { buildUrl, getSearchUrl, getSuggestUrl } from './utils';
-import './Search.sass';
+import { getSuggestions } from "./getSuggestions";
+import Suggestions from "./Suggestions";
+import { Props, defaultData } from "./types";
+import { buildUrl, getSearchUrl, getSuggestUrl } from "./utils";
+import "./Search.sass";
 
 const messages = defineMessages({
   placeholder: {
-    id: 'plugins.search.placeholder',
-    description: 'Placeholder text to show in the search box before typing',
-    defaultMessage: 'Type to search',
+    id: "plugins.search.placeholder",
+    description: "Placeholder text to show in the search box before typing",
+    defaultMessage: "Type to search",
   },
 });
 
 const Search: FC<Props> = ({ data = defaultData }) => {
   const searchInput = useRef<HTMLInputElement>(null);
-  const previousValue = useRef('');
+  const previousValue = useRef("");
 
   const [active, setActive] = useState<number>();
   const [suggestions, setSuggestions] = useState<string[]>();
 
   const intl = useIntl();
-  const placeholder = useMemo(() => intl.formatMessage(messages.placeholder), [
-    intl,
-  ]);
+  const placeholder = useMemo(
+    () => intl.formatMessage(messages.placeholder),
+    [intl],
+  );
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     previousValue.current = event.target.value;
 
-    const suggestUrl = getSuggestUrl(data.suggestionsEngine);
-    if (suggestUrl) {
-      getSuggestions(event.target.value, suggestUrl).then(suggestions => {
-        setSuggestions(suggestions.slice(0, data.suggestionsQuantity));
-        setActive(undefined);
-      });
+    if (BUILD_TARGET === "web") {
+      const suggestUrl = getSuggestUrl(data.suggestionsEngine);
+      if (suggestUrl) {
+        getSuggestions(event.target.value, suggestUrl).then((suggestions) => {
+          setSuggestions(suggestions.slice(0, data.suggestionsQuantity));
+          setActive(undefined);
+        });
+      }
     }
   };
 
@@ -47,13 +50,13 @@ const Search: FC<Props> = ({ data = defaultData }) => {
     event.preventDefault();
 
     switch (event.key) {
-      case 'ArrowUp':
+      case "ArrowUp":
         const upTo = !active ? suggestions.length - 1 : active - 1;
         searchInput.current!.value = suggestions[upTo];
         setActive(upTo);
         break;
 
-      case 'ArrowDown':
+      case "ArrowDown":
         const downTo =
           active === undefined || active === suggestions.length - 1
             ? 0
@@ -62,7 +65,7 @@ const Search: FC<Props> = ({ data = defaultData }) => {
         setActive(downTo);
         break;
 
-      case 'Escape':
+      case "Escape":
         if (active) {
           setActive(undefined);
           searchInput.current!.value = previousValue.current;

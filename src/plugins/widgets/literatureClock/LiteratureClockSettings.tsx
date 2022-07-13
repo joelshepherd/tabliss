@@ -1,6 +1,6 @@
-import React, { FC } from 'react';
+import React, { FC } from "react";
 
-import { Props, defaultData } from './types';
+import { Props, defaultData } from "./types";
 
 const LiteratureClockSettings: FC<Props> = ({
   data = defaultData,
@@ -14,7 +14,7 @@ const LiteratureClockSettings: FC<Props> = ({
         onChange={() =>
           setData({ ...data, showBookAndAuthor: !data.showBookAndAuthor })
         }
-      />{' '}
+      />{" "}
       Display book and author
     </label>
 
@@ -23,7 +23,7 @@ const LiteratureClockSettings: FC<Props> = ({
         type="checkbox"
         checked={data.centerText}
         onChange={() => setData({ ...data, centerText: !data.centerText })}
-      />{' '}
+      />{" "}
       Align text at center
     </label>
   </div>

@@ -1,70 +1,55 @@
-import React, { FC, useCallback } from 'react';
-import { FormattedMessage } from 'react-intl';
-import { useDispatch } from 'react-redux';
+import React from "react";
+import { FormattedMessage } from "react-intl";
+import { addWidget, removeWidget, reorderWidget } from "../../db/action";
+import { selectWidgets } from "../../db/select";
+import { db } from "../../db/state";
+import { useSelector } from "../../lib/db/react";
+import { widgetConfigs } from "../../plugins";
+import Widget from "./Widget";
 
-import { widgetConfigs } from '../../plugins';
-import { useSelector } from '../../store';
-import {
-  addWidget,
-  removeWidget,
-  reorderWidget,
-} from '../../store/actions/data';
-import Widget from './Widget';
-
-const Widgets: FC = () => {
-  const active = useSelector(state => state.data.widgets);
-
-  const dispatch = useDispatch();
-  const boundAddWidget = useCallback(
-    (type: string) => dispatch(addWidget(type)),
-    [dispatch],
-  );
-  const boundReorderWidget = useCallback(
-    (id: string, to: number) => dispatch(reorderWidget(id, to)),
-    [dispatch],
-  );
+const Widgets: React.FC = () => {
+  const widgets = useSelector(db, selectWidgets);
 
   return (
     <div>
-      <h3>
+      <h2>
         <FormattedMessage
           id="widgets"
           defaultMessage="Widgets"
           description="Widgets title"
         />
-      </h3>
+      </h2>
 
       <label>
         <select
-          value={''}
-          onChange={event => boundAddWidget(event.target.value)}
+          value=""
+          onChange={(event) => addWidget(event.target.value)}
           className="primary"
         >
-          <option value={''}>Add a new widget</option>
-          {widgetConfigs.map(plugin => (
+          <option disabled value="">
+            Add a new widget
+          </option>
+          {widgetConfigs.map((plugin) => (
             <option key={plugin.key} value={plugin.key}>
-              {plugin.name} - {plugin.description}
+              {plugin.name}
             </option>
           ))}
         </select>
       </label>
 
-      {active.length === 0 && <p>No widgets selected.</p>}
-      {active.map((plugin, index) => (
+      {widgets.map((widget, index) => (
         <Widget
-          key={plugin.id}
-          plugin={plugin}
+          key={widget.id}
+          plugin={widget}
           onMoveUp={
-            index !== 0
-              ? () => boundReorderWidget(plugin.id, index - 1)
-              : undefined
+            index > 0 ? () => reorderWidget(index, index - 1) : undefined
           }
           onMoveDown={
-            index !== active.length - 1
-              ? () => boundReorderWidget(plugin.id, index + 1)
+            index < widgets.length - 1
+              ? () => reorderWidget(index, index + 1)
               : undefined
           }
-          onRemove={() => dispatch(removeWidget(plugin.id))}
+          onRemove={() => removeWidget(widget.id)}
         />
       ))}
     </div>

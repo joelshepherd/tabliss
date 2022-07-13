@@ -1,6 +1,6 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useState } from "react";
 
-import { Props, defaultData } from './types';
+import { Props, defaultData } from "./types";
 
 const JsSettings: FC<Props> = ({ data = defaultData, setData }) => {
   const [input, setInput] = useState(data.input);
@@ -12,9 +12,9 @@ const JsSettings: FC<Props> = ({ data = defaultData, setData }) => {
         JavaScript Snippet
         <textarea
           rows={3}
-          style={{ fontFamily: 'monospace' }}
+          style={{ fontFamily: "monospace" }}
           value={input}
-          onChange={event => setInput(event.target.value)}
+          onChange={(event) => setInput(event.target.value)}
         />
       </label>
 

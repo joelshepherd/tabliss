@@ -3,3 +3,7 @@
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, 1fr);
 }
+
+.PositionInput .grid .button--icon {
+  margin: 1px;
+}

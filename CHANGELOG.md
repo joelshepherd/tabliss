@@ -5,23 +5,229 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+### Fixed
+
+- Updated IP Info widget with a more reliable service and more frequent updates
+
+## [2.6.0] - 2022-04-25
+
+### Added
+
+- Option to use the website icon for Quick Links
+- New play and pause buttons for Unsplash background rotation
+
+### Fixed
+
+- Initial flash of black before settings load if using a light theme
+- Create todo keyboard shortcut was included in the todo
+
+## [2.5.1] - 2022-04-02
+
+### Fixed
+
+- Migration error that would cause the todo widget to crash
+
+## [2.5.0] - 2022-04-02
+
+### Added
+
+- New Notes widget
+- Keyboard shortcut to create a new todo - thanks @noah-curran
+- Option to request persistent storage permission from the browser
+- Option for weekly Unsplash image rotation
+
+### Changed
+
+- Japanese translation updates - thanks @kodaka
+
+### Fixed
+
+- Custom CSS now loads _before_ the first render, savings eyes everywhere
+- Compatibility for older versions of Firefox (54-57)
+
+## [2.4.2] - 2022-03-26
+
+### Fixed
+
+- Tabliss going wild when you change the language or time zone
+- Language changes no longer require Tabliss to reload
+- Time zone updates are now instant
+
+## [2.4.1] - 2022-03-25
+
+### Fixed
+
+- An init failure that could cause a blank screen on upgrade
+
+## [2.4.0] - 2022-03-25
+
+### Added
+
+- Previous or next buttons to change the Unsplash background
+- New UI to display errors
+
+### Changed
+
+- Screen pixel density is now considered for background quality
+- German translation updates - thanks @dreadwarrior
+- Italian translation updates - thanks @gioxx
+
+### Fixed
+
+- Unsplash's "change every new tab" setting is no longer every second new tab!
+- Backgrounds sometimes breaking after restarting Safari
+- Cache errors no longer trigger the "Storage Error" modal
+
+## [2.3.0] - 2022-03-14
+
+### Added
+
+- Added GitHub Calendar widget - thanks @vdimir
+- Galician translations - thanks Daniel González Portela
+- Irish translations - thanks @tsirona
+- Canadian English locale
+
+### Fixed
+
+- Added missing time zones
+- Fixed displaying "24:XX" in some locales in Chrome
+- Spacing at the bottom of the Quote widget has returned to normal
+- Icons now have correct vertical alignment again
+
+## [2.2.0] - 2022-03-10
+
+### Added
+
+- Added IP Info widget - thanks @bkis
+- Current weather conditions are back thanks to Open-Meteo
+- Tabliss can now be displayed as your homepage in Firefox
+- Unsplash now supports selecting a topic for background - thanks @betatim
+- Added MetaGer search engine - thanks @teknowledgist
+- Added bible verses as an option for quotes - thanks @Staubgeborener
+- Finnish translations - thanks @Nonecaster
+- Nepali translations - thanks @sidbelbase
+- Serbian translations - thanks @ZaDavanje
+- Thai translations - thanks @NeneNeko
+
+### Changed
+
+- New settings storage engine to reduce instances of Tabliss loosing your settings
+- Tabliss will now remember if you have hidden your widgets
+- Background blur is now disabled when widgets are hidden
+- Unsplash links now open in the same window - thanks @elsiehupp
+- Chinese translation updates - thanks @mysmlz
+- French translation updates - thanks @ernest33
+- German translation updates - thanks @M123-dev
+- Scottish Gaelic updates - thanks @fenrisulfr94
+- Spanish translation updates - thanks @husseinalkasake
+
+### Fixed
+
+- GIPHY background has been fixed - thanks @OneComputerGuy
+- Long quotes no longer break the UI - thanks @CoderOO7
+- Link keyboard shortcut not respecting link opening style - thanks @cwils021
+- Time zone selection label dispaly issue - thanks @jn64
+- And many more minor bug fixes and tweaks
+
+### Removed
+
+- Search suggestions from all extension builds, due to browser extension policies
+
+## [2.1.0] - 2021-01-28
+
+### Added
+
+- Labels and timezone to the clock widget
+- Settings can now be exported and imported to/from a JSON file - thanks @jlave-dev
+- Links can now be set to open in a new tab - thanks @CraftyDH
+- Higher-resolution images for users with larger monitors - thanks @thekaleidoscope
+- Lithuanian translations - thanks @TheOnlyGhostwolf
+- Scottish Gaelic translations - thanks @fenrisulfr94
+- Tamil translations - thanks @RamyaChinnadurai
+- Farsi translations - thanks @sarended
+- Luxembourgish translations - thanks @jaclo187
+
+### Changed
+
+- Improved typography in quotes - thanks @apollisa
+- Simplifying add todo interface - thanks @trickypr
+- Toggle AM / PM for 12 hour time
+- Ukranian translations - thanks @aquaminer, @p182
+- Hungarian translations - thanks @qcz
+- Russian translations - thanks @alexesprit
+- Spanish translations - thanks @TheFireRed
+- Portuguese (Brazil) translations - thanks @adilsonfsantos
+- Italian translations - thanks @blackcat-917
+
+### Fixed
+
+- Alignment of multi-column quick links when they are narrower than other widgets in their slot
+- Search box now properly respects light mode
+- Midnight showing as "24:00" in Chrome when using 24-hour time - thanks @trickypr!
+- Ignore keyboard shortcuts including meta, control or alt keys - thanks @trickypr
+
+## [2.0.3] - 2020-04-15
+
+### Fixed
+
+- An interactions between the cache and custom time zones that would refresh the background constantly
+- Added more spacing to temperatures in weather widget to be less confusing
+
+## [2.0.2] - 2020-04-14
+
+### Added
+
+- Labels for the temperatures in the weather widget
+
+### Fixed
+
+- Styling of quick links on small screens (and in general)
+
+## [2.0.1] - 2020-04-14
+
+### Added
+
+- Added back the font weight selector - thanks @trickypr
+- Added back the slight fade in on load
+
+### Changes
+
+- Making the weather forecast easier to read with negative temperatures
+
+## [2.0.0] - 2020-04-13
+
 Tabliss has essentially been rewritten from scratch to be faster, more modern, and easier to contribute too.
 
 ### Added
 
-- Widget positioning! You can now place widgets in different areas of the screen.
-- Syncing of your settings! You can now sync your Tabliss settings with Firefox or Chrome sync.
-- Widgets automatically update without needing to refresh the page.
-- Have the same widget multiple times.
+- **Move widgets around the screen!**
+- **Add a widget multiple times!**
+- **Sync your settings!** via Firefox or Chrome account sync.
+- Backgrounds and widgets now automatically update without needing to refresh the page.
+- You can now add the same widget multiple times.
+- New live NBA scores plugin - thanks @gonzalrick
+- Swedish translations - thanks @Vecopotryx
+- Hindi and Gujarati translations - thanks @ashishpanchal
+- Japanese transations - thanks @kodaka
+- Ukranian translations - thanks @aquaminer
+- Greek transations - thanks @Damian96
+- Brazilian Portuguese translations - thanks @adilsonfsantos
+- Catalan transations - thanks @mnguerra
 
 ### Changed
 
-- Tabliss is even faster!
-- Various small changes and improvements throughout the different plugins.
+- The weather widget now shows the forecast for the day, instead of the current conditions.
+- GIHPY background now accepts a comma-separated list of tags - thanks @yuannan
+- Various changes and improvements throughout the different widgets and backgrounds.
+- Performance improvements in load time and elsewhere.
+- Small adjustments to existing translations.
+- Some polish to the settings UI.
 
 ### Fixed
 
 - Settings not saving if using "always browse in private mode" in Firefox.
+- Search with non URI-encodable characters - thanks @Thanaen
+- Various bug fixes across Tabliss.
 
 ### Remove
 

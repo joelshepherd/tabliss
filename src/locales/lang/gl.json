@@ -1,0 +1,21 @@
+{
+  "app.pageTitle": "Nova lapela",
+  "background": "Imaxe de Fondo",
+  "dashboard.focusHint": "Activar / desactivar trebellos",
+  "dashboard.fullscreenHint": "Activar / desactivar pantalla completan",
+  "dashboard.loadingHint": "Cargando novo contido",
+  "dashboard.settingsHint": "Personalizar Tabliss",
+  "plugin.greeting.withName": "{hour, select, 0 {Durme ben, {name}} 1 {Durme ben, {name}} 2 {Durme ben, {name}} 3 {Durme ben, {name}} 4 {Achégase o mencer, {name}} 5 {Achégase o mencer, {name}} 6 {Bo día, {name}} 7 {Bo día, {name}} 8 {Bo día {name}} 9 {Bo día, {name}} 10 {Ola, {name}} 11 {Ola, {name}} 12 {Ola {name}} 13 {Ola, {name}} 14 {Boa tarde, {name}} 15 {Boa tarde, {name}} 16 {Boa tarde, {name}} 17 {Boa tarde, {name}} 18 {Boa tarde, {name}} 19 {Boa tarde, {name}} 20 {Boa noite, {name}} 21 {Boa noite, {name}} 22 {Boa noite, {name}} 23 {Boa noite {name}} other {Unknown}}",
+  "plugin.greeting.withoutName": "{hour, select, 0 {Durme ben} 1 {Durme ben} 2 {Durme ben} 3 {Durme ben} 4 {Achégase o mencer} 5 {Achégase o mencer} 6 {Bo día} 7 {Bo día} 8 {Bo día} 9 {Bo día} 10 {Ola} 11 {Ola} 12 {Ola} 13 {Ola} 14 {Boa tarde} 15 {Boa tarde} 16 {Boa tarde} 17 {Boa tarde} 18 {Boa tarde} 19 {Boa tarde} 20 {Boa noite} 21 {Boa noite} 22 {Boa noite} 23 {Boa noite} other {Unknown}}",
+  "plugins.links.shortcutHint": "Preme {number} ou fai click aquí para ir",
+  "plugins.links.standardHint": "Fai click para ir",
+  "plugins.search.placeholder": "Teclea para buscar",
+  "plugins.unsplash.photoLink": "Foto",
+  "plugins.weather.apparent": "Semella",
+  "plugins.weather.high": "Máxima",
+  "plugins.weather.humidity": "Humidade",
+  "plugins.weather.low": "Mínima",
+  "settings": "Opcións",
+  "settings.translationCredits": "Tradución feita por Daniel Portela",
+  "widgets": "Widgets"
+}

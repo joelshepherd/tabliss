@@ -1,11 +1,13 @@
-import { init, captureException } from '@sentry/browser';
+import { init, captureException, setTag } from "@sentry/browser";
 
 export function register() {
   init({
-    dsn: process.env.SENTRY_PUBLIC_DSN,
-    enabled: Boolean(process.env.SENTRY_PUBLIC_DSN),
-    release: process.env.VERSION,
+    autoSessionTracking: false, // Wtf sentry
+    dsn: "https://2e0e75c7477c4c3e9572ee97241e569c@o113629.ingest.sentry.io/250221",
+    enabled: !DEV,
+    release: VERSION,
   });
+  setTag("target", BUILD_TARGET);
 }
 
 export function capture(error: Error) {
@@ -13,13 +15,13 @@ export function capture(error: Error) {
     // Replace firefox extension URLs
     error.stack = error.stack.replace(
       /moz-extension:\/\/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/g,
-      'resource://tabliss-extension',
+      "resource://tabliss-extension",
     );
 
     // Replace chrome extension URLs
     error.stack = error.stack.replace(
       /chrome-extension:\/\/hipekcciheckooncpjeljhnekcoolahp/g,
-      'resource://tabliss-extension',
+      "resource://tabliss-extension",
     );
   }
 

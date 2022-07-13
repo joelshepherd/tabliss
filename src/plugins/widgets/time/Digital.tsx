@@ -1,23 +1,19 @@
-import React, { FC } from 'react';
-import { FormattedTime } from 'react-intl';
+import React, { FC } from "react";
+
+import IntlTime from "./IntlTime";
 
 type Props = {
   hour12: boolean;
   showMinutes: boolean;
   showSeconds: boolean;
+  showDayPeriod: boolean;
   time: Date;
 };
 
-const Digital: FC<Props> = ({ time, hour12, showMinutes, showSeconds }) => (
+const Digital: FC<Props> = (props) => (
   <div className="Time Digital">
     <h1>
-      <FormattedTime
-        value={time}
-        hour12={hour12}
-        hour="numeric"
-        minute={showMinutes ? 'numeric' : undefined}
-        second={showSeconds ? 'numeric' : undefined}
-      />
+      <IntlTime {...props} />
     </h1>
   </div>
 );

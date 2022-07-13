@@ -1,22 +1,26 @@
-import { RotatingCache } from '../../../hooks';
-import { API } from '../../types';
+import { RotatingCache } from "../../../hooks";
+import { API } from "../../types";
 
-type By = 'official' | 'collections' | 'search';
+type By = "official" | "collections" | "search" | "topics";
 
 export interface Data {
   by: By;
   collections: string;
   featured: boolean;
+  paused?: boolean;
   search: string;
+  topics: string;
   timeout: number;
 }
 
 export interface Image {
-  data: Blob;
-  image_link: string;
-  location_title?: string;
-  user_name: string;
-  user_link: string;
+  src: string;
+  credit: {
+    imageLink: string;
+    location?: string;
+    userName: string;
+    userLink: string;
+  };
 }
 
 type Cache = RotatingCache<Image>;
@@ -24,9 +28,11 @@ type Cache = RotatingCache<Image>;
 export type Props = API<Data, Cache>;
 
 export const defaultData: Data = {
-  by: 'official',
-  collections: '',
+  by: "official",
+  collections: "",
   featured: false,
-  search: '',
-  timeout: 0,
+  paused: false,
+  search: "",
+  topics: "bo8jQKTaE0Y",
+  timeout: 900,
 };

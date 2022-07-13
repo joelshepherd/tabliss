@@ -1,34 +1,43 @@
-import React, { FC, useMemo } from 'react';
-import { defineMessages, useIntl } from 'react-intl';
+import React, { FC, useMemo } from "react";
+import { defineMessages, useIntl } from "react-intl";
 
-import { Icon } from '../../../views/shared';
-import { Link } from './types';
+import { Icon } from "../../../views/shared";
+import { Link } from "./types";
 
-const displayUrl = (url: string) => {
+const displayUrl = (url: string): string => {
   try {
     const parsed = new URL(url);
-    return parsed.hostname + (parsed.pathname !== '/' ? parsed.pathname : '');
+    return parsed.hostname + (parsed.pathname !== "/" ? parsed.pathname : "");
   } catch (e) {
     return url;
   }
 };
 
+const getDomain = (url: string): string | null => {
+  try {
+    const parsed = new URL(url);
+    return parsed.hostname;
+  } catch (e) {
+    return null;
+  }
+};
+
 const messages = defineMessages({
   shortcutHint: {
-    id: 'plugins.links.shortcutHint',
-    description: 'Hover hint text for links with a keyboard shortcut',
-    defaultMessage: 'Press {number} or click to visit',
+    id: "plugins.links.shortcutHint",
+    description: "Hover hint text for links with a keyboard shortcut",
+    defaultMessage: "Press {number} or click to visit",
   },
   standardHint: {
-    id: 'plugins.links.standardHint',
-    description: 'Hover hint text for links without a keyboard shortcut',
-    defaultMessage: 'Click to visit',
+    id: "plugins.links.standardHint",
+    description: "Hover hint text for links without a keyboard shortcut",
+    defaultMessage: "Click to visit",
   },
 });
 
-type Props = Link & { number: number };
+type Props = Link & { number: number; linkOpenStyle: boolean };
 
-const Display: FC<Props> = ({ icon, name, number, url }) => {
+const Display: FC<Props> = ({ icon, name, number, url, linkOpenStyle }) => {
   const intl = useIntl();
 
   const title = useMemo(
@@ -39,11 +48,32 @@ const Display: FC<Props> = ({ icon, name, number, url }) => {
     [intl, number],
   );
 
+  const domain = useMemo(() => getDomain(url), [url]);
+
   return (
-    <a href={url} rel="noopener noreferrer" title={title}>
-      {icon && <Icon name={icon} />}
-      {name}
-      {!name && !icon && displayUrl(url)}
+    <a
+      href={url}
+      rel="noopener noreferrer"
+      target={linkOpenStyle ? "_blank" : "_self"}
+      title={title}
+    >
+      {icon === "_favicon" ? (
+        domain ? (
+          <i>
+            <img
+              alt={domain}
+              src={`https://icons.duckduckgo.com/ip3/${domain}.ico`}
+            />
+          </i>
+        ) : null
+      ) : icon ? (
+        <Icon name={icon} />
+      ) : null}
+      {icon && name && " "}
+      <span className="LinkText">
+        {name}
+        {!name && !icon && displayUrl(url)}
+      </span>
     </a>
   );
 };

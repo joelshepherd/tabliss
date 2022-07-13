@@ -1,14 +1,22 @@
-import React, { FC } from 'react';
+import React from "react";
+import { Icon } from "../../../views/shared";
+import { DebounceInput } from "../../shared";
+import topics from "./topics.json";
+import { defaultData, Props } from "./types";
 
-import { Props, defaultData } from './types';
-
-const UnsplashSettings: FC<Props> = ({ data = defaultData, setData }) => (
+const UnsplashSettings: React.FC<Props> = ({ data = defaultData, setData }) => (
   <div className="UnsplashSettings">
     <label>
+      <span style={{ float: "right" }}>
+        {data.paused ? <span className="text--grey">(Paused) </span> : null}
+        <a onClick={() => setData({ ...data, paused: !data.paused })}>
+          <Icon name={data.paused ? "play" : "pause"} />
+        </a>
+      </span>
       Show a new photo
       <select
         value={data.timeout}
-        onChange={event =>
+        onChange={(event) =>
           setData({ ...data, timeout: Number(event.target.value) })
         }
       >
@@ -17,60 +25,72 @@ const UnsplashSettings: FC<Props> = ({ data = defaultData, setData }) => (
         <option value="900">Every 15 minutes</option>
         <option value="3600">Every hour</option>
         <option value="86400">Every day</option>
-        <option value={Number.MAX_SAFE_INTEGER}>Pause</option>
+        <option value="604800">Every week</option>
       </select>
     </label>
 
     <label>
       <input
         type="radio"
-        checked={data.by === 'official'}
-        onChange={() => setData({ ...data, by: 'official' })}
-      />{' '}
-      Official collection
+        checked={data.by === "official"}
+        onChange={() => setData({ ...data, by: "official" })}
+      />{" "}
+      Official Collection
     </label>
 
     <label>
       <input
         type="radio"
-        checked={data.by === 'collections'}
-        onChange={() => setData({ ...data, by: 'collections' })}
-      />{' '}
-      Custom collection
+        checked={data.by === "topics"}
+        onChange={() => setData({ ...data, by: "topics" })}
+      />{" "}
+      Topic
     </label>
 
-    {data.by === 'collections' && (
+    <label>
+      <input
+        type="radio"
+        checked={data.by === "search"}
+        onChange={() => setData({ ...data, by: "search" })}
+      />{" "}
+      Search
+    </label>
+
+    <label>
+      <input
+        type="radio"
+        checked={data.by === "collections"}
+        onChange={() => setData({ ...data, by: "collections" })}
+      />{" "}
+      Collection
+    </label>
+
+    {data.by === "topics" && (
       <label>
-        Collection
-        <input
-          placeholder="Collection ID number"
-          type="text"
-          value={data.collections}
-          onChange={event =>
-            setData({ ...data, collections: event.target.value })
-          }
-        />
+        Topic
+        <select
+          value={data.topics}
+          onChange={(event) => setData({ ...data, topics: event.target.value })}
+        >
+          {topics.map((topic) => (
+            <option key={topic.id} value={topic.id}>
+              {topic.title}
+            </option>
+          ))}
+        </select>
       </label>
     )}
 
-    <label>
-      <input
-        type="radio"
-        checked={data.by === 'search'}
-        onChange={() => setData({ ...data, by: 'search' })}
-      />{' '}
-      Custom search
-    </label>
-
-    {data.by === 'search' && (
-      <div>
+    {data.by === "search" && (
+      <>
         <label>
           Tags
-          <input
-            placeholder="Try landscapes or animals..."
+          <DebounceInput
             type="text"
             value={data.search}
-            onChange={event => setData({ ...data, search: event.target.value })}
+            placeholder="Try landscapes or animals..."
+            onChange={(value) => setData({ ...data, search: value })}
+            wait={500}
           />
         </label>
 
@@ -78,11 +98,24 @@ const UnsplashSettings: FC<Props> = ({ data = defaultData, setData }) => (
           <input
             type="checkbox"
             checked={data.featured}
-            onChange={event => setData({ ...data, featured: !data.featured })}
-          />{' '}
+            onChange={(event) => setData({ ...data, featured: !data.featured })}
+          />{" "}
           Only featured images
         </label>
-      </div>
+      </>
+    )}
+
+    {data.by === "collections" && (
+      <label>
+        Collection
+        <DebounceInput
+          type="text"
+          value={data.collections}
+          placeholder="Collection ID number"
+          onChange={(value) => setData({ ...data, collections: value })}
+          wait={500}
+        />
+      </label>
     )}
   </div>
 );

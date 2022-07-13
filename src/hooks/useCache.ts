@@ -1,6 +1,6 @@
-import { EffectCallback, useEffect, useRef } from 'react';
-import { useTime } from './useTime';
-import { Cache } from '../plugins';
+import { EffectCallback, useEffect, useMemo, useRef } from "react";
+import { Cache } from "../plugins";
+import { useTime } from "./useTime";
 
 /**
  * A cached effect that automatically reruns after the expires time or on deps change.
@@ -10,7 +10,7 @@ export function useCachedEffect(
   expires: Date | number,
   deps: unknown[],
 ) {
-  const time = useTime();
+  const time = useTime("absolute");
   const prevDeps = useRef(deps);
   const prevExpires = useRef<Date | number>();
 
@@ -27,59 +27,65 @@ export function useCachedEffect(
 }
 
 export type RotatingCache<Item> = {
-  now: Item;
-  next: Item;
+  items: Item[];
+  cursor: number;
   rotated: number;
   deps: unknown[];
 };
 
 /**
- * It's complicated.
- * Essentially is uses a create function and a cache to return a precached object that rotates on a timeout.
- * See: Unsplash plugin
+ * A cache which rotates through a list of items
  */
 export function useRotatingCache<T>(
-  create: () => T | Promise<T>,
+  fetch: () => Promise<T[]>,
   { cache, setCache }: Cache<RotatingCache<T>>,
   timeout: number,
   deps: unknown[],
 ): T | undefined {
-  const rotateCache = () => {
-    const rotatedCache = {
-      ...cache!,
-      now: cache!.next,
-      rotated: Date.now(),
-    };
-    setCache(rotatedCache);
-
-    Promise.resolve(create()).then(next => setCache({ ...rotatedCache, next }));
-  };
-
-  // Special case for changing every new tab
-  useEffect(() => {
-    if (cache && timeout === 0) {
-      rotateCache();
+  // Find cursor
+  const time = useTime("absolute").getTime();
+  const boot = useRef(true);
+  const cursor = useMemo(() => {
+    if (cache) {
+      if (
+        (timeout === 0 && boot.current) ||
+        (timeout !== 0 && time > cache.rotated + timeout)
+      ) {
+        const cursor = cache.cursor + 1;
+        setCache({ ...cache, cursor, rotated: Date.now() });
+        boot.current = false;
+        return cursor;
+      }
+      boot.current = false;
+      return cache.cursor;
     }
-  }, [timeout]);
+    return 0;
+  }, [cache, time, timeout]);
 
-  // Rotate cache on timeout
-  const time = useTime().getTime();
+  // Fetch more when cursor reaches end
   useEffect(() => {
-    if (cache && timeout !== 0 && time > cache.rotated + timeout) {
-      rotateCache();
+    if (cache && cursor >= cache.items.length - 1) {
+      // fetch more
+      fetch().then((items) =>
+        setCache({
+          ...cache,
+          items: [...cache.items.slice(-10), ...items],
+          cursor: 9,
+        }),
+      );
     }
-  }, [time, timeout]);
+  }, [cursor]);
 
-  // On dependency change, refresh all
+  // Refresh of deps change
   useEffect(() => {
     if (!cache || !areDepsEqual(deps, cache.deps)) {
-      Promise.all([create(), create()]).then(([now, next]) =>
-        setCache({ now, next, rotated: Date.now(), deps }),
+      fetch().then((items) =>
+        setCache({ items, cursor: 0, rotated: Date.now(), deps }),
       );
     }
   }, [...deps, cache]);
 
-  return cache ? cache.now : undefined;
+  return cache ? cache.items[cursor] : undefined;
 }
 
 /**

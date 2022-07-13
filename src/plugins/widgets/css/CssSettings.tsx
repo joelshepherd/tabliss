@@ -1,6 +1,6 @@
-import React, { FC } from 'react';
+import React, { FC } from "react";
 
-import { Props, defaultData } from './types';
+import { Props, defaultData } from "./types";
 
 const CssSettings: FC<Props> = ({ data = defaultData, setData }) => (
   <div className="CssSettings">
@@ -8,9 +8,9 @@ const CssSettings: FC<Props> = ({ data = defaultData, setData }) => (
       CSS Snippet
       <textarea
         rows={3}
-        style={{ fontFamily: 'monospace' }}
+        style={{ fontFamily: "monospace" }}
         value={data.input}
-        onChange={event => setData({ input: event.target.value })}
+        onChange={(event) => setData({ input: event.target.value })}
       />
     </label>
 

@@ -1,12 +1,23 @@
 *
     box-sizing: border-box
 
-html,
-body
+html, body
     font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif
     font-size: 14px
     line-height: 1.25
     color: #5a636a
+
+// Handle init background color, before settings are loaded
+// Fallback to system theme
+html
+    background-color: black
+@media (prefers-color-scheme: light)
+    html
+        background-color: white
+// Choose theme if syncronously injected (see `target/<target>/index.html`)
+html.theme-light
+    background-color: white
+html.theme-dark
     background-color: black
 
 a
@@ -35,7 +46,7 @@ h5
     margin: 0
 
 i
-    font-family: Arial
+    font-family: Arial, sans-serif
     line-height: 1
     vertical-align: middle
 

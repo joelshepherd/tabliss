@@ -1,45 +1,44 @@
-import React, { FC } from 'react';
-
-import { WidgetPosition } from '../../store/reducers/types';
-import { IconButton, Icon } from '../shared';
-import './PositionInput.css';
+import React from "react";
+import { WidgetPosition } from "../../db/state";
+import { Icon, IconButton } from "../shared";
+import "./PositionInput.css";
 
 const positions = [
   {
-    value: 'topLeft',
-    icon: 'arrow-up-left',
+    value: "topLeft",
+    icon: "arrow-up-left",
   },
   {
-    value: 'topCentre',
-    icon: 'arrow-up',
+    value: "topCentre",
+    icon: "arrow-up",
   },
   {
-    value: 'topRight',
-    icon: 'arrow-up-right',
+    value: "topRight",
+    icon: "arrow-up-right",
   },
   {
-    value: 'middleLeft',
-    icon: 'arrow-left',
+    value: "middleLeft",
+    icon: "arrow-left",
   },
   {
-    value: 'middleCentre',
-    icon: 'move',
+    value: "middleCentre",
+    icon: "move",
   },
   {
-    value: 'middleRight',
-    icon: 'arrow-right',
+    value: "middleRight",
+    icon: "arrow-right",
   },
   {
-    value: 'bottomLeft',
-    icon: 'arrow-down-left',
+    value: "bottomLeft",
+    icon: "arrow-down-left",
   },
   {
-    value: 'bottomCentre',
-    icon: 'arrow-down',
+    value: "bottomCentre",
+    icon: "arrow-down",
   },
   {
-    value: 'bottomRight',
-    icon: 'arrow-down-right',
+    value: "bottomRight",
+    icon: "arrow-down-right",
   },
 ] as const;
 
@@ -48,12 +47,12 @@ type Props = {
   onChange: (value: WidgetPosition) => void;
 };
 
-const PositionInput: FC<Props> = ({ value, onChange }) => (
+const PositionInput: React.FC<Props> = ({ value, onChange }) => (
   <div className="PositionInput">
     <label>Position</label>
 
     <div className="grid">
-      {positions.map(position => (
+      {positions.map((position) => (
         <IconButton
           key={position.value}
           onClick={() => onChange(position.value)}

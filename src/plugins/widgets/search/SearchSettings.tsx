@@ -1,14 +1,14 @@
-import React, { FC } from 'react';
+import React, { FC } from "react";
 
-import { engines } from './engines';
-import { Props, defaultData } from './types';
+import { engines } from "./engines";
+import { Props, defaultData } from "./types";
 
 const SearchSettings: FC<Props> = ({ data = defaultData, setData }) => (
   <div className="SearchSettings">
     <label>
       Search Provider
       <select
-        onChange={event =>
+        onChange={(event) =>
           setData({ ...data, searchEngine: event.target.value })
         }
         value={data.searchEngine}
@@ -21,11 +21,11 @@ const SearchSettings: FC<Props> = ({ data = defaultData, setData }) => (
       </select>
     </label>
 
-    {process.env.BUILD_TARGET !== 'firefox' && (
+    {BUILD_TARGET === "web" && (
       <label>
         Suggestions Provider
         <select
-          onChange={event =>
+          onChange={(event) =>
             setData({ ...data, suggestionsEngine: event.target.value })
           }
           value={data.suggestionsEngine}
@@ -52,7 +52,7 @@ const SearchSettings: FC<Props> = ({ data = defaultData, setData }) => (
           min="1"
           max="10"
           value={data.suggestionsQuantity}
-          onChange={event =>
+          onChange={(event) =>
             setData({
               ...data,
               suggestionsQuantity: Number(event.target.value),
