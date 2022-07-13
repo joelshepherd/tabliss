@@ -1,6 +1,7 @@
 {
   "app.pageTitle": "Ny fane",
   "background": "Background",
+  "dashboard.errorHint": "Show errors",
   "dashboard.focusHint": "Veksle widgets",
   "dashboard.fullscreenHint": "Veksle fullskjerm",
   "dashboard.loadingHint": "Laster nytt innhold",

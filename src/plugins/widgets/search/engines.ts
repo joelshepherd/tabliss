@@ -14,6 +14,13 @@ export const engines: Engine[] = [
       "https://www.google.com/complete/search?client=chrome&q={searchTerms}&callback={callback}",
   },
   {
+    key: "googleuk",
+    name: "Google (UK)",
+    search_url: "https://www.google.co.uk/search?q={searchTerms}",
+    suggest_url:
+      "https://www.google.co.uk/complete/search?client=chrome&q={searchTerms}&callback={callback}",
+  },
+  {
     key: "bing",
     name: "Bing",
     search_url: "https://www.bing.com/search?q={searchTerms}",

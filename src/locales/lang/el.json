@@ -1,6 +1,7 @@
 {
   "app.pageTitle": "Νέα Καρτέλα",
   "background": "Φόντο",
+  "dashboard.errorHint": "Show errors",
   "dashboard.focusHint": "Εναλλαγή Widgets",
   "dashboard.fullscreenHint": "Εναλλαγή πλήρης εικόνας",
   "dashboard.loadingHint": "Φόρτωση νέου περιεχομένου",

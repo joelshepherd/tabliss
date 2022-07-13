@@ -1,6 +1,7 @@
 {
   "app.pageTitle": "Yeni Sekme",
   "background": "Background",
+  "dashboard.errorHint": "Show errors",
   "dashboard.focusHint": "Ögeleri gizle/göster",
   "dashboard.fullscreenHint": "Tam ekranı aç/kapa",
   "dashboard.loadingHint": "Yeni içerik yükleniyor",

@@ -1,6 +1,7 @@
 {
   "app.pageTitle": "Nuova scheda",
   "background": "Sfondo",
+  "dashboard.errorHint": "Show errors",
   "dashboard.focusHint": "Escludi i widget",
   "dashboard.fullscreenHint": "Passa a schermo intero",
   "dashboard.loadingHint": "Carica nuovi contenuti",

@@ -1,6 +1,7 @@
 {
   "app.pageTitle": "Neuer Tab",
   "background": "Hintergrund",
+  "dashboard.errorHint": "Show errors",
   "dashboard.focusHint": "Bedienelemente umschalten",
   "dashboard.fullscreenHint": "Vollbildmodus umschalten",
   "dashboard.loadingHint": "Neue Inhalte werden geladen",

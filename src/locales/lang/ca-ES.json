@@ -1,6 +1,7 @@
 {
   "app.pageTitle": "Nova pestanya",
   "background": "Fons",
+  "dashboard.errorHint": "Show errors",
   "dashboard.focusHint": "Activeu/desactiveu ginys",
   "dashboard.fullscreenHint": "Veure en pantalla sencera",
   "dashboard.loadingHint": "Carregant nou contingut",

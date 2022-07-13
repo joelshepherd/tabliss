@@ -1,6 +1,7 @@
 {
   "app.pageTitle": "Nieuw tabblad",
   "background": "Background",
+  "dashboard.errorHint": "Show errors",
   "dashboard.focusHint": "Widgets aan- en uitzetten",
   "dashboard.fullscreenHint": "Volledig scherm",
   "dashboard.loadingHint": "Nieuwe inhoud aan het laden",

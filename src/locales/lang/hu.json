@@ -1,6 +1,7 @@
 {
   "app.pageTitle": "Új lap",
   "background": "Háttérkép",
+  "dashboard.errorHint": "Show errors",
   "dashboard.focusHint": "Modulok be- és kikapcsolása",
   "dashboard.fullscreenHint": "Teljes képernyő kapcsolás",
   "dashboard.loadingHint": "Új tartalom töltődik",
