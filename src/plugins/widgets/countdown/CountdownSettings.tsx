@@ -44,7 +44,7 @@ const CountdownSettings: FC<Props> = ({ data = defaultData, setData }) => (
         />
       </label>
       <label>
-        Date
+        Time
         <input
           type="time"
           value={formatTime(data.time)}
