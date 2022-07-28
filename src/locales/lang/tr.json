@@ -1,7 +1,7 @@
 {
   "app.pageTitle": "Yeni Sekme",
-  "background": "Background",
-  "dashboard.errorHint": "Show errors",
+  "background": "Arkaplan",
+  "dashboard.errorHint": "Hataları göster",
   "dashboard.focusHint": "Ögeleri gizle/göster",
   "dashboard.fullscreenHint": "Tam ekranı aç/kapa",
   "dashboard.loadingHint": "Yeni içerik yükleniyor",
@@ -12,11 +12,11 @@
   "plugins.links.standardHint": "Gitmek için tıkla",
   "plugins.search.placeholder": "Aramak için yaz",
   "plugins.unsplash.photoLink": "Fotoğraf",
-  "plugins.weather.apparent": "Feels like",
-  "plugins.weather.high": "High",
-  "plugins.weather.humidity": "Humidity",
-  "plugins.weather.low": "Low",
-  "settings": "Settings",
+  "plugins.weather.apparent": "Bunun gibi hissettiriyor",
+  "plugins.weather.high": "Yüksek",
+  "plugins.weather.humidity": "Nem",
+  "plugins.weather.low": "Düşük",
+  "settings": "Ayarlar",
   "settings.translationCredits": " ",
-  "widgets": "Widgets"
+  "widgets": "Araçlar"
 }
