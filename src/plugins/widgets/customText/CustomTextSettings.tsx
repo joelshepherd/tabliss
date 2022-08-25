@@ -1,5 +1,4 @@
 import React, { FC } from "react";
-import { DebounceInput } from "../../shared";
 
 import { Props, defaultData } from "./types";
 
