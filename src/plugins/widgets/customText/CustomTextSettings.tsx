@@ -8,9 +8,10 @@ const CustomTextSettings: FC<Props> = ({data = defaultData, setData}) => {
     <div className="CustomTextSettings">
       <label>
         Text
-        <input
-          type="text"
+        <textarea
+          style={{resize: "none"}}
           value={data.text}
+          rows={10}
           onChange={(event) => setData({...data, text: event.target.value})}
         />
 
@@ -18,8 +19,22 @@ const CustomTextSettings: FC<Props> = ({data = defaultData, setData}) => {
         <input
           type="text"
           value={data.separator}
+          disabled={data.atNewline}
           onChange={(event)=> setData({...data, separator: event.target.value})}
         />
+
+        Separate at newline
+        <input
+          type="checkbox"
+          checked={data.atNewline}
+          onChange={(event) => {
+
+            setData({...data, separator: "", atNewline: event.target.checked})
+
+          }
+        }
+        />
+
       </label>
     </div>
   )

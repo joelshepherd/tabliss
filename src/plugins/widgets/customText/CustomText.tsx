@@ -5,9 +5,17 @@ import {defaultData, Props} from "./types";
 const CustomText: FC<Props> = ({data= defaultData}) => {
   console.log("Function ran")
 
+  let sep: string;
+  if (data.atNewline)
+    sep = "\n";
+  else
+    sep = data.separator;
+
+  const result = data.text.split(sep)[Math.floor(Math.random() * data.text.split(sep).length)];
+
   return (
     <div className="CustomText">
-      <h3>{data.text.split(data.separator)[Math.floor(Math.random() * data.text.split(data.separator).length)]}</h3>
+      <h3>{result}</h3>
     </div>
   );
 
