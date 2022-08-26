@@ -3,7 +3,6 @@ import {defaultData, Props} from "./types";
 
 
 const CustomText: FC<Props> = ({data= defaultData}) => {
-  console.log("Function ran")
 
   let sep: string;
   if (data.atNewline)
