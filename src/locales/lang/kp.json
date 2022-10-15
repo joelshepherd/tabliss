@@ -1,0 +1,22 @@
+{
+  "app.pageTitle": "새 태브",
+  "background": "배경그림",
+  "dashboard.errorHint": "오유정보",
+  "dashboard.focusHint": "도구표시",
+  "dashboard.fullscreenHint": "전체화면",
+  "dashboard.loadingHint": "읽는중...",
+  "dashboard.settingsHint": "Tabliss 전용화",
+  "plugin.greeting.withoutName": "{hour, select, 0 {{name} 동지, 편안히 주무십시오.} 1 {{name} 동지, 편안히 주무십시오.} 2 {{name} 동지, 편안히 주무십시오.} 3 {{name} 동지, 일찍 일어났습니다.} 4 {{name} 동지, 일찍 일어났습니다.} 5 {{name} 동지, 일찍 일어났습니다.} 6 {{name} 동지, 밤새 안녕하십니까?} 7 {{name} 동지, 밤새 안녕하십니까?} 8 {{name} 동지, 밤새 안녕하십니까?} 9 {{name} 동지, 밤새 안녕하십니까?} 10 {{name} 동지, 안녕하십니까?} 11 {{name} 동지, 안녕하십니까?} 12 {{name} 동지, 안녕하십니까?} 13 {{name} 동지, 안녕하십니까?} 14 {{name} 동지, 안녕하십니까?} 15 {{name} 동지, 안녕하십니까?} 16 {{name} 동지, 안녕하십니까?} 17 {{name} 동지, 안녕하십니까?} 18 {{name} 동지, 잘 다녀오셨습니까?} 19 {{name} 동지, 잘 다녀오셨습니까?} 20 {{name} 동지, 잘 다녀오셨습니까?} 21 {{name} 동지, 잘 다녀오셨습니까?} 22 {{name} 동지, 안녕히 주무십시오.} 23 {{name} 동지, 안녕히 주무십시오.} other {Unknown}}",
+  "plugin.greeting.withoutName": "{hour, select, 0 {편안히 주무십시오.} 1 {편안히 주무십시오.} 2 {편안히 주무십시오.} 3 {일찍 일어났습니다.} 4 {일찍 일어났습니다.} 5 {일찍 일어났습니다.} 6 {밤새 안녕하십니까?} 7 {밤새 안녕하십니까?} 8 {밤새 안녕하십니까?} 9 {밤새 안녕하십니까?} 10 {안녕하십니까?} 11 {안녕하십니까?} 12 {안녕하십니까?} 13 {안녕하십니까?} 14 {안녕하십니까?} 15 {안녕하십니까?} 16 {안녕하십니까?} 17 {안녕하십니까?} 18 {잘 다녀오셨습니까?} 19 {잘 다녀오셨습니까?} 20 {잘 다녀오셨습니까?} 21 {잘 다녀오셨습니까?} 22 {안녕히 주무십시오.} 23 {안녕히 주무십시오.} other {Unknown}}",
+  "plugins.links.shortcutHint": "{number}건을 누르거나 찰칵하여 방문하기",
+  "plugins.links.standardHint": "눌러 방문하기",
+  "plugins.search.placeholder": "검색어를 입력하십시오",
+  "plugins.unsplash.photoLink": "사진",
+  "plugins.weather.apparent": "체감온도",
+  "plugins.weather.high": "최고",
+  "plugins.weather.humidity": "상대습도",
+  "plugins.weather.low": "최저",
+  "settings": "설정",
+  "settings.translationCredits": "North Korean translations by 하우하루",
+  "widgets": "도구"
+}
