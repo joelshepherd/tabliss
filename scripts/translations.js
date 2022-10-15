@@ -31,6 +31,7 @@ const languages = [
   "it",
   "ja",
   "ko",
+  "kp",
   "lb",
   "lt",
   "ne",
