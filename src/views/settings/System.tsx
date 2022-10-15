@@ -101,6 +101,9 @@ const System: React.FC = () => {
           <option value="ko" title="Korean">
             한국어
           </option>
+          <option value="kp" title="North Korean">
+            조선말
+          </option>
           <option value="lb" title="Luxembourgish">
             Lëtzebuergesch
           </option>
