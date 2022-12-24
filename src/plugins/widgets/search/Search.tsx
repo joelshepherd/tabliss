@@ -88,7 +88,7 @@ const Search: FC<Props> = ({ data = defaultData }) => {
 
   const search = () => {
     document.location.assign(
-      buildUrl(searchInput.current!.value, getSearchUrl(data.searchEngine)),
+      buildUrl(searchInput.current!.value, getSearchUrl(data.searchEngine, data.searchEngineCustom)),
     );
   };
 
