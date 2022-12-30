@@ -7,6 +7,7 @@ export function addTodo(contents = "") {
       contents,
       id: generateId(),
       completed: false,
+      completedAt: null,
     },
   } as const;
 }

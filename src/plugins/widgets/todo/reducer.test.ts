@@ -8,6 +8,7 @@ describe("todo/reducer", () => {
         id: expect.any(String),
         contents: "Test todo",
         completed: false,
+        completedAt: null,
       },
     ]);
 
@@ -18,6 +19,7 @@ describe("todo/reducer", () => {
             id: "1234",
             contents: "Existing todo",
             completed: true,
+            completedAt: "2022-30-12T12:44:38",
           },
         ],
         addTodo("Test todo"),
@@ -27,11 +29,13 @@ describe("todo/reducer", () => {
         id: "1234",
         contents: "Existing todo",
         completed: true,
+        completedAt: "2022-30-12T12:44:38",
       },
       {
         id: expect.any(String),
         contents: "Test todo",
         completed: false,
+        completedAt: null,
       },
     ]);
   });
@@ -44,6 +48,7 @@ describe("todo/reducer", () => {
             id: "1234",
             contents: "Existing todo",
             completed: true,
+            completedAt: "2022-30-12T12:44:38",
           },
         ],
         removeTodo("1234"),
@@ -57,11 +62,13 @@ describe("todo/reducer", () => {
             id: "1234",
             contents: "Existing todo",
             completed: true,
+            completedAt: "2022-30-12T12:44:38",
           },
           {
             id: "5678",
             contents: "Second existing todo",
             completed: false,
+            completedAt: null,
           },
         ],
         removeTodo("1234"),
@@ -71,6 +78,7 @@ describe("todo/reducer", () => {
         id: "5678",
         contents: "Second existing todo",
         completed: false,
+        completedAt: null,
       },
     ]);
   });
@@ -83,11 +91,13 @@ describe("todo/reducer", () => {
             id: "1234",
             contents: "Existing todo",
             completed: true,
+            completedAt: "2022-30-12T12:44:38",
           },
           {
             id: "5678",
             contents: "Second existing todo",
             completed: false,
+            completedAt: null,
           },
         ],
         toggleTodo("1234"),
@@ -97,11 +107,13 @@ describe("todo/reducer", () => {
         id: "1234",
         contents: "Existing todo",
         completed: false,
+        completedAt: null,
       },
       {
         id: "5678",
         contents: "Second existing todo",
         completed: false,
+        completedAt: null,
       },
     ]);
 
@@ -112,11 +124,13 @@ describe("todo/reducer", () => {
             id: "1234",
             contents: "Existing todo",
             completed: true,
+            completedAt: "2022-30-12T12:44:38",
           },
           {
             id: "5678",
             contents: "Second existing todo",
             completed: false,
+            completedAt: null,
           },
         ],
         toggleTodo("5678"),
@@ -126,11 +140,13 @@ describe("todo/reducer", () => {
         id: "1234",
         contents: "Existing todo",
         completed: true,
+        completedAt: "2022-30-12T12:44:38",
       },
       {
         id: "5678",
         contents: "Second existing todo",
         completed: true,
+        completedAt: expect.stringMatching(/[0-9TZ:-]+/),
       },
     ]);
   });
@@ -143,11 +159,13 @@ describe("todo/reducer", () => {
             id: "1234",
             contents: "Existing todo",
             completed: true,
+            completedAt: "2022-30-12T12:44:38",
           },
           {
             id: "5678",
             contents: "Second existing todo",
             completed: false,
+            completedAt: null
           },
         ],
         updateTodo("1234", "Existing todo: edited"),
@@ -157,11 +175,13 @@ describe("todo/reducer", () => {
         id: "1234",
         contents: "Existing todo: edited",
         completed: true,
+        completedAt: "2022-30-12T12:44:38"
       },
       {
         id: "5678",
         contents: "Second existing todo",
         completed: false,
+        completedAt: null,
       },
     ]);
   });
@@ -174,11 +194,13 @@ describe("todo/reducer", () => {
             id: "1234",
             contents: "Existing todo",
             completed: true,
+            completedAt: "2022-30-12T12:44:38",
           },
           {
             id: "5678",
             contents: "Second existing todo",
             completed: false,
+            completedAt: null,
           },
         ],
         updateTodo("5678", ""),
@@ -188,6 +210,7 @@ describe("todo/reducer", () => {
         id: "1234",
         contents: "Existing todo",
         completed: true,
+        completedAt: "2022-30-12T12:44:38"
       },
     ]);
   });
