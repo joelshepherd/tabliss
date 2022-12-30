@@ -1,6 +1,7 @@
 {
   "app.pageTitle": "Naujas skirtukas",
   "background": "Fonas",
+  "dashboard.errorHint": "Show errors",
   "dashboard.focusHint": "Tvarkyti valdiklius",
   "dashboard.fullscreenHint": "Įjungti/išjungti pilnojo ekrano režimą",
   "dashboard.loadingHint": "Kraunamas naujas turinys",

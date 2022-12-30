@@ -1,6 +1,7 @@
 {
   "app.pageTitle": "새 탭",
   "background": "Background",
+  "dashboard.errorHint": "Show errors",
   "dashboard.focusHint": "위젯 숨기기 / 보이기",
   "dashboard.fullscreenHint": "전체 화면",
   "dashboard.loadingHint": "새 콘텐츠 로딩 중",

@@ -1,6 +1,7 @@
 {
   "app.pageTitle": "Táb Nua",
   "background": "Cúlra",
+  "dashboard.errorHint": "Show errors",
   "dashboard.focusHint": "Scoránaigh giuirléidí",
   "dashboard.fullscreenHint": "Scoránaigh lánscáileán",
   "dashboard.loadingHint": "Ag lódáil ábar nua",

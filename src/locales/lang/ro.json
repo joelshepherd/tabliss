@@ -1,6 +1,7 @@
 {
   "app.pageTitle": "Filă nouă",
   "background": "Background",
+  "dashboard.errorHint": "Show errors",
   "dashboard.focusHint": "Afișează widgeturi",
   "dashboard.fullscreenHint": "Afișează în fullscreen",
   "dashboard.loadingHint": "Se descarcă imagini noi",

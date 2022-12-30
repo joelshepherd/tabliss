@@ -1,6 +1,7 @@
 {
   "app.pageTitle": "แท็บใหม่",
   "background": "พื้นหลัง",
+  "dashboard.errorHint": "Show errors",
   "dashboard.focusHint": "สลับวิดเจ็ต",
   "dashboard.fullscreenHint": "สลับโหมดเต็มหน้าจอ",
   "dashboard.loadingHint": "กำลังโหลดเนื้อหาใหม่",

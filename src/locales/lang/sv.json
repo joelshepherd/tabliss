@@ -1,6 +1,7 @@
 {
   "app.pageTitle": "Ny flik",
   "background": "Bakgrund",
+  "dashboard.errorHint": "Show errors",
   "dashboard.focusHint": "Växla widgets",
   "dashboard.fullscreenHint": "Växla fullskärm",
   "dashboard.loadingHint": "Laddar nytt innehåll",

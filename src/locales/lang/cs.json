@@ -1,6 +1,7 @@
 {
   "app.pageTitle": "Nový panel",
   "background": "Background",
+  "dashboard.errorHint": "Show errors",
   "dashboard.focusHint": "Přepnout widgety",
   "dashboard.fullscreenHint": "Přepnout zobrazení na celou obrazovku",
   "dashboard.loadingHint": "Načítání nového obsahu",

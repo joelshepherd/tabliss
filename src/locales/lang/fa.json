@@ -1,6 +1,7 @@
 {
   "app.pageTitle": "زبانه جدید",
   "background": "پس‌زمینه",
+  "dashboard.errorHint": "Show errors",
   "dashboard.focusHint": "ابزارک‌ها",
   "dashboard.fullscreenHint": "تمام صفحه",
   "dashboard.loadingHint": "بارگذاری محتوا",
