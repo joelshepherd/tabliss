@@ -86,4 +86,5 @@ export const engines: Engine[] = [
     key: "phind",
     name: "Phind",
     search_url: "https://phind.com/search?q={searchTerms}",
+  },
 ];
