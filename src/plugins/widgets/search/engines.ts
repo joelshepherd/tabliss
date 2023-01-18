@@ -77,4 +77,8 @@ export const engines: Engine[] = [
     name: "Brave",
     search_url: "https://search.brave.com/search?q={searchTerms}",
   },
+  {
+    key: "phind",
+    name: "Phind",
+    search_url: "https://phind.com/search?q={searchTerms}",
 ];
