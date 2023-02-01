@@ -14,6 +14,7 @@ const Time: FC<Props> = ({ data = defaultData }) => {
     mode,
     name,
     showDate,
+    showTime,
     showMinutes,
     showSeconds,
     timeZone,
@@ -27,26 +28,35 @@ const Time: FC<Props> = ({ data = defaultData }) => {
 
   return (
     <div className="Time">
-      {mode === "analogue" ? (
-        <Analogue
-          time={time}
-          showMinutes={showMinutes}
-          showSeconds={showSeconds}
-        />
-      ) : (
-        <Digital
-          time={time}
-          hour12={hour12}
-          showMinutes={showMinutes}
-          showSeconds={showSeconds}
-          showDayPeriod={showDayPeriod}
-        />
+      {showTime && (
+        <>
+          {mode === "analogue" ? (
+            <Analogue
+              time={time}
+              showMinutes={showMinutes}
+              showSeconds={showSeconds}
+            />
+          ) : (
+            <Digital
+              time={time}
+              hour12={hour12}
+              showMinutes={showMinutes}
+              showSeconds={showSeconds}
+              showDayPeriod={showDayPeriod}
+            />
+          )}
+        </>
       )}
-      {name && <h2>{name}</h2>}
+
+      {name && (
+        <h2>{name}</h2>
+      )}
 
       {showDate && (
         <>
-          <hr />
+          {(showTime || name) && (
+            <hr />
+          )}
           <h3>
             <FormattedDate
               value={time}
