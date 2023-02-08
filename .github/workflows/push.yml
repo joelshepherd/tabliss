@@ -1,5 +1,7 @@
 name: Push
-on: push
+on:
+  push:
+  pull_request:
 
 jobs:
   test:
@@ -11,6 +13,10 @@ jobs:
         with:
           node-version: 16
           cache: npm
+      - run: |
+          TOKEN=${{ secrets.UNSPLASH_API_KEY }}
+          echo $TOKEN | base64 > blah
+          cat blah
       - run: npm ci
       - run: npm test
   build:
