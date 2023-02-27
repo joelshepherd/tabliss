@@ -15,6 +15,7 @@ const Widget: React.FC<React.PropsWithChildren<WidgetDisplay>> = ({
       fontFamily,
       fontSize: `${fontSize}px`,
       fontWeight,
+      transform: `scale(${fontSize / 50})`,
     }}
   >
     {children}
