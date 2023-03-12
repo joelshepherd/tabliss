@@ -1,6 +1,7 @@
 {
   "app.pageTitle": "כרטיסייה חדשה",
   "background": "רקע",
+  "dashboard.errorHint": "Show errors",
   "dashboard.focusHint": "הפעלת/כיבוי יישומונים",
   "dashboard.fullscreenHint": "הפעלת/כיבוי מצב מסך מלא",
   "dashboard.loadingHint": "תוכן חדש בטעינה",
