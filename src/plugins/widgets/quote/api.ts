@@ -49,6 +49,17 @@ async function getQuoteOfTheDay(category?: string) {
   };
 }
 
+// Get ayah a day (quran)
+async function getAyahADay() {
+  const res = await fetch("https://late-tooth-b0bf.ocemail.workers.dev/?https://api.tarteel.io/v1/aad/schedule/");
+  const body = await res.json();
+
+  return {
+    author: `${body.surahNameEn} : ${body.ayah}`,
+    quote: body.englishTranslation,
+  };
+}
+
 // Get bible verse of the day
 async function getBibleVerse() {
   const res = await fetch("https://quotes.rest/bible/vod.json");
@@ -89,6 +100,8 @@ export async function getQuote(
   const data =
     category === "developerexcuses"
       ? await getDeveloperExcuse()
+      : category === "quran"
+      ? await getAyahADay()
       : category === "bible"
       ? await getBibleVerse()
       : await getQuoteOfTheDay(category);
