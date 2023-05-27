@@ -1,5 +1,6 @@
 import React from "react";
 import { IdNamePair } from "./types";
+import "./Trello.sass";
 
 interface DisplayProps {
     settingsData: IdNamePair[];
@@ -7,7 +8,7 @@ interface DisplayProps {
     edit_pair: (newName: string, listID: string) => void;
 };
 
-export const SettingsDisplay: React.FC<DisplayProps> = ({ settingsData, delete_pair, edit_pair }) => {
+const SettingsDisplay: React.FC<DisplayProps> = ({ settingsData, delete_pair, edit_pair }) => {
 
     let pairs = settingsData.map(pair => <PairComponent listID={pair.listID} name={pair.name} delete_pair={delete_pair} edit_pair={edit_pair}/> )
     return (
@@ -60,7 +61,7 @@ const EditBox: React.FC<EditBoxProps> = ({ listID, edit_pair, toggle_edit_state 
     const handle_submit = (e: any) => {
         e.preventDefault();
         edit_pair(formData, listID);
-        toggle_edit_state()
+        toggle_edit_state();
         setFormData("");
     };
 
@@ -73,8 +74,10 @@ const EditBox: React.FC<EditBoxProps> = ({ listID, edit_pair, toggle_edit_state 
                     placeholder="New Name"
                     onChange={e => setFormData(e.target.value)}
                 />
-                <input type="submit" value="Change"/>
+                <input type="submit" className="submit-button" value="Change"/>
             </form>
         </>
     );
 };
+
+export default SettingsDisplay;

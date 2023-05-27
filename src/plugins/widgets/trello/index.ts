@@ -1,6 +1,6 @@
 import { Config } from "../../types";
-import { Trello } from "./Trello";
-import { TrelloSettings } from "./TrelloSettings";
+import  Trello  from "./Trello";
+import TrelloSettings from "./TrelloSettings";
 
 const config: Config = {
     key: "widget/trello",

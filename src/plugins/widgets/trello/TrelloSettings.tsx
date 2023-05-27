@@ -1,11 +1,11 @@
 import React from "react";
 import { defaultData, Props } from "./types"
 import { SettingsInput } from "./SettingsInput";
-import { SettingsDisplay } from "./SettingsDisplay";
+import SettingsDisplay from "./SettingsDisplay";
 
 import "./Trello.sass";
 
-export const TrelloSettings: React.FC<Props> = ({ data = defaultData, setData}) => {
+const TrelloSettings: React.FC<Props> = ({ data = defaultData, setData}) => {
     const add_id_name_pair = (listID: string, name: string) => {
         console.log(listID, name);
         setData({settingsData: [...data.settingsData, {listID: listID, name: name}]});
@@ -28,14 +28,15 @@ export const TrelloSettings: React.FC<Props> = ({ data = defaultData, setData}) 
         setData({settingsData: edited});
     };
 
-
     return (
         <>
             <div className="settings">
                 <SettingsInput add_id_name_pair={add_id_name_pair}/>
-                <button onClick={() => setData({settingsData: []})} className="wipe-button">Wipe Data</button>
+                <button onClick={() => setData({settingsData: []})} className="delete-button">Delete All</button>
                 <SettingsDisplay settingsData={data.settingsData} delete_pair={delete_pair} edit_pair={edit_pair}/>
             </div>
         </>
     );
 };
+
+export default TrelloSettings;
