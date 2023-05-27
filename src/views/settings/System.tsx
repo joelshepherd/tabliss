@@ -42,7 +42,7 @@ const System: React.FC = () => {
             Čeština
           </option>
           <option value="de" title="German">
-            DeutscH
+            Deutsch
           </option>
           <option value="el" title="Greek">
             Ελληνικά
@@ -100,6 +100,9 @@ const System: React.FC = () => {
           </option>
           <option value="ko" title="Korean">
             한국어
+          </option>
+          <option value="kp" title="North Korean">
+            조선말
           </option>
           <option value="lb" title="Luxembourgish">
             Lëtzebuergesch
