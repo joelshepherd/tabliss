@@ -22,25 +22,23 @@ export const SettingsInput: React.FC<SettingsProps> = ({ add_id_name_pair }) => 
     };
 
     return (
-        <>
-            <form onSubmit={handle_submit} className="submission-form">
-                <label>
-                    Enter List ID and Name
-                    <input
+        <form onSubmit={handle_submit} className="submission-form">
+            <label>
+                Enter List ID and Name
+                <input
+                type="text"
+                value={listID}
+                onChange={e => setListID(e.target.value)}
+                placeholder="List ID"
+                />
+                <input
                     type="text"
-                    value={listID}
-                    onChange={e => setListID(e.target.value)}
-                    placeholder="List ID"
-                    />
-                    <input
-                        type="text"
-                        value={name}
-                        onChange={e => setName(e.target.value)}
-                        placeholder="Name"
-                    />
-                </label>
-                <button type="submit" className="submit-button">Add</button>
-            </form>
-        </>
+                    value={name}
+                    onChange={e => setName(e.target.value)}
+                    placeholder="Name"
+                />
+            </label>
+            <button type="submit" className="submit-button">Add</button>
+        </form>
     );
 };

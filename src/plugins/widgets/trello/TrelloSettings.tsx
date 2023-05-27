@@ -29,13 +29,11 @@ const TrelloSettings: React.FC<Props> = ({ data = defaultData, setData}) => {
     };
 
     return (
-        <>
-            <div className="settings">
-                <SettingsInput add_id_name_pair={add_id_name_pair}/>
-                <button onClick={() => setData({settingsData: []})} className="delete-button">Delete All</button>
-                <SettingsDisplay settingsData={data.settingsData} delete_pair={delete_pair} edit_pair={edit_pair}/>
-            </div>
-        </>
+        <div className="settings">
+            <SettingsInput add_id_name_pair={add_id_name_pair}/>
+            <button onClick={() => setData({settingsData: []})} className="delete-button">Delete All</button>
+            <SettingsDisplay settingsData={data.settingsData} delete_pair={delete_pair} edit_pair={edit_pair}/>
+        </div>
     );
 };
 

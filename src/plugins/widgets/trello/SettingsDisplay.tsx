@@ -12,11 +12,9 @@ const SettingsDisplay: React.FC<DisplayProps> = ({ settingsData, delete_pair, ed
 
     let pairs = settingsData.map(pair => <PairComponent listID={pair.listID} name={pair.name} delete_pair={delete_pair} edit_pair={edit_pair}/> )
     return (
-        <>
-            <div className="pair-display">
-                {pairs}
-            </div>
-        </>
+        <div className="pair-display">
+            {pairs}
+        </div>
     )
 }
 
@@ -66,17 +64,15 @@ const EditBox: React.FC<EditBoxProps> = ({ listID, edit_pair, toggle_edit_state 
     };
 
     return (
-        <>
-            <form onSubmit={handle_submit} className="submission-form">
-                <input 
-                    type="text"
-                    value={formData}
-                    placeholder="New Name"
-                    onChange={e => setFormData(e.target.value)}
-                />
-                <input type="submit" className="submit-button" value="Change"/>
-            </form>
-        </>
+        <form onSubmit={handle_submit} className="submission-form">
+            <input 
+                type="text"
+                value={formData}
+                placeholder="New Name"
+                onChange={e => setFormData(e.target.value)}
+            />
+            <input type="submit" className="submit-button" value="Change"/>
+        </form>
     );
 };
 
