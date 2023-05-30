@@ -37,7 +37,7 @@ const PairComponent: React.FC<PairComponentProps> = ({listID, name, delete_pair,
     return (
         <>
             <div className="id-name-pair">
-                { !editMode ? <h3>{name}</h3> : <EditBox edit_pair={edit_pair} listID={listID} toggle_edit_state={toggle_edit_state}/> }
+                { !editMode ? <h3><small>{name}</small></h3> : <EditBox edit_pair={edit_pair} listID={listID} toggle_edit_state={toggle_edit_state}/> }
             </div>
             <div className="button-pair">
                 <button className="edit-button" onClick={toggle_edit_state}>Edit</button>

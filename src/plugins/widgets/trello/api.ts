@@ -1,5 +1,6 @@
 import { IdNamePair, TrelloData, TrelloList} from "./types";
 
+// Returns Trello list data from all boards in settings
 export const pull_trello_data = async (settingsData: IdNamePair[]): Promise<TrelloData> => {
     let trelloData: TrelloData = {failure: false, lists: []};
     for (let i = 0; i < settingsData.length; i++) {
@@ -7,7 +8,6 @@ export const pull_trello_data = async (settingsData: IdNamePair[]): Promise<Trel
         trelloData.lists.push(trelloList);    
     }
     
-    console.log(trelloData);
     return trelloData;
 }
 
