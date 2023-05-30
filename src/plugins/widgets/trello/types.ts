@@ -1,14 +1,13 @@
 import { API } from "../../types";
 
-
 export type TrelloData = { // Will be created and cached through the API call
-    failure: boolean;
+    failure?: boolean;
     lists: TrelloList[];
 };
 
 export type TrelloList = {
-    name: string;
-    listID: string;   
+    name?: string;
+    listID?: string;   
     items: string[]; // Represents all items on a Trello list
 };
 
