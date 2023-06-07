@@ -2,27 +2,27 @@ import React from "react";
 import "./Trello.sass";
 
 interface SettingsProps {
-    add_id_name_pair: (id: string, name: string) => void;
+    addIdNamePair: (id: string, name: string) => void;
 };
 
-export const SettingsInput: React.FC<SettingsProps> = ({ add_id_name_pair }) => {
+export const SettingsInput: React.FC<SettingsProps> = ({ addIdNamePair }) => {
     const [listID, setListID] = React.useState("");
     const [name, setName] = React.useState("");
     
-    const handle_submit = (e: React.FormEvent)  => {
+    const handleSubmit = (e: React.FormEvent)  => {
         e.preventDefault();
         if (listID === "" || name === "") {
             return;
         }
         
         // Add list ID name pair
-        add_id_name_pair(listID, name);
+        addIdNamePair(listID, name);
         setListID("");
         setName("");
     };
 
     return (
-        <form onSubmit={handle_submit} className="submission-form">
+        <form onSubmit={handleSubmit}>
             <label>
                 Enter List ID and Name
                 <input

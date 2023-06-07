@@ -1,6 +1,6 @@
 import React from "react";
-import { Props, defaultData, TrelloList, TrelloData } from "./types";
-import { pull_trello_data } from "./api";
+import { Props, defaultData, TrelloList } from "./types";
+import { getTrelloData } from "./api";
 import "./Trello.sass";
 
 const Trello: React.FC<Props> = ({cache, data = defaultData, setCache}) => {
@@ -14,7 +14,7 @@ const Trello: React.FC<Props> = ({cache, data = defaultData, setCache}) => {
 
     return (
         <div className="main-trello">
-            {cache.lists.map((data: TrelloList, index) => <TrelloListComponent key={ index } data={ data}/>)}
+            {cache.lists.map((data: TrelloList) => <TrelloListComponent key={ data.listID } data={ data}/>)}
         </div>
     );
 };

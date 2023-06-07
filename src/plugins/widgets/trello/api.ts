@@ -1,10 +1,10 @@
 import { IdNamePair, TrelloData, TrelloList} from "./types";
 
 // Returns Trello list data from all boards in settings
-export const pull_trello_data = async (settingsData: IdNamePair[]): Promise<TrelloData> => {
+export const getTrelloData = async (settingsData: IdNamePair[]): Promise<TrelloData> => {
     let trelloData: TrelloData = {failure: false, lists: []};
     for (let i = 0; i < settingsData.length; i++) {
-        let trelloList: TrelloList = await pull_list_data(settingsData[i]);
+        let trelloList: TrelloList = await getListData(settingsData[i]);
         trelloData.lists.push(trelloList);    
     }
     
@@ -12,7 +12,7 @@ export const pull_trello_data = async (settingsData: IdNamePair[]): Promise<Trel
 }
 
 // Returns an object containing the items on a single Trello board
-const pull_list_data = async (pair: IdNamePair): Promise<TrelloList> => { 
+const getListData = async (pair: IdNamePair): Promise<TrelloList> => { 
     const API_URL: string = "https://asia-southeast1-trello-tabliss-integrati-dd041.cloudfunctions.net/pull_data"
     let name: string = pair.name;
     let listID: string = pair.listID;

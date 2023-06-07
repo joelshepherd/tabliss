@@ -4,13 +4,13 @@ import "./Trello.sass";
 
 interface DisplayProps {
     settingsData: IdNamePair[];
-    delete_pair: (listID: string) => void;
-    edit_pair: (newName: string, listID: string) => void;
+    deletePair: (listID: string) => void;
+    editPair: (newName: string, listID: string) => void;
 };
 
-const SettingsDisplay: React.FC<DisplayProps> = ({ settingsData, delete_pair, edit_pair }) => {
+const SettingsDisplay: React.FC<DisplayProps> = ({ settingsData, deletePair, editPair }) => {
 
-    let pairs = settingsData.map(pair => <PairComponent listID={pair.listID} name={pair.name} delete_pair={delete_pair} edit_pair={edit_pair}/> )
+    let pairs = settingsData.map(pair => <PairComponent listID={pair.listID} name={pair.name} deletePair={deletePair} editPair={editPair}/> )
     return (
         <div className="pair-display">
             {pairs}
@@ -21,15 +21,15 @@ const SettingsDisplay: React.FC<DisplayProps> = ({ settingsData, delete_pair, ed
 interface PairComponentProps {
     listID: string;
     name: string;
-    delete_pair: (listID: string) => void;
-    edit_pair: (newName: string, listID: string) => void;
+    deletePair: (listID: string) => void;
+    editPair: (newName: string, listID: string) => void;
 };
 
 // Displays the name attribute of an IdNamePair type along with buttons to delete and edit
-const PairComponent: React.FC<PairComponentProps> = ({listID, name, delete_pair, edit_pair}) => {
+const PairComponent: React.FC<PairComponentProps> = ({listID, name, deletePair, editPair}) => {
     const [editMode, setEditMode] = React.useState(false);
 
-    const toggle_edit_state = () => {
+    const toggleEditState = () => {
         setEditMode(!editMode);
         return;
     }
@@ -37,11 +37,11 @@ const PairComponent: React.FC<PairComponentProps> = ({listID, name, delete_pair,
     return (
         <>
             <div className="id-name-pair">
-                { !editMode ? <h3><small>{name}</small></h3> : <EditBox edit_pair={edit_pair} listID={listID} toggle_edit_state={toggle_edit_state}/> }
+                { !editMode ? <h3><small>{name}</small></h3> : <EditBox editPair={editPair} listID={listID} toggleEditState={toggleEditState}/> }
             </div>
             <div className="button-pair">
-                <button className="edit-button" onClick={toggle_edit_state}>Edit</button>
-                <button className="delete-button" onClick={() => delete_pair(listID)}>Delete</button>
+                <button className="edit-button" onClick={toggleEditState}>Edit</button>
+                <button className="delete-button" onClick={() => deletePair(listID)}>Delete</button>
             </div>
         </>
     )
@@ -49,22 +49,22 @@ const PairComponent: React.FC<PairComponentProps> = ({listID, name, delete_pair,
 
 interface EditBoxProps {
     listID: string;
-    edit_pair: (newName: string, listID: string) => void;
-    toggle_edit_state: () => void;
+    editPair: (newName: string, listID: string) => void;
+    toggleEditState: () => void;
 };
 
-const EditBox: React.FC<EditBoxProps> = ({ listID, edit_pair, toggle_edit_state }) => {
+const EditBox: React.FC<EditBoxProps> = ({ listID, editPair, toggleEditState }) => {
     const [formData, setFormData] = React.useState("");
 
-    const handle_submit = (e: any) => {
+    const handleSubmit = (e: any) => {
         e.preventDefault();
-        edit_pair(formData, listID);
-        toggle_edit_state();
+        editPair(formData, listID);
+        toggleEditState();
         setFormData("");
     };
 
     return (
-        <form onSubmit={handle_submit} className="submission-form">
+        <form onSubmit={handleSubmit} className="submission-form">
             <input 
                 type="text"
                 value={formData}

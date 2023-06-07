@@ -6,19 +6,28 @@ import SettingsDisplay from "./SettingsDisplay";
 import "./Trello.sass";
 
 const TrelloSettings: React.FC<Props> = ({ data = defaultData, setData}) => {
-    const add_id_name_pair = (listID: string, name: string) => {
-        console.log(listID, name);
+    const addIdNamePair = (listID: string, name: string) => {
+        let duplicate: boolean = false;
+        data.settingsData.map(pair => {
+            if (pair.listID === listID) {
+                duplicate = true;
+            }
+        });
+
+        if (duplicate) {
+            return;
+        }
+
         setData({settingsData: [...data.settingsData, {listID: listID, name: name}]});
-        console.log(data.settingsData)
         return;
     };
 
-    const delete_pair = (listID: string) => {
+    const deletePair = (listID: string) => {
         setData({settingsData: data.settingsData.filter(pair => pair.listID !== listID)});
         return;
     };
 
-    const edit_pair = (newName: string, listID: string) => {
+    const editPair = (newName: string, listID: string) => {
         const edited = data.settingsData.map(pair => {
             if (pair.listID === listID) {
                 pair.name = newName;
@@ -31,10 +40,10 @@ const TrelloSettings: React.FC<Props> = ({ data = defaultData, setData}) => {
     return (
         <div className="settings">
             <div>
-                <SettingsInput add_id_name_pair={add_id_name_pair}/>
+                <SettingsInput addIdNamePair={addIdNamePair}/>
                 <button onClick={() => setData({settingsData: []})} className="delete-button">Delete All</button>
             </div>
-            <SettingsDisplay settingsData={data.settingsData} delete_pair={delete_pair} edit_pair={edit_pair}/>
+            <SettingsDisplay settingsData={data.settingsData} deletePair={deletePair} editPair={editPair}/>
         </div>
     );
 };
