@@ -5,7 +5,7 @@ import "./Trello.sass";
 
 const Trello: React.FC<Props> = ({cache, data = defaultData, setCache}) => {
     React.useEffect(() => {
-        pull_trello_data(data.settingsData).then(setCache);
+        getTrelloData(data.settingsData).then(setCache);
     }, [data.settingsData]);
 
     if (!cache) {
