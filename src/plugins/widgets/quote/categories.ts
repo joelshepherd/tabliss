@@ -32,6 +32,10 @@ export default [
     name: "Students",
   },
   {
+    key: "quran",
+    name: "Ayah a Day",
+  },
+  {
     key: "bible",
     name: "Bible Verses",
   },
