@@ -9,7 +9,7 @@ export const SettingsInput: React.FC<SettingsProps> = ({ add_id_name_pair }) => 
     const [listID, setListID] = React.useState("");
     const [name, setName] = React.useState("");
     
-    const handle_submit = (e: any)  => {
+    const handle_submit = (e: React.FormEvent)  => {
         e.preventDefault();
         if (listID === "" || name === "") {
             return;
