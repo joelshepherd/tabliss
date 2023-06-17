@@ -39,6 +39,18 @@ const WeatherSettings: FC<Props> = ({ data = defaultData, setData }) => (
 
         <label>
           <input
+            type="checkbox"
+            checked={data.showCity}
+            onChange={() =>
+              setData({ ...data, showCity: !data.showCity })
+            }
+          />{" "}
+          Show city name
+        </label>
+
+
+        <label>
+          <input
             type="radio"
             checked={data.units === "si"}
             onChange={() => setData({ ...data, units: "si" })}
