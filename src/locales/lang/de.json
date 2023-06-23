@@ -1,7 +1,7 @@
 {
   "app.pageTitle": "Neuer Tab",
   "background": "Hintergrund",
-  "dashboard.errorHint": "Show errors",
+  "dashboard.errorHint": "Fehler anzeigen",
   "dashboard.focusHint": "Bedienelemente umschalten",
   "dashboard.fullscreenHint": "Vollbildmodus umschalten",
   "dashboard.loadingHint": "Neue Inhalte werden geladen",
@@ -17,6 +17,6 @@
   "plugins.weather.humidity": "Luftfeuchtigkeit",
   "plugins.weather.low": "Niedrig",
   "settings": "Einstellungen",
-  "settings.translationCredits": "Marvin M(M123-dev),",
+  "settings.translationCredits": "Übersetzt von Marvin M(M123-dev)",
   "widgets": "Widgets"
 }
