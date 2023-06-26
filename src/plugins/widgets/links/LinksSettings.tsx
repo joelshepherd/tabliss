@@ -47,9 +47,9 @@ const LinksSettings: FC<Props> = ({ data = defaultData, setData }) => {
       <label>
         <input
           type="checkbox"
-          checked={data.linkNumbers}
+          checked={data.linksNumbered}
           onChange={() =>
-            setData({ ...data, linkNumbers: !data.linkNumbers })
+            setData({ ...data, linksNumbered: !data.linksNumbered })
           }
         />
         Links are numbered
