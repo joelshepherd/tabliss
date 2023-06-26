@@ -11,6 +11,7 @@ export type Data = {
   links: Link[];
   visible: boolean;
   linkOpenStyle: boolean;
+  linkNumbers: boolean;
 };
 
 export type Props = API<Data>;
@@ -20,4 +21,5 @@ export const defaultData = {
   links: [{ url: "https://tabliss.io" }],
   visible: true,
   linkOpenStyle: false,
+  linkNumbers: false,
 };

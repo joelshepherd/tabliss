@@ -35,6 +35,7 @@ const Links: FC<Props> = ({ data = defaultData }) => {
             key={index}
             number={index + 1}
             linkOpenStyle={data.linkOpenStyle}
+            linkNumbers={data.linkNumbers}
             {...link}
           />
         ))
