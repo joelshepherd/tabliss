@@ -82,6 +82,7 @@ const config = {
       DEV: JSON.stringify(!isProduction),
       VERSION: JSON.stringify(version),
       UNSPLASH_API_KEY: JSON.stringify(process.env.UNSPLASH_API_KEY),
+      NASA_API_KEY: JSON.stringify(process.env.NASA_API_KEY),
     }),
   ],
   devtool: isWeb || !isProduction ? "source-map" : false,

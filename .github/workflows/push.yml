@@ -32,6 +32,7 @@ jobs:
       - run: npm run build:${{ matrix.build_target }}
         env:
           UNSPLASH_API_KEY: ${{ secrets.UNSPLASH_API_KEY }}
+          NASA_API_KEY: ${{ secrets.NASA_API_KEY }}
       - uses: actions/upload-artifact@v3
         with:
           name: tab-nine-${{ matrix.build_target }}
