@@ -17,6 +17,7 @@ export interface Image {
   media_type: string;
   explanation: string;
   thumbnail_url: string;
+  copyright: string;
 }
 
 type Cache = Image;

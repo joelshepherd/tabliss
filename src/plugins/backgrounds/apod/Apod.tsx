@@ -5,6 +5,7 @@ import Backdrop from "../../../views/shared/Backdrop";
 import { defaultData, Props } from "./types";
 import { getPicture } from "./api";
 import ApodTitle from "./ApodTitle";
+import "./Apod.sass";
 
 const Unsplash: React.FC<Props> = ({
   cache,
@@ -14,6 +15,7 @@ const Unsplash: React.FC<Props> = ({
 }) => {
   const [picture, setPicture] = React.useState(cache);
   const mounted = React.useRef(false);
+
   React.useEffect(() => {
     getPicture(data, loader).then(setCache);
     if (mounted.current || !picture) getPicture(data, loader).then(setPicture);
@@ -21,20 +23,26 @@ const Unsplash: React.FC<Props> = ({
   }, [data.customDate, data.date]);
 
   return (
-    <div className="Unsplash fullscreen">
+    <div className="Apod fullscreen">
       <Backdrop
-        className="image fullscreen"
-        ready={true}
+        className="picture fullscreen"
+        ready={
+          !!(picture?.media_type === "image"
+            ? picture?.hdurl || picture?.url
+            : picture?.thumbnail_url)
+        }
         style={{
           backgroundImage: `url(${
             picture?.media_type === "image"
-              ? picture?.hdurl
+              ? picture?.hdurl || picture?.url
               : picture?.thumbnail_url
           })`,
         }}
       />
 
-      {picture && data.showTitle && <ApodTitle title={picture.title} />}
+      {picture && data.showTitle && (
+        <ApodTitle title={picture.title} copyright={picture.copyright} />
+      )}
     </div>
   );
 };

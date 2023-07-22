@@ -1,13 +1,12 @@
 import React from "react";
-import giphyLogo from "./giphy-logo.png";
+import { Image } from "./types";
 
-type Props = {
-  title?: string;
-};
+type Props = Pick<Image, "title" | "copyright">;
 
-const Credit: React.FC<Props> = ({ title }) => (
-  <div className="credit">
-    <span>{title}</span>
+const Credit: React.FC<Props> = ({ title, copyright }) => (
+  <div className="title">
+    <p>{title}</p>
+    {copyright && <p>&copy; {copyright}</p>}
   </div>
 );
 

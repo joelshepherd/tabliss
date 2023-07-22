@@ -12,8 +12,6 @@ export async function getPicture(
   data: Config,
   loader: API["loader"],
 ): Promise<Image> {
-  console.log("in getPicture");
-
   const url = "https://api.nasa.gov/planetary/apod";
   const params = new URLSearchParams();
 
