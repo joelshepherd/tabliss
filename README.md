@@ -1,6 +1,8 @@
-<h1 align="center">Tab Nine</h1>
+<div align="center"><img style="max-width: 20em" src="src/views/shared/logo.svg"/></div>
 
-<p align="center">A beautiful, customisable New Tab page for Firefox and Chrome.</p>
+<h1 align="center">Welcome to Tab Nine</h1>
+
+<p align="center">A modern New Tab page for Firefox and Chrome.</p>
 
 ![Tab Nine Screenshot](screenshot.png)
 
