@@ -45,7 +45,7 @@
     "html-webpack-plugin": "^5.5.0",
     "jest": "^27.4.7",
     "mini-css-extract-plugin": "^2.4.6",
-    "node-sass": "^9.0.0",
+    "node-sass": "^7.0.0",
     "prettier": "2.5.1",
     "raw-loader": "^4.0.2",
     "react-intl-translations-manager": "^5.0.3",
