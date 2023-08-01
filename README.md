@@ -1,4 +1,4 @@
-<div align="center"><img style="max-width: 20em" src="src/views/shared/logo.svg"/></div>
+<div align="center"><img style="max-width: 10em" src="src/views/shared/logo.svg"/></div>
 
 <h1 align="center">Welcome to Tab Nine</h1>
 
