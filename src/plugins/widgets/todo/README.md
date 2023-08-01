@@ -1,3 +1,3 @@
 # plugin/todo
 
-A simple todo plugin for Tabliss.
+A simple todo plugin for Tab Nine.

@@ -17,7 +17,7 @@ const Settings: React.FC = () => {
   const handleReset = () => {
     if (
       confirm(
-        "Are you sure you want to delete all of your Tabliss settings? This cannot be undone.",
+        "Are you sure you want to delete all of your Tab Nine settings? This cannot be undone.",
       )
     )
       resetStore();
@@ -33,7 +33,7 @@ const Settings: React.FC = () => {
     document.body.appendChild(a);
     a.style.display = "none";
     a.href = url;
-    a.download = "tabliss.json";
+    a.download = "tab-nine.json";
     a.click();
     window.URL.revokeObjectURL(url);
     document.body.removeChild(a);
@@ -93,7 +93,7 @@ const Settings: React.FC = () => {
         <Persist />
 
         <div style={{ textAlign: "center" }} className="Widget">
-          <h4>Support Tabliss</h4>
+          <h4>Support Tab Nine</h4>
           <p>
             <a
               href="https://www.paypal.com/donate/?hosted_button_id=FK7VRWS9A2EW4"
@@ -106,20 +106,12 @@ const Settings: React.FC = () => {
             </a>
           </p>
           <p>
-            <a href="https://tabliss.io/" target="_blank">
+            <a href="https://tab-nine.xsfs.xyz/" target="_blank">
               <Icon name="globe" /> Website
             </a>
             &nbsp;&nbsp;
             <a
-              href="https://twitter.com/tabliss"
-              rel="noopener noreferrer"
-              target="_blank"
-            >
-              <Icon name="twitter" /> Twitter
-            </a>
-            &nbsp;&nbsp;
-            <a
-              href="https://github.com/joelshepherd/tabliss"
+              href="https://github.com/the-wright-jamie/tab-nine"
               rel="noopener noreferrer"
               target="_blank"
             >

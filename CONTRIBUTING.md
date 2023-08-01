@@ -1,6 +1,6 @@
 # Contributing
 
-I would love you contribute to Tabliss!
+I would love you contribute to Tab Nine!
 
 I accept issues and pull requests for both bugs and feature requests.
 If your feature is larger (like a new plugin), I suggest creating a

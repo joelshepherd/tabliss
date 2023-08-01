@@ -5,34 +5,34 @@ describe("links/reducer()", () => {
   it("should add new links", () => {
     expect(reducer([], addLink())).toEqual([{ url: "https://" }]);
     expect(
-      reducer([{ url: "https://tabliss.io/" }], { type: "ADD_LINK" }),
-    ).toEqual([{ url: "https://tabliss.io/" }, { url: "https://" }]);
+      reducer([{ url: "https://tab-nine.xsfs.xyz/" }], { type: "ADD_LINK" }),
+    ).toEqual([{ url: "https://tab-nine.xsfs.xyz/" }, { url: "https://" }]);
   });
 
   it("should remove links", () => {
     expect(
       reducer(
         [
-          { url: "https://tabliss.io/" },
-          { url: "https://tabliss.io/about.html" },
+          { url: "https://tab-nine.xsfs.xyz/" },
+          { url: "https://tab-nine.xsfs.xyz/about.html" },
         ],
         removeLink(0),
       ),
-    ).toEqual([{ url: "https://tabliss.io/about.html" }]);
+    ).toEqual([{ url: "https://tab-nine.xsfs.xyz/about.html" }]);
   });
 
   it("should update links", () => {
     expect(
       reducer(
         [
-          { url: "https://tabliss.io/" },
-          { url: "https://tabliss.io/about.html" },
+          { url: "https://tab-nine.xsfs.xyz/" },
+          { url: "https://tab-nine.xsfs.xyz/about.html" },
         ],
-        updateLink(0, { name: "Tabliss", url: "https://tabliss.io/" }),
+        updateLink(0, { name: "tab-nine", url: "https://tab-nine.xsfs.xyz/" }),
       ),
     ).toEqual([
-      { name: "Tabliss", url: "https://tabliss.io/" },
-      { url: "https://tabliss.io/about.html" },
+      { name: "tab-nine", url: "https://tab-nine.xsfs.xyz/" },
+      { url: "https://tab-nine.xsfs.xyz/about.html" },
     ]);
   });
 
@@ -40,31 +40,31 @@ describe("links/reducer()", () => {
     expect(
       reducer(
         [
-          { url: "https://tabliss.io/" },
-          { url: "https://tabliss.io/about.html" },
-          { url: "https://tabliss.io/support.html" },
+          { url: "https://tab-nine.xsfs.xyz/" },
+          { url: "https://tab-nine.xsfs.xyz/about.html" },
+          { url: "https://tab-nine.xsfs.xyz/support.html" },
         ],
         reorderLink(1, 0),
       ),
     ).toEqual([
-      { url: "https://tabliss.io/about.html" },
-      { url: "https://tabliss.io/" },
-      { url: "https://tabliss.io/support.html" },
+      { url: "https://tab-nine.xsfs.xyz/about.html" },
+      { url: "https://tab-nine.xsfs.xyz/" },
+      { url: "https://tab-nine.xsfs.xyz/support.html" },
     ]);
 
     expect(
       reducer(
         [
-          { url: "https://tabliss.io/" },
-          { url: "https://tabliss.io/about.html" },
-          { url: "https://tabliss.io/support.html" },
+          { url: "https://tab-nine.xsfs.xyz/" },
+          { url: "https://tab-nine.xsfs.xyz/about.html" },
+          { url: "https://tab-nine.xsfs.xyz/support.html" },
         ],
         reorderLink(1, 2),
       ),
     ).toEqual([
-      { url: "https://tabliss.io/" },
-      { url: "https://tabliss.io/support.html" },
-      { url: "https://tabliss.io/about.html" },
+      { url: "https://tab-nine.xsfs.xyz/" },
+      { url: "https://tab-nine.xsfs.xyz/support.html" },
+      { url: "https://tab-nine.xsfs.xyz/about.html" },
     ]);
   });
 

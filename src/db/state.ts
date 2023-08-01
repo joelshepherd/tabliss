@@ -96,10 +96,10 @@ export const cache = DB.init<Record<string, unknown | undefined>>();
 // Persist data
 export const dbStorage =
   BUILD_TARGET === "web"
-    ? Storage.indexeddb(db, "tabliss/config")
-    : Storage.extension(db, "tabliss/config", "sync");
+    ? Storage.indexeddb(db, "tab-nine/config")
+    : Storage.extension(db, "tab-nine/config", "sync");
 
 export const cacheStorage =
   BUILD_TARGET === "firefox"
-    ? Storage.extension(cache, "tabliss/cache", "local")
-    : Storage.indexeddb(cache, "tabliss/cache");
+    ? Storage.extension(cache, "tab-nine/cache", "local")
+    : Storage.indexeddb(cache, "tab-nine/cache");

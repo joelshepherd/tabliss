@@ -1,5 +1,5 @@
 /**
- * Literature Clock Widget for Tabliss
+ * Literature Clock Widget for Tab 
  * Forked by Ngoc L.B. <contact@ngoclb.com>
  * ===
  * Clock using time quotes from the literature, based on work and idea by Jaap Meijers (E-reader clock).

@@ -35,5 +35,5 @@ jobs:
           UNSPLASH_API_KEY: ${{ secrets.UNSPLASH_API_KEY }}
       - uses: actions/upload-artifact@v3
         with:
-          name: tabliss-${{ matrix.build_target }}
+          name: tab-nine-${{ matrix.build_target }}
           path: dist/${{ matrix.build_target }}

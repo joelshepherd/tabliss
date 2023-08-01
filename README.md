@@ -1,10 +1,10 @@
-<h1 align="center">Tabliss</h1>
+<h1 align="center">Tab Nine</h1>
 
 <p align="center">A beautiful, customisable New Tab page for Firefox and Chrome.</p>
 
-![Tabliss Screenshot](screenshot.png)
+![Tab Nine Screenshot](screenshot.png)
 
-<p align="center"><a href="https://tabliss.io">https://tabliss.io</a></p>
+<p align="center"><a href="https://xsfs.xyz/tab-nine">Home Page</a></p>
 
 ## Usage
 

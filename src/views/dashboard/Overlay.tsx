@@ -12,7 +12,7 @@ import "./Overlay.sass";
 const messages = defineMessages({
   settingsHint: {
     id: "dashboard.settingsHint",
-    defaultMessage: "Customise Tabliss",
+    defaultMessage: "Customise Tab Nine",
     description: "Hover hint text for the settings icon",
   },
   focusHint: {

@@ -5,7 +5,7 @@
   "dashboard.focusHint": "Afișează widgeturi",
   "dashboard.fullscreenHint": "Afișează în fullscreen",
   "dashboard.loadingHint": "Se descarcă imagini noi",
-  "dashboard.settingsHint": "Personalizează Tabliss",
+  "dashboard.settingsHint": "Personalizează Tab Nine",
   "plugin.greeting.withName": "{hour, select, 0 {Somn ușor, {name}} 1 {Somn ușor, {name}} 2 {Somn ușor, {name}} 3 {Somn ușor, {name}} 4 {Deșteptarea, {name}} 5 {Deșteptarea, {name}} 6 {Deșteptarea, {name}} 7 {Bună dimineața, {name}} 8 {Bună dimineața, {name}} 9 {Bună dimineața, {name}} 10 {Bună, {name}} 11 {Bună, {name}} 12 {Bună, {name}} 13 {Bună, {name}} 14 {Bună ziua, {name}} 15 {Bună ziua, {name}} 16 {Bună ziua, {name}} 17 {Bună ziua, {name}} 18 {Bună seara, {name}} 19 {Bună seara, {name}} 20 {Bună seara, {name}} 21 {Bună seara, {name}} 22 {Noapte bună, {name}} 23 {Noapte bună, {name}} other {Unknown}}",
   "plugin.greeting.withoutName": "{hour, select, 0 {Somn ușor} 1 {Somn ușor} 2 {Somn ușor} 3 {Somn ușor} 4 {Deșteptarea} 5 {Deșteptarea} 6 {Deșteptarea} 7 {Bună dimineața} 8 {Bună dimineața} 9 {Bună dimineața} 10 {Bună} 11 {Bună} 12 {Bună} 13 {Bună} 14 {Bună ziua} 15 {Bună ziua} 16 {Bună ziua} 17 {Bună ziua} 18 {Bună seara} 19 {Bună seara} 20 {Bună seara} 21 {Bună seara} 22 {Noapte bună} 23 {Noapte bună} other {Unknown}}",
   "plugins.links.shortcutHint": "Apasă {number} sau click pentru a vizita",

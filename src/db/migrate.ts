@@ -19,7 +19,7 @@ const migrateExtension = async (): Promise<void> => {
 
 /** Migrate web data */
 const migrateWeb = async (): Promise<void> => {
-  const key = "tabliss/data/persist:data";
+  const key = "tab-nine/data/persist:data";
   const data = localStorage.getItem(key);
   if (data) {
     // Migrate if new database is empty
@@ -39,7 +39,7 @@ export const migrate = BUILD_TARGET === "web" ? migrateWeb : migrateExtension;
 
 /** Migrate cache data */
 const migrateCache = (): void => {
-  const open = indexedDB.open("tabliss", 3);
+  const open = indexedDB.open("tab-nine", 3);
   open.onerror = console.error;
   open.onsuccess = () => {
     const read = open.result
@@ -56,7 +56,7 @@ const migrateCache = (): void => {
       // For unexplained reasons this needs to be in a timeout
       setTimeout(() => {
         open.result.close();
-        indexedDB.deleteDatabase("tabliss");
+        indexedDB.deleteDatabase("tab-nine");
       });
     };
   };
