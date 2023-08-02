@@ -95,6 +95,19 @@ const Background: React.FC = () => {
                     <option value="1" label="Lighten" />
                   </datalist>
                 </label>
+
+                <label>
+                  <input
+                    type="checkbox"
+                    checked={data.display.nightDim}
+                    onChange={(e) => {
+                      setBackgroundDisplay({
+                        nightDim: e.target.checked,
+                      });
+                    }}
+                  />{" "}
+                  Automatically dim at night
+                </label>
               </>
             </ToggleSection>
           )}
