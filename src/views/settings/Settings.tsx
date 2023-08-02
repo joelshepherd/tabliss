@@ -90,19 +90,17 @@ const Settings: React.FC = () => {
           <a onClick={handleReset}>reset</a> your settings
         </p>
 
-        <Persist />
-
         <div style={{ textAlign: "center" }} className="Widget">
           <h4>Support Tab Nine</h4>
           <p>
             <a
-              href="https://www.paypal.com/donate/?hosted_button_id=FK7VRWS9A2EW4"
+              href="https://ko-fi.com/thewrightjamie"
               target="_blank"
               rel="noopener noreferrer"
               className="button button--primary"
               title="I do love coffee"
             >
-              <Icon name="coffee" /> Donate a coffee 😍
+              <Icon name="coffee" /> Tip me a coffee
             </a>
           </p>
           <p>

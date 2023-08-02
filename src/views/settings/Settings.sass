@@ -1,9 +1,11 @@
+@import "../../variables"
+
 .Settings
     h1
         margin: 2rem 0
 
         svg
-            fill: #3498db
+            fill: $accent-color
             width: 100%
 
     h2, h3, h4
@@ -64,6 +66,7 @@
 
     input[type=radio],
     input[type=checkbox]
+        accent-color: $accent-color
         margin-right: 0.5rem
 
     input[type=color]
@@ -85,18 +88,18 @@
             cursor: default
 
         &--primary
-            background-color: #3498db
+            background-color: $accent-color
             &:hover
-                background: darken(#3498db, 10%)
+                background: darken($accent-color, 10%)
             &:active
-                background: darken(#3498db, 20%)
+                background: darken($accent-color, 20%)
 
         &--secondary
-            background: darken(#bdc3c7, 20%)
+            background: darken($accent-color, 20%)
             &:hover
-                background: darken(#bdc3c7, 30%)
+                background: darken($accent-color, 30%)
             &:active
-                background: darken(#bdc3c7, 40%)
+                background: darken($accent-color, 40%)
 
     hr
         border: 1px solid #ecf0f1
@@ -119,9 +122,9 @@
         background-color: #bdc3c7 !important
 
     &.button--primary
-        background-color: #3498db !important
+        background-color: $accent-color !important
         color: white
         padding: 0.5em
 
         &:hover
-            background-color: darken(#3498db, 20%) !important
+            background-color: darken($accent-color, 20%) !important
