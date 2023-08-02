@@ -2,11 +2,20 @@
 
 <h1 align="center">Welcome to Tab Nine</h1>
 
-<p align="center">A modern New Tab page for Firefox and Chrome.</p>
+<p align="center">A modern and highly customisable New Tab page for Firefox and Chrome.</p>
 
-![Tab Nine Screenshot](screenshot.png)
+<p align="center"><a href="https://tab-nine.xsfs.xyz/">Home Page</a></p>
 
-<p align="center"><a href="https://xsfs.xyz/tab-nine">Home Page</a></p>
+## Index
+
+1. [What is Tab Nine?](#what-is-tab-nine)
+2. [Why 'Tab Nine'?](#why-tab-nine)
+3. [Usage](#usage)
+4. [Translations](#translations)
+
+## What is Tab Nine?
+
+## Why 'Tab Nine'?
 
 ## Usage
 
