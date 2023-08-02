@@ -15,7 +15,15 @@
 
 ## What is Tab Nine?
 
+Tab Nine is a fork and spiritual successor to [Tabliss](https://tabliss.io/). The developer has not given the project any attention over the last year (as of writing this, the last update on browser plugin stores was April 2022), issues have been pilling up, dependencies are out of date, and generally Tabliss is falling victim to bit rot. I really like Tabliss, it was my favourite browser, but a year without even maintenance updates is a problem
+
+Tab Nine aims to be a modern, highly customisable New Tab extension. You should be able to change whatever you want, and anything you can't change in settings you can change with custom CSS.
+
 ## Why 'Tab Nine'?
+
+Much like the project as a whole, the name 'Tab Nine' keeps with the sprit of the original project's name.
+
+Tabliss is a combination of two words: 'tab' and 'bliss'. In a similar way, Tab Nine is a combination of 'Tab' and 'cloud nine'. What is 'cloud nine'? Well, it's actually another way of saying 'bliss' - rather the saying "I'm on cloud nine" or simply "on cloud nine" is another way of saying 'blissful'. [According to The Times](https://www.thetimes.co.uk/article/weather-eye-7ftq5tvd2) <sub><sup>(Pay walled, but relevant info is visible)</sup></sub> the saying comes from an old classification system for clouds - the cumulonimbus was classified as Cloud 9.
 
 ## Usage
 
