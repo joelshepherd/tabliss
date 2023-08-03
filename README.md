@@ -60,3 +60,14 @@ The settings dashboard has a dark mode!
 You can choose an accent colour to change the colour of the buttons!
 
 ## Attributions and acknowledgments
+A huge thank you for all the hard work Joel Shepard did on Tabliss, the project which this is forked from. He created something that I really enjoyed, and I want to continue the hard work he has put into it.
+
+Additionally, thank you to everyone who has worked on the upstream and this project:
+
+<a href="https://github.com/the-wright-jamie/tab-nine/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=the-wright-jamie/tab-nine&columns=16&max=128" />
+</a>
+
+Also, thank you to all the dependencies. Without the hard work that is freely given so that projects like this can exist, the internet would be a much different place. It is amazing to me that everyone can benefit from the talent that these engineers have and I will be forever grateful.
+
+Finally, thank you - yes you, the reader. And if you are a user, thank you! Your time and attention makes all this effort worthwhile.
