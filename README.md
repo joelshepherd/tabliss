@@ -10,8 +10,11 @@
 
 1. [What is Tab Nine?](#what-is-tab-nine)
 2. [Why 'Tab Nine'?](#why-tab-nine)
-3. [Usage](#usage)
-4. [Translations](#translations)
+3. [Download](#download)
+4. [Usage](#usage)
+5. [Translations](#translations)
+6. [Improvements over Tabliss](#improvements-over-tabliss)
+7. [Attributions and acknowledgments](#attributions-and-acknowledgments)
 
 ## What is Tab Nine?
 
@@ -24,6 +27,10 @@ Tab Nine aims to be a modern, highly customisable New Tab extension. You should 
 Much like the project as a whole, the name 'Tab Nine' keeps with the sprit of the original project's name.
 
 Tabliss is a combination of two words: 'tab' and 'bliss'. In a similar way, Tab Nine is a combination of 'Tab' and 'cloud nine'. What is 'cloud nine'? Well, it's actually another way of saying 'bliss' - rather the saying "I'm on cloud nine" or simply "on cloud nine" is another way of saying 'blissful'. [According to The Times](https://www.thetimes.co.uk/article/weather-eye-7ftq5tvd2) <sub><sup>(Pay walled, but relevant info is visible)</sup></sub> the saying comes from an old classification system for clouds - the cumulonimbus was classified as Cloud 9.
+
+## Download
+
+Store plugin pages coming soon
 
 ## Usage
 
@@ -39,3 +46,15 @@ and enter them into your `.env` file. Get started by copying the example provide
 ## Translations
 
 Checkout the guide to [adding translations](TRANSLATING.md).
+
+## Improvements over Tabliss
+
+### Dark mode
+
+The settings dashboard has a dark mode!
+
+### Choose an accent color
+
+You can choose an accent colour to change the colour of the buttons!
+
+## Attributions and acknowledgments
