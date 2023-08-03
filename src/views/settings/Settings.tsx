@@ -90,6 +90,25 @@ const Settings: React.FC = () => {
           <a onClick={handleReset}>reset</a> your settings
         </p>
 
+        <div style={{ textAlign: "center" }}>
+          <p>
+            <a
+              href="https://github.com/the-wright-jamie/tab-nine/wiki"
+              target="_blank"
+            >
+              <Icon name="book" /> Wiki
+            </a>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <a
+              href="https://github.com/the-wright-jamie/tab-nine/wiki/tips"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              <Icon name="thumbs-up" /> Tips
+            </a>
+          </p>
+        </div>
+
         <div style={{ textAlign: "center" }} className="Widget">
           <h4>Support Tab Nine</h4>
           <p>
