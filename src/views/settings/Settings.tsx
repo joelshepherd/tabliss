@@ -56,7 +56,7 @@ const Settings: React.FC = () => {
             } catch (error) {
               alert(
                 `Invalid import file: ${
-                  error instanceof Error ? error.message : "Uknown error"
+                  error instanceof Error ? error.message : "Unknown error"
                 }`,
               );
             }

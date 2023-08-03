@@ -17,6 +17,8 @@ export interface State {
   locale: string;
   /** Time zone selected, if any */
   timeZone: string | null;
+  /** Accent Colour */
+  accent: string;
 }
 
 export interface BackgroundState {
@@ -85,6 +87,7 @@ const initData: State = {
   focus: false,
   locale: defaultLocale,
   timeZone: null,
+  accent: "#ffa200",
 };
 
 // Database storage
