@@ -30,7 +30,9 @@ Tabliss is a combination of two words: 'tab' and 'bliss'. In a similar way, Tab 
 
 ## Download
 
-Store plugin pages coming soon
+<a href="https://chrome.google.com/webstore/detail/nncfaanaclanikcbpijbjmlonplbmcjm/"><img height="64" src="https://storage.googleapis.com/web-dev-uploads/image/WlD8wC6g8khYWPJUsQceQkhXSlv1/HRs9MPufa1J1h5glNhut.png"></a> <a href="https://addons.mozilla.org/en-GB/firefox/addon/tab-nine/"><img height="64" src="https://blog.mozilla.org/addons/files/2020/04/get-the-addon-fx-apr-2020.svg"></a>
+
+(Currently pending review)
 
 ## Usage
 
