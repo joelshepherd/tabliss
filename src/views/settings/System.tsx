@@ -202,6 +202,13 @@ const System: React.FC = () => {
           value={accentColor}
           onChange={(event) => setAccentColor(event.target.value)}
         ></input>
+        <style>
+          {`
+          :root {
+            --accent-color: ${accentColor};
+          }
+        `}
+        </style>
       </label>
     </div>
   );

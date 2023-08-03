@@ -5,7 +5,7 @@
         margin: 2rem 0
 
         svg
-            fill: $accent-color
+            fill: var(--accent-color)
             width: 100%
 
     @media (prefers-color-scheme: light)
@@ -111,7 +111,7 @@
 
     input[type=radio],
     input[type=checkbox]
-        accent-color: $accent-color
+        accent-color: var(--accent-color)
         margin-right: 0.5rem
 
     input[type=color]
@@ -141,18 +141,18 @@
             cursor: default
 
         &--primary
-            background-color: $accent-color
+            background-color: var(--accent-color)
             &:hover
-                background: darken($accent-color, 10%)
+                background: darken(#ffa200, 10%)
             &:active
-                background: darken($accent-color, 20%)
+                background: darken(#ffa200, 20%)
 
         &--secondary
-            background: darken($accent-color, 20%)
+            background: darken(#ffa200, 20%)
             &:hover
-                background: darken($accent-color, 30%)
+                background: darken(#ffa200, 30%)
             &:active
-                background: darken($accent-color, 40%)
+                background: darken(#ffa200, 40%)
 
     @media (prefers-color-scheme: light)
         hr
@@ -190,12 +190,12 @@
     transition: background-color 0.25s ease-out
 
     &.button--primary
-        background-color: $accent-color !important
+        background-color: var(--accent-color) !important
         color: white
         padding: 0.5em
 
         &:hover
-            background-color: darken($accent-color, 20%) !important
+            background-color: darken(#ffa200, 20%) !important
 
 // Define the animation keyframes
 @keyframes gradient
