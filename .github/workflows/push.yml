@@ -31,7 +31,6 @@ jobs:
       - run: npm ci
       - run: npm run build:${{ matrix.build_target }}
         env:
-          GIPHY_API_KEY: ${{ secrets.GIPHY_API_KEY }}
           UNSPLASH_API_KEY: ${{ secrets.UNSPLASH_API_KEY }}
       - uses: actions/upload-artifact@v3
         with:
