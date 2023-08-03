@@ -2,11 +2,11 @@
   "manifest_version": 2,
   "name": "Tab Nine",
   "short_name": "Tab Nine",
-  "version": "2.6.0",
-  "description": "A beautiful New Tab page with many customisable backgrounds and widgets that does not require any permissions.",
+  "version": "1.0.0",
+  "description": "A modern, highly customisable New Tab page with many widgets that does not require any permissions.",
   "applications": {
     "gecko": {
-      "id": "extension@tabliss.io",
+      "id": "extension@tab-nine.xsfs.xyz",
       "strict_min_version": "54.0"
     }
   },
