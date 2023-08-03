@@ -196,15 +196,8 @@ const System: React.FC = () => {
         }}
       >
         Accent
-        <p>Tool here</p>
+        <input type="color"></input>
       </label>
-      <sup>
-        <p>
-          <a href="https://www.canva.com/colors/color-wheel/">
-            Use this tool to select a color
-          </a>
-        </p>
-      </sup>
     </div>
   );
 };

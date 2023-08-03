@@ -196,3 +196,27 @@
 
         &:hover
             background-color: darken($accent-color, 20%) !important
+
+// Define the animation keyframes
+@keyframes gradient
+    0% 
+        background-position: 0% 50%;
+    50% 
+        background-position: 100% 50%;
+    100% 
+        background-position: 0% 50%;
+
+.donate
+    border: 0
+    border-radius: 2em
+    color: white
+    cursor: pointer
+    display: inline-block
+    padding: 0.5em 1em
+    text-decoration: none
+    background-size: 400% 400% !important
+    background-position: 100% 100%
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab)
+    animation: gradient 30s ease-in-out infinite
+    text-align: center
+    font-weight: 500

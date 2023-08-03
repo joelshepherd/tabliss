@@ -97,7 +97,7 @@ const Settings: React.FC = () => {
               href="https://ko-fi.com/thewrightjamie"
               target="_blank"
               rel="noopener noreferrer"
-              className="button button--primary donate"
+              className="donate"
               title="I do love coffee"
             >
               <Icon name="coffee" /> Tip me a coffee
