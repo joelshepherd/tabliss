@@ -4,8 +4,6 @@
 
 <p align="center">A modern and highly customisable New Tab page for Firefox and Chrome.</p>
 
-<p align="center"><a href="https://tab-nine.xsfs.xyz/">Home Page</a></p>
-
 ## Index
 
 1. [What is Tab Nine?](#what-is-tab-nine)
