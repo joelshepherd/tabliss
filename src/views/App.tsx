@@ -9,6 +9,8 @@ import { Dashboard } from "./dashboard";
 import { Settings } from "./settings";
 import Errors from "./shared/Errors";
 import StoreError from "./shared/StoreError";
+import { db } from "../db/state";
+import { useKey } from "../lib/db/react";
 
 const messages = defineMessages({
   pageTitle: {
@@ -92,9 +94,17 @@ const Root: React.FC = () => {
   }, []);
 
   const { errors, settings, toggleErrors } = React.useContext(UiContext);
+  const [accentColor, setAccentColor] = useKey(db, "accent");
 
   return (
     <>
+      <style>
+        {`
+          :root {
+            --accent-color: ${accentColor};
+          }
+        `}
+      </style>
       {ready ? <Dashboard /> : null}
       {ready && settings ? <Settings /> : null}
       {errors ? <Errors onClose={toggleErrors} /> : null}
