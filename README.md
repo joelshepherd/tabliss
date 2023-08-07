@@ -17,9 +17,9 @@
 
 ## What is Tab Nine?
 
-Tab Nine is a fork and spiritual successor to [Tabliss](https://tabliss.io/). The developer has not given the project any attention over the last year (as of writing this, the last update on browser plugin stores was April 2022), issues have been pilling up, dependencies are out of date, and generally Tabliss is falling victim to bit rot. I really like Tabliss, it was my favourite browser, but a year without even maintenance updates is a problem
+Tab Nine is a fork and spiritual successor to [Tabliss](https://github.com/joelshepherd/tabliss). The developer has not given the project any attention over the last year (as of writing this, the last update on browser plugin stores was April 2022), issues have been pilling up, dependencies are out of date, and generally Tabliss is falling victim to bit rot. I really like Tabliss, it was my favourite browser, but a year without even maintenance updates is a problem
 
-Tab Nine aims to be a modern, highly customisable New Tab extension. You should be able to change whatever you want, and anything you can't change in settings you can change with custom CSS.
+Tab Nine aims to be a modern, highly customisable New Tab extension. You can change whatever you want, and anything you can't change in settings you are able to change with custom CSS.
 
 ## Why 'Tab Nine'?
 
