@@ -100,11 +100,11 @@ const Settings: React.FC = () => {
             </a>
             &nbsp;&nbsp;&nbsp;&nbsp;
             <a
-              href="https://github.com/the-wright-jamie/tab-nine/wiki/tips"
+              href="https://github.com/the-wright-jamie/tab-nine/wiki/Tips-&-Tricks"
               rel="noopener noreferrer"
               target="_blank"
             >
-              <Icon name="thumbs-up" /> Tips
+              <Icon name="thumbs-up" /> Tips & Tricks
             </a>
           </p>
         </div>
