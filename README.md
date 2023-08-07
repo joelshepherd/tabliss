@@ -1,8 +1,9 @@
-<div align="center"><img height="175" src="src/views/shared/logo.svg"/></div>
+<div align="center"><img height="175" src="src/views/shared/logo.svg"/>&emsp;&emsp;&emsp;<img height="175" src="https://raw.githubusercontent.com/the-wright-jamie/the-wright-jamie/main/memes/Help-Wanted-PNG-Pic.png"/></div>
 
 <h1 align="center">Welcome to Tab Nine</h1>
 
 <p align="center">A modern and highly customisable New Tab page for Firefox and Chrome.</p>
+<p align="center">Contributions extremely welcome</p>
 
 ## Index
 
