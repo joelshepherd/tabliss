@@ -30,6 +30,7 @@ text.ContributionCalendar-label {
 .GitHub {
   width: 100%;
   display: flex;
+  justify-content: center;
 }
 
 .sr-only {
