@@ -1,0 +1,34 @@
+.Modal-container
+  background: rgba(0, 0, 0, 0.25)
+  position: fixed
+  top: 0
+  right: 0
+  bottom: 0
+  left: 0
+
+  display: flex
+  align-items: end
+  justify-content: center
+
+@media (prefers-color-scheme: light)
+  .Modal 
+    background: white
+
+@media (prefers-color-scheme: dark)
+  .Modal 
+    background: black
+  .Modal h2
+    color: white
+  .Modal p
+    color: #bbbbbb
+
+.Modal
+  border-radius: 1rem 1rem 0 0
+  padding: 2rem
+  min-width: 300px
+  max-width: 500px
+
+
+.Modal-footer
+  text-align: center
+
