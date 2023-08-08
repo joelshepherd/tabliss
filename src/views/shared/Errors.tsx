@@ -13,12 +13,12 @@ const Errors: React.FC<Props> = ({ onClose }) => {
       <div className="Settings">
         <a
           className="button button--primary"
-          href="https://tab-nine.xsfs.xyz/support.html"
+          href="https://github.com/the-wright-jamie/tab-nine/issues"
           target="_blank"
           rel="noopener noreferrer"
           style={{ float: "right", fontSize: "1.1em" }}
         >
-          Visit support
+          Raise an issue on GitHub
         </a>
         <h2 style={{ margin: 0 }}>Errors</h2>
         {errors.map((error, index) => (
