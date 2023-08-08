@@ -26,3 +26,48 @@ text.ContributionCalendar-label {
 .Dashboard .GitHub svg {
   filter: none;
 }
+
+.GitHub {
+  width: 100%;
+  display: flex;
+}
+
+.sr-only {
+  display: none;
+}
+
+td:first-child {
+  display: none;
+}
+
+div.js-calendar-graph div:last-child {
+  display: none;
+}
+
+table.ContributionCalendar-grid thead {
+  display: none;
+}
+
+td.ContributionCalendar-day {
+  border-radius: 2px;
+}
+
+td.ContributionCalendar-day[data-level="0"] {
+  background-color: var(--color-calendar-graph-day-bg);
+}
+
+td.ContributionCalendar-day[data-level="1"] {
+  background-color: var(--color-calendar-graph-day-L1-bg);
+}
+
+td.ContributionCalendar-day[data-level="2"] {
+  background-color: var(--color-calendar-graph-day-L2-bg);
+}
+
+td.ContributionCalendar-day[data-level="3"] {
+  background-color: var(--color-calendar-graph-day-L3-bg);
+}
+
+td.ContributionCalendar-day[data-level="4"] {
+  background-color: var(--color-calendar-graph-day-L4-bg);
+}
