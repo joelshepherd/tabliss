@@ -14,6 +14,10 @@ const isWeb = buildTarget === "web";
 const version = require("./package.json").version;
 
 const config = {
+  performance: {
+    maxEntrypointSize: 1024000,
+    maxAssetSize: 1024000,
+  },
   entry: {
     polyfills: "./src/polyfills.ts",
     main: ["normalize.css", "./src/styles.sass", "./src/main.tsx"],
@@ -82,7 +86,7 @@ const config = {
   ],
   devtool: isWeb || !isProduction ? "source-map" : false,
   stats: {
-    warnings: false,
+    warnings: true,
   },
 };
 
