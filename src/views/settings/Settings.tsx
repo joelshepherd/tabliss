@@ -109,24 +109,10 @@ const Settings: React.FC = () => {
           </p>
         </div>
 
-        <div style={{ textAlign: "center" }} className="Widget">
-          <h4>Support Tab Nine</h4>
+        <div className="Widget">
+          <h4 style={{ textAlign: "center" }}>Support Tab Nine</h4>
           <p>
-            <a
-              href="https://ko-fi.com/thewrightjamie"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="donate"
-              title="I do love coffee"
-            >
-              <Icon name="coffee" /> Tip me a coffee
-            </a>
-          </p>
-          <p>
-            <a href="https://tab-nine.xsfs.xyz/" target="_blank">
-              <Icon name="globe" /> Website
-            </a>
-            &nbsp;&nbsp;
+            Would you like to help with development? Visit the&nbsp;
             <a
               href="https://github.com/the-wright-jamie/tab-nine"
               rel="noopener noreferrer"
@@ -134,6 +120,29 @@ const Settings: React.FC = () => {
             >
               <Icon name="github" /> GitHub
             </a>
+            &nbsp;page and open a pull request!
+          </p>
+          <p>
+            Alternatively, if you'd like to help support this and{" "}
+            <a href="https://github.com/the-wright-jamie?tab=repositories">
+              my other open-source projects
+            </a>{" "}
+            you can
+          </p>
+          <p style={{ textAlign: "center" }}>
+            <a
+              href="https://ko-fi.com/thewrightjamie"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="donate"
+              title="I do love coffee"
+            >
+              <Icon name="coffee" />
+              &nbsp;&nbsp;Tip me a coffee
+            </a>
+          </p>
+          <p style={{ textAlign: "center" }}>
+            <b>Any support is greatly appreciated</b>
           </p>
         </div>
 
