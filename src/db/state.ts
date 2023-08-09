@@ -87,7 +87,7 @@ const initData: State = {
   focus: false,
   locale: defaultLocale,
   timeZone: null,
-  accent: "#ffa200",
+  accent: "#ffd755",
 };
 
 // Database storage
