@@ -196,7 +196,7 @@ const System: React.FC = () => {
           margin: 0,
         }}
       >
-        Accent
+        Accent Color
         <input
           type="color"
           value={accentColor}
