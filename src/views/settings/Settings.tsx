@@ -78,18 +78,6 @@ const Settings: React.FC = () => {
       <div className="plane">
         <Logo />
 
-        <Background />
-
-        <Widgets />
-
-        <System />
-
-        <p style={{ marginBottom: "2rem" }}>
-          <a onClick={handleImport}>Import</a>,{" "}
-          <a onClick={handleExport}>export</a> or{" "}
-          <a onClick={handleReset}>reset</a> your settings
-        </p>
-
         <div style={{ textAlign: "center" }}>
           <p>
             <a
@@ -108,6 +96,18 @@ const Settings: React.FC = () => {
             </a>
           </p>
         </div>
+
+        <Background />
+
+        <Widgets />
+
+        <System />
+
+        <p style={{ marginBottom: "2rem" }}>
+          <a onClick={handleImport}>Import</a>,{" "}
+          <a onClick={handleExport}>export</a> or{" "}
+          <a onClick={handleReset}>reset</a> your settings
+        </p>
 
         <div className="Widget">
           <h4 style={{ textAlign: "center" }}>Support Tab Nine</h4>
