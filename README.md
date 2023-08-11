@@ -42,6 +42,8 @@ Install dependencies with `npm install` before running the following scripts.
 To develop with external services you will additionally need to signup for your own API keys
 and enter them into your `.env` file. Get started by copying the example provided `cp .env.example .env`.
 
+Please keep in mind that the development environment is designed with Linux in mind. Instructions may not run on Windows. You also should have whatever your distribution equivalent of `dnf -y groupinstall "Development Tools"` is installed, as some `node_modules` need to be compiled before use.
+
 ## Translations
 
 Checkout the guide to [adding translations](TRANSLATING.md).
