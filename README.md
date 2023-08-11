@@ -13,7 +13,7 @@
 4. [Usage](#usage)
 5. [Translations](#translations)
 6. [Improvements over Tabliss](#improvements-over-tabliss)
-7. [Attributions and acknowledgments](#attributions-and-acknowledgments).
+7. [Attributions and acknowledgments](#attributions-and-acknowledgments)
 
 ## What is Tab Nine?
 
