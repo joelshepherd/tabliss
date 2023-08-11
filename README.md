@@ -11,9 +11,12 @@
 2. [Why 'Tab Nine'?](#why-tab-nine)
 3. [Download](#download)
 4. [Usage](#usage)
-5. [Translations](#translations)
-6. [Improvements over Tabliss](#improvements-over-tabliss)
-7. [Attributions and acknowledgments](#attributions-and-acknowledgments)
+5. [Improvements over Tabliss](#improvements-over-tabliss)
+6. [Attributions and acknowledgments](#attributions-and-acknowledgments)
+7. [Contributing](#contributing)
+   1. [Translations](#translations)
+   2. [Developing](#developing)
+      1. [Branching Strategy](#branching-strategy)
 
 ## What is Tab Nine?
 
@@ -44,10 +47,6 @@ and enter them into your `.env` file. Get started by copying the example provide
 
 Please keep in mind that the development environment is designed with Linux in mind. Instructions may not run on Windows. You also should have whatever your distribution equivalent of `dnf -y groupinstall "Development Tools"` is installed, as some `node_modules` need to be compiled before use.
 
-## Translations
-
-Checkout the guide to [adding translations](TRANSLATING.md).
-
 ## Improvements over Tabliss
 
 ### Dark mode
@@ -59,6 +58,7 @@ The settings dashboard has a dark mode!
 You can choose an accent colour to change the colour of the buttons!
 
 ## Attributions and acknowledgments
+
 A huge thank you for all the hard work Joel Shepard did on Tabliss, the project which this is forked from. He created something that I really enjoyed, and I want to continue the hard work he has put into it.
 
 Additionally, thank you to everyone who has worked on the upstream and this project:
@@ -70,3 +70,33 @@ Additionally, thank you to everyone who has worked on the upstream and this proj
 Also, thank you to all the dependencies. Without the hard work that is freely given so that projects like this can exist, the internet would be a much different place. It is amazing to me that everyone can benefit from the talent that these engineers have and I will be forever grateful.
 
 Finally, thank you - yes you, the reader. And if you are a user, thank you! Your time and attention makes all this effort worthwhile.
+
+## Contributing
+
+### Translations
+
+Checkout the guide to [adding translations](TRANSLATING.md).
+
+### Developing
+
+#### Branching Strategy
+
+##### `trunk`
+
+`trunk` is the main, current production branch. If you want to see the current code that is live on the stores and running on your browser, this is the branch to check out. All builds are published from the GitHub Actions build, so there are no developer pushed releases that you can't see what went into it. `trunk` cannot be pushed to directly, a pull request is required to change it.
+
+##### `stage`
+
+`stage` is the current cutting edge. It could be considered the 'beta' branch, or I suppose "Tab Ten" - as in the next version of Tab Nine, Tab Nine + 1. This contains all the features for the next release, could be patches, could be features. This should generally be safe to play with, and install as a unpacked extension on your browser, but you will have to manually update it. If we were to create a Tab Nine Testing Edition, it would be from this branch.
+
+_**If you are creating a PR, unless otherwise advised, you should target it to this branch.**_
+
+##### `development`
+
+`development` is where members of the Tab Nine development team are doing work. This is the 'bleeding edge' or 'alpha' version. Not nightly, as builds aren't created on push, but it does contain features that aren't ready for `stage` testing. Watch out for commits marked with a 💣 as they could be problematic.
+
+#### Code Style
+
+Currently, there is no defined code style, but please don't make a mess of your code. Use common programming methods, such as self-identifying variable and 'never nesting' and your PR should get accepted. 
+
+_**We can't do anything about upstream changes, so if you see code that breaks this 'code style', don't worry!**_
