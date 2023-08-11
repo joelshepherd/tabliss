@@ -91,9 +91,13 @@ Checkout the guide to [adding translations](TRANSLATING.md).
 
 _**If you are creating a PR, unless otherwise advised, you should target it to this branch.**_
 
+For the admins: [merge stage into trunk](https://github.com/the-wright-jamie/tab-nine/compare/trunk...the-wright-jamie:tab-nine:stage)
+
 ##### `development`
 
 `development` is where members of the Tab Nine development team are doing work. This is the 'bleeding edge' or 'alpha' version. Not nightly, as builds aren't created on push, but it does contain features that aren't ready for `stage` testing. Watch out for commits marked with a 💣 as they could be problematic.
+
+For the admins: [merge development into stage](https://github.com/the-wright-jamie/tab-nine/compare/stage...the-wright-jamie:tab-nine:development)
 
 #### Code Style
 
