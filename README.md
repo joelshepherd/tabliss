@@ -28,7 +28,7 @@ Tab Nine aims to be a modern, highly customisable New Tab extension. You can cha
 
 Much like the project as a whole, the name 'Tab Nine' keeps with the sprit of the original project's name.
 
-Tabliss is a combination of two words: 'tab' and 'bliss'. In a similar way, Tab Nine is a combination of 'Tab' and 'cloud nine'. What is 'cloud nine'? Well, it's actually another way of saying 'bliss' - rather the saying "I'm on cloud nine" or simply "on cloud nine" is another way of saying 'blissful'. [According to The Times](https://www.thetimes.co.uk/article/weather-eye-7ftq5tvd2) <sub><sup>(Pay walled, but relevant info is visible)</sup></sub> the saying comes from an old classification system for clouds - the cumulonimbus was classified as Cloud 9.
+Tabliss is a combination of two words: 'tab' and 'bliss'. In a similar way, Tab Nine is a combination of 'Tab' and 'cloud nine'. What is 'cloud nine'? Well, it's actually another way of saying 'bliss' - rather the saying "I'm on cloud nine" or simply "on cloud nine" is another way of saying 'blissful'. The saying comes from an old classification system for clouds - the cumulonimbus was classified as Cloud 9.
 
 ## Download
 
@@ -42,7 +42,7 @@ Install dependencies with `npm install` before running the following scripts.
 - `npm run build[:target]` Production build
 - `npm run translations` Manage translation files
 
-To develop with external services you will additionally need to signup for your own API keys
+To develop with external services you will additionally need to sign-up for your own API keys
 and enter them into your `.env` file. Get started by copying the example provided `cp .env.example .env`.
 
 Please keep in mind that the development environment is designed with Linux in mind. Instructions may not run on Windows. You also should have whatever your distribution equivalent of `dnf -y groupinstall "Development Tools"` is installed, as some `node_modules` need to be compiled before use.
@@ -55,7 +55,7 @@ The settings dashboard has a dark mode!
 
 ### Choose an accent color
 
-You can choose an accent colour to change the colour of the buttons!
+You can choose an accent color to change the color of the buttons!
 
 ## Attributions and acknowledgments
 
@@ -97,6 +97,6 @@ _**If you are creating a PR, unless otherwise advised, you should target it to t
 
 #### Code Style
 
-Currently, there is no defined code style, but please don't make a mess of your code. Use common programming methods, such as self-identifying variable and 'never nesting' and your PR should get accepted. 
+Currently, there is no defined code style, but please don't make a mess of your code. Use common programming methods, such as self-identifying variable and 'never nesting' and your PR should get accepted.
 
 _**We can't do anything about upstream changes, so if you see code that breaks this 'code style', don't worry!**_
