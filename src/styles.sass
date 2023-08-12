@@ -1,5 +1,11 @@
 @import "variables.sass";
 
+.hidden
+    visibility: hidden
+
+.accented
+    color: var(--accent-color)
+
 @media (prefers-color-scheme: dark)
     html
         scrollbar-face-color: #646464
@@ -22,7 +28,7 @@
         background-color: #000
     ::-webkit-scrollbar-thumb
         height: 50px
-        background-color: #666
+        background-color: var(--accent-color)
         border-radius: 3px
     ::-webkit-scrollbar-corner
         background-color: #646464
