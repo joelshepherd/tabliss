@@ -10,6 +10,7 @@ import Persist from "./Persist";
 import "./Settings.sass";
 import System from "./System";
 import Widgets from "./Widgets";
+import GitHubButton from "react-github-btn";
 
 const Settings: React.FC = () => {
   const { toggleSettings } = React.useContext(UiContext);
@@ -77,7 +78,6 @@ const Settings: React.FC = () => {
 
       <div className="plane">
         <Logo />
-
         <div style={{ textAlign: "center" }}>
           <p>
             <a
@@ -96,19 +96,14 @@ const Settings: React.FC = () => {
             </a>
           </p>
         </div>
-
         <Background />
-
         <Widgets />
-
         <System />
-
         <p style={{ marginBottom: "2rem" }}>
           <a onClick={handleImport}>Import</a>,{" "}
           <a onClick={handleExport}>export</a> or{" "}
           <a onClick={handleReset}>reset</a> your settings
         </p>
-
         <div className="Widget">
           <h4 style={{ textAlign: "center" }}>Support Tab Nine</h4>
           <p>
@@ -123,7 +118,33 @@ const Settings: React.FC = () => {
             &nbsp;page and open a pull request!
           </p>
           <p>
-            Alternatively, if you'd like to help support this and{" "}
+            If you don't want to submit code to the project, a watch and a star
+            would super awesome.
+          </p>
+          <p style={{ textAlign: "center" }}>
+            <GitHubButton
+              href="https://github.com/the-wright-jamie/tab-nine/subscription"
+              data-color-scheme="no-preference: light; light: light; dark: dark;"
+              data-icon="octicon-eye"
+              data-size="large"
+              data-show-count="true"
+              aria-label="Watch the-wright-jamie/tab-nine on GitHub"
+            >
+              Watch
+            </GitHubButton>{" "}
+            <GitHubButton
+              href="https://github.com/the-wright-jamie/tab-nine"
+              data-color-scheme="no-preference: light; light: light; dark: dark;"
+              data-icon="octicon-star"
+              data-size="large"
+              data-show-count="true"
+              aria-label="Star the-wright-jamie/tab-nine on GitHub"
+            >
+              Star
+            </GitHubButton>
+          </p>
+          <p>
+            Alternatively, to support this and{" "}
             <a href="https://github.com/the-wright-jamie?tab=repositories">
               my other open-source projects
             </a>{" "}
@@ -145,13 +166,39 @@ const Settings: React.FC = () => {
             <b>Any support is greatly appreciated</b>
           </p>
         </div>
-
         <FormattedMessage
           id="settings.translationCredits"
           description="Give yourself some credit :)"
           defaultMessage=" "
           tagName="p"
         />
+        <p>
+          <b>
+            <u>About Tab Nine</u>
+          </b>
+        </p>
+        <p>
+          Tab Nine is a <b>fork</b> of{" "}
+          <a href="https://github.com/joelshepherd/tabliss">Tabliss</a> by{" "}
+          <a href="https://github.com/joelshepherd/">@joelshepherd</a>,
+          maintained by{" "}
+          <a href="https://github.com/the-wright-jamie">@the-wright-jamie</a>.
+        </p>{" "}
+        <p>
+          Credit for the original idea and concept for this extension, as well
+          as a lot of the groundwork, goes to Tabliss.
+        </p>
+        <p>
+          As a fork, Tab Nine is in a sense a 'distribution' of Tabliss, with
+          upstream fixes and some{" "}
+          <a href="https://github.com/the-wright-jamie/tab-nine#improvements-over-tabliss">
+            unique features
+          </a>
+          .
+        </p>
+        <p style={{ textAlign: "center" }}>
+          Tab Nine <code>v1.1.0</code>
+        </p>
       </div>
     </div>
   );
