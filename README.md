@@ -11,12 +11,12 @@
 2. [Why 'Tab Nine'?](#why-tab-nine)
 3. [Download](#download)
 4. [Usage](#usage)
-5. [Improvements over Tabliss](#improvements-over-tabliss)
-6. [Attributions and acknowledgments](#attributions-and-acknowledgments)
-7. [Contributing](#contributing)
+5. [Attributions and acknowledgments](#attributions-and-acknowledgments)
+6. [Contributing](#contributing)
    1. [Translations](#translations)
    2. [Developing](#developing)
       1. [Branching Strategy](#branching-strategy)
+7. [Improvements over Tabliss](#improvements-over-tabliss)
 
 ## What is Tab Nine?
 
@@ -46,16 +46,6 @@ To develop with external services you will additionally need to sign-up for your
 and enter them into your `.env` file. Get started by copying the example provided `cp .env.example .env`.
 
 Please keep in mind that the development environment is designed with Linux in mind. Instructions may not run on Windows. You also should have whatever your distribution equivalent of `dnf -y groupinstall "Development Tools"` is installed, as some `node_modules` need to be compiled before use.
-
-## Improvements over Tabliss
-
-### Dark mode
-
-The settings dashboard has a dark mode!
-
-### Choose an accent color
-
-You can choose an accent color to change the color of the buttons!
 
 ## Attributions and acknowledgments
 
@@ -104,3 +94,15 @@ For the admins: [merge development into stage](https://github.com/the-wright-jam
 Currently, there is no defined code style, but please don't make a mess of your code. Use common programming methods, such as self-identifying variable and 'never nesting' and your PR should get accepted.
 
 _**We can't do anything about upstream changes, so if you see code that breaks this 'code style', don't worry!**_
+
+## Improvements Over Tabliss
+
+Tabliss has been MIA for over a year. This fork contains all the upstream fixes that have been introduced since then, as well as some new features. These new features are:
+
+| Issue | Description                                                 |
+| :---: | ----------------------------------------------------------- |
+|  #16  | Dark Mode for system panels                                 |
+|  #21  | Alternative Branding                                        |
+|  #25  | Accent color                                                |
+|       | Uses browser-default sans-serif font                        |
+|       | [A wiki](https://github.com/the-wright-jamie/tab-nine/wiki) |
