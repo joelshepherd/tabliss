@@ -6,3 +6,7 @@
 .Logo svg {
   fill: #3498db;
 }
+
+.nine {
+  fill: var(--accent-color);
+}

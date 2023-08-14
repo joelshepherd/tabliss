@@ -1,4 +1,4 @@
-<div align="center"><img height="175" src="src/views/shared/logo.svg"/>&emsp;&emsp;&emsp;<img height="175" src="https://raw.githubusercontent.com/the-wright-jamie/the-wright-jamie/main/memes/Help-Wanted-PNG-Pic.png"/></div>
+<div align="center"><img height="175" src="logo.svg"/>&emsp;&emsp;&emsp;<img height="175" src="https://raw.githubusercontent.com/the-wright-jamie/the-wright-jamie/main/memes/Help-Wanted-PNG-Pic.png"/></div>
 
 <h1 align="center">Welcome to Tab Nine</h1>
 
