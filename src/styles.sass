@@ -1,5 +1,23 @@
 @import "variables.sass";
 
+.hidden
+    visibility: hidden
+
+.accented
+    color: var(--accent-color)
+
+.badge
+    background-color: var(--accent-color)
+    font-size: 90%
+    font-weight: bold
+    text-transform: uppercase
+    color: rgba(255, 255, 255, 0.75);
+    padding-top: 0.35em
+    padding-bottom: 0.25em
+    padding-left: 0.5em
+    padding-right: 0.55em
+    border-radius: 1000px
+
 @media (prefers-color-scheme: dark)
     html
         scrollbar-face-color: #646464
@@ -22,7 +40,7 @@
         background-color: #000
     ::-webkit-scrollbar-thumb
         height: 50px
-        background-color: #666
+        background-color: var(--accent-color)
         border-radius: 3px
     ::-webkit-scrollbar-corner
         background-color: #646464

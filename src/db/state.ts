@@ -41,6 +41,7 @@ export interface WidgetState {
 
 export interface WidgetDisplay {
   colour?: string;
+  useAccentColor: boolean;
   fontFamily?: string;
   fontSize?: number;
   fontWeight?: number;
@@ -74,6 +75,7 @@ const initData: State = {
     order: 0,
     display: {
       position: "middleCentre",
+      useAccentColor: false
     },
   },
   "widget/default-greeting": {
@@ -82,6 +84,7 @@ const initData: State = {
     order: 1,
     display: {
       position: "middleCentre",
+      useAccentColor: true,
     },
   },
   focus: false,
