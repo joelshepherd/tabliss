@@ -61,14 +61,14 @@
        aria-label="9"
        id="text1103"
        class="nine"
-       style="font-weight:900;font-size:50.8px;font-family:Orbitron;-inkscape-font-specification:'Orbitron Heavy';stroke-width:2.64583;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:0;fill-opacity:1">
+       style="font-weight:900;font-size:50.8px;font-family:Orbitron;-inkscape-font-specification:'Orbitron Heavy';fill:#ffd755;stroke-width:2.64583;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:0;fill-opacity:1">
       <path
          d="m 143.92115,69.800919 q -1.8288,0 -3.4036,-1.016 -1.5748,-1.0668 -2.6924,-2.794 -1.1176,-1.778 -1.4732,-3.9624 h 28.2956 q 0,0 0,0 0,0 0,0 v -6.5024 q 0,0 0,0 0,0 0,0 h -20.7264 q -2.032,0 -3.7084,-1.016 -1.6764,-1.016 -2.6924,-2.6924 -1.016,-1.6764 -1.016,-3.7084 v -7.5184 q 0,-2.032 1.016,-3.7084 1.016,-1.6764 2.6924,-2.6416 1.6764,-1.016 3.7084,-1.016 h 21.1328 q 2.032,0 3.7084,1.016 1.6764,0.9652 2.6416,2.6416 1.016,1.6764 1.016,3.7084 v 21.844 q 0,1.9812 -1.016,3.6576 -0.9652,1.6764 -2.6416,2.6924 -1.6764,1.016 -3.7084,1.016 h -21.1328 z m 0.4064,-22.098 v 0 h 20.32 v -6.7056 q 0,0 0,0 0,0 0,0 h -20.32 q 0,0 0,0 0,0 0,0 v 6.7056 q 0,0 0,0 0,0 0,0 z"
-         style="fill-opacity:1"
+         style="fill:#ffd755;fill-opacity:1"
          id="path5127" />
     </g>
     <rect
-       style="fill-opacity:1;stroke-width:1.53205;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:0"
+       style="fill:#ffd755;fill-opacity:1;stroke-width:1.53205;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:0"
        class="nine"
        id="rect1259"
        width="16.587442"
@@ -78,7 +78,7 @@
        ry="1.7877181"
        transform="rotate(-45)" />
     <rect
-       style="fill-opacity:1;stroke-width:1.53205;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:0"
+       style="fill:#ffd755;fill-opacity:1;stroke-width:1.53205;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:0"
        class="nine"
        id="rect1259-3"
        width="16.587442"
@@ -88,7 +88,7 @@
        ry="1.7877181"
        transform="rotate(-22.476779)" />
     <rect
-       style="fill-opacity:1;stroke-width:1.53205;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:0"
+       style="fill:#ffd755;fill-opacity:1;stroke-width:1.53205;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:0"
        class="nine"
        id="rect1259-6"
        width="16.587442"

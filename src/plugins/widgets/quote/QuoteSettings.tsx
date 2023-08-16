@@ -1,30 +1,15 @@
 import React, { FC } from "react";
 
-import categories from "./categories";
 import { Props, defaultData } from "./types";
 
 const QuoteSettings: React.FC<Props> = ({ data = defaultData, setData }) => (
   <div className="QuoteSettings">
-    <h5>Daily Quotes</h5>
-    {categories.map((category) => (
-      <label key={category.key}>
-        <input
-          type="radio"
-          checked={data.category === category.key}
-          onChange={() => setData({ category: category.key })}
-        />{" "}
-        {category.name}
-      </label>
-    ))}
     <p>
-      Powered by{" "}
-      <a
-        href="https://theysaidso.com/"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        They Said So
+      Daily Quotes from 'They Said So' are no longer available, please see{" "}
+      <a href="https://github.com/the-wright-jamie/tab-nine/issues/29">
+        this GitHub issue
       </a>
+      . We apologize for the inconvenience this may have caused.
     </p>
     <h5>Hourly Quotes</h5>
     <label>

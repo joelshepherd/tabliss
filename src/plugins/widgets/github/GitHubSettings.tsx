@@ -12,7 +12,7 @@ const GitHubSettings: React.FC<Props> = ({ data = defaultData, setData }) => (
         onChange={(username) => setData({ ...data, username })}
       />
     </label>
-    {/* <label>
+    <label>
       <input
         type="checkbox"
         checked={data.showSummary}
@@ -20,8 +20,16 @@ const GitHubSettings: React.FC<Props> = ({ data = defaultData, setData }) => (
           setData({ ...data, showSummary: !data.showSummary })
         }
       />{" "}
-      Show summary overview
-    </label>*/}
+      Show summary overview <span className="badge">Beta</span>
+    </label>
+    <label>
+      <input
+        type="checkbox"
+        checked={data.linkToUser}
+        onChange={(event) => setData({ ...data, linkToUser: !data.linkToUser })}
+      />{" "}
+      Link to your profile
+    </label>
   </div>
 );
 

@@ -32,7 +32,7 @@ export const addWidget = (key: string): void => {
     id,
     key,
     order,
-    display: { position: "middleCentre" },
+    display: { position: "middleCentre", useAccentColor: false },
   });
 };
 

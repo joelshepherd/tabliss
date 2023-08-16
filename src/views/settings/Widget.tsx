@@ -104,8 +104,7 @@ const Widget: React.FC<Props> = ({
                   <option value="900">Black</option>
                 </select>
               </label>
-
-              <label>
+              <label style={{ margin: 0, display: "inline", float: "left" }}>
                 Colour
                 <input
                   type="color"
@@ -113,7 +112,21 @@ const Widget: React.FC<Props> = ({
                   onChange={(event) =>
                     setDisplay({ colour: event.target.value })
                   }
+                  className={plugin.display.useAccentColor ? "hidden" : ""}
                 />
+              </label>
+
+              <label style={{ margin: 0, display: "inline", float: "right" }}>
+                <input
+                  type="checkbox"
+                  checked={plugin.display.useAccentColor}
+                  onChange={() =>
+                    setDisplay({
+                      useAccentColor: !plugin.display.useAccentColor,
+                    })
+                  }
+                />
+                Use accent color
               </label>
             </>
           </ToggleSection>

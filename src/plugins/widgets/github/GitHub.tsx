@@ -21,7 +21,7 @@ const GitHubCalendarWidget: FC<Props> = ({ data = defaultData, loader }) => {
   return (
     <div className="GitHub">
       <a
-        href={"https://github.com/" + data.username}
+        href={`https://github.com/${data.linkToUser ? data.username : ""}`}
         rel="noopener noreferrer"
         className="GitHubCalendar"
       />
