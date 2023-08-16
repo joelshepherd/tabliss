@@ -26,6 +26,16 @@ const JsSettings: FC<Props> = ({ data = defaultData, setData }) => {
         dashboard has loaded. Be careful of persisting event listeners when
         editing the snippet.
       </p>
+
+      <p className="info">
+        Additionally: you should not export a config with custom JS and use it in
+        the browser store/extension version. Doing so will break your
+        configuration and prevent Tab Nine from working. Please see{" "}
+        <a href="https://github.com/the-wright-jamie/tab-nine/issues/50">
+          this issue
+        </a>{" "}
+        on GitHub
+      </p>
     </div>
   );
 };
