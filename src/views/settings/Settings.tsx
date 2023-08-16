@@ -118,20 +118,10 @@ const Settings: React.FC = () => {
             &nbsp;page and open a pull request!
           </p>
           <p>
-            If you don't want to submit code to the project, a watch and a star
-            would super awesome.
+            If you don't want to submit code to the project, a star on the
+            project page would super awesome.
           </p>
           <p style={{ textAlign: "center" }}>
-            <GitHubButton
-              href="https://github.com/the-wright-jamie/tab-nine/subscription"
-              data-color-scheme="no-preference: light; light: light; dark: dark;"
-              data-icon="octicon-eye"
-              data-size="large"
-              data-show-count="true"
-              aria-label="Watch the-wright-jamie/tab-nine on GitHub"
-            >
-              Watch
-            </GitHubButton>{" "}
             <GitHubButton
               href="https://github.com/the-wright-jamie/tab-nine"
               data-color-scheme="no-preference: light; light: light; dark: dark;"
