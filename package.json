@@ -35,7 +35,7 @@
   "devDependencies": {
     "@types/jest": "^29.5.3",
     "@types/node": "^20.4.8",
-    "@types/react": "^18.0.6",
+    "@types/react": "^18.2.20",
     "@types/react-dom": "^18.2.7",
     "@types/webextension-polyfill": "^0.8.2",
     "clean-webpack-plugin": "^4.0.0",
