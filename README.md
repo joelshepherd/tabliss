@@ -61,6 +61,12 @@ Also, thank you to all the dependencies. Without the hard work that is freely gi
 
 Finally, thank you - yes you, the reader. And if you are a user, thank you! Your time and attention makes all this effort worthwhile.
 
+### Important
+
+Tab Nine is a **fork** of <a href="https://github.com/joelshepherd/tabliss">Tabliss</a> by <a href="https://github.com/joelshepherd/">@joelshepherd</a>, maintained by <a href="https://github.com/the-wright-jamie">@the-wright-jamie</a>. Credit for the original idea and concept for this extension, as well as a lot of the groundwork, goes to Tabliss. As a fork, Tab Nine is in a sense a 'distribution' of Tabliss, with upstream fixes and some [unique features](#improvements-over-tabliss). 
+
+Apart from being a fork, Tab Nine is in no other way affiliated with Tabliss or @joelshepherd.
+
 ## Contributing
 
 ### Translations
@@ -97,7 +103,7 @@ _**We can't do anything about upstream changes, so if you see code that breaks t
 
 ## Improvements Over Tabliss
 
-Tabliss has been MIA for over a year. This fork contains all the upstream fixes that have been introduced since then, as well as some new features. These new features are:
+Tabliss has been MIA for over a year. This fork contains all the upstream fixes that have been introduced since then, as well as some new features. As required by the GPL, these must be clearly defined. These new features are:
 
 | Issue | Description                                                 |
 | :---: | ----------------------------------------------------------- |
