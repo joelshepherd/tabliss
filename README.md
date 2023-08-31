@@ -5,6 +5,10 @@
 <p align="center">A modern and highly customisable New Tab page for Firefox and Chrome.</p>
 <p align="center">Contributions extremely welcome</p>
 
+<hr>
+
+This project is still under active development, and we are always watching for Issues and PRs. However, the main maintainer is busy with other projects and isn't able to actively develop for the project. [Read more here](https://github.com/the-wright-jamie/tab-nine/discussions/69).
+
 ## Index
 
 1. [What is Tab Nine?](#what-is-tab-nine)
