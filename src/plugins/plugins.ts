@@ -11,8 +11,6 @@ const configs = [...backgroundConfigs, ...widgetConfigs];
 export function getConfig(key: string) {
   const config = configs.find((config) => config.key === key);
 
-  console.log(config);
-
   if (!config) {
     console.warn(`Unable to find config for plugin: ${key}`);
     return {
