@@ -184,10 +184,10 @@ const Settings: React.FC = () => {
           <a href="https://github.com/the-wright-jamie/tab-nine#improvements-over-tabliss">
             unique features
           </a>
-          .
+          . Apart from being a fork, Tab Nine is in no other way affiliated with Tabliss or @joelshepherd.
         </p>
         <p style={{ textAlign: "center" }}>
-          Tab Nine <code>v1.1.0</code>
+          Tab Nine <code>v1.1.1</code>
         </p>
       </div>
     </div>
