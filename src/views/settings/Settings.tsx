@@ -187,7 +187,7 @@ const Settings: React.FC = () => {
           . Apart from being a fork, Tab Nine is in no other way affiliated with Tabliss or @joelshepherd.
         </p>
         <p style={{ textAlign: "center" }}>
-          Tab Nine <code>v1.1.1</code>
+          Tab Nine <code>v1.1.2</code>
         </p>
       </div>
     </div>
