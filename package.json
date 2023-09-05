@@ -52,7 +52,7 @@
     "react-intl-translations-manager": "^5.0.3",
     "sass-loader": "^13.0.0",
     "ts-loader": "^9.4.4",
-    "typescript": "^5.1.6",
+    "typescript": "^5.2.2",
     "typescript-react-intl": "^0.4.1",
     "url-loader": "^4.1.1",
     "webpack": "^5.88.2",
