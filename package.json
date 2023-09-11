@@ -16,7 +16,7 @@
     "translations": "node ./scripts/translations.js"
   },
   "dependencies": {
-    "core-js": "^3.32.1",
+    "core-js": "^3.32.2",
     "date-fns": "^2.28.0",
     "date-fns-tz": "^2.0.0",
     "feather-icons": "^4.29.1",
