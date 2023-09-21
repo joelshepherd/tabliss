@@ -6,7 +6,6 @@ import { useKeyPress } from "../../hooks";
 import { Icon } from "../shared";
 import Logo from "../shared/Logo";
 import Background from "./Background";
-import Persist from "./Persist";
 import "./Settings.sass";
 import System from "./System";
 import Widgets from "./Widgets";
@@ -78,6 +77,18 @@ const Settings: React.FC = () => {
 
       <div className="plane">
         <Logo />
+        <p style={{ textAlign: "center" }}>
+          <GitHubButton
+            href="https://github.com/the-wright-jamie/tab-nine"
+            data-color-scheme="no-preference: light; light: light; dark: dark;"
+            data-icon="octicon-star"
+            data-size="large"
+            data-show-count="true"
+            aria-label="Star the-wright-jamie/tab-nine on GitHub"
+          >
+            Star on GitHub
+          </GitHubButton>
+        </p>
         <div style={{ textAlign: "center" }}>
           <p>
             <a
@@ -94,6 +105,14 @@ const Settings: React.FC = () => {
             >
               <Icon name="thumbs-up" /> Tips & Tricks
             </a>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <a
+              href="https://github.com/the-wright-jamie/tab-nine/issues"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              <Icon name="help-circle" /> Support
+            </a>
           </p>
         </div>
         <Background />
@@ -104,90 +123,14 @@ const Settings: React.FC = () => {
           <a onClick={handleExport}>export</a> or{" "}
           <a onClick={handleReset}>reset</a> your settings
         </p>
-        <div className="Widget">
-          <h4 style={{ textAlign: "center" }}>Support Tab Nine</h4>
-          <p>
-            Would you like to help with development? Visit the&nbsp;
-            <a
-              href="https://github.com/the-wright-jamie/tab-nine"
-              rel="noopener noreferrer"
-              target="_blank"
-            >
-              <Icon name="github" /> GitHub
-            </a>
-            &nbsp;page and open a pull request!
-          </p>
-          <p>
-            If you don't want to submit code to the project, a star on the
-            project page would super awesome.
-          </p>
-          <p style={{ textAlign: "center" }}>
-            <GitHubButton
-              href="https://github.com/the-wright-jamie/tab-nine"
-              data-color-scheme="no-preference: light; light: light; dark: dark;"
-              data-icon="octicon-star"
-              data-size="large"
-              data-show-count="true"
-              aria-label="Star the-wright-jamie/tab-nine on GitHub"
-            >
-              Star
-            </GitHubButton>
-          </p>
-          <p>
-            Alternatively, to support this and{" "}
-            <a href="https://github.com/the-wright-jamie?tab=repositories">
-              my other open-source projects
-            </a>{" "}
-            you can
-          </p>
-          <p style={{ textAlign: "center" }}>
-            <a
-              href="https://ko-fi.com/thewrightjamie"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="donate"
-              title="I do love coffee"
-            >
-              <Icon name="coffee" />
-              &nbsp;&nbsp;Tip me a coffee
-            </a>
-          </p>
-          <p style={{ textAlign: "center" }}>
-            <b>Any support is greatly appreciated</b>
-          </p>
-        </div>
         <FormattedMessage
           id="settings.translationCredits"
           description="Give yourself some credit :)"
           defaultMessage=" "
           tagName="p"
         />
-        <p>
-          <b>
-            <u>About Tab Nine</u>
-          </b>
-        </p>
-        <p>
-          Tab Nine is a <b>fork</b> of{" "}
-          <a href="https://github.com/joelshepherd/tabliss">Tabliss</a> by{" "}
-          <a href="https://github.com/joelshepherd/">@joelshepherd</a>,
-          maintained by{" "}
-          <a href="https://github.com/the-wright-jamie">@the-wright-jamie</a>.
-        </p>{" "}
-        <p>
-          Credit for the original idea and concept for this extension, as well
-          as a lot of the groundwork, goes to Tabliss.
-        </p>
-        <p>
-          As a fork, Tab Nine is in a sense a 'distribution' of Tabliss, with
-          upstream fixes and some{" "}
-          <a href="https://github.com/the-wright-jamie/tab-nine#improvements-over-tabliss">
-            unique features
-          </a>
-          . Apart from being a fork, Tab Nine is in no other way affiliated with Tabliss or @joelshepherd.
-        </p>
         <p style={{ textAlign: "center" }}>
-          Tab Nine <code>v1.1.2</code>
+          Tab Nine <code>v1.2.0</code>
         </p>
       </div>
     </div>

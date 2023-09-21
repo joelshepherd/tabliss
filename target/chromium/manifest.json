@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Tab Nine",
   "short_name": "Tab Nine",
-  "version": "1.1.2",
+  "version": "1.2.0",
   "description": "A modern, highly customisable New Tab page with many widgets that does not require any permissions.",
   "chrome_url_overrides": {
     "newtab": "index.html"
