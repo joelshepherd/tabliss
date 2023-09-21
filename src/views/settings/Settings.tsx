@@ -6,7 +6,6 @@ import { useKeyPress } from "../../hooks";
 import { Icon } from "../shared";
 import Logo from "../shared/Logo";
 import Background from "./Background";
-import Persist from "./Persist";
 import "./Settings.sass";
 import System from "./System";
 import Widgets from "./Widgets";
@@ -78,6 +77,18 @@ const Settings: React.FC = () => {
 
       <div className="plane">
         <Logo />
+        <p style={{ textAlign: "center" }}>
+          <GitHubButton
+            href="https://github.com/the-wright-jamie/tab-nine"
+            data-color-scheme="no-preference: light; light: light; dark: dark;"
+            data-icon="octicon-star"
+            data-size="large"
+            data-show-count="true"
+            aria-label="Star the-wright-jamie/tab-nine on GitHub"
+          >
+            Star on GitHub
+          </GitHubButton>
+        </p>
         <div style={{ textAlign: "center" }}>
           <p>
             <a
@@ -93,6 +104,14 @@ const Settings: React.FC = () => {
               target="_blank"
             >
               <Icon name="thumbs-up" /> Tips & Tricks
+            </a>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <a
+              href="https://github.com/the-wright-jamie/tab-nine/issues"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              <Icon name="help-circle" /> Support
             </a>
           </p>
         </div>
@@ -110,18 +129,6 @@ const Settings: React.FC = () => {
           defaultMessage=" "
           tagName="p"
         />
-        <p style={{ textAlign: "center" }}>
-            <GitHubButton
-              href="https://github.com/the-wright-jamie/tab-nine"
-              data-color-scheme="no-preference: light; light: light; dark: dark;"
-              data-icon="octicon-star"
-              data-size="large"
-              data-show-count="true"
-              aria-label="Star the-wright-jamie/tab-nine on GitHub"
-            >
-              Star on GitHub
-            </GitHubButton>
-          </p>
         <p style={{ textAlign: "center" }}>
           Tab Nine <code>v1.2.0</code>
         </p>
