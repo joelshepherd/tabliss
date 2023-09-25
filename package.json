@@ -37,7 +37,7 @@
     "@types/node": "^20.6.2",
     "@types/react": "^18.2.22",
     "@types/react-dom": "^18.2.7",
-    "@types/webextension-polyfill": "^0.10.2",
+    "@types/webextension-polyfill": "^0.10.3",
     "clean-webpack-plugin": "^4.0.0",
     "copy-webpack-plugin": "^11.0.0",
     "css-loader": "^6.8.1",
