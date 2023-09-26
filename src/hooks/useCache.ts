@@ -42,6 +42,7 @@ export function useRotatingCache<T>(
   timeout: number,
   deps: unknown[],
 ): T | undefined {
+  console.log();
   // Find cursor
   const time = useTime("absolute").getTime();
   const boot = useRef(true);
