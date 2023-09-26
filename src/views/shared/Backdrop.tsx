@@ -39,11 +39,11 @@ const Backdrop: React.FC<Props> = ({
       className="fullscreen"
       style={{
         opacity: show ? 1 : 0,
-        transition: "opacity 150ms ease-in-out",
+        transition: "opacity 1000ms ease-in-out",
       }}
     >
       <div style={style} {...rest}>
-        {children}
+        {children}  
       </div>
     </div>
   );
