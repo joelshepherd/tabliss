@@ -140,7 +140,6 @@ const Unsplash: React.FC<Props> = ({
                 cursor: cache!.cursor + amount,
                 rotated: Date.now(),
               });
-              console.log("hello 1");
               setShow(true);
             }, 1050);
           } else {
@@ -150,7 +149,6 @@ const Unsplash: React.FC<Props> = ({
               rotated: Date.now(),
             });
           }
-          console.log("Hellp 2");
         }
       : null;
 
