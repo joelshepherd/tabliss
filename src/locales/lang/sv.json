@@ -1,7 +1,7 @@
 {
   "app.pageTitle": "Ny flik",
   "background": "Bakgrund",
-  "dashboard.errorHint": "Show errors",
+  "dashboard.errorHint": "Visa felmeddelanden",
   "dashboard.focusHint": "Växla widgets",
   "dashboard.fullscreenHint": "Växla fullskärm",
   "dashboard.loadingHint": "Laddar nytt innehåll",
@@ -12,11 +12,11 @@
   "plugins.links.standardHint": "Klicka för att besöka",
   "plugins.search.placeholder": "Skriv för att söka",
   "plugins.unsplash.photoLink": "Foto",
-  "plugins.weather.apparent": "Feels like",
-  "plugins.weather.high": "High",
-  "plugins.weather.humidity": "Humidity",
-  "plugins.weather.low": "Low",
-  "settings": "Settings",
-  "settings.translationCredits": "Swedish translation by Vecopotryx",
+  "plugins.weather.apparent": "Känns som",
+  "plugins.weather.high": "Hög",
+  "plugins.weather.humidity": "Luftfuktighet",
+  "plugins.weather.low": "Låg",
+  "settings": "Inställningar",
+  "settings.translationCredits": "Swedish translation by Vecopotryx & Mehow",
   "widgets": "Widgets"
 }
