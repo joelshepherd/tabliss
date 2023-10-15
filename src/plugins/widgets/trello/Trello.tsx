@@ -23,7 +23,9 @@ const TrelloListComponent: React.FC<{data: TrelloList}> = ({data}) => {
     return (
         <div className="trello-list">
             <h3><small>{data.name}</small></h3>
-            {data.items.map((content, index) => <p key={ index }>{content}</p>)}
+            <div className="trello-list-component">
+                {data.items.map((content, index) => <p key={ index }>{content}</p>)}
+            </div>
         </div>
     );
 };
