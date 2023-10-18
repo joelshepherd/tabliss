@@ -1,4 +1,5 @@
 import React from "react";
+import { FormattedMessage } from "react-intl";
 import { setWidgetDisplay } from "../../db/action";
 import { WidgetState } from "../../db/state";
 import { useToggle } from "../../hooks";
@@ -73,7 +74,11 @@ const Widget: React.FC<Props> = ({
           <ToggleSection name="Font Settings">
             <>
               <label>
-                Font
+              <FormattedMessage
+          id="font"
+          defaultMessage="Font"
+          description="Font title"
+        /> <br />
                 <input
                   type="text"
                   value={plugin.display.fontFamily}
@@ -84,7 +89,11 @@ const Widget: React.FC<Props> = ({
               </label>
 
               <label>
-                Weight
+              <FormattedMessage
+          id="weight"
+          defaultMessage="Weight"
+          description="Weight title"
+        /> <br />
                 <select
                   value={plugin.display.fontWeight}
                   onChange={(event) =>
@@ -95,18 +104,50 @@ const Widget: React.FC<Props> = ({
                     })
                   }
                 >
-                  <option value="">Default</option>
-                  <option value="100">Thin</option>
-                  <option value="300">Light</option>
-                  <option value="400">Regular</option>
-                  <option value="500">Medium</option>
-                  <option value="700">Bold</option>
-                  <option value="900">Black</option>
+                  <option value=""><FormattedMessage
+          id="default"
+          defaultMessage="Default"
+          description="Default weight font"
+        /></option>
+                  <option value="100"><FormattedMessage
+          id="thin"
+          defaultMessage="Thin"
+          description="Thin weight font"
+        /></option>
+                  <option value="300"><FormattedMessage
+          id="light"
+          defaultMessage="Light"
+          description="Light weight font"
+        /></option>
+                  <option value="400"><FormattedMessage
+          id="regular"
+          defaultMessage="Regular"
+          description="Regular weight font"
+        /></option>
+                  <option value="500"><FormattedMessage
+          id="medium"
+          defaultMessage="Medium"
+          description="Medium weight font"
+        /></option>
+                  <option value="700"><FormattedMessage
+          id="bold"
+          defaultMessage="Bold"
+          description="Bold weight font"
+        /></option>
+                  <option value="900"><FormattedMessage
+          id="black"
+          defaultMessage="Black"
+          description="Black weight font"
+        /></option>
                 </select>
               </label>
 
               <label>
-                Colour
+              <FormattedMessage
+          id="colour"
+          defaultMessage="colour"
+          description="Сolour title"
+        /> <br />
                 <input
                   type="color"
                   value={plugin.display.colour ?? "#ffffff"}

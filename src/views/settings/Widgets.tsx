@@ -27,7 +27,12 @@ const Widgets: React.FC = () => {
           className="primary"
         >
           <option disabled value="">
-            Add a new widget
+          <FormattedMessage
+          id="add.new.widget"
+          defaultMessage="Add a new widget"
+          description="Add a new widget title"
+        />
+            
           </option>
           {widgetConfigs.map((plugin) => (
             <option key={plugin.key} value={plugin.key}>
