@@ -7,6 +7,7 @@ import TimeZoneInput from "../shared/timeZone/TimeZoneInput";
 const System: React.FC = () => {
   const [locale, setLocale] = useKey(db, "locale");
   const [timeZone, setTimeZone] = useKey(db, "timeZone");
+  const [accentColor, setAccentColor] = useKey(db, "accent");
 
   return (
     <div>
@@ -35,7 +36,8 @@ const System: React.FC = () => {
         >
           <option value="ar" title="Arabic">
             العربية
-          </option><option value="ca-ES" title="Catalan">
+          </option>
+          <option value="ca-ES" title="Catalan">
             Català
           </option>
           <option value="cs" title="Czech">
@@ -182,6 +184,24 @@ const System: React.FC = () => {
       >
         Time Zone
         <TimeZoneInput timeZone={timeZone} onChange={setTimeZone} />
+      </label>
+
+      <label
+        style={{
+          alignItems: "center",
+          display: "grid",
+          gridGap: "0 0.5rem",
+          gridTemplateColumns: "1fr 2fr",
+          width: "100%",
+          margin: 0,
+        }}
+      >
+        Accent Color
+        <input
+          type="color"
+          value={accentColor}
+          onChange={(event) => setAccentColor(event.target.value)}
+        ></input>
       </label>
     </div>
   );

@@ -1,10 +1,10 @@
 import React from "react";
 import "./Logo.css";
-import tablissLogo from "./tabliss.svg";
+import logo from "./logo.svg";
 
 const Logo: React.FC = () => (
-  <h1 className="Logo">
-    <i dangerouslySetInnerHTML={{ __html: tablissLogo }} />
+  <h1>
+    <i className="Logo" dangerouslySetInnerHTML={{ __html: logo }} />
   </h1>
 );
 

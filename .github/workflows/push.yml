@@ -6,8 +6,8 @@ jobs:
     name: Run tests
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
+      - uses: actions/checkout@v3.5.3
+      - uses: actions/setup-node@v3.7.0
         with:
           node-version: 16
           cache: npm
@@ -23,17 +23,17 @@ jobs:
           - firefox
           - web
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
+      - uses: actions/checkout@v3.5.3
+      - uses: actions/setup-node@v3.7.0
         with:
           node-version: 16
           cache: npm
       - run: npm ci
       - run: npm run build:${{ matrix.build_target }}
         env:
-          GIPHY_API_KEY: ${{ secrets.GIPHY_API_KEY }}
           UNSPLASH_API_KEY: ${{ secrets.UNSPLASH_API_KEY }}
+          NASA_API_KEY: ${{ secrets.NASA_API_KEY }}
       - uses: actions/upload-artifact@v3
         with:
-          name: tabliss-${{ matrix.build_target }}
+          name: tab-nine-${{ matrix.build_target }}
           path: dist/${{ matrix.build_target }}

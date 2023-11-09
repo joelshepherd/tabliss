@@ -7,11 +7,14 @@ const Widget: React.FC<React.PropsWithChildren<WidgetDisplay>> = ({
   fontFamily,
   fontSize = 24,
   fontWeight,
+  useAccentColor,
 }) => (
   <div
-    className={`Widget ${fontWeight ? "weight-override" : ""}`}
+    className={`Widget ${fontWeight ? "weight-override" : ""} ${
+      useAccentColor ? "accented" : ""
+    }`}
     style={{
-      color: colour,
+      color: useAccentColor ? "" : colour,
       fontFamily,
       fontSize: `${fontSize}px`,
       fontWeight,

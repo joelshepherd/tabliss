@@ -22,7 +22,7 @@ const Persist: React.FC = () => {
     <div className="Widget" style={{ textAlign: "center" }}>
       <h4>Persist Settings</h4>
       <p>
-        Would you like Tabliss to ask your browser to save your setting
+        Would you like Tab Nine to ask your browser to save your setting
         permanently?
       </p>
       {error ? (

@@ -1,7 +1,13 @@
+@media (prefers-color-scheme: light)
+    .Settings .Widget
+        background: #ecf0f1
+@media (prefers-color-scheme: dark)
+    .Settings .Widget
+        background: #2c2c2c
+
 .Settings .Widget
     border: none
     border-radius: 0.5rem
-    background: #ecf0f1
     margin: 1em 0
     padding: 1em
 
@@ -22,5 +28,15 @@
     p:last-child 
         margin-bottom: 0
 
-    .button--icon
-        background-color: white
+    @media (prefers-color-scheme: light)
+        .button--icon
+            background-color: white
+            i
+                svg
+                    stroke: black
+    @media (prefers-color-scheme: dark)
+        .button--icon
+            background-color: black
+            i
+                svg
+                    stroke: white

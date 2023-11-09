@@ -14,6 +14,10 @@ const isWeb = buildTarget === "web";
 const version = require("./package.json").version;
 
 const config = {
+  performance: {
+    maxEntrypointSize: 1024000,
+    maxAssetSize: 1024000,
+  },
   entry: {
     polyfills: "./src/polyfills.ts",
     main: ["normalize.css", "./src/styles.sass", "./src/main.tsx"],
@@ -76,14 +80,14 @@ const config = {
     new webpack.DefinePlugin({
       BUILD_TARGET: JSON.stringify(buildTarget),
       DEV: JSON.stringify(!isProduction),
-      GIPHY_API_KEY: JSON.stringify(process.env.GIPHY_API_KEY),
       VERSION: JSON.stringify(version),
       UNSPLASH_API_KEY: JSON.stringify(process.env.UNSPLASH_API_KEY),
+      NASA_API_KEY: JSON.stringify(process.env.NASA_API_KEY),
     }),
   ],
   devtool: isWeb || !isProduction ? "source-map" : false,
   stats: {
-    warnings: false,
+    warnings: true,
   },
 };
 
@@ -107,7 +111,7 @@ if (!isWeb) {
 if (isWeb && isProduction) {
   config.plugins.push(
     new workbox.GenerateSW({
-      cacheId: "tabliss-cache",
+      cacheId: "tab-nine-cache",
       dontCacheBustURLsMatching: /\.\w{12}\./,
     }),
   );

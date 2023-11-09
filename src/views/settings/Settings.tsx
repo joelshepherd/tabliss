@@ -6,10 +6,10 @@ import { useKeyPress } from "../../hooks";
 import { Icon } from "../shared";
 import Logo from "../shared/Logo";
 import Background from "./Background";
-import Persist from "./Persist";
 import "./Settings.sass";
 import System from "./System";
 import Widgets from "./Widgets";
+import GitHubButton from "react-github-btn";
 
 const Settings: React.FC = () => {
   const { toggleSettings } = React.useContext(UiContext);
@@ -17,7 +17,7 @@ const Settings: React.FC = () => {
   const handleReset = () => {
     if (
       confirm(
-        "Are you sure you want to delete all of your Tabliss settings? This cannot be undone.",
+        "Are you sure you want to delete all of your Tab Nine settings? This cannot be undone.",
       )
     )
       resetStore();
@@ -33,7 +33,7 @@ const Settings: React.FC = () => {
     document.body.appendChild(a);
     a.style.display = "none";
     a.href = url;
-    a.download = "tabliss.json";
+    a.download = "tab-nine.json";
     a.click();
     window.URL.revokeObjectURL(url);
     document.body.removeChild(a);
@@ -56,7 +56,7 @@ const Settings: React.FC = () => {
             } catch (error) {
               alert(
                 `Invalid import file: ${
-                  error instanceof Error ? error.message : "Uknown error"
+                  error instanceof Error ? error.message : "Unknown error"
                 }`,
               );
             }
@@ -77,63 +77,61 @@ const Settings: React.FC = () => {
 
       <div className="plane">
         <Logo />
-
+        <p style={{ textAlign: "center" }}>
+          <GitHubButton
+            href="https://github.com/the-wright-jamie/tab-nine"
+            data-color-scheme="no-preference: light; light: light; dark: dark;"
+            data-icon="octicon-star"
+            data-size="large"
+            data-show-count="true"
+            aria-label="Star the-wright-jamie/tab-nine on GitHub"
+          >
+            Star on GitHub
+          </GitHubButton>
+        </p>
+        <div style={{ textAlign: "center" }}>
+          <p>
+            <a
+              href="https://github.com/the-wright-jamie/tab-nine/wiki"
+              target="_blank"
+            >
+              <Icon name="book" /> Wiki
+            </a>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <a
+              href="https://github.com/the-wright-jamie/tab-nine/wiki/Tips-&-Tricks"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              <Icon name="thumbs-up" /> Tips & Tricks
+            </a>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <a
+              href="https://github.com/the-wright-jamie/tab-nine/issues"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              <Icon name="help-circle" /> Support
+            </a>
+          </p>
+        </div>
         <Background />
-
         <Widgets />
-
         <System />
-
         <p style={{ marginBottom: "2rem" }}>
           <a onClick={handleImport}>Import</a>,{" "}
           <a onClick={handleExport}>export</a> or{" "}
           <a onClick={handleReset}>reset</a> your settings
         </p>
-
-        <Persist />
-
-        <div style={{ textAlign: "center" }} className="Widget">
-          <h4>Support Tabliss</h4>
-          <p>
-            <a
-              href="https://www.paypal.com/donate/?hosted_button_id=FK7VRWS9A2EW4"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="button button--primary"
-              title="I do love coffee"
-            >
-              <Icon name="coffee" /> Donate a coffee 😍
-            </a>
-          </p>
-          <p>
-            <a href="https://tabliss.io/" target="_blank">
-              <Icon name="globe" /> Website
-            </a>
-            &nbsp;&nbsp;
-            <a
-              href="https://twitter.com/tabliss"
-              rel="noopener noreferrer"
-              target="_blank"
-            >
-              <Icon name="twitter" /> Twitter
-            </a>
-            &nbsp;&nbsp;
-            <a
-              href="https://github.com/joelshepherd/tabliss"
-              rel="noopener noreferrer"
-              target="_blank"
-            >
-              <Icon name="github" /> GitHub
-            </a>
-          </p>
-        </div>
-
         <FormattedMessage
           id="settings.translationCredits"
           description="Give yourself some credit :)"
           defaultMessage=" "
           tagName="p"
         />
+        <p style={{ textAlign: "center" }}>
+          Tab Nine <code>v1.2.0</code>
+        </p>
       </div>
     </div>
   );

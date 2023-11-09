@@ -5,7 +5,7 @@
   "dashboard.focusHint": "Skryť/zobraziť widgety",
   "dashboard.fullscreenHint": "Prepnúť zobrazenie na celú obrazovku",
   "dashboard.loadingHint": "Načítanie nového obsahu",
-  "dashboard.settingsHint": "Prispôsobiť Tabliss",
+  "dashboard.settingsHint": "Prispôsobiť Tab Nine",
   "plugin.greeting.withName": "{hour, select, 0 {Pekné sny, {name}} 1 {Pekné sny, {name}} 2 {Pekné sny, {name}} 3 {Bež už spať, {name}!} 4 {Bež už spať, {name}!} 5 {Príjemné skoré ráno, {name}} 6 {Dobré ráno, {name}} 7 {Dobré ráno, {name}} 8 {Príjemné ráno, {name}} 9 {Dobré ráno, {name}} 10 {Dobrý deň, {name}} 11 {Dobrý deň, {name}} 12 {Dobrý deň, {name}} 13 {Dobrý deň, {name}} 14 {Príjemné popoludnie, {name}} 15 {Príjemné popoludnie, {name}} 16 {Príjemné popoludnie, {name}} 17 {Príjemné popoludnie, {name}} 18 {Dobrý večer, {name}} 19 {Dobrý večer, {name}} 20 {Dobrý večer, {name}} 21 {Dobrý večer, {name}} 22 {Dobrú noc, {name}} 23 {Dobrú noc, {name}}\n    other {Unknown}}",
   "plugin.greeting.withoutName": "{hour, select, 0 {Pekné sny} 1 {Pekné sny} 2 {Pekné sny} 3 {Bež už spať, {name}!} 4 {Bež už spať, {name}!} 5 {Príjemné skoré ráno} 6 {Dobré ráno} 7 {Dobré ráno} 8 {Príjemné ráno} 9 {Dobré ráno} 10 {Dobrý deň} 11 {Dobrý deň} 12 {Dobrý deň} 13 {Dobrý deň} 14 {Príjemné popoludnie} 15 {Príjemné popoludnie} 16 {Príjemné popoludnie} 17 {Príjemné popoludnie} 18 {Dobrý večer} 19 {Dobrý večer} 20 {Dobrý večer} 21 {Dobrý večer} 22 {Dobrú noc} 23 {Dobrú noc}\n    other {Unknown}}",
   "plugins.links.shortcutHint": "Stlačte {number} alebo kliknite pre navštívenie",

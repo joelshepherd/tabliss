@@ -1,5 +1,4 @@
 import { nanoid as generateId } from "nanoid";
-import { defaultData as defaultGiphyData } from "../../plugins/backgrounds/giphy/types";
 import { defaultData as defaultGradientData } from "../../plugins/backgrounds/gradient/types";
 import { defaultData as defaultUnsplashData } from "../../plugins/backgrounds/unsplash/types";
 import { defaultData as defaultSearchData } from "../../plugins/widgets/search/types";
@@ -126,7 +125,6 @@ export default function (input: Version1Config): Version2Config {
 const keyMap = {
   "core/backgrounds/colour": "background/colour",
   "extra/backgrounds/dribbble": null,
-  "extra/backgrounds/giphy": "background/giphy",
   "core/backgrounds/gradient": "background/gradient",
   "core/backgrounds/image": "background/image",
   "extra/backgrounds/unsplash": "background/unsplash",
@@ -157,9 +155,6 @@ type Storage = {
 
 function translateData(type: string, storage?: Storage) {
   switch (type) {
-    case "extra/backgrounds/giphy":
-      return storage ? { ...defaultGiphyData, ...storage.settings } : undefined;
-
     case "core/backgrounds/gradient":
       return storage
         ? { ...defaultGradientData, ...storage.settings }

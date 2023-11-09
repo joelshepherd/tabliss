@@ -17,6 +17,8 @@ export interface State {
   locale: string;
   /** Time zone selected, if any */
   timeZone: string | null;
+  /** Accent Colour */
+  accent: string;
 }
 
 export interface BackgroundState {
@@ -39,6 +41,7 @@ export interface WidgetState {
 
 export interface WidgetDisplay {
   colour?: string;
+  useAccentColor: boolean;
   fontFamily?: string;
   fontSize?: number;
   fontWeight?: number;
@@ -72,6 +75,7 @@ const initData: State = {
     order: 0,
     display: {
       position: "middleCentre",
+      useAccentColor: false
     },
   },
   "widget/default-greeting": {
@@ -80,11 +84,13 @@ const initData: State = {
     order: 1,
     display: {
       position: "middleCentre",
+      useAccentColor: true,
     },
   },
   focus: false,
   locale: defaultLocale,
   timeZone: null,
+  accent: "#ffd755",
 };
 
 // Database storage
@@ -96,10 +102,10 @@ export const cache = DB.init<Record<string, unknown | undefined>>();
 // Persist data
 export const dbStorage =
   BUILD_TARGET === "web"
-    ? Storage.indexeddb(db, "tabliss/config")
-    : Storage.extension(db, "tabliss/config", "sync");
+    ? Storage.indexeddb(db, "tab-nine/config")
+    : Storage.extension(db, "tab-nine/config", "sync");
 
 export const cacheStorage =
   BUILD_TARGET === "firefox"
-    ? Storage.extension(cache, "tabliss/cache", "local")
-    : Storage.indexeddb(cache, "tabliss/cache");
+    ? Storage.extension(cache, "tab-nine/cache", "local")
+    : Storage.indexeddb(cache, "tab-nine/cache");

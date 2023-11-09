@@ -11,6 +11,8 @@ export interface Data {
   search: string;
   topics: string;
   timeout: number;
+  smoothTransition: boolean;
+  ready?: boolean;
 }
 
 export interface Image {
@@ -35,4 +37,6 @@ export const defaultData: Data = {
   search: "",
   topics: "bo8jQKTaE0Y",
   timeout: 900,
+  smoothTransition: true,
+  ready: true,
 };

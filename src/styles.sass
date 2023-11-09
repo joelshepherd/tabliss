@@ -1,8 +1,57 @@
+@import "variables.sass";
+
+.hidden
+    visibility: hidden
+
+.accented
+    color: var(--accent-color)
+
+.badge
+    background-color: var(--accent-color)
+    font-size: 90%
+    font-weight: bold
+    text-transform: uppercase
+    color: rgba(255, 255, 255, 0.75);
+    padding-top: 0.35em
+    padding-bottom: 0.25em
+    padding-left: 0.5em
+    padding-right: 0.55em
+    border-radius: 1000px
+
+@media (prefers-color-scheme: dark)
+    html
+        scrollbar-face-color: #646464
+        scrollbar-base-color: #646464
+        scrollbar-3dlight-color: #646464
+        scrollbar-highlight-color: #646464
+        scrollbar-track-color: #000
+        scrollbar-arrow-color: #000
+        scrollbar-shadow-color: #646464
+        scrollbar-dark-shadow-color: #646464
+        
+    ::-webkit-scrollbar
+        width: 8px
+        height: 3px
+    ::-webkit-scrollbar-button
+        background-color: #3b3b3b
+    ::-webkit-scrollbar-track 
+        background-color: #646464
+    ::-webkit-scrollbar-track-piece
+        background-color: #000
+    ::-webkit-scrollbar-thumb
+        height: 50px
+        background-color: var(--accent-color)
+        border-radius: 3px
+    ::-webkit-scrollbar-corner
+        background-color: #646464
+    ::-webkit-resizer
+        background-color: #666
+
 *
     box-sizing: border-box
 
 html, body
-    font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif
+    font-family: sans-serif
     font-size: 14px
     line-height: 1.25
     color: #5a636a
@@ -21,7 +70,7 @@ html.theme-dark
     background-color: black
 
 a
-    color: #3498db
+    color: var(--accent-color)
     cursor: pointer
     text-decoration: none
 

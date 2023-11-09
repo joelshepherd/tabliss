@@ -31,6 +31,17 @@ const UnsplashSettings: React.FC<Props> = ({ data = defaultData, setData }) => (
 
     <label>
       <input
+        type="checkbox"
+        checked={data.smoothTransition}
+        onChange={(event) =>
+          setData({ ...data, smoothTransition: !data.smoothTransition })
+        }
+      />{" "}
+      Smooth image transition
+    </label>
+
+    <label>
+      <input
         type="radio"
         checked={data.by === "official"}
         onChange={() => setData({ ...data, by: "official" })}

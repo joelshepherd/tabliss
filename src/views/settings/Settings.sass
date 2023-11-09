@@ -1,21 +1,37 @@
+@import "../../variables"
+
 .Settings
     h1
         margin: 2rem 0
 
         svg
-            fill: #3498db
+            fill: var(--accent-color)
             width: 100%
 
-    h2, h3, h4
-        color: #212121
+    @media (prefers-color-scheme: light)
+        h2, h3, h4
+            color: #212121
+
+    @media (prefers-color-scheme: dark)
+        h2, h3, h4
+            color: #bbbbbb
+        p
+            color: #777777
 
     h2, h3
         margin-bottom: 0
 
+    @media (prefers-color-scheme: light)
+        .plane
+            background-color: white
+
+    @media (prefers-color-scheme: dark)
+        .plane
+            background-color: #111111
+
     .plane
         border-radius: 0 1rem 1rem 0
         box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.25)
-        background-color: white
         max-width: 100%
         height: 100%
         overflow-y: auto
@@ -35,6 +51,42 @@
         font-size: 0.9em
         margin-top: -0.75rem
 
+    @media (prefers-color-scheme: light)
+        input[type=email],
+        input[type=file],
+        input[type=number],
+        input[type=text],
+        input[type=time],
+        input[type=url],
+        textarea,
+        select
+            border: 1px solid #bdc3c7
+
+            &.primary
+                background-color: #ecf0f1
+                border: 0.25em solid #ecf0f1
+
+    @media (prefers-color-scheme: dark)
+        input[type=email],
+        input[type=file],
+        input[type=number],
+        input[type=text],
+        input[type=time],
+        input[type=url],
+        input[type=color],
+        textarea,
+        select
+            border: 1px solid #2b2d2f
+            color: white !important
+            background-color: #313738
+
+            &.primary
+                background-color: #313738
+                border: 0.25em solid #313738
+        
+        label
+            color: white
+
     input[type=email],
     input[type=file],
     input[type=number],
@@ -43,7 +95,6 @@
     input[type=url],
     textarea,
     select
-        border: 1px solid #bdc3c7
         border-radius: 0.2em
         color: inherit
         display: block
@@ -51,10 +102,6 @@
         padding: 0.5em
         width: 100%
         overflow: hidden
-
-        &.primary
-            background-color: #ecf0f1
-            border: 0.25em solid #ecf0f1
 
         & + .input--error
             display: none
@@ -64,10 +111,20 @@
 
     input[type=radio],
     input[type=checkbox]
+        accent-color: var(--accent-color)
         margin-right: 0.5rem
 
     input[type=color]
         display: block
+
+    @media (prefers-color-scheme: light)
+        .button
+            &:disabled
+                background-color: #bdc3c7
+    @media (prefers-color-scheme: dark)
+        .button
+            &:disabled
+                background-color: #323536
 
     .button
         border: 0
@@ -81,29 +138,46 @@
         text-align: center
         font-weight: 500
         &:disabled
-            background-color: #bdc3c7
             cursor: default
 
         &--primary
-            background-color: #3498db
+            background-color: var(--accent-color)
             &:hover
-                background: darken(#3498db, 10%)
+                background: darken(#ffd755, 10%)
             &:active
-                background: darken(#3498db, 20%)
+                background: darken(#ffd755, 20%)
 
         &--secondary
-            background: darken(#bdc3c7, 20%)
+            background: darken(#ffd755, 20%)
             &:hover
-                background: darken(#bdc3c7, 30%)
+                background: darken(#ffd755, 30%)
             &:active
-                background: darken(#bdc3c7, 40%)
+                background: darken(#ffd755, 40%)
+
+    @media (prefers-color-scheme: light)
+        hr
+            border: 1px solid #ecf0f1
+    @media (prefers-color-scheme: dark)
+        hr
+            border: 1px solid #3c3c3c
 
     hr
-        border: 1px solid #ecf0f1
         margin: 1rem 0
 
+@media (prefers-color-scheme: light)
+    .button--icon
+        background-color: #ecf0f1
+
+        &:hover
+            background-color: #bdc3c7 !important
+@media (prefers-color-scheme: dark)
+    .button--icon
+        background-color: #404142
+
+        &:hover
+            background-color: #212223 !important
+
 .button--icon
-    background-color: #ecf0f1
     border: none
     border-radius: 1em
     display: inline-block
@@ -115,13 +189,34 @@
     cursor: pointer
     transition: background-color 0.25s ease-out
 
-    &:hover
-        background-color: #bdc3c7 !important
-
     &.button--primary
-        background-color: #3498db !important
+        background-color: var(--accent-color) !important
         color: white
         padding: 0.5em
 
         &:hover
-            background-color: darken(#3498db, 20%) !important
+            background-color: darken(#ffd755, 20%) !important
+
+// Define the animation keyframes
+@keyframes gradient
+    0% 
+        background-position: 0% 50%;
+    50% 
+        background-position: 100% 50%;
+    100% 
+        background-position: 0% 50%;
+
+.donate
+    border: 0
+    border-radius: 2em
+    color: white
+    cursor: pointer
+    display: inline-block
+    padding: 0.5em 1em
+    text-decoration: none
+    background-size: 400% 400% !important
+    background-position: 100% 100%
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab)
+    animation: gradient 30s ease-in-out infinite
+    text-align: center
+    font-weight: 500
