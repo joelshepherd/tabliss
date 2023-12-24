@@ -4,8 +4,8 @@ import { addWidget, removeWidget, reorderWidget } from "../../db/action";
 import { selectWidgets } from "../../db/select";
 import { db } from "../../db/state";
 import { useSelector } from "../../lib/db/react";
-import { widgetConfigs } from "../../plugins";
 import Widget from "./Widget";
+import { widgetConfigs } from "../../plugins/plugins";
 
 const Widgets: React.FC = () => {
   const widgets = useSelector(db, selectWidgets);
@@ -34,11 +34,12 @@ const Widgets: React.FC = () => {
         />
             
           </option>
-          {widgetConfigs.map((plugin) => (
-            <option key={plugin.key} value={plugin.key}>
-              {plugin.name}
-            </option>
-          ))}
+          {widgetConfigs.map((plugin: any) => (
+<option key={plugin.key} value={plugin.key}>
+{plugin.name}
+</option>
+))}
+
         </select>
       </label>
 

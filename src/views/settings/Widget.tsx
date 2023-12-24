@@ -90,7 +90,7 @@ const Widget: React.FC<Props> = ({
 
               <label>
               <FormattedMessage
-          id="weight"
+          id="font.weight"
           defaultMessage="Weight"
           description="Weight title"
         /> <br />
@@ -105,37 +105,37 @@ const Widget: React.FC<Props> = ({
                   }
                 >
                   <option value=""><FormattedMessage
-          id="default"
+          id="font.default"
           defaultMessage="Default"
           description="Default weight font"
         /></option>
                   <option value="100"><FormattedMessage
-          id="thin"
+          id="font.thin"
           defaultMessage="Thin"
           description="Thin weight font"
         /></option>
                   <option value="300"><FormattedMessage
-          id="light"
+          id="font.light"
           defaultMessage="Light"
           description="Light weight font"
         /></option>
                   <option value="400"><FormattedMessage
-          id="regular"
+          id="font.regular"
           defaultMessage="Regular"
           description="Regular weight font"
         /></option>
                   <option value="500"><FormattedMessage
-          id="medium"
+          id="font.medium"
           defaultMessage="Medium"
           description="Medium weight font"
         /></option>
                   <option value="700"><FormattedMessage
-          id="bold"
+          id="font.bold"
           defaultMessage="Bold"
           description="Bold weight font"
         /></option>
                   <option value="900"><FormattedMessage
-          id="black"
+          id="font.black"
           defaultMessage="Black"
           description="Black weight font"
         /></option>
@@ -145,7 +145,7 @@ const Widget: React.FC<Props> = ({
               <label>
               <FormattedMessage
           id="colour"
-          defaultMessage="colour"
+          defaultMessage="Сolour"
           description="Сolour title"
         /> <br />
                 <input

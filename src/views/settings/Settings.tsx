@@ -56,7 +56,7 @@ const Settings: React.FC = () => {
             } catch (error) {
               alert(
                 `Invalid import file: ${
-                  error instanceof Error ? error.message : "Uknown error"
+                  error instanceof Error ? error.message : "Unknown error"
                 }`,
               );
             }
@@ -85,15 +85,39 @@ const Settings: React.FC = () => {
         <System />
 
         <p style={{ marginBottom: "2rem" }}>
-          <a onClick={handleImport}>Import</a>,{" "}
-          <a onClick={handleExport}>export</a> or{" "}
-          <a onClick={handleReset}>reset</a> your settings
+          <a onClick={handleImport}><FormattedMessage
+          id="settings.import"
+          defaultMessage="Import"
+          description="Import title"
+        /></a>,{" "}
+          <a onClick={handleExport}><FormattedMessage
+          id="settings.export"
+          defaultMessage="export"
+          description="Export title"
+        /></a> <FormattedMessage
+      id="settings.or"
+      defaultMessage="or"
+      description="your settings title"
+    /> {" "}
+          <a onClick={handleReset}><FormattedMessage
+          id="settings.reset"
+          defaultMessage="reset"
+          description="Reset title"
+        /></a> <FormattedMessage
+        id="settings.description"
+        defaultMessage="your settings"
+        description="your settings title"
+      />
         </p>
 
         <Persist />
 
         <div style={{ textAlign: "center" }} className="Widget">
-          <h4>Support Tabliss</h4>
+          <h4><FormattedMessage
+          id="support"
+          defaultMessage="Support Tabliss"
+          description="Support title"
+        /></h4>
           <p>
             <a
               href="https://www.paypal.com/donate/?hosted_button_id=FK7VRWS9A2EW4"
@@ -102,12 +126,20 @@ const Settings: React.FC = () => {
               className="button button--primary"
               title="I do love coffee"
             >
-              <Icon name="coffee" /> Donate a coffee 😍
+              <Icon name="coffee" /> <FormattedMessage
+          id="donateCoffee"
+          defaultMessage="Donate a coffee"
+          description="Donate a coffee title"
+        /> 😍
             </a>
           </p>
           <p>
             <a href="https://tabliss.io/" target="_blank">
-              <Icon name="globe" /> Website
+              <Icon name="globe" /> <FormattedMessage
+          id="website"
+          defaultMessage="Website"
+          description="Website title"
+        />
             </a>
             &nbsp;&nbsp;
             <a

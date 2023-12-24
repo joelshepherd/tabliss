@@ -1,0 +1,667 @@
+[
+  {
+    "id": "colour",
+    "defaultMessage": "Colour",
+    "description": "Colour title"
+  },
+  {
+    "id": "backgrounds.giphy.tag",
+    "defaultMessage": "Tag",
+    "description": "Tag title"
+  },
+  {
+    "id": "backgrounds.giphy.tag.Info",
+    "defaultMessage": "Separate multiple tags with a comma",
+    "description": "Tag info"
+  },
+  {
+    "id": "backgrounds.giphy.stretchToFillScreen",
+    "defaultMessage": "Stretch to fill screen",
+    "description": "Stretch to fill screen info"
+  },
+  {
+    "id": "backgrounds.giphy.safeSearch",
+    "defaultMessage": "Safe Search",
+    "description": "Safe Search title"
+  },
+  {
+    "id": "backgrounds.gradient.fromColour",
+    "defaultMessage": "From Colour",
+    "description": "From Colour title"
+  },
+  {
+    "id": "backgrounds.gradient.toColour",
+    "defaultMessage": "To Colour",
+    "description": "To Colour title"
+  },
+  {
+    "id": "backgrounds.gradient.angle",
+    "defaultMessage": "Angle",
+    "description": "Angle title"
+  },
+  {
+    "id": "plugins.unsplash.photoLink",
+    "description": "Photo link text",
+    "defaultMessage": "Photo"
+  },
+  {
+    "id": "backgrounds.unsplash.showNewPhoto",
+    "defaultMessage": "Show a new photo",
+    "description": "Show a new photo title"
+  },
+  {
+    "id": "backgrounds.unsplash.everyNewTab",
+    "defaultMessage": "Every new tab",
+    "description": "Every new tab title"
+  },
+  {
+    "id": "plugins.every5min",
+    "defaultMessage": "Every 5 minutes",
+    "description": "Every 5 minutes< title"
+  },
+  {
+    "id": "plugins.every15min",
+    "defaultMessage": "Every 15 minutes",
+    "description": "Every 15 minutes title"
+  },
+  {
+    "id": "plugins.everyHour",
+    "defaultMessage": "Every hour",
+    "description": "Every hour title"
+  },
+  {
+    "id": "plugins.everyDay",
+    "defaultMessage": "Every day",
+    "description": "Every day title"
+  },
+  {
+    "id": "plugins.everyWeek",
+    "defaultMessage": "Every week",
+    "description": "Every week title"
+  },
+  {
+    "id": "backgrounds.unsplash.officialCollection",
+    "defaultMessage": "Official Collection",
+    "description": "Official Collection title"
+  },
+  {
+    "id": "backgrounds.unsplash.topic",
+    "defaultMessage": "Topic",
+    "description": "Topic title"
+  },
+  {
+    "id": "backgrounds.unsplash.search",
+    "defaultMessage": "Search",
+    "description": "Search title"
+  },
+  {
+    "id": "backgrounds.unsplash.collection",
+    "defaultMessage": "Collection",
+    "description": "Collection title"
+  },
+  {
+    "id": "backgrounds.unsplash.topic",
+    "defaultMessage": "Topic",
+    "description": "Topic title"
+  },
+  {
+    "id": "backgrounds.unsplash.tags",
+    "defaultMessage": "Tags",
+    "description": "Tags title"
+  },
+  {
+    "id": "backgrounds.unsplash.onlyFeaturedImages",
+    "defaultMessage": "Only featured images",
+    "description": "Only featured images title"
+  },
+  {
+    "id": "backgrounds.unsplash.collection",
+    "defaultMessage": "Collection",
+    "description": "Collection title"
+  },
+  {
+    "id": "plugins.css.cssSnippet",
+    "defaultMessage": "CSS Snippet",
+    "description": "CSS Snippet title"
+  },
+  {
+    "id": "plugins.css.Warning",
+    "defaultMessage": "Warning: this functionality is intended for advanced users. Custom styles\n          may break at any time.",
+    "description": "Warning CSS title"
+  },
+  {
+    "id": "plugins.github.username",
+    "defaultMessage": "GitHub Username",
+    "description": "GitHub Username title"
+  },
+  {
+    "id": "plugins.name",
+    "defaultMessage": "Name",
+    "description": "Name title"
+  },
+  {
+    "id": "plugin.greeting.withoutName",
+    "defaultMessage": "{hour, select,\n      0 {Sleep well}\n      1 {Sleep well}\n      2 {Sleep well}\n      3 {Rise and shine}\n      4 {Rise and shine}\n      5 {Rise and shine}\n      6 {Good morning}\n      7 {Good morning}\n      8 {Good morning}\n      9 {Good morning}\n      10 {Hello}\n      11 {Hello}\n      12 {Hello}\n      13 {Hello}\n      14 {Good afternoon}\n      15 {Good afternoon}\n      16 {Good afternoon}\n      17 {Good afternoon}\n      18 {Good evening}\n      19 {Good evening}\n      20 {Good evening}\n      21 {Good evening}\n      22 {Good night}\n      23 {Good night}\n      other {Unknown}\n    }",
+    "description": "Greetings per time of day"
+  },
+  {
+    "id": "plugin.greeting.withName",
+    "defaultMessage": "{hour, select,\n      0 {Sleep well, {name}}\n      1 {Sleep well, {name}}\n      2 {Sleep well, {name}}\n      3 {Rise and shine, {name}}\n      4 {Rise and shine, {name}}\n      5 {Rise and shine, {name}}\n      6 {Good morning, {name}}\n      7 {Good morning, {name}}\n      8 {Good morning, {name}}\n      9 {Good morning, {name}}\n      10 {Hello, {name}}\n      11 {Hello, {name}}\n      12 {Hello, {name}}\n      13 {Hello, {name}}\n      14 {Good afternoon, {name}}\n      15 {Good afternoon, {name}}\n      16 {Good afternoon, {name}}\n      17 {Good afternoon, {name}}\n      18 {Good evening, {name}}\n      19 {Good evening, {name}}\n      20 {Good evening, {name}}\n      21 {Good evening, {name}}\n      22 {Good night, {name}}\n      23 {Good night, {name}}\n      other {Unknown}\n    }",
+    "description": "Greetings per time of day with names"
+  },
+  {
+    "id": "plugins.ipInfo.displayCity",
+    "defaultMessage": "Display City",
+    "description": "Display City title"
+  },
+  {
+    "id": "plugins.ipInfo.displayCountry",
+    "defaultMessage": "Display Country",
+    "description": "Display Country title"
+  },
+  {
+    "id": "plugins.joke.dailyJoke",
+    "defaultMessage": "Daily Joke",
+    "description": "Daily Joke title"
+  },
+  {
+    "id": "plugins.joke.showANewJoke",
+    "defaultMessage": "Show a new joke",
+    "description": "Show a new joke title"
+  },
+  {
+    "id": "plugins.every5min",
+    "defaultMessage": "Every 5 minutes",
+    "description": "Every 5 minutes title"
+  },
+  {
+    "id": "plugins.every15min",
+    "defaultMessage": "Every 15 minutes",
+    "description": "Every 15 minutes title"
+  },
+  {
+    "id": "plugins.everyHour",
+    "defaultMessage": "Every hour",
+    "description": "Every hour title"
+  },
+  {
+    "id": "plugins.everyDay",
+    "defaultMessage": "Every day",
+    "description": "Every day title"
+  },
+  {
+    "id": "plugins.everyWeek",
+    "defaultMessage": "Every week",
+    "description": "Every week title"
+  },
+  {
+    "id": "plugins.joke.category",
+    "defaultMessage": "Category",
+    "description": "Category title"
+  },
+  {
+    "id": "plugins.poweredBy",
+    "defaultMessage": "Powered by",
+    "description": "Powered by title"
+  },
+  {
+    "id": "plugins.js.jsSnippet",
+    "defaultMessage": "JavaScript Snippet",
+    "description": "JavaScript Snippet title"
+  },
+  {
+    "id": "plugins.apply",
+    "defaultMessage": "Apply",
+    "description": "Apply title"
+  },
+  {
+    "id": "plugins.js.Warning",
+    "defaultMessage": "Warning: this functionality is intended for advanced users. Custom\n          scripts may break at any time. The snippet will run once after the\n          dashboard has loaded. Be careful of persisting event listeners when\n          editing the snippet.",
+    "description": "JavaScript warning title"
+  },
+  {
+    "id": "plugins.links.shortcutHint",
+    "description": "Hover hint text for links with a keyboard shortcut",
+    "defaultMessage": "Press {number} or click to visit"
+  },
+  {
+    "id": "plugins.links.standardHint",
+    "description": "Hover hint text for links without a keyboard shortcut",
+    "defaultMessage": "Click to visit"
+  },
+  {
+    "id": "plugins.links.URL",
+    "defaultMessage": "URL",
+    "description": "URL title"
+  },
+  {
+    "id": "plugins.links.name",
+    "defaultMessage": "Name",
+    "description": "Name title"
+  },
+  {
+    "id": "plugins.optional",
+    "defaultMessage": "optional",
+    "description": "Optional title"
+  },
+  {
+    "id": "plugins.links.icon",
+    "defaultMessage": "Icon",
+    "description": "Icon title"
+  },
+  {
+    "id": "plugins.optional",
+    "defaultMessage": "optional",
+    "description": "Optional title"
+  },
+  {
+    "id": "plugins.links.none",
+    "defaultMessage": "None",
+    "description": "None title"
+  },
+  {
+    "id": "plugins.links.websiteIcon",
+    "defaultMessage": "Website Icon",
+    "description": "Website Icon title"
+  },
+  {
+    "id": "plugins.links.numberOfColumns",
+    "defaultMessage": "Number of columns",
+    "description": "Number of columns title"
+  },
+  {
+    "id": "plugins.links.areAlwaysVisible",
+    "defaultMessage": "Links are always visible",
+    "description": "Links are always visible title"
+  },
+  {
+    "id": "plugins.links.openInANewTab",
+    "defaultMessage": "Links open in a new tab",
+    "description": "Links open in a new tab title"
+  },
+  {
+    "id": "plugins.links.AddLink",
+    "defaultMessage": "Add link",
+    "description": "Add link title"
+  },
+  {
+    "id": "plugins.literatureClock.displayBookAndAuthor",
+    "defaultMessage": "Display book and author",
+    "description": "Display book and author title"
+  },
+  {
+    "id": "plugins.literatureClock.alignTextAtCenter",
+    "defaultMessage": "Align text at center",
+    "description": "Align text at center title"
+  },
+  {
+    "id": "plugins.message",
+    "defaultMessage": "Message",
+    "description": "Message title"
+  },
+  {
+    "id": "plugins.nba.displayTeamLogo",
+    "defaultMessage": "Display team logo",
+    "description": "Display team logo title"
+  },
+  {
+    "id": "plugins.quotes.dailyQuotes",
+    "defaultMessage": "Daily Quotes",
+    "description": "Daily Quotes title"
+  },
+  {
+    "id": "plugins.poweredBy",
+    "defaultMessage": "Powered by",
+    "description": "Powered by title"
+  },
+  {
+    "id": "plugins.quotes.hourlyQuotes",
+    "defaultMessage": "Hourly Quotes",
+    "description": "Hourly Quotes title"
+  },
+  {
+    "id": "plugins.poweredBy",
+    "defaultMessage": "Powered by",
+    "description": "Powered by title"
+  },
+  {
+    "id": "plugins.search.placeholder",
+    "description": "Placeholder text to show in the search box before typing",
+    "defaultMessage": "Type to search"
+  },
+  {
+    "id": "plugins.search.provider",
+    "defaultMessage": "Search Provider",
+    "description": "Search Provider title"
+  },
+  {
+    "id": "plugins.search.suggestionsProvider",
+    "defaultMessage": "Suggestions Provider",
+    "description": "Suggestions Provider title"
+  },
+  {
+    "id": "plugins.off",
+    "defaultMessage": "Off",
+    "description": "Off title"
+  },
+  {
+    "id": "plugins.search.suggestionsQuanitity",
+    "defaultMessage": "Suggestion Quanitity",
+    "description": "Suggestion Quanitity title"
+  },
+  {
+    "id": "plugins.name",
+    "defaultMessage": "Name",
+    "description": "Name title"
+  },
+  {
+    "id": "plugins.time.zone",
+    "defaultMessage": "Time Zone",
+    "description": "Time Zone title"
+  },
+  {
+    "id": "plugins.time.analogue",
+    "defaultMessage": "Analogue",
+    "description": "Analogue title"
+  },
+  {
+    "id": "plugins.time.12hrs",
+    "defaultMessage": "12-hour digital",
+    "description": "12-hour digital title"
+  },
+  {
+    "id": "plugins.time.24hrs",
+    "defaultMessage": "24-hour digital",
+    "description": "24-hour digital title"
+  },
+  {
+    "id": "plugins.time.displaySeconds",
+    "defaultMessage": "Display seconds",
+    "description": "Display seconds title"
+  },
+  {
+    "id": "plugins.time.displayMinutes",
+    "defaultMessage": "Display minutes",
+    "description": "Display minutes title"
+  },
+  {
+    "id": "plugins.time.displayDayPeriod",
+    "defaultMessage": "Display day period",
+    "description": "Display day period title"
+  },
+  {
+    "id": "plugins.time.displayDate",
+    "defaultMessage": "Display date",
+    "description": "Display date title"
+  },
+  {
+    "id": "plugins.tasks.toShow",
+    "defaultMessage": "Tasks to show",
+    "description": "Tasks to show title"
+  },
+  {
+    "id": "plugins.tasks.newTasksKeybind",
+    "defaultMessage": "New task keybind",
+    "description": "New task keybind title"
+  },
+  {
+    "id": "plugins.weather.searchForCity",
+    "defaultMessage": "Search for city",
+    "description": "Search for city title"
+  },
+  {
+    "id": "plugins.weather.latitude",
+    "defaultMessage": "Latitude",
+    "description": "Latitude title"
+  },
+  {
+    "id": "plugins.weather.longitude",
+    "defaultMessage": "Longitude",
+    "description": "Longitude title"
+  },
+  {
+    "id": "plugins.weather.high",
+    "description": "High for temperature high",
+    "defaultMessage": "High"
+  },
+  {
+    "id": "plugins.weather.low",
+    "description": "Low for temperature low",
+    "defaultMessage": "Low"
+  },
+  {
+    "id": "plugins.weather.apparent",
+    "description": "Apparent/Feels like tempurature",
+    "defaultMessage": "Feels like"
+  },
+  {
+    "id": "plugins.weather.humidity",
+    "description": "Humidity",
+    "defaultMessage": "Humidity"
+  },
+  {
+    "id": "plugins.weather.name",
+    "defaultMessage": "Name",
+    "description": "Name weather title"
+  },
+  {
+    "id": "plugins.weather.showDetails",
+    "defaultMessage": "Show extended details",
+    "description": "Show extended details title"
+  },
+  {
+    "id": "plugins.weather.metricUnits",
+    "defaultMessage": "Metric units",
+    "description": "Metric units title"
+  },
+  {
+    "id": "plugins.weather.imperialUnits",
+    "defaultMessage": "Imperial units",
+    "description": "Imperial units title"
+  },
+  {
+    "id": "plugins.weather.dataBy",
+    "defaultMessage": "Weather data by Open-Meteo.com",
+    "description": "Weather data title"
+  },
+  {
+    "id": "plugins.workHours.startTime",
+    "defaultMessage": "Start time",
+    "description": "Start time title"
+  },
+  {
+    "id": "plugins.workHours.endTime",
+    "defaultMessage": "End time",
+    "description": "End time title"
+  },
+  {
+    "id": "app.pageTitle",
+    "description": "Page title that Tabliss displays in the title bar.",
+    "defaultMessage": "New Tab"
+  },
+  {
+    "id": "dashboard.settingsHint",
+    "defaultMessage": "Customise Tabliss",
+    "description": "Hover hint text for the settings icon"
+  },
+  {
+    "id": "dashboard.focusHint",
+    "defaultMessage": "Toggle widgets",
+    "description": "Hover hint text for the widgets toggle"
+  },
+  {
+    "id": "dashboard.fullscreenHint",
+    "defaultMessage": "Toggle fullscreen",
+    "description": "Hover hint text for the fullscreen toggle"
+  },
+  {
+    "id": "dashboard.loadingHint",
+    "defaultMessage": "Loading new content",
+    "description": "Hover hint text for the loading indicator icon (the lightning bolt)"
+  },
+  {
+    "id": "dashboard.errorHint",
+    "defaultMessage": "Show errors",
+    "description": "Hover hint text for the error indicator icon"
+  },
+  {
+    "id": "background",
+    "defaultMessage": "Background",
+    "description": "Background title"
+  },
+  {
+    "id": "blur",
+    "defaultMessage": "Blur",
+    "description": "Blur title"
+  },
+  {
+    "id": "luminosity",
+    "defaultMessage": "Luminosity",
+    "description": "Luminosity title"
+  },
+  {
+    "id": "settings.position",
+    "defaultMessage": "Position",
+    "description": "Position title"
+  },
+  {
+    "id": "settings.import",
+    "defaultMessage": "Import",
+    "description": "Import title"
+  },
+  {
+    "id": "settings.export",
+    "defaultMessage": "export",
+    "description": "Export title"
+  },
+  {
+    "id": "settings.or",
+    "defaultMessage": "or",
+    "description": "your settings title"
+  },
+  {
+    "id": "settings.reset",
+    "defaultMessage": "reset",
+    "description": "Reset title"
+  },
+  {
+    "id": "settings.description",
+    "defaultMessage": "your settings",
+    "description": "your settings title"
+  },
+  {
+    "id": "support",
+    "defaultMessage": "Support Tabliss",
+    "description": "Support title"
+  },
+  {
+    "id": "donateCoffee",
+    "defaultMessage": "Donate a coffee",
+    "description": "Donate a coffee title"
+  },
+  {
+    "id": "website",
+    "defaultMessage": "Website",
+    "description": "Website title"
+  },
+  {
+    "id": "settings.translationCredits",
+    "description": "Give yourself some credit :)",
+    "defaultMessage": " "
+  },
+  {
+    "id": "settings",
+    "defaultMessage": "Settings",
+    "description": "Settings title"
+  },
+  {
+    "id": "language",
+    "defaultMessage": "Language",
+    "description": "Language title"
+  },
+  {
+    "id": "timeZone",
+    "defaultMessage": "Time zone",
+    "description": "Time zone title"
+  },
+  {
+    "id": "font",
+    "defaultMessage": "Font",
+    "description": "Font title"
+  },
+  {
+    "id": "font.weight",
+    "defaultMessage": "Weight",
+    "description": "Weight title"
+  },
+  {
+    "id": "font.default",
+    "defaultMessage": "Default",
+    "description": "Default weight font"
+  },
+  {
+    "id": "font.thin",
+    "defaultMessage": "Thin",
+    "description": "Thin weight font"
+  },
+  {
+    "id": "font.light",
+    "defaultMessage": "Light",
+    "description": "Light weight font"
+  },
+  {
+    "id": "font.regular",
+    "defaultMessage": "Regular",
+    "description": "Regular weight font"
+  },
+  {
+    "id": "font.medium",
+    "defaultMessage": "Medium",
+    "description": "Medium weight font"
+  },
+  {
+    "id": "font.bold",
+    "defaultMessage": "Bold",
+    "description": "Bold weight font"
+  },
+  {
+    "id": "font.black",
+    "defaultMessage": "Black",
+    "description": "Black weight font"
+  },
+  {
+    "id": "colour",
+    "defaultMessage": "Сolour",
+    "description": "Сolour title"
+  },
+  {
+    "id": "size",
+    "defaultMessage": "Size",
+    "description": "Size title"
+  },
+  {
+    "id": "widgets",
+    "defaultMessage": "Widgets",
+    "description": "Widgets title"
+  },
+  {
+    "id": "add.new.widget",
+    "defaultMessage": "Add a new widget",
+    "description": "Add a new widget title"
+  },
+  {
+    "id": "timeZone.automatic",
+    "defaultMessage": "Automatic",
+    "description": "Automatic title"
+  },
+  {
+    "id": "plugins.section.open",
+    "defaultMessage": "Open",
+    "description": "Text for opening the section"
+  },
+  {
+    "id": "plugins.section.close",
+    "defaultMessage": "Close",
+    "description": "Text for closing the section"
+  }
+]
