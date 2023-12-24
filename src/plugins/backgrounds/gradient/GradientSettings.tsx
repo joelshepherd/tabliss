@@ -36,8 +36,7 @@ const GradientSettings: FC<Props> = ({ data = defaultData, setData }) => (
           id="backgrounds.gradient.angle"
           defaultMessage="Angle"
           description="Angle title"
-        />
-        (0-360)
+        /> (0-360)
       <input
         type="number"
         value={data.angle}

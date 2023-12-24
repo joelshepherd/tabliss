@@ -520,6 +520,26 @@
     "description": "Luminosity title"
   },
   {
+    "id": "settings.persist.title",
+    "defaultMessage": "Persist Settings",
+    "description": "Persist Settings title"
+  },
+  {
+    "id": "settings.persist.description",
+    "defaultMessage": "Would you like Tabliss to ask your browser to save your setting\n          permanently?",
+    "description": "Persist Settings description"
+  },
+  {
+    "id": "settings.persist.error",
+    "defaultMessage": "Could not persist settings at this time.",
+    "description": "Persist Settings error"
+  },
+  {
+    "id": "settings.persist.button",
+    "defaultMessage": "Persist Settings",
+    "description": "Persist Settings button"
+  },
+  {
     "id": "settings.position",
     "defaultMessage": "Position",
     "description": "Position title"

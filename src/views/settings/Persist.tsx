@@ -1,4 +1,5 @@
 import React from "react";
+import { FormattedMessage } from "react-intl";
 
 const Persist: React.FC = () => {
   const [error, setError] = React.useState(false);
@@ -20,16 +21,33 @@ const Persist: React.FC = () => {
 
   return (
     <div className="Widget" style={{ textAlign: "center" }}>
-      <h4>Persist Settings</h4>
+      <h4><FormattedMessage
+          id="settings.persist.title"
+          defaultMessage="Persist Settings"
+          description="Persist Settings title"
+        /></h4>
       <p>
-        Would you like Tabliss to ask your browser to save your setting
-        permanently?
+      <FormattedMessage
+          id="settings.persist.description"
+          defaultMessage="Would you like Tabliss to ask your browser to save your setting
+          permanently?"
+          description="Persist Settings description"
+        />
+        
       </p>
       {error ? (
-        <p>Could not persist settings at this time.</p>
+        <p><FormattedMessage
+        id="settings.persist.error"
+        defaultMessage="Could not persist settings at this time."
+        description="Persist Settings error"
+      /></p>
       ) : (
         <button className="button button--primary" onClick={handleClick}>
-          Persist Settings
+          <FormattedMessage
+          id="settings.persist.button"
+          defaultMessage="Persist Settings"
+          description="Persist Settings button"
+        />
         </button>
       )}
     </div>
