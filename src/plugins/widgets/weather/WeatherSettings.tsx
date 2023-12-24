@@ -1,4 +1,5 @@
 import React, { FC } from "react";
+import { FormattedMessage } from "react-intl";
 import LocationInput from "./LocationInput";
 import { defaultData, Props } from "./types";
 
@@ -13,7 +14,12 @@ const WeatherSettings: FC<Props> = ({ data = defaultData, setData }) => (
     {data.latitude && data.latitude ? (
       <>
         <label>
-          Name
+        <FormattedMessage
+          id="plugins.weather.name"
+          defaultMessage="Name"
+          description="Name weather title"
+        />
+          
           <input
             type="text"
             value={data.name || ""}
@@ -34,7 +40,12 @@ const WeatherSettings: FC<Props> = ({ data = defaultData, setData }) => (
               setData({ ...data, showDetails: !data.showDetails })
             }
           />{" "}
-          Show extended details
+          <FormattedMessage
+          id="plugins.weather.showDetails"
+          defaultMessage="Show extended details"
+          description="Show extended details title"
+        />
+          
         </label>
 
         <label>
@@ -43,7 +54,12 @@ const WeatherSettings: FC<Props> = ({ data = defaultData, setData }) => (
             checked={data.units === "si"}
             onChange={() => setData({ ...data, units: "si" })}
           />{" "}
-          Metric units
+          <FormattedMessage
+          id="plugins.weather.metricUnits"
+          defaultMessage="Metric units"
+          description="Metric units title"
+        />
+          
         </label>
 
         <label>
@@ -52,7 +68,11 @@ const WeatherSettings: FC<Props> = ({ data = defaultData, setData }) => (
             checked={data.units === "us"}
             onChange={() => setData({ ...data, units: "us" })}
           />{" "}
-          Imperial units
+          <FormattedMessage
+          id="plugins.weather.imperialUnits"
+          defaultMessage="Imperial units"
+          description="Imperial units title"
+        />
         </label>
 
         <p>
@@ -61,7 +81,11 @@ const WeatherSettings: FC<Props> = ({ data = defaultData, setData }) => (
             rel="noopener noreferrer"
             target="_blank"
           >
-            Weather data by Open-Meteo.com
+            <FormattedMessage
+          id="plugins.weather.dataBy"
+          defaultMessage="Weather data by Open-Meteo.com"
+          description="Weather data title"
+        />
           </a>
         </p>
       </>

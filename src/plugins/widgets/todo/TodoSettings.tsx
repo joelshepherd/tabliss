@@ -1,11 +1,15 @@
 import React, { FC } from "react";
-
+import { FormattedMessage } from "react-intl";
 import { Props, defaultData } from "./types";
 
 const TodoSettings: FC<Props> = ({ data = defaultData, setData }) => (
   <div className="SearchSettings">
     <label>
-      Tasks to show
+      <FormattedMessage
+          id="plugins.tasks.toShow"
+          defaultMessage="Tasks to show"
+          description="Tasks to show title"
+        />
       <input
         type="number"
         min="0"
@@ -18,7 +22,11 @@ const TodoSettings: FC<Props> = ({ data = defaultData, setData }) => (
     </label>
 
     <label>
-      New task keybind
+      <FormattedMessage
+          id="plugins.tasks.newTasksKeybind"
+          defaultMessage="New task keybind"
+          description="New task keybind title"
+        />
       <input
         type="text"
         maxLength={1}

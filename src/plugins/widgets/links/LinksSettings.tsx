@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-
+import { FormattedMessage } from "react-intl";
 import { useSavedReducer } from "../../../hooks";
 import Input from "./Input";
 import { addLink, removeLink, reorderLink, updateLink } from "./actions";
@@ -13,7 +13,11 @@ const LinksSettings: FC<Props> = ({ data = defaultData, setData }) => {
   return (
     <div className="LinksSettings">
       <label>
-        Number of columns
+      <FormattedMessage
+          id="plugins.links.numberOfColumns"
+          defaultMessage="Number of columns"
+          description="Number of columns title"
+        />
         <input
           type="number"
           value={data.columns}
@@ -30,7 +34,12 @@ const LinksSettings: FC<Props> = ({ data = defaultData, setData }) => {
           checked={data.visible}
           onChange={() => setData({ ...data, visible: !data.visible })}
         />
-        Links are always visible
+        <FormattedMessage
+          id="plugins.links.areAlwaysVisible"
+          defaultMessage="Links are always visible"
+          description="Links are always visible title"
+        />
+        
       </label>
 
       <label>
@@ -41,7 +50,11 @@ const LinksSettings: FC<Props> = ({ data = defaultData, setData }) => {
             setData({ ...data, linkOpenStyle: !data.linkOpenStyle })
           }
         />
-        Links open in a new tab
+        <FormattedMessage
+          id="plugins.links.openInANewTab"
+          defaultMessage="Links open in a new tab"
+          description="Links open in a new tab title"
+        />
       </label>
 
       <hr />
@@ -73,7 +86,12 @@ const LinksSettings: FC<Props> = ({ data = defaultData, setData }) => {
           className="button button--primary"
           onClick={() => dispatch(addLink())}
         >
-          Add link
+          <FormattedMessage
+          id="plugins.links.AddLink"
+          defaultMessage="Add link"
+          description="Add link title"
+        />
+          
         </button>
       </p>
     </div>

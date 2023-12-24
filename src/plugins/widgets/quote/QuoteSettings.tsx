@@ -1,11 +1,15 @@
 import React, { FC } from "react";
-
+import { FormattedMessage } from "react-intl";
 import categories from "./categories";
 import { Props, defaultData } from "./types";
 
 const QuoteSettings: React.FC<Props> = ({ data = defaultData, setData }) => (
   <div className="QuoteSettings">
-    <h5>Daily Quotes</h5>
+    <h5><FormattedMessage
+          id="plugins.quotes.dailyQuotes"
+          defaultMessage="Daily Quotes"
+          description="Daily Quotes title"
+        /></h5>
     {categories.map((category) => (
       <label key={category.key}>
         <input
@@ -17,7 +21,11 @@ const QuoteSettings: React.FC<Props> = ({ data = defaultData, setData }) => (
       </label>
     ))}
     <p>
-      Powered by{" "}
+    <FormattedMessage
+          id="plugins.poweredBy"
+          defaultMessage="Powered by"
+          description="Powered by title"
+        />{" "}
       <a
         href="https://theysaidso.com/"
         target="_blank"
@@ -26,7 +34,11 @@ const QuoteSettings: React.FC<Props> = ({ data = defaultData, setData }) => (
         They Said So
       </a>
     </p>
-    <h5>Hourly Quotes</h5>
+    <h5><FormattedMessage
+          id="plugins.quotes.hourlyQuotes"
+          defaultMessage="Hourly Quotes"
+          description="Hourly Quotes title"
+        /></h5>
     <label>
       <input
         type="radio"
@@ -36,7 +48,11 @@ const QuoteSettings: React.FC<Props> = ({ data = defaultData, setData }) => (
       Developer Excuses
     </label>
     <p>
-      Powered by{" "}
+    <FormattedMessage
+          id="plugins.poweredBy"
+          defaultMessage="Powered by"
+          description="Powered by title"
+        />{" "}
       <a
         href="http://www.developerexcuses.com/"
         target="_blank"

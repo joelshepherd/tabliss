@@ -1,4 +1,5 @@
 import React from "react";
+import { FormattedMessage } from "react-intl";
 import { useToggle } from "../../../hooks";
 import { Icon } from "../../../views/shared";
 import { geocodeLocation, requestLocation } from "./api";
@@ -26,7 +27,11 @@ const GeocodeInput: React.FC<Props> = ({ onChange }) => {
   return (
     <form onSubmit={handleGeocode}>
       <div className="grid" style={{ gridTemplateColumns: "1fr auto" }}>
-        <label htmlFor="LocationInput__query">Search for city</label>
+        <label htmlFor="LocationInput__query"><FormattedMessage
+          id="plugins.weather.searchForCity"
+          defaultMessage="Search for city"
+          description="Search for city title"
+        /></label>
 
         <div />
 
@@ -69,9 +74,17 @@ const CoordinateInput: React.FC<Props> = ({
             : "1fr 1fr",
         }}
       >
-        <label htmlFor="LocationInput__latitude">Latitude</label>
+        <label htmlFor="LocationInput__latitude"><FormattedMessage
+          id="plugins.weather.latitude"
+          defaultMessage="Latitude"
+          description="Latitude title"
+        /></label>
 
-        <label htmlFor="LocationInput__longitude">Longitude</label>
+        <label htmlFor="LocationInput__longitude"><FormattedMessage
+          id="plugins.weather.longitude"
+          defaultMessage="Longitude"
+          description="Longitude title"
+        /></label>
 
         {geolocationAvailable && <div />}
 

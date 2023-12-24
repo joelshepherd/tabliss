@@ -1,4 +1,5 @@
 import React from "react";
+import { FormattedMessage } from "react-intl";
 import { Icon } from "../../../views/shared";
 import { DebounceInput } from "../../shared";
 import topics from "./topics.json";
@@ -13,19 +14,47 @@ const UnsplashSettings: React.FC<Props> = ({ data = defaultData, setData }) => (
           <Icon name={data.paused ? "play" : "pause"} />
         </a>
       </span>
-      Show a new photo
+      <FormattedMessage
+          id="backgrounds.unsplash.showNewPhoto"
+          defaultMessage="Show a new photo"
+          description="Show a new photo title"
+        />
       <select
         value={data.timeout}
         onChange={(event) =>
           setData({ ...data, timeout: Number(event.target.value) })
         }
       >
-        <option value="0">Every new tab</option>
-        <option value="300">Every 5 minutes</option>
-        <option value="900">Every 15 minutes</option>
-        <option value="3600">Every hour</option>
-        <option value="86400">Every day</option>
-        <option value="604800">Every week</option>
+        <option value="0"><FormattedMessage
+          id="backgrounds.unsplash.everyNewTab"
+          defaultMessage="Every new tab"
+          description="Every new tab title"
+        /></option>
+        <option value="300"><FormattedMessage
+          id="plugins.every5min"
+          defaultMessage="Every 5 minutes"
+          description="Every 5 minutes< title"
+        /></option>
+        <option value="900"><FormattedMessage
+          id="plugins.every15min"
+          defaultMessage="Every 15 minutes"
+          description="Every 15 minutes title"
+        /></option>
+        <option value="3600"><FormattedMessage
+          id="plugins.everyHour"
+          defaultMessage="Every hour"
+          description="Every hour title"
+        /></option>
+        <option value="86400"><FormattedMessage
+          id="plugins.everyDay"
+          defaultMessage="Every day"
+          description="Every day title"
+        /></option>
+        <option value="604800"><FormattedMessage
+          id="plugins.everyWeek"
+          defaultMessage="Every week"
+          description="Every week title"
+        /></option>
       </select>
     </label>
 
@@ -35,7 +64,11 @@ const UnsplashSettings: React.FC<Props> = ({ data = defaultData, setData }) => (
         checked={data.by === "official"}
         onChange={() => setData({ ...data, by: "official" })}
       />{" "}
-      Official Collection
+      <FormattedMessage
+          id="backgrounds.unsplash.officialCollection"
+          defaultMessage="Official Collection"
+          description="Official Collection title"
+        />
     </label>
 
     <label>
@@ -44,7 +77,11 @@ const UnsplashSettings: React.FC<Props> = ({ data = defaultData, setData }) => (
         checked={data.by === "topics"}
         onChange={() => setData({ ...data, by: "topics" })}
       />{" "}
-      Topic
+      <FormattedMessage
+          id="backgrounds.unsplash.topic"
+          defaultMessage="Topic"
+          description="Topic title"
+        />
     </label>
 
     <label>
@@ -53,7 +90,11 @@ const UnsplashSettings: React.FC<Props> = ({ data = defaultData, setData }) => (
         checked={data.by === "search"}
         onChange={() => setData({ ...data, by: "search" })}
       />{" "}
-      Search
+      <FormattedMessage
+          id="backgrounds.unsplash.search"
+          defaultMessage="Search"
+          description="Search title"
+        />
     </label>
 
     <label>
@@ -62,12 +103,20 @@ const UnsplashSettings: React.FC<Props> = ({ data = defaultData, setData }) => (
         checked={data.by === "collections"}
         onChange={() => setData({ ...data, by: "collections" })}
       />{" "}
-      Collection
+      <FormattedMessage
+          id="backgrounds.unsplash.collection"
+          defaultMessage="Collection"
+          description="Collection title"
+        />
     </label>
 
     {data.by === "topics" && (
       <label>
-        Topic
+        <FormattedMessage
+          id="backgrounds.unsplash.topic"
+          defaultMessage="Topic"
+          description="Topic title"
+        />
         <select
           value={data.topics}
           onChange={(event) => setData({ ...data, topics: event.target.value })}
@@ -84,7 +133,11 @@ const UnsplashSettings: React.FC<Props> = ({ data = defaultData, setData }) => (
     {data.by === "search" && (
       <>
         <label>
-          Tags
+          <FormattedMessage
+          id="backgrounds.unsplash.tags"
+          defaultMessage="Tags"
+          description="Tags title"
+        />
           <DebounceInput
             type="text"
             value={data.search}
@@ -100,14 +153,23 @@ const UnsplashSettings: React.FC<Props> = ({ data = defaultData, setData }) => (
             checked={data.featured}
             onChange={(event) => setData({ ...data, featured: !data.featured })}
           />{" "}
-          Only featured images
+          <FormattedMessage
+          id="backgrounds.unsplash.onlyFeaturedImages"
+          defaultMessage="Only featured images"
+          description="Only featured images title"
+        />
         </label>
       </>
     )}
 
     {data.by === "collections" && (
       <label>
-        Collection
+        <FormattedMessage
+          id="backgrounds.unsplash.collection"
+          defaultMessage="Collection"
+          description="Collection title"
+        />
+        
         <DebounceInput
           type="text"
           value={data.collections}
