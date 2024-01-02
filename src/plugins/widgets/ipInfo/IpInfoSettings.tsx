@@ -22,6 +22,17 @@ const IpInfoSettings: React.FC<Props> = ({ data = defaultData, setData }) => (
       />
       Display Country
     </label>
+
+    <label>
+      <input
+        type="checkbox"
+        checked={data.maskIP}
+        onChange={() =>
+          setData({ ...data, maskIP: !data.maskIP })
+        }
+      />
+      Mask IP
+    </label>
   </div>
 );
 
