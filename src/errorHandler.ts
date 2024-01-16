@@ -1,6 +1,6 @@
 import { init, captureException, setTag } from "@sentry/browser";
 
-export function register() {
+export function register(): void {
   init({
     autoSessionTracking: false, // Wtf sentry
     dsn: "https://2e0e75c7477c4c3e9572ee97241e569c@o113629.ingest.sentry.io/250221",
@@ -10,7 +10,7 @@ export function register() {
   setTag("target", BUILD_TARGET);
 }
 
-export function capture(error: Error) {
+export function capture(error: Error): void {
   if (error.stack) {
     // Replace firefox extension URLs
     error.stack = error.stack.replace(
