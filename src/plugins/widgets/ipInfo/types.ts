@@ -3,6 +3,7 @@ import { API } from "../../types";
 type Data = {
   displayCity: boolean;
   displayCountry: boolean;
+  maskIP: boolean;
 };
 
 export type IpData = {
@@ -18,4 +19,5 @@ export type Props = API<Data, Cache>;
 export const defaultData: Data = {
   displayCity: true,
   displayCountry: true,
+  maskIP: false,
 };
