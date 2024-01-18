@@ -28,6 +28,7 @@ export interface BackgroundState {
 export interface BackgroundDisplay {
   blur?: number;
   luminosity?: number;
+  nightDim?: boolean;
 }
 
 export interface WidgetState {
@@ -64,6 +65,7 @@ const initData: State = {
     display: {
       luminosity: -0.2,
       blur: 0,
+      nightDim: false,
     },
   },
   "widget/default-time": {

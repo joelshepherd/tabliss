@@ -1,6 +1,7 @@
 import React from "react";
 import { db } from "../../db/state";
 import { useValue } from "../../lib/db/react";
+import { useIsNight } from "../../hooks";
 
 type Props = React.HTMLAttributes<HTMLDivElement> & {
   ready?: boolean;
@@ -21,7 +22,8 @@ const Backdrop: React.FC<Props> = ({
   const focus = useValue(db, "focus");
   // TODO: Consider passing display in via prop
   const background = useValue(db, "background");
-  const { blur, luminosity = 0 } = background.display;
+  const { blur, luminosity = 0, nightDim } = background.display;
+  const isNight = useIsNight();
 
   style = { ...style };
 
@@ -30,8 +32,12 @@ const Backdrop: React.FC<Props> = ({
     style["transform"] = `scale(${blur / 500 + 1})`;
   }
 
-  if (luminosity && !focus) {
-    style["opacity"] = 1 - Math.abs(luminosity);
+  if (luminosity !== null && !focus) {
+    if (nightDim && isNight) {
+      style["opacity"] = (luminosity + 1) / 2;
+    } else {
+      style["opacity"] = 1 - Math.abs(luminosity);
+    }
   }
 
   return (
