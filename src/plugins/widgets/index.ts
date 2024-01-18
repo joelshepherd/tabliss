@@ -1,6 +1,7 @@
 import css from "./css";
 import github from "./github";
 import greeting from "./greeting";
+import html from "./html";
 import ipInfo from "./ipInfo";
 import js from "./js";
 import links from "./links";
@@ -20,6 +21,7 @@ export const widgetConfigs = [
   css,
   github,
   greeting,
+  html,
   ipInfo,
   links,
   literatureClock,
