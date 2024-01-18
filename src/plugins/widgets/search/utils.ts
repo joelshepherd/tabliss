@@ -1,5 +1,6 @@
 import tlds from "tlds";
 import { engines } from "./engines";
+import { SEARCH_ENGINE_CUSTOM } from "./types";
 
 // TODO: Add unit tests
 export function buildUrl(query: string, engineUrl: string) {
@@ -17,10 +18,12 @@ export function buildUrl(query: string, engineUrl: string) {
   return engineUrl.replace("{searchTerms}", encodeURIComponent(query));
 }
 
-export function getSearchUrl(key: string) {
-  const engine = engines.find((engine) => engine.key === key);
+export function getSearchUrl(key: string, custom?: string) {
+  const engine = key === SEARCH_ENGINE_CUSTOM
+    ? custom
+    : engines.find((engine) => engine.key === key)?.search_url;
 
-  return (engine || engines[0]).search_url;
+  return engine || engines[0].search_url;
 }
 
 export function getSuggestUrl(key?: string) {
