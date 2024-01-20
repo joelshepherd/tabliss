@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useEffect } from "react";
 
 import { useKeyPress, useSavedReducer, useToggle } from "../../../hooks";
 import { DownIcon, Icon, UpIcon, ExpandIcon } from "../../../views/shared";
@@ -25,6 +25,20 @@ const Todo: FC<Props> = ({ data = defaultData, setData }) => {
     },
     [keyBind.toUpperCase(), keyBind.toLowerCase()],
   );
+
+  useEffect(() => {
+    if (data.dailyRoutine) {
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+      for (const item of items) {
+        if (item.completed && item.completedAt) {
+          if (new Date(item.completedAt).getTime() < today.getTime()) {
+            dispatch(toggleTodo(item.id));
+          }
+        }
+      }
+    }
+  }, [data.items, data.dailyRoutine]);
 
   return (
     <div className="Todo">

@@ -26,6 +26,18 @@ const TodoSettings: FC<Props> = ({ data = defaultData, setData }) => (
         value={data.keyBind}
       />
     </label>
+
+    <label>
+      <input
+        type="checkbox"
+        maxLength={1}
+        onChange={(event) =>
+          setData({ ...data, dailyRoutine: event.target.checked })
+        }
+        checked={data.dailyRoutine}
+      />
+      Daily routine
+    </label>
   </div>
 );
 
