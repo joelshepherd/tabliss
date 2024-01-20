@@ -42,7 +42,7 @@ const Weather: React.FC<Props> = ({
         onClick={() => setData({ ...data, showDetails: !data.showDetails })}
         title="Toggle weather details"
       >
-        {data.name ? <span>{data.name}</span> : null}
+        {data.name && data.showCity ? <span>{data.name}</span> : null}
         <Icon name={weatherCodes[conditions.weatherCode]} />
         <span className="temperature">
           {Math.round(conditions.temperature)}˚
