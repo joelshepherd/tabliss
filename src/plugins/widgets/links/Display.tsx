@@ -35,9 +35,9 @@ const messages = defineMessages({
   },
 });
 
-type Props = Link & { number: number; linkOpenStyle: boolean };
+type Props = Link & { number: number; linkOpenStyle: boolean; linksNumbered: boolean };
 
-const Display: FC<Props> = ({ icon, name, number, url, linkOpenStyle }) => {
+const Display: FC<Props> = ({ icon, name, number, url, linkOpenStyle, linksNumbered: linksNumbered }) => {
   const intl = useIntl();
 
   const title = useMemo(
@@ -57,6 +57,11 @@ const Display: FC<Props> = ({ icon, name, number, url, linkOpenStyle }) => {
       target={linkOpenStyle ? "_blank" : "_self"}
       title={title}
     >
+      {
+        linksNumbered
+          ? <span className="LinkNumber">{number} </span>
+          : null
+      }
       {icon === "_favicon" ? (
         domain ? (
           <i>

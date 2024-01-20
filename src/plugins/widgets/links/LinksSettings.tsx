@@ -44,6 +44,16 @@ const LinksSettings: FC<Props> = ({ data = defaultData, setData }) => {
         Links open in a new tab
       </label>
 
+      <label>
+        <input
+          type="checkbox"
+          checked={data.linksNumbered}
+          onChange={() =>
+            setData({ ...data, linksNumbered: !data.linksNumbered })
+          }
+        />
+        Links are numbered
+      </label>
       <hr />
 
       {data.links.map((link, index) => (
