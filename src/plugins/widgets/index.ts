@@ -1,3 +1,4 @@
+import countdown from './countdown';
 import css from "./css";
 import github from "./github";
 import greeting from "./greeting";
@@ -17,6 +18,7 @@ import workHours from "./workHours";
 import joke from "./joke";
 
 export const widgetConfigs = [
+  countdown,
   css,
   github,
   greeting,
