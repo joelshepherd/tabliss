@@ -25,60 +25,73 @@ const TimeSettings: FC<Props> = ({ data = defaultData, setData }) => (
 
     <label>
       <input
-        type="radio"
-        checked={data.mode === "analogue"}
-        onChange={() => setData({ ...data, mode: "analogue" })}
-      />{" "}
-      Analogue
-    </label>
-
-    <label>
-      <input
-        type="radio"
-        checked={data.mode === "digital" && data.hour12}
-        onChange={() => setData({ ...data, mode: "digital", hour12: true })}
-      />{" "}
-      12-hour digital
-    </label>
-
-    <label>
-      <input
-        type="radio"
-        checked={data.mode === "digital" && !data.hour12}
-        onChange={() => setData({ ...data, mode: "digital", hour12: false })}
-      />{" "}
-      24-hour digital
-    </label>
-
-    <label>
-      <input
         type="checkbox"
-        checked={data.showSeconds}
-        onChange={() => setData({ ...data, showSeconds: !data.showSeconds })}
+        checked={data.showTime}
+        onChange={() => setData({ ...data, showTime: !data.showTime })}
       />{" "}
-      Display seconds
+      Display time
     </label>
 
-    <label>
-      <input
-        type="checkbox"
-        checked={data.showMinutes}
-        onChange={() => setData({ ...data, showMinutes: !data.showMinutes })}
-      />{" "}
-      Display minutes
-    </label>
+    {data.showTime && (
+    <>
+      <label>
+        <input
+          type="radio"
+          checked={data.mode === "analogue"}
+          onChange={() => setData({ ...data, mode: "analogue" })}
+        />{" "}
+        Analogue
+      </label>
 
-    {data.mode === "digital" && data.hour12 && (
+      <label>
+        <input
+          type="radio"
+          checked={data.mode === "digital" && data.hour12}
+          onChange={() => setData({ ...data, mode: "digital", hour12: true })}
+        />{" "}
+        12-hour digital
+      </label>
+
+      <label>
+        <input
+          type="radio"
+          checked={data.mode === "digital" && !data.hour12}
+          onChange={() => setData({ ...data, mode: "digital", hour12: false })}
+        />{" "}
+        24-hour digital
+      </label>
+
       <label>
         <input
           type="checkbox"
-          checked={data.showDayPeriod}
-          onChange={() =>
-            setData({ ...data, showDayPeriod: !data.showDayPeriod })
-          }
+          checked={data.showSeconds}
+          onChange={() => setData({ ...data, showSeconds: !data.showSeconds })}
         />{" "}
-        Display day period
+        Display seconds
       </label>
+
+      <label>
+        <input
+          type="checkbox"
+          checked={data.showMinutes}
+          onChange={() => setData({ ...data, showMinutes: !data.showMinutes })}
+        />{" "}
+        Display minutes
+      </label>
+
+      {data.mode === "digital" && data.hour12 && (
+        <label>
+          <input
+            type="checkbox"
+            checked={data.showDayPeriod}
+            onChange={() =>
+              setData({ ...data, showDayPeriod: !data.showDayPeriod })
+            }
+          />{" "}
+          Display day period
+        </label>
+      )}
+    </>
     )}
 
     <label>
