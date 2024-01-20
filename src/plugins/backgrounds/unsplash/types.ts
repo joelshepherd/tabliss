@@ -7,6 +7,8 @@ export interface Data {
   by: By;
   collections: string;
   featured: boolean;
+  lastBlockedImage: string;
+  blockedImages: Set<string>;
   paused?: boolean;
   search: string;
   topics: string;
@@ -16,6 +18,7 @@ export interface Data {
 export interface Image {
   src: string;
   credit: {
+    imageID: string;
     imageLink: string;
     location?: string;
     userName: string;
@@ -35,4 +38,6 @@ export const defaultData: Data = {
   search: "",
   topics: "bo8jQKTaE0Y",
   timeout: 900,
+  lastBlockedImage: "",
+  blockedImages: new Set<string>()
 };

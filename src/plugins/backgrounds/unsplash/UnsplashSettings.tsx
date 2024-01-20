@@ -65,6 +65,14 @@ const UnsplashSettings: React.FC<Props> = ({ data = defaultData, setData }) => (
       Collection
     </label>
 
+    <button onClick={() => setData({...data, blockedImages: new Set<string>() })}>
+      Reset All Blocks
+    </button>
+
+    <button onClick ={() => setData({...data, lastBlockedImage: "" })}>
+      Undo Image Block
+    </button>
+
     {data.by === "topics" && (
       <label>
         Topic

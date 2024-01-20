@@ -19,6 +19,7 @@ export interface State {
   timeZone: string | null;
 }
 
+
 export interface BackgroundState {
   id: string;
   key: string;

@@ -64,6 +64,31 @@ const Unsplash: React.FC<Props> = ({
           })
       : null;
 
+  const handleBlock = () => {
+
+    const imageID = item?.credit.imageID
+    if(imageID == undefined){
+      return;
+    }
+
+    if(data.lastBlockedImage == "" || data.lastBlockedImage == undefined){
+      data.lastBlockedImage = imageID
+    }
+    else{
+      if(data.blockedImages == undefined){
+        data.blockedImages = new Set<string>()
+      }
+      data.blockedImages.add(data.lastBlockedImage)
+      data.lastBlockedImage = imageID
+    }
+
+    cache && cache.items[cache.cursor + 1] ?  setCache({
+      ...cache!,
+      cursor: cache!.cursor + 1,
+      rotated: Date.now(),
+    }):null;
+  }
+
   const handlePause = () => {
     setData({
       ...data,
@@ -83,6 +108,7 @@ const Unsplash: React.FC<Props> = ({
         <UnsplashCredit
           credit={item.credit}
           paused={data.paused ?? false}
+          onBlock = {handleBlock}
           onPause={handlePause}
           onPrev={go(-1)}
           onNext={go(1)}
