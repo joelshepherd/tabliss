@@ -6,13 +6,16 @@ jobs:
     name: Run tests
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
+      - uses: actions/setup-node@v4
         with:
           node-version: 16
-          cache: npm
-      - run: npm ci
-      - run: npm test
+          cache: pnpm
+      - run: pnpm i
+      - run: pnpm test
   build:
     name: Build ${{ matrix.build_target }}
     runs-on: ubuntu-latest
@@ -23,13 +26,16 @@ jobs:
           - firefox
           - web
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
+      - uses: actions/setup-node@v4
         with:
           node-version: 16
-          cache: npm
-      - run: npm ci
-      - run: npm run build:${{ matrix.build_target }}
+          cache: pnpm
+      - run: pnpm i
+      - run: pnpm build:${{ matrix.build_target }}
         env:
           GIPHY_API_KEY: ${{ secrets.GIPHY_API_KEY }}
           UNSPLASH_API_KEY: ${{ secrets.UNSPLASH_API_KEY }}
