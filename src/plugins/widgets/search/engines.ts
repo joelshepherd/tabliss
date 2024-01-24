@@ -86,5 +86,11 @@ export const engines: Engine[] = [
     key: "phind",
     name: "Phind",
     search_url: "https://phind.com/search?q={searchTerms}",
+  },  
+  {
+    key: "kagi",
+    name: "Kagi",
+    search_url: "https://kagi.com/search?q={searchTerms}",
+    suggest_url: "https://kagi.com/api/autosuggest?q={searchTerms}",
   },
 ];
