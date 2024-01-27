@@ -25,7 +25,8 @@ const Links: FC<Props> = ({ data = defaultData }) => {
     <div
       className="Links"
       style={{
-        gridTemplateColumns: data.visible || visible ? "1fr ".repeat(data.columns) : "1fr",
+        gridTemplateColumns:
+          data.visible || visible ? "1fr ".repeat(data.columns) : "1fr",
         textAlign: data.columns > 1 ? "left" : "inherit",
       }}
     >

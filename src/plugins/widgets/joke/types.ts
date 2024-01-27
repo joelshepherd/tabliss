@@ -64,7 +64,7 @@ export function isJokeError(
   return joke.error;
 }
 
-export type JokeAPICategory = typeof categories[number]["key"];
+export type JokeAPICategory = (typeof categories)[number]["key"];
 export type Data = {
   categories: Set<JokeAPICategory>;
   timeout: number;

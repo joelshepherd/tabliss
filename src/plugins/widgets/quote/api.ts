@@ -90,8 +90,8 @@ export async function getQuote(
     category === "developerexcuses"
       ? await getDeveloperExcuse()
       : category === "bible"
-      ? await getBibleVerse()
-      : await getQuoteOfTheDay(category);
+        ? await getBibleVerse()
+        : await getQuoteOfTheDay(category);
 
   loader.pop();
 
