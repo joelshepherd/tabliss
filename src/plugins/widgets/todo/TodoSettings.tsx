@@ -30,9 +30,7 @@ const TodoSettings: FC<Props> = ({ data = defaultData, setData }) => (
       <input
         type="text"
         maxLength={1}
-        onChange={(event) =>
-          setData({ ...data, keyBind: event.target.value })
-        }
+        onChange={(event) => setData({ ...data, keyBind: event.target.value })}
         value={data.keyBind}
       />
     </label>
