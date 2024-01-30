@@ -1,12 +1,16 @@
 import React, { FC } from "react";
-
+import { FormattedMessage } from "react-intl";
 import { engines } from "./engines";
 import { Props, defaultData } from "./types";
 
 const SearchSettings: FC<Props> = ({ data = defaultData, setData }) => (
   <div className="SearchSettings">
     <label>
-      Search Provider
+      <FormattedMessage
+          id="plugins.search.provider"
+          defaultMessage="Search Provider"
+          description="Search Provider title"
+        />
       <select
         onChange={(event) =>
           setData({ ...data, searchEngine: event.target.value })
@@ -23,7 +27,11 @@ const SearchSettings: FC<Props> = ({ data = defaultData, setData }) => (
 
     {BUILD_TARGET === "web" && (
       <label>
-        Suggestions Provider
+        <FormattedMessage
+          id="plugins.search.suggestionsProvider"
+          defaultMessage="Suggestions Provider"
+          description="Suggestions Provider title"
+        />
         <select
           onChange={(event) =>
             setData({ ...data, suggestionsEngine: event.target.value })
@@ -31,7 +39,11 @@ const SearchSettings: FC<Props> = ({ data = defaultData, setData }) => (
           value={data.suggestionsEngine}
         >
           <option key="off" value="">
-            Off
+            <FormattedMessage
+          id="plugins.off"
+          defaultMessage="Off"
+          description="Off title"
+        />
           </option>
           {engines
             .filter(({ suggest_url }) => Boolean(suggest_url))
@@ -46,7 +58,11 @@ const SearchSettings: FC<Props> = ({ data = defaultData, setData }) => (
 
     {data.suggestionsEngine && (
       <label>
-        Suggestion Quanitity
+        <FormattedMessage
+          id="plugins.search.suggestionsQuanitity"
+          defaultMessage="Suggestion Quanitity"
+          description="Suggestion Quanitity title"
+        />
         <input
           type="number"
           min="1"

@@ -1,5 +1,6 @@
 import { getTimezoneOffset } from "date-fns-tz";
 import React from "react";
+import { FormattedMessage } from "react-intl";
 import zones from "./zones.json";
 
 type Props = {
@@ -49,7 +50,11 @@ const TimeZoneInput: React.FC<Props> = ({ timeZone, onChange }) => {
       value={timeZone || ""}
       onChange={(event) => onChange(event.target.value || null)}
     >
-      <option value="">Automatic</option>
+      <option value=""><FormattedMessage
+          id="timeZone.automatic"
+          defaultMessage="Automatic"
+          description="Automatic title"
+        /></option>
       {zoneOptions ? (
         zoneOptions.map((option) => (
           <option key={option.id} value={option.id}>

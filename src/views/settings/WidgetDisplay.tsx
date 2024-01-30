@@ -1,4 +1,5 @@
 import React from "react";
+import { FormattedMessage } from "react-intl";
 import { WidgetDisplay as WidgetDisplayType } from "../../db/state";
 import PositionInput from "./PositionInput";
 import "./WidgetDisplay.css";
@@ -17,7 +18,11 @@ const WidgetDisplay: React.FC<Props> = ({ display, onChange }) => {
       />
 
       <label>
-        Size
+      <FormattedMessage
+          id="size"
+          defaultMessage="Size"
+          description="Size title"
+        />
         <br />
         <input
           type="range"

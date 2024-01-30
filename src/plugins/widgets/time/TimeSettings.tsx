@@ -1,12 +1,16 @@
 import React, { FC } from "react";
-
+import { FormattedMessage } from "react-intl";
 import { Props, defaultData } from "./types";
 import TimeZoneInput from "../../../views/shared/timeZone/TimeZoneInput";
 
 const TimeSettings: FC<Props> = ({ data = defaultData, setData }) => (
   <div className="TimeSettings">
     <label>
-      Name
+      <FormattedMessage
+          id="plugins.name"
+          defaultMessage="Name"
+          description="Name title"
+        />
       <input
         type="text"
         value={data.name}
@@ -16,7 +20,11 @@ const TimeSettings: FC<Props> = ({ data = defaultData, setData }) => (
     </label>
 
     <label>
-      Time Zone
+      <FormattedMessage
+          id="plugins.time.zone"
+          defaultMessage="Time Zone"
+          description="Time Zone title"
+        />
       <TimeZoneInput
         timeZone={data.timeZone}
         onChange={(timeZone) => setData({ ...data, timeZone })}
@@ -29,7 +37,11 @@ const TimeSettings: FC<Props> = ({ data = defaultData, setData }) => (
         checked={data.mode === "analogue"}
         onChange={() => setData({ ...data, mode: "analogue" })}
       />{" "}
-      Analogue
+      <FormattedMessage
+          id="plugins.time.analogue"
+          defaultMessage="Analogue"
+          description="Analogue title"
+        />
     </label>
 
     <label>
@@ -38,7 +50,11 @@ const TimeSettings: FC<Props> = ({ data = defaultData, setData }) => (
         checked={data.mode === "digital" && data.hour12}
         onChange={() => setData({ ...data, mode: "digital", hour12: true })}
       />{" "}
-      12-hour digital
+      <FormattedMessage
+          id="plugins.time.12hrs"
+          defaultMessage="12-hour digital"
+          description="12-hour digital title"
+        />
     </label>
 
     <label>
@@ -47,7 +63,11 @@ const TimeSettings: FC<Props> = ({ data = defaultData, setData }) => (
         checked={data.mode === "digital" && !data.hour12}
         onChange={() => setData({ ...data, mode: "digital", hour12: false })}
       />{" "}
-      24-hour digital
+      <FormattedMessage
+          id="plugins.time.24hrs"
+          defaultMessage="24-hour digital"
+          description="24-hour digital title"
+        />
     </label>
 
     <label>
@@ -56,7 +76,11 @@ const TimeSettings: FC<Props> = ({ data = defaultData, setData }) => (
         checked={data.showSeconds}
         onChange={() => setData({ ...data, showSeconds: !data.showSeconds })}
       />{" "}
-      Display seconds
+      <FormattedMessage
+          id="plugins.time.displaySeconds"
+          defaultMessage="Display seconds"
+          description="Display seconds title"
+        />
     </label>
 
     <label>
@@ -65,7 +89,11 @@ const TimeSettings: FC<Props> = ({ data = defaultData, setData }) => (
         checked={data.showMinutes}
         onChange={() => setData({ ...data, showMinutes: !data.showMinutes })}
       />{" "}
-      Display minutes
+      <FormattedMessage
+          id="plugins.time.displayMinutes"
+          defaultMessage="Display minutes"
+          description="Display minutes title"
+        />
     </label>
 
     {data.mode === "digital" && data.hour12 && (
@@ -77,7 +105,11 @@ const TimeSettings: FC<Props> = ({ data = defaultData, setData }) => (
             setData({ ...data, showDayPeriod: !data.showDayPeriod })
           }
         />{" "}
-        Display day period
+        <FormattedMessage
+          id="plugins.time.displayDayPeriod"
+          defaultMessage="Display day period"
+          description="Display day period title"
+        />
       </label>
     )}
 
@@ -87,7 +119,11 @@ const TimeSettings: FC<Props> = ({ data = defaultData, setData }) => (
         checked={data.showDate}
         onChange={() => setData({ ...data, showDate: !data.showDate })}
       />{" "}
-      Display date
+      <FormattedMessage
+          id="plugins.time.displayDate"
+          defaultMessage="Display date"
+          description="Display date title"
+        />
     </label>
   </div>
 );

@@ -54,7 +54,11 @@ const Background: React.FC = () => {
             <ToggleSection name="Display Settings">
               <>
                 <label>
-                  Blur <br />
+                <FormattedMessage
+          id="blur"
+          defaultMessage="Blur"
+          description="Blur title"
+        /> <br />
                   <input
                     type="range"
                     list="blur-markers"
@@ -75,7 +79,11 @@ const Background: React.FC = () => {
                 </label>
 
                 <label>
-                  Luminosity <br />
+                <FormattedMessage
+          id="luminosity"
+          defaultMessage="Luminosity"
+          description="Luminosity title"
+        /> <br />
                   <input
                     type="range"
                     list="luminosity-markers"

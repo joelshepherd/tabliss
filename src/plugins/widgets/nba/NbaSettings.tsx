@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-
+import { FormattedMessage } from "react-intl";
 import { Props, defaultData } from "./types";
 
 const NbaSettings: FC<Props> = ({ data = defaultData, setData }) => (
@@ -10,7 +10,11 @@ const NbaSettings: FC<Props> = ({ data = defaultData, setData }) => (
         checked={data.displayLogo}
         onChange={() => setData({ ...data, displayLogo: !data.displayLogo })}
       />{" "}
-      Display team logo
+      <FormattedMessage
+          id="plugins.nba.displayTeamLogo"
+          defaultMessage="Display team logo"
+          description="Display team logo title"
+        />
     </label>
   </div>
 );

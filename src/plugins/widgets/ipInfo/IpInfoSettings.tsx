@@ -1,4 +1,5 @@
 import React from "react";
+import { FormattedMessage } from "react-intl";
 import { defaultData, Props } from "./types";
 
 const IpInfoSettings: React.FC<Props> = ({ data = defaultData, setData }) => (
@@ -9,7 +10,11 @@ const IpInfoSettings: React.FC<Props> = ({ data = defaultData, setData }) => (
         checked={data.displayCity}
         onChange={() => setData({ ...data, displayCity: !data.displayCity })}
       />
-      Display City
+      <FormattedMessage
+          id="plugins.ipInfo.displayCity"
+          defaultMessage="Display City"
+          description="Display City title"
+        />
     </label>
 
     <label>
@@ -20,7 +25,11 @@ const IpInfoSettings: React.FC<Props> = ({ data = defaultData, setData }) => (
           setData({ ...data, displayCountry: !data.displayCountry })
         }
       />
-      Display Country
+      <FormattedMessage
+          id="plugins.ipInfo.displayCountry"
+          defaultMessage="Display Country"
+          description="Display Country title"
+        />
     </label>
   </div>
 );
