@@ -1,4 +1,5 @@
 import icons from "feather-icons/dist/icons.json";
+import arcticons from "icons.json";
 import React, { FC } from "react";
 
 import {
@@ -18,6 +19,7 @@ type Props = Link & {
 };
 
 const iconList = Object.keys(icons);
+const arcticonList = Object.keys(arcticons);
 
 const Input: FC<Props> = (props) => (
   <div className="LinkInput">
@@ -69,6 +71,11 @@ const Input: FC<Props> = (props) => (
         <option value="_favicon">Website Icon</option>
         <optgroup label="Feather Icons">
           {iconList.map((key) => (
+            <option key={key}>{key}</option>
+          ))}
+        </optgroup>
+        <optgroup label="Arcticons">
+          {arcticonList.map((key) => (
             <option key={key}>{key}</option>
           ))}
         </optgroup>
