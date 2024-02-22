@@ -1,4 +1,4 @@
-import icons from "feather-icons/dist/icons.json";
+import { listIcons } from 'iconify-icon';
 import React, { FC } from "react";
 
 import {
@@ -17,7 +17,7 @@ type Props = Link & {
   onRemove: () => void;
 };
 
-const iconList = Object.keys(icons);
+const iconList = listIcons;
 
 const Input: FC<Props> = (props) => (
   <div className="LinkInput">
@@ -67,7 +67,7 @@ const Input: FC<Props> = (props) => (
       >
         <option value={""}>None</option>
         <option value="_favicon">Website Icon</option>
-        <optgroup label="Feather Icons">
+        <optgroup label="Icons via Iconify">
           {iconList.map((key) => (
             <option key={key}>{key}</option>
           ))}
