@@ -1,5 +1,6 @@
 import { pick } from "in-browser-language";
 import ar from "./lang/ar.json";
+import be from "./lang/be.json";
 import caES from "./lang/ca-ES.json";
 import cs from "./lang/cs.json";
 import de from "./lang/de.json";
@@ -45,6 +46,7 @@ import uk from "./lang/uk.json";
 
 export const messages: Record<string, Record<string, string>> = {
   ar: ar,
+  be: be,
   "ca-ES": caES,
   cs: cs,
   de: de,

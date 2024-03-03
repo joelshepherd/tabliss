@@ -36,6 +36,9 @@ const System: React.FC = () => {
           <option value="ar" title="Arabic">
             العربية
           </option>
+          <option value="be" title="Belorussian">
+            Беларуская
+          </option>
           <option value="ca-ES" title="Catalan">
             Català
           </option>

@@ -1,0 +1,22 @@
+{
+  "app.pageTitle": "Новая ўкладка",
+  "background": "Фон",
+  "dashboard.errorHint": "Паказаць памылкі",
+  "dashboard.focusHint": "Пераключыць віджэты",
+  "dashboard.fullscreenHint": "Пераключыць поўнаэкранны рэжым",
+  "dashboard.loadingHint": "Загрузка новага кантэнту",
+  "dashboard.settingsHint": "Наладзьце Tabliss",
+  "plugin.greeting.withName": "{hour, select,\n      0 {Прыемных сноў, {name}}\n      1 {Ужо сцямнела, {name}}\n      2 {Час спаць, {name}}\n      3 {Прачніся і спявай, {name}!}\n      4 {Добрай раніцы, {name}}\n      5 {Бадзёрай раніцы, {name}!}\n      6 {Добрай раніцы, {name}}\n      7 {Добрай раніцы, {name}}\n      8 {Добрай раніцы, {name}}\n      9 {Добрай раніцы, {name}}\n      10 {Прывітанне, {name}!}\n      11 {Добры дзень, {name}}\n      12 {Вітаем, {name}!}\n      13 {Добрага дня, {name}}\n      14 {Сардэчна запрашаем, {name}}\n      15 {Маё шанаванне, {name}}\n      16 {Здароў, {name}!}\n      17 {Добрага здароўя, {name}}\n      18 {Прадуктыўнага вечара, {name}}\n      19 {Добры вечар, {name}}\n      20 {Добры вечар, {name}}\n      21 {Дабранач, {name}}\n      22 {Ужо ноч, {name}}\n      23 {Час спаць, {name}}\n      other {Unknown}\n    }",
+  "plugin.greeting.withoutName": "{hour, select,\n      0 {Прыемных сноў}\n      1 {Ужо сцямнела}\n      2 {Час спаць}\n      3 {Прачніся і спявай}\n      4 {Добрай раніцы}\n      5 {Бадзёрай раніцы}\n      6 {Добрай раніцы}\n      7 {Добрай раніцы}\n      8 {Добрай раніцы}\n      9 {Добрай раніцы}\n      10 {Прывітанне}\n      11 {Добры дзень}\n      12 {Вітаем}\n      13 {Добрага дня}\n      14 {Сардэчна запрашаем}\n      15 {Добрага дня}\n      16 {Здароў}\n      17 {Добрага здароўя}\n      18 {Прадуктыўнага вечара}\n      19 {Добры вечар}\n      20 {Добры вечар}\n      21 {Дабранач}\n      22 {Ужо ноч}\n      23 {Час спаць}\n      other {Unknown}\n    }",
+  "plugins.links.shortcutHint": "Націсніце {number} або клікніце, каб наведаць",
+  "plugins.links.standardHint": "Націсніце, каб наведаць",
+  "plugins.search.placeholder": "Увядзіце для пошуку",
+  "plugins.unsplash.photoLink": "Фота",
+  "plugins.weather.apparent": "Адчуваецца як",
+  "plugins.weather.high": "Максімум",
+  "plugins.weather.humidity": "Вільготнасць",
+  "plugins.weather.low": "Мінімум",
+  "settings": "Налады",
+  "settings.translationCredits": "Пераклаў на беларускую Мацвей Нацэўскі",
+  "widgets": "Фішкі"
+}
