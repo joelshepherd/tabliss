@@ -1,0 +1,22 @@
+{
+  "app.pageTitle": "Novi tab",
+  "background": "Pozadina",
+  "dashboard.errorHint": "Prikaz greške",
+  "dashboard.focusHint": "Prebaci se na kontrolne elemente",
+  "dashboard.fullscreenHint": "Prebaci se na puni zaslon",
+  "dashboard.loadingHint": "Učitavanje novog sadržaja",
+  "dashboard.settingsHint": "Prilagodi Tabliss",
+  "plugin.greeting.withName": "{hour, select, 0 {Lijepi snovi, {name}} 1 {Lijepi snovi, {name}} 2 {Lijepi snovi, {name}} 3 {Iz kreveta, {name}} 4 {Iz kreveta, {name}} 5 {Iz kreveta, {name}} 6 {Dobro jutro, {name}} 7 {Dobro jutro, {name}} 8 {Dobro jutro, {name}} 9 {Dobro jutro, {name}} 10 {Bok {name}} 11 {Bok {name}} 12 {Bok {name}} 13 {Bok {name}} 14 {Dobar dan, {name}} 15 {Dobar dan, {name}} 16 {Dobar dan, {name}} 17 {Dobar dan, {name}} 18 {Dobra večer, {name}} 19 {Dobra večer, {name}} 20 {Dobra večer, {name}} 21 {Dobra večer, {name}} 22 {Laku noć, {name}} 23 {Laku noć, {name}} other {Nepoznato}}",
+  "plugin.greeting.withoutName": "{hour, select, 0 {Lijepi snovi} 1 {Lijepi snovi} 2 {Lijepi snovi} 3 {Iz kreveta} 4 {Iz kreveta} 5 {Iz kreveta} 6 {Dobro jutro} 7 {Dobro jutro} 8 {Dobro jutro} 9 {Dobro jutro} 10 {Bok} 11 {Bok} 12 {Bok} 13 {Bok} 14 {Dobar dan} 15 {Dobar dan} 16 {Dobar dan} 17 {Dobar dan} 18 {Dobra večer} 19 {Dobra večer} 20 {Dobra večer} 21 {Dobra večer} 22 {Laku noć} 23 {Laku noć} other {Nepoznato}}",
+  "plugins.links.shortcutHint": "Za otvaranje pritisnite ili kliknite {number}",
+  "plugins.links.standardHint": "Za otvaranje kliknite",
+  "plugins.search.placeholder": "Unesite pojmove za pretragu",
+  "plugins.unsplash.photoLink": "Fotografija",
+  "plugins.weather.apparent": "Osjećana temperatura",
+  "plugins.weather.high": "Visoka",
+  "plugins.weather.humidity": "Vlažnost zraka",
+  "plugins.weather.low": "Niska",
+  "settings": "Postavke",
+  "settings.translationCredits": "Preveo Marvin M (M123-dev)",
+  "widgets": "Widgeti"
+}
