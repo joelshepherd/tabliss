@@ -20,6 +20,10 @@ export const fetchImages = async ({
     Authorization: `Client-ID ${UNSPLASH_API_KEY}`,
   });
 
+  if (!UNSPLASH_API_KEY) {
+    throw new Error("You must set the UNSPLASH_API_KEY environment variable.");
+  }
+
   params.set("count", "10");
 
   switch (by) {
@@ -45,17 +49,20 @@ export const fetchImages = async ({
   const res = await fetch(`${url}?${params}`, { headers, cache: "no-cache" });
   const body = await res.json();
 
-  // TODO: validate types
-
-  return body.map((item: any) => ({
-    src: item.urls.raw,
-    credit: {
-      imageLink: item.links.html,
-      location: item.location ? item.location.name : null,
-      userName: item.user.name,
-      userLink: item.user.links.html,
-    },
-  }));
+  if (Array.isArray(body)) {
+    return body.map((item: any) => ({
+      src: item.urls.raw,
+      credit: {
+        imageLink: item.links.html,
+        location: item.location ? item.location.name : null,
+        userName: item.user.name,
+        userLink: item.user.links.html,
+      },
+    }));
+  } else {
+    console.error('Expected an array, but received:', body);
+    return [];
+  }
 };
 
 /**
