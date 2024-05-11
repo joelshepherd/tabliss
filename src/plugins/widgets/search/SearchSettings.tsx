@@ -46,7 +46,7 @@ const SearchSettings: FC<Props> = ({ data = defaultData, setData }) => (
 
     {data.suggestionsEngine && (
       <label>
-        Suggestion Quanitity
+        Suggestion Quantity
         <input
           type="number"
           min="1"
