@@ -10,6 +10,9 @@ import { defaultData, Props } from "./types";
 
 const EXPIRE_IN = 1 * MINUTES;
 
+const getLink = (homeTeamCode: string, awayTeamCode: string, gameId: string) =>
+  `https://www.nba.com/game/${awayTeamCode}-vs-${homeTeamCode}-${gameId}/box-score`;
+
 const Nba: React.FC<Props> = ({
   cache,
   data = defaultData,
@@ -35,6 +38,19 @@ const Nba: React.FC<Props> = ({
       {cache.games.map((game) => (
         <div key={game.gameId} className="nba-game">
           <div className="period">{getPeriod(game, timeZone)}</div>
+          <div className="period">
+            <a
+              href={getLink(
+                game.hTeam.triCode,
+                game.vTeam.triCode,
+                game.gameId,
+              )}
+              target="_blank"
+              rel="noreferrer nofollow"
+            >
+              Boxscore
+            </a>
+          </div>
           <div>
             {data.displayLogo ? (
               <img className="icon" src={game.hTeam.logo} />
