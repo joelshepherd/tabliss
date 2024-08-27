@@ -10,7 +10,7 @@ import "./github-calendar.css";
 const GitHubCalendarWidget: FC<Props> = ({ data = defaultData, loader }) => {
   useEffect(() => {
     loader.push();
-    GitHubCalendar(".GitHubCalendar", data.username, {
+    GitHubCalendar(".calendar", data.username, {
       responsive: false,
       global_stats: data.showSummary,
     }).finally(() => {
@@ -23,7 +23,7 @@ const GitHubCalendarWidget: FC<Props> = ({ data = defaultData, loader }) => {
       <a
         href={"https://github.com/" + data.username}
         rel="noopener noreferrer"
-        className="GitHubCalendar"
+        className="calendar"
       />
     </div>
   );
