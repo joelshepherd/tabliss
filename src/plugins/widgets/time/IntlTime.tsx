@@ -36,7 +36,8 @@ const IntlTime: React.FC<Props> = ({
         hour: "numeric",
         hourCycle: hour12 ? "h12" : "h23",
         minute: showMinutes ? "numeric" : undefined,
-        second: showSeconds ? "numeric" : undefined,
+        // second: showSeconds ? "numeric" : undefined, 
+        second:undefined,
       }),
     [locale, hour12, showMinutes, showSeconds],
   );
