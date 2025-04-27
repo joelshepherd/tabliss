@@ -104,6 +104,7 @@
   "plugins.weather.name": "Nombre",
   "plugins.weather.searchForCity": "Buscar por ciudad",
   "plugins.weather.showDetails": "Mostrar más detalles",
+  "plugins.weather.windSpeed": "Velocidad del viento",
   "plugins.workHours.endTime": "Hora de fin",
   "plugins.workHours.startTime": "Hora de inicio",
   "settings": "Opciones",

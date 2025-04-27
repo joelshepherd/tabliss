@@ -104,6 +104,7 @@
   "plugins.weather.name": "Name",
   "plugins.weather.searchForCity": "Search for city",
   "plugins.weather.showDetails": "Show extended details",
+  "plugins.weather.windSpeed": "Wind speed",
   "plugins.workHours.endTime": "End time",
   "plugins.workHours.startTime": "Start time",
   "settings": "सेटिंग्स",

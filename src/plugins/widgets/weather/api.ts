@@ -20,9 +20,11 @@ export async function getForecast(
     "hourly=temperature_2m&" +
     "hourly=apparent_temperature&" +
     "hourly=relativehumidity_2m&" +
+    "hourly=wind_speed_10m&" +
     "hourly=weathercode&" +
     "timeformat=unixtime&" +
-    `temperature_unit=${units === "us" ? "fahrenheit" : "celsius"}`;
+    `temperature_unit=${units === "us" ? "fahrenheit" : "celsius"}` +
+    `wind_speed_unit=${units === "us" ? "mph" : "kmh"}`;
   const res = await fetch(url);
   const body = await res.json();
   loader.pop();
@@ -36,6 +38,7 @@ export async function getForecast(
       temperature: body.hourly.temperature_2m[i],
       apparentTemperature: body.hourly.apparent_temperature[i],
       humidity: body.hourly.relativehumidity_2m[i],
+      windSpeed: body.hourly.wind_speed_10m[i],
       weatherCode: body.hourly.weathercode[i],
     })),
   };

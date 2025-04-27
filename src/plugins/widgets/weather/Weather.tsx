@@ -59,6 +59,10 @@ const Weather: React.FC<Props> = ({
             <dt>{conditions.humidity}%</dt>
             <dd>{translated.humidity}</dd>
           </dl>
+          <dl>
+            <dt>{conditions.windSpeed}{data.units === "us" ? " mph" : " kmh"}</dt>
+            <dd>{translated.windSpeed}</dd>
+          </dl>
         </div>
       ) : null}
     </div>
@@ -86,6 +90,11 @@ const messages = defineMessages({
     id: "plugins.weather.humidity",
     description: "Humidity",
     defaultMessage: "Humidity",
+  },
+  windSpeed: {
+    id: "plugins.weather.windSpeed",
+    description: "Wind Speed",
+    defaultMessage: "Wind speed",
   },
 });
 

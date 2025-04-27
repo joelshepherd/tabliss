@@ -4,6 +4,7 @@ export interface Conditions {
   temperature: number;
   apparentTemperature: number;
   humidity: number;
+  windSpeed: number;
   weatherCode: number;
 }
 

@@ -104,6 +104,7 @@
   "plugins.weather.name": "Название",
   "plugins.weather.searchForCity": "Поиск по городу",
   "plugins.weather.showDetails": "Показать дополнительную информацию",
+  "plugins.weather.windSpeed": "Wind speed",
   "plugins.workHours.endTime": "Конец",
   "plugins.workHours.startTime": "Начало",
   "settings": "Настройки",
