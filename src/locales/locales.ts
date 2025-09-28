@@ -30,6 +30,7 @@ import no from "./lang/no.json";
 import ro from "./lang/ro.json";
 import ru from "./lang/ru.json";
 import sk from "./lang/sk.json";
+import sq from "./lang/sq.json";
 import sr from "./lang/sr.json";
 import sv from "./lang/sv.json";
 import pl from "./lang/pl.json";
@@ -76,6 +77,7 @@ export const messages: Record<string, Record<string, string>> = {
   ro: ro,
   ru: ru,
   sk: sk,
+  sq: sq,
   sr: sr,
   sv: sv,
   pl: pl,
