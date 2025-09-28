@@ -1,0 +1,22 @@
+{
+  "app.pageTitle": "Tab i ri",
+  "background": "Sfondi",
+  "dashboard.errorHint": "Shfaq gabimin",
+  "dashboard.focusHint": "Ndërro widget-at",
+  "dashboard.fullscreenHint": "Ndrysho modalitetin e ekranit të plotë",
+  "dashboard.loadingHint": "Përmbajtje të reja po ngarkohen",
+  "dashboard.settingsHint": "Përshtat Tabliss",
+  "plugin.greeting.withName": "{hour, select, 0 {Fli mirë, {name}} 1 {Fli mirë, {name}} 2 {Fli mirë, {name}} 3 {Çohu nga shtrati, {name}} 4 {Çohu nga shtrati, {name}} 5 {Çohu nga shtrati, {name}} 6 {Mirëmëngjes, {name}} 7 {Mirëmëngjes, {name}} 8 {Mirëmëngjes, {name}} 9 {Mirëmëngjes, {name}} 10 {Përshëndetje {name}} 11 {Përshëndetje {name}} 12 {Përshëndetje {name}} 13 {Përshëndetje {name}} 14 {Mirëdita, {name}} 15 {Mirëdita, {name}} 16 {Mirëdita, {name}} 17 {Mirëdita, {name}} 18 {Mirëmbrëma, {name}} 19 {Mirëmbrëma, {name}} 20 {Mirëmbrëma, {name}} 21 {Mirëmbrëma, {name}} 22 {Natën e mirë, {name}} 23 {Natën e mirë, {name}} other {E panjohur}}",
+  "plugin.greeting.withoutName": "{hour, select, 0 {Fli mirë} 1 {Fli mirë} 2 {Fli mirë} 3 {Çohu nga shtrati} 4 {Çohu nga shtrati} 5 {Çohu nga shtrati} 6 {Mirëmëngjes} 7 {Mirëmëngjes} 8 {Mirëmëngjes} 9 {Mirëmëngjes} 10 {Përshëndetje} 11 {Përshëndetje} 12 {Përshëndetje} 13 {Përshëndetje} 14 {Mirëdita} 15 {Mirëdita} 16 {Mirëdita} 17 {Mirëdita} 18 {Mirëmbrëma} 19 {Mirëmbrëma} 20 {Mirëmbrëma} 21 {Mirëmbrëma} 22 {Natën e mirë} 23 {Natën e mirë} other {E panjohur}}",
+  "plugins.links.shortcutHint": "Shtyp ose kliko {number} për ta hapur",
+  "plugins.links.standardHint": "Kliko për ta hapur",
+  "plugins.search.placeholder": "Shkruaj fjalën/fjalët për kërkim",
+  "plugins.unsplash.photoLink": "Foto",
+  "plugins.weather.apparent": "Temperatura e ndjerë",
+  "plugins.weather.high": "E lartë",
+  "plugins.weather.humidity": "Lagështia",
+  "plugins.weather.low": "E ulët",
+  "settings": "Cilësimet",
+  "settings.translationCredits": "Përkthyer nga Elbasan K (github.com/elbasan)",
+  "widgets": "Widget-at"
+}
