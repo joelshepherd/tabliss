@@ -1,22 +1,69 @@
+@import './variables'
+
 .TodoItem
-    // Some weird element size bug
-    white-space: nowrap
-    direction: rtl
+    display: flex
+    align-items: flex-start
+    padding: 6px $spacing-lg
+    border-bottom: 1px solid $border-color
+    transition: background-color $transition-fast
+    align-items: center
 
-    a
-        display: inline-block
-        font-size: 0.75em
-        margin: 0.25em 0.5em
+    background-color: $bg-focus
+    border-radius: $radius-sm
 
-    span
-        direction: initial
-        display: inline-block
+    &:hover
+        background-color: $bg-hover
 
-    a.delete
-        display: none
+    &.completed
+        .title
+            text-decoration: line-through
+            color: $text-tertiary !important
 
-    span:focus
-        & ~ a.delete
-            display: inline-block
-        & ~ a.complete
-            display: none
+        .subtitle
+            color: $text-muted
+
+    .checkbox
+        margin-right: $spacing-lg
+        cursor: pointer
+        font-size: $checkbox-size
+        color: $primary-color
+        display: flex
+        align-items: center
+        flex-shrink: 0
+        margin-top: 0.1rem
+
+        &:hover
+            opacity: 0.8
+
+    .content
+        flex: 1
+        display: flex
+        flex-direction: column
+        gap: $spacing-xs
+        text-align: left
+
+        .title
+            // all: unset
+            font-size: $font-size-base
+            font-weight: $font-weight-normal
+            color: $text-primary
+            display: block
+            word-wrap: break-word
+            outline: none
+            
+
+        .subtitle
+            font-size: $font-size-sm
+            color: $text-tertiary
+            outline: none
+            display: block
+            word-wrap: break-word
+            white-space: normal
+
+    .delete
+        margin-left: $spacing-sm
+        // opacity: 0.5
+        cursor: pointer
+        font-size: 0.9rem
+        margin-top: 0.1rem
+        color: $danger-color

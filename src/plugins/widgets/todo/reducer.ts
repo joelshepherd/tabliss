@@ -4,6 +4,8 @@ type Todo = {
   id: string;
   contents: string;
   completed: boolean;
+  subtitle?: string;
+  completedAt?: number;
 };
 
 export type State = Todo[];
@@ -19,7 +21,11 @@ export function reducer(state: State, action: Action) {
     case "TOGGLE_TODO":
       return state.map((todo) =>
         todo.id === action.data.id
-          ? { ...todo, completed: !todo.completed }
+          ? { 
+              ...todo, 
+              completed: !todo.completed,
+              completedAt: !todo.completed ? Date.now() : undefined
+            }
           : todo,
       );
 
@@ -30,7 +36,11 @@ export function reducer(state: State, action: Action) {
 
       return state.map((todo) =>
         todo.id === action.data.id
-          ? { ...todo, contents: action.data.contents }
+          ? { 
+              ...todo, 
+              contents: action.data.contents,
+              ...(action.data.subtitle !== undefined && { subtitle: action.data.subtitle })
+            }
           : todo,
       );
 

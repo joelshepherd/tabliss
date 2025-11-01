@@ -1,11 +1,12 @@
 import React, { FC } from "react";
 
 import { useKeyPress, useSavedReducer, useToggle } from "../../../hooks";
-import { DownIcon, Icon, UpIcon, ExpandIcon } from "../../../views/shared";
+import { Icon } from "../../../views/shared";
 import { addTodo, removeTodo, toggleTodo, updateTodo } from "./actions";
 import { reducer, State } from "./reducer";
 import TodoList from "./TodoList";
 import { defaultData, Props } from "./types";
+import "./Todo.sass";
 
 const Todo: FC<Props> = ({ data = defaultData, setData }) => {
   const [showCompleted, toggleShowCompleted] = useToggle();
@@ -28,6 +29,20 @@ const Todo: FC<Props> = ({ data = defaultData, setData }) => {
 
   return (
     <div className="Todo">
+      <div className="todo-header">
+        <div className="header-left">
+          <h2 className="todo-title">Tasks</h2>
+        </div>
+        <div className="header-right">
+          <a onClick={toggleShowCompleted} className="icon-button">
+            <Icon name="filter" />
+          </a>
+          <a onClick={() => dispatch(addTodo())} className="icon-button fab">
+            <Icon name="plus" />
+          </a>
+        </div>
+      </div>
+
       <TodoList
         items={items}
         onToggle={(...args) => dispatch(toggleTodo(...args))}
@@ -36,17 +51,11 @@ const Todo: FC<Props> = ({ data = defaultData, setData }) => {
         show={show}
       />
 
-      <div>
-        <a onClick={() => dispatch(addTodo())}>
-          <ExpandIcon />
-        </a>{" "}
-        <a onClick={toggleShowCompleted}>
-          <Icon name={showCompleted ? "check-circle" : "circle"} />
-        </a>{" "}
-        {items.length > data.show && (
-          <a onClick={toggleShowMore}>{showMore ? <UpIcon /> : <DownIcon />}</a>
-        )}
-      </div>
+      {!items.length && <span className="empty">Empty tasks</span>}
+
+      {/* <button className="fab" onClick={() => dispatch(addTodo())}>
+        <Icon name="plus" />
+      </button> */}
     </div>
   );
 };

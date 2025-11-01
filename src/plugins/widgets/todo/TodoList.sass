@@ -1,8 +1,21 @@
-.TodoList
-    display: inline-block
-    margin: 0.25em 0
-    max-height: 35vh
-    overflow: hidden
+@import './variables'
 
-    &:hover
-        overflow-y: auto
+.TodoList
+    display: flex
+    flex-direction: column
+    max-height: 40vh
+    overflow-y: auto
+    overflow-x: hidden
+
+    &::-webkit-scrollbar
+        width: $scrollbar-width
+
+    &::-webkit-scrollbar-track
+        background: transparent
+
+    &::-webkit-scrollbar-thumb
+        background: rgba(0, 0, 0, 0.15)
+        border-radius: $radius-sm
+
+        &:hover
+            background: rgba(0, 0, 0, 0.25)

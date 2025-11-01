@@ -8,7 +8,7 @@ interface Props {
   items: State;
   show?: number;
   onToggle(id: string): void;
-  onUpdate(id: string, contents: string): void;
+  onUpdate(id: string, contents: string, subtitle?: string): void;
   onRemove(id: string): void;
 }
 
@@ -25,7 +25,7 @@ const TodoList: FC<Props> = ({
         key={item.id}
         item={item}
         onToggle={() => onToggle(item.id)}
-        onUpdate={(contents) => onUpdate(item.id, contents)}
+        onUpdate={(contents, subtitle) => onUpdate(item.id, contents, subtitle)}
         onDelete={() => onRemove(item.id)}
       />
     ))}

@@ -1,0 +1,72 @@
+@import './variables'
+
+.Todo
+    position: relative
+    background: $bg-white
+    border-radius: $radius-lg
+    box-shadow: $shadow-md
+    overflow: hidden
+    max-width: 400px
+    min-width: 320px
+    backdrop-filter: blur(10px)
+    display: inline-block
+    vertical-align: top
+    // padding-bottom: $spacing-lg
+
+    .empty
+        font-size: $font-size-sm
+        color: $text-disabled
+        padding: $spacing-xxl
+        text-align: center
+        display: block
+
+    .todo-header
+        display: flex
+        justify-content: space-between
+        align-items: center
+        padding: $spacing-lg $spacing-xl
+        border-bottom: 1px solid $divider-color
+        background: linear-gradient(to bottom, rgba(255, 255, 255, 0.5), transparent)
+
+        .header-left
+            display: flex
+            align-items: center
+            gap: $spacing-md
+
+            svg
+                color: $primary-color
+                font-size: $font-size-xxl
+
+            .todo-title
+                margin: 0
+                font-size: $font-size-xl
+                font-weight: $font-weight-semibold
+                color: $text-primary
+
+        .header-right
+            display: flex
+            gap: $spacing-sm
+
+            .icon-button
+                cursor: pointer
+                padding: $spacing-sm
+                border-radius: $radius-md
+                transition: background-color $transition-fast
+                display: flex
+                align-items: center
+                justify-content: center
+                color: $text-secondary
+                font-size: $font-size-lg
+
+                &:hover
+                    background-color: $bg-active
+                    color: $text-primary
+
+                &.fab
+                    background: linear-gradient(135deg, $primary-gradient-start, $primary-gradient-end)
+                    border: none
+                    &:hover
+                        opacity: 0.8
+
+                    svg
+                        color: white

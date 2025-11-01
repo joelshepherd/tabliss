@@ -1,0 +1,178 @@
+
+
+.bookmark-container
+    width: 80vw
+    -webkit-user-select: none
+    /* Safari */
+    -ms-user-select: none
+    /* IE 10 and IE 11 */
+    user-select: none
+    /* Standard syntax */
+
+    .swiper
+        height: 100%
+        margin-left: auto
+        margin-right: auto
+        width: 800px
+        /* background-color: rgba(255, 0, 0, 0.24); */
+
+    .swiper-wrapper
+        /* width: 800px !important; */
+
+    .swiper-slide
+        width: 800px
+        text-align: center
+        font-size: 18px
+        /* background: #00000067; */
+        /* height: 200px !important; */
+        min-height: 200px
+        height: max-content
+        display: flex
+        width: max-content !important
+
+    .swiper-pagination
+        margin-top: 50px
+
+    .swiper-pagination-bullet
+        border-radius: 4px !important
+        transform: translateY(12px)
+        background: white !important
+
+    .swiper-pagination-bullet-active
+        width: 16px !important
+
+    .blue-background-class
+        opacity: 0 !important
+        /* hides ghost if still visible */
+
+    .grid
+        width: 800px
+        display: grid
+        gap: 50px
+        justify-content: center
+        align-items: center
+        margin: 1rem
+        padding-bottom: 45px
+
+        .grid-item
+            display: flex
+            align-items: center
+            flex-direction: column
+            justify-content: space-between
+            position: relative
+
+            &:hover .icon
+                visibility: visible
+
+            .icon
+                position: absolute
+                top: 0
+                /* right: 0; */
+                z-index: 10
+                width: 24px
+                height: 24px
+                border-radius: 50%
+                display: flex
+                align-items: center
+                justify-content: center
+                background-color: white
+                visibility: hidden
+
+                &.right
+                    right: 0
+                    transform: translate(25%, -25%)
+
+                &.left
+                    left: 0
+                    transform: translate(-25%, -25%)
+                    background-color: red
+
+                    svg
+                        fill: rgba(255, 255, 255, 0.212)
+                        stroke: white
+
+                svg
+                    width: 12px
+                    height: 12px
+                    fill: rgba(0, 0, 0, 0.164)
+                    stroke: black
+
+                i
+                    display: flex
+                    justify-content: center
+                    align-items: center
+                    width: 100%
+                    height: 100%
+
+            span
+                font-size: small
+                /* white-space: nowrap; */
+                text-overflow: ellipsis
+                overflow: hidden
+                max-width: 100px
+                position: absolute
+                /* bottom: -1.5em; */
+                top: 100%
+                pointer-events: none
+                display: -webkit-box
+                -webkit-box-orient: vertical
+                -webkit-line-clamp: 2
+                overflow: hidden
+                transform: translateY(4px)
+                /* font: "600 12px / 18px Inter Variable" */
+                font-weight: 500
+                text-shadow: 0px 1px 0px 0px rgba(0, 0, 0, 0.05), 0px 4px 8px -1px rgba(0, 0, 0, 0.1)
+
+    .icon-box
+        width: 56px
+        height: 56px
+        background: rgba(255, 255, 255, 0.25)
+        display: flex
+        flex-direction: column
+        align-items: center
+        justify-content: center
+        border-radius: 16px
+        backdrop-filter: blur(8px)
+        /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); */
+        cursor: pointer
+        transition: transform 0.2s
+
+        .folder
+            display: grid
+            grid-template-columns: 1fr 1fr 1fr
+            grid-template-rows: 1fr 1fr 1fr
+            gap: 4px
+            margin: 8px
+
+            img
+                width: 100%
+                height: auto
+                mix-blend-mode: multiply
+                /* background: transparent; */
+
+            i
+                width: 100%
+                height: auto
+
+        > img
+            width: 32px
+            height: auto
+            object-fit: contain
+            border-radius: 8px
+            mix-blend-mode: multiply
+            /* background: transparent; */
+
+        i
+            width: 32px
+            height: auto
+            display: flex
+            justify-content: center
+            align-items: center
+
+            svg
+                width: 100%
+                height: auto
+
+        &:hover
+            transform: scale(1.05)
+            background: rgba(255, 255, 255, 0.5)

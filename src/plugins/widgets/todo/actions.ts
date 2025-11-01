@@ -1,10 +1,11 @@
 import { nanoid as generateId } from "nanoid";
 
-export function addTodo(contents = "") {
+export function addTodo(contents = "", subtitle = "") {
   return {
     type: "ADD_TODO",
     data: {
       contents,
+      subtitle,
       id: generateId(),
       completed: false,
     },
@@ -25,10 +26,10 @@ export function toggleTodo(id: string) {
   } as const;
 }
 
-export function updateTodo(id: string, contents: string) {
+export function updateTodo(id: string, contents: string, subtitle?: string) {
   return {
     type: "UPDATE_TODO",
-    data: { id, contents },
+    data: { id, contents, subtitle },
   } as const;
 }
 
