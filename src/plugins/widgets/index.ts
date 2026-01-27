@@ -4,6 +4,7 @@ import greeting from "./greeting";
 import ipInfo from "./ipInfo";
 import js from "./js";
 import links from "./links";
+import linkCollections from "./linkCollections";
 import literatureClock from "./literatureClock";
 import message from "./message";
 import nba from "./nba";
@@ -22,6 +23,7 @@ export const widgetConfigs = [
   greeting,
   ipInfo,
   links,
+  linkCollections,
   literatureClock,
   message,
   nba,

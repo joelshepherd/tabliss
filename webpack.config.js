@@ -52,6 +52,7 @@ const config = {
       {
         test: /\.(ts|tsx)$/,
         include: path.resolve("./src"),
+        exclude: /\.test\.(ts|tsx)$/,
         loader: "ts-loader",
       },
     ],

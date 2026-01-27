@@ -1,0 +1,68 @@
+.ContextMenu
+    position: fixed
+    z-index: 1000
+    background: rgba(0, 0, 0, 0.9)
+    border-radius: 8px
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3)
+    padding: 4px 0
+    min-width: 200px
+    animation: fadeIn 150ms ease-out
+    backdrop-filter: blur(8px)
+
+    &-item
+        display: flex
+        align-items: center
+        padding: 8px 16px
+        cursor: pointer
+        transition: background 100ms ease
+        user-select: none
+        gap: 12px
+
+        &:hover
+            background: rgba(255, 255, 255, 0.1)
+
+        &.active
+            background: rgba(255, 255, 255, 0.15)
+
+        &.disabled
+            opacity: 0.4
+            cursor: not-allowed
+
+            &:hover
+                background: transparent
+
+        &-name
+            flex: 1
+            font-size: 14px
+
+        .Icon
+            width: 18px
+            height: 18px
+            display: flex
+            align-items: center
+            justify-content: center
+
+// Light theme support
+.light
+    .ContextMenu
+        background: rgba(255, 255, 255, 0.95)
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15)
+
+        &-item
+            &:hover
+                background: rgba(0, 0, 0, 0.05)
+
+            &.active
+                background: rgba(0, 0, 0, 0.1)
+
+            &.disabled:hover
+                background: transparent
+
+// Fade-in animation
+@keyframes fadeIn
+    from
+        opacity: 0
+        transform: translateY(-4px)
+    to
+        opacity: 1
+        transform: translateY(0)

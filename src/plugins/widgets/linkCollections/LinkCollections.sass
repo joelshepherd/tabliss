@@ -1,0 +1,81 @@
+.LinkCollections
+    column-gap: 1em
+    display: inline-grid
+
+    a
+        display: block
+        margin: 0.25em
+        white-space: nowrap
+
+        &:hover
+            text-decoration: none
+
+        &:hover
+            .LinkCollectionText
+                text-decoration: underline
+
+        img
+            height: 1em
+
+    .chevron
+        font-size: 0.75em
+        opacity: 0.7
+        margin-left: 0.25em
+
+.LinkCollectionContextMenu
+    position: fixed
+    z-index: 1000
+    background: rgba(0, 0, 0, 0.9)
+    border-radius: 8px
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3)
+    padding: 4px 0
+    min-width: 200px
+    animation: fadeIn 150ms ease-out
+    backdrop-filter: blur(8px)
+
+    a
+        display: flex
+        align-items: center
+        padding: 8px 16px
+        text-decoration: none
+        white-space: nowrap
+        cursor: pointer
+        transition: background 100ms ease
+        user-select: none
+        gap: 12px
+
+        &:hover
+            background: rgba(255, 255, 255, 0.1)
+            text-decoration: none
+
+        img
+            height: 1em
+            flex-shrink: 0
+
+        i
+            display: flex
+            align-items: center
+            flex-shrink: 0
+
+        span
+            flex: 1
+            font-size: 14px
+
+// Light theme support
+html.theme-light
+    .LinkCollectionContextMenu
+        background: rgba(255, 255, 255, 0.95)
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15)
+
+        a
+            &:hover
+                background: rgba(0, 0, 0, 0.05)
+
+// Fade-in animation
+@keyframes fadeIn
+    from
+        opacity: 0
+        transform: translateY(-4px)
+    to
+        opacity: 1
+        transform: translateY(0)
