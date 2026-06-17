@@ -51,6 +51,7 @@ export const fetchImages = async ({
     src: item.urls.raw,
     credit: {
       imageLink: item.links.html,
+      photoId: item.id,              // <-- add this  
       location: item.location ? item.location.name : null,
       userName: item.user.name,
       userLink: item.user.links.html,

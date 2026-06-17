@@ -17,6 +17,7 @@ export interface Image {
   src: string;
   credit: {
     imageLink: string;
+    photoId: string;       // <-- add this  
     location?: string;
     userName: string;
     userLink: string;

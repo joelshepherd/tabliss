@@ -49,6 +49,13 @@ const UnsplashCredit: React.FC<Props> = ({
       </a>{" "}
       <a className={onNext ? "" : "hidden"} onClick={onNext ?? undefined}>
         <Icon name="arrow-right" />
+      </a>{" "}
+      <a
+        href={`https://unsplash.com/photos/${credit.photoId}/download?force=true`}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <Icon name="download" />
       </a>
     </div>
 
