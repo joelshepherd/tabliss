@@ -33,6 +33,7 @@ jobs:
         env:
           GIPHY_API_KEY: ${{ secrets.GIPHY_API_KEY }}
           UNSPLASH_API_KEY: ${{ secrets.UNSPLASH_API_KEY }}
+          PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
       - uses: actions/upload-artifact@v3
         with:
           name: tabliss-${{ matrix.build_target }}
