@@ -79,6 +79,7 @@ const config = {
       GIPHY_API_KEY: JSON.stringify(process.env.GIPHY_API_KEY),
       VERSION: JSON.stringify(version),
       UNSPLASH_API_KEY: JSON.stringify(process.env.UNSPLASH_API_KEY),
+      PEXELS_API_KEY: JSON.stringify(process.env.PEXELS_API_KEY),
     }),
   ],
   devtool: isWeb || !isProduction ? "source-map" : false,

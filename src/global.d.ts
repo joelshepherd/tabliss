@@ -5,6 +5,7 @@ declare global {
   const DEV: boolean;
   const GIPHY_API_KEY: string;
   const UNSPLASH_API_KEY: string;
+  const PEXELS_API_KEY: string;
   const VERSION: string;
 
   const browser: Browser;

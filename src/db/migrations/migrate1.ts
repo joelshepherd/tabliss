@@ -2,6 +2,7 @@ import { nanoid as generateId } from "nanoid";
 import { defaultData as defaultGiphyData } from "../../plugins/backgrounds/giphy/types";
 import { defaultData as defaultGradientData } from "../../plugins/backgrounds/gradient/types";
 import { defaultData as defaultUnsplashData } from "../../plugins/backgrounds/unsplash/types";
+import { defaultData as defaultPexelsData } from "../../plugins/backgrounds/pexels/types";
 import { defaultData as defaultSearchData } from "../../plugins/widgets/search/types";
 import { defaultData as defaultTimeData } from "../../plugins/widgets/time/types";
 import { defaultData as defaultTodoData } from "../../plugins/widgets/todo/types";
@@ -86,10 +87,10 @@ export default function (input: Version1Config): Version2Config {
   const fontSettings = input.storage["core/widgets/font"];
   const fontDisplay = fontSettings
     ? {
-        colour: fontSettings.settings.colour || "#ffffff",
-        fontFamily: fontSettings.settings.family,
-        fontSize: fontSettings.settings.size || 28,
-      }
+      colour: fontSettings.settings.colour || "#ffffff",
+      fontFamily: fontSettings.settings.family,
+      fontSize: fontSettings.settings.size || 28,
+    }
     : {};
 
   const widgets: Version2Config["widgets"] = input.dashboard.widgets
@@ -130,6 +131,7 @@ const keyMap = {
   "core/backgrounds/gradient": "background/gradient",
   "core/backgrounds/image": "background/image",
   "extra/backgrounds/unsplash": "background/unsplash",
+  "extra/backgrounds/pexels": "background/pexels",
   "core/widgets/css": "widget/css",
   "core/widgets/font": null,
   "core/widgets/greeting": "widget/greeting",
@@ -174,6 +176,11 @@ function translateData(type: string, storage?: Storage) {
         ? { ...defaultUnsplashData, ...storage.settings }
         : undefined;
 
+    case "extra/backgrounds/pexels":
+      return storage
+        ? { ...defaultPexelsData, ...storage.settings }
+        : undefined;
+
     case "core/widgets/links":
       return storage ? { columns: 1, ...storage.settings } : undefined;
 
@@ -193,20 +200,20 @@ function translateData(type: string, storage?: Storage) {
     case "widgets/todo":
       return storage
         ? {
-            ...defaultTodoData,
-            ...storage.settings,
-            ...storage.local, // Move into data
-          }
+          ...defaultTodoData,
+          ...storage.settings,
+          ...storage.local, // Move into data
+        }
         : undefined;
 
     case "extra/widgets/weather":
       return storage
         ? {
-            showDetails: storage.local.details || false, // Move into data
-            latitude: storage.settings.latitude,
-            longitude: storage.settings.longitude,
-            units: storage.settings.units || "auto",
-          }
+          showDetails: storage.local.details || false, // Move into data
+          latitude: storage.settings.latitude,
+          longitude: storage.settings.longitude,
+          units: storage.settings.units || "auto",
+        }
         : undefined;
 
     default:
