@@ -15,7 +15,12 @@ const presets: Preset[] = [
   { name: "Mint", from: "#00c9ff", to: "#92fe9d", angle: 110 },
   { name: "Slate", from: "#0f2027", to: "#2c5364", angle: 160 },
   { name: "Sky", from: "#4fb1f3", to: "#9b59b6", angle: 135 },
-  { name: "Default", from: "#3498db", to: "#9b59b6", angle: 0 },
+  {
+    name: "Default",
+    from: defaultData.from,
+    to: defaultData.to,
+    angle: defaultData.angle,
+  },
   { name: "Peach", from: "#ffecd2", to: "#fcb69f", angle: 135 },
   { name: "Lavender", from: "#a18cd1", to: "#fbc2eb", angle: 120 },
   { name: "Forest", from: "#134e5e", to: "#71b280", angle: 120 },
@@ -57,7 +62,9 @@ const GradientSettings: FC<Props> = ({ data = defaultData, setData }) => {
             }
           }}
         >
-          <option value="">Custom</option>
+          <option value="" disabled>
+            Custom
+          </option>
           {presets.map((preset, index) => (
             <option key={preset.name} value={index}>
               {preset.name}
