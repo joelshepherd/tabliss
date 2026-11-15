@@ -5,6 +5,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+### Added
+
+- Presets for the Colour Gradient background
+
 ### Fixed
 
 - Updated IP Info widget with a more reliable service and more frequent updates
